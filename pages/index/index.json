@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "swipe-out": "../../components/layout/swipeout"
+  }
+}
