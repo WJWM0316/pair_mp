@@ -3,7 +3,8 @@ export const setConfig = (appId, envVersion) => {
       APIHOST: "",
       NODEHOST: '',
       WEBVIEW: '',
-      CDNPATH: ''
+      CDNPATH: '',
+      PAGEPATH: '/pages/'
   } 
   switch (envVersion) {
     case 'develop':

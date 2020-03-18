@@ -14,5 +14,5 @@
   <swipe-out actions="{{actions}}" bindchange="change">
     <view slot="content">侏罗纪世界主题公园及豪华度假村被失控的恐龙们摧毁已有四年</view>
   </swipe-out>
-  <i-button type="success">按钮1</i-button>
+  <i-button type="success" bindtap="jump">按钮1</i-button>
 </view>
