@@ -1,0 +1,3 @@
+<view class="chatWrap" hover-class="none" hover-stop-propagation="false">
+  <msg-image></msg-image>
+</view>

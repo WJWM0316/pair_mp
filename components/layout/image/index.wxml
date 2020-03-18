@@ -1,0 +1,21 @@
+<image
+  src="{{src}}"
+  mode="{{mode}}"
+  style="{{styleString}}"
+  lazy-load="{{lazyLoad}}"
+  show-menu-by-longpress="showMenu"
+  class="my-class"
+  bindload="loadCallback"
+  binderror="errCallback"
+  hidden="{{loading}}"
+></image>
+<image
+  wx:if="{{loading}}"
+  src="{{placeholder}}"
+  class="my-class"
+></image>
+<image
+  wx:if="{{error}}"
+  src="{{errorPath}}"
+  class="my-class"
+></image>

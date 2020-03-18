@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/IM/chat/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,7 +10,8 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "i-button": "./components/layout/button/index"
+    "i-button": "./components/layout/button/index",
+    "i-image": "./components/layout/image/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

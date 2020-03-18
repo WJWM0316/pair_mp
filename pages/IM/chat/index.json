@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "msg-image": "../../../components/message/image"
+  }
+}
