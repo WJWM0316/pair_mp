@@ -1,0 +1,42 @@
+<view class="company-post">
+
+	<view bindsubmit="submit" class="entry-list">
+
+		<view class="li upload">
+			<view class="key">公司logo</view>
+			<view class="logo-box">
+				<view class="logo" bindtap="savaBeforeUpload">
+					<unloadFile bindresultEvent="upload" unloadType="img" number="{{number}}">
+						<!-- <image wx:if="{{!formData.logo.smallUrl}}" src="{{cdnPath}}pic_dafult_company.png" class="placeholder-image" mode="aspectFit"></image> -->
+						<!-- <image src="{{formData.logo.smallUrl}}" wx:if="{{formData.logo.smallUrl}}" mode="aspectFit" class="upload-image"></image> -->
+					</unloadFile>
+				</view>
+			</view>
+			<i class="icon iconfont icon-xiangyou"></i>
+		</view>
+
+		<view class="li link}}">
+			<view class="key"><text>*</text>公司简称</view>
+			<input type="text" class="companyShortName" placeholder="示例：猎多多" placeholder-class="defaultColor" value="{{formData.mickname}}" bindinput="bindInput" maxlength="10"></input>
+		</view>
+
+		<view class="li">
+			<i class="icon iconfont icon-xiangyou"></i>
+			<view class="key"><text>*</text>生日</view>
+		  <view class="value wid">
+		  	<myPicker pickerType="birthday" initValue="{{'1992-01-28'}}"></myPicker>
+		  </view>
+		</view>
+
+		<view class="li clear-bottom" bindtap="getPosition">
+			<view class="key">公司介绍</view>
+			<i class="icon iconfont icon-xiangyou"></i>
+			<view class="value">点击填写</view>
+		</view>
+
+	  <view class="btn-area">
+	    <view bindtap="submit" class="button-submit button-enable">下一步</view>
+	  </view>
+
+	</view>
+</view>

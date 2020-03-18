@@ -1,0 +1,10 @@
+<picker
+  class="picker"
+  value="{{ value }}"
+  mode="{{ mode }}"
+  range="{{ rangeArray }}"
+  range-key="{{ rangeKey }}"
+  bindchange="change"
+  bindcolumnchange="bindChange">
+  <view class="picker">{{ placeHolder }}</view>
+</picker>
