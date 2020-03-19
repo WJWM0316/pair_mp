@@ -1,7 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/IM/chat/index"
+    "pages/IM/chat/index",
+    "pages/createInfo/step1/index",
+    "pages/createInfo/step2/index",
+    "pages/createInfo/step3/index",
+    "pages/createInfo/step4/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

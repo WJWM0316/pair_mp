@@ -33,6 +33,7 @@ Page({
     })
   },
   onLoad: function () {
+    console.log(app.globalData, 'kkk')
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -70,5 +71,11 @@ Page({
   },
   change (index) {
     console.log(index, 111)
+  },
+  jump() {
+    let { PAGEPATH } = app.globalData
+    wx.navigateTo({
+      url: `${PAGEPATH}createInfo/step1/index`
+    })
   }
 })

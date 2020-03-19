@@ -4,7 +4,8 @@ export const setConfig = (appId, envVersion) => {
       NODEHOST: '',
       WEBVIEW: '',
       CDNPATH: '',
-      SOCKETPATH: ''
+      SOCKETPATH: '',
+      PAGEPATH: '/pages/'
   } 
   switch (envVersion) {
     case 'develop':

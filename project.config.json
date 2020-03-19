@@ -67,6 +67,12 @@
 					"pathName": "pages/IM/chat/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "创建信息流程第一步",
+					"pathName": "pages/createInfo/step1/index",
+					"scene": null
 				}
 			]
 		}
