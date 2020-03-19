@@ -16,8 +16,8 @@
   line-height: 88rpx;
   box-shadow: inset 0 0 0 2rpx rgba(0, 0, 0, 0.1);
   color: #fff !important;
-  background: #f7f7f7 !important;
-  color: #495060 !important;
+  background: #F8FAFA !important;
+  color: #282828 !important;
   margin: 20rpx;
 }
 .i-btn-hover {
@@ -38,12 +38,12 @@
 }
 .i-btn-primary {
   color: #fff !important;
-  background: #2d8cf0 !important;
+  background: #00C4CD !important;
 }
 .i-btn-ghost {
   color: #fff !important;
   background: #fff !important;
-  color: #495060 !important;
+  color: #282828 !important;
 }
 .i-btn-success {
   color: #fff !important;
@@ -88,7 +88,7 @@
 }
 .i-btn-disabled {
   color: #bbbec4 !important;
-  background: #f7f7f7 !important;
+  background: #F8FAFA !important;
 }
 .i-btn-inline {
   display: inline-block;

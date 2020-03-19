@@ -1,0 +1,8 @@
+<view class="videoWrap" bindtap = "play">
+  <block hidden="{{!paused}}">
+    <msg-image message="{{message}}"></msg-image>
+  </block>
+  <block wx:if="{{!paused}}">
+    <video id="{{message.id}}" src="{{message.path}}" bindfullscreenchange="changeFullScreen"></video>
+  </block>
+</view>

@@ -19,10 +19,7 @@ Component({
     },
     styleString: {
       type: String,
-      value: '',
-      observer: function(newVal, oldVal) {
-        console.log(newVal)
-      }
+      value: ''
     },
     mode: {
       type: String,

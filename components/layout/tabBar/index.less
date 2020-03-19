@@ -1,0 +1,31 @@
+@import "../../../styles/_base.less";
+.tabBar {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  .tabBar-content {
+    width:686rpx;
+    height:118rpx;
+    background: #fff;
+    box-shadow:0rpx 12rpx 30rpx 0rpx rgba(30,102,102,0.1);
+    border-radius:60rpx;
+    margin: 0 auto;
+    padding: 0 116rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .icon {
+      display: block;
+      color: @text-color-5;
+    }
+    .text {
+      display: block;
+      color: @text-color-5;
+      font-size: 22rpx;
+      line-height: 30rpx;
+      font-weight:500;
+    }
+  }
+}

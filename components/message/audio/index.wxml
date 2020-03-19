@@ -1,0 +1,3 @@
+<view class="audioWrap">
+  <view class="audio" bindtap = "play">播放</view>
+</view>
