@@ -3,12 +3,15 @@ export const setConfig = (appId, envVersion) => {
       APIHOST: "",
       NODEHOST: '',
       WEBVIEW: '',
-      CDNPATH: ''
+      CDNPATH: '',
+      SOCKETPATH: '',
+      PAGEPATH: '/pages/'
   } 
   switch (envVersion) {
     case 'develop':
       console.log('开发环境')
       config.CDNPATH = 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/'
+      config.SOCKETPATH = 'wss://wss-api.pickme.ziwork.com'
       break
     case 'trial':
       console.log('测试环境(体验版)')

@@ -1,18 +1,5 @@
-<!--index.wxml-->
-<view class="container">
-<view class="abc">111</view>
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  <swipe-out actions="{{actions}}" bindchange="change">
-    <view slot="content">侏罗纪世界主题公园及豪华度假村被失控的恐龙们摧毁已有四年</view>
-  </swipe-out>
-  <i-button type="success">按钮1</i-button>
+
+<view class="indexWrap">
+  <tabBar></tabBar>
 </view>
+

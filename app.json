@@ -11,6 +11,7 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
+    "tabBar": "./components/layout/tabBar/index",
     "i-button": "./components/layout/button/index",
     "i-image": "./components/layout/image/index"
   },

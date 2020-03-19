@@ -1,0 +1,65 @@
+@import '../../../styles/_base.less';
+@import '../../../styles/_mixins.less';
+
+.chatWrap {
+  min-height: 100vh;
+  background: @background-color-base;
+  .chatArea {
+    padding: 20rpx 30rpx;
+    .scrollView {
+      height: calc(100vh - 200rpx);
+    }
+    .message-list {
+      .message-item {
+        margin-bottom: 30rpx;
+        overflow: hidden;
+        .avatar {
+          width: 80rpx;
+          height: 80rpx;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+        .message-content {
+          border-radius: @msg-radius;
+          overflow: hidden;
+          .text {
+            max-width:446rpx;
+            font-size:30rpx;
+            line-height:44rpx;
+            padding: 24rpx 30rpx;
+            border-radius: 24rpx;
+            overflow: hidden;
+            box-sizing: border-box;
+          }
+        }
+        &.others {
+          .avatar {
+            float: left;
+          }
+          .message-content {
+            border-top-left-radius: 0;
+            margin-left: 16rpx;
+            float: left;
+            background: #fff;
+            color: @text-color-1;
+          }
+        }
+        &.mine {
+          .avatar {
+            float: right;
+          }
+          .message-content {
+            border-top-right-radius: 0;
+            margin-right: 16rpx;
+            float: right;
+            background: @primary-color;
+            color: #fff;
+            &.img, &.video {
+              background: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

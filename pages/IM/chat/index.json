@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "msg-image": "../../../components/message/image"
+    "msg-image": "../../../components/message/image",
+    "msg-audio": "../../../components/message/audio",
+    "msg-video": "../../../components/message/video"
   }
 }

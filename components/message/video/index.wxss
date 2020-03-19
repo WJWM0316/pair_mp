@@ -1,0 +1,4 @@
+.videoWrap .video {
+  width: 320rpx;
+  height: 480rpx;
+}

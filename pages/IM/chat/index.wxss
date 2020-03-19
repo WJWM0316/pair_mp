@@ -1,1 +1,57 @@
-/* pages/IM/chat/index.wxss */
+.chatWrap {
+  min-height: 100vh;
+  background: #F8FAFA;
+}
+.chatWrap .chatArea {
+  padding: 20rpx 30rpx;
+}
+.chatWrap .chatArea .scrollView {
+  height: calc(100vh - 200rpx);
+}
+.chatWrap .chatArea .message-list .message-item {
+  margin-bottom: 30rpx;
+  overflow: hidden;
+}
+.chatWrap .chatArea .message-list .message-item .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.chatWrap .chatArea .message-list .message-item .message-content {
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+.chatWrap .chatArea .message-list .message-item .message-content .text {
+  max-width: 446rpx;
+  font-size: 30rpx;
+  line-height: 44rpx;
+  padding: 24rpx 30rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.chatWrap .chatArea .message-list .message-item.others .avatar {
+  float: left;
+}
+.chatWrap .chatArea .message-list .message-item.others .message-content {
+  border-top-left-radius: 0;
+  margin-left: 16rpx;
+  float: left;
+  background: #fff;
+  color: #282828;
+}
+.chatWrap .chatArea .message-list .message-item.mine .avatar {
+  float: right;
+}
+.chatWrap .chatArea .message-list .message-item.mine .message-content {
+  border-top-right-radius: 0;
+  margin-right: 16rpx;
+  float: right;
+  background: #00C4CD;
+  color: #fff;
+}
+.chatWrap .chatArea .message-list .message-item.mine .message-content.img,
+.chatWrap .chatArea .message-list .message-item.mine .message-content.video {
+  background: none;
+}

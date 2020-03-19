@@ -1,3 +1,36 @@
-<view class="chatWrap" hover-class="none" hover-stop-propagation="false">
-  <msg-image></msg-image>
+<view class="chatWrap">
+  <view class="chatArea">
+    <scroll-view 
+      scroll-y="{{true}}"
+      refresher-enabled="{{true}}"
+      scroll-anchoring="{{true}}"
+      refresher-triggered="{{refresher}}"
+      scroll-into-view="{{firstMessageId}}"
+      class="scrollView"
+      bindrefresherrefresh="fresherrefresh"
+      bindrefresherrestore="refresherrestore"
+    >
+      <view class="message-list" wx:for="{{messageList}}" wx:key="id" wx:for-item="list">
+        <view class="message-item {{item.data.own ? 'mine' : 'others'}}" wx:for="{{list}}" wx:key="id"  wx:for-item="item" id="{{item.messageId}}">
+          <view class="avatar">
+            <i-image src="{{item.path}}"></i-image>
+          </view>
+          <view class="message-content {{item.data.type}}">
+            <block wx:if="{{item.data.type === 'text'}}">
+              <view class="text">{{item.data.text}}</view>
+            </block>
+            <block wx:if="{{item.data.type === 'img'}}">
+              <msg-image message="{{item.data}}"></msg-image>
+            </block>
+            <block wx:if="{{item.data.type === 'audio'}}">
+              <msg-audio message="{{item.data}}"></msg-audio>
+            </block>
+            <block wx:if="{{item.data.type === 'video'}}">
+              <msg-video message="{{item.data}}"></msg-video>
+            </block>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
 </view>

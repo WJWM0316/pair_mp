@@ -21,7 +21,6 @@ Component({
     styleString: ''
   },
   attached () {
-    console.group(app.globalData, 22)
   },
   /**
    * 组件的方法列表
@@ -38,9 +37,7 @@ Component({
         styleString = `width:${maxWidth}rpx;height:${maxWidth/ratio}rpx;`
       } else if (0.8 < ratio < 1.2) {
         maxHeight = 300
-        
         styleString =  `width:${maxHeight * ratio}rpx;height:${maxHeight}rpx;`
-        console.log(styleString, 22)
       } else {
         maxHeight = 480
         styleString =  `width:${maxHeight * ratio}rpx;height:${maxHeight}rpx;`

@@ -1,7 +1,7 @@
 class Socket {
   constructor () {
     this.apartTime = 60000 // 极限时间，超过极限时间视为异常处理
-    this.heartTime = 30000 // 心跳检测时间间隔
+    this.heartTime = 5000 // 心跳检测时间间隔
     this.receiveMessageTimer = null // 检测接受信息时间的定时器，超过极限时间说明发生异常
     this.keepAliveTimer = null // 检测心跳包的定时器
     this.resetTimes = 0 // 重连次数
@@ -35,7 +35,6 @@ class Socket {
         console.log(err)
       }
     })
-
   }
   send (data) {
     this.SocketTask.send({
@@ -44,6 +43,17 @@ class Socket {
         console.log(`======websocket消息发送失败======`, err)
       }
     })
+  }
+  readyState () {
+    return this.SocketTask.readyState
+  }
+  login (token) {
+    let data = {
+      cmd: 'login.token',
+      token,
+      data: {}
+    }
+    this.send(data)
   }
   onMessage (callback) {
     this.SocketTask.onMessage((res) => {
