@@ -1,6 +1,6 @@
 .chatWrap {
   min-height: 100vh;
-  background: #F8FAFA;
+  background: #F1F4F4;
 }
 .chatWrap .chatArea {
   padding: 20rpx 30rpx;
@@ -39,7 +39,7 @@
   margin-left: 16rpx;
   float: left;
   background: #fff;
-  color: #282828;
+  color: #1F252B;
 }
 .chatWrap .chatArea .message-list .message-item.mine .avatar {
   float: right;
@@ -48,7 +48,7 @@
   border-top-right-radius: 0;
   margin-right: 16rpx;
   float: right;
-  background: #00C4CD;
+  background: #0CCDDA;
   color: #fff;
 }
 .chatWrap .chatArea .message-list .message-item.mine .message-content.img,

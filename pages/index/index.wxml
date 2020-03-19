@@ -1,5 +1,6 @@
-
+<navBar></navBar>
 <view class="indexWrap">
-  <tabBar></tabBar>
+  <view wx:for="{{100}}">{{item}}</view>
+  
 </view>
-
+<tabBar></tabBar>

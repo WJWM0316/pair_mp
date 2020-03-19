@@ -1,2 +1,9 @@
-<!--components/layout/navBar/index.wxml-->
-<text>components/layout/navBar/index.wxml</text>
+<view class="navWrap" wx:if="{{statusBarHeight}}">
+  <view class="status" style="height:{{statusBarHeight}}px"></view>
+  <view class="nav-content" style="height:{{titleHeight}}px">
+    <view class="left">左边</view>
+    <view class="center">中间</view>
+    <view class="right"> </view>
+  </view>
+</view>
+<view class="block"></view>

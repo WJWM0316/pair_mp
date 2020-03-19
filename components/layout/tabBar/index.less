@@ -4,6 +4,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
+  padding-bottom: 30rpx;
   .tabBar-content {
     width:686rpx;
     height:118rpx;
@@ -16,6 +17,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 2;
     .icon {
       display: block;
       color: @text-color-5;
@@ -27,5 +30,30 @@
       line-height: 30rpx;
       font-weight:500;
     }
+  }
+  .tabBar-mask {
+    width: 100%;
+    height: 88rpx;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background:linear-gradient(180deg,rgba(255,255,255,0.4) 0%,rgba(255,255,255,1) 100%);
+  }
+}
+.block {
+  width: 100%;
+  height: 178rpx;
+  display: block;   
+}
+
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .tabBar {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 30rpx);
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 30rpx);
+  }
+  .block {
+    height: calc(env(safe-area-inset-bottom) + 178rpx);
+    height: calc(constant(safe-area-inset-bottom) + 178rpx);
   }
 }

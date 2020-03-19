@@ -8,3 +8,4 @@
   </view>
   <view class="tabBar-mask"></view>
 </view>
+<view class="block"></view>
