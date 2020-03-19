@@ -10,6 +10,7 @@ export const setConfig = (appId, envVersion) => {
   switch (envVersion) {
     case 'develop':
       console.log('开发环境')
+      config.APIHOST = 'https://mini-api.pickme.ziwork.com'
       config.CDNPATH = 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/'
       config.SOCKETPATH = 'wss://wss-api.pickme.ziwork.com'
       break

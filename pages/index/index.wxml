@@ -1,6 +1,6 @@
 <navBar></navBar>
 <view class="indexWrap">
-  <view wx:for="{{100}}">{{item}}</view>
+  <i-button open-type="getUserInfo" form-type="submit" bindgetuserinfo="getUserInfo" lang="zh_CN">微信登录</i-button>
   
 </view>
 <tabBar></tabBar>

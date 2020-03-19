@@ -1,4 +1,4 @@
-<view class="navWrap" wx:if="{{statusBarHeight}}">
+<view class="navWrap" style="background:{{navBarBg}}">
   <view class="status" style="height:{{statusBarHeight}}px"></view>
   <view class="nav-content" style="height:{{titleHeight}}px">
     <view class="left">左边</view>

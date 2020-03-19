@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    navBarBg: {
+      type: String,
+      value: "#F3F3F3"
+    }
   },
  
   /**
