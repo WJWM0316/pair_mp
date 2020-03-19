@@ -12,7 +12,8 @@ Component({
    */
   data: {
     titleHeight: app.globalData.systemInfo.titleHeight,
-    statusBarHeight: app.globalData.systemInfo.statusBarHeight
+    statusBarHeight: app.globalData.systemInfo.statusBarHeight,
+    navBarHeight: app.globalData.navBarHeight
   },
   ready () {
     

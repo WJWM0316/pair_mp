@@ -14,9 +14,13 @@
 .navWrap .nav-content .right {
   flex: 1;
 }
+.navWrap .nav-content .right {
+  background: #000;
+}
 .navWrap .nav-content .center {
   flex: 2;
   text-align: center;
   font-size: 36rpx;
   color: #1F252B;
+  font-weight: 700;
 }
