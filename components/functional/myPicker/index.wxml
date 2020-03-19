@@ -6,5 +6,8 @@
   range-key="{{ rangeKey }}"
   bindchange="change"
   bindcolumnchange="bindChange">
-  <view class="picker">{{ placeHolder }}</view>
+  <view class="picker">
+    <slot wx:if="{{needSlot}}"></slot>
+    <block wx:else>{{ placeHolder }}</block>
+  </view>
 </picker>
