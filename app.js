@@ -1,6 +1,7 @@
 //app.js
 import Socket from './utils/webSocket.js'
 import {setConfig} from './env.config'
+import { request } from './api/index'
 App({
   onLaunch: function () {
     // 获取系统参数，计算顶部栏高度

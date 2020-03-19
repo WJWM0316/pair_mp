@@ -1,4 +1,4 @@
-// pages/createInfo/step3/index.js
+// pages/createInfo/index.js
 Page({
 
   /**

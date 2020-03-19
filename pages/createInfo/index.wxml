@@ -1,0 +1,9 @@
+<view class="create_info">
+  <view class="h1">完善基础信息</view>
+  <view class="progress">
+    <view class="item active-item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+  </view>
+  <step1></step1>
+</view>

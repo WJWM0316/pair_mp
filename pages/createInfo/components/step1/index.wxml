@@ -1,0 +1,60 @@
+<view class="step1">
+  <view class="item-info first">
+    <view class="nickname-box">
+      <view class="get-nickname">
+        <view class="key">昵称</view>
+        <view class="func-btn">获取微信昵称</view>
+      </view>
+      <input
+        placeholder-class="holderStyle"
+        placeholder="请输入"
+        bindinput="bindInput"
+        data-field="real_name"
+        value="{{formData.real_name}}"
+        class="input"
+        maxlength="20"/>
+    </view>
+    <view class="upload-box"></view>
+  </view>
+  <view class="item-info second">
+    <view class="row">
+      <view class="key">性别</view>
+      <view class="tips">* 性别选择后不支持再次更改</view>
+    </view>
+    <view class="tab">
+      <view class="tab-item tab-item-active">
+        <text>男</text>
+      </view>
+      <view class="tab-item">
+        <text>女</text>
+      </view>
+    </view>
+  </view>
+  <view class="item-info third">
+    <view class="item">
+      <view class="key">生日</view>
+      <input
+        placeholder-class="holderStyle"
+        placeholder="请输入"
+        bindinput="bindInput"
+        data-field="real_name"
+        value="{{formData.real_name}}"
+        class="value"
+        maxlength="20"
+        disabled/>
+    </view>
+    <view class="item">
+      <view class="key">常驻地</view>
+      <input
+        placeholder-class="holderStyle"
+        placeholder="请输入"
+        bindinput="bindInput"
+        data-field="real_name"
+        value="{{formData.real_name}}"
+        class="value"
+        maxlength="20"
+        disabled/>
+    </view>
+  </view>
+  <i-button type="success" class="btn-next" long="{{ true }}">下一步</i-button>
+</view>
