@@ -1,17 +1,13 @@
-// pages/createInfo/components/step3/index.js
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
 
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    formData: {
+      company_name: '',
+      position_name: ''
+    },
+    status: 1
   },
 
   /**

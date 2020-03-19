@@ -29,7 +29,11 @@
     margin-top: 68rpx;
     .li {
       position: relative;
-      &::after{
+      margin-bottom: 100rpx;
+      &:last-child{
+        margin-bottom: unset;
+      }
+      &:after{
         position: absolute;
         left: 0;
         right: 0;
@@ -48,6 +52,35 @@
     .value {
       padding: 16rpx 0;
       height: 44rpx;
+    }
+  }
+  .tips-box {
+    height:32rpx;
+    font-size:24rpx;
+    font-weight:300;
+    color:@text-color-2;
+    line-height:32rpx;
+    margin-top: 40rpx;
+    .info {
+      display: inline;
+    }
+    .strong{
+      text-decoration: underline;
+      color: @primary-color;
+      display: inline;
+      padding-left: 24rpx;
+      font-weight: 700;
+    }
+    .icon {
+      width:26rpx;
+      height:26rpx;
+      background:@vice-primary-color-3;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      top: -3rpx;
+      margin-right: 10rpx;
     }
   }
 }

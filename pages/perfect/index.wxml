@@ -1,0 +1,17 @@
+<view class="perfect">
+  <view class="h1">完善职业信息</view>
+  <view class="h2">所在公司：广州老虎科技信息有限公司</view>
+  <view class="ul">
+    <view class="li">
+      <view class="h3">职业经历材料</view>
+      <view class="h4">不限于工牌、名片、在职证明等</view>
+      <view class="small-btn">去提交</view>
+    </view>
+    <view class="li">
+      <view class="h3">公司邮箱验证</view>
+      <view class="h4">查收邮件，点击链接完成验证</view>
+      <view class="small-btn">去验证</view>
+    </view>
+  </view>
+  <view class="tips">提交的信息仅供认证使用，将严格保密</view>
+</view>

@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/IM/chat/index",
-    "pages/createInfo/index"
+    "pages/createInfo/index",
+    "pages/perfect/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
