@@ -1,38 +1,35 @@
-.step3 .h1 {
+.email {
+  background: white;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 86rpx 80rpx;
+}
+.email .h1 {
   height: 56rpx;
   font-size: 48rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 56rpx;
 }
-.step3 .progress {
-  height: 8rpx;
-  line-height: 8rpx;
-  margin-top: 20rpx;
+.email .tips {
+  height: 24rpx;
+  font-size: 24rpx;
+  color: #9ca1aa;
+  line-height: 24rpx;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 262rpx;
 }
-.step3 .progress .item {
-  width: 60rpx;
-  height: 8rpx;
-  background: #F1F4F4;
-  border-radius: 9rpx;
-  margin-right: 8rpx;
-  display: inline-block;
-  vertical-align: top;
-}
-.step3 .progress .active-item {
-  background: #0CCDDA;
-}
-.step3 .ul {
+.email .ul {
   margin-top: 68rpx;
 }
-.step3 .ul .li {
+.email .ul .li {
   position: relative;
-  margin-bottom: 100rpx;
 }
-.step3 .ul .li:last-child {
-  margin-bottom: unset;
-}
-.step3 .ul .li:after {
+.email .ul .li:after {
   position: absolute;
   left: 0;
   right: 0;
@@ -43,7 +40,7 @@
   background: #EDF1F0;
   display: block;
 }
-.step3 .ul .key {
+.email .ul .key {
   height: 36rpx;
   font-size: 28rpx;
   font-weight: 300;
@@ -51,38 +48,25 @@
   line-height: 36rpx;
   margin-bottom: 16rpx;
 }
-.step3 .ul .value {
+.email .ul .value {
   padding: 16rpx 0;
   height: 44rpx;
+  font-size: 36rpx;
 }
-.step3 .tips-box {
-  height: 32rpx;
-  font-size: 24rpx;
-  font-weight: 300;
-  color: #66666E;
-  line-height: 32rpx;
-  margin-top: 40rpx;
-}
-.step3 .tips-box .info {
-  display: inline;
-}
-.step3 .tips-box .strong {
-  text-decoration: underline;
-  color: #0CCDDA;
-  display: inline;
-  padding-left: 24rpx;
+.email .ul .bold {
   font-weight: 700;
 }
-.step3 .tips-box .icon {
-  width: 26rpx;
-  height: 26rpx;
-  background: #E85274;
-  border-radius: 50%;
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  top: -3rpx;
-  margin-right: 10rpx;
+.email .func-li {
+  height: 34rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  line-height: 34rpx;
+  color: #CFD4D8;
+  margin-top: 32rpx;
+  transition: all ease 0.2s;
+}
+.email .func-li-active {
+  color: #0CCDDA;
 }
 .btn-next {
   height: 98rpx;
@@ -111,7 +95,7 @@
   font-size: 32rpx;
   font-weight: 700;
   color: #CFD4D8 !important;
-  position: relative;
+  position: absolute;
   z-index: 2;
   height: 98rpx;
   line-height: 98rpx;

@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/IM/chat/index",
     "pages/createInfo/index",
-    "pages/perfect/index"
+    "pages/perfect/index",
+    "pages/email/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,3 +1,4 @@
+const app = getApp()
 Component({
   properties: {
 
@@ -14,6 +15,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    legalize() {
+      let { PAGEPATH } = app.globalData
+      wx.navigateTo({
+        url: `${PAGEPATH}/perfect/index`
+      })
+    }
   }
 })

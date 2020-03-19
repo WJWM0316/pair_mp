@@ -37,11 +37,11 @@
   <view class="tips-box">
     <block wx:if="{{ status === 1}}">
       <view class="info"><i class="icon"></i>职业信息未认证，将降低主页展示率</view>
-      <view class="strong">前往认证</view>
+      <view class="strong" bindtap="legalize">前往认证</view>
     </block>
     <block wx:elif="{{ status === 2}}">
       <view class="info"> 职业信息认证中</view>
-      <view class="strong">更改认证信息</view>
+      <view class="strong" binatp="legalize">更改认证信息</view>
     </block>
     <block wx:else>
       <view class="info"><i class="icon"></i>职业信息认证成功</view>

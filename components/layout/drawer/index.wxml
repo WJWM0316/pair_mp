@@ -1,0 +1,9 @@
+<view class="drawer" hidden="{{!openPop}}"  catchtouchmove="stopPageScroll">
+  <view class="mask"  bindtap="close"></view>
+  <view class="content {{showPop ? 'show' : ''}}">
+    <view wx:if="{{!type}}" class="header">
+    	{{title}}<i class="icon iconfont icon-close" bindtap="close"></i>
+    </view>
+    <slot></slot>
+  </view>
+</view>

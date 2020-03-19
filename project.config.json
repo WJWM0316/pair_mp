@@ -74,6 +74,20 @@
 					"pathName": "pages/createInfo/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "认证选择",
+					"pathName": "pages/perfect/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "邮箱",
+					"pathName": "pages/email/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
