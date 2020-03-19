@@ -22,8 +22,34 @@
 .step3 .progress .active-item {
   background: #0CCDDA;
 }
-.step3 ul {
+.step3 .ul {
   margin-top: 68rpx;
+}
+.step3 .ul .li {
+  position: relative;
+}
+.step3 .ul .li::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
+}
+.step3 .ul .key {
+  height: 36rpx;
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #1F252B;
+  line-height: 36rpx;
+  margin-bottom: 16rpx;
+}
+.step3 .ul .value {
+  padding: 16rpx 0;
+  height: 44rpx;
 }
 .btn-next {
   height: 98rpx;

@@ -25,3 +25,11 @@
     box-sizing: border-box;
     border-radius: @radius;
 }
+
+.line(@background) {
+    content: '';
+    height: 1rpx;
+    transform: scaleY(0.5);
+    background: @background;
+    display: block;
+}

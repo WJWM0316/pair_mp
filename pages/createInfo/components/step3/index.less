@@ -25,8 +25,30 @@
       background: @primary-color;
     }
   }
-  ul {
+  .ul {
     margin-top: 68rpx;
+    .li {
+      position: relative;
+      &::after{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .line(#EDF1F0)
+      }
+    }
+    .key {
+      height:36rpx;
+      font-size:28rpx;
+      font-weight:300;
+      color:@text-color-1;
+      line-height:36rpx;
+      margin-bottom: 16rpx;
+    }
+    .value {
+      padding: 16rpx 0;
+      height: 44rpx;
+    }
   }
 }
 
