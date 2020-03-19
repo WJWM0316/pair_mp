@@ -1,6 +1,7 @@
 //app.js
 import Socket from './utils/webSocket.js'
 import {setConfig} from './env.config'
+import { request } from './api/index'
 App({
   onLaunch: function () {
     let {appId, envVersion} = wx.getAccountInfoSync().miniProgram

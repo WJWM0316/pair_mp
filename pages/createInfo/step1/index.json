@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-  	"myPicker": "../../components/functional/myPicker"
-  },
-  "navigationBarTitleText": "完善信息"
-}

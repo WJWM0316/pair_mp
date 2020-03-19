@@ -69,9 +69,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "创建信息流程第一步",
-					"pathName": "pages/createInfo/step1/index",
+					"id": 1,
+					"name": "pages/createInfo/index",
+					"pathName": "pages/createInfo/index",
+					"query": "",
 					"scene": null
 				}
 			]
