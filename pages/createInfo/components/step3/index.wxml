@@ -1,2 +1,20 @@
-<!--pages/createInfo/components/step3/index.wxml-->
-<text>pages/createInfo/components/step3/index.wxml</text>
+<view class="step3">
+  <view class="h1">完善职业信息</view>
+  <view class="progress">
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+  </view>
+  <view class="ul">
+    <view class="li">
+      <view class="key">职业</view>
+      <input
+        placeholder-class="holderStyle"
+        placeholder="请选择"
+        value="{{formData.resident_str}}"
+        class="value {{formData.resident_str ? 'bold' : ''}}"
+        disabled/>
+    </view>
+  </view>
+  <i-button type="success" class="btn-next btn-next-active" long="{{ true }}">下一步</i-button>
+</view>

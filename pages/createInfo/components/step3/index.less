@@ -1,0 +1,79 @@
+@import '../../../../styles/_base.less';
+@import '../../../../styles/_mixins.less';
+.step3 {
+  .h1 {
+    height: 56rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: @text-color-1;
+    line-height: 56rpx;
+  }
+  .progress {
+    height: 8rpx;
+    line-height: 8rpx;
+    margin-top: 20rpx;
+    .item {
+      width: 60rpx;
+      height: 8rpx;
+      background: @background-color-base;
+      border-radius: 9rpx;
+      margin-right: 8rpx;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .active-item {
+      background: @primary-color;
+    }
+  }
+  ul {
+    margin-top: 68rpx;
+  }
+}
+
+.btn-next {
+  height:98rpx;
+  position: fixed !important;
+  bottom: 110rpx;
+  left: 80rpx;
+  right: 80rpx;
+  width: unset !important;
+  &:after{
+    height:98rpx;
+    background:rgba(223,229,229,1);
+    border-radius:54rpx;
+    filter:blur(10rpx);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10rpx;
+    content: '';
+    width: calc(100% - 58rpx);
+  }
+  button {
+    width: 100%;
+    border-radius:54rpx;
+    background:#F1F4F4 !important;
+    font-size:32rpx;
+    font-weight:700;
+    color:@text-color-4 !important;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.btn-next-active {
+  &:after{
+    background:@primary-color;
+    opacity: .4;
+  }
+  button {
+    background:@primary-color !important;
+    color: white !important;
+  }
+}
+
+.holderStyle {
+  color: #CFD4D8;
+  font-size: 36rpx;
+  font-weight: unset;
+}

@@ -1,23 +1,53 @@
-// pages/createInfo/components/step1/index.js
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
 
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    formData: {
+      avatar_id: '',
+      nickname: '',
+      gender: 1,
+      height: '',
+      birth: '',
+      resident_str: ''
+    },
+    canClick: false
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
-
+    getUserInfo(e) {
+      if (e.detail.errMsg === 'getUserInfo:ok') {
+        let { userInfo } = e.detail
+        let { formData } = this.data
+        formData.nickname = userInfo.nickName
+        this.setData({ formData })
+      }
+    },
+    getPickerData(e) {
+      let { formData } = this.data
+      let { key } = e.currentTarget.dataset
+      let value = ''
+      switch(key) {
+        case 'birth':
+          value = e.detail.date
+          break
+      }
+      formData[key] = value
+      this.setData({ formData })
+      console.log(formData)
+    },
+    setGender(e) {
+      let { gender } = e.currentTarget.dataset
+      let { formData } = this.data
+      if(gender === formData.gender) return
+      formData.gender = gender
+      this.setData({ formData })
+    },
+    bindButtonStatus() {
+      let { formData } = this.data
+      let canClick = formData.avatar_id && formData.gender && formData.nickname && formData.height && formData.birth && formData.resident_str ? true : false
+      if(this.data.canClick !== canClick) {
+        this.setData({ canClick })
+      }
+    }
   }
 })

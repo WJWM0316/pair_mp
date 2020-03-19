@@ -15,6 +15,10 @@ Component({
     initValue: {
       type: String,
       value: ''
+    },
+    needSlot: {
+      type: Boolean,
+      value: false
     }
   },
   data: {
@@ -69,7 +73,7 @@ Component({
           rangeArray[1] = months
           rangeArray[2] = days
           if(this.data.initValue) {
-            let tem = this.data.initValue.split('-')
+            let tem = this.data.initValue.split('/')
             let yearIndex = years.findIndex((v, i, a) => v.value == tem[0]) || 0
             let monthIndex = months.findIndex((v, i, a) => v.value == tem[1]) || 0
             let dayIndex = days.findIndex((v, i, a) => v.value == tem[2]) || 0
@@ -159,13 +163,12 @@ Component({
             year,
             month,
             day,
-            date: `${year}-${month}-${day}`,
+            date: `${year}/${month}/${day}`,
             timestamp: Date.parse(new Date(`${year}-${month}-${day}`))
           }
           break
       }
-      this.triggerEvent('pickerResult', rtnResult)
-      console.log(rtnResult)
+      this.triggerEvent('resultevent', rtnResult)
     },
     bindChange(e) {
       let { column } = e.detail

@@ -1,2 +1,9 @@
-<!--pages/createInfo/components/step2/index.wxml-->
-<text>pages/createInfo/components/step2/index.wxml</text>
+<view class="step2">
+  <view class="h1">选择你的身高</view>
+  <view class="progress">
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+    <view class="item"></view>
+  </view>
+  <i-button type="success" class="btn-next btn-next-active" long="{{ true }}">下一步</i-button>
+</view>

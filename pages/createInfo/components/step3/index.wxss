@@ -1,1 +1,70 @@
-/* pages/createInfo/components/step3/index.wxss */
+.step3 .h1 {
+  height: 56rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 56rpx;
+}
+.step3 .progress {
+  height: 8rpx;
+  line-height: 8rpx;
+  margin-top: 20rpx;
+}
+.step3 .progress .item {
+  width: 60rpx;
+  height: 8rpx;
+  background: #F1F4F4;
+  border-radius: 9rpx;
+  margin-right: 8rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.step3 .progress .active-item {
+  background: #0CCDDA;
+}
+.step3 ul {
+  margin-top: 68rpx;
+}
+.btn-next {
+  height: 98rpx;
+  position: fixed !important;
+  bottom: 110rpx;
+  left: 80rpx;
+  right: 80rpx;
+  width: unset !important;
+}
+.btn-next:after {
+  height: 98rpx;
+  background: #dfe5e5;
+  border-radius: 54rpx;
+  filter: blur(10rpx);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10rpx;
+  content: '';
+  width: calc(100% - 58rpx);
+}
+.btn-next button {
+  width: 100%;
+  border-radius: 54rpx;
+  background: #F1F4F4 !important;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #CFD4D8 !important;
+  position: relative;
+  z-index: 2;
+}
+.btn-next-active:after {
+  background: #0CCDDA;
+  opacity: 0.4;
+}
+.btn-next-active button {
+  background: #0CCDDA !important;
+  color: white !important;
+}
+.holderStyle {
+  color: #CFD4D8;
+  font-size: 36rpx;
+  font-weight: unset;
+}
