@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "navigationBarTextStyle":"white",
   "usingComponents": {
     "swipe-out": "../../components/layout/swipeout"

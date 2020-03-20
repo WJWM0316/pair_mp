@@ -100,3 +100,9 @@
         clear: both;
     }
 }
+
+.setSafea-area (@padding: 0, @position: bottom) when (@position = bottom)  {
+    padding-bottom: calc(env(safe-area-inset-bottom) + @padding)
+}
+
+  

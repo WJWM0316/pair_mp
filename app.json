@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/IM/chat/index",
     "pages/IM/list/index",
-    "pages/createInfo/index"
+    "pages/createInfo/index",
     "pages/perfect/index",
     "pages/email/index"
   ],

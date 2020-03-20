@@ -15,8 +15,8 @@
   height: 88rpx;
   line-height: 88rpx;
   box-shadow: inset 0 0 0 2rpx rgba(0, 0, 0, 0.1);
+  color: #fff;
   background: #F1F4F4;
-  color: #1F252B;
   margin: 20rpx;
 }
 .i-btn-hover {
