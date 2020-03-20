@@ -53,6 +53,7 @@
   z-index: 2;
   height: 98rpx;
   line-height: 98rpx;
+  border: 0 !important;
 }
 .btn-next-active:after {
   background: #0CCDDA;
@@ -125,7 +126,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -78rpx;
+  bottom: -94rpx;
   height: 78rpx;
   font-size: 36rpx;
   font-weight: 700;
