@@ -1,2 +1,10 @@
-<!--pages/perfectInfo/components/step3/index.wxml-->
-<text>pages/perfectInfo/components/step3/index.wxml</text>
+<view class="step3">
+  <view class="h1">自我描述</view>
+  <view class="progress">
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+    <view class="item"></view>
+  </view>
+  <i-button type="success" class="btn-next btn-next-active" long="{{ true }}" bindtap="save">下一步</i-button>
+</view>

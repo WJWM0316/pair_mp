@@ -1,2 +1,6 @@
-<!--pages/perfectInfo/index.wxml-->
-<text>pages/perfectInfo/index.wxml</text>
+<view class="perfect_info">
+    <step1 wx:if="{{ step === 1 }}" bind:next="next"></step1>
+    <step2 wx:elif="{{ step === 2}}" bind:next="next"></step2>
+    <step3 wx:elif="{{ step === 3}}" bind:next="next"></step3>
+    <step4 bind:next="next" wx:else></step4>
+</view>
