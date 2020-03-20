@@ -44,13 +44,15 @@
 }
 .btn-next button {
   width: 100%;
-  border-radius: 54rpx;
+  border-radius: 54rpx !important;
   background: #F1F4F4 !important;
   font-size: 32rpx;
   font-weight: 700;
   color: #CFD4D8 !important;
   position: relative;
   z-index: 2;
+  height: 98rpx;
+  line-height: 98rpx;
 }
 .btn-next-active:after {
   background: #0CCDDA;

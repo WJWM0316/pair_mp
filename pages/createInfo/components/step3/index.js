@@ -1,23 +1,25 @@
-// pages/createInfo/components/step3/index.js
+const app = getApp()
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
 
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    formData: {
+      company_name: '',
+      position_name: ''
+    },
+    status: 1
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
+    legalize() {
+      let { PAGEPATH } = app.globalData
+      wx.navigateTo({
+        url: `${PAGEPATH}/perfect/index`
+      })
+    }
   }
 })

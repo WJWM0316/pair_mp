@@ -1,6 +1,11 @@
-@import '../../../../styles/_base.less';
-@import '../../../../styles/_mixins.less';
-.step3 {
+@import '../../styles/_base.less';
+@import '../../styles/_mixins.less';
+.email {
+  background: white;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 86rpx 80rpx;
   .h1 {
     height: 56rpx;
     font-size: 48rpx;
@@ -8,31 +13,21 @@
     color: @text-color-1;
     line-height: 56rpx;
   }
-  .progress {
-    height: 8rpx;
-    line-height: 8rpx;
-    margin-top: 20rpx;
-    .item {
-      width: 60rpx;
-      height: 8rpx;
-      background: @background-color-base;
-      border-radius: 9rpx;
-      margin-right: 8rpx;
-      display: inline-block;
-      vertical-align: top;
-    }
-    .active-item {
-      background: @primary-color;
-    }
+  .tips{
+    height:24rpx;
+    font-size:24rpx;
+    color:rgba(156,161,170,1);
+    line-height:24rpx;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 262rpx;
   }
   .ul {
     margin-top: 68rpx;
     .li {
       position: relative;
-      margin-bottom: 100rpx;
-      &:last-child{
-        margin-bottom: unset;
-      }
       &:after{
         position: absolute;
         left: 0;
@@ -52,38 +47,26 @@
     .value {
       padding: 16rpx 0;
       height: 44rpx;
+      font-size: 36rpx;
     }
-  }
-  .tips-box {
-    height:32rpx;
-    font-size:24rpx;
-    font-weight:300;
-    color:@text-color-2;
-    line-height:32rpx;
-    margin-top: 40rpx;
-    .info {
-      display: inline;
-    }
-    .strong{
-      text-decoration: underline;
-      color: @primary-color;
-      display: inline;
-      padding-left: 24rpx;
+    .bold {
       font-weight: 700;
     }
-    .icon {
-      width:26rpx;
-      height:26rpx;
-      background:@vice-primary-color-3;
-      border-radius: 50%;
-      display: inline-block;
-      vertical-align: middle;
-      position: relative;
-      top: -3rpx;
-      margin-right: 10rpx;
-    }
+  }
+  .func-li {
+    height:34rpx;
+    font-size:26rpx;
+    font-weight:700;
+    line-height:34rpx;
+    color: @text-color-4;
+    margin-top: 32rpx;
+    transition: all ease .2s;
+  }
+  .func-li-active {
+    color: @primary-color;
   }
 }
+
 
 .btn-next {
   height:98rpx;
@@ -111,7 +94,7 @@
     font-size:32rpx;
     font-weight:700;
     color:@text-color-4 !important;
-    position: relative;
+    position: absolute;
     z-index: 2;
     height: 98rpx;
     line-height: 98rpx;
@@ -130,7 +113,7 @@
 }
 
 .holderStyle {
-  color: #CFD4D8;
-  font-size: 36rpx;
+  color: @text-color-4;
+  font-size:36rpx;
   font-weight: unset;
 }

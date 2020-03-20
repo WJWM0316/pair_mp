@@ -4,6 +4,8 @@
     "pages/IM/chat/index",
     "pages/IM/list/index",
     "pages/createInfo/index"
+    "pages/perfect/index",
+    "pages/email/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
