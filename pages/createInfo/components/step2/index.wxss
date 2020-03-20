@@ -62,3 +62,89 @@
   background: #0CCDDA !important;
   color: white !important;
 }
+.scroll-container {
+  overflow: scroll;
+  white-space: nowrap;
+  position: relative;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 106rpx;
+  height: 300rpx;
+}
+.scroll-container:before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 160rpx;
+  background: -moz-linear-gradient(right, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  background: -o-linear-gradient(right, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  background: linear-gradient(right, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  z-index: 2;
+}
+.scroll-container:after {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 160rpx;
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  background: -o-linear-gradient(left, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  background: linear-gradient(left, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.9));
+  z-index: 2;
+}
+.scroll-container .item {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+.scroll-container .item .line {
+  width: 8rpx;
+  height: 64rpx;
+  background: #C7D7E7;
+  display: inline-block;
+  border-radius: 4rpx;
+  margin: 0 15rpx;
+  vertical-align: top;
+  position: relative;
+}
+.scroll-container .item .line:nth-child(3) {
+  height: 104rpx;
+}
+.scroll-container .item .scale {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -78rpx;
+  height: 78rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f252b;
+  line-height: 78rpx;
+}
+.scroll-container .item .scale .strong {
+  font-size: 56rpx;
+}
+.scroll-container .active-item {
+  width: 8rpx;
+  height: 104rpx;
+  display: inline-block;
+  border-radius: 4rpx;
+  margin: 0 15rpx;
+  vertical-align: top;
+  position: relative;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0CCDDA;
+}

@@ -20,7 +20,9 @@
         class="value {{formData.nickname ? 'bold' : ''}}"
         maxlength="20"/>
     </view>
-    <view class="upload-box"></view>
+    <view class="upload-box">
+      <avatarCut></avatarCut>
+    </view>
   </view>
   <view class="item-info second">
     <view class="row">
@@ -52,7 +54,7 @@
     </view>
     <view class="item">
       <view class="key">常驻地</view>
-      <myPicker pickerType="region1" initValue="{{ '130000-130200' }}" needSlot="{{true}}" bindresultevent="getPickerData" data-key="resident">
+      <myPicker pickerType="region" initValue="{{ '130000-130200-130202' }}" needSlot="{{true}}" bindresultevent="getPickerData" data-key="resident_str">
         <input
           placeholder-class="holderStyle"
           placeholder="请选择"

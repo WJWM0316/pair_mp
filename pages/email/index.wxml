@@ -1,9 +1,15 @@
 <navBar navBarBg="#F1F4F4"></navBar>
-<view class="email">
+<view class="email-page">
   <view class="h1">公司邮箱认证</view>
   <view class="ul">
     <view class="li">
-      <view class="key">邮箱</view>
+      <view class="header">
+        <view class="key">邮箱</view>
+        <block wx:if="{{ editable }}">
+          <view class="email">{{ email }}</view>
+          <view class="edit" bindtap="editEmail">编辑邮箱</view>
+        </block>
+      </view>      
       <input
         placeholder-class="holderStyle"
         placeholder="请选择"
@@ -12,7 +18,14 @@
         class="value {{email ? 'bold' : ''}}"
         />
     </view>
-    <view class="func-li {{email ? 'func-li-active' : ''}}"><text>获取邮箱认证码</text></view>
+    <view class="func-li">
+      <text bindtap="sendEmail" class="bold2 {{email ? 'strong' : ''}}" wx:if="{{ !editable }}">获取邮箱认证码</text>
+      <block wx:else>
+        <text>验证码已发送</text>
+        <text class="strong" style="margin-left: 38rpx">{{ time }}</text>
+        <text> s后可重新点击发送</text>
+      </block>
+    </view>
   </view>
   <view class="tips">提交的信息仅供认证使用，将严格保密</view>
   <i-button

@@ -1,4 +1,4 @@
-<import src="../../../../components/functional/we-cropper/we-cropper.wxml"/>
+<import src="../../components/functional/we-cropper/we-cropper.wxml"/>
 <view class="cropper-wrapper">
   <template is="we-cropper" data="{{...cropperOpt}}"/>
   <view class="cropper-buttons">
