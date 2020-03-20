@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "wxScale": "../../../..//components/functional/wx-scale"
+  }
 }

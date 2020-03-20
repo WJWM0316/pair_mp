@@ -22,6 +22,9 @@
 .step2 .progress .active-item {
   background: #0CCDDA;
 }
+.step2 .box {
+  margin-top: 106rpx;
+}
 .btn-next {
   height: 98rpx;
   position: fixed !important;

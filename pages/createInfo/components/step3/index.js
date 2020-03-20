@@ -32,7 +32,7 @@ Component({
     legalize() {
       let { PAGEPATH } = app.globalData
       wx.navigateTo({
-        url: `${PAGEPATH}/perfect/index`
+        url: `${PAGEPATH}/methods/index`
       })
     },
     bindInput(e) {

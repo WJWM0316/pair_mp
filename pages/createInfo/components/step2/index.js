@@ -11,11 +11,24 @@ for(let i = 100; i <= 300; i++) {
 Component({
   data: {
     list,
-    height: '170'
+    height: '170',
+    value: 0,
+    val: 0,
+    value2: 0,
+    styles: {
+      line: '#C7D7E7',
+      bginner: '#ffffff',
+      bgoutside: '#ffffff',
+      lineSelect: '#0CCDDA',
+      font: '#1F252B'
+    }
   },
   methods: {
-    scroll(e) {
-      console.log(e)
+    bindvalue2(e) {
+      let { value } = e.detail
+      if(value !== this.data.height) {
+        this.setData({ height: String(value) })
+      }
     },
     save() {
       createUserStep2Api({height: this.data.height}).then(() => {

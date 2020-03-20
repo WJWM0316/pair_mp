@@ -26,12 +26,13 @@
 	"libVersion": "2.10.3",
 	"appid": "wx9279d02eb84e4fa7",
 	"projectname": "pair_mp",
+	"cloudfunctionTemplateRoot": "",
+	"watchOptions": {
+		"ignore": []
+	},
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"scripts": {
 		"beforeCompile": "",
 		"beforePreview": "",
@@ -51,7 +52,6 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"gamePlugin": {
@@ -75,11 +75,6 @@
 					"query": "",
 					"scene": null
 				},
-				{
-					"id": 2,
-					"name": "pages/IM/list/index",
-					"pathName": "pages/IM/list/index",
-				}
 				{
 					"id": -1,
 					"name": "认证选择",

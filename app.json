@@ -4,7 +4,7 @@
     "pages/IM/chat/index",
     "pages/IM/list/index",
     "pages/createInfo/index",
-    "pages/perfect/index",
+    "pages/methods/index",
     "pages/email/index"
   ],
   "window": {
