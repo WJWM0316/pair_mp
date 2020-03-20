@@ -9,6 +9,7 @@ Component({
       type: String,
       value: ''
     },
+    borderRadius: String,
     placeholder: {
       type: String,
       value: '../../../styles/bg_24hinfro_banner@2x.png'

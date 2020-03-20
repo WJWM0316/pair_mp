@@ -1,1 +1,7 @@
-{}
+{
+  "navigationBarTextStyle":"white",
+  "usingComponents": {
+    "swipe-out": "../../components/layout/swipeout"
+  },
+  "navigationStyle": "custom"
+}

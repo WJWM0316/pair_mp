@@ -15,3 +15,11 @@ export const wxLogin = (data) => {
     data
   })
 }
+// 快捷登录登录
+export const quickLogin = (data) => {
+  return request({
+    method: 'post',
+    url: '/bind/quick_login',
+    data
+  })
+}

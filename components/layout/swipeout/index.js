@@ -1,4 +1,8 @@
- /*
+let relations = {
+    lockIndex: null, // 已锁定的滑块序号
+    curIndex: null  // 当前操作的滑块序号
+} 
+/*
 * touch事件判断方式
 * https://github.com/madrobby/zepto/blob/master/src/touch.js#files
 */
@@ -8,8 +12,9 @@ function swipeDirection(x1, x2, y1, y2) {
 }
 
 Component({
-    externalClasses: ['i-class'],
+    externalClasses: ['my-class'],
     properties: {
+        index: Number,
         actions: {
             value: [],
             type: Array,
@@ -34,6 +39,7 @@ Component({
         multipleSlots: true
     },
     data : {
+        
         //touch start position
         tStart : {
             pageX : 0,
@@ -89,6 +95,10 @@ Component({
                     }
                 }
             }
+            if (relations.lockIndex !== null) {
+                relations.curIndex = this.data.index // 这个滑块是当前的
+                this.triggerEvent('swipeStatus', relations)
+            }
         },
         swipper(touches){
             const data = this.data;
@@ -106,6 +116,7 @@ Component({
             })
         },
         handlerTouchmove(event){
+            if (relations.lockIndex !== null) return
             const start = this.data.tStart;
             const touches = event.touches ? event.touches[0] : {};
             if( touches ){
@@ -116,6 +127,7 @@ Component({
             }
         },
         handlerTouchend(event){
+            if (relations.lockIndex !== null) return
             const start = this.data.tStart;
             const touches = event.changedTouches ? event.changedTouches[0] : {};
             if( touches ){
@@ -126,13 +138,16 @@ Component({
                 }
                 if( Math.abs( spacing.pageX ) >= 40 && direction === "Left" ){
                     spacing.pageX = spacing.pageX  < 0 ? - this.data.limitMove : this.data.limitMove;
+                    relations.lockIndex = this.data.index // 这个滑块已锁定
                 }else{
                     spacing.pageX = 0;
                 }
+                this.triggerEvent('swipeStatus', relations)
                 this.setData({
                     'position' : spacing
                 })
             }
+            
         },
         handlerButton(event){
             if( !this.data.unclosable ){
@@ -147,6 +162,10 @@ Component({
             this.setData({
                 'position' : {pageX : 0,pageY : 0}
             })
+            relations = {
+                lockIndex: null, // 已锁定的滑块序号
+                curIndex: null  // 当前操作的滑块序号
+            } 
         },
         //控制自定义组件
         handlerParentButton(event){

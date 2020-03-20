@@ -1,5 +1,5 @@
 Component({
-    externalClasses: ['i-class'],
+    externalClasses: ['my-class'],
 
     properties: {
         // default, primary, ghost, info, success, warning, error

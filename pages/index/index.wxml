@@ -1,6 +1,6 @@
 <navBar></navBar>
 <view class="indexWrap">
-  <i-button open-type="getUserInfo" form-type="submit" bindgetuserinfo="getUserInfo" lang="zh_CN">微信登录</i-button>
-  
+  <i-button my-class="btn" open-type="getUserInfo" form-type="submit" bindgetuserinfo="getUserInfo" lang="zh_CN">微信授权</i-button>
+  <i-button my-class="btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" form-type="submit">微信登录</i-button>
 </view>
 <tabBar></tabBar>

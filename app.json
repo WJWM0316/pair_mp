@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/IM/chat/index",
+    "pages/IM/list/index",
     "pages/createInfo/index"
   ],
   "window": {

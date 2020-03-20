@@ -1,5 +1,4 @@
-
-<view class="tabBar">
+<view class="tabBar" ref="tabBar">
   <view class="tabBar-content">
     <view class="tabBar-item" wx:for="{{list}}" wx:key="id">
       <i class="icon iconfont {{item.selected ? icon : selectedIcon}}"></i>

@@ -8,6 +8,8 @@ App({
     this.globalData.systemInfo = wx.getSystemInfoSync();
     this.globalData.systemInfo['titleHeight'] = this.getTitleHeight()
     this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + this.getTitleHeight()
+    console.log(this.globalData.systemInfo, '系统参数')
+
 
     // 设置环境变量
     let {appId, envVersion} = wx.getAccountInfoSync().miniProgram
@@ -24,7 +26,9 @@ App({
   },
   globalData: {
     systemInfo: {},
-    navBarHeight: 0, // 顶部栏高度
+    viewAreaHeight: 0, // 有效区域高度 px
+    tabBarHeight: 0, // 底部栏高度 px
+    navBarHeight: 0, // 顶部栏高度 px
     userInfo: null
   },
   // 计算标签栏高度
