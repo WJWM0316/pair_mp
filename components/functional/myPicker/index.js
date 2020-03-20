@@ -1,4 +1,4 @@
-// import { getAreaListApi } from '../../../../../../api/pages/label.js'
+import { getAreaListApi } from '../../../api/common.js'
 // import { getDegreeApi } from '../../../../../../api/pages/picker.js'
 let rangeArray = []
 let rtnResult = {}
@@ -29,7 +29,7 @@ Component({
     rangeKey: '',
     placeHolder: '请选择'
   },
-  attached () {
+  ready () {
     this.init()
   },
   methods: {
@@ -99,21 +99,26 @@ Component({
           this.setData({ rangeArray, value, mode: 'selector', rangeKey: 'key', placeHolder: '选择身高' })
           break
         case 'region':
-          getAreaListApi().then(({ data }) => {
+          getAreaListApi({level: 4}).then(({ data }) => {
             let provinces = data
             let citys = []
+            let areas = []
             if(this.data.initValue) {
               let tem = this.data.initValue.split('-')
               let provinceIndex = data.findIndex((v,i,a) => v.areaId == tem[0]) || 0
               citys = data[provinceIndex].children
               let cityIndex = citys.findIndex((v,i,a) => v.areaId == tem[1]) || 0
-              value = [provinceIndex, cityIndex]
+              areas = citys[cityIndex].children
+              let areaIndex = areas.findIndex((v,i,a) => v.areaId == tem[2]) || 0
+              value = [provinceIndex, cityIndex, areaIndex]
             } else {
-              value = [0,0]
+              value = [0,0,0]
               citys = provinces[0].children || []
+              areas = citys.length && citys[0].children
             }
             rangeArray[0] = provinces
             rangeArray[1] = citys
+            rangeArray[2] = areas
             this.setData({ rangeArray, value, active: value, mode: 'multiSelector', rangeKey: 'title', placeHolder: '选择家乡' })
           })
           break
@@ -147,7 +152,7 @@ Component({
           break
         case 'region':
           rtnResult = {
-            ...rangeArray[0][value[0]].children[value[1]]
+            ...rangeArray[0][value[0]].children[value[1]].children[value[2]]
           }
           break          
         case 'height':
@@ -174,17 +179,28 @@ Component({
       let { column } = e.detail
       let { value } = e.detail
       let rangeArray = this.data.rangeArray
+      let tem = this.data.value
       switch(this.data.pickerType) {
         case 'region':
           if(column === rangeArray.length - 1) return
-          let citys = rangeArray[column][value].children
+          let citys = []
+          let areas = []
+          if(column === 0) {
+            tem = [value, 0, 0]
+            citys = rangeArray[0][value].children
+            areas = citys[0].children
+          } else {
+            citys = rangeArray[1]
+            areas = citys[value].children
+            tem[column] = value
+          }
           rangeArray[1] = citys
-          this.setData({ rangeArray })
+          rangeArray[2] = areas
+          this.setData({ rangeArray, value: tem })
           break
         case 'birthday':
           if(column === rangeArray.length - 1) return
           let days = []
-          let tem = this.data.value
           tem[column] = value
           let length = this.getDaysInMonth(rangeArray[0][tem[0]].value, rangeArray[1][tem[1]].value)
           let add0 = (m) => {return m < 10 ? '0' + m : m }

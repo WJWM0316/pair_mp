@@ -5,5 +5,13 @@
     <view class="item active-item"></view>
     <view class="item"></view>
   </view>
+  <scroll-view scroll-x="true" bindscroll="scroll" style="width: 100%;" class="scroll-container">
+    <view class="item" wx:for="{{ height }}" wx:key="pIndex" id="{{item}}" wx:for-item="pItem" wx:for-index="pIndex">
+      <view wx:for="{{5}}" wx:key="index" class="line" id="index">
+        <view wx:if="{{index === 2}}" class="scale"><text class="strong">{{pItem}}</text>cm</view>
+      </view>
+    </view>
+    <view class="active-item"></view>
+  </scroll-view>
   <i-button type="success" class="btn-next btn-next-active" long="{{ true }}">下一步</i-button>
 </view>

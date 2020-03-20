@@ -9,7 +9,8 @@ Component({
       gender: 1,
       height: '',
       birth: '',
-      resident_str: ''
+      resident_str: '',
+      address: {}
     },
     canClick: false
   },
@@ -26,14 +27,17 @@ Component({
       let { formData } = this.data
       let { key } = e.currentTarget.dataset
       let value = ''
+      console.log(key, e.detail)
       switch(key) {
         case 'birth':
           value = e.detail.date
           break
+        case 'resident_str':
+          value = e.detail.title
+          break
       }
       formData[key] = value
       this.setData({ formData })
-      console.log(formData)
     },
     setGender(e) {
       let { gender } = e.currentTarget.dataset
@@ -48,6 +52,12 @@ Component({
       if(this.data.canClick !== canClick) {
         this.setData({ canClick })
       }
+    },
+    bindInput(e) {
+      let { value } = e.detail
+      let { formData } = this.data
+      formData.nickname = value
+      this.setData({ formData })
     }
   }
 })

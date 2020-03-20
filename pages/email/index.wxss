@@ -1,18 +1,18 @@
-.email {
+.email-page {
   background: white;
   border-radius: 36rpx 36rpx 0rpx 0rpx;
   min-height: 100vh;
   box-sizing: border-box;
   padding: 86rpx 80rpx;
 }
-.email .h1 {
+.email-page .h1 {
   height: 56rpx;
   font-size: 48rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 56rpx;
 }
-.email .tips {
+.email-page .tips {
   height: 24rpx;
   font-size: 24rpx;
   color: #9ca1aa;
@@ -23,13 +23,13 @@
   right: 0;
   bottom: 262rpx;
 }
-.email .ul {
+.email-page .ul {
   margin-top: 68rpx;
 }
-.email .ul .li {
+.email-page .ul .li {
   position: relative;
 }
-.email .ul .li:after {
+.email-page .ul .li:after {
   position: absolute;
   left: 0;
   right: 0;
@@ -40,33 +40,60 @@
   background: #EDF1F0;
   display: block;
 }
-.email .ul .key {
+.email-page .ul .header {
   height: 36rpx;
   font-size: 28rpx;
   font-weight: 300;
   color: #1F252B;
   line-height: 36rpx;
   margin-bottom: 16rpx;
+  position: relative;
 }
-.email .ul .value {
+.email-page .ul .key {
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #1F252B;
+  display: inline;
+}
+.email-page .ul .email {
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #1F252B;
+  display: inline;
+  margin-left: 18rpx;
+}
+.email-page .ul .value {
   padding: 16rpx 0;
   height: 44rpx;
   font-size: 36rpx;
 }
-.email .ul .bold {
+.email-page .ul .edit {
+  font-size: 26rpx;
+  color: #0CCDDA;
+  display: inline;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.email-page .ul .bold {
   font-weight: 700;
 }
-.email .func-li {
+.email-page .func-li {
   height: 34rpx;
   font-size: 26rpx;
-  font-weight: 700;
   line-height: 34rpx;
   color: #CFD4D8;
   margin-top: 32rpx;
+}
+.email-page text {
   transition: all ease 0.2s;
 }
-.email .func-li-active {
+.email-page .strong {
   color: #0CCDDA;
+}
+.email-page .bold2 {
+  font-weight: 700;
 }
 .btn-next {
   height: 98rpx;

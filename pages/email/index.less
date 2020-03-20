@@ -1,6 +1,6 @@
 @import '../../styles/_base.less';
 @import '../../styles/_mixins.less';
-.email {
+.email-page {
   background: white;
   border-radius: 36rpx 36rpx 0rpx 0rpx;
   min-height: 100vh;
@@ -36,18 +36,41 @@
         .line(#EDF1F0)
       }
     }
-    .key {
+    .header {
       height:36rpx;
       font-size:28rpx;
       font-weight:300;
       color:@text-color-1;
       line-height:36rpx;
       margin-bottom: 16rpx;
+      position: relative;
+    }
+    .key {
+      font-size:28rpx;
+      font-weight:300;
+      color:@text-color-1;
+      display: inline;
+    }
+    .email {
+      font-size:28rpx;
+      font-weight:300;
+      color:@text-color-1;
+      display: inline;
+      margin-left: 18rpx;
     }
     .value {
       padding: 16rpx 0;
       height: 44rpx;
       font-size: 36rpx;
+    }
+    .edit{
+      font-size:26rpx;
+      color:@primary-color;
+      display: inline;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
     .bold {
       font-weight: 700;
@@ -56,14 +79,18 @@
   .func-li {
     height:34rpx;
     font-size:26rpx;
-    font-weight:700;
     line-height:34rpx;
     color: @text-color-4;
     margin-top: 32rpx;
+  }
+  text {
     transition: all ease .2s;
   }
-  .func-li-active {
+  .strong {
     color: @primary-color;
+  }
+  .bold2 {
+    font-weight: 700;
   }
 }
 

@@ -1,23 +1,17 @@
-// pages/createInfo/components/step2/index.js
+let height = []
+for(let i = 100; i <= 300; i++) {
+  height.push(i)
+}
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
 
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    height
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
-
+    scroll(e) {
+      console.log(e)
+    }
   }
 })
