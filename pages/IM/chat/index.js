@@ -5,7 +5,15 @@ let data = [
     path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
     data: {
       type: 'text',
-      text: '测试数据测试数据测试'
+      text: '测'
+    }
+  },
+  {
+    messageId: "messageId0",
+    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+    data: {
+      type: 'text',
+      text: '1'
     }
   },
   {
@@ -14,7 +22,7 @@ let data = [
     data: {
       type: 'text',
       own: true,
-      text: '测试数据测试数据测试测试数据测试数据测试测试数据测试数据测试'
+      text: '1'
     }
   },
   {

@@ -4,9 +4,10 @@
 }
 .chatWrap .chatArea {
   padding: 20rpx 30rpx;
+  height: calc(100vh - 188rpx);
 }
 .chatWrap .chatArea .scrollView {
-  height: calc(100vh - 200rpx);
+  height: 100%;
 }
 .chatWrap .chatArea .message-list .message-item {
   margin-bottom: 30rpx;
@@ -23,10 +24,10 @@
   overflow: hidden;
 }
 .chatWrap .chatArea .message-list .message-item .message-content .text {
-  max-width: 446rpx;
+  max-width: 460rpx;
   font-size: 30rpx;
-  line-height: 44rpx;
-  padding: 24rpx 30rpx;
+  line-height: 40rpx;
+  padding: 26rpx 42rpx;
   border-radius: 24rpx;
   overflow: hidden;
   box-sizing: border-box;
@@ -35,7 +36,7 @@
   float: left;
 }
 .chatWrap .chatArea .message-list .message-item.others .message-content {
-  border-top-left-radius: 0;
+  border-top-left-radius: 8rpx;
   margin-left: 16rpx;
   float: left;
   background: #fff;
@@ -45,7 +46,7 @@
   float: right;
 }
 .chatWrap .chatArea .message-list .message-item.mine .message-content {
-  border-top-right-radius: 0;
+  border-top-right-radius: 8rpx;
   margin-right: 16rpx;
   float: right;
   background: #0CCDDA;
@@ -54,4 +55,7 @@
 .chatWrap .chatArea .message-list .message-item.mine .message-content.img,
 .chatWrap .chatArea .message-list .message-item.mine .message-content.video {
   background: none;
+}
+.chatWrap .console {
+  width: 100%;
 }

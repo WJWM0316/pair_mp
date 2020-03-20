@@ -33,13 +33,13 @@ Component({
           maxHeight = '',
           maxWidth  = ''
       if (ratio > 1.2) {
-        maxWidth = 320
+        maxWidth = 460
         styleString = `width:${maxWidth}rpx;height:${maxWidth/ratio}rpx;`
       } else if (0.8 < ratio < 1.2) {
-        maxHeight = 300
+        maxHeight = 320
         styleString =  `width:${maxHeight * ratio}rpx;height:${maxHeight}rpx;`
       } else {
-        maxHeight = 480
+        maxHeight = 460
         styleString =  `width:${maxHeight * ratio}rpx;height:${maxHeight}rpx;`
       }
       this.setData({styleString})

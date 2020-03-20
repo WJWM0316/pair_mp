@@ -116,7 +116,7 @@ Component({
             })
         },
         handlerTouchmove(event){
-            if (relations.lockIndex !== null) return
+            if (relations.lockIndex !== null && relations.lockIndex !== relations.curkIndex) return
             const start = this.data.tStart;
             const touches = event.touches ? event.touches[0] : {};
             if( touches ){
@@ -127,7 +127,10 @@ Component({
             }
         },
         handlerTouchend(event){
-            if (relations.lockIndex !== null) return
+            if (relations.lockIndex !== null) {
+                if (relations.lockIndex === relations.curIndex) this.closeButtonGroup()
+                return
+            }
             const start = this.data.tStart;
             const touches = event.changedTouches ? event.changedTouches[0] : {};
             if( touches ){

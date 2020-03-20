@@ -33,4 +33,18 @@
       </view>
     </scroll-view>
   </view>
+  <view class="console">
+    <view class="input">
+      <textarea 
+        class="" 
+        value="" 
+        placeholder="输入新消息" 
+        placeholder-class="textarea-placeholder" 
+        auto-height="true" 
+        bindinput="" 
+        bindconfirm="">
+      </textarea>
+      <view class="send">发送</view>
+    </view>
+  </view>
 </view>
