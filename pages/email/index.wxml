@@ -6,20 +6,33 @@
       <view class="header">
         <view class="key">邮箱</view>
         <block wx:if="{{ editable }}">
-          <view class="email">{{ email }}</view>
+          <view class="email">{{ formData.email }}</view>
           <view class="edit" bindtap="editEmail">编辑邮箱</view>
         </block>
       </view>      
       <input
         placeholder-class="holderStyle"
         placeholder="请选择"
-        value="{{email}}"
+        value="{{formData.email}}"
         bindinput="bindInput"
-        class="value {{email ? 'bold' : ''}}"
+        data-key="email"
+        class="value {{formData.email ? 'bold' : ''}}"
+        wx:if="{{!editable}}"
+        />
+      <input
+        placeholder-class="holderStyle"
+        placeholder="请输入邮箱验证码"
+        value="{{formData.code}}"
+        bindinput="bindInput"
+        data-key="code"
+        wx:if="{{editable}}"
+        class="value {{formData.code ? 'bold' : ''}}"
         />
     </view>
     <view class="func-li">
-      <text bindtap="sendEmail" class="bold2 {{email ? 'strong' : ''}}" wx:if="{{ !editable }}">获取邮箱认证码</text>
+      <text bindtap="sendEmail" class="bold2 {{formData.email ? 'strong' : ''}}" wx:if="{{ !editable || canResend }}">
+        {{ canResend ? '重新发送邮箱验证码' : '获取邮箱认证码'}}
+      </text>
       <block wx:else>
         <text>验证码已发送</text>
         <text class="strong" style="margin-left: 38rpx">{{ time }}</text>
@@ -29,10 +42,11 @@
   </view>
   <view class="tips">提交的信息仅供认证使用，将严格保密</view>
   <i-button
+    bind:click="verifyEmail"
     type="success"
-    class="btn-next {{canClick ? 'btn-next-active' : ''}}"
+    class="btn-next {{formData.code ? 'btn-next-active' : ''}}"
     long="{{ true }}"
-    i-class="btn-next {{canClick ? 'btn-next-active' : ''}}">
+    my-class="btn-next {{formData.code ? 'btn-next-active' : ''}}">
       确定
     </i-button>
 </view>

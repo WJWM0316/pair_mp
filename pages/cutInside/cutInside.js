@@ -54,7 +54,7 @@ Page({
       complete: (res) => {
         if (res.statusCode === 200) {
           let data = typeof res.data === "string" ? JSON.parse(res.data) : res.data
-          wx.setStorageSync('avatar', data.data[0])
+          wx.setStorageSync('avatar', data.data.attachListItem[0])
           wx.navigateBack({ delta: 1 })
         } else {
           if (res.statusCode === 401) {
