@@ -8,44 +8,55 @@
   <view class="ul">
     <view class="li">
       <view class="key">职业</view>
-      <input
-        placeholder-class="holderStyle"
-        placeholder="请选择"
-        value="{{formData.resident_str}}"
-        class="value {{formData.resident_str ? 'bold' : ''}}"
-        disabled/>
+      <myPicker pickerType="industry_occupation" initValue="{{ }}" needSlot="{{ true }}" bindresultevent="getPickerData">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="请选择"
+          value="{{ formData.occupationDesc }}"
+          class="value {{ formData.occupationDesc ? 'bold' : ''}}"
+          disabled/>
+      </myPicker>
     </view>
-    <view class="li">
-      <view class="key">所在公司</view>
-      <input
-        placeholder-class="holderStyle"
-        placeholder="请选择"
-        value="{{formData.company_name}}"
-        class="value {{formData.company_name ? 'bold' : ''}}"
-        disabled/>
-    </view>
-    <view class="li">
-      <view class="key">担任职位</view>
-      <input
-        placeholder-class="holderStyle"
-        placeholder="请选择"
-        value="{{formData.position_name}}"
-        class="value {{formData.position_name ? 'bold' : ''}}"
-        disabled/>
-    </view>
-  </view>
-  <view class="tips-box">
-    <block wx:if="{{ status === 1}}">
-      <view class="info"><i class="icon"></i>职业信息未认证，将降低主页展示率</view>
-      <view class="strong" bindtap="legalize">前往认证</view>
-    </block>
-    <block wx:elif="{{ status === 2}}">
-      <view class="info"> 职业信息认证中</view>
-      <view class="strong" binatp="legalize">更改认证信息</view>
-    </block>
-    <block wx:else>
-      <view class="info"><i class="icon"></i>职业信息认证成功</view>
+    <block wx:if="{{ formData.occupation }}">
+      <view class="li">
+        <view class="key">所在公司</view>
+        <input
+          placeholder-class="holderStyle"
+          placeholder="请选择"
+          data-key="company_name"
+          bindinput="bindInput"
+          value="{{formData.company_name}}"
+          class="value {{formData.company_name ? 'bold' : ''}}"
+          />
+      </view>
+      <view class="li">
+        <view class="key">担任职位</view>
+        <input
+          placeholder-class="holderStyle"
+          placeholder="请选择"
+          bindinput="bindInput"
+          data-key="position_name"
+          value="{{formData.position_name}}"
+          class="value {{formData.position_name ? 'bold' : ''}}"
+          />
+      </view>
     </block>
   </view>
-  <i-button type="success" class="btn-next btn-next-active" long="{{ true }}">完成</i-button>
+  <block wx:if="{{ formData.occupation }}">
+    <view class="tips-box">
+      <block wx:if="{{ status === 1}}">
+        <view class="info"><i class="icon iconfont icon_jinggao"></i>职业信息未认证，将降低主页展示率</view>
+        <view class="strong" bindtap="legalize">前往认证</view>
+      </block>
+      <block wx:elif="{{ status === 2}}">
+        <view class="info"> 职业信息认证中</view>
+        <view class="strong" binatp="legalize">更改认证信息</view>
+      </block>
+      <block wx:else>
+        <view class="info"><i class="icon"></i>职业信息认证成功</view>
+      </block>
+    </view>
+  </block>
+  <!-- <i-button type="success" class="btn-next {{canClick ? 'btn-next-active' : ''}}" long="{{ true }}" bindtap="next">完成</i-button> -->
+  <myButton canClick="{{ canClick }}" btnTxt="完成" bind:click="next"></myButton>
 </view>

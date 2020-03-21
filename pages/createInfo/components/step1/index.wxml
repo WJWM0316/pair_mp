@@ -21,7 +21,8 @@
         maxlength="20"/>
     </view>
     <view class="upload-box">
-      <avatarCut></avatarCut>
+      <avatarCut src="{{formData.avatar.smallUrl}}"></avatarCut>
+
     </view>
   </view>
   <view class="item-info second">
@@ -43,7 +44,7 @@
   <view class="item-info third">
     <view class="item">
       <view class="key">生日</view>
-      <myPicker pickerType="birthday" initValue="{{ formData.birth }}" needSlot="{{true}}" bindresultevent="getPickerData" data-key="birth">
+      <myPicker pickerType="birthday" initValue="{{ formData.birth }}" needSlot="{{ true }}" bindresultevent="getPickerData" data-key="birth">
         <input
           placeholder-class="holderStyle"
           placeholder="请选择"
@@ -54,15 +55,21 @@
     </view>
     <view class="item">
       <view class="key">常驻地</view>
-      <myPicker pickerType="region" initValue="{{ '130000-130200-130202' }}" needSlot="{{true}}" bindresultevent="getPickerData" data-key="resident_str">
+      <myPicker
+        pickerType="region"
+        initValue="{{ formData.address.default }}"
+        needSlot="{{ true }}"
+        bindresultevent="getPickerData"
+        data-key="address">
         <input
           placeholder-class="holderStyle"
           placeholder="请选择"
-          value="{{formData.resident_str}}"
-          class="value {{formData.resident_str ? 'bold' : ''}}"
+          value="{{formData.address.title}}"
+          class="value {{formData.address.title ? 'bold' : ''}}"
           disabled/>
       </myPicker>
     </view>
   </view>
-  <i-button type="success" class="btn-next {{canClick ? 'btn-next-active' : ''}}" long="{{ true }}">下一步</i-button>
+  <!-- <i-button type="success" class="btn-next {{ canClick ? 'btn-next-active' : '' }}" long="{{ true }}" bind:click="next">下一步</i-button> -->
+  <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next"></myButton>
 </view>

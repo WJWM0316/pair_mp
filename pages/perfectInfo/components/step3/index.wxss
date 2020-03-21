@@ -1,0 +1,27 @@
+.step3 .h1 {
+  height: 56rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 56rpx;
+}
+.step3 .progress {
+  height: 8rpx;
+  line-height: 8rpx;
+  margin-top: 20rpx;
+}
+.step3 .progress .item {
+  width: 60rpx;
+  height: 8rpx;
+  background: #F1F4F4;
+  border-radius: 9rpx;
+  margin-right: 8rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.step3 .progress .active-item {
+  background: #0CCDDA;
+}
+.step3 .box {
+  margin-top: 106rpx;
+}

@@ -1,6 +1,8 @@
-import { getAreaListApi } from '../../../api/common.js'
-// import { getDegreeApi } from '../../../../../../api/pages/picker.js'
-let rangeArray = []
+import {
+  getAreaListApi,
+  getDegreeApi
+} from '../../../api/common.js'
+
 let rtnResult = {}
 Component({
   properties: {
@@ -34,6 +36,7 @@ Component({
   },
   methods: {
     init() {
+      let rangeArray = []
       let value = []
       switch(this.data.pickerType) {
         case 'birthday':
@@ -122,15 +125,25 @@ Component({
             this.setData({ rangeArray, value, active: value, mode: 'multiSelector', rangeKey: 'title', placeHolder: '选择家乡' })
           })
           break
-        case 'education':
+        case 'industry_occupation':
           getDegreeApi().then(({ data }) => {
+            data = data.industryArr
+            let industrys = data
+            let occupations = []
             if(this.data.initValue) {
-              let educationIndex = data.findIndex((v,i,a) => v.value == this.data.initValue) || 0
-              value = [educationIndex]
+              let tem = this.data.initValue.split('-')
+              let industryIndex = data.findIndex((v,i,a) => v.labelId == tem[0]) || 0
+              occupations = industrys[tem[1]].children
+              let occupationIndex = occupations.findIndex((v,i,a) => v.labelId == tem[1]) || 0
+              value = [industryIndex, occupationIndex]
               this.setData({active: value})
+            } else {
+              occupations = industrys[0].children
+              value = [0,0]
             }
-            rangeArray = data
-            this.setData({ rangeArray, value, mode: 'selector', rangeKey: 'text', placeHolder: '选择学历' })
+            rangeArray[0] = industrys
+            rangeArray[1] = occupations
+            this.setData({ rangeArray, value, mode: 'multiSelector', rangeKey: 'name', placeHolder: '选择学历' })
           })
           break
       }
@@ -145,14 +158,17 @@ Component({
       let { value } = e.detail
       let rangeArray = this.data.rangeArray
       switch(this.data.pickerType) {
-        case 'education':
+        case 'industry_occupation':
           rtnResult = {
-            ...rangeArray[parseInt(value)]
+            ...rangeArray[0][value[0]].children[value[1]]
           }
           break
         case 'region':
+          let temObj = rangeArray[0][value[0]].children[value[1]].children[value[2]]
           rtnResult = {
-            ...rangeArray[0][value[0]].children[value[1]].children[value[2]]
+            ...temObj,
+            topPid: rangeArray[0][value[0]].areaId,
+            desc: `${rangeArray[0][value[0]].title},${rangeArray[0][value[0]].children[value[1]].title},${temObj.title}`
           }
           break          
         case 'height':
@@ -178,9 +194,15 @@ Component({
     bindChange(e) {
       let { column } = e.detail
       let { value } = e.detail
-      let rangeArray = this.data.rangeArray
+      let { rangeArray } = this.data
       let tem = this.data.value
       switch(this.data.pickerType) {
+        case 'industry_occupation':
+          if(column === rangeArray.length - 1) return
+          let occupations = rangeArray[0][value].children
+          rangeArray[1] = occupations
+          this.setData({ rangeArray})
+          break
         case 'region':
           if(column === rangeArray.length - 1) return
           let citys = []
@@ -200,6 +222,7 @@ Component({
           break
         case 'birthday':
           if(column === rangeArray.length - 1) return
+          let months = rangeArray[1]
           let days = []
           tem[column] = value
           let length = this.getDaysInMonth(rangeArray[0][tem[0]].value, rangeArray[1][tem[1]].value)
@@ -210,6 +233,7 @@ Component({
               value: add0(i)
             })
           }
+          rangeArray[1] = months
           rangeArray[2] = days
           this.setData({ rangeArray })
           break

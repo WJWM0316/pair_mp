@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "myPicker": "../../../..//components/functional/myPicker",
-    "avatarCut": "../../../..//components/functional/avatarCut"
+    "avatarCut": "../../../..//components/functional/avatarCut",
+    "myButton": "../button"
   }
 }

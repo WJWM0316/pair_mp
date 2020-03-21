@@ -4,8 +4,10 @@
     "pages/IM/chat/index",
     "pages/IM/list/index",
     "pages/createInfo/index",
-    "pages/perfect/index",
-    "pages/email/index"
+    "pages/methods/index",
+    "pages/email/index",
+    "pages/perfectInfo/index",
+    "pages/perfectInfo/components/step1/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

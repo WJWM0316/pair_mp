@@ -1,0 +1,10 @@
+<view class="step4">
+  <view class="h1">我的理想型</view>
+  <view class="progress">
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+    <view class="item active-item"></view>
+  </view>
+  <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next"></myButton>
+</view>

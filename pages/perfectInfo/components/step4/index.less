@@ -1,0 +1,31 @@
+@import '../../../../styles/_base.less';
+@import '../../../../styles/_mixins.less';
+.step4 {
+  .h1 {
+    height: 56rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: @text-color-1;
+    line-height: 56rpx;
+  }
+  .progress {
+    height: 8rpx;
+    line-height: 8rpx;
+    margin-top: 20rpx;
+    .item {
+      width: 60rpx;
+      height: 8rpx;
+      background: @background-color-base;
+      border-radius: 9rpx;
+      margin-right: 8rpx;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .active-item {
+      background: @primary-color;
+    }
+  }
+  .box {
+    margin-top: 106rpx;
+  }
+}

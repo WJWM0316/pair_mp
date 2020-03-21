@@ -34,7 +34,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
   token && !addHttpHead['Authorization'] ? addHttpHead['Authorization'] = token : null
   sessionToken && !addHttpHead['Authorization-Wechat'] ? addHttpHead['Authorization-Wechat'] = sessionToken : null
  
-  console.log(url, 111)
+  // console.log(url, 111)
 
 
   // 请求中间件
@@ -61,7 +61,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
               //有字符串的情况下 转数字
               msg.httpStatus = parseInt(msg.httpStatus)
               if (msg.httpStatus === 200) {
-                if (msg.code === 0) {
+                if (msg.code === 0 || msg.code === 200) {
                   resolve(msg)
                 } else {
                   switch (msg.code) {

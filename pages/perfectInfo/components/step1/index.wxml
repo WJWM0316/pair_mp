@@ -1,0 +1,17 @@
+<view class="step1">
+  <view class="h1">年收入范围</view>
+  <view class="progress">
+    <view class="item active-item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+  </view>
+  <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange">
+    <picker-view-column class="column">
+      <view wx:for="{{ rangeArray }}" wx:key="index">
+        {{ item.name }}
+      </view>
+    </picker-view-column>    
+  </picker-view>
+  <myButton canClick="{{ true }}" btnTxt="下一步" bind:click="next"></myButton>
+</view>
