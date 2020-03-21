@@ -1,9 +1,6 @@
 import {
   createUserStep1Api
 } from '../../../../api/user'
-import {
-  wxToast
-} from '../../../../utils/func.js'
 
 Component({
   data: {
@@ -106,7 +103,7 @@ Component({
       createUserStep1Api(params).then(res => {
         this.triggerEvent('next', true)
       }, err => {
-        wxToast({title: err.msg})
+        app.wxToast({title: err.msg})
       })
     }
   }

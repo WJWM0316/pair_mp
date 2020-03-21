@@ -1,8 +1,4 @@
 const app =  getApp();
-let timer = null
-import {
-  wxToast
-} from '../../utils/func.js'
 import {
   sendEmailApi,
   verifyEmailApi
