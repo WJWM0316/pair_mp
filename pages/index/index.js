@@ -40,8 +40,8 @@ Page({
     }
     
     quickLogin(data).then(res => {
-      if (res.data.sessionToken) wx.setStorageSync('sessionToken', res.data.sessionToken)
-      if (res.data.token) wx.setStorageSync('token', res.data.token)
+      if (res.data.wechatInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.wechatInfo.sessionToken)
+      if (res.data.userLogin.token) wx.setStorageSync('token', res.data.userLogin.token)
     })
   }
 })

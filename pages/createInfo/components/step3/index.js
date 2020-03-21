@@ -1,9 +1,6 @@
 import {
   createUserStep3Api
 } from '../../../../api/user'
-import {
-  wxToast
-} from '../../../../utils/wxApi.js'
 const app = getApp()
 Component({
   properties: {

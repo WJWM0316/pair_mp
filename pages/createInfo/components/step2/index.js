@@ -1,9 +1,7 @@
 import {
   createUserStep2Api
 } from '../../../../api/user'
-import {
-  wxToast
-} from '../../../../utils/wxApi.js'
+const app =  getApp();
 let list = []
 for(let i = 100; i <= 300; i++) {
   list.push(i)
