@@ -7,6 +7,7 @@ import {
 import {
   wxToast
 } from '../../../../utils/wxApi.js'
+const app = getApp()
 Component({
   properties: {
 
@@ -17,6 +18,7 @@ Component({
   },
   attached () {
     this.init()
+    console.log(app)
   },
   methods: {
     init() {

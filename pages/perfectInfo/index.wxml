@@ -1,5 +1,21 @@
 <view class="perfect_info">
-    <step1 wx:if="{{ step === 1 }}" bind:next="next"></step1>
+    <view class="h1">{{ title }}</view>
+    <view class="progress">
+        <view class="item {{step < 2 ? 'active-item' : ''}}"></view>
+        <view class="item {{step < 3 ? 'active-item' : ''}}"></view>
+        <view class="item {{step < 4 ? 'active-item' : ''}}"></view>
+        <view class="item {{step < 5 ? 'active-item' : ''}}"></view>
+    </view>
+    <view class="step1" wx:if="{{ step === 1 }}">
+        <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange">
+            <picker-view-column class="column">
+            <view wx:for="{{ rangeArray }}" wx:key="index">
+                {{ item.name }}
+            </view>
+            </picker-view-column>    
+        </picker-view>
+        <myButton canClick="{{ true }}" btnTxt="下一步" bind:click="next"></myButton>
+    </view>
     <step2 wx:elif="{{ step === 2}}" bind:next="next"></step2>
     <step3 wx:elif="{{ step === 3}}" bind:next="next"></step3>
     <step4 bind:next="next" wx:else></step4>
