@@ -1,12 +1,14 @@
 @import '../../../styles/_base.less';
 @import '../../../styles/_mixins.less';
-
+@import '../../../styles/iconfont.wxss';
 .chatWrap {
   min-height: 100vh;
   background: @background-color-base;
+  transition: all .2s ease;
   .chatArea {
     padding: 20rpx 30rpx;
     height: calc(100vh - 188rpx);
+    box-sizing: border-box;
     .scrollView {
       height: 100%;
     }
@@ -65,5 +67,63 @@
   }
   .console {
     width: 100%;
+    .textEdit {
+      padding: 18rpx 114rpx 12rpx 26rpx;
+      position: relative;
+      .textarea-box {
+        background: #fff;
+        padding: 18rpx 40rpx;
+        box-sizing: border-box;
+        border-radius:38rpx;
+        .textarea {
+          width: 100%;
+          min-height: 40rpx;
+          font-size:30rpx;
+          color: @text-color-1;
+          line-height:40rpx;
+        }
+      }
+      .send {
+        top: 0;
+        right: 0;
+        position: absolute;
+        padding: 18rpx 30rpx 18rpx 20rpx;
+        font-size:32rpx;
+        color:@primary-color;
+        line-height:76rpx;
+      }
+    }
+    .other-type {
+      padding: 0 57rpx 14rpx;
+      display: flex;
+      justify-content: space-between;
+      .item {
+        position: relative;
+        .selected {
+          right:8rpx;
+          bottom: 10rpx;
+          display: block;
+          position: absolute;
+          width:32rpx;
+          height:32rpx;
+          border-radius:16rpx;
+        }
+        .icon {
+          font-size: 44rpx;
+          color: @text-color-1;
+          position: relative;
+          z-index: 1;
+        }
+        
+        width: 68rpx;
+        height: 68rpx;
+        text-align: center;
+        line-height: 68rpx;
+      }
+    }
+  }
+  .console-area {
+    width: 100%;
+    height: 400rpx;
   }
 }

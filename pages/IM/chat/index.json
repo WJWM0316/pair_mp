@@ -2,6 +2,9 @@
   "usingComponents": {
     "msg-image": "../../../components/message/image",
     "msg-audio": "../../../components/message/audio",
-    "msg-video": "../../../components/message/video"
+    "msg-video": "../../../components/message/video",
+    "record"   : "./components/record/index",
+    "emoj"     : "./components/emoj/index",
+    "debutWord": "./components/debutWord/index"
   }
 }

@@ -75,123 +75,70 @@
 .icon_im_biaoqing:before {
   content: "\e658";
 }
-.chatWrap {
-  min-height: 100vh;
-  background: #F1F4F4;
-  transition: all 0.2s ease;
-}
-.chatWrap .chatArea {
-  padding: 20rpx 30rpx;
-  height: calc(100vh - 188rpx);
-  box-sizing: border-box;
-}
-.chatWrap .chatArea .scrollView {
+.recordWrap {
+  width: 100%;
   height: 100%;
-}
-.chatWrap .chatArea .message-list .message-item {
-  margin-bottom: 30rpx;
-  overflow: hidden;
-}
-.chatWrap .chatArea .message-list .message-item .avatar {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.chatWrap .chatArea .message-list .message-item .message-content {
-  border-radius: 24rpx;
-  overflow: hidden;
-}
-.chatWrap .chatArea .message-list .message-item .message-content .text {
-  max-width: 460rpx;
-  font-size: 30rpx;
-  line-height: 40rpx;
-  padding: 26rpx 42rpx;
-  border-radius: 24rpx;
-  overflow: hidden;
+  padding: 54rpx 60rpx;
   box-sizing: border-box;
 }
-.chatWrap .chatArea .message-list .message-item.others .avatar {
-  float: left;
-}
-.chatWrap .chatArea .message-list .message-item.others .message-content {
-  border-top-left-radius: 8rpx;
-  margin-left: 16rpx;
-  float: left;
-  background: #fff;
-  color: #1F252B;
-}
-.chatWrap .chatArea .message-list .message-item.mine .avatar {
-  float: right;
-}
-.chatWrap .chatArea .message-list .message-item.mine .message-content {
-  border-top-right-radius: 8rpx;
-  margin-right: 16rpx;
-  float: right;
-  background: #0CCDDA;
-  color: #fff;
-}
-.chatWrap .chatArea .message-list .message-item.mine .message-content.img,
-.chatWrap .chatArea .message-list .message-item.mine .message-content.video {
-  background: none;
-}
-.chatWrap .console {
-  width: 100%;
-}
-.chatWrap .console .textEdit {
-  padding: 18rpx 114rpx 12rpx 26rpx;
-  position: relative;
-}
-.chatWrap .console .textEdit .textarea-box {
-  background: #fff;
-  padding: 18rpx 40rpx;
-  box-sizing: border-box;
-  border-radius: 38rpx;
-}
-.chatWrap .console .textEdit .textarea-box .textarea {
-  width: 100%;
-  min-height: 40rpx;
-  font-size: 30rpx;
-  color: #1F252B;
-  line-height: 40rpx;
-}
-.chatWrap .console .textEdit .send {
-  top: 0;
-  right: 0;
-  position: absolute;
-  padding: 18rpx 30rpx 18rpx 20rpx;
-  font-size: 32rpx;
-  color: #0CCDDA;
-  line-height: 76rpx;
-}
-.chatWrap .console .other-type {
-  padding: 0 57rpx 14rpx;
-  display: flex;
-  justify-content: space-between;
-}
-.chatWrap .console .other-type .item {
-  position: relative;
-  width: 68rpx;
-  height: 68rpx;
+.recordWrap .tips {
+  font-size: 28rpx;
+  color: #9CA1AA;
+  line-height: 36rpx;
   text-align: center;
-  line-height: 68rpx;
 }
-.chatWrap .console .other-type .item .selected {
-  right: 8rpx;
-  bottom: 10rpx;
-  display: block;
-  position: absolute;
-  width: 32rpx;
-  height: 32rpx;
-  border-radius: 16rpx;
+.recordWrap .tips .seconds {
+  float: right;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #0CCDDA;
+  line-height: 40rpx;
 }
-.chatWrap .console .other-type .item .icon {
-  font-size: 44rpx;
-  color: #1F252B;
+.recordWrap .button {
+  width: 138rpx;
+  height: 138rpx;
+  background: #0CCDDA;
+  margin: 59rpx auto 0;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0rpx 0rpx 20px rgba(12, 205, 218, 0.2);
   position: relative;
-  z-index: 1;
+  display: block;
+  overflow: visible;
+  z-index: 2;
 }
-.chatWrap .console-area {
-  width: 100%;
-  height: 400rpx;
+.recordWrap .button::before {
+  content: "";
+  width: 164rpx;
+  height: 164rpx;
+  background: #0CCDDA;
+  opacity: 0.2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: -1;
+  border-radius: 50%;
+}
+.recordWrap .button.breathing::before {
+  animation: breathing 2s infinite linear;
+}
+.recordWrap .button .icon {
+  color: #fff;
+  line-height: 138rpx;
+  font-size: 50rpx;
+}
+@keyframes breathing {
+  0% {
+    width: 164rpx;
+    height: 164rpx;
+  }
+  50% {
+    width: 220rpx;
+    height: 220rpx;
+  }
+  100% {
+    width: 164rpx;
+    height: 164rpx;
+  }
 }

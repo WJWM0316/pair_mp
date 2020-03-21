@@ -1,5 +1,5 @@
 <view class="chatWrap">
-  <view class="chatArea">
+  <view class="chatArea" bindtap="resetView">
     <scroll-view 
       scroll-y="{{true}}"
       refresher-enabled="{{true}}"
@@ -34,17 +34,64 @@
     </scroll-view>
   </view>
   <view class="console">
-    <view class="input">
-      <textarea 
-        class="" 
-        value="" 
-        placeholder="输入新消息" 
-        placeholder-class="textarea-placeholder" 
-        auto-height="true" 
-        bindinput="" 
-        bindconfirm="">
-      </textarea>
+    <view class="textEdit">
+      <view class="textarea-box">
+        <textarea 
+          class="textarea" 
+          value="" 
+          placeholder="输入新消息" 
+          placeholder-class="textarea-placeholder" 
+          auto-height="true" 
+          bindinput="" 
+          bindconfirm="">
+        </textarea>
+      </view>
       <view class="send">发送</view>
     </view>
+    <view class="other-type">
+      <view 
+        class="item" 
+        wx:for="{{consoleBtnType}}" 
+        wx:key="type" 
+        bindtap = "selectType" 
+        data-index="{{index}}">
+        <i class="icon iconfont {{item.icon}}"></i>
+        <i wx:if="{{selectIndex === index && item.color}}" style="background:{{item.color}}" class="selected"></i>
+      </view>
+    </view>
+  </view>
+  <view class="console-area" hidden="{{parse.hidden('console-area', selectIndex)}}">
+    <view hidden="{{parse.hidden('record', selectIndex)}}"><record></record></view>
+    <view hidden="{{parse.hidden('emoj', selectIndex)}}"><emoj></emoj></view>
+    <view hidden="{{parse.hidden('debutWord', selectIndex)}}"><debutWord></debutWord></view>
+    
   </view>
 </view>
+<wxs module="parse">
+  module.exports = {
+      hidden: function (type, selectIndex) {
+        switch (type) {
+          case 'console-area':
+            return [null, 1, 2].indexOf(selectIndex) !== -1
+            break
+          case 'record':
+            return [null, 1, 2, 3, 4].indexOf(selectIndex) !== -1
+            break
+          case 'emoj':
+           console.log([null, 0, 1, 2, 4].indexOf(selectIndex) !== -1, 111)
+            return [null, 0, 1, 2, 4].indexOf(selectIndex) !== -1
+            break
+          case 'debutWord':
+            return [null, 0, 1, 2, 3].indexOf(selectIndex)  !== -1
+            break
+        }
+      },
+      setStyle : function( item ){
+          var defaults = '#f7f7f7';
+          return 'background:' + ( item.background ? item.background : defaults ) +';' + 'color:'+ item.color;
+      },
+      setPosition : function( pageY ){
+          return 'transform:translate3d(0, ' + -pageY + 'rpx, 0);';
+      }
+  }
+</wxs>

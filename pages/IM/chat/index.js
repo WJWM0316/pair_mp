@@ -1,4 +1,4 @@
-// pages/IM/chat/index.js
+const app =  getApp();
 let data = [
   {
     messageId: "messageId0",
@@ -131,7 +131,39 @@ Page({
       data
     ],
     firstMessageId: '',
-    refresher: false
+    refresher: false,
+    selectIndex: null,
+    consoleBtnType: [
+      {
+        name: '录音',
+        type: 'record',
+        icon: 'icon_im_yuyin',
+        color: '#0CCDDA'
+      },
+      {
+        name: '相册',
+        type: 'album',
+        icon: 'icon_im_tupian',
+      },
+      {
+        name: '拍摄',
+        type: 'shot',
+        icon: 'icon_im_paizhao',
+      },
+      {
+        name: '表情',
+        type: 'emoj',
+        icon: 'icon_im_biaoqing',
+        color: '#FFD853'
+      },
+      {
+        name: '出场语',
+        type: 'debutWord',
+        icon: 'icon_im_kaichangbai',
+        color: '#F46BA1'
+      }
+    ],
+    pageY: 0
   },
 
   /**
@@ -152,21 +184,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(app, 11)
+    console.log()
+    app.wxToast({title: '测试一下'})
+  },
+  resetView () {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      success: () => {
+        this.setData({'selectIndex': null})
+      }
+    })
   },
   // 自定义下拉刷新
   fresherrefresh (e) {
     let firstMessageId = this.data.messageList[0][0].messageId
     let messageList = [data1, ...this.data.messageList]
-    this.setData({messageList, 'refresher': false}, () => {
-      wx.nextTick(()=>{
-        this.setData({firstMessageId})
-      });
-    })
+    this.setData({messageList, 'refresher': false})
   },
   // 自定义下拉刷新复位
   refresherrestore (e) {
-    
+    wx.nextTick(()=>{
+      this.setData({firstMessageId})
+    })
+  },
+  selectType (e) {
+    let index = e.currentTarget.dataset.index,
+        pageY = [0, 3, 4].includes(index) ? 1000 : 0
+    this.setData({'selectIndex': index}, () => {
+      wx.pageScrollTo({scrollTop: pageY})
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

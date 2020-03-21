@@ -1,6 +1,4 @@
-import {
-  wxToast
-} from '../../utils/func.js'
+const app =  getApp();
 let timer = null
 let emailReg = /^([a-zA-Z0-9]+[_|\_|\.|\-]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[-_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$/
 Page({
@@ -17,7 +15,7 @@ Page({
     }
   },
   isEmail() {
-    wxToast({title: '请输入正确的邮箱地址'})
+    app.wxToast({title: '请输入正确的邮箱地址'})
     return emailReg.test(this.data.email)
   },
   sendEmail() {
