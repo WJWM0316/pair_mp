@@ -184,9 +184,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(app, 11)
-    console.log()
-    app.wxToast({title: '测试一下'})
+  },
+  pageScrollToBot () {
+    wx.pageScrollTo({scrollTop: 1000})
   },
   resetView () {
     wx.pageScrollTo({
@@ -209,11 +209,20 @@ Page({
     })
   },
   selectType (e) {
-    let index = e.currentTarget.dataset.index,
-        pageY = [0, 3, 4].includes(index) ? 1000 : 0
-    this.setData({'selectIndex': index}, () => {
-      wx.pageScrollTo({scrollTop: pageY})
-    })
+    let index = e.currentTarget.dataset.index
+    if ([0, 3, 4].includes(index)) {
+      this.setData({'selectIndex': index}, () => {
+        this.pageScrollToBot()
+     })
+    } else {
+      wx.pageScrollTo({
+        scrollTop: 0,
+        success: () => {
+          this.setData({'selectIndex': index})
+        }
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面隐藏

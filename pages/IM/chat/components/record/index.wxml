@@ -4,6 +4,7 @@
     <text class="seconds" hidden="{{!seconds}}">{{seconds}}s</text>
   </view>
   <i-button 
+    bindtap="wxApiAuthorize"
     bindtouchstart="hanlderTouchstart"
     bindtouchmove="hanlderTouchmove"
     bindtouchend="hanlderTouchend"

@@ -3,14 +3,14 @@ import Socket from './utils/webSocket.js'
 import {setConfig} from './env.config'
 import { request } from './api/index'
 import wxApi from './utils/wxApi'
+import {getTitleHeight} from './utils/util.js'
 App({
   ...wxApi, // 挂载二次封装的微信API
   onLaunch: function () {
-    console.log(wxApi, 111)
     // 获取系统参数，计算顶部栏高度
     this.globalData.systemInfo = wx.getSystemInfoSync();
-    this.globalData.systemInfo['titleHeight'] = this.getTitleHeight()
-    this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + this.getTitleHeight()
+    this.globalData.systemInfo['titleHeight'] = getTitleHeight(this)
+    this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + getTitleHeight(this)
     console.log(this.globalData.systemInfo, '系统参数')
 
 
@@ -34,12 +34,7 @@ App({
     navBarHeight: 0, // 顶部栏高度 px
     userInfo: null
   },
-  // 计算标签栏高度
-  getTitleHeight () {
-    let rect = wx.getMenuButtonBoundingClientRect ? wx.getMenuButtonBoundingClientRect() : null; //胶囊按钮位置信息
-    let gap = rect.top - this.globalData.systemInfo.statusBarHeight; //动态计算每台手机状态栏到胶囊按钮间距
-    return 2 * gap + rect.height;
-  }
+  
 })
 
   

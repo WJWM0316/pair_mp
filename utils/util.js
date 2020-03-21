@@ -52,7 +52,15 @@ const getSelectorQuery = (selector, that) => {
   })
 }
 
+// 计算标签栏高度
+const getTitleHeight = (that) => {
+  let rect = wx.getMenuButtonBoundingClientRect ? wx.getMenuButtonBoundingClientRect() : null; //胶囊按钮位置信息
+  let gap = rect.top - that.globalData.systemInfo.statusBarHeight; //动态计算每台手机状态栏到胶囊按钮间距
+  return 2 * gap + rect.height;
+}
+
 module.exports = {
   formatTime: formatTime,
-  getSelectorQuery
+  getSelectorQuery,
+  getTitleHeight
 }
