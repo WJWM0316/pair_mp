@@ -2,8 +2,8 @@ import {
   wxToast
 } from '../../utils/func.js'
 import {
-  sendEmail,
-  verifyEmail
+  sendEmailApi,
+  verifyEmailApi
 } from '../../api/common.js'
 
 let emailReg = /^([a-zA-Z0-9]+[_|\_|\.|\-]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[-_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$/
@@ -36,7 +36,7 @@ Page({
   },
   sendEmail() {
     if(!this.isEmail()) return
-    sendEmail({email: this.data.formData.email}).then(res => {
+    sendEmailApi({email: this.data.formData.email}).then(res => {
       this.killTime()
     }).catch(err => wxToast({title: err.msg}))
   },
@@ -62,7 +62,7 @@ Page({
     clearInterval(timer)
   },
   verifyEmail() {
-    verifyEmail({code: this.data.formData.code}).then(res => {
+    verifyEmailApi({code: this.data.formData.code}).then(res => {
       wx.navigateBack({ delta: 1 })
     }).catch(err => wxToast({title: err.msg}))
   }

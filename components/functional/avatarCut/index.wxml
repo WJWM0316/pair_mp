@@ -1,8 +1,8 @@
 <view class="avatarUpload" bindtap="upload">
 	<block wx:if="{{!needBg}}">
 		<image class="avatarImg avatar" src="{{src}}" mode="aspectFill"></image>
-		<i wx:if="{{!src}}" class="static iconfont icon-xiangji"></i>
-		<i wx:if="{{src && icon}}" class="icon iconfont icon-xiangji"></i>
+		<i wx:if="{{!src}}" class="static icon iconfont icon_im_paizhao"></i>
+		<i wx:if="{{src && icon}}" class="icon iconfont icon_im_paizhao"></i>
 	</block>
 	<block wx:else><slot></slot></block>
 </view>

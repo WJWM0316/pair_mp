@@ -30,135 +30,47 @@
   }
 }
 
-.btn-next {
-  height:98rpx;
-  position: fixed !important;
-  bottom: 110rpx;
-  left: 80rpx;
-  right: 80rpx;
-  width: unset !important;
-  &:after{
-    height:98rpx;
-    background:rgba(223,229,229,1);
-    border-radius:54rpx;
-    filter:blur(10rpx);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -10rpx;
-    content: '';
-    width: calc(100% - 58rpx);
-  }
-  button {
-    width: 100%;
-    border-radius:54rpx !important;
-    background:#F1F4F4 !important;
-    font-size:32rpx;
-    font-weight:700;
-    color:@text-color-4 !important;
-    position: relative;
-    z-index: 2;
-    height: 98rpx;
-    line-height: 98rpx;
-    border: 0 !important;
-  }
-}
+// .btn-next {
+//   height:98rpx;
+//   position: fixed !important;
+//   bottom: 110rpx;
+//   left: 80rpx;
+//   right: 80rpx;
+//   width: unset !important;
+//   &:after{
+//     height:98rpx;
+//     background:rgba(223,229,229,1);
+//     border-radius:54rpx;
+//     filter:blur(10rpx);
+//     position: absolute;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     bottom: -10rpx;
+//     content: '';
+//     width: calc(100% - 58rpx);
+//   }
+//   button {
+//     width: 100%;
+//     border-radius:54rpx !important;
+//     background:#F1F4F4 !important;
+//     font-size:32rpx;
+//     font-weight:700;
+//     color:@text-color-4 !important;
+//     position: relative;
+//     z-index: 2;
+//     height: 98rpx;
+//     line-height: 98rpx;
+//     border: 0 !important;
+//   }
+// }
 
-.btn-next-active {
-  &:after{
-    background:@primary-color;
-    opacity: .4;
-  }
-  button {
-    background:@primary-color !important;
-    color: white !important;
-  }
-}
-
-.scroll-container {
-  overflow: scroll;
-  white-space: nowrap;
-  position: relative;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-top: 106rpx;
-  height: 300rpx;
-  &:before{
-    // background: red;
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 160rpx;
-    background:-moz-linear-gradient(right, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    background:-webkit-linear-gradient(right, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    background:-o-linear-gradient(right, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    background:linear-gradient(right, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    z-index: 2;
-  }
-  &:after{
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 160rpx;
-    background:-moz-linear-gradient(left, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    background:-webkit-linear-gradient(left, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    background:-o-linear-gradient(left, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    background:linear-gradient(left, rgba(255,255,255,.8) 40%, rgba(255,255,255,.9));
-    z-index: 2;
-  }
-  .item {
-    position: relative;
-    text-align: center;
-    display: inline-block;
-    vertical-align: middle;
-    .line {
-      width:8rpx;
-      height:64rpx;
-      background:#C7D7E7;
-      display: inline-block;
-      border-radius: 4rpx;
-      margin: 0 15rpx;
-      vertical-align: top;
-      position: relative;
-      &:nth-child(3) {
-        height:104rpx;
-      }
-    }
-    .scale {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -94rpx;
-      height:78rpx;
-      font-size:36rpx;
-      font-weight:700;
-      color:rgba(31,37,43,1);
-      line-height:78rpx;
-      .strong {
-        font-size: 56rpx;
-      }
-    }
-  }
-  .active-item {
-    width:8rpx;
-    height:104rpx;
-    display: inline-block;
-    border-radius: 4rpx;
-    margin: 0 15rpx;
-    vertical-align: top;
-    position: relative;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    background: @primary-color;
-  }
-}
+// .btn-next-active {
+//   &:after{
+//     background:@primary-color;
+//     opacity: .4;
+//   }
+//   button {
+//     background:@primary-color !important;
+//     color: white !important;
+//   }
+// }

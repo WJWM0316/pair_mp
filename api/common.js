@@ -23,7 +23,7 @@ export const getDegreeApi = (data) => {
   })
 }
 
-export const sendEmail = (data) => {
+export const sendEmailApi = (data) => {
   return request({
     method: 'post',
     url: '/verify/send/email',
@@ -31,10 +31,18 @@ export const sendEmail = (data) => {
   })
 }
 
-export const verifyEmail = (data) => {
+export const verifyEmailApi = (data) => {
   return request({
     method: 'post',
     url: '/verify/email',
+    data,
+  })
+}
+
+export const getSalaryListApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/user/salary',
     data,
   })
 }

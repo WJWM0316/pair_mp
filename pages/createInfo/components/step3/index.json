@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "myPicker": "../../../..//components/functional/myPicker"
+    "myPicker": "../../../..//components/functional/myPicker",
+    "myButton": "../button"
   }
 }

@@ -6,5 +6,12 @@
     <view class="item"></view>
     <view class="item"></view>
   </view>
-  <i-button type="success" class="btn-next btn-next-active" long="{{ true }}" bindtap="save">下一步</i-button>
+  <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange">
+    <picker-view-column class="column">
+      <view wx:for="{{ rangeArray }}" wx:key="index">
+        {{ item.name }}
+      </view>
+    </picker-view-column>    
+  </picker-view>
+  <myButton canClick="{{ true }}" btnTxt="下一步" bind:click="next"></myButton>
 </view>

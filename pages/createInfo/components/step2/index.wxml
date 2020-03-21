@@ -30,5 +30,6 @@
       >
     </wxScale>
   </view>
-  <i-button type="success" class="btn-next btn-next-active" long="{{ true }}" bindtap="save">下一步</i-button>
+  <!-- <i-button type="success" class="btn-next btn-next-active" long="{{ true }}" bindtap="save">下一步</i-button> -->
+  <myButton canClick="{{ true }}" btnTxt="下一步" bind:click="next"></myButton>
 </view>

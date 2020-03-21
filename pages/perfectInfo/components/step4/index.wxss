@@ -1,16 +1,16 @@
-.step2 .h1 {
+.step4 .h1 {
   height: 56rpx;
   font-size: 48rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 56rpx;
 }
-.step2 .progress {
+.step4 .progress {
   height: 8rpx;
   line-height: 8rpx;
   margin-top: 20rpx;
 }
-.step2 .progress .item {
+.step4 .progress .item {
   width: 60rpx;
   height: 8rpx;
   background: #F1F4F4;
@@ -19,9 +19,9 @@
   display: inline-block;
   vertical-align: top;
 }
-.step2 .progress .active-item {
+.step4 .progress .active-item {
   background: #0CCDDA;
 }
-.step2 .box {
+.step4 .box {
   margin-top: 106rpx;
 }

@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "wxScale": "../../../..//components/functional/wx-scale"
+    "wxScale": "../../../../components/functional/wx-scale",
+    "myButton": "../button"
   }
 }

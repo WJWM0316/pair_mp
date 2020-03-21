@@ -70,5 +70,6 @@
       </myPicker>
     </view>
   </view>
-  <i-button type="success" class="btn-next {{ canClick ? 'btn-next-active' : '' }}" long="{{ true }}" bind:click="next">下一步</i-button>
+  <!-- <i-button type="success" class="btn-next {{ canClick ? 'btn-next-active' : '' }}" long="{{ true }}" bind:click="next">下一步</i-button> -->
+  <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next"></myButton>
 </view>

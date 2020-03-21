@@ -1,4 +1,6 @@
-// pages/perfectInfo/components/step4/index.js
+import {
+  wxToast
+} from '../../../../utils/func.js'
 Component({
   /**
    * 组件的属性列表

@@ -22,3 +22,11 @@ export const createUserStep3Api = (data) => {
     data
   })
 }
+
+export const updateUserSalaryApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/user/salary/update',
+    data
+  })
+}

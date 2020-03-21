@@ -1,66 +1,47 @@
-// pages/perfectInfo/components/step1/index.js
-Page({
+import {
+  getSalaryListApi
+} from '../../../../api/common'
+import {
+  updateUserSalaryApi
+} from '../../../../api/user'
+import {
+  wxToast
+} from '../../../../utils/func.js'
+Component({
+  properties: {
 
-  /**
-   * 页面的初始数据
-   */
+  },
   data: {
-
+    rangeArray: [],
+    value: [0]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  attached () {
+    this.init()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  methods: {
+    init() {
+      getSalaryListApi().then(({ data }) => {
+        this.setData({rangeArray: data})
+      })
+    },
+    bindChange(e) {
+      let { value } = e.detail
+      if(value[0] !== this.data.value[0]) {
+        this.setData({ value })
+      }
+    },
+    next() {
+      let { rangeArray } = this.data
+      let { value } = this.data
+      let params = {
+        salary: rangeArray[value[0]].id
+      }
+      console.log(rangeArray[value[0]])
+      updateUserSalaryApi(params).then(res => {
+        this.triggerEvent('next', true)
+      }, err => {
+        wxToast({title: err.msg})
+      })
+    }
   }
 })

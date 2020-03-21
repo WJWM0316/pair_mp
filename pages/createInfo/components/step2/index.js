@@ -30,7 +30,7 @@ Component({
         this.setData({ height: String(value) })
       }
     },
-    save() {
+    next() {
       createUserStep2Api({height: this.data.height}).then(() => {
         this.triggerEvent('next', true)
       }, err => {
