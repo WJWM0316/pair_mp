@@ -1,7 +1,0 @@
-.perfect_info {
-  background: white;
-  border-radius: 36rpx 36rpx 0rpx 0rpx;
-  min-height: 100vh;
-  box-sizing: border-box;
-  padding: 86rpx 80rpx;
-}

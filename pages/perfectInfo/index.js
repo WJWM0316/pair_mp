@@ -1,6 +1,6 @@
 Page({
   data: {
-    step: 2
+    step: 4
   },
   next() {
     let { step } = this.data

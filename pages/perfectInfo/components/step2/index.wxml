@@ -6,5 +6,40 @@
     <view class="item"></view>
     <view class="item"></view>
   </view>
+  <view class="scroll-box">
+    <view class="append">
+      已选<text>0</text>/20
+    </view>
+    <scroll-view
+      scroll-with-animation
+      scroll-x
+      class="tab"
+      bindscroll="scrollViewMove"
+      scroll-left='{{ scrollLeft }}'
+      >
+      <view
+        wx:for="{{ list }}"
+        wx:key="index"
+        class="item {{ navTabIndex === index ? 'active' : '' }}"
+        bindtap="tabClick"
+        data-dom=".ul{{index}}"
+        data-index="{{index}}"
+        >
+          <text>{{item.positionName}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <scroll-view
+    class="tags-box"
+    scroll-y="{{ true }}"
+    style="height: calc(100vh - 316rpx)"
+    bindscroll="scroll"
+    scroll-top="{{ scrollTop }}"
+    >
+    <view class="ul ul{{index}}" wx:for="{{30}}" wx:key="index">
+      <view class="key">人设{{index}}</view>
+      <view class="li active" wx:for="{{20}}" wx:key="item">{{item}}</view>
+    </view>
+  </scroll-view>  
   <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next"></myButton>
 </view>

@@ -134,7 +134,7 @@
   transform-origin: 0 0;
   transform: scale(0.5, 0.5);
   box-sizing: border-box;
-  border-radius: 48rpx;
+  border-radius: calc(2 * 24rpx);
 }
 .step1 .first .nickname-box {
   flex: 1;

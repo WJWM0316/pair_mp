@@ -1,7 +1,7 @@
 .btn-next {
   height: 98rpx;
   position: fixed !important;
-  bottom: 110rpx;
+  bottom: 60rpx;
   left: 80rpx;
   right: 80rpx;
   width: unset !important;
