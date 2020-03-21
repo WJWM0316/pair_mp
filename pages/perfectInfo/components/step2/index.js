@@ -1,23 +1,17 @@
 import {
   wxToast
-} from '../../../../utils/func.js'
+} from '../../../../utils/wxApi.js'
 
 import {
   getSelectorQuery
 } from '../../../../utils/util.js'
 
 import {list} from './data'
+
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
 
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
     list,
     navTabIndex: 0,
@@ -26,6 +20,11 @@ Component({
     },
     scrollLeft: 0,
     scrollTop: 0
+  },
+  pageLifetimes: {
+    onPageScroll(e) {
+      console.log(e, 'kkkk')
+    }
   },
   methods: {
     scroll(e) {
@@ -38,7 +37,7 @@ Component({
       getSelectorQuery(dom, this).then(res => {
         let { top } = res
         this.setData({scrollTop: top - (296/2)})
-        console.log(res, dom)
+        // console.log(res, dom)
       })
     }
   }

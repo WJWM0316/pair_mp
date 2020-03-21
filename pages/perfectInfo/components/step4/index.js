@@ -1,9 +1,10 @@
 import {
   wxToast
-} from '../../../../utils/func.js'
+} from '../../../../utils/wxApi.js'
 import {
   updateUserDescribeApi
 } from '../../../../api/user'
+
 Component({
   data: {
     ideal_describe: ''

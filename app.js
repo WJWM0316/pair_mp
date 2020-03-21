@@ -2,8 +2,11 @@
 import Socket from './utils/webSocket.js'
 import {setConfig} from './env.config'
 import { request } from './api/index'
+import wxApi from './utils/wxApi'
 App({
+  ...wxApi, // 挂载二次封装的微信API
   onLaunch: function () {
+    console.log(wxApi, 111)
     // 获取系统参数，计算顶部栏高度
     this.globalData.systemInfo = wx.getSystemInfoSync();
     this.globalData.systemInfo['titleHeight'] = this.getTitleHeight()

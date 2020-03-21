@@ -1,6 +1,4 @@
-import {
-  wxToast
-} from '../../utils/func.js'
+const app =  getApp();
 import {
   sendEmailApi,
   verifyEmailApi
@@ -30,7 +28,7 @@ Page({
   },
   isEmail() {
     if(!emailReg.test(this.data.formData.email)) {
-      wxToast({title: '请输入正确的邮箱地址'})
+      app.wxToast({title: '请输入正确的邮箱地址'})
     }
     return emailReg.test(this.data.formData.email)
   },

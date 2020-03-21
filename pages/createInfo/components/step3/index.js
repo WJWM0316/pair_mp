@@ -1,9 +1,7 @@
 import {
   createUserStep3Api
 } from '../../../../api/user'
-import {
-  wxToast
-} from '../../../../utils/func.js'
+
 const app = getApp()
 Component({
   properties: {
@@ -58,7 +56,7 @@ Component({
       createUserStep3Api(params).then(() => {
         
       }, err => {
-        wxToast({title: err.msg})
+        app.wxToast({title: err.msg})
       })
     }
   }

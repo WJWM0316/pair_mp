@@ -4,9 +4,7 @@ import {
 import {
   updateUserSalaryApi
 } from '../../../../api/user'
-import {
-  wxToast
-} from '../../../../utils/func.js'
+
 Component({
   properties: {
 
@@ -40,7 +38,7 @@ Component({
       updateUserSalaryApi(params).then(res => {
         this.triggerEvent('next', true)
       }, err => {
-        wxToast({title: err.msg})
+        app.wxToast({title: err.msg})
       })
     }
   }
