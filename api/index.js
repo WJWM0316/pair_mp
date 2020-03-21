@@ -33,9 +33,6 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
   !sessionToken ? sessionToken = wx.getStorageSync('sessionToken') : null
   token && !addHttpHead['Authorization'] ? addHttpHead['Authorization'] = token : null
   sessionToken && !addHttpHead['Authorization-Wechat'] ? addHttpHead['Authorization-Wechat'] = sessionToken : null
- 
-  // console.log(url, 111)
-
 
   // 请求中间件
   const promise = () => {

@@ -1,23 +1,27 @@
+import {
+  wxToast
+} from '../../../../utils/wxApi.js'
+import {
+  updateUserDescribeApi
+} from '../../../../api/user'
 
 Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    ideal_describe: ''
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
-
+    bindInput(e) {
+      let { value } = e.detail
+      if(value !== this.data.ideal_describe) {
+        this.setData({ideal_describe: value})
+      }
+    },
+    next() {
+      updateUserDescribeApi({ideal_describe: this.data.ideal_describe.trim()}).then(res => {
+        this.triggerEvent('next', true)
+      }, err => {
+        wxToast({title: err.msg})
+      })
+    }
   }
 })

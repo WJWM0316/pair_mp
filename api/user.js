@@ -30,3 +30,11 @@ export const updateUserSalaryApi = (data) => {
     data
   })
 }
+
+export const updateUserDescribeApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/user/describe/update',
+    data
+  })
+}

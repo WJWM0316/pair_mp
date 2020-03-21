@@ -1,3 +1,10 @@
+.step1 {
+  background: white;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 86rpx 80rpx;
+}
 .step1 .h1 {
   height: 56rpx;
   font-size: 48rpx;

@@ -1,10 +1,15 @@
 <view class="step3">
   <view class="h1">自我描述</view>
+  <view class="h2">介绍你的性格，生活习惯，兴趣爱好等等</view>
   <view class="progress">
     <view class="item active-item"></view>
     <view class="item active-item"></view>
     <view class="item active-item"></view>
     <view class="item"></view>
   </view>
-  <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next"></myButton>
+  <view class="row">
+    <textarea class="input" placeholder="请输入" placeholder-class="holderStyle" auto-height maxlength="150" bindinput="bindInput"/>
+  </view>
+  <view class="number {{ own_describe.length ? 'strong' : ''}}">{{own_describe.length}}/150</view>
+  <myButton canClick="{{ own_describe ? true : false }}" btnTxt="下一步" bind:click="next"></myButton>
 </view>
