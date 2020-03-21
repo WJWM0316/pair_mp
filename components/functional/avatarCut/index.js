@@ -1,5 +1,8 @@
 const app = getApp()
 Component({
+  options: {
+    addGlobalClass: true,
+  },
   externalClasses: ['avatar'],
   /**
    * 组件的属性列表

@@ -1,7 +1,9 @@
 import {
   createUserStep1Api
 } from '../../../../api/user'
-
+import {
+  wxToast
+} from '../../../../utils/wxApi.js'
 Component({
   data: {
     formData: {

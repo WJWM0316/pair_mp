@@ -4,7 +4,9 @@ import {
 import {
   updateUserSalaryApi
 } from '../../../../api/user'
-
+import {
+  wxToast
+} from '../../../../utils/wxApi.js'
 Component({
   properties: {
 

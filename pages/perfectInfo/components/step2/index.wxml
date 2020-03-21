@@ -29,10 +29,9 @@
       </view>
     </scroll-view>
   </view>
-  <scroll-view
+  <view
     class="tags-box"
     scroll-y="{{ true }}"
-    style="height: calc(100vh - 316rpx)"
     bindscroll="scroll"
     scroll-top="{{ scrollTop }}"
     >
@@ -40,6 +39,6 @@
       <view class="key">人设{{index}}</view>
       <view class="li active" wx:for="{{20}}" wx:key="item">{{item}}</view>
     </view>
-  </scroll-view>  
+  </view>  
   <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next"></myButton>
 </view>
