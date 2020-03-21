@@ -25,7 +25,7 @@ Component({
     bindvalue2(e) {
       let { value } = e.detail
       if(value !== this.data.height) {
-        this.setData({ height: String(value) })
+        this.setData({ height: String(value) }, () => wx.vibrateShort())
       }
     },
     next() {

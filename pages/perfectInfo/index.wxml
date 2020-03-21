@@ -1,12 +1,12 @@
 <view class="perfect_info">
-    <view class="h1">{{ title }}</view>
-    <view class="progress">
-        <view class="item {{step < 2 ? 'active-item' : ''}}"></view>
-        <view class="item {{step < 3 ? 'active-item' : ''}}"></view>
-        <view class="item {{step < 4 ? 'active-item' : ''}}"></view>
-        <view class="item {{step < 5 ? 'active-item' : ''}}"></view>
-    </view>
     <view class="step1" wx:if="{{ step === 1 }}">
+        <view class="h1">{{ title }}</view>
+        <view class="progress">
+            <view class="item active-item"></view>
+            <view class="item"></view>
+            <view class="item"></view>
+            <view class="item"></view>
+        </view>
         <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange">
             <picker-view-column class="column">
             <view wx:for="{{ rangeArray }}" wx:key="index">
@@ -14,9 +14,96 @@
             </view>
             </picker-view-column>    
         </picker-view>
-        <myButton canClick="{{ true }}" btnTxt="下一步" bind:click="next"></myButton>
     </view>
-    <step2 wx:elif="{{ step === 2}}" bind:next="next"></step2>
-    <step3 wx:elif="{{ step === 3}}" bind:next="next"></step3>
-    <step4 bind:next="next" wx:else></step4>
+    <view class="step2" wx:elif="{{ step === 2}}">
+        <view class="inner">
+            <view class="h1">你的标签</view>
+            <view class="progress">
+                <view class="item active-item"></view>
+                <view class="item active-item"></view>
+                <view class="item"></view>
+                <view class="item"></view>
+            </view>
+            <view class="scroll-box">
+                <view class="append">
+                已选<text>0</text>/20
+                </view>
+                <scroll-view
+                scroll-with-animation
+                scroll-x
+                class="tab"
+                bindscroll="scrollViewMove"
+                scroll-left='{{ scrollLeft }}'
+                >
+                <view
+                    wx:for="{{ list }}"
+                    wx:key="index"
+                    class="item {{ navTabIndex === index ? 'active' : '' }}"
+                    bindtap="tabClick"
+                    data-dom=".ul{{index}}"
+                    data-index="{{index}}"
+                    >
+                    <text>{{item.positionName}}</text>
+                </view>
+                </scroll-view>
+            </view>
+            <view
+                class="tags-box"
+                scroll-y="{{ true }}"
+                bindscroll="scroll"
+                scroll-top="{{ scrollTop }}"
+                >
+                <view class="ul ul{{index}}" wx:for="{{30}}" wx:key="index">
+                <view class="key">人设{{index}}</view>
+                <view class="li active" wx:for="{{20}}" wx:key="item">{{item}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="step3" wx:elif="{{ step === 3}}">
+        <view class="h1">自我描述</view>
+        <view class="h2">介绍你的性格，生活习惯，兴趣爱好等等</view>
+        <view class="progress">
+            <view class="item active-item"></view>
+            <view class="item active-item"></view>
+            <view class="item active-item"></view>
+            <view class="item"></view>
+        </view>
+        <view class="row">
+            <textarea
+                class="input"
+                placeholder="请输入"
+                placeholder-class="holderStyle"
+                auto-height
+                maxlength="150"
+                bindinput="bindInput"
+                data-key="own_describe"
+                />
+        </view>
+        <view class="number {{ formData.own_describe.length ? 'strong' : ''}}">{{formData.own_describe.length}}/150</view>
+    </view>
+    <view class="step4" wx:else>
+        <view class="h1">我的理想型</view>
+        <view class="h2">介绍下你心目中的TA应该是怎么样的</view>
+        <view class="progress">
+            <view class="item active-item"></view>
+            <view class="item active-item"></view>
+            <view class="item active-item"></view>
+            <view class="item active-item"></view>
+        </view>
+        <view class="row">
+            <textarea
+                class="input"
+                placeholder="请输入"
+                placeholder-class="holderStyle"
+                auto-height
+                maxlength="150"
+                bindinput="bindInput"
+                data-key="ideal_describe"
+                />
+        </view>
+        <view class="number {{ formData.ideal_describe.length ? 'strong' : ''}}">{{formData.ideal_describe.length}}/150</view>
+    </view>
+    <myButton canClick="{{ canClick }}" btnTxt="{{step !== 4 ? '下一步' : '完成'}}" bind:click="next"></myButton>
 </view>

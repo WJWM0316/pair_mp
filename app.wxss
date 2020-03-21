@@ -88,3 +88,9 @@ page {
   background: #F1F4F4;
   padding-bottom: env(safe-area-inset-bottom);
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}

@@ -31,13 +31,13 @@
 .step2 .progress .active-item {
   background: #0CCDDA;
 }
-.scroll-box {
+.step2 .scroll-box {
   margin-top: 30rpx;
   padding: 23rpx 0;
   position: relative;
   padding-left: 80rpx;
 }
-.scroll-box:after {
+.step2 .scroll-box:after {
   position: absolute;
   left: 0;
   right: 0;
@@ -48,7 +48,7 @@
   background: #EDF1F0;
   display: block;
 }
-.scroll-box .append {
+.step2 .scroll-box .append {
   width: 160rpx;
   height: 48rpx;
   display: inline-block;
@@ -56,7 +56,7 @@
   font-size: 32rpx;
   color: #9CA1AA;
 }
-.scroll-box .tab {
+.step2 .scroll-box .tab {
   display: inline-block;
   position: relative;
   overflow: scroll;
@@ -66,7 +66,7 @@
   vertical-align: middle;
   line-height: 48rpx;
 }
-.scroll-box .tab .item {
+.step2 .scroll-box .tab .item {
   position: relative;
   margin-right: 40rpx;
   line-height: 48rpx;
@@ -76,7 +76,7 @@
   font-size: 32rpx;
   color: #9CA1AA;
 }
-.scroll-box .tab .item:before {
+.step2 .scroll-box .tab .item:before {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -89,18 +89,18 @@
   height: 14rpx;
   background: #0CCDDA;
 }
-.scroll-box .tab .active {
+.step2 .scroll-box .tab .active {
   color: #1F252B;
   font-weight: 700;
   pointer-events: none;
 }
-.scroll-box .tab .active:before {
+.step2 .scroll-box .tab .active:before {
   opacity: 1;
 }
-.scroll-box .tab text {
+.step2 .scroll-box .tab text {
   position: relative;
 }
-.scroll-box .tab .append {
+.step2 .scroll-box .tab .append {
   background: white;
   line-height: 48rpx;
   position: absolute;
@@ -108,16 +108,16 @@
   width: 160rpx;
   top: 4rpx;
 }
-.tags-box {
+.step2 .tags-box {
   overflow: hidden;
   padding: 0 80rpx 164rpx 80rpx;
   position: relative;
 }
-.tags-box .ul {
+.step2 .tags-box .ul {
   overflow: hidden;
   padding-top: 34rpx;
 }
-.tags-box .li {
+.step2 .tags-box .li {
   height: 76rpx;
   text-align: center;
   line-height: 76rpx;
@@ -127,7 +127,7 @@
   width: calc(calc(100vw - 160rpx - 44rpx) / 3);
   margin-right: 22rpx;
 }
-.tags-box .li:before {
+.step2 .tags-box .li:before {
   content: '';
   position: absolute;
   width: 200%;
@@ -139,14 +139,14 @@
   border-radius: calc(2 * 37rpx);
   left: 0;
 }
-.tags-box .li:nth-child(3n + 1) {
+.step2 .tags-box .li:nth-child(3n + 1) {
   margin-right: 0;
 }
-.tags-box .active {
+.step2 .tags-box .active {
   color: #0CCDDA;
   font-weight: 700;
 }
-.tags-box .active:before {
+.step2 .tags-box .active:before {
   content: '';
   position: absolute;
   width: 200%;
@@ -158,7 +158,7 @@
   border-radius: calc(2 * 37rpx);
   left: 0;
 }
-.tags-box .key {
+.step2 .tags-box .key {
   height: 38rpx;
   font-size: 30rpx;
   font-weight: 700;
