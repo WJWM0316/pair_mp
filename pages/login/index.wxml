@@ -1,0 +1,9 @@
+<view class="loginWrap">
+  <view class="box"> 
+    <input class="input phone" value="{{phone}}" bindinput = "bindinput" data-type="phone" placehloder-class="holderStyle"></input>
+  </view>
+  <view class="box">
+    <input class="input password" value="{{password}}" bindinput = "bindinput" data-type="password" placehloder-class="holderStyle"></input>
+  </view>
+  <i-button class="loginBtn" bindtap = "login"></i-button>
+</view>

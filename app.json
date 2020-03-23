@@ -8,7 +8,8 @@
     "pages/email/index",
     "pages/perfectInfo/index",
     "pages/loginGuide/index",
-    "pages/searchCompany/index"
+    "pages/searchCompany/index",
+    "pages/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

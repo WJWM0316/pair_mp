@@ -1,0 +1,16 @@
+.loginWrap {
+  padding-top: 374rpx;
+}
+.loginWrap .box {
+  width: 560rpx;
+  height: 98rpx;
+  background: #fff;
+  border-radius: 49rpx;
+  margin: 0 auto 24rpx;
+  padding: 23rpx 40rpx;
+  box-sizing: border-box;
+}
+.loginWrap .box .input {
+  width: 100%;
+  height: 100%;
+}
