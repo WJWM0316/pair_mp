@@ -81,6 +81,13 @@
 					"id": -1,
 					"name": "完善信息",
 					"pathName": "pages/perfectInfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "认证方式",
+					"pathName": "pages/methods/index",
 					"scene": null
 				}
 			]

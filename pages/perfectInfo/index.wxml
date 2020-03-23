@@ -53,7 +53,7 @@
             bindscroll="scroll"
             scroll-top="{{ scrollTop }}"
             >
-            <view class="ul ul{{index}}" wx:for="{{30}}" wx:key="index">
+            <view class="ul ul{{index}}" wx:for="{{ list }}" wx:key="index">
             <view class="key"><i class="icon iconfont icon_renshe"></i>人设{{index}}</view>
             <view class="li active" wx:for="{{20}}" wx:key="item">{{item}}</view>
             </view>

@@ -1,7 +1,13 @@
 const app = getApp()
 Page({
   data: {
-    show: false
+    show: false,
+    CDNPATH: ''
+  },
+  onShow() {
+    let { CDNPATH } = app.globalData
+    this.setData({ CDNPATH })
+    console.log(CDNPATH)
   },
   stopPageScroll() {
 	  return false
@@ -22,42 +28,24 @@ Page({
     let that = this
     let { from } = e.currentTarget.dataset
     that.setData({show: false})
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['original', 'compressed'],
-      sourceType: [from],
-      success (res) {
-        that.upload(res.tempFiles[0])
-      }
-    })
-  },
-  upload(file) {
-    let that = this
-    let formData = {
-      'img1': file.path,
-      'size': file.size || 0,
-      attach_type: 'img'
-    }
-    let { APIHOST } = app.globalData
+    if(from === 'album') {
+      app.chooseImageUpload().then(res => {
+        app.uploadFile(res.tempFiles[0]).then(({ data }) => {
+          let result = data.attachListItem[0]
+          console.log(result)
+        }).catch(err => {
 
-    wx.uploadFile({
-      url: `${APIHOST}/attaches`,
-      filePath: file.path,
-      methos: 'post',
-      name: 'file',
-      header: {
-        'Authorization': wx.getStorageSync('token')
-        // 'Wechat-Version': VERSION
-      }, 
-      formData,
-      success(res) {
-        wx.navigateBack({ delta: 1 })
-        let data = typeof res.data === "string" ? JSON.parse(res.data) : res.data
-        console.log(res)
-      },
-      fail(err) {
-        //
-      }
-    })
+        })
+      })
+    } else {
+      app.photoUpload().then(res => {
+        app.uploadFile(res.tempFiles[0]).then(({ data }) => {
+          let result = data.attachListItem[0]
+          console.log(result)
+        }).catch(err => {
+
+        })
+      })
+    }
   }
 })

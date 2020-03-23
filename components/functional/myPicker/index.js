@@ -1,6 +1,6 @@
 import {
   getAreaListApi,
-  getDegreeApi
+  getAggrApi
 } from '../../../api/common.js'
 
 let rtnResult = {}
@@ -126,7 +126,7 @@ Component({
           })
           break
         case 'industry_occupation':
-          getDegreeApi().then(({ data }) => {
+          getAggrApi({type: 'industry'}).then(({ data }) => {
             data = data.industryArr
             let industrys = data
             let occupations = []

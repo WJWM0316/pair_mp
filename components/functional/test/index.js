@@ -1,5 +1,5 @@
 // import { getAreaListApi } from '../../../../../../api/pages/label.js'
-// import { getDegreeApi } from '../../../../../../api/pages/picker.js'
+import { getAggrApi } from '../../../api/common.js'
 let rangeArray = []
 let rtnResult = {}
 Component({
@@ -111,7 +111,7 @@ Component({
           })
           break
         case 'education':
-          getDegreeApi().then(({ data }) => {
+          getAggrApi({type: 'degree'}).then(({ data }) => {
             if(this.data.initValue) {
               let educationIndex = data.findIndex((v,i,a) => v.value == this.data.initValue) || 0
               value = [educationIndex]

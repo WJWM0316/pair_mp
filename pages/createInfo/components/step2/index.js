@@ -31,9 +31,7 @@ Component({
     next() {
       createUserStep2Api({height: this.data.height}).then(() => {
         this.triggerEvent('next', true)
-      }, err => {
-        app.wxToast({title: err.msg})
-      })
+      }).catch(err => app.wxToast({title: err.msg}))
     }
   }
 })

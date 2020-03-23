@@ -11,9 +11,11 @@ import {
 import {list} from './components/step2/data'
 let app = getApp()
 let fixedDomPosition = 0
+let scrollTop = 0
+let curDom = '.ul0'
 Page({
   data: {
-    step: 3,
+    step: 2,
     rangeArray: [],
     value: [0],
     formData: {
@@ -68,21 +70,21 @@ Page({
     let { list } = this.data
     let callback = () => {
       getSelectorQuery(dom).then(res => {
+        scrollTop = res.top - 60 + scrollTop
         wx.pageScrollTo({
-          scrollTop: res.top - 60,
+          scrollTop,
           duration: 300
-         });
+        })
       })
     }
     list.map((v, i, a) => {
+      v.active = false
       if(i === index) {
         v.active = true
         callback()
-      } else {
-        v.active = true
       }
     })
-    this.setData({ list })    
+    this.setData({ list })
   },
   next() {
     let { formData } = this.data
@@ -121,15 +123,19 @@ Page({
     funcApi(params).then(res => {
       let { step } = this.data
       step++
-      this.setData({ step })
+      this.setData({ step }, () => {
+        if(step === 4) {
+          wx.navigateBack({ delta: 1 })
+        }
+      })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   onPageScroll(e) {
+    scrollTop = e.scrollTop
     if(e.scrollTop >= fixedDomPosition - 10) {
       if(!this.data.fixedDom) this.setData({fixedDom: true})
     } else {
       if(this.data.fixedDom) this.setData({fixedDom: false})
     }
-    console.log(e.scrollTop,fixedDomPosition, 'kkkk1')
   }
 })

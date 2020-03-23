@@ -17,6 +17,7 @@ Component({
     canClick: false
   },
   ready() {
+    console.log(app)
     console.log(app.globalData)
   },
   methods: {
@@ -53,10 +54,11 @@ Component({
         params = Object.assign(params, {position_name: formData.position_name})
       }
       createUserStep3Api(params).then(() => {
-        
-      }, err => {
-        app.wxToast({title: err.msg})
-      })
+        let { PAGEPATH } = app.globalData
+        wx.navigateTo({
+          url: `${PAGEPATH}/index`
+        })
+      }).catch(err => app.wxToast({title: err.msg}))
     }
   }
 })

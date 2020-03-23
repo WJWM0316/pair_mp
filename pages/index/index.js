@@ -17,8 +17,8 @@ Page({
     })
   },
   onLoad: function () {
-    getIndustryApi({data: wx.getStorageSync('sessionToken')})
-    getAreaApi({data: wx.getStorageSync('sessionToken')})
+    // getIndustryApi({data: wx.getStorageSync('sessionToken')})
+    // getAreaApi({data: wx.getStorageSync('sessionToken')})
   },
   getUserInfo: function(e) {
     let data = {

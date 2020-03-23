@@ -8,7 +8,7 @@
   border-radius: 36rpx 36rpx 0rpx 0rpx;
   height: 100vh;
   box-sizing: border-box;
-  padding: 86rpx 80rpx;
+  padding: 96rpx 80rpx;
 }
 .step1 .h1 {
   height: 56rpx;
@@ -112,7 +112,7 @@
   color: #1F252B;
   line-height: 56rpx;
   padding-left: 80rpx;
-  padding-top: 50rpx;
+  padding-top: 60rpx;
   position: relative;
 }
 .step2 .progress {
@@ -287,7 +287,7 @@
   border-radius: 36rpx 36rpx 0rpx 0rpx;
   height: 100vh;
   box-sizing: border-box;
-  padding: 86rpx 80rpx;
+  padding: 96rpx 80rpx;
 }
 .step3 .h1 {
   height: 56rpx;
@@ -367,7 +367,7 @@
   border-radius: 36rpx 36rpx 0rpx 0rpx;
   height: 100vh;
   box-sizing: border-box;
-  padding: 86rpx 80rpx;
+  padding: 96rpx 80rpx;
 }
 .step4 .h1 {
   height: 56rpx;
