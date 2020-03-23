@@ -180,6 +180,22 @@ Component({
         birth: formData.birth,
         resident_str: formData.address.desc
       }
+      if(!params.nickname.trim()) {
+        app.wxToast({title: '没有输入用户名称，请重新填写'})
+        return
+      }
+      if(!params.avatar_id) {
+        app.wxToast({title: '请添加封面'})
+        return
+      }
+      if(!params.birth) {
+        app.wxToast({title: '请选择生日'})
+        return
+      }
+      if(!params.resident_str) {
+        app.wxToast({title: '请选择常驻地'})
+        return
+      }
       createUserStep1Api(params).then(res => {
         this.triggerEvent('next', true)
       }).catch(err => app.wxToast({title: err.msg}))

@@ -88,6 +88,13 @@
 					"id": -1,
 					"name": "认证方式",
 					"pathName": "pages/methods/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索公司",
+					"pathName": "pages/searchCompany/index",
 					"scene": null
 				}
 			]

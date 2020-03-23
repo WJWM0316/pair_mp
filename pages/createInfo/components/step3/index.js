@@ -11,14 +11,23 @@ Component({
       company_name: '',
       position_name: '',
       occupation: '',
-      occupationDesc: ''
+      occupationDesc: '',
+      is_need_email_verify: 0
     },
     status: 1,
     canClick: false
   },
-  ready() {
-    console.log(app)
-    console.log(app.globalData)
+  pageLifetimes: {
+    show() {
+      let { formData } = this.data
+      let storage = wx.getStorageSync('searchCompany')
+      if(formData.company_name !== storage.company_name) {
+        formData.company_name = storage.company_name
+        formData.is_need_email_verify = storage.is_need_email_verify
+        this.setData({formData})
+        setTimeout(() => wx.removeStorageSync('searchCompany'), 16.7)
+      }
+    }
   },
   methods: {
     getPickerData(e) {
@@ -42,10 +51,18 @@ Component({
         this.setData({ formData })
       }
     },
+    jump() {
+      let { PAGEPATH } = app.globalData
+      wx.setStorageSync('searchCompany', this.data.formData.company_name)
+      wx.navigateTo({
+        url: `${PAGEPATH}/searchCompany/index`
+      })
+    },
     next() {
       let { formData } = this.data
       let params = {
-        occupation: formData.occupation
+        occupation: formData.occupation,
+        is_need_email_verify: formData.is_need_email_verify
       }
       if(formData.company_name) {
         params = Object.assign(params, {company_name: formData.company_name})

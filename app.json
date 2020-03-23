@@ -7,7 +7,7 @@
     "pages/methods/index",
     "pages/email/index",
     "pages/perfectInfo/index",
-    "pages/perfectInfo/components/step1/index"
+    "pages/searchCompany/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

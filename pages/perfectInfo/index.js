@@ -8,11 +8,9 @@ import {
 import {
   getSelectorQuery
 } from '../../utils/util.js'
-import {list} from './components/step2/data'
 let app = getApp()
 let fixedDomPosition = 0
 let scrollTop = 0
-let curDom = '.ul0'
 Page({
   data: {
     step: 2,
@@ -22,13 +20,17 @@ Page({
       ideal_describe: '',
       own_describe: ''
     },
-    list,
+    list: [],
     moveParams: {
       scrollLeft: 0
     },
     scrollLeft: 0,
     fixedDom: false,
     canClick: false
+  },
+  onUnload() {
+    fixedDomPosition = 0
+    scrollTop = 0
   },
   onShow() {
     this.init()

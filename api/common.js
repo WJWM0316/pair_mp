@@ -53,3 +53,11 @@ export const getAggrApi = (data) => {
     url: `/aggr/${data.type}`
   })
 }
+
+export const getCompanyNameListApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/company/match',
+    data
+  })
+}

@@ -4,3 +4,7 @@
 .btn {
   color: #0CCDDA;
 }
+.indexWrap {
+  min-height: 100vh;
+  background: #1F252B;
+}
