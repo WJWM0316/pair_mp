@@ -97,6 +97,15 @@
   opacity: 0.5;
   background: #F1F4F4;
   transform: translateY(-100%);
+  z-index: 11;
+}
+.drawer .cover-image {
+  position: fixed;
+  z-index: 10;
+  width: 534rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 470rpx;
 }
 .drawer .mask {
   width: 100vw;
@@ -104,7 +113,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 9;
   animation-name: modalopen;
   animation-duration: 0.2s;

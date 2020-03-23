@@ -18,7 +18,7 @@
       </myPicker>
     </view>
     <block wx:if="{{ formData.occupation }}">
-      <view class="li">
+      <view class="li" bindtap="jump">
         <view class="key">所在公司</view>
         <input
           placeholder-class="holderStyle"
@@ -27,6 +27,7 @@
           bindinput="bindInput"
           value="{{formData.company_name}}"
           class="value {{formData.company_name ? 'bold' : ''}}"
+          disabled
           />
       </view>
       <view class="li">
@@ -37,6 +38,7 @@
           bindinput="bindInput"
           data-key="position_name"
           value="{{formData.position_name}}"
+          maxlength="20"
           class="value {{formData.position_name ? 'bold' : ''}}"
           />
       </view>

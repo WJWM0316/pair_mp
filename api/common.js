@@ -15,13 +15,13 @@ export const upLoadApi = (data) => {
   })
 }
 
-export const getDegreeApi = (data) => {
-  return request({
-    method: 'get',
-    url: '/industry',
-    data,
-  })
-}
+// export const getDegreeApi = (data) => {
+//   return request({
+//     method: 'get',
+//     url: '/industry',
+//     data,
+//   })
+// }
 
 export const sendEmailApi = (data) => {
   return request({
@@ -44,5 +44,20 @@ export const getSalaryListApi = (data) => {
     method: 'get',
     url: '/user/salary',
     data,
+  })
+}
+
+export const getAggrApi = (data) => {
+  return request({
+    method: 'get',
+    url: `/aggr/${data.type}`
+  })
+}
+
+export const getCompanyNameListApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/company/match',
+    data
   })
 }

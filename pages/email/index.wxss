@@ -126,6 +126,7 @@
   z-index: 2;
   height: 98rpx;
   line-height: 98rpx;
+  border: 0;
 }
 .btn-next-active:after {
   background: #0CCDDA;

@@ -1,8 +1,428 @@
 @import '../../styles/_base.less';
-// .perfect_info {
-//   background: white;
-//   border-radius:36rpx 36rpx 0rpx 0rpx;
-//   height: 100vh;
-//   box-sizing: border-box;
-//   padding: 86rpx 80rpx;
-// }
+@import '../../styles/_mixins.less';
+
+.holderStyle {
+  color: @text-color-4;
+  font-size:36rpx;
+  font-weight: unset;
+}
+
+.step1 {
+  background: white;
+  border-radius:36rpx 36rpx 0rpx 0rpx;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 96rpx 80rpx;
+  .h1 {
+    height: 56rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: @text-color-1;
+    line-height: 56rpx;
+    position: relative;
+  }
+  .progress {
+    height: 8rpx;
+    line-height: 8rpx;
+    margin-top: 20rpx;
+    position: relative;
+    .item {
+      width: 60rpx;
+      height: 8rpx;
+      background: @background-color-base;
+      border-radius: 9rpx;
+      margin-right: 8rpx;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .active-item {
+      background: @primary-color;
+    }
+  }
+  .picker {
+    height: 600rpx;
+    margin-top: 90rpx;
+    .column {
+      font-size: 42rpx;
+      color: @text-color-1;
+      text-align: center;
+      line-height: 120rpx;
+    }
+    
+    .result {
+      text-align: center;
+      margin-top: 50px;
+    }
+  }
+  .indicator {
+    height: 120rpx;
+    position: relative;
+    &:before{
+      height: 1rpx;
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      .line(@border-color-base)
+    }
+    &:after{
+      height: 1rpx;
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      .line(@border-color-base)
+    }
+  }
+}
+
+.step2 {
+  border-radius:36rpx 36rpx 0rpx 0rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 36rpx 0;
+  // position: fixed;
+  // left: 0;
+  // right: 0;
+  // overflow: hidden;
+  // top: 0;
+  // bottom: 0;
+  &:after {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: @background-color-base;
+    display: block;
+    content: '';
+    z-index: -1;
+    border-radius:36rpx 36rpx 0rpx 0rpx;
+  }
+  &:before {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #ffffff;
+    display: block;
+    content: '';
+    border-radius:36rpx 36rpx 0rpx 0rpx;
+  }
+  .h1 {
+    height: 56rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: @text-color-1;
+    line-height: 56rpx;
+    padding-left: 80rpx;
+    padding-top: 60rpx;
+    position: relative;
+  }
+  .progress {
+    height: 8rpx;
+    line-height: 8rpx;
+    margin-top: 20rpx;
+    padding-left: 80rpx;
+    position: relative;
+    .item {
+      width: 60rpx;
+      height: 8rpx;
+      background: @background-color-base;
+      border-radius: 9rpx;
+      margin-right: 8rpx;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .active-item {
+      background: @primary-color;
+    }
+  }
+  .scroll-box {
+    padding: 57rpx 0 22rpx 0;
+    position: relative;
+    padding-left: 80rpx;
+    box-sizing: border-box;
+    background: #ffffff;
+    z-index: 2;
+    border-radius:36rpx 36rpx 0rpx 0rpx;
+    width: 100vw;
+    &:after{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 1rpx;
+      .line(@border-color-base);
+    }
+    .append {
+      width: 160rpx;
+      height: 48rpx;
+      display: inline-block;
+      vertical-align: middle;
+      font-size:32rpx;
+      color:@text-color-3;
+    }
+    .tab {
+      display: inline-block;
+      position: relative;
+      overflow: scroll;
+      white-space: nowrap;
+      overflow-y: auto;
+      width: calc(100% - 160rpx);
+      vertical-align: middle;
+      line-height: 1;
+      .item {
+        position: relative;
+        margin-right: 40rpx;
+        line-height: 48rpx;
+        text-align: center;
+        display: inline-block;
+        vertical-align: text-top;
+        font-size:32rpx;
+        color:@text-color-3;
+        &:before {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 0rpx;
+          content: '';
+          display: block;
+          opacity: 0;
+          transition: all ease .4s;
+          width:68rpx;
+          height:14rpx;
+          background:@primary-color;
+        }
+      }
+      .active {
+        color: @text-color-1;
+        font-weight: 700;
+        pointer-events: none;
+        &:before {
+          opacity: 1;
+        }
+      }
+      text {
+        position: relative;
+      }
+      .append {
+        background: white;
+        line-height: 48rpx;
+        position: absolute;
+        left: 0;
+        width: 160rpx;
+        top: 4rpx;
+      }
+    }
+  }
+  .fixed-dom {
+    position: fixed;
+    top: 0;
+  }
+  .placeholder {
+    padding: 57rpx 0 22rpx 0;
+    height: 48rpx;
+  }
+  .tags-box {
+    overflow: hidden;
+    padding: 0 80rpx 164rpx 80rpx;
+    position: relative;
+    .ul {
+      overflow: hidden;
+      padding-top: 34rpx;
+    }
+    .li {
+      height:76rpx;
+      text-align: center;
+      line-height: 76rpx;
+      margin-bottom: 26rpx;
+      position: relative;
+      display: inline-block;
+      width: calc(calc(100vw - 160rpx - 44rpx) / 3);
+      margin-right: 22rpx;
+      &:before{
+        .border(@button-border-color, 37rpx);
+        left: 0;
+      }
+      &:nth-child(3n + 1) {
+        margin-right: 0;
+      }
+    }
+    .active {
+      color: @primary-color;
+      font-weight: 700;
+      &:before{
+        .border(@primary-color, 37rpx);
+        left: 0;
+      }
+    }
+    .key {
+      height:38rpx;
+      font-size:30rpx;
+      font-weight:700;
+      color:rgba(31,37,43,1);
+      line-height:38rpx;
+      margin-bottom: 30rpx;
+      position: relative;
+    }
+  }  
+}
+
+.step3 {
+  background: white;
+  border-radius:36rpx 36rpx 0rpx 0rpx;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 96rpx 80rpx;
+  .h1 {
+    height: 56rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: @text-color-1;
+    line-height: 56rpx;
+  }
+  .h2{
+    height:36rpx;
+    font-size:28rpx;
+    font-weight:300;
+    color:@text-color-2;
+    line-height:36rpx;
+    margin-top: 8rpx;
+  }
+  .progress {
+    height: 8rpx;
+    line-height: 8rpx;
+    margin-top: 40rpx;
+    .item {
+      width: 60rpx;
+      height: 8rpx;
+      background: @background-color-base;
+      border-radius: 9rpx;
+      margin-right: 8rpx;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .active-item {
+      background: @primary-color;
+    }
+  }
+  .input {
+    font-size:36rpx;
+    color:rgba(31,37,43,1);
+    line-height:60rpx;
+  }
+  .number {
+    text-align: right;
+    height:40rpx;
+    font-size:28rpx;
+    color:@text-color-4;
+    line-height:40rpx;
+    margin-top: 16rpx;
+  }
+  .strong{
+    color: @primary-color ;
+  }
+  .row{
+    position: relative;
+    margin-top: 76rpx;
+    padding: 16rpx 0;
+    width: 100%;
+    max-height: 400rpx;
+    textarea{
+      width: 590rpx;
+      margin: 0 auto;
+      display: block;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    &:after{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      .line(@border-color-base)
+    }
+  }  
+}
+
+.step4 {
+  background: white;
+  border-radius:36rpx 36rpx 0rpx 0rpx;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 96rpx 80rpx;
+  .h1 {
+    height: 56rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: @text-color-1;
+    line-height: 56rpx;
+  }
+  .h2{
+    height:36rpx;
+    font-size:28rpx;
+    font-weight:300;
+    color:@text-color-2;
+    line-height:36rpx;
+    margin-top: 8rpx;
+  }
+  .progress {
+    height: 8rpx;
+    line-height: 8rpx;
+    margin-top: 40rpx;
+    .item {
+      width: 60rpx;
+      height: 8rpx;
+      background: @background-color-base;
+      border-radius: 9rpx;
+      margin-right: 8rpx;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .active-item {
+      background: @primary-color;
+    }
+  }
+  .input {
+    font-size:36rpx;
+    color:rgba(31,37,43,1);
+    line-height:60rpx;
+  }
+  .number {
+    text-align: right;
+    height:40rpx;
+    font-size:28rpx;
+    color:@text-color-4;
+    line-height:40rpx;
+    margin-top: 16rpx;
+  }
+  .strong{
+    color: @primary-color ;
+  }
+  .row{
+    position: relative;
+    margin-top: 76rpx;
+    padding: 16rpx 0;
+    width: 100%;
+    max-height: 400rpx;
+    textarea{
+      width: 590rpx;
+      margin: 0 auto;
+      display: block;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    &:after{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      .line(@border-color-base)
+    }
+  }
+}

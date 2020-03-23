@@ -1,9 +1,6 @@
 {
   "usingComponents": {
-    "step1": "./components/step1/index",
-    "step2": "./components/step2/index",
-    "step3": "./components/step3/index",
-    "step4": "./components/step4/index"
+    "myButton": "./components/button/index"
   },
   "navigationBarBackgroundColor": "#F1F4F4",
   "navigationBarTitleText": ""

@@ -29,7 +29,8 @@ Component({
         width: 600
       }
     },
-    canClick: false
+    canClick: false,
+    isFirst: true
   },
   ready() {
     console.log(111)
@@ -46,12 +47,91 @@ Component({
     }
   },
   methods: {
+    ask(){
+      let that = this
+      let callback = () => {
+        wx.getSetting({
+          success(res) {
+            let statu = res.authSetting;
+            if(!statu['scope.userLocation']) {
+              app.wxConfirm({
+                  title: '是否授权当前位置',
+                  content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                  confirmBack(tip) {
+                    wx.openSetting({
+                      success(data) {
+                        if (data.authSetting["scope.userLocation"] === true) {
+                          app.wxToast({
+                            title: '授权成功',
+                            icon: 'success',
+                            duration: 1000,
+                            callback() {
+                              //授权成功之后，再调用chooseLocation选择地方
+                              wx.chooseLocation({
+                                success(res) {
+                                  that.setData({
+                                    addr: res.address
+                                  })
+                                }
+                              })
+                            }
+                          })
+                        } else {
+                          app.wxToast({
+                            title: '授权失败',
+                            icon: 'success',
+                            duration: 1000
+                          })
+                        }
+                      },
+                      fail() {
+                        console.log(222)
+                      }
+                    })
+                  },
+                  cancelBack() {
+                    that.setData({ isFirst: false })
+                  }
+                })
+            }
+          },
+          fail(res) {
+            that.setData({ isFirst: false })
+          }
+        })
+      }
+      wx.chooseLocation({
+        success(res) {
+          app.reverseGeocoder(res).then(({ result }) => {
+            let res = result.address_component
+            let address = {
+              areaId: 0,
+              children: [],
+              isHot: 0,
+              pid: 0,
+              title: res.district,
+              topPid: 0,
+              desc: `${res.province},${res.city},${res.district}`
+            }
+            let { formData } = that.data
+            formData['address'] = address
+            that.setData({ formData })
+            console.log(formData)
+          })
+          that.setData({
+            addr: res.address      //调用成功直接设置地址
+          })                
+        },
+        fail() {
+          callback()
+        }
+      })
+    },
     bindButtonStatus() {
       let { formData } = this.data
-      let canClick = formData.nickname && formData.birth && formData.address.areaId && formData.avatar.url ? true : false
-      if(canClick !== this.data.canClick) {
-        this.setData({ canClick })
-      }
+      let canClick = formData.nickname && formData.birth && formData.address.title && formData.avatar.url ? true : false
+      this.setData({ canClick })
+      console.log(this.data)
     },
     getUserInfo(e) {
       if (e.detail.errMsg === 'getUserInfo:ok') {
@@ -100,11 +180,25 @@ Component({
         birth: formData.birth,
         resident_str: formData.address.desc
       }
+      if(!params.nickname.trim()) {
+        app.wxToast({title: '没有输入用户名称，请重新填写'})
+        return
+      }
+      if(!params.avatar_id) {
+        app.wxToast({title: '请添加封面'})
+        return
+      }
+      if(!params.birth) {
+        app.wxToast({title: '请选择生日'})
+        return
+      }
+      if(!params.resident_str) {
+        app.wxToast({title: '请选择常驻地'})
+        return
+      }
       createUserStep1Api(params).then(res => {
         this.triggerEvent('next', true)
-      }, err => {
-        app.wxToast({title: err.msg})
-      })
+      }).catch(err => app.wxToast({title: err.msg}))
     }
   }
 })

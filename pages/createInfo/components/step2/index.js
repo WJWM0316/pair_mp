@@ -25,15 +25,13 @@ Component({
     bindvalue2(e) {
       let { value } = e.detail
       if(value !== this.data.height) {
-        this.setData({ height: String(value) })
+        this.setData({ height: String(value) }, () => wx.vibrateShort())
       }
     },
     next() {
       createUserStep2Api({height: this.data.height}).then(() => {
         this.triggerEvent('next', true)
-      }, err => {
-        app.wxToast({title: err.msg})
-      })
+      }).catch(err => app.wxToast({title: err.msg}))
     }
   }
 })
