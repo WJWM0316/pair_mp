@@ -1,9 +1,9 @@
 <view class="loginWrap">
   <view class="box"> 
-    <input class="input phone" value="{{phone}}" bindinput = "bindinput" data-type="phone" placehloder-class="holderStyle"></input>
+    <input class="input phone" placeholder="请输入手机号码" value="{{phone}}" bindinput = "bindinput" data-type="phone" placeholder-class="holderStyle"></input>
   </view>
   <view class="box">
-    <input class="input password" value="{{password}}" bindinput = "bindinput" data-type="password" placehloder-class="holderStyle"></input>
+    <input class="input code" placeholder="请输入验证码" value="{{code}}" bindinput = "bindinput" data-type="code" placeholder-class="holderStyle"></input>
   </view>
-  <i-button class="loginBtn" bindtap = "login"></i-button>
+  <i-button my-class="loginBtn" bindtap = "login">登录</i-button>
 </view>

@@ -1,4 +1,6 @@
-// pages/login/index.js
+import {registerApi, sendMsgApi} from '../../api/auth.js'
+let phone = '',
+    code = ''
 Page({
 
   /**
@@ -21,7 +23,24 @@ Page({
   onReady: function () {
 
   },
+  bindinput (e) {
+    switch(e.currentTarget.dataset.type) {
+      case 'phone':
+        phone = e.detail.value
+        break
+      case 'code':
+        code = e.detail.value
+        break
+    }
+  },
+  login () {
+    let data = {
+      phone
+    }
+    registerApi().then(res => {
 
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
