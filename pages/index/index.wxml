@@ -2,5 +2,12 @@
 <view class="indexWrap">
   <i-button my-class="btn" open-type="getUserInfo" form-type="submit" bindgetuserinfo="getUserInfo" lang="zh_CN">微信授权</i-button>
   <i-button my-class="btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" form-type="submit">微信登录</i-button>
+
+  <input class="input" bindinput="bindinput" placeholder="输入手机号" maxlength='11'>
+    
+  </input>
+
+  <i-button bindtap = "sendMsg">发送验证码</i-button>
+  <i-button bindtap = "phoneLogin">手机号码登录</i-button>
 </view>
 <tabBar></tabBar>

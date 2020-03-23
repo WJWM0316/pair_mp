@@ -8,6 +8,9 @@ let recorderManager = null,
     isDeny          = false
 
 Component({
+  options: {
+    addGlobalClass: true,
+  },
   /**
    * 组件的属性列表
    */
@@ -35,11 +38,9 @@ Component({
   },
   observers: {
     'status': (status) => {
-      console.log(status, 3333333333333333)
       switch (status) {
         case 0:
           recorderManager.stop()
-          console.log(24444444444444444)
           break
         case 1:
           recorderManager.start({
@@ -97,7 +98,6 @@ Component({
       }
     },
     hanlderTouchstart (e) {
-      console.log(e, 222222222)
       position.startY = e.changedTouches[0].pageY
       this.setData({"status": 1})
     },
@@ -109,7 +109,6 @@ Component({
       }
     },
     hanlderTouchend (e) {
-      console.log(e, 11111111111111)
       if (position.move >= 40) {
         this.setData({"status": 3})
       } else {

@@ -4,3 +4,6 @@
 .btn {
   color: #0CCDDA;
 }
+.input {
+  border: 1rpx solid #000;
+}

@@ -4,7 +4,7 @@
     "msg-audio": "../../../components/message/audio",
     "msg-video": "../../../components/message/video",
     "record"   : "./components/record/index",
-    "emoj"     : "./components/emoj/index",
+    "emoji"     : "./components/emoji/index",
     "debutWord": "./components/debutWord/index"
   }
 }

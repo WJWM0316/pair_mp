@@ -23,3 +23,21 @@ export const quickLogin = (data) => {
     data
   })
 }
+
+// 发送验证码
+export const sendMsgApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/bind/sendMessage',
+    data
+  })
+}
+
+// 手机号登录
+export const registerApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/bind/register',
+    data
+  })
+}

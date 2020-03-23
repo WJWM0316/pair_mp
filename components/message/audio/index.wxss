@@ -1,0 +1,75 @@
+.audioWrap .audio {
+  width: 178rpx;
+  height: 92rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 42rpx;
+  box-sizing: border-box;
+}
+.audioWrap .audio .icon {
+  height: 30rpx;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.audioWrap .audio .icon .line {
+  width: 4rpx;
+  background: #1F252B;
+  margin-right: 6rpx;
+  display: inline-block;
+}
+.audioWrap .audio .icon .line.line1 {
+  height: 14rpx;
+  line-height: 30rpx;
+}
+.audioWrap .audio .icon .line.line2 {
+  height: 22rpx;
+}
+.audioWrap .audio .icon .line.line3 {
+  height: 30rpx;
+}
+.audioWrap .audio .icon.play {
+  height: 14rpx;
+}
+.audioWrap .audio .icon.play .line1 {
+  height: 14rpx;
+  animation: dance 0.8s linear infinite;
+}
+.audioWrap .audio .icon.play .line2 {
+  height: 14rpx;
+  animation: dance 0.8s linear 0.5s infinite;
+}
+.audioWrap .audio .icon.play .line3 {
+  height: 14rpx;
+  animation: dance 0.8s linear 0.2s infinite;
+}
+.audioWrap .audio .second {
+  color: #1F252B;
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 38rpx;
+}
+.audioWrap .audio.mine .icon {
+  transform: rotate(180deg);
+}
+.audioWrap .audio.mine .icon .line1,
+.audioWrap .audio.mine .icon .line2,
+.audioWrap .audio.mine .icon .line3 {
+  background: #fff;
+}
+.audioWrap .audio.mine .second {
+  color: #fff;
+}
+@keyframes dance {
+  0% {
+    height: 14rpx;
+  }
+  50% {
+    height: 30rpx;
+  }
+  100% {
+    height: 14rpx;
+  }
+}

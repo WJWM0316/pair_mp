@@ -1,0 +1,22 @@
+.emojiWrap {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 50rpx 55rpx 0;
+  overflow-y: auto;
+  .list {
+    overflow: hidden;
+    .emoji {
+      padding-right: 17rpx;
+      padding-bottom: 20rpx;
+      float: left;
+      &:nth-child(8n) {
+        padding-right: 0;
+      }
+      .emojiImg {
+        width: 66rpx;
+        height: 66rpx;
+      }
+    }
+  }
+}

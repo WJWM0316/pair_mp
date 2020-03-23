@@ -1,4 +1,72 @@
+@import "../../../styles/_base.less";
 .audioWrap {
   .audio {
+    width:178rpx;
+    height:92rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 42rpx;
+    box-sizing: border-box;
+    .icon {
+      height: 30rpx;
+      font-size: 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+      .line {
+        width: 4rpx;
+        background: @text-color-1;
+        margin-right: 6rpx;
+        display: inline-block;
+        &.line1 {
+          height: 14rpx;
+          line-height: 30rpx;
+        }
+        &.line2 {
+          height: 22rpx;
+        }
+        &.line3 {
+          height: 30rpx;
+        }
+      }
+      &.play {
+        height: 14rpx;
+        .line1 {
+          height: 14rpx;
+          animation: dance .8s linear infinite;
+        }
+        .line2 {
+          height: 14rpx;
+          animation: dance .8s linear .5s infinite;
+        }
+        .line3 {
+          height: 14rpx;
+          animation: dance .8s linear .2s infinite;
+        }
+      }
+    }
+    .second {
+      color: @text-color-1;
+      font-size:30rpx;
+      font-weight:700;
+      line-height:38rpx;
+    }
+    &.mine {
+      .icon {
+        transform: rotate(180deg);
+        .line1, .line2, .line3 {
+          background: #fff;
+        }
+      }
+      .second {
+        color: #fff;
+      }
+    }
   }
+}
+@keyframes dance {
+  0% { height: 14rpx;}
+  50% { height: 30rpx;}
+  100% {height: 14rpx;}
 }

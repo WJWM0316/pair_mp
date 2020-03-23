@@ -57,20 +57,24 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
               let msg = res.data
               //有字符串的情况下 转数字
               msg.httpStatus = parseInt(msg.httpStatus)
-              if (msg.httpStatus === 200) {
-                if (msg.code === 0 || msg.code === 200) {
-                  resolve(msg)
-                } else {
-                  switch (msg.code) {
-                    case 401:
-                      token = null
-                      sessionToken = null
-                      delete addHttpHead['Authorization']
-                      delete addHttpHead['Authorization-Wechat']
-                      break
+              switch (msg.httpStatus) {
+                case 200:
+                  if (msg.code === 0 || msg.code === 200) {
+                    resolve(msg)
+                  } else {
+                    reject(msg)
                   }
+                  break
+                case 401:
                   reject(msg)
-                }
+                  token = null
+                  sessionToken = null
+                  wx.removeStorageSync('token')
+                  wx.removeStorageSync('sessionToken')
+                  console.log(11111111111111)
+                  delete addHttpHead['Authorization']
+                  delete addHttpHead['Authorization-Wechat']
+                  break
               }
             }
           } catch (e) {
@@ -84,6 +88,16 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
       })
     })
   }
+
+  wx.checkSession({
+    success () {
+      //session_key 未过期，并且在本生命周期一直有效
+    },
+    fail () {
+      // session_key 已经失效，需要重新执行登录流程
+      wx.login() //重新登录
+    }
+  })
 
   if (!sessionToken && !token) {
     if (!noAuthRequests.length) {

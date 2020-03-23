@@ -1,1 +1,39 @@
-/* pages/IM/chat/components/debutWord/index.wxss */
+.wordWrap {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+.wordWrap .title {
+  padding: 10rpx 0 24rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #9CA1AA;
+  line-height: 36rpx;
+}
+.wordWrap .list {
+  padding: 0 40rpx;
+}
+.wordWrap .list .item {
+  padding: 22rpx 89rpx 22rpx 36rpx;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #1F252B;
+  background: rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  margin-bottom: 12rpx;
+}
+.wordWrap .list .item .text {
+  width: 100%;
+  position: relative;
+}
+.wordWrap .list .item .text .icon {
+  position: absolute;
+  color: #C7D7E7;
+  font-size: 20rpx;
+  top: 0rpx;
+  right: -50rpx;
+}

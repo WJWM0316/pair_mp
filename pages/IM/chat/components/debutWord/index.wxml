@@ -1,2 +1,6 @@
-<!--pages/IM/chat/components/debutWord/index.wxml-->
-<text>pages/IM/chat/components/debutWord/index.wxml</text>
+<view class="wordWrap">
+  <view class="title">选择一句话，与TA开启话题吧~</view>
+  <view class="list">
+    <view class="item" bindtap = "selectWord" data-index="{{index}}" wx:for="{{list}}" wx:key="index"><view class="text">{{item}}<i class="icon iconfont icon_fuzhi"></i></view></view>
+  </view>
+</view>

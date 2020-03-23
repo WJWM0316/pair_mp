@@ -26,12 +26,11 @@ let data = [
     }
   },
   {
-    messageId: "messageId2",
+    messageId: "messageId3",
     path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
     data: {
-      type: 'img',
-      own: true,
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
+      type: 'audio',
+      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
     }
   },
   {
@@ -121,6 +120,9 @@ let data1 = [
     }
   }
 ]
+let word = ''
+let firstMessageId = ''
+import emoj from "../../../utils/emoji.js"
 Page({
 
   /**
@@ -163,16 +165,17 @@ Page({
         color: '#F46BA1'
       }
     ],
-    pageY: 0
+    pageY: 0,
+    word: '', // 编辑框的文本
+    canSend: false // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
-
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -185,8 +188,31 @@ Page({
    */
   onShow: function () {
   },
+  // 滚动至页面最底部
   pageScrollToBot () {
-    wx.pageScrollTo({scrollTop: 1000})
+    wx.pageScrollTo({scrollTop: 3000})
+  },
+  // 监听文本域高度变化，随时滚动页面
+  linechange () {
+    this.pageScrollToBot()
+  },
+  // 选择emoji 或者 出场白
+  selectResult (e) {
+    word = word + e.detail
+    this.setData({word, canSend: true}) 
+  },
+  // 文本域编辑
+  bindinput (e) {
+    word = e.detail.value
+    if (word) {
+      if (!this.data.canSend) this.setData({canSend: true})
+    } else {
+      this.setData({canSend: false})
+    }
+  },
+  // 编辑完毕 更新一下data.word 状态
+  bindblur (e) {
+    this.setData({word})
   },
   resetView () {
     wx.pageScrollTo({
@@ -196,18 +222,7 @@ Page({
       }
     })
   },
-  // 自定义下拉刷新
-  fresherrefresh (e) {
-    let firstMessageId = this.data.messageList[0][0].messageId
-    let messageList = [data1, ...this.data.messageList]
-    this.setData({messageList, 'refresher': false})
-  },
-  // 自定义下拉刷新复位
-  refresherrestore (e) {
-    wx.nextTick(()=>{
-      this.setData({firstMessageId})
-    })
-  },
+  // 选择编辑类型
   selectType (e) {
     let index = e.currentTarget.dataset.index
     if ([0, 3, 4].includes(index)) {
@@ -223,6 +238,18 @@ Page({
       })
     }
     
+  },
+  // 自定义下拉刷新
+  fresherrefresh (e) {
+    firstMessageId = this.data.messageList[0][0].messageId
+    let messageList = [data1, ...this.data.messageList]
+    this.setData({messageList, 'refresher': false})
+  },
+  // 自定义下拉刷新复位
+  refresherrestore (e) {
+    wx.nextTick(()=>{
+      this.setData({firstMessageId})
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

@@ -1,0 +1,7 @@
+<view class="emojiWrap">
+  <view class="list">
+    <view class="emoji" wx:for="{{list}}" bindtap = "selected" data-index="{{index}}" wx:key="index">
+      <i-image my-class="emojiImg" src="../../../images/emoji/{{item}}.png"></i-image>
+    </view>
+  </view>
+</view>

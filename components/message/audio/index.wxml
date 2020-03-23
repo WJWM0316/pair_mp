@@ -1,3 +1,11 @@
 <view class="audioWrap">
-  <view class="audio" bindtap = "play">播放</view>
+  <view class="audio {{own ? 'mine' : ''}}" bindtap = "play">
+    <view class="icon {{playing ? 'play' : ''}}" wx:if="{{!own}}">
+      <i class="line line1"></i><i class="line line2"></i><i class="line line3"></i> 
+    </view>
+    <text class="second">1"</text>
+    <view class="icon {{playing ? 'play' : ''}}" wx:if="{{own}}">
+      <i class="line line1"></i><i class="line line2"></i><i class="line line3"></i> 
+    </view>
+  </view>
 </view>
