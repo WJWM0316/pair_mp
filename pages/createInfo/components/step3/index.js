@@ -73,7 +73,7 @@ Component({
       createUserStep3Api(params).then(() => {
         let { PAGEPATH } = app.globalData
         wx.navigateTo({
-          url: `${PAGEPATH}/index`
+          url: `${PAGEPATH}/index/index`
         })
       }).catch(err => app.wxToast({title: err.msg}))
     }
