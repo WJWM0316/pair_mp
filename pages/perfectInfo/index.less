@@ -19,11 +19,13 @@
     font-weight: 700;
     color: @text-color-1;
     line-height: 56rpx;
+    position: relative;
   }
   .progress {
     height: 8rpx;
     line-height: 8rpx;
     margin-top: 20rpx;
+    position: relative;
     .item {
       width: 60rpx;
       height: 8rpx;
@@ -79,30 +81,38 @@
 }
 
 .step2 {
-  background: white;
   border-radius:36rpx 36rpx 0rpx 0rpx;
   min-height: 100vh;
   box-sizing: border-box;
   padding: 36rpx 0;
-  position: fixed;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  top: 0;
-  bottom: 0;
+  // position: fixed;
+  // left: 0;
+  // right: 0;
+  // overflow: hidden;
+  // top: 0;
+  // bottom: 0;
   &:after {
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    // background: red;
+    background: @background-color-base;
     display: block;
     content: '';
     z-index: -1;
+    border-radius:36rpx 36rpx 0rpx 0rpx;
   }
-  .inner {
-    padding-top: 50rpx;
+  &:before {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #ffffff;
+    display: block;
+    content: '';
+    border-radius:36rpx 36rpx 0rpx 0rpx;
   }
   .h1 {
     height: 56rpx;
@@ -111,12 +121,15 @@
     color: @text-color-1;
     line-height: 56rpx;
     padding-left: 80rpx;
+    padding-top: 50rpx;
+    position: relative;
   }
   .progress {
     height: 8rpx;
     line-height: 8rpx;
     margin-top: 20rpx;
     padding-left: 80rpx;
+    position: relative;
     .item {
       width: 60rpx;
       height: 8rpx;
@@ -131,10 +144,14 @@
     }
   }
   .scroll-box {
-    margin-top: 30rpx;
-    padding: 22rpx 0;
+    padding: 57rpx 0 22rpx 0;
     position: relative;
     padding-left: 80rpx;
+    box-sizing: border-box;
+    background: #ffffff;
+    z-index: 2;
+    border-radius:36rpx 36rpx 0rpx 0rpx;
+    width: 100vw;
     &:after{
       position: absolute;
       left: 0;
@@ -202,6 +219,14 @@
         top: 4rpx;
       }
     }
+  }
+  .fixed-dom {
+    position: fixed;
+    top: 0;
+  }
+  .placeholder {
+    padding: 57rpx 0 22rpx 0;
+    height: 48rpx;
   }
   .tags-box {
     overflow: hidden;

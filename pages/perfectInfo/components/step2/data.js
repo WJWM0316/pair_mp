@@ -1,6 +1,7 @@
 export const list = [
   {
 		"id": 7128,
+		"active": true,
 		"vkey": "rvvdnogp",
 		"type": 130101,
 		"positionName": "\u4ea7\u54c1\u7ecf\u7406",
@@ -49,6 +50,7 @@ export const list = [
 			"avatarId": 44664,
 			"avatar": {
 				"id": 44664,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/1202\/17\/5de4d55278151.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -72,6 +74,7 @@ export const list = [
 			"oneSentenceIntro": "\u6ca1\u6709\u4eae\u7684\u5c0f\u5c0f\u7684\u516c\u53f8",
 			"logoInfo": {
 				"id": 61447,
+				"active": false,
 				"vkey": "qw3mq8ja",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -94,6 +97,7 @@ export const list = [
 	},
   {
 		"id": 7443,
+		"active": false,
 		"vkey": "kywhxp7f",
 		"type": 130105,
 		"positionName": "\u6570\u636e\u4ea7\u54c1\u7ecf\u7406",
@@ -142,6 +146,7 @@ export const list = [
 			"avatarId": 59457,
 			"avatar": {
 				"id": 59457,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2020\/0222\/10\/5e5096e9c8b69.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -165,6 +170,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 59448,
+				"active": false,
 				"vkey": "txwk6puh",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -187,6 +193,7 @@ export const list = [
 	},
   {
 		"id": 7265,
+		"active": false,
 		"vkey": "cu3lzvzg",
 		"type": 130102,
 		"positionName": "\u4ea7\u54c1\u804c\u4e1a",
@@ -235,6 +242,7 @@ export const list = [
 			"avatarId": 26251,
 			"avatar": {
 				"id": 26251,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0620\/16\/5d0b473665618.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -258,6 +266,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 26246,
+				"active": false,
 				"vkey": "ovmncaka",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -280,6 +289,7 @@ export const list = [
 	},
   {
 		"id": 6664,
+		"active": false,
 		"vkey": "9jyv3e5r",
 		"type": 130103,
 		"positionName": "\u4ea7\u54c1VP",
@@ -328,6 +338,7 @@ export const list = [
 			"avatarId": 3955,
 			"avatar": {
 				"id": 3955,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0216\/16\/5c67c79f9a10f.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -351,6 +362,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 61443,
+				"active": false,
 				"vkey": "7jemvkue",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -373,6 +385,7 @@ export const list = [
 	},
   {
 		"id": 7159,
+		"active": false,
 		"vkey": "x1nggsgh",
 		"type": 130103,
 		"positionName": "\u6570\u636e\u4ea7\u54c1\u7ecf\u7406",
@@ -421,6 +434,7 @@ export const list = [
 			"avatarId": 3955,
 			"avatar": {
 				"id": 3955,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0216\/16\/5c67c79f9a10f.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -444,6 +458,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 61443,
+				"active": false,
 				"vkey": "7jemvkue",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -466,6 +481,7 @@ export const list = [
 	},
   {
 		"id": 6824,
+		"active": false,
 		"vkey": "qqj1ucnv",
 		"type": 130103,
 		"positionName": "\u6d4b\u8bd5\u7ecf\u7406-B",
@@ -514,6 +530,7 @@ export const list = [
 			"avatarId": 35138,
 			"avatar": {
 				"id": 35138,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/1119\/15\/5dd39fd44de3b.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -537,6 +554,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 7005,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0301\/14\/5c78d1c06e1eb.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -553,6 +571,7 @@ export const list = [
 	},
   {
 		"id": 7422,
+		"active": false,
 		"vkey": "jdzxhtxv",
 		"type": 130101,
 		"positionName": "\u667a\u80fd\u786c\u4ef6\u4ea7\u54c1\u7ecf\u7406",
@@ -601,6 +620,7 @@ export const list = [
 			"avatarId": 59442,
 			"avatar": {
 				"id": 59442,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2020\/0222\/09\/5e508ad3e52c1.jpeg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -624,6 +644,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 59448,
+				"active": false,
 				"vkey": "txwk6puh",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -646,6 +667,7 @@ export const list = [
 	},
   {
 		"id": 181,
+		"active": false,
 		"vkey": "htfgarz0",
 		"type": 130102,
 		"positionName": "\u4ea7\u54c1\u7ecf\u7406",
@@ -694,6 +716,7 @@ export const list = [
 			"avatarId": 2416,
 			"avatar": {
 				"id": 2416,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0129\/11\/5c4fc3cde3487.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -717,6 +740,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 2587,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0129\/21\/5c504e57b8741.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -733,6 +757,7 @@ export const list = [
 	},
   {
 		"id": 7271,
+		"active": false,
 		"vkey": "gpvw35k6",
 		"type": 130103,
 		"positionName": "\u5171\u9e23",
@@ -781,6 +806,7 @@ export const list = [
 			"avatarId": 50764,
 			"avatar": {
 				"id": 50764,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/1220\/10\/5dfc35ee616bc.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -804,6 +830,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 61442,
+				"active": false,
 				"vkey": "7lxvrmeb",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -826,6 +853,7 @@ export const list = [
 	},
   {
 		"id": 7481,
+		"active": false,
 		"vkey": "hqukr68c",
 		"type": 130104,
 		"positionName": "\u6587\u545824h",
@@ -874,6 +902,7 @@ export const list = [
 			"avatarId": 0,
 			"avatar": {
 				"id": 0,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/default\/man.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -897,6 +926,7 @@ export const list = [
 			"oneSentenceIntro": "\u6ca1\u6709\u4eae\u7684\u5c0f\u5c0f\u7684\u516c\u53f8",
 			"logoInfo": {
 				"id": 61447,
+				"active": false,
 				"vkey": "qw3mq8ja",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -919,6 +949,7 @@ export const list = [
 	},
   {
 		"id": 194,
+		"active": false,
 		"vkey": "gkqvprgc",
 		"type": 130104,
 		"positionName": "\u4ea7\u54c1\u52a9\u7406",
@@ -967,6 +998,7 @@ export const list = [
 			"avatarId": 2473,
 			"avatar": {
 				"id": 2473,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0129\/15\/5c500248aedd0.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -990,6 +1022,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 0,
+				"active": false,
 				"vkey": "",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1012,6 +1045,7 @@ export const list = [
 	},
   {
 		"id": 7396,
+		"active": false,
 		"vkey": "kzixxiry",
 		"type": 130104,
 		"positionName": "\u82f9\u679c",
@@ -1060,6 +1094,7 @@ export const list = [
 			"avatarId": 0,
 			"avatar": {
 				"id": 0,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/default\/man.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1083,6 +1118,7 @@ export const list = [
 			"oneSentenceIntro": "\u6ca1\u6709\u4eae\u7684\u5c0f\u5c0f\u7684\u516c\u53f8",
 			"logoInfo": {
 				"id": 61447,
+				"active": false,
 				"vkey": "qw3mq8ja",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1105,6 +1141,7 @@ export const list = [
 	},
   {
 		"id": 6543,
+		"active": false,
 		"vkey": "ycmlvlgv",
 		"type": 130103,
 		"positionName": "\u5305\u5403\u5305\u4f4f+\u4e94\u5343\u5e95\u85aa+\u63d0\u6210+\u5927\u91cf\u627e\u4eba+\u5730\u70b9\u5609\u79be\u671b\u5c97\u5730\u94c1\u7ad9",
@@ -1153,6 +1190,7 @@ export const list = [
 			"avatarId": 22175,
 			"avatar": {
 				"id": 22175,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0425\/16\/5cc17613a9095.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1176,6 +1214,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 61437,
+				"active": false,
 				"vkey": "mluipath",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1198,6 +1237,7 @@ export const list = [
 	},
   {
 		"id": 7374,
+		"active": false,
 		"vkey": "23unx0ot",
 		"type": 130101,
 		"positionName": "\u6d88\u606f\u6d88\u606f",
@@ -1246,6 +1286,7 @@ export const list = [
 			"avatarId": 0,
 			"avatar": {
 				"id": 0,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/default\/man.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1269,6 +1310,7 @@ export const list = [
 			"oneSentenceIntro": "\u6ca1\u6709\u4eae\u7684\u5c0f\u5c0f\u7684\u516c\u53f8",
 			"logoInfo": {
 				"id": 61447,
+				"active": false,
 				"vkey": "qw3mq8ja",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1291,6 +1333,7 @@ export const list = [
 	},
   {
 		"id": 7219,
+		"active": false,
 		"vkey": "k0pfxvtp",
 		"type": 130102,
 		"positionName": "Boss\u6280\u672f\u7ecf\u7406",
@@ -1339,6 +1382,7 @@ export const list = [
 			"avatarId": 47999,
 			"avatar": {
 				"id": 47999,
+				"active": false,
 				"vkey": "nweofbjp",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1368,6 +1412,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 61435,
+				"active": false,
 				"vkey": "bc0cxhpc",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1390,6 +1435,7 @@ export const list = [
 	},
   {
 		"id": 7320,
+		"active": false,
 		"vkey": "vzsbgovt",
 		"type": 130102,
 		"positionName": "bibibib",
@@ -1438,6 +1484,7 @@ export const list = [
 			"avatarId": 22423,
 			"avatar": {
 				"id": 22423,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0426\/17\/5cc2cb20bffbc.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1461,6 +1508,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 0,
+				"active": false,
 				"vkey": "",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1483,6 +1531,7 @@ export const list = [
 	},
   {
 		"id": 7439,
+		"active": false,
 		"vkey": "6otnanm3",
 		"type": 130103,
 		"positionName": "c\u6d4b\u8bd5\u75ab\u60c5",
@@ -1531,6 +1580,7 @@ export const list = [
 			"avatarId": 35138,
 			"avatar": {
 				"id": 35138,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/1119\/15\/5dd39fd44de3b.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1554,6 +1604,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 7005,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0301\/14\/5c78d1c06e1eb.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1570,6 +1621,7 @@ export const list = [
 	},
   {
 		"id": 7403,
+		"active": false,
 		"vkey": "phaq4q8n",
 		"type": 130102,
 		"positionName": "\u53d1\u5e03\u98ce\u683c",
@@ -1618,6 +1670,7 @@ export const list = [
 			"avatarId": 22199,
 			"avatar": {
 				"id": 22199,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0425\/17\/5cc17e0925233.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1641,6 +1694,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 61437,
+				"active": false,
 				"vkey": "mluipath",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",
@@ -1663,6 +1717,7 @@ export const list = [
 	},
   {
 		"id": 7206,
+		"active": false,
 		"vkey": "bvbmqe9u",
 		"type": 130101,
 		"positionName": "\u4eba\u5de5\u667a\u80fd\u4ea7\u54c1\u7ecf\u7406",
@@ -1711,6 +1766,7 @@ export const list = [
 			"avatarId": 48145,
 			"avatar": {
 				"id": 48145,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/1211\/15\/5df099c586666.png",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1734,6 +1790,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 53343,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2020\/0107\/14\/5e141e8ce9d45.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1750,6 +1807,7 @@ export const list = [
 	},
   {
 		"id": 6764,
+		"active": false,
 		"vkey": "pw9n0tzd",
 		"type": 130101,
 		"positionName": "\u4ea7\u54c1\u7ecf\u7406",
@@ -1798,6 +1856,7 @@ export const list = [
 			"avatarId": 26931,
 			"avatar": {
 				"id": 26931,
+				"active": false,
 				"url": "https:\/\/attach.lieduoduo.ziwork.com\/avatar\/2019\/0702\/17\/5d1b1df39cb75.jpg",
 				"attachType": "avatar",
 				"attachTypeDesc": "\u5934\u50cf",
@@ -1821,6 +1880,7 @@ export const list = [
 			"oneSentenceIntro": "",
 			"logoInfo": {
 				"id": 27309,
+				"active": false,
 				"vkey": "ohahsuzy",
 				"attachType": "img",
 				"attachTypeDesc": "\u56fe\u7247",

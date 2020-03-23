@@ -10,9 +10,10 @@ import {
 } from '../../utils/util.js'
 import {list} from './components/step2/data'
 let app = getApp()
+let fixedDomPosition = 0
 Page({
   data: {
-    step: 2,
+    step: 3,
     rangeArray: [],
     value: [0],
     formData: {
@@ -20,12 +21,12 @@ Page({
       own_describe: ''
     },
     list,
-    navTabIndex: 0,
     moveParams: {
       scrollLeft: 0
     },
     scrollLeft: 0,
-    scrollTop: 0
+    fixedDom: false,
+    canClick: false
   },
   onShow() {
     this.init()
@@ -38,8 +39,10 @@ Page({
   init() {
     switch(this.data.step) {
       case 1:
-        getSalaryListApi().then(({ data }) => this.setData({rangeArray: data}))
+        getSalaryListApi().then(({ data }) => this.setData({rangeArray: data, canClick: true}))
         break
+      case 2:
+        getSelectorQuery('.scroll-box').then(res => fixedDomPosition = res.top || 0)
       default:
         break
     }
@@ -56,21 +59,30 @@ Page({
     let { key } = e.currentTarget.dataset
     if(value !== formData[key]) {
       formData[key] = value
-      this.setData({ formData })
+      this.setData({ formData, canClick: true })
     }
   },
   tabClick(e) {
+    let { index } = e.currentTarget.dataset
     let { dom } = e.currentTarget.dataset
-    getSelectorQuery(dom).then(res => {
-      wx.pageScrollTo({
-        scrollTop: res.top,
-        duration: 300
-       });
-      console.log(res)
-      let { top } = res
-      this.setData({scrollTop: top - (296/2)})
-      // console.log(res, dom)
+    let { list } = this.data
+    let callback = () => {
+      getSelectorQuery(dom).then(res => {
+        wx.pageScrollTo({
+          scrollTop: res.top - 60,
+          duration: 300
+         });
+      })
+    }
+    list.map((v, i, a) => {
+      if(i === index) {
+        v.active = true
+        callback()
+      } else {
+        v.active = true
+      }
     })
+    this.setData({ list })    
   },
   next() {
     let { formData } = this.data
@@ -107,10 +119,17 @@ Page({
         break
     }
     funcApi(params).then(res => {
-      this.triggerEvent('next', true)
+      let { step } = this.data
+      step++
+      this.setData({ step })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   onPageScroll(e) {
-    console.log(e, 'kkkk1')
+    if(e.scrollTop >= fixedDomPosition - 10) {
+      if(!this.data.fixedDom) this.setData({fixedDom: true})
+    } else {
+      if(this.data.fixedDom) this.setData({fixedDom: false})
+    }
+    console.log(e.scrollTop,fixedDomPosition, 'kkkk1')
   }
 })

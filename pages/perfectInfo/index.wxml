@@ -1,6 +1,6 @@
 <view class="perfect_info">
     <view class="step1" wx:if="{{ step === 1 }}">
-        <view class="h1">{{ title }}</view>
+        <view class="h1">年收入范围</view>
         <view class="progress">
             <view class="item active-item"></view>
             <view class="item"></view>
@@ -16,47 +16,46 @@
         </picker-view>
     </view>
     <view class="step2" wx:elif="{{ step === 2}}">
-        <view class="inner">
-            <view class="h1">你的标签</view>
-            <view class="progress">
-                <view class="item active-item"></view>
-                <view class="item active-item"></view>
-                <view class="item"></view>
-                <view class="item"></view>
+        <view class="h1">你的标签</view>
+        <view class="progress">
+            <view class="item active-item"></view>
+            <view class="item active-item"></view>
+            <view class="item"></view>
+            <view class="item"></view>
+        </view>
+        <view class="scroll-box {{fixedDom ? 'fixed-dom' : ''}}">
+            <view class="append">
+            已选<text>0</text>/20
             </view>
-            <view class="scroll-box">
-                <view class="append">
-                已选<text>0</text>/20
-                </view>
-                <scroll-view
-                scroll-with-animation
-                scroll-x
-                class="tab"
-                bindscroll="scrollViewMove"
-                scroll-left='{{ scrollLeft }}'
-                >
-                <view
-                    wx:for="{{ list }}"
-                    wx:key="index"
-                    class="item {{ navTabIndex === index ? 'active' : '' }}"
-                    bindtap="tabClick"
-                    data-dom=".ul{{index}}"
-                    data-index="{{index}}"
-                    >
-                    <text>{{item.positionName}}</text>
-                </view>
-                </scroll-view>
-            </view>
+            <scroll-view
+            scroll-with-animation
+            scroll-x
+            class="tab"
+            bindscroll="scrollViewMove"
+            scroll-left='{{ scrollLeft }}'
+            >
             <view
-                class="tags-box"
-                scroll-y="{{ true }}"
-                bindscroll="scroll"
-                scroll-top="{{ scrollTop }}"
+                wx:for="{{ list }}"
+                wx:key="index"
+                class="item {{ item.active ? 'active' : '' }}"
+                bindtap="tabClick"
+                data-dom=".ul{{index}}"
+                data-index="{{index}}"
                 >
-                <view class="ul ul{{index}}" wx:for="{{30}}" wx:key="index">
-                <view class="key">人设{{index}}</view>
-                <view class="li active" wx:for="{{20}}" wx:key="item">{{item}}</view>
-                </view>
+                <text>{{item.positionName}}</text>
+            </view>
+            </scroll-view>
+        </view>
+        <view class="placeholder" wx:if="{{ fixedDom }}"></view>
+        <view
+            class="tags-box"
+            scroll-y="{{ true }}"
+            bindscroll="scroll"
+            scroll-top="{{ scrollTop }}"
+            >
+            <view class="ul ul{{index}}" wx:for="{{30}}" wx:key="index">
+            <view class="key"><i class="icon iconfont icon_renshe"></i>人设{{index}}</view>
+            <view class="li active" wx:for="{{20}}" wx:key="item">{{item}}</view>
             </view>
         </view>
     </view>

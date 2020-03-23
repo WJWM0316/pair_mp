@@ -33,6 +33,38 @@ const wxApi = {
         }
       }
     })
+  },
+  // 选图上传
+  chooseImageUpload(number) {
+    return new Promise((resolve, reject) => {
+      wx.chooseImage({
+        count: number && number || 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album'],
+        success (res) {
+          resolve(res)
+        },
+        fail(err) {
+          reject(err)
+        }
+      })
+    })
+  },
+  // 拍照上传
+  photoUpload() {
+    return new Promise((resolve, reject) => {
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['camera'],
+        success (res) {
+          resolve(res)
+        },
+        fail(err) {
+          reject(err)
+        }
+      })
+    })
   }
 }
 
