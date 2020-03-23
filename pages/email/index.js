@@ -36,7 +36,7 @@ Page({
     if(!this.isEmail()) return
     sendEmailApi({email: this.data.formData.email}).then(res => {
       this.killTime()
-    }).catch(err => wxToast({title: err.msg}))
+    }).catch(err => app.wxToast({title: err.msg}))
   },
   editEmail() {
     if(timer) clearInterval(timer)
@@ -62,6 +62,6 @@ Page({
   verifyEmail() {
     verifyEmailApi({code: this.data.formData.code}).then(res => {
       wx.navigateBack({ delta: 1 })
-    }).catch(err => wxToast({title: err.msg}))
+    }).catch(err => app.wxToast({title: err.msg}))
   }
 })
