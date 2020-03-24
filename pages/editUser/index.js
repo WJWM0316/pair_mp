@@ -19,6 +19,12 @@ Page({
         title = '昵称'
         break
       case 'birth':
+        title = '生日'
+        break
+      case 'resident':
+        title = '生日常驻地'
+        break
+      case 'height':
         title = '身高'
         break
       default:
@@ -27,6 +33,7 @@ Page({
     wx.setNavigationBarTitle({title})
     this.setData({userInfo})
     setTimeout(() => wx.removeStorageSync('userInfo'), 16.7)
+    console.log(userInfo)
   },
   bindInput(e) {
     let { userInfo } = this.data

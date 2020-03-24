@@ -1,5 +1,4 @@
-// import { getAreaListApi } from '../../../../../../api/pages/label.js'
-import { getAggrApi } from '../../../api/common.js'
+import { getAggrApi, getAreaListApi } from '../../../api/common.js'
 let rangeArray = []
 let rtnResult = {}
 Component({
@@ -89,21 +88,45 @@ Component({
           }
           this.setData({ rangeArray, value })
           break
-        case 'region':
-          getAreaListApi().then(({ data }) => {
+        case 'resident':
+          getAreaListApi({level: 4}).then(({ data }) => {
             let provinces = data
             let citys = []
+            let areas = []
             if(this.data.initValue) {
               let tem = this.data.initValue.split('-')
               let provinceIndex = data.findIndex((v,i,a) => v.areaId == tem[0]) || 0
               citys = data[provinceIndex].children
               let cityIndex = citys.findIndex((v,i,a) => v.areaId == tem[1]) || 0
+              areas = citys[cityIndex].children
+              let areaIndex = areas.findIndex((v,i,a) => v.areaId == tem[2]) || 0
+              value = [provinceIndex, cityIndex, areaIndex]
+            } else {
+              value = [0,0,0]
+              citys = provinces[0].children || []
+              areas = citys.length && citys[0].children
+            }
+            rangeArray[0] = provinces
+            rangeArray[1] = citys
+            rangeArray[2] = areas
+            this.setData({ rangeArray, value, active: value, mode: 'multiSelector', rangeKey: 'title', placeHolder: '选择家乡' })
+          })
+          break
+        case 'hometown':
+          getAreaListApi().then(({ data }) => {
+            let provinces1 = data
+            let citys1 = []
+            if(this.data.initValue) {
+              let tem = this.data.initValue.split('-')
+              let provinceIndex = data.findIndex((v,i,a) => v.areaId == tem[0]) || 0
+              citys1 = data[provinceIndex].children
+              let cityIndex = citys1.findIndex((v,i,a) => v.areaId == tem[1]) || 0
               value = [provinceIndex, cityIndex]
             } else {
               value = [0,0]
-              citys = provinces[0].children || []
+              citys1 = provinces1[0].children || []
             }
-            rangeArray[0] = provinces
+            rangeArray[0] = provinces1
             rangeArray[1] = citys
             this.setData({ rangeArray, value, active: value })
           })
@@ -141,11 +164,12 @@ Component({
     },
     bindChange(e) {
       let { value } = e.detail
-      let rangeArray = this.data.rangeArray
+      let { rangeArray } = this.data
       switch(this.data.pickerType) {
         case 'birthday':
           let days = []
-          let length = this.getDaysInMonth(rtnResult.year, rtnResult.month)
+          let months = rangeArray[1]
+          let length = this.getDaysInMonth(rangeArray[0][value[0]].value, rangeArray[1][value[1]].value)
           let add0 = (m) => {return m < 10 ? '0' + m : m }
           for (let i = 1; i <= length; i++) {
             days.push({
@@ -153,12 +177,21 @@ Component({
               value: add0(i)
             })
           }
+          rangeArray[1] = months
           rangeArray[2] = days
           this.setData({ rangeArray })
           break
-        case 'region':
-          let citys = rangeArray[0][value[0]].children
+        case 'resident':
+          let provinces = rangeArray[0]
+          let citys = provinces[value[0]].children
+          let areas = citys[value[1]].children
           rangeArray[1] = citys
+          rangeArray[2] = areas
+          this.setData({ rangeArray })
+          break
+        case 'hometown':
+          let citys1 = rangeArray[0][value[0]].children
+          rangeArray[1] = citys1
           this.setData({ rangeArray })
           break
         case 'education':
@@ -175,42 +208,5 @@ Component({
       }
       this.setData({active: value})
     }
-    // confirm() {
-    //   let rangeArray = this.data.rangeArray
-    //   switch(this.data.pickerType) {
-    //     case 'education':
-    //       rtnResult = {
-    //         ...rangeArray[0][this.data.active[0]]
-    //       }
-    //       break
-    //     case 'region':
-    //       rtnResult = {
-    //         ...rangeArray[0][this.data.active[0]].children[this.data.active[1]]
-    //       }
-    //       break
-    //     case 'height':
-    //       rtnResult = {
-    //         ...rangeArray[0][this.data.active[0]]
-    //       }
-    //       console.log(this.data.active, rtnResult)
-    //       break
-    //     case 'birthday':
-    //       let year = rangeArray[0][this.data.active[0]].value
-    //       let month = rangeArray[1][this.data.active[1]].value
-    //       let day = rangeArray[2][this.data.active[2]].value
-    //       rtnResult = {
-    //         year,
-    //         month,
-    //         day,
-    //         date: `${year}-${month}-${day}`,
-    //         timestamp: Date.parse(new Date(`${year}-${month}-${day}`))
-    //       }
-    //       break
-    //   }
-    //   this.triggerEvent('pickerResult', rtnResult)
-    // },
-    // closePicker() {
-    //   this.setData({openPicker: false})
-    // }
   }
 })

@@ -24,7 +24,7 @@
 }
 .edit .input-birth {
   margin-top: 210rpx;
-  background: red;
+  background: #F1F4F4;
 }
 .holderStyle {
   color: #CFD4D8;

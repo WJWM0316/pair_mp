@@ -27,6 +27,6 @@
 
 <!-- <myPicker pickerType="birthday" initValue="{{ '2018-10-05' }}"></myPicker> -->
 <!-- <myPicker pickerType="height" initValue="{{ '104' }}"></myPicker> -->
-<!-- <myPicker pickerType="region" initValue="{{ '130000-130200' }}"></myPicker> -->
+<!-- <myPicker pickerType="resident" initValue="{{ '130000-130200' }}"></myPicker> -->
 <!-- <myPicker pickerType="education" initValue="{{ '35' }}"></myPicker> -->
 <!-- <scrollPicker pickerType="salary" initValue="{{ 4 }}" bind:pickerResult="pickerResult"></scrollPicker> -->

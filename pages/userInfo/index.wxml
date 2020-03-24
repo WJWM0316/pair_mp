@@ -27,25 +27,25 @@
       <view class="value">{{ userInfo.birth }}</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="resident">
       <view class="label">
         <view class="key">常驻地</view>
       </view>
       <view class="value">{{ userInfo.residentDesc }}</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="height">
       <view class="label">
         <view class="key">身高</view>
       </view>
       <view class="value">{{ userInfo.height }}cm</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="resident">
       <view class="label">
         <view class="key">家乡</view>
       </view>
-      <view class="value">广西来宾</view>
+      <view class="value">{{userInfo.hometownDesc}}</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
 

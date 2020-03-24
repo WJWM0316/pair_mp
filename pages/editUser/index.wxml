@@ -15,7 +15,15 @@
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'birth'}}">
-    <scrollPicker pickerType="birthday" initValue="{{ '2018-10-05' }}"></scrollPicker>
+    <scrollPicker pickerType="birthday" initValue="{{ userInfo.birth }}"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'resident'}}">
+    <scrollPicker pickerType="resident" initValue="{{ userInfo.residentArr[0].areaId + '-' + userInfo.residentArr[1].areaId + '-' + userInfo.residentArr[2].areaId}}"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'height'}}">
+    <scrollPicker pickerType="height" initValue="{{ userInfo.height }}"></scrollPicker>
   </view>
 
   <myButton btnTxt="保存" bind:click="next"></myButton>
