@@ -112,7 +112,6 @@
   font-size: 26rpx;
   line-height: 34rpx;
   color: #CFD4D8;
-  margin-top: 32rpx;
 }
 .email-page text {
   transition: all ease 0.2s;
