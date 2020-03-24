@@ -12,17 +12,21 @@ Page({
     defaultTime: 60,
     editable: false,
     canResend: false,
+    emailSuffix: '',
     formData: {
       email: '',
       code: ''
     }
   },
+  onLoad(options) {
+    this.setData({emailSuffix: options.emailSuffix})
+  },
   bindInput(e) {
     let { key } = e.currentTarget.dataset
     let { value } = e.detail
-    let { formData } = this.data
-    if(value !== formData[key]) {
-      formData[key] = value
+    let { formData, emailSuffix } = this.data
+    if(`${value}${emailSuffix}` !== formData[key]) {
+      formData[key] = `${value}${emailSuffix}`
       this.setData({ formData })
     }
   },

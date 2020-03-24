@@ -9,25 +9,28 @@
           <view class="email">{{ formData.email }}</view>
           <view class="edit" bindtap="editEmail">编辑邮箱</view>
         </block>
-      </view>      
-      <input
-        placeholder-class="holderStyle"
-        placeholder="请选择"
-        value="{{formData.email}}"
-        bindinput="bindInput"
-        data-key="email"
-        class="value {{formData.email ? 'bold' : ''}}"
-        wx:if="{{!editable}}"
-        />
-      <input
-        placeholder-class="holderStyle"
-        placeholder="请输入邮箱验证码"
-        value="{{formData.code}}"
-        bindinput="bindInput"
-        data-key="code"
-        wx:if="{{editable}}"
-        class="value {{formData.code ? 'bold' : ''}}"
-        />
+      </view>
+      <view class="input-row input-row1" wx:if="{{!editable}}">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="请选择"
+          value="{{formData.email}}"
+          bindinput="bindInput"
+          data-key="email"
+          class="value limit-width {{formData.email ? 'bold' : ''}}"
+          />
+        <view class="email-suffix">@pickme.com</view>
+      </view>
+      <view class="input-row" wx:if="{{editable}}">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="请输入邮箱验证码"
+          value="{{formData.code}}"
+          bindinput="bindInput"
+          data-key="code"
+          class="value {{formData.code ? 'bold' : ''}}"
+          />
+      </view>
     </view>
     <view class="func-li">
       <text bindtap="sendEmail" class="bold2 {{formData.email ? 'strong' : ''}}" wx:if="{{ !editable || canResend }}">

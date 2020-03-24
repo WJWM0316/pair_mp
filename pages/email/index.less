@@ -26,16 +26,6 @@
   }
   .ul {
     margin-top: 68rpx;
-    .li {
-      position: relative;
-      &:after{
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        .line(#EDF1F0)
-      }
-    }
     .header {
       height:36rpx;
       font-size:28rpx;
@@ -74,6 +64,40 @@
     }
     .bold {
       font-weight: 700;
+    }
+    .input-row {
+      position: relative;
+      &:after{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .line(#EDF1F0)
+      }
+    }
+    .input-row1 {
+      position: relative;
+      &:after{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 353rpx;
+        .line(#EDF1F0)
+      }
+    }
+    .email-suffix{
+      display: inline;
+      height:44rpx;
+      font-size:36rpx;
+      font-weight:700;
+      color:@text-color-1;
+      line-height:44rpx;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      z-index: 2;
     }
   }
   .func-li {

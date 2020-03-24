@@ -32,8 +32,9 @@ Page({
   },
   fillEmail() {
     let { PAGEPATH } = app.globalData
+    let { emailSuffix } = this.data
     wx.navigateTo({
-      url: `${PAGEPATH}/email/index`
+      url: `${PAGEPATH}/email/index?emailSuffix=${emailSuffix}`
     })
   },
   chooseImage(e) {
@@ -45,9 +46,7 @@ Page({
         app.uploadFile(res.tempFiles[0]).then(({ data }) => {
           let result = data.attachListItem[0]
           console.log(result)
-        }).catch(err => {
-
-        })
+        }).catch(err => {})
       })
     } else {
       app.photoUpload().then(res => {

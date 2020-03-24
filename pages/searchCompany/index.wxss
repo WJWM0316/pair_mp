@@ -74,16 +74,10 @@
   color: #9CA1AA;
   position: relative;
   overflow: hidden;
-}
-.search-company-page .li:after {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  height: 1rpx;
-  transform: scaleY(0.5);
-  background: #EDF1F0;
-  display: block;
+  height: 80rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 1rpx solid #EDF1F0;
 }
 .search-company-page .icon-jiantou {
   float: right;

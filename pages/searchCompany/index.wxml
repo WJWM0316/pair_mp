@@ -31,7 +31,8 @@
 				data-info="{{item}}"
 				wx:key="index"
 				>
-				<rich-text nodes="{{item.html}}"></rich-text>
+				<!-- <rich-text nodes="{{item.html}}"></rich-text> -->
+				{{item.companyName}}
 				<i class="icon iconfont icon-jiantou"></i>
 			</view>
 		</scroll-view>

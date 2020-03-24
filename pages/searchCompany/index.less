@@ -72,12 +72,16 @@
 		color:@text-color-3;
 		position: relative;
 		overflow: hidden;
-		&:after {
-			left: 0;
-			right: 0;
-			bottom: 0;
-			.line(@border-color-base)
-		}
+		height: 80rpx;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		border-bottom: 1rpx solid @border-color-base;
+		// &:after {
+		// 	left: 0;
+		// 	right: 0;
+		// 	bottom: 0;
+		// 	.line(@border-color-base)
+		// }
 	}
 	.icon-jiantou {
 		float: right;

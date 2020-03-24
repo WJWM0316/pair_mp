@@ -26,20 +26,6 @@
 .email-page .ul {
   margin-top: 68rpx;
 }
-.email-page .ul .li {
-  position: relative;
-}
-.email-page .ul .li:after {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  height: 1rpx;
-  transform: scaleY(0.5);
-  background: #EDF1F0;
-  display: block;
-}
 .email-page .ul .header {
   height: 36rpx;
   font-size: 28rpx;
@@ -78,6 +64,48 @@
 }
 .email-page .ul .bold {
   font-weight: 700;
+}
+.email-page .ul .input-row {
+  position: relative;
+}
+.email-page .ul .input-row:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
+}
+.email-page .ul .input-row1 {
+  position: relative;
+}
+.email-page .ul .input-row1:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 353rpx;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
+}
+.email-page .ul .email-suffix {
+  display: inline;
+  height: 44rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 44rpx;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  z-index: 2;
 }
 .email-page .func-li {
   height: 34rpx;
