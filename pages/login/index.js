@@ -1,3 +1,4 @@
+const app =  getApp();
 import {registerApi, sendMsgApi} from '../../api/auth.js'
 let phone = '',
     code = ''
@@ -7,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    canClick: false
   },
 
   /**
@@ -32,13 +33,29 @@ Page({
         code = e.detail.value
         break
     }
+    if (phone && code) {
+      if (!this.data.canClick) this.setData({canClick: true})
+    } else {
+      if (this.data.canClick) this.setData({canClick: false})
+    }
+  },
+  sendMsg () {
+    sendMsgApi({mobile: phone}).then(res => {
+      app.wxToast({title: '发送成功', icon: 'success'})
+    })
   },
   login () {
     let data = {
-      phone
+      mobile: phone,
+      code
     }
-    registerApi().then(res => {
-
+    registerApi(data).then(res => {
+      if (res.data.sessionToken) wx.setStorageSync('sessionToken', res.data.sessionToken)
+      if (res.data.token) wx.setStorageSync('token', res.data.token)
+      app.wxToast({title: '登录成功', icon: 'success'})
+      wx.navigateBack({
+        delta: 1
+      })
     })
   },
   /**

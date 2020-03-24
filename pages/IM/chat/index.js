@@ -167,6 +167,7 @@ Page({
     ],
     pageY: 0,
     word: '', // 编辑框的文本
+    rowNum: 0, // 编辑框行数
     canSend: false // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
   },
 
@@ -194,11 +195,14 @@ Page({
   },
   // 监听文本域高度变化，随时滚动页面
   linechange () {
+    let rowNum = this.data.rowNum ++
     this.pageScrollToBot()
+    this.setData({rowNum})
   },
   // 选择emoji 或者 出场白
   selectResult (e) {
     word = word + e.detail
+    console.log(word, 1111111)
     this.setData({word, canSend: true}) 
   },
   // 文本域编辑
@@ -207,13 +211,14 @@ Page({
     if (word) {
       if (!this.data.canSend) this.setData({canSend: true})
     } else {
-      this.setData({canSend: false})
+      if (this.data.canSend) this.setData({canSend: false})
     }
   },
   // 编辑完毕 更新一下data.word 状态
   bindblur (e) {
     this.setData({word})
   },
+  // 位置复原
   resetView () {
     wx.pageScrollTo({
       scrollTop: 0,

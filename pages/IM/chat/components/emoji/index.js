@@ -21,7 +21,7 @@ Component({
     selected (e) {
       let index = e.currentTarget.dataset.index,
           word  = emoji.emojiName[index]
-      this.triggerEvent('selectEmoji', word)
+      this.triggerEvent('selectResult', word)
     }
   }
 })

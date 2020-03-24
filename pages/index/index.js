@@ -4,6 +4,7 @@ const app = getApp()
 let phone = ''
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi} from '../../api/auth.js'
 import {getIndustryApi, getAreaApi} from "../../api/fixedData.js"
+import {pickApi} from "../../api/pick.js"
 Page({
   data: {
     motto: 'Hello World',
@@ -13,8 +14,8 @@ Page({
   },
   
   onLoad: function () {
-    // getIndustryApi({data: wx.getStorageSync('sessionToken')})
-    getAreaApi({data: wx.getStorageSync('sessionToken')})
+    getAreaApi()
+    getAreaApi()
   },
   getUserInfo: function(e) {
     let data = {
@@ -49,5 +50,24 @@ Page({
       if (res.data.sessionToken) wx.setStorageSync('sessionToken', res.data.sessionToken)
       if (res.data.token) wx.setStorageSync('token', res.data.token)
     })
+  },
+  action (e) {
+    let type = e.currentTarget.dataset.type
+    switch (type) {
+      case 'login':
+        wx.navigateTo({url: '/pages/login/index'})
+        break
+      case 'createInfo':
+        wx.navigateTo({url: '/pages/createInfo/index'})
+        break
+      case 'perfectInfo':
+        wx.navigateTo({url: '/pages/perfectInfo/index'})
+        break
+      case 'pick':
+        pickApi().then(res => {
+          console.log(res, 111)
+        })
+        break
+    }
   }
 })

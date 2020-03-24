@@ -1,9 +1,11 @@
 <view class="loginWrap">
   <view class="box"> 
-    <input class="input phone" placeholder="请输入手机号码" value="{{phone}}" bindinput = "bindinput" data-type="phone" placeholder-class="holderStyle"></input>
+    <input class="input phone" maxlength="11" placeholder="请输入手机号码" value="{{phone}}" bindinput = "bindinput" data-type="phone" placeholder-class="holderStyle"></input>
   </view>
-  <view class="box">
-    <input class="input code" placeholder="请输入验证码" value="{{code}}" bindinput = "bindinput" data-type="code" placeholder-class="holderStyle"></input>
+  <view class="box codeBox">
+    <input class="input code" maxlength="4" placeholder="请输入验证码" value="{{code}}" bindinput = "bindinput" data-type="code" placeholder-class="holderStyle"></input>
+    <view class="send" bindtap = "sendMsg">发送验证码</view>
   </view>
-  <i-button my-class="loginBtn" bindtap = "login">登录</i-button>
+  <i-button my-class="loginBtn {{canClick ? 'canClick' : ''}}" bindtap = "login">登录</i-button>
+
 </view>

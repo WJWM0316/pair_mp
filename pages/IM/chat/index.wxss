@@ -5,7 +5,6 @@
 }
 .chatWrap .chatArea {
   padding: 20rpx 30rpx;
-  height: calc(100vh - 188rpx);
   box-sizing: border-box;
 }
 .chatWrap .chatArea .scrollView {

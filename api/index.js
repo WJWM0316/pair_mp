@@ -62,6 +62,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   if (msg.code === 0 || msg.code === 200) {
                     resolve(msg)
                   } else {
+                    getApp().wxToast({title: msg.msg})
                     reject(msg)
                   }
                   break
@@ -71,7 +72,6 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   sessionToken = null
                   wx.removeStorageSync('token')
                   wx.removeStorageSync('sessionToken')
-                  console.log(11111111111111)
                   delete addHttpHead['Authorization']
                   delete addHttpHead['Authorization-Wechat']
                   break
@@ -113,8 +113,8 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
               wx.setStorageSync('sessionToken', res.data.data.sessionToken)
               noAuthRequests.forEach((item, index) => {
                 return item()
-                noAuthRequests = noAuthRequests.slice(index)
               })
+              noAuthRequests = []
             },
             fail(e) {
               console.log('服务器异常，请稍后访问')

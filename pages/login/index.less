@@ -7,12 +7,25 @@
     background:#fff;
     border-radius:49rpx;
     margin: 0 auto 24rpx;
-    padding: 23rpx 40rpx 23rpx 112rpx;
+    padding: 23rpx 50rpx 23rpx 112rpx;
     box-sizing: border-box;
+    position: relative;
+    &.codeBox {
+      padding: 23rpx 190rpx 23rpx 112rpx;
+    }
     .input {
       width: 100%;
       height: 100%;
       color: @text-color-1;
+    }
+    .send {
+      position: absolute;
+      top: 30rpx;
+      right: 50rpx;
+      font-size:28rpx;
+      font-weight:700;
+      color: @primary-color;
+      line-height:38rpx;
     }
   }
   .loginBtn {
@@ -25,5 +38,8 @@
     font-size:32rpx;
     border: none;
     line-height: 98rpx;
+    &.canClick {
+      background: @primary-color;
+    }
   }
 }

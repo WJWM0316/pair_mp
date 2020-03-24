@@ -1,5 +1,5 @@
 <view class="chatWrap">
-  <view class="chatArea" bindtap="resetView">
+  <view class="chatArea" bindtap="resetView" style="{{parse.setStyle('chatArea', rowNum)}}">
     <scroll-view 
       scroll-y="{{true}}"
       refresher-enabled="{{true}}"
@@ -88,9 +88,12 @@
             break
         }
       },
-      setStyle : function( item ){
-          var defaults = '#f7f7f7';
-          return 'background:' + ( item.background ? item.background : defaults ) +';' + 'color:'+ item.color;
+      setStyle : function(type, rowNum){
+        switch (type) {
+          case 'chatArea':
+            return 'height: calc(100vh - 188rpx - ' + rowNum * 20 + 'rpx);';
+            break
+        }
       },
       setPosition : function( pageY ){
           return 'transform:translate3d(0, ' + -pageY + 'rpx, 0);';
