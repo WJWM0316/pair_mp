@@ -123,6 +123,13 @@
 .email-page .bold2 {
   font-weight: 700;
 }
+.email-page .icon_baomi {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+  position: relative;
+  top: 2rpx;
+  color: #9CA1AA;
+}
 .btn-next {
   height: 98rpx;
   position: fixed !important;

@@ -74,6 +74,13 @@
   bottom: 114rpx;
   text-align: center;
 }
+.perfect .icon_baomi {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+  position: relative;
+  top: 2rpx;
+  color: #9CA1AA;
+}
 .drawer {
   width: 100vw;
   height: 100vh;

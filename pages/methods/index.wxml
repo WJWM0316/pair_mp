@@ -14,7 +14,7 @@
       <view class="small-btn" bindtap="fillEmail">去验证</view>
     </view>
   </view>
-  <view class="tips">提交的信息仅供认证使用，将严格保密</view>
+  <view class="tips"><i class="icon iconfont icon_baomi"></i>提交的信息仅供认证使用，将严格保密</view>
   <view class="drawer" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
     <view class="mask"></view>
     <i-image src="{{CDNPATH}}img_picker_jobpic@3x.png" my-class="cover-image" mode="widthFix"></i-image>

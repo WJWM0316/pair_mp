@@ -32,11 +32,13 @@
     </view>
     <view class="tab">
       <view class="tab-item {{formData.gender === 1 ? 'tab-item-active' : ''}}" bindtap="setGender" data-gender="{{1}}">
-        <i class="icon"></i>
+        <!-- <i class="icon"></i> -->
+        <i class="icon iconfont icon_nan"></i>
         <text>男</text>
       </view>
       <view class="tab-item {{formData.gender === 2 ? 'tab-item-active' : ''}}" bindtap="setGender" data-gender="{{2}}">
-        <i class="icon"></i>
+        <!-- <i class="icon"></i> -->
+        <i class="icon iconfont icon_nv"></i>
         <text>女</text>
       </view>
     </view>

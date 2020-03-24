@@ -19,7 +19,7 @@
           data-key="email"
           class="value limit-width {{formData.email ? 'bold' : ''}}"
           />
-        <view class="email-suffix">@pickme.com</view>
+        <view class="email-suffix">{{ emailSuffix }}</view>
       </view>
       <view class="input-row" wx:if="{{editable}}">
         <input
@@ -43,7 +43,7 @@
       </block>
     </view>
   </view>
-  <view class="tips">提交的信息仅供认证使用，将严格保密</view>
+  <view class="tips"><i class="icon iconfont icon_baomi"></i>提交的信息仅供认证使用，将严格保密</view>
   <i-button
     bind:click="verifyEmail"
     type="success"

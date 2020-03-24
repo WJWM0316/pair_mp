@@ -108,10 +108,14 @@
       font-weight:400;
       color:@text-color-1;
       padding-left: 60rpx;
+      transition: all ease .4s;
     }
     .tab-item-active{
-      .icon {
+      .icon_nan{
         background: @primary-color;
+      }
+      .icon_nv{
+        background: @vice-primary-color-2;
       }
       text{
         font-weight: 700;
@@ -123,11 +127,15 @@
       height:36rpx;
       display: inline-block;
       border-radius: 50%;
-      color: @text-color-4;
+      color:#fff;
       background: @text-color-4;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
+      font-size: 18rpx;
+      text-align: center;
+      line-height: 36rpx;
+      transition: all ease .4s;
     }
   }
   .third {
