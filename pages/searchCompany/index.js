@@ -8,7 +8,7 @@ Page({
   data: {
     formData: {
       company_name: '',
-      is_need_email_verify: false
+      is_need_email_verify: 0
     },
     canClick: false,
     nameList: [],
@@ -38,11 +38,12 @@ Page({
       if (!name) return
       getCompanyNameListApi({company_name: name}).then(res => {
         let nameList = res.data
+        let info = nameList.find(v => v.companyName === name.trim())
         nameList.map(field => {
           field.html = field.companyName.replace(new RegExp(name,'g'),`<span style="color: #00C4CD;">${name}</span>`)
           field.html = `<div>${field.html}</div>`
         })
-        this.setData({ nameList })
+        this.setData({ nameList, info })
       })
     })
   },
@@ -50,22 +51,22 @@ Page({
     let { formData } = this.data
     let { info } = e.currentTarget.dataset
     formData.company_name = info.companyName
+    formData.company_id = info.id
     this.setData({canClick: true, formData, nameList: [], info})
   },
-  submit() {
-    if(!this.data.canClick) return;
-    let { formData } = this.data
+  next() {
+    let { formData, info } = this.data
     let company_name = formData.company_name.trim()
     if(company_name.length < 2) {
       app.wxToast({title: '公司名称需为2-50个字'})
     } else {
-      if(formData.company_name === company_name) {
+      if(info) {
         formData.is_need_email_verify = 1
+        formData.company_id = info.id
       }
       formData.company_name = company_name
-      console.log(formData)
       wx.setStorageSync('searchCompany', formData)
-      wx.navigateBack({delta: 1})
+      wx.navigateBack({ delta: 1 })
     }    
   }
 })

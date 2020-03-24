@@ -49,6 +49,23 @@ Component({
   methods: {
     ask(){
       let that = this
+      let changeAddress = (res) => {
+        app.reverseGeocoder(res).then(({ result }) => {
+          let res = result.address_component
+          let address = {
+            areaId: 0,
+            children: [],
+            isHot: 0,
+            pid: 0,
+            title: res.district,
+            topPid: 0,
+            desc: `${res.province},${res.city},${res.district}`
+          }
+          let { formData } = that.data
+          formData['address'] = address
+          that.setData({ formData }, () => that.bindButtonStatus())
+        })
+      }
       let callback = () => {
         wx.getSetting({
           success(res) {
@@ -69,9 +86,7 @@ Component({
                               //授权成功之后，再调用chooseLocation选择地方
                               wx.chooseLocation({
                                 success(res) {
-                                  that.setData({
-                                    addr: res.address
-                                  })
+                                  changeAddress(res)
                                 }
                               })
                             }
@@ -102,25 +117,7 @@ Component({
       }
       wx.chooseLocation({
         success(res) {
-          app.reverseGeocoder(res).then(({ result }) => {
-            let res = result.address_component
-            let address = {
-              areaId: 0,
-              children: [],
-              isHot: 0,
-              pid: 0,
-              title: res.district,
-              topPid: 0,
-              desc: `${res.province},${res.city},${res.district}`
-            }
-            let { formData } = that.data
-            formData['address'] = address
-            that.setData({ formData })
-            console.log(formData)
-          })
-          that.setData({
-            addr: res.address      //调用成功直接设置地址
-          })                
+          changeAddress(res)       
         },
         fail() {
           callback()

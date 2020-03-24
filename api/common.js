@@ -61,3 +61,10 @@ export const getCompanyNameListApi = (data) => {
     data
   })
 }
+
+export const hasCompanyEmailApi = (data) => {
+  return request({
+    method: 'get',
+    url: `/company/email/${data.company_id}`
+  })
+}

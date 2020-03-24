@@ -102,6 +102,14 @@
 					"id": -1,
 					"name": "登录",
 					"pathName": "pages/login/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "邮箱",
+					"pathName": "pages/email/index",
+					"query": "",
 					"scene": null
 				}
 			]

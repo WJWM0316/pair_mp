@@ -44,7 +44,7 @@
       </view>
     </block>
   </view>
-  <block wx:if="{{ formData.occupation }}">
+  <block wx:if="{{ formData.company_name }}">
     <view class="tips-box">
       <block wx:if="{{ status === 1}}">
         <view class="info"><i class="icon iconfont icon_jinggao"></i>职业信息未认证，将降低主页展示率</view>

@@ -1,13 +1,25 @@
+import {
+  hasCompanyEmailApi
+} from '../../api/common.js'
 const app = getApp()
 Page({
   data: {
     show: false,
-    CDNPATH: ''
+    CDNPATH: '',
+    showEmailEntry: false,
+    email: '',
+    emailSuffix: ''
   },
-  onShow() {
+  onLoad(options) {
     let { CDNPATH } = app.globalData
     this.setData({ CDNPATH })
-    console.log(CDNPATH)
+    options.companyId && this.hasCompanyEmail(options)
+  },
+  hasCompanyEmail(options) {
+    hasCompanyEmailApi({company_id: options.companyId}).then(({ data }) => {
+      let showEmailEntry = data.emailSuffix ? data.emailSuffix : false
+      this.setData({showEmailEntry, ...data})
+    })
   },
   stopPageScroll() {
 	  return false

@@ -24,6 +24,7 @@ Component({
       if(formData.company_name !== storage.company_name) {
         formData.company_name = storage.company_name
         formData.is_need_email_verify = storage.is_need_email_verify
+        formData.company_id = storage.company_id
         this.setData({formData})
         setTimeout(() => wx.removeStorageSync('searchCompany'), 16.7)
       }
@@ -38,8 +39,9 @@ Component({
     },
     legalize() {
       let { PAGEPATH } = app.globalData
+      let { formData } = this.data
       wx.navigateTo({
-        url: `${PAGEPATH}/methods/index`
+        url: `${PAGEPATH}/methods/index?companyId=${formData.company_id ? formData.company_id : ''}`
       })
     },
     bindInput(e) {

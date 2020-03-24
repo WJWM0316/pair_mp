@@ -1,6 +1,7 @@
 {
 	"usingComponents": {
+    "myButton": "./components/button/index"
   },
-  "navigationBarTitleText": "搜索公司",
+  "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#F1F4F4"
 }

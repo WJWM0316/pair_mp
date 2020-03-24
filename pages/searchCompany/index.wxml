@@ -1,30 +1,40 @@
 <view class="search-company-page">
+	<view class="h1">填写公司名称</view>
+	<view class="h2">填写公司名称</view>
 	<view class="submit">
-		<view class="input-li clear-bottom">
+		<view class="input-li">
 			<input
 				placeholder="请输入公司名称"
 				placeholder-class="holderStyle"
 				bindinput="bindInput"
 				value="{{formData.company_name}}"
+				class="{{formData.company_name ? 'bold' : ''}}"
 				auto-focus
 				maxlength="50" />
 		</view>
-		<view class="ul" wx:if="{{nameList.length > 0}}">
+		<scroll-view
+			scroll-y="true"
+			bindscrolltolower="lower"
+			bindscroll="scroll"
+			scroll-into-view="{{toView}}"
+			scroll-top="{{scrollTop}}"
+			class="ul"
+			wx:if="{{nameList.length > 0}}"
+			>
 			<view
-			class="li"
-			bindtap="selectCompany"
-			data-name="{{item.companyName}}"
-			data-id="{{item.id}}"
-			wx:for="{{ nameList }}"
-			wx:for-item="item"
-			data-info="{{item}}"
-			wx:key="index">
+				class="li"
+				bindtap="selectCompany"
+				data-name="{{item.companyName}}"
+				data-id="{{item.id}}"
+				wx:for="{{ nameList }}"
+				wx:for-item="item"
+				data-info="{{item}}"
+				wx:key="index"
+				>
 				<rich-text nodes="{{item.html}}"></rich-text>
 				<i class="icon iconfont icon-jiantou"></i>
 			</view>
-		</view>
-		<view class="bottomBox">
-			<view bindtap="submit" class="button-submit {{canClick ? 'button-enable' : ''}}">确定</view>
-		</view>
+		</scroll-view>
+		<myButton canClick="{{ canClick }}" btnTxt="确定" bind:click="next"></myButton>
 	</view>
 </view>

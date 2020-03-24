@@ -8,7 +8,7 @@
       <view class="h4">不限于工牌、名片、在职证明等</view>
       <view class="small-btn" bindtap="open">去提交</view>
     </view>
-    <view class="li">
+    <view class="li" wx:if="{{ showEmailEntry }}">
       <view class="h3">公司邮箱验证</view>
       <view class="h4">查收邮件，点击链接完成验证</view>
       <view class="small-btn" bindtap="fillEmail">去验证</view>
