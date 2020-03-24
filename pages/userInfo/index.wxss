@@ -1,0 +1,25 @@
+.user-page {
+  margin: 20rpx 30rpx;
+}
+.user-page .ul {
+  margin-bottom: 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.user-page .key {
+  font-size: 30rpx;
+  color: #1F252B;
+}
+.user-page .ul-album {
+  height: 216rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+.user-page .album-box {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 16rpx;
+  background: red;
+}

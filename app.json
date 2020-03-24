@@ -9,7 +9,8 @@
     "pages/perfectInfo/index",
     "pages/loginGuide/index",
     "pages/searchCompany/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/userInfo/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
