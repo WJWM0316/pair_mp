@@ -36,19 +36,8 @@
 .step1 .progress .active-item {
   background: #0CCDDA;
 }
-.step1 .picker {
-  height: 600rpx;
-  margin-top: 90rpx;
-}
-.step1 .picker .column {
-  font-size: 42rpx;
-  color: #1F252B;
-  text-align: center;
-  line-height: 120rpx;
-}
-.step1 .picker .result {
-  text-align: center;
-  margin-top: 50px;
+.step1 .picker-box {
+  margin-top: 93rpx;
 }
 .step1 .indicator {
   height: 120rpx;

@@ -7,13 +7,9 @@
             <view class="item"></view>
             <view class="item"></view>
         </view>
-        <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange">
-            <picker-view-column class="column">
-            <view wx:for="{{ rangeArray }}" wx:key="index">
-                {{ item.name }}
-            </view>
-            </picker-view-column>    
-        </picker-view>
+        <view class="picker-box">
+            <scrollPicker pickerType="salary" initValue="{{ 4 }}" bind:pickerResult="pickerResult"></scrollPicker>
+        </view>
     </view>
     <view class="step2" wx:elif="{{ step === 2}}">
         <view class="h1">你的标签</view>

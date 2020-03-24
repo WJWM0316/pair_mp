@@ -10,7 +10,8 @@
     "pages/loginGuide/index",
     "pages/searchCompany/index",
     "pages/login/index",
-    "pages/userInfo/index"
+    "pages/userInfo/index",
+    "pages/editUser/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

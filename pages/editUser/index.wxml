@@ -1,0 +1,22 @@
+
+<view class="edit">
+
+  <view class="input-nickname" wx:if="{{options.key === 'nickname'}}">
+    <input
+      placeholder-class="holderStyle"
+      placeholder="请输入昵称"
+      bindinput="bindInput"
+      data-key="nickname"
+      value="{{ userInfo.nickname }}"
+      maxlength="20"
+      class="value {{ userInfo.nickname ? 'bold' : '' }}"
+      />
+      <view class="tips">好名字可以让你的朋友更容易记住你。</view>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'birth'}}">
+    <scrollPicker pickerType="birthday" initValue="{{ '2018-10-05' }}"></scrollPicker>
+  </view>
+
+  <myButton btnTxt="保存" bind:click="next"></myButton>
+</view>

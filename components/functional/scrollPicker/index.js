@@ -4,10 +4,6 @@ let rangeArray = []
 let rtnResult = {}
 Component({
   properties: {
-    openPicker: {
-      type: Boolean,
-      value: false
-    },
     pickerType: {
       type: String,
       value: ''
@@ -20,7 +16,9 @@ Component({
   data: {
     rangeArray: [],
     value: [0,0,0],
-    active: []
+    active: [],
+    rangeKey: '',
+    mode: ''
   },
   attached () {
     this.init()
@@ -73,7 +71,7 @@ Component({
             value = [yearIndex, monthIndex, dayIndex]
             this.setData({active: value})
           }
-          this.setData({ rangeArray, value })
+          this.setData({ rangeArray, value, mode: 'multiSelector', rangeKey: 'name' })
           break
         case 'height':
           let heights = []
@@ -121,6 +119,18 @@ Component({
             this.setData({ rangeArray, value })
           })
           break
+        case 'salary':
+          getAggrApi({type: 'salary'}).then(({ data }) => {
+            let salaryArr = data.salaryArr
+            if(this.data.initValue) {
+              let salaryIndex = salaryArr.findIndex((v,i,a) => v.id == this.data.initValue) || 0
+              value = [salaryIndex]
+              this.setData({ active: value })
+            }
+            rangeArray = salaryArr
+            this.setData({ rangeArray, value, mode: 'selector', rangeKey: 'name' })
+          })
+          break
       }
       this.setData({active: value})
     },
@@ -156,45 +166,51 @@ Component({
             ...rangeArray[0][value[0]]
           }
           break
+        case 'salary':
+          rtnResult = {
+            ...rangeArray[value[0]]
+          }
+          this.triggerEvent('pickerResult', rtnResult)
+          break
       }
       this.setData({active: value})
-    },
-    confirm() {
-      let rangeArray = this.data.rangeArray
-      switch(this.data.pickerType) {
-        case 'education':
-          rtnResult = {
-            ...rangeArray[0][this.data.active[0]]
-          }
-          break
-        case 'region':
-          rtnResult = {
-            ...rangeArray[0][this.data.active[0]].children[this.data.active[1]]
-          }
-          break
-        case 'height':
-          rtnResult = {
-            ...rangeArray[0][this.data.active[0]]
-          }
-          console.log(this.data.active, rtnResult)
-          break
-        case 'birthday':
-          let year = rangeArray[0][this.data.active[0]].value
-          let month = rangeArray[1][this.data.active[1]].value
-          let day = rangeArray[2][this.data.active[2]].value
-          rtnResult = {
-            year,
-            month,
-            day,
-            date: `${year}-${month}-${day}`,
-            timestamp: Date.parse(new Date(`${year}-${month}-${day}`))
-          }
-          break
-      }
-      this.triggerEvent('pickerResult', rtnResult)
-    },
-    closePicker() {
-      this.setData({openPicker: false})
     }
+    // confirm() {
+    //   let rangeArray = this.data.rangeArray
+    //   switch(this.data.pickerType) {
+    //     case 'education':
+    //       rtnResult = {
+    //         ...rangeArray[0][this.data.active[0]]
+    //       }
+    //       break
+    //     case 'region':
+    //       rtnResult = {
+    //         ...rangeArray[0][this.data.active[0]].children[this.data.active[1]]
+    //       }
+    //       break
+    //     case 'height':
+    //       rtnResult = {
+    //         ...rangeArray[0][this.data.active[0]]
+    //       }
+    //       console.log(this.data.active, rtnResult)
+    //       break
+    //     case 'birthday':
+    //       let year = rangeArray[0][this.data.active[0]].value
+    //       let month = rangeArray[1][this.data.active[1]].value
+    //       let day = rangeArray[2][this.data.active[2]].value
+    //       rtnResult = {
+    //         year,
+    //         month,
+    //         day,
+    //         date: `${year}-${month}-${day}`,
+    //         timestamp: Date.parse(new Date(`${year}-${month}-${day}`))
+    //       }
+    //       break
+    //   }
+    //   this.triggerEvent('pickerResult', rtnResult)
+    // },
+    // closePicker() {
+    //   this.setData({openPicker: false})
+    // }
   }
 })

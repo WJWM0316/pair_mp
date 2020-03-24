@@ -1,0 +1,7 @@
+<i-button
+  type="success"
+  class="btn-next btn-next-active"
+  long="{{ true }}"
+  bind:click="next">
+    {{ btnTxt }}
+</i-button>
