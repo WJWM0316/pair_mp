@@ -50,9 +50,8 @@ Page({
       code
     }
     registerApi(data).then(res => {
-      if (res.data.sessionToken) wx.setStorageSync('sessionToken', res.data.sessionToken)
-      if (res.data.token) wx.setStorageSync('token', res.data.token)
-      app.wxToast({title: '登录成功', icon: 'success'})
+      if (res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
+      if (res.data.userInfo.token) wx.setStorageSync('token', res.data.userInfo.token)
       wx.navigateBack({
         delta: 1
       })
