@@ -284,6 +284,9 @@ Page({
   bindblur (e) {
     this.setData({word})
   },
+  bindfocus () {
+    this.pageScrollToDom('bottom')
+  },
   // 选择编辑类型
   selectType (e) {
     let index = e.currentTarget.dataset.index

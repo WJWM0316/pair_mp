@@ -61,6 +61,7 @@
           bindlinechange="linechange"
           bindinput="bindinput" 
           bindblur="bindblur"
+          bindfocus="bindfocus"
           bindconfirm="">
         </textarea>
       </view>
