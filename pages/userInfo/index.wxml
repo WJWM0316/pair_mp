@@ -1,5 +1,182 @@
 <view class="user-page">
   <view class="ul ul-album">
+    <view class="label">
+      <view class="key">我的相册</view>
+    </view>
     <view class="album-box"></view>
+    <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+  </view>
+  <view class="ul base-info">
+    <view class="li" bindtap="routeJump" data-key="nickname">
+      <view class="label">
+        <view class="key">昵称</view>
+      </view>
+      <view class="value">{{ userInfo.nickname }}</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li">
+      <view class="label">
+        <view class="key">性别</view>
+      </view>
+      <view class="value">{{ userInfo.genderDesc }}</view>
+    </view>
+    <view class="li" bindtap="routeJump" data-key="birth">
+      <view class="label">
+        <view class="key">生日</view>
+      </view>
+      <view class="value">{{ userInfo.birth }}</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li" bindtap="routeJump" data-key="resident">
+      <view class="label">
+        <view class="key">常驻地</view>
+      </view>
+      <view class="value">{{ userInfo.residentDesc }}</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li" bindtap="routeJump" data-key="height">
+      <view class="label">
+        <view class="key">身高</view>
+      </view>
+      <view class="value">{{ userInfo.height }}cm</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li" bindtap="routeJump" data-key="resident">
+      <view class="label">
+        <view class="key">家乡</view>
+      </view>
+      <view class="value">{{userInfo.hometownDesc}}</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+
+  </view>
+
+  <view class="ul society">
+    <view class="li">
+      <view class="label">
+        <view class="key">职业</view>
+      </view>
+      <view class="value">移动互联网丨产品</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li">
+      <view class="label">
+        <view class="key">公司</view>
+      </view>
+      <view class="value">老虎科技
+        <view class="btn-status status1">已认证</view>
+        <!-- <view class="btn-status status2">未通过</view>
+        <view class="btn-status status3">未认证</view>
+        <view class="btn-status status4">认证中</view> -->
+      </view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li">
+      <view class="label">
+        <view class="key">担任岗位</view>
+      </view>
+      <view class="value">产品经理</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li">
+      <view class="label">
+        <view class="key">年收入</view>
+      </view>
+      <view class="value">{{ userInfo.salaryDesc }}</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li">
+      <view class="label">
+        <view class="key">学校</view>
+      </view>
+      <view class="value">添加学校</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+    <view class="li">
+      <view class="label">
+        <view class="key">学历</view>
+      </view>
+      <view class="value">添加学历</view>
+      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+    </view>
+  </view>
+  <view class="ul description">
+    <view class="li">
+      <view class="label">
+        <view class="key">自我描述</view>
+      </view>
+      <view class="func-btn" wx:if="{{ 1 < 10}}">完善描述</view>
+      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:if="{{ 1 > 10}}"></i>
+    </view>
+    <view class="desc" wx:if="{{ 1 > 10}}">本人作风优良、待人诚恳，人际关系良好，处事冷静稳健，能合理地统筹安排生活中的事务。</view>
+  </view>
+  <view class="ul myLabel">
+    <view class="li">
+      <view class="label">
+        <view class="key">我的标签</view>
+      </view>
+      <view class="func-btn" wx:if="{{ 1 > 10}}">完善标签</view>
+      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:if="{{ 1 > 0}}"></i>
+    </view>
+    <view class="row">
+      <view class="type"></view>
+      <view class="box">
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+      </view>
+    </view>
+    <view class="row">
+      <view class="type"></view>
+      <view class="box">
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+      </view>
+    </view>
+    <view class="row">
+      <view class="type"></view>
+      <view class="box">
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+        <view class="item">完善标签</view>
+      </view>
+    </view>
+  </view>
+  <view class="ul ideal">
+    <view class="li">
+      <view class="label">
+        <view class="key">我的理想型</view>
+      </view>
+      <view class="func-btn" wx:if="{{ 1 > 10}}">完善理想型</view>
+      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:if="{{ 1 > 0}}"></i>
+    </view>
+    <view class="desc" wx:if="{{ 1 > 0}}">本人作风优良、待人诚恳，人际关系良好，处事冷静稳健，能合理地统筹安排生活中的事务。</view>
+  </view>
+  <view class="ul answer">
+    <view class="li">
+      <view class="label">
+        <view class="key">我的问答</view>
+      </view>
+      <view class="func-btn">完善问答</view>
+    </view>
+    <view class="box">
+      <view class="item">
+        <view class="h1"><view class="my-icon"></view>今年的新年愿望是什么？</view>
+        <view class="h2">找到一个愿意被我打的人</view>
+        <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+      </view>
+      <view class="item">
+        <view class="h1"><view class="my-icon"></view>今年的新年愿望是什么？</view>
+        <view class="h2">找到一个愿意被我打的人找到一个愿意被我打的人找到一个愿意被我打的人</view>
+        <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
+      </view>
+    </view>
   </view>
 </view>

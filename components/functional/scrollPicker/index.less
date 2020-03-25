@@ -1,0 +1,34 @@
+@import '../../../styles/_base.less';
+@import '../../../styles/_mixins.less';
+.scrollPicker {
+	.picker {
+		height: 300px;
+	}	
+	.indicator {
+		height: 120rpx;
+		// background: @background-color-base;
+		// border-top: 1px solid @border-color-split1;
+		// border-bottom: 1px solid @border-color-split1;
+		position: relative;
+		&:after{
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			.line(#CFD4D8)
+		}
+		&:before{
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			.line(#CFD4D8)
+		}
+	}
+	.column {
+		font-size: 42rpx;
+		color: @text-color-1;
+		text-align: center;
+		line-height: 120rpx;
+	}
+}

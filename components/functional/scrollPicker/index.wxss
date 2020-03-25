@@ -1,0 +1,35 @@
+.scrollPicker .picker {
+  height: 300px;
+}
+.scrollPicker .indicator {
+  height: 120rpx;
+  position: relative;
+}
+.scrollPicker .indicator:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #CFD4D8;
+  display: block;
+}
+.scrollPicker .indicator:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #CFD4D8;
+  display: block;
+}
+.scrollPicker .column {
+  font-size: 42rpx;
+  color: #1F252B;
+  text-align: center;
+  line-height: 120rpx;
+}

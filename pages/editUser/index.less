@@ -1,0 +1,37 @@
+@import '../../styles/_base.less';
+@import '../../styles/_mixins.less';
+
+.edit {
+  margin-top: 30rpx;
+  .input-nickname {
+    overflow: hidden;
+    input{
+      height:108rpx;
+      box-sizing: border-box;
+      padding: 0 60rpx;
+      background:rgba(255,255,255,1);
+    }
+    .tips {
+      height:32rpx;
+      font-size:26rpx;
+      font-weight:300;
+      color:@text-color-2;
+      line-height:32rpx;
+      padding: 0 60rpx;
+      margin-top: 26rpx;
+    }
+    .bold{
+      font-weight: 700;
+    }
+  }
+  .input-birth{
+    margin-top: 210rpx;
+    background: @background-color-base;
+  }
+}
+
+.holderStyle {
+  color: #CFD4D8;
+  font-size: 36rpx;
+  font-weight: unset;
+}

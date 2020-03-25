@@ -38,3 +38,19 @@ export const updateUserDescribeApi = (data) => {
     data
   })
 }
+
+export const getMyInfoApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/user/info',
+    data
+  })
+}
+
+export const updateUserBaseApi = (data) => {
+  return request({
+    method: 'put',
+    url: '/user/base',
+    data
+  })
+}

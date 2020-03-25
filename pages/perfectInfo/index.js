@@ -13,7 +13,7 @@ let fixedDomPosition = 0
 let scrollTop = 0
 Page({
   data: {
-    step: 2,
+    step: 1,
     rangeArray: [],
     value: [0],
     formData: {
@@ -43,7 +43,7 @@ Page({
   init() {
     switch(this.data.step) {
       case 1:
-        getSalaryListApi().then(({ data }) => this.setData({rangeArray: data, canClick: true}))
+        this.setData({canClick: true})
         break
       case 2:
         getSelectorQuery('.scroll-box').then(res => fixedDomPosition = res.top || 0)
@@ -51,8 +51,8 @@ Page({
         break
     }
   },
-  bindChange(e) {
-    let { value } = e.detail
+  pickerResult(e) {
+    let value = e.detail.id
     if(value[0] !== this.data.value[0]) {
       this.setData({ value })
     }
