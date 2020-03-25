@@ -85,31 +85,66 @@
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'birth'}}">
-    <scrollPicker pickerType="birthday" initValue="{{ userInfo.birth }}" bind:pickerResult="pickerResult"></scrollPicker>
+    <scrollPicker
+      pickerType="birthday"
+      initValue="{{ userInfo.birth }}"
+      bind:pickerResult="pickerResult"
+      >
+    </scrollPicker>
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'resident'}}">
-    <scrollPicker bind:pickerResult="pickerResult" pickerType="resident" initValue="{{ userInfo.residentArr[0].areaId + '-' + userInfo.residentArr[1].areaId + '-' + userInfo.residentArr[2].areaId }}"></scrollPicker>
+    <scrollPicker
+      bind:pickerResult="pickerResult"
+      pickerType="resident"
+      initValue="{{ userInfo.residentArr[0].areaId + '-' + userInfo.residentArr[1].areaId + '-' + userInfo.residentArr[2].areaId }}"
+      >
+    </scrollPicker>
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'hometown'}}">
-    <scrollPicker bind:pickerResult="pickerResult" pickerType="hometown" initValue="{{ userInfo.residentArr[0].areaId + '-' + userInfo.residentArr[1].areaId }}"></scrollPicker>
+    <scrollPicker
+      bind:pickerResult="pickerResult"
+      pickerType="hometown"
+      initValue="{{ aa.hometownArr.length ? userInfo.hometownArr[0].areaId + '-' + userInfo.hometownArr[1].areaId : '' }}"
+      >
+    </scrollPicker>
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'height'}}">
-    <scrollPicker pickerType="height" initValue="{{ userInfo.height }}" bind:pickerResult="pickerResult"></scrollPicker>
+    <scrollPicker
+      pickerType="height"
+      initValue="{{ userInfo.height }}"
+      bind:pickerResult="pickerResult"
+      >
+    </scrollPicker>
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'occupation'}}">
-    <scrollPicker pickerType="occupation" initValue="{{ '1-2' }}" bind:pickerResult="pickerResult"></scrollPicker>
+    <scrollPicker
+      pickerType="occupation"
+      initValue="{{ userInfo.industryArr.length ?  userInfo.industryArr[0].labelId + '-' + userInfo.industryArr[1].labelId : '' }}"
+      bind:pickerResult="pickerResult"
+      >
+    </scrollPicker>
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'salary'}}">
-    <scrollPicker pickerType="salary" initValue="{{ '1-2' }}" bind:pickerResult="pickerResult"></scrollPicker>
+    <scrollPicker
+      pickerType="salary"
+      initValue="{{ userInfo.salary ? userInfo.salary : ''}}"
+      bind:pickerResult="pickerResult"
+      >
+    </scrollPicker>
   </view>
 
   <view class="input-birth" wx:if="{{options.key === 'degree'}}">
-    <scrollPicker pickerType="degree" initValue="{{ userInfo.degree }}" bind:pickerResult="pickerResult"></scrollPicker>
+    <scrollPicker
+      pickerType="degree"
+      initValue="{{ userInfo.degree ? userInfo.degree : '' }}"
+      bind:pickerResult="pickerResult"
+      >
+    </scrollPicker>
   </view>
 
   <view class="box input-ownDescribe" wx:if="{{ options.key === 'isHasQuestion' }}">

@@ -14,6 +14,13 @@
   font-size: 30rpx;
   color: #1F252B;
 }
+.user-page .placeholder {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 48%;
+  transform: translateY(-50%);
+}
 .user-page .ul-album {
   height: 216rpx;
   background: #fff;
@@ -64,6 +71,7 @@
   vertical-align: middle;
   text-align: right;
   line-height: 102rpx;
+  position: relative;
 }
 .user-page .label {
   display: inline-block;
@@ -256,4 +264,8 @@
 }
 .user-page .answer .box {
   margin-top: 4rpx;
+}
+.holderStyle {
+  font-size: 30rpx;
+  color: #CFD4D8;
 }

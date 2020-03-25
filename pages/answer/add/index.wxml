@@ -1,0 +1,25 @@
+  <view class="answer">
+    <view class="h1"><view class="my-icon"></view>今年的新年愿望是什么？</view>
+    <view class="box input-ownDescribe">
+        <textarea
+        placeholder-class="holderStyle"
+        placeholder="请输入问答"
+        bindinput="bindInput"
+        data-key="isHasQuestion"
+        value="{{ userInfo.isHasQuestion }}"
+        maxlength="150"
+        class="value {{ userInfo.isHasQuestion ? 'bold' : '' }}"
+        />
+        <view class="number"><text class="{{ userInfo.isHasQuestion ? 'color' : '' }}">{{ userInfo.isHasQuestion.length || 0 }}</text>/100</view>
+    </view>
+    <view class="footer">
+      <view class="btn btn-add">
+        <view class="btn-cover">添加</view>
+        <view class="shadow"></view>
+      </view>
+      <view class="btn btn-save">
+        <view class="btn-cover">保存</view>
+        <view class="shadow"></view>
+      </view>
+    </view>
+  </view>

@@ -2,7 +2,7 @@
 <view class="indexWrap">
   <view style="height: 60rpx;"></view>
   <i-button my-class="btn" bindtap = "action" data-type="login">登录</i-button>
-  <i-button my-class="btn" bindtap = "action" data-type="createInfo">创建用户</i-button>
+  <i-button my-class="btn" bindtap = "action" data-type="createUser">创建用户</i-button>
   <i-button my-class="btn" bindtap = "action" data-type="pick">pick</i-button>
 </view>
 <tabBar></tabBar>

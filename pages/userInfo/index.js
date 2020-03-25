@@ -4,13 +4,15 @@ import {
 let app = getApp()
 Page({
   data: {
-    userInfo: {}
+    userInfo: {},
+    careerVerifyInfo: {},
+    pickIntention: {}
   },
   onShow() {
     wx.removeStorageSync('userInfo')
     getMyInfoApi().then(({ data }) => {
-      let userInfo = data.userInfo
-      this.setData({ userInfo })
+      let { userInfo, careerVerifyInfo, pickIntention } = data
+      this.setData({ userInfo, careerVerifyInfo, pickIntention })
     })
   },
   routeJump(e) {

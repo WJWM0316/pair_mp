@@ -45,7 +45,14 @@
       <view class="label">
         <view class="key">家乡</view>
       </view>
-      <view class="value">{{userInfo.hometownDesc}}</view>
+      <view class="value">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="添加家乡"
+          value="{{ userInfo.hometownArr.length ? userInfo.hometownArr[0].title + ' ' + userInfo.hometownArr[1].title : '' }}"
+          class="placeholder"
+          disabled/>
+      </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
 
@@ -56,7 +63,14 @@
       <view class="label">
         <view class="key">职业</view>
       </view>
-      <view class="value">移动互联网丨产品</view>
+      <view class="value">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="添加职业"
+          value="{{ userInfo.industryArr.length ? userInfo.industryArr[0].name + ' | ' + userInfo.industryArr[1].name : '' }}"
+          class="placeholder"
+          disabled/>
+      </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
     <view class="li" bindtap="routeJump" data-key="companyName">
@@ -82,21 +96,42 @@
       <view class="label">
         <view class="key">年收入</view>
       </view>
-      <view class="value">{{ userInfo.salaryDesc }}</view>
+      <view class="value">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="添加年收入"
+          value="{{ userInfo.salaryDesc }}"
+          class="placeholder"
+          disabled/>
+      </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
     <view class="li" bindtap="routeJump" data-key="school">
       <view class="label">
         <view class="key">学校</view>
       </view>
-      <view class="value">{{ userInfo.school }}</view>
+      <view class="value">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="添加学校"
+          value="{{ userInfo.school }}"
+          class="placeholder"
+          disabled/>
+      </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
     <view class="li" bindtap="routeJump" data-key="degree">
       <view class="label">
         <view class="key">学历</view>
       </view>
-      <view class="value">{{ userInfo.degreeDesc }}</view>
+      <view class="value">
+        <input
+          placeholder-class="holderStyle"
+          placeholder="添加学历"
+          value="{{ userInfo.degreeDesc }}"
+          class="placeholder"
+          disabled/>
+      </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
   </view>
@@ -105,7 +140,7 @@
       <view class="label">
         <view class="key">自我描述</view>
       </view>
-      <view class="func-btn" wx:if="{{ !userInfo.ownDescribe }}">完善描述</view>
+      <view class="func-btn" bindtap="routeJump" data-key="ownDescribe" wx:if="{{ !userInfo.ownDescribe }}">完善描述</view>
       <i bindtap="routeJump" data-key="ownDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
     <view class="desc" wx:if="{{ userInfo.ownDescribe }}">{{ userInfo.ownDescribe }}</view>
@@ -154,7 +189,7 @@
       <view class="label">
         <view class="key">我的理想型</view>
       </view>
-      <view class="func-btn" wx:if="{{ !userInfo.idealDescribe}}">完善理想型</view>
+      <view class="func-btn" bindtap="routeJump" data-key="idealDescribe" wx:if="{{ !userInfo.idealDescribe}}">完善理想型</view>
       <i bindtap="routeJump" data-key="idealDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
     <view class="desc" wx:if="{{ userInfo.idealDescribe }}">{{userInfo.idealDescribe}}</view>

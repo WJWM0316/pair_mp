@@ -1,0 +1,6 @@
+<view class="answer">
+    <view class="h1"><view class="my-icon"></view>今年的新年愿望是什么？</view>
+    <view class="ul">
+        <view class="li" wx:for="{{ 20 }}" wx:key="item">今年的新年愿望是什么？</view>
+    </view>
+</view>

@@ -1,0 +1,139 @@
+.answer {
+  margin-top: 30rpx;
+}
+.answer .input-ownDescribe {
+  height: 522rpx;
+  background: #ffffff;
+  padding: 60rpx;
+  position: relative;
+  box-sizing: border-box;
+}
+.answer .input-ownDescribe .value {
+  font-size: 32rpx;
+  color: #1F252B;
+  line-height: 48rpx;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.answer .input-ownDescribe .number {
+  position: absolute;
+  bottom: 32rpx;
+  width: 100%;
+  left: 0;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  text-align: right;
+  box-sizing: border-box;
+  padding-right: 60rpx;
+  color: #CFD4D8;
+}
+.answer .input-ownDescribe .color {
+  color: #0CCDDA;
+}
+.answer .box {
+  margin-top: 28rpx;
+}
+.answer .my-icon {
+  display: inline-block;
+  position: relative;
+  width: 14rpx;
+  height: 21rpx;
+  margin-right: 12rpx;
+}
+.answer .my-icon:before {
+  width: 100%;
+  height: 100%;
+  background: #1F252B;
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.answer .my-icon:after {
+  width: 200%;
+  height: 200%;
+  background: #fff;
+  content: '';
+  display: block;
+  border: 1rpx solid #1F252B;
+  position: absolute;
+  top: -14rpx;
+  right: -10rpx;
+  box-sizing: border-box;
+  transform: scale(0.5, 0.5);
+}
+.answer .h1 {
+  height: 48rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #66666E;
+  line-height: 48rpx;
+  margin: 0 60rpx;
+}
+.answer .footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 110rpx;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 0 44rpx;
+  display: flex;
+}
+.answer .footer .btn {
+  flex: 1;
+  height: 98rpx;
+  border-radius: 54rpx;
+  text-align: center;
+  line-height: 98rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  position: relative;
+}
+.answer .footer .btn-add {
+  width: 248rpx;
+}
+.answer .footer .btn-add .shadow {
+  background: #C3C9C9;
+  border-radius: 54rpx;
+  opacity: 0.4;
+  filter: blur(10rpx);
+  position: absolute;
+  right: 0;
+  bottom: -10rpx;
+  width: 100%;
+  height: 100%;
+}
+.answer .footer .btn-add .btn-cover {
+  color: white;
+  border-radius: 54rpx;
+  position: relative;
+  background: #CFD4D8;
+  z-index: 2;
+}
+.answer .footer .btn-save {
+  flex: 1;
+}
+.answer .footer .btn-save .shadow {
+  background: #0CCDDA;
+  border-radius: 54rpx;
+  opacity: 0.4;
+  filter: blur(10rpx);
+  position: absolute;
+  right: 0;
+  bottom: -10rpx;
+  width: calc(100% - 30rpx);
+  height: 100%;
+}
+.answer .footer .btn-save .btn-cover {
+  color: #fff;
+  background: #0CCDDA;
+  margin-left: 30rpx;
+  border-radius: 54rpx;
+  position: relative;
+  z-index: 2;
+}

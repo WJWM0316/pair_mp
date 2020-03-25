@@ -79,8 +79,8 @@
 				},
 				{
 					"id": 2,
-					"name": "pages/answerList/index",
-					"pathName": "pages/answerList/index",
+					"name": "pages/answer/add/index",
+					"pathName": "pages/answer/add/index",
 					"query": "",
 					"scene": null
 				}
