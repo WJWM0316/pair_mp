@@ -11,7 +11,8 @@
     "pages/searchCompany/index",
     "pages/login/index",
     "pages/userInfo/index",
-    "pages/editUser/index"
+    "pages/editUser/index",
+    "pages/answerList/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

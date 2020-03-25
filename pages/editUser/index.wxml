@@ -26,5 +26,51 @@
     <scrollPicker pickerType="height" initValue="{{ userInfo.height }}"></scrollPicker>
   </view>
 
+  <view class="input-company" wx:if="{{options.key === 'companyName'}}">
+    <input
+      placeholder-class="holderStyle"
+      placeholder="请输入公司名称"
+      bindinput="bindInput"
+      data-key="companyName"
+      value="{{ userInfo.companyName }}"
+      maxlength="20"
+      class="value {{ userInfo.companyName ? 'bold' : '' }}"
+      />
+      <view class="tips">
+        <block wx:if="{{ userInfo.isCareerIdentity }}">
+          <i class="icon1 icon iconfont icon_gouxuan"></i>职业信息认证成功
+        </block>
+        <block wx:else>
+          <i class="icon2 icon iconfont icon_jinggao"></i>公司信息未认证，将降低主页展示率<text class="strong">前往认证</text>
+        </block>
+      </view>
+  </view>
+
+  <view class="box input-ownDescribe" wx:if="{{ options.key === 'ownDescribe' }}">
+    <textarea
+      placeholder-class="holderStyle"
+      placeholder="请输入自我描述"
+      bindinput="bindInput"
+      data-key="ownDescribe"
+      value="{{ userInfo.ownDescribe }}"
+      maxlength="150"
+      class="value {{ userInfo.ownDescribe ? 'bold' : '' }}"
+      />
+      <view class="number"><text class="{{ userInfo.ownDescribe ? 'color' : '' }}">{{ userInfo.ownDescribe || 0 }}</text>/150</view>
+  </view>
+
+  <view class="box input-ownDescribe" wx:if="{{ options.key === 'isHasQuestion' }}">
+    <textarea
+      placeholder-class="holderStyle"
+      placeholder="请输入问答"
+      bindinput="bindInput"
+      data-key="isHasQuestion"
+      value="{{ userInfo.isHasQuestion }}"
+      maxlength="150"
+      class="value {{ userInfo.isHasQuestion ? 'bold' : '' }}"
+      />
+      <view class="number"><text class="{{ userInfo.isHasQuestion ? 'color' : '' }}">{{ userInfo.isHasQuestion || 0 }}</text>/150</view>
+  </view>
+
   <myButton btnTxt="保存" bind:click="next"></myButton>
 </view>

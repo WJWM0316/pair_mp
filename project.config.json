@@ -83,6 +83,13 @@
 					"pathName": "pages/userInfo/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/editUser/index",
+					"pathName": "pages/editUser/index",
+					"query": "key=isHasQuestion",
+					"scene": null
 				}
 			]
 		}

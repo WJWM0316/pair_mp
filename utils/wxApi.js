@@ -41,12 +41,36 @@ const wxApi = {
   // 选图上传
   chooseImageUpload(number) {
     return new Promise((resolve, reject) => {
+      let that = this
       wx.chooseImage({
         count: number && number || 1,
         sizeType: ['original', 'compressed'],
         sourceType: ['album'],
         success (res) {
-          resolve(res)
+          let formData = {
+            'img1': file.path,
+            'size': file.size || 0,
+            attach_type: 'img'
+          }
+          let { APIHOST } = that.globalData
+          wx.uploadFile({
+            url: `${APIHOST}/attaches`,
+            filePath: file.path,
+            methos: 'post',
+            name: 'file',
+            header: {
+              'Authorization': wx.getStorageSync('token')
+              // 'Wechat-Version': VERSION
+            }, 
+            formData,
+            success(res) {
+              let data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data
+              resolve(data)
+            },
+            fail(err) {
+              reject(err)
+            }
+          })
         },
         fail(err) {
           reject(err)
@@ -57,12 +81,36 @@ const wxApi = {
   // 拍照上传
   photoUpload() {
     return new Promise((resolve, reject) => {
+      let that = this
       wx.chooseImage({
         count: 1,
         sizeType: ['original', 'compressed'],
         sourceType: ['camera'],
         success (res) {
-          resolve(res)
+          let formData = {
+            'img1': file.path,
+            'size': file.size || 0,
+            attach_type: 'img'
+          }
+          let { APIHOST } = that.globalData
+          wx.uploadFile({
+            url: `${APIHOST}/attaches`,
+            filePath: file.path,
+            methos: 'post',
+            name: 'file',
+            header: {
+              'Authorization': wx.getStorageSync('token')
+              // 'Wechat-Version': VERSION
+            }, 
+            formData,
+            success(res) {
+              let data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data
+              resolve(data)
+            },
+            fail(err) {
+              reject(err)
+            }
+          })
         },
         fail(err) {
           reject(err)
