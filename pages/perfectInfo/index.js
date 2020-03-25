@@ -1,5 +1,6 @@
 import {
-  getSalaryListApi
+  getLabelListApi,
+  addLabelApi
 } from '../../api/common'
 import {
   updateUserSalaryApi,
@@ -14,19 +15,15 @@ let scrollTop = 0
 Page({
   data: {
     step: 1,
-    rangeArray: [],
-    value: [0],
+    salary: 2,
     formData: {
       ideal_describe: '',
       own_describe: ''
     },
     list: [],
-    moveParams: {
-      scrollLeft: 0
-    },
-    scrollLeft: 0,
     fixedDom: false,
-    canClick: false
+    canClick: false,
+    labels: []
   },
   onUnload() {
     fixedDomPosition = 0
@@ -41,21 +38,34 @@ Page({
     this.setData({ step })
   },
   init() {
-    switch(this.data.step) {
-      case 1:
-        this.setData({canClick: true})
-        break
-      case 2:
-        getSelectorQuery('.scroll-box').then(res => fixedDomPosition = res.top || 0)
-      default:
-        break
+    if(this.data.step) {
+      this.setData({canClick: true})
     }
+    getSelectorQuery('.scroll-box').then(res => fixedDomPosition = res.top || 0)
+    getLabelListApi().then(({ data }) => {
+      data.map((v,i) => v.active = !i ? true : false)
+      this.setData({list: data})
+    })
   },
   pickerResult(e) {
-    let value = e.detail.id
-    if(value[0] !== this.data.value[0]) {
-      this.setData({ value })
+    let salary = e.detail.id
+    if(salary !== this.data.salary) {
+      this.setData({ salary })
     }
+  },
+  check(e) {
+    let { list, labels } = this.data
+    let { child, parent } = e.currentTarget.dataset
+    let item = list[parent].children[child]
+    if(item.active) {
+      let i = labels.findIndex(v => v === item.labelId)
+      labels.splice(i, 1);
+      item.active = false
+    } else {
+      item.active = true
+      labels.push(item.labelId)
+    }
+    this.setData({ list, labels, canClick: !!labels.length})
   },
   bindInput(e) {
     let { formData } = this.data
@@ -89,23 +99,21 @@ Page({
     this.setData({ list })
   },
   next() {
-    let { formData } = this.data
-    let { rangeArray } = this.data
-    let { value } = this.data
+    let { formData, labels } = this.data
     let params = {}
     let funcApi = null
     switch(this.data.step) {
       case 1:
         params = {
-          salary: rangeArray[value[0]].id
+          salary: this.data.salary
         }
         funcApi = updateUserSalaryApi
         break
       case 2:
         params = {
-          salary: rangeArray[value[0]].id
+          label_id: labels.join(',')
         }
-        funcApi = updateUserSalaryApi
+        funcApi = addLabelApi
         break
       case 3:
         params = {
@@ -126,7 +134,7 @@ Page({
       let { step } = this.data
       step++
       this.setData({ step }, () => {
-        if(step === 4) {
+        if(step > 4) {
           wx.navigateBack({ delta: 1 })
         }
       })

@@ -8,7 +8,7 @@
             <view class="item"></view>
         </view>
         <view class="picker-box">
-            <scrollPicker pickerType="salary" initValue="{{ 4 }}" bind:pickerResult="pickerResult"></scrollPicker>
+            <scrollPicker pickerType="salary" initValue="{{ 0 }}" bind:pickerResult="pickerResult"></scrollPicker>
         </view>
     </view>
     <view class="step2" wx:elif="{{ step === 2}}">
@@ -35,10 +35,10 @@
                 wx:key="index"
                 class="item {{ item.active ? 'active' : '' }}"
                 bindtap="tabClick"
-                data-dom=".ul{{index}}"
-                data-index="{{index}}"
+                data-dom=".ul{{ index }}"
+                data-index="{{ index }}"
                 >
-                <text>{{item.positionName}}</text>
+                <text>{{item.name}}</text>
             </view>
             </scroll-view>
         </view>
@@ -49,9 +49,19 @@
             bindscroll="scroll"
             scroll-top="{{ scrollTop }}"
             >
-            <view class="ul ul{{index}}" wx:for="{{ list }}" wx:key="index">
-            <view class="key"><i class="icon iconfont icon_renshe"></i>人设{{index}}</view>
-            <view class="li active" wx:for="{{20}}" wx:key="item">{{item}}</view>
+            <view class="ul ul{{ index }}" wx:for="{{ list }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
+                <view class="key">
+                    <i class="icon iconfont icon_renshe"></i>{{ pItem.name }}
+                </view>
+                <view
+                    class="li {{ item.active ? 'active' : ''}}"
+                    wx:for="{{ pItem.children }}"
+                    data-parent="{{ pIndex }}"
+                    data-child="{{ index }}"
+                    wx:key="index"
+                    bindtap="check">
+                    {{ item.name }}
+                </view>
             </view>
         </view>
     </view>
@@ -76,7 +86,7 @@
                 data-key="own_describe"
                 />
         </view>
-        <view class="number {{ formData.own_describe.length ? 'strong' : ''}}">{{formData.own_describe.length}}/150</view>
+        <view class="number"><text class="{{ formData.own_describe.length ? 'strong' : ''}}">{{formData.own_describe.length}}</text>/150</view>
     </view>
     <view class="step4" wx:else>
         <view class="h1">我的理想型</view>
@@ -98,7 +108,7 @@
                 data-key="ideal_describe"
                 />
         </view>
-        <view class="number {{ formData.ideal_describe.length ? 'strong' : ''}}">{{formData.ideal_describe.length}}/150</view>
+        <view class="number"><text class="{{ formData.ideal_describe.length ? 'strong' : ''}}">{{formData.ideal_describe.length}}</text>/150</view>
     </view>
     <myButton canClick="{{ canClick }}" btnTxt="{{step !== 4 ? '下一步' : '完成'}}" bind:click="next"></myButton>
 </view>

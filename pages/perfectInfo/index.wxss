@@ -230,6 +230,7 @@
   display: inline-block;
   width: calc(calc(100vw - 160rpx - 44rpx) / 3);
   margin-right: 22rpx;
+  font-size: 30rpx;
 }
 .step2 .tags-box .li:before {
   content: '';
