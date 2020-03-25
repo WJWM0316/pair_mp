@@ -1,7 +1,9 @@
 const app =  getApp();
+let winWidth = app.globalData.systemInfo.windowWidth
 let data = [
   {
     messageId: "messageId0",
+    timestamp: '1585033928',
     path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
     data: {
       type: 'text',
@@ -72,56 +74,8 @@ let data = [
     }
   }
 ]
-let data1 = [
-  {
-    messageId: "messageId00",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'text',
-      text: '测试数据测试数据测试'
-    }
-  },
-  {
-    messageId: "messageId11",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'text',
-      own: true,
-      text: '测试数据测试数据测试测试数据测试数据测试测试数据测试数据测试'
-    }
-  },
-  {
-    messageId: "messageId22",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'img',
-      own: true,
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
-    }
-  },
-  {
-    messageId: "messageId33",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'audio',
-      own: true,
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
-    }
-  },
-  {
-    messageId: "messageId44",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      id: 1,
-      type: 'video',
-      own: true,
-      path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4',
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4?x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast'
-    }
-  }
-]
 let word = ''
-let firstMessageId = ''
+import {getSelectorQuery} from '../../../utils/util.js'
 import emoj from "../../../utils/emoji.js"
 Page({
 
@@ -130,7 +84,78 @@ Page({
    */
   data: {
     messageList: [
-      data
+      {
+        messageId: "messageId0",
+        timestamp: '1585033928',
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          type: 'text',
+          text: '测'
+        }
+      },
+      {
+        messageId: "messageId0",
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          type: 'text',
+          text: '1'
+        }
+      },
+      {
+        messageId: "messageId1",
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          type: 'text',
+          own: true,
+          text: '1'
+        }
+      },
+      {
+        messageId: "messageId3",
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          type: 'audio',
+          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
+        }
+      },
+      {
+        messageId: "messageId3",
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          type: 'audio',
+          own: true,
+          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
+        }
+      },
+      {
+        messageId: "messageId4",
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          id: 1,
+          type: 'video',
+          own: true,
+          path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4',
+          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4?x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast'
+        }
+      },
+      {
+        messageId: "messageId5",
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          type: 'img',
+          own: true,
+          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
+        }
+      },
+      {
+        messageId: "messageId6",
+        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
+        data: {
+          type: 'img',
+          own: true,
+          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
+        }
+      }
     ],
     firstMessageId: '',
     refresher: false,
@@ -165,10 +190,12 @@ Page({
         color: '#F46BA1'
       }
     ],
+    
     pageY: 0,
     word: '', // 编辑框的文本
-    rowNum: 0, // 编辑框行数
-    canSend: false // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
+    textHeight: 0, // 编辑框高度
+    canSend: false, // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
+    longpressData: {}
   },
 
   /**
@@ -189,20 +216,59 @@ Page({
    */
   onShow: function () {
   },
-  // 滚动至页面最底部
-  pageScrollToBot () {
-    wx.pageScrollTo({scrollTop: 3000})
+  // 长按功能
+  longpress (e) {
+    let dataset  = e.currentTarget.dataset
+    getSelectorQuery(`.${dataset.class}`).then(res => {
+      console.log(res, 11)
+      let longpressData = {
+        index: dataset.index
+      },
+      position = {}
+      if (res.top >= 80) {
+        if (dataset.object.data.own) {
+          longpressData.style = `right:0;top:-100rpx;`
+          longpressData.iconStyle = 'right:45rpx;bottom:-31rpx;'
+        } else {
+          longpressData.style = `left:0;top:-100rpx;`
+          longpressData.iconStyle = 'left:14rpx;bottom:-31rpx;'
+        }
+      } else {
+        if (dataset.object.data.own) {
+          longpressData.style = `right:0;bottom:-100rpx;`
+          longpressData.iconStyle = 'right:45rpx;top:-31rpx;transform: rotate(180deg);'
+        } else {
+          longpressData.style = `left:0;bottom:-100rpx;`
+          longpressData.iconStyle = 'left:14rpx;top:-31rpx;transform: rotate(180deg);'
+        }
+      }
+      this.setData({longpressData})
+    })
+  },
+  // 滚动到节点
+  pageScrollToDom (type = 'bottom') {
+    wx.pageScrollTo({
+      selector: type === 'top' ? `#msg0` : `#bottom`
+    })
+  },
+  // 复位
+  resetView (e) {
+    if ([0, 3, 4].includes(this.data.selectIndex)) {
+      this.pageScrollToDom('bottom')
+      this.setData({'selectIndex': null})
+    }
   },
   // 监听文本域高度变化，随时滚动页面
-  linechange () {
-    let rowNum = this.data.rowNum ++
-    this.pageScrollToBot()
-    this.setData({rowNum})
+  linechange (e) {
+    let textHeight = e.detail.height
+    if (0 < e.detail.lineCount && e.detail.lineCount <= 3) {
+      this.pageScrollToDom('bottom')
+      this.setData({textHeight})
+    }
   },
   // 选择emoji 或者 出场白
   selectResult (e) {
     word = word + e.detail
-    console.log(word, 1111111)
     this.setData({word, canSend: true}) 
   },
   // 文本域编辑
@@ -218,44 +284,14 @@ Page({
   bindblur (e) {
     this.setData({word})
   },
-  // 位置复原
-  resetView () {
-    wx.pageScrollTo({
-      scrollTop: 0,
-      success: () => {
-        this.setData({'selectIndex': null})
-      }
-    })
-  },
   // 选择编辑类型
   selectType (e) {
     let index = e.currentTarget.dataset.index
-    if ([0, 3, 4].includes(index)) {
-      this.setData({'selectIndex': index}, () => {
-        this.pageScrollToBot()
-     })
-    } else {
-      wx.pageScrollTo({
-        scrollTop: 0,
-        success: () => {
-          this.setData({'selectIndex': index})
-        }
-      })
-    }
-    
-  },
-  // 自定义下拉刷新
-  fresherrefresh (e) {
-    firstMessageId = this.data.messageList[0][0].messageId
-    let messageList = [data1, ...this.data.messageList]
-    this.setData({messageList, 'refresher': false})
-  },
-  // 自定义下拉刷新复位
-  refresherrestore (e) {
-    wx.nextTick(()=>{
-      this.setData({firstMessageId})
+    this.setData({'selectIndex': index}, () => {
+      this.pageScrollToDom('bottom')
     })
   },
+
   /**
    * 生命周期函数--监听页面隐藏
    */

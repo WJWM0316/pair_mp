@@ -75,15 +75,18 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   delete addHttpHead['Authorization']
                   delete addHttpHead['Authorization-Wechat']
                   break
+                case 500:
+                this.wxToast({title: '系统异常，请稍后访问'})
+                break
               }
             }
           } catch (e) {
-            console.log('服务器异常，请稍后访问')
+            this.wxToast({title: '系统异常，请稍后访问'})
           }
         },
         fail(e) {
           closeLoading()
-          console.log('服务器异常，请稍后访问')
+          this.wxToast({title: '系统异常，请稍后访问'})
         }
       })
     })
@@ -105,12 +108,12 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
         success: function (res0) {
           let code = res0.code
           wx.request({
-            url: `${getApp().globalData.APIHOST}/wechat/login/mini`,
+            url: `${getApp().globalData.APIHOST}/wechat/oauth/mini`,
             data: {code},
             header: addHttpHead,
             method: 'post',
             success(res) {
-              wx.setStorageSync('sessionToken', res.data.data.sessionToken)
+              if (res.data.data.sessionToken) wx.setStorageSync('sessionToken', res.data.data.sessionToken)
               noAuthRequests.forEach((item, index) => {
                 return item()
               })

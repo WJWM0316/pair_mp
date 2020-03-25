@@ -1,7 +1,6 @@
 .chatWrap {
   min-height: 100vh;
   background: #F1F4F4;
-  transition: all 0.2s ease;
 }
 .chatWrap .chatArea {
   padding: 20rpx 30rpx;
@@ -10,9 +9,29 @@
 .chatWrap .chatArea .scrollView {
   height: 100%;
 }
-.chatWrap .chatArea .message-list .message-item {
+.chatWrap .chatArea .message-list {
+  position: relative;
+}
+.chatWrap .chatArea .message-list .message-box {
   margin-bottom: 30rpx;
-  overflow: hidden;
+}
+.chatWrap .chatArea .message-list .message-box .time {
+  text-align: center;
+  font-size: 24rpx;
+  color: #9CA1AA;
+  line-height: 32rpx;
+  margin: 56rpx 0 18rpx;
+}
+.chatWrap .chatArea .message-list .message-box:last-child {
+  margin-bottom: 0;
+}
+.chatWrap .chatArea .message-list .message-item::before,
+.chatWrap .chatArea .message-list .message-item::after {
+  content: " ";
+  display: table;
+}
+.chatWrap .chatArea .message-list .message-item::after {
+  clear: both;
 }
 .chatWrap .chatArea .message-list .message-item .avatar {
   width: 80rpx;
@@ -22,7 +41,39 @@
 }
 .chatWrap .chatArea .message-list .message-item .message-content {
   border-radius: 24rpx;
-  overflow: hidden;
+  position: relative;
+  overflow: visible;
+}
+.chatWrap .chatArea .message-list .message-item .message-content .longpress {
+  width: 374rpx;
+  position: absolute;
+  height: 80rpx;
+  background: #1F252B;
+  border-radius: 8rpx;
+  font-size: 0;
+  z-index: 2;
+}
+.chatWrap .chatArea .message-list .message-item .message-content .longpress .icon {
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #1F252B transparent transparent transparent;
+  position: absolute;
+  bottom: -31rpx;
+  right: 45rpx;
+}
+.chatWrap .chatArea .message-list .message-item .message-content .longpress .textBtn {
+  display: inline-block;
+  line-height: 80rpx;
+  padding: 0 32rpx;
+  font-size: 30rpx;
+  border-right: 1rpx solid #fff;
+  color: #fff;
+}
+.chatWrap .chatArea .message-list .message-item .message-content .longpress .textBtn:last-child {
+  border-right: 0;
 }
 .chatWrap .chatArea .message-list .message-item .message-content .text {
   max-width: 460rpx;
@@ -59,6 +110,11 @@
 }
 .chatWrap .console {
   width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #F1F4F4;
+  z-index: 5;
 }
 .chatWrap .console .textEdit {
   padding: 18rpx 114rpx 12rpx 26rpx;
@@ -72,11 +128,10 @@
 }
 .chatWrap .console .textEdit .textarea-box .textarea {
   width: 100%;
-  min-height: 40rpx;
-  max-height: 120rpx;
   font-size: 30rpx;
   color: #1F252B;
-  line-height: 40rpx;
+  line-height: 38rpx;
+  height: 38rpx;
 }
 .chatWrap .console .textEdit .send {
   bottom: 12rpx;
@@ -118,11 +173,14 @@
   position: relative;
   z-index: 1;
 }
-.chatWrap .console-area {
+.chatWrap .console .console-area {
   width: 100%;
   height: 400rpx;
 }
-.chatWrap .console-area .block {
+.chatWrap .console .console-area .block {
   width: 100%;
   height: 100%;
+}
+.chatWrap #bottom {
+  transition: all 0.5s;
 }

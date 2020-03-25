@@ -1,38 +1,52 @@
 <view class="chatWrap">
-  <view class="chatArea" bindtap="resetView" style="{{parse.setStyle('chatArea', rowNum)}}">
-    <scroll-view 
-      scroll-y="{{true}}"
-      refresher-enabled="{{true}}"
-      scroll-anchoring="{{true}}"
-      refresher-triggered="{{refresher}}"
-      scroll-into-view="{{firstMessageId}}"
-      class="scrollView"
-      bindrefresherrefresh="fresherrefresh"
-      bindrefresherrestore="refresherrestore"
-    >
-      <view class="message-list" wx:for="{{messageList}}" wx:key="id" wx:for-item="list">
-        <view class="message-item {{item.data.own ? 'mine' : 'others'}}" wx:for="{{list}}" wx:key="id"  wx:for-item="item" id="{{item.messageId}}">
-          <view class="avatar">
-            <i-image src="{{item.path}}"></i-image>
-          </view>
-          <view class="message-content {{item.data.type}}">
-            <block wx:if="{{item.data.type === 'text'}}">
-              <view class="text">{{item.data.text}}</view>
-            </block>
-            <block wx:if="{{item.data.type === 'img'}}">
-              <msg-image message="{{item.data}}"></msg-image>
-            </block>
-            <block wx:if="{{item.data.type === 'audio'}}">
-              <msg-audio own="{{item.data.own}}" message="{{item.data}}"></msg-audio>
-            </block>
-            <block wx:if="{{item.data.type === 'video'}}">
-              <msg-video message="{{item.data}}"></msg-video>
-            </block>
+  <view class="chatArea" bindtap="resetView">
+    <view class="scrollView">
+      <chat-header></chat-header>
+
+      <view class="message-list">
+        <view class="message-box" wx:for="{{messageList}}" wx:key="id">
+          <view class="time" wx:if="{{item.timestamp}}">{{filters.activeTime(item.timestamp)}}</view>
+          <view class="message-item {{item.data.own ? 'mine' : 'others'}}" id="msg{{index}}">
+            <view class="avatar">
+              <i-image src="{{item.path}}"></i-image>
+            </view>
+            <view 
+              class="message-content {{item.data.type}} msgCon{{index}}" 
+              bindlongpress="longpress" 
+              data-object="{{item}}" 
+              data-class="msgCon{{index}}"
+              data-index="{{index}}"
+              >
+              <block wx:if="{{item.data.type === 'text'}}">
+                <view class="text">{{item.data.text}}</view>
+              </block>
+              <block wx:if="{{item.data.type === 'img'}}">
+                <msg-image message="{{item.data}}"></msg-image>
+              </block>
+              <block wx:if="{{item.data.type === 'audio'}}">
+                <msg-audio own="{{item.data.own}}" message="{{item.data}}"></msg-audio>
+              </block>
+              <block wx:if="{{item.data.type === 'video'}}">
+                <msg-video message="{{item.data}}"></msg-video>
+              </block>
+              <view 
+                class="longpress"
+                style="{{longpressData.style}}"
+                wx:if="{{longpressData.index === index}}"
+                >
+                <i class="icon" style="{{longpressData.iconStyle}}"></i>
+                <text class="textBtn">复制</text>
+                <text class="textBtn">撤回</text>
+                <text class="textBtn">删除</text>
+              </view>
+            </view>
           </view>
         </view>
       </view>
-    </scroll-view>
+      
+    </view>
   </view>
+  
   <view class="console">
     <view class="textEdit">
       <view class="textarea-box">
@@ -43,7 +57,7 @@
           placeholder-class="textarea-placeholder"
           disable-default-padding="true"
           maxlength="1000"
-          auto-height="true" 
+          style="{{parse.setStyle('textarea', textHeight)}}"
           bindlinechange="linechange"
           bindinput="bindinput" 
           bindblur="bindblur"
@@ -63,13 +77,16 @@
         <i wx:if="{{selectIndex === index && item.color}}" style="background:{{item.color}}" class="selected"></i>
       </view>
     </view>
+    <view class="console-area" hidden="{{parse.hidden('console-area', selectIndex)}}">
+      <view class="block" hidden="{{parse.hidden('record', selectIndex)}}"><record></record></view>
+      <view class="block" hidden="{{parse.hidden('emoji', selectIndex)}}"><emoji bindselectResult="selectResult"></emoji></view>
+      <view class="block" hidden="{{parse.hidden('debutWord', selectIndex)}}"><debutWord bindselectResult="selectResult"></debutWord></view>
+    </view>
   </view>
-  <view class="console-area" hidden="{{parse.hidden('console-area', selectIndex)}}">
-    <view class="block" hidden="{{parse.hidden('record', selectIndex)}}"><record></record></view>
-    <view class="block" hidden="{{parse.hidden('emoji', selectIndex)}}"><emoji bindselectResult="selectResult"></emoji></view>
-    <view class="block" hidden="{{parse.hidden('debutWord', selectIndex)}}"><debutWord bindselectResult="selectResult"></debutWord></view>
-  </view>
+  <view id="bottom" style="{{parse.setStyle('chatArea', textHeight, selectIndex)}}"></view>
 </view>
+<wxs src="../../../utils/filters.wxs" module="filters" />
+
 <wxs module="parse">
   module.exports = {
       hidden: function (type, selectIndex) {
@@ -88,10 +105,14 @@
             break
         }
       },
-      setStyle : function(type, rowNum){
+      setStyle : function(type, textHeight, selectIndex){
+        var consoleHeight = [0, 3, 4].indexOf(selectIndex) !== -1 ? 400 : 0
         switch (type) {
           case 'chatArea':
-            return 'height: calc(100vh - 188rpx - ' + rowNum * 20 + 'rpx);';
+            return 'height: calc(148rpx + ' + textHeight + 'px + ' + consoleHeight + 'rpx)';
+            break
+          case 'textarea':
+            return 'height:' + textHeight + 'px;';
             break
         }
       },
