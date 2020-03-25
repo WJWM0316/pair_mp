@@ -12,7 +12,9 @@
     "pages/login/index",
     "pages/userInfo/index",
     "pages/editUser/index",
-    "pages/answerList/index"
+    "pages/answerList/index",
+    "pages/album/index/index",
+    "pages/album/add/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

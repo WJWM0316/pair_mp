@@ -1,13 +1,6 @@
-import {
-  hasCompanyEmailApi
-} from '../../api/common.js'
 const app = getApp()
 Page({
   data: {
-    CDNPATH: '',
-    showEmailEntry: false,
-    email: '',
-    emailSuffix: '',
     show: false,
     itemList: [
       {
@@ -23,20 +16,6 @@ Page({
         action: 'cancle'
       }
     ]
-  },
-  onLoad(options) {
-    let { CDNPATH } = app.globalData
-    this.setData({ CDNPATH })
-    options.companyId && this.hasCompanyEmail(options)
-  },
-  hasCompanyEmail(options) {
-    hasCompanyEmailApi({company_id: options.companyId}).then(({ data }) => {
-      let showEmailEntry = data.emailSuffix ? data.emailSuffix : false
-      this.setData({showEmailEntry, ...data})
-    })
-  },
-  stopPageScroll() {
-	  return false
   },
   open(e) {
     let params = e
@@ -64,15 +43,5 @@ Page({
       default:
         break
     }
-  },
-  close() {
-	  this.setData({ show: false})
-  },
-  fillEmail() {
-    let { PAGEPATH } = app.globalData
-    let { emailSuffix } = this.data
-    wx.navigateTo({
-      url: `${PAGEPATH}/email/index?emailSuffix=${emailSuffix}`
-    })
   }
 })

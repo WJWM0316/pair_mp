@@ -15,15 +15,5 @@
     </view>
   </view>
   <view class="tips"><i class="icon iconfont icon_baomi"></i>提交的信息仅供认证使用，将严格保密</view>
-  <view class="drawer" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
-    <view class="mask"></view>
-    <i-image src="{{CDNPATH}}img_picker_jobpic@3x.png" my-class="cover-image" mode="widthFix"></i-image>
-    <view class="content {{ show ? 'show' : ''}}">
-      <view class="action-ul">
-        <view class="item" bindtap="chooseImage" data-from="album">从相册选择相片</view>
-        <view class="item no-line" bindtap="chooseImage" data-from="camera">拍摄</view>
-        <view class="item" bindtap="close">取消</view>
-      </view>
-    </view>
-  </view>
+  <actionSheet show="{{ show }}" itemList="{{ itemList }}" bind:drawerAction="drawerAction"></actionSheet>
 </view>

@@ -18,7 +18,7 @@
           wx:for="{{ pItem }}"
           wx:key="cIndex"
           wx:for-index="cIndex">
-            {{ item.key || item.title || item.text }}
+            {{ item.key || item.title || item.text || item[rangeKey] }}
         </view>
       </picker-view-column>
     </block> 

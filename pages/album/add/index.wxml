@@ -1,0 +1,18 @@
+<view class="upload">
+  <view class="preveiw-box">
+    <view class="inner">
+      <view class="tips">封面</view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="btn btn-add" bindtap="open">
+      <view class="btn-cover">添加</view>
+      <view class="shadow"></view>
+    </view>
+    <view class="btn btn-save" data-action="save" bindtap="todoAction">
+      <view class="btn-cover">保存</view>
+      <view class="shadow"></view>
+    </view>
+  </view>
+  <actionSheet show="{{ show }}" itemList="{{ itemList }}" bind:drawerAction="drawerAction"></actionSheet>
+</view>

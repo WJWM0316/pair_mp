@@ -25,6 +25,11 @@ Page({
     canClick: false,
     labels: []
   },
+  onLoad(options) {
+    if(options.step) {
+      this.setData({step: options.step})
+    }
+  },
   onUnload() {
     fixedDomPosition = 0
     scrollTop = 0

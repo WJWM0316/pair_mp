@@ -1,7 +1,7 @@
 
 <view class="edit">
 
-  <view class="input-nickname" wx:if="{{options.key === 'nickname'}}">
+  <view class="box input-nickname" wx:if="{{options.key === 'nickname'}}">
     <input
       placeholder-class="holderStyle"
       placeholder="请输入昵称"
@@ -14,19 +14,31 @@
       <view class="tips">好名字可以让你的朋友更容易记住你。</view>
   </view>
 
-  <view class="input-birth" wx:if="{{options.key === 'birth'}}">
-    <scrollPicker pickerType="birthday" initValue="{{ userInfo.birth }}"></scrollPicker>
+  <view class="box input-position" wx:if="{{options.key === 'positionName'}}">
+    <input
+      placeholder-class="holderStyle"
+      placeholder="请输入职位"
+      bindinput="bindInput"
+      data-key="positionName"
+      value="{{ userInfo.positionName }}"
+      maxlength="20"
+      class="value {{ userInfo.positionName ? 'bold' : '' }}"
+      />
   </view>
 
-  <view class="input-birth" wx:if="{{options.key === 'resident'}}">
-    <scrollPicker pickerType="resident" initValue="{{ userInfo.residentArr[0].areaId + '-' + userInfo.residentArr[1].areaId + '-' + userInfo.residentArr[2].areaId}}"></scrollPicker>
+  <view class="box input-position" wx:if="{{options.key === 'school'}}">
+    <input
+      placeholder-class="holderStyle"
+      placeholder="请输入职位"
+      bindinput="bindInput"
+      data-key="school"
+      value="{{ userInfo.school }}"
+      maxlength="20"
+      class="value {{ userInfo.school ? 'bold' : '' }}"
+      />
   </view>
 
-  <view class="input-birth" wx:if="{{options.key === 'height'}}">
-    <scrollPicker pickerType="height" initValue="{{ userInfo.height }}"></scrollPicker>
-  </view>
-
-  <view class="input-company" wx:if="{{options.key === 'companyName'}}">
+  <view class="box input-company" wx:if="{{options.key === 'companyName'}}">
     <input
       placeholder-class="holderStyle"
       placeholder="请输入公司名称"
@@ -56,7 +68,48 @@
       maxlength="150"
       class="value {{ userInfo.ownDescribe ? 'bold' : '' }}"
       />
-      <view class="number"><text class="{{ userInfo.ownDescribe ? 'color' : '' }}">{{ userInfo.ownDescribe || 0 }}</text>/150</view>
+      <view class="number"><text class="{{ userInfo.ownDescribe ? 'color' : '' }}">{{ userInfo.ownDescribe.length || 0 }}</text>/150</view>
+  </view>
+
+  <view class="box input-ownDescribe" wx:if="{{ options.key === 'idealDescribe' }}">
+    <textarea
+      placeholder-class="holderStyle"
+      placeholder="请输入自我描述"
+      bindinput="bindInput"
+      data-key="idealDescribe"
+      value="{{ userInfo.idealDescribe }}"
+      maxlength="150"
+      class="value {{ userInfo.idealDescribe ? 'bold' : '' }}"
+      />
+      <view class="number"><text class="{{ userInfo.idealDescribe ? 'color' : '' }}">{{ userInfo.idealDescribe.length || 0 }}</text>/150</view>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'birth'}}">
+    <scrollPicker pickerType="birthday" initValue="{{ userInfo.birth }}" bind:pickerResult="pickerResult"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'resident'}}">
+    <scrollPicker bind:pickerResult="pickerResult" pickerType="resident" initValue="{{ userInfo.residentArr[0].areaId + '-' + userInfo.residentArr[1].areaId + '-' + userInfo.residentArr[2].areaId }}"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'hometown'}}">
+    <scrollPicker bind:pickerResult="pickerResult" pickerType="hometown" initValue="{{ userInfo.residentArr[0].areaId + '-' + userInfo.residentArr[1].areaId }}"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'height'}}">
+    <scrollPicker pickerType="height" initValue="{{ userInfo.height }}" bind:pickerResult="pickerResult"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'occupation'}}">
+    <scrollPicker pickerType="occupation" initValue="{{ '1-2' }}" bind:pickerResult="pickerResult"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'salary'}}">
+    <scrollPicker pickerType="salary" initValue="{{ '1-2' }}" bind:pickerResult="pickerResult"></scrollPicker>
+  </view>
+
+  <view class="input-birth" wx:if="{{options.key === 'degree'}}">
+    <scrollPicker pickerType="degree" initValue="{{ userInfo.degree }}" bind:pickerResult="pickerResult"></scrollPicker>
   </view>
 
   <view class="box input-ownDescribe" wx:if="{{ options.key === 'isHasQuestion' }}">
@@ -69,7 +122,7 @@
       maxlength="150"
       class="value {{ userInfo.isHasQuestion ? 'bold' : '' }}"
       />
-      <view class="number"><text class="{{ userInfo.isHasQuestion ? 'color' : '' }}">{{ userInfo.isHasQuestion || 0 }}</text>/150</view>
+      <view class="number"><text class="{{ userInfo.isHasQuestion ? 'color' : '' }}">{{ userInfo.isHasQuestion.length || 0 }}</text>/150</view>
   </view>
 
   <myButton btnTxt="保存" bind:click="next"></myButton>

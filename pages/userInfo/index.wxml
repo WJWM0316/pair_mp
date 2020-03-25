@@ -41,7 +41,7 @@
       <view class="value">{{ userInfo.height }}cm</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li" bindtap="routeJump" data-key="resident">
+    <view class="li" bindtap="routeJump" data-key="hometown">
       <view class="label">
         <view class="key">家乡</view>
       </view>
@@ -52,14 +52,14 @@
   </view>
 
   <view class="ul society">
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="occupation">
       <view class="label">
         <view class="key">职业</view>
       </view>
       <view class="value">移动互联网丨产品</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="companyName">
       <view class="label">
         <view class="key">公司</view>
       </view>
@@ -71,32 +71,32 @@
       </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="positionName">
       <view class="label">
         <view class="key">担任岗位</view>
       </view>
-      <view class="value">产品经理</view>
+      <view class="value">{{userInfo.positionName}}</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="salary">
       <view class="label">
         <view class="key">年收入</view>
       </view>
       <view class="value">{{ userInfo.salaryDesc }}</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="school">
       <view class="label">
         <view class="key">学校</view>
       </view>
-      <view class="value">添加学校</view>
+      <view class="value">{{ userInfo.school }}</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li">
+    <view class="li" bindtap="routeJump" data-key="degree">
       <view class="label">
         <view class="key">学历</view>
       </view>
-      <view class="value">添加学历</view>
+      <view class="value">{{ userInfo.degreeDesc }}</view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
   </view>
@@ -105,10 +105,10 @@
       <view class="label">
         <view class="key">自我描述</view>
       </view>
-      <view class="func-btn" wx:if="{{ 1 < 10}}">完善描述</view>
-      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:if="{{ 1 > 10}}"></i>
+      <view class="func-btn" wx:if="{{ !userInfo.ownDescribe }}">完善描述</view>
+      <i bindtap="routeJump" data-key="ownDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
-    <view class="desc" wx:if="{{ 1 > 10}}">本人作风优良、待人诚恳，人际关系良好，处事冷静稳健，能合理地统筹安排生活中的事务。</view>
+    <view class="desc" wx:if="{{ userInfo.ownDescribe }}">{{ userInfo.ownDescribe }}</view>
   </view>
   <view class="ul myLabel">
     <view class="li">
@@ -154,10 +154,10 @@
       <view class="label">
         <view class="key">我的理想型</view>
       </view>
-      <view class="func-btn" wx:if="{{ 1 > 10}}">完善理想型</view>
-      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:if="{{ 1 > 0}}"></i>
+      <view class="func-btn" wx:if="{{ !userInfo.idealDescribe}}">完善理想型</view>
+      <i bindtap="routeJump" data-key="idealDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
-    <view class="desc" wx:if="{{ 1 > 0}}">本人作风优良、待人诚恳，人际关系良好，处事冷静稳健，能合理地统筹安排生活中的事务。</view>
+    <view class="desc" wx:if="{{ userInfo.idealDescribe }}">{{userInfo.idealDescribe}}</view>
   </view>
   <view class="ul answer">
     <view class="li">

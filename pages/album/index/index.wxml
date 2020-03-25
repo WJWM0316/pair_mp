@@ -1,0 +1,22 @@
+<view class="album">
+    <view class="photo-box"></view>
+    <view class="photo-ul">
+      <view class="item" wx:for="{{100}}" wx:key="item">
+        <view class="inner">
+          <view class="action" bindtap="open" data-action="open" data-index="{{item}}"><i class="icon iconfont icon_gengduo"></i></view>
+          <view class="txt">1</view>
+        </view>
+      </view>
+    </view>
+    <view class="footer">
+      <view class="btn btn-add">
+        <view class="btn-cover">添加</view>
+        <view class="shadow"></view>
+      </view>
+      <view class="btn btn-save">
+        <view class="btn-cover">保存</view>
+        <view class="shadow"></view>
+      </view>
+    </view>
+    <actionSheet show="{{ show }}" itemList="{{ itemList }}" bind:drawerAction="drawerAction"></actionSheet>
+</view>

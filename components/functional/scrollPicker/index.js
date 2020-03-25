@@ -25,6 +25,8 @@ Component({
   methods: {
     init() {
       let value = []
+      rangeArray = []
+      rtnResult = {}
       switch(this.data.pickerType) {
         case 'birthday':
           let days = []
@@ -80,13 +82,13 @@ Component({
               value: i
             })
           }
-          rangeArray[0] = heights
+          rangeArray = heights
           if(this.data.initValue) {
             let heightIndex = heights.findIndex((v,i,a) => v.value == this.data.initValue) || 0
             value = [ heightIndex ]
             this.setData({active: value})
           }
-          this.setData({ rangeArray, value })
+          this.setData({ rangeArray, value, mode: 'selector', rangeKey: 'value' })
           break
         case 'resident':
           getAreaListApi({level: 4}).then(({ data }) => {
@@ -113,33 +115,34 @@ Component({
           })
           break
         case 'hometown':
-          getAreaListApi().then(({ data }) => {
-            let provinces1 = data
-            let citys1 = []
+          getAreaListApi({level: 3}).then(({ data }) => {
+            let provinces = data
+            let citys = []
             if(this.data.initValue) {
               let tem = this.data.initValue.split('-')
-              let provinceIndex = data.findIndex((v,i,a) => v.areaId == tem[0]) || 0
-              citys1 = data[provinceIndex].children
-              let cityIndex = citys1.findIndex((v,i,a) => v.areaId == tem[1]) || 0
+              let provinceIndex = provinces.findIndex((v,i,a) => v.areaId == tem[0]) || 0
+              citys = provinces[provinceIndex].children
+              let cityIndex = citys.findIndex((v,i,a) => v.areaId == tem[1]) || 0
               value = [provinceIndex, cityIndex]
             } else {
-              value = [0,0]
-              citys1 = provinces1[0].children || []
+              value = [0, 0]
+              citys = provinces[0].children || []
             }
-            rangeArray[0] = provinces1
+            rangeArray[0] = provinces
             rangeArray[1] = citys
             this.setData({ rangeArray, value, active: value })
           })
           break
-        case 'education':
+        case 'degree':
           getAggrApi({type: 'degree'}).then(({ data }) => {
+            let degreeArr = data.degreeArr
             if(this.data.initValue) {
-              let educationIndex = data.findIndex((v,i,a) => v.value == this.data.initValue) || 0
-              value = [educationIndex]
+              let degreeIndex = degreeArr.findIndex((v,i,a) => v.id == this.data.initValue) || 0
+              value = [degreeIndex]
               this.setData({active: value})
             }
-            rangeArray[0] = data
-            this.setData({ rangeArray, value })
+            rangeArray = degreeArr
+            this.setData({ rangeArray, value, mode: 'selector', rangeKey: 'name'})
           })
           break
         case 'salary':
@@ -152,6 +155,26 @@ Component({
             }
             rangeArray = salaryArr
             this.setData({ rangeArray, value, mode: 'selector', rangeKey: 'name' })
+          })
+          break
+        case 'occupation':
+          getAggrApi({type: 'industry'}).then(({ data }) => {
+            let industry = data.industryArr
+            let children = []
+            if(this.data.initValue) {
+              let tem = this.data.initValue.split('-')
+              let industryIndex = industry.findIndex((v,i,a) => v.labelId == tem[0]) || 0              
+              children = industry[tem[0]].children
+              let childrenIndex = children.findIndex((v,i,a) => v.labelId == tem[1]) || 0
+              value = [industryIndex, childrenIndex]
+              this.setData({ active: value })
+            } else {
+              children = industry[0].children
+              value = [0,0]
+            }
+            rangeArray[0] = industry
+            rangeArray[1] = children
+            this.setData({ rangeArray, value, mode: 'multiSelector', rangeKey: 'name' })
           })
           break
       }
@@ -179,7 +202,16 @@ Component({
           }
           rangeArray[1] = months
           rangeArray[2] = days
-          this.setData({ rangeArray })
+          let year = rangeArray[0][value[0]].value
+          let month = rangeArray[1][value[1]].value
+          let day = rangeArray[2][value[2]].value
+          rtnResult = {
+            year,
+            month,
+            day,
+            desc: `${year}-${month}-${day}`
+          }
+          this.setData({ rangeArray})
           break
         case 'resident':
           let provinces = rangeArray[0]
@@ -187,25 +219,50 @@ Component({
           let areas = citys[value[1]].children
           rangeArray[1] = citys
           rangeArray[2] = areas
+          let province = rangeArray[0][value[0]].title
+          let city = rangeArray[1][value[1]].title
+          let area = rangeArray[2][value[2]].title
+          rtnResult = {
+            province,
+            city,
+            area,
+            desc: `${province},${city},${area}`
+          }
           this.setData({ rangeArray })
           break
         case 'hometown':
           let citys1 = rangeArray[0][value[0]].children
           rangeArray[1] = citys1
+          rtnResult = {
+            ...rangeArray[1][value[1]]
+          }
           this.setData({ rangeArray })
           break
-        case 'education':
+        case 'degree':
           rtnResult = {
-            ...rangeArray[0][value[0]]
+            ...rangeArray[value[0]]
           }
           break
         case 'salary':
           rtnResult = {
             ...rangeArray[value[0]]
           }
-          this.triggerEvent('pickerResult', rtnResult)
+          break
+        case 'height':
+          rtnResult = {
+            ...rangeArray[value[0]]
+          }
+          break
+        case 'occupation':
+          let industry = rangeArray[0][value[0]].children
+          rangeArray[1] = industry
+          rtnResult = {
+            ...rangeArray[1][value[1]]
+          }
+          this.setData({ rangeArray })
           break
       }
+      this.triggerEvent('pickerResult', rtnResult)
       this.setData({active: value})
     }
   }
