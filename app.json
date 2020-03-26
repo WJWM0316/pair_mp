@@ -13,9 +13,7 @@
     "pages/userInfo/index",
     "pages/editUser/index",
     "pages/answer/index/index",
-    "pages/answer/add/index",
-    "pages/album/index/index",
-    "pages/album/add/index"
+    "pages/album/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

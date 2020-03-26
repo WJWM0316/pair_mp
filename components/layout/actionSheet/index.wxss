@@ -98,6 +98,9 @@
 .drawer .item:last-child {
   margin-top: 16rpx;
 }
+.drawer .delete {
+  color: #E85274;
+}
 .drawer .no-line {
   margin-bottom: 16rpx;
   color: #E85274;

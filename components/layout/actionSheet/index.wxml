@@ -12,7 +12,7 @@
   <view class="content {{ show ? 'show' : ''}}">
     <view class="action-ul">
       <view
-        class="item"
+        class="item {{ item.action }}"
         bindtap="todoAction"
         data-action="{{item.action}}"
         wx:for="{{ itemList }}"

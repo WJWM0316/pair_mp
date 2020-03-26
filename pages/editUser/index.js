@@ -52,7 +52,6 @@ Page({
       careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
     }
     this.setData({ userInfo, careerVerifyInfo, pickIntention }, () => wx.removeStorageSync('user'))
-    console.log({ userInfo, careerVerifyInfo, pickIntention })
   },
   bindInput(e) {
     let { userInfo } = this.data

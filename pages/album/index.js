@@ -2,7 +2,10 @@ const app = getApp()
 Page({
   data: {
     show: false,
-    itemList: [
+    itemList: []
+  },
+  open1(e) {
+    let itemList = [
       {
         text: '设置为封面',
         action: 'set'
@@ -16,10 +19,26 @@ Page({
         action: 'cancle'
       }
     ]
-  },
-  open(e) {
     let params = e
-    this.setData({ show: true})
+    this.setData({ show: true, itemList})
+  },
+  open2(e) {
+    let itemList = [
+      {
+        text: '从相册选择相片',
+        action: 'photo'
+      },
+      {
+        text: '拍摄',
+        action: 'camera'
+      },
+      {
+        text: '取消',
+        action: 'cancle'
+      }
+    ]
+    let params = e
+    this.setData({ show: true, itemList})
   },
   drawerAction(e) {
     let detail = e.detail
@@ -52,6 +71,20 @@ Page({
           cancelBack() {
             console.log(2)
           }
+        })
+        break
+      case 'photo':
+        that.setData({ show: false})
+        app.chooseImageUpload(1).then(({ data }) => {
+          let result = data.attachListItem[0]
+          console.log(result)
+        })
+        break
+      case 'camera':
+        that.setData({ show: false})
+        app.photoUpload(1).then(({ data }) => {
+          let result = data.attachListItem[0]
+          console.log(result)
         })
         break
       default:

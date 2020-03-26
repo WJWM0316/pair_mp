@@ -39,6 +39,18 @@
   position: absolute;
   right: 72rpx;
 }
+.user-page .album-box .tips {
+  position: absolute;
+  right: 15rpx;
+  top: 15rpx;
+  font-size: 24rpx;
+  color: white;
+}
+.user-page .album-box .icon {
+  font-size: 24rpx;
+  color: white;
+  margin-right: 5rpx;
+}
 .user-page .icon-1 {
   width: 30rpx;
   height: 30rpx;
