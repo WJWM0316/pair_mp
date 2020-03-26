@@ -46,7 +46,7 @@ Page({
     this.setData({ show: true, itemList, type: 'photo'})
   },
   addAlbum(id) {
-    let { userInfo, result, cover } = this.data
+    let { userInfo, cover } = this.data
     let userAlbumTempList = userInfo.userAlbumTempList
     userAlbumTempList = userAlbumTempList.filter(v => !v.isCover)
     let photoIds = userAlbumTempList.map(v => v.id)

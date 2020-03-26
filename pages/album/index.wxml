@@ -20,7 +20,7 @@
         <view class="btn-cover">添加</view>
         <view class="shadow"></view>
       </view>
-      <view class="btn btn-save" bindtap="addAlbum">
+      <view class="btn btn-save" bindtap="addAlbum" wx:if="{{result.id}}">
         <view class="btn-cover">保存</view>
         <view class="shadow"></view>
       </view>
