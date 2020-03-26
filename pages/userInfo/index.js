@@ -56,5 +56,13 @@ Page({
     wx.navigateTo({
       url: `${PAGEPATH}/answer/index/index`
     })   
+  },
+  updateQuestion(e) {
+    let { info } = e.currentTarget.dataset
+    let { PAGEPATH } = app.globalData
+    wx.setStorageSync('question', info)
+    wx.navigateTo({
+      url: `${PAGEPATH}/answer/add/index?id=${info.id}`
+    })   
   }
 })

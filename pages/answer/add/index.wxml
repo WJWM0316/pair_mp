@@ -6,11 +6,11 @@
         placeholder="请输入问答"
         bindinput="bindInput"
         data-key="body"
-        value="{{ body }}"
+        value="{{ info.body }}"
         maxlength="100"
-        class="value {{ body ? 'bold' : '' }}"
+        class="value {{ info.body ? 'bold' : '' }}"
         />
-        <view class="number"><text class="{{ body ? 'color' : '' }}">{{ body.length || 0 }}</text>/100</view>
+        <view class="number"><text class="{{ info.body ? 'color' : '' }}">{{ info.body.length || 0 }}</text>/100</view>
     </view>
     <view class="footer">
       <view class="btn btn-add">

@@ -4,31 +4,32 @@ import {
 let app = getApp()
 Page({
   data: {
-    info: {},
-    options: {},
-    canClick: false,
-    body: ''
+    info: {
+      body: ''
+    },
+    options: {}
   },
   onLoad(options) {
     let info = wx.getStorageSync('question')
-    this.setData({ options, info}, () => wx.removeStorageSync('question'))
+    this.setData({ options, info: Object.assign(this.data.info, info)}, () => wx.removeStorageSync('question'))
   },
   bindInput(e) {
-    let { body } = this.data
+    let { info } = this.data
     let { value } = e.detail
-    if(body !== value) {
-      this.setData({body: value})
+    if(info.body !== value) {
+      info.body = value
+      this.setData({ info })
     }
   },
   save() {
-    let { info, body } = this.data
-    if(!body.trim()) {
+    let { info } = this.data
+    if(!info.body.trim()) {
       app.wxToast({title: '请添加问答内容'})
       return
     }
     let params = {
-      question_id: info.id,
-      body
+      question_id: info.questionId || info.id,
+      body: info.body
     }
     postQuestionApi(params).then(res => {
       wx.navigateBack({ delta: 1 })

@@ -1,0 +1,70 @@
+@import '../../../styles/_base.less';
+@import '../../../styles/_mixins.less';
+
+.holderStyle {
+  color: @text-color-4;
+  font-size:36rpx;
+  font-weight: unset;
+}
+
+.step1 {
+  background: white;
+  border-radius:36rpx 36rpx 0rpx 0rpx;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 96rpx 80rpx;
+  display: none;
+  .h1 {
+    height: 56rpx;
+    font-size: 48rpx;
+    font-weight: 700;
+    color: @text-color-1;
+    line-height: 56rpx;
+    position: relative;
+  }
+  .progress {
+    height: 8rpx;
+    line-height: 8rpx;
+    margin-top: 20rpx;
+    position: relative;
+    .item {
+      width: 60rpx;
+      height: 8rpx;
+      background: @background-color-base;
+      border-radius: 9rpx;
+      margin-right: 8rpx;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .active-item {
+      background: @primary-color;
+    }
+  }
+  .picker-box {
+    margin-top: 93rpx;
+  }
+  .indicator {
+    height: 120rpx;
+    position: relative;
+    &:before{
+      height: 1rpx;
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      .line(@border-color-base)
+    }
+    &:after{
+      height: 1rpx;
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      .line(@border-color-base)
+    }
+  }
+}

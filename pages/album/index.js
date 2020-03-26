@@ -44,8 +44,8 @@ Page({
     let { cover, userInfo } = this.data
     let photo = userInfo.userAlbumTempList.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
-
-    })
+      wx.navigateBack({ delta: 1 })
+    }).catch(err => app.wxToast({title: err.msg}))
   },
   drawerAction(e) {
     let detail = e.detail

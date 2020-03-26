@@ -1,0 +1,12 @@
+<view class="step1">
+    <view class="h1">年收入范围</view>
+    <view class="progress">
+        <view class="item active-item"></view>
+        <view class="item"></view>
+        <view class="item"></view>
+        <view class="item"></view>
+    </view>
+    <view class="picker-box">
+        <scrollPicker pickerType="salary" initValue="{{ '' }}" bind:pickerResult="pickerResult"></scrollPicker>
+    </view>
+</view>
