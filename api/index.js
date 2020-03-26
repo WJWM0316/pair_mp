@@ -121,7 +121,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
               noAuthRequests = []
             },
             fail(e) {
-              console.log('服务器异常，请稍后访问')
+              console.log('服务器异常，请稍后访问', e)
             }
           })
         },

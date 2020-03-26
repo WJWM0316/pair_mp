@@ -20,9 +20,8 @@ App({
     Object.assign(this.globalData, config)
 
     // 开启socket
-    Socket.create({url: this.globalData.SOCKETPATH})
-    Socket.onMessage((res) => {
-    })
+    Socket.create(this.globalData.SOCKETHOST, wx.getStorageSync('token'))
+    
   },
   onShow (options) {
     

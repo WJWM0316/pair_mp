@@ -6,12 +6,17 @@ Component({
   properties: {
     message: {
       type: Object,
-      value: {
-        file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/img_adviser_introduction_1%402x.png'
+      value: {},
+      observers: (e) => {
+        console.log(e)
       }
     }
   },
-
+  observers: {
+    'message': (e) => {
+      console.log(e, 2222)
+    }
+  },
   /**
    * 组件的初始数据
    */

@@ -52,7 +52,6 @@ Component({
       wx.nextTick(()=>{
         getSelectorQuery('.header', this).then(res => {
           this.setData({'headerH': res.height})
-          console.log(res.height, 22)
         })
       });
     }

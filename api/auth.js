@@ -41,3 +41,12 @@ export const registerApi = (data) => {
     data
   })
 }
+// 退出登录
+export const logoutApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/auth/logout',
+    data
+  })
+}
+

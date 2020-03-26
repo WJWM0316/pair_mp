@@ -1,162 +1,18 @@
 const app =  getApp();
 let winWidth = app.globalData.systemInfo.windowWidth
-let data = [
-  {
-    messageId: "messageId0",
-    timestamp: '1585033928',
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'text',
-      text: '测'
-    }
-  },
-  {
-    messageId: "messageId0",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'text',
-      text: '1'
-    }
-  },
-  {
-    messageId: "messageId1",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'text',
-      own: true,
-      text: '1'
-    }
-  },
-  {
-    messageId: "messageId3",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'audio',
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
-    }
-  },
-  {
-    messageId: "messageId3",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'audio',
-      own: true,
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
-    }
-  },
-  {
-    messageId: "messageId4",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      id: 1,
-      type: 'video',
-      own: true,
-      path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4',
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4?x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast'
-    }
-  },
-  {
-    messageId: "messageId5",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'img',
-      own: true,
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
-    }
-  },
-  {
-    messageId: "messageId6",
-    path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-    data: {
-      type: 'img',
-      own: true,
-      file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
-    }
-  }
-]
+
 let word = ''
+import socket from '../../../utils/webSocket.js'
 import {getSelectorQuery} from '../../../utils/util.js'
-import emoj from "../../../utils/emoji.js"
+import emoji from "../../../utils/emoji.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    messageList: [
-      {
-        messageId: "messageId0",
-        timestamp: '1585033928',
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'text',
-          text: '测'
-        }
-      },
-      {
-        messageId: "messageId0",
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'text',
-          text: '1'
-        }
-      },
-      {
-        messageId: "messageId1",
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'text',
-          own: true,
-          text: '1'
-        }
-      },
-      {
-        messageId: "messageId3",
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'audio',
-          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
-        }
-      },
-      {
-        messageId: "messageId3",
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'audio',
-          own: true,
-          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1.m4a'
-        }
-      },
-      {
-        messageId: "messageId4",
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          id: 1,
-          type: 'video',
-          own: true,
-          path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4',
-          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d5c58db5ae81230cd0b8253fabe472cf.mp4?x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast'
-        }
-      },
-      {
-        messageId: "messageId5",
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'img',
-          own: true,
-          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
-        }
-      },
-      {
-        messageId: "messageId6",
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'img',
-          own: true,
-          file: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/1577673683.png'
-        }
-      }
-    ],
+    myUid: 3,
+    messageList: [],
     selectIndex: null,
     consoleBtnType: [
       {
@@ -205,7 +61,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    socket.onMessage((res) => {
+      let index = this.data.messageList.length
+      this.setData({[`messageList[${index}]`]: res}, () => {
+        wx.nextTick(()=>{
+          this.pageScrollToDom()
+        });
+      })
+      console.log(res.imData.content)
+    })
   },
 
   /**

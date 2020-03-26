@@ -143,6 +143,8 @@ var encryptId = function(str, frontLen, endLen) {
   return str.substring(0, frontLen) + xing + str.substring(str.length - endLen);
 }
 
+
+
 module.exports = {
   dateFormat: dateFormat,
   activeTime: activeTime,

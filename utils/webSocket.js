@@ -1,3 +1,4 @@
+import Emoji from './emoji.js'
 class Socket {
   constructor () {
     this.apartTime = 60000 // 极限时间，超过极限时间视为异常处理
@@ -5,10 +6,12 @@ class Socket {
     this.receiveMessageTimer = null // 检测接受信息时间的定时器，超过极限时间说明发生异常
     this.keepAliveTimer = null // 检测心跳包的定时器
     this.resetTimes = 0 // 重连次数
+
   }
-  create () {
+  create (url, token) {
+    this.url = url
     this.SocketTask = wx.connectSocket({
-      url: 'wss://work-api.xplus.xiaodengta.com/tiger',
+      url: url,
       header:{
         'content-type': 'application/json'
       },
@@ -16,6 +19,7 @@ class Socket {
         // 握手环节
         wx.onSocketOpen((res0) => {
           console.log(this.SocketTask, '握手状态')
+          this.login(token)
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
             this.checkConnect() // 开启心跳包检测
@@ -59,7 +63,13 @@ class Socket {
     this.SocketTask.onMessage((res) => {
       // 收到消息，重置接收消息定时器, 因为已开启心跳检查，保证间隔发送消息出去
       this.checkResolve()
-      let data = res.data !== 'a' ? JSON.parse(res.data) : res.data
+      let data = res.data
+      if (res.data === 'a') return
+      data = JSON.parse(data)
+      data.imData.content = JSON.parse(data.imData.content)
+      if (data.msgType === 'RC:TxtMsg') { // 转义emoji 表情
+        data.imData.content.content = Emoji.init(data.imData.content.content)
+      }
       callback(data)
     })
   }
@@ -92,7 +102,7 @@ class Socket {
       console.log('======websocket重连不上，自动关闭======')
       this.close()
     } else {
-      this.create()
+      this.create(this.url)
     }
   }
 }

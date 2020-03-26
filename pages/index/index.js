@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let phone = ''
-import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi} from '../../api/auth.js'
+import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
 import {getIndustryApi, getAreaApi} from "../../api/fixedData.js"
 import {pickApi} from "../../api/pick.js"
 Page({
@@ -71,6 +71,8 @@ Page({
       case 'detail':
         wx.navigateTo({url: '/pages/userInfo/index'})
         break
+      case 'logout':
+        logoutApi()
     }
   }
 })

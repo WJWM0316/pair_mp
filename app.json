@@ -12,7 +12,6 @@
     "pages/login/index",
     "pages/userInfo/index",
     "pages/editUser/index",
-    "pages/answerList/index",
     "pages/IM/systemMsg/index",
     "pages/setting/index",
     "pages/backlist/index",
@@ -24,6 +23,11 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "usingComponents": {
     "navBar": "./components/layout/navBar/index",

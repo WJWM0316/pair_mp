@@ -1,1 +1,7 @@
-<i-image class="i-image" my-class="msg-image" wx:key="1" styleString="{{styleString}}" showMenu="{{false}}" src="{{message.file}}" bindloadSuccess="loadSuccess"></i-image>
+<i-image 
+  class="i-image" 
+  my-class="msg-image"
+  styleString="{{styleString}}" 
+  showMenu="{{false}}" 
+  src="{{message.imageUri}}" 
+  bindloadSuccess="loadSuccess"></i-image>

@@ -1,34 +1,34 @@
 <view class="chatWrap">
   <chat-bubble tips="{{tips}}"></chat-bubble>
   <chat-header bindputUp="headerPutUp"></chat-header>
-  <view class="systemHint">TA特别想认识你，缘分来了就不要错过哟~</view>
-  <debutWord bindselectResult="selectResult" type="debutWord" bindtapMpre="bindtapMpre"></debutWord>
+  <view class="systemHint" wx:if="{{false}}">TA特别想认识你，缘分来了就不要错过哟~</view>
+  <debutWord bindselectResult="selectResult" type="debutWord" bindtapMpre="bindtapMpre" wx:if="{{false}}"></debutWord>
   <view class="chatArea" bindtap="resetView">
     <view class="scrollView">
       <view class="message-list">
         <view class="message-box" wx:for="{{messageList}}" wx:key="id">
-          <view class="time" wx:if="{{item.timestamp}}">{{filters.activeTime(item.timestamp)}}</view>
-          <view class="message-item {{item.data.own ? 'mine' : 'others'}}" id="msg{{index}}">
+          <view class="time" wx:if="{{item.imData.timestamp}}">{{filters.activeTime(item.imData.timestamp)}}</view>
+          <view class="message-item {{item.imFromUser.uid === myUid ? 'mine' : 'others'}}" id="msg{{index}}">
             <view class="avatar">
               <i-image src="{{item.path}}"></i-image>
             </view>
             <view 
-              class="message-content {{item.data.type}} msgCon{{index}}" 
+              class="message-content {{parse.setMsgType(item.msgType)}} msgCon{{index}}" 
               bindlongpress="longpress" 
               data-object="{{item}}" 
               data-class="msgCon{{index}}"
               data-index="{{index}}"
               >
-              <block wx:if="{{item.data.type === 'text'}}">
-                <view class="text">{{item.data.text}}</view>
+              <block wx:if="{{item.msgType === 'RC:TxtMsg'}}">
+              <view class="text"><rich-text nodes="{{item.imData.content.content}}" space="emsp"></rich-text></view>
               </block>
-              <block wx:if="{{item.data.type === 'img'}}">
-                <msg-image message="{{item.data}}"></msg-image>
+              <block wx:if="{{item.msgType === 'img'}}">
+                <msg-image message="{{item.imData.content}}"></msg-image>
               </block>
-              <block wx:if="{{item.data.type === 'audio'}}">
-                <msg-audio own="{{item.data.own}}" message="{{item.data}}"></msg-audio>
+              <block wx:if="{{item.msgType === 'audio'}}">
+                <msg-audio own="{{item.imFromUser.uid === myUid}}" message="{{item.imData}}"></msg-audio>
               </block>
-              <block wx:if="{{item.data.type === 'video'}}">
+              <block wx:if="{{item.msgType === 'video'}}">
                 <msg-video message="{{item.data}}"></msg-video>
               </block>
               <view 
@@ -117,8 +117,15 @@
             break
         }
       },
-      setPosition : function( pageY ){
-          return 'transform:translate3d(0, ' + -pageY + 'rpx, 0);';
+      setMsgType : function( type ){
+        switch (type) {
+          case 'RC:TxtMsg':
+            return 'text'
+            break
+          case 'RC:ImgMsg':
+            return 'img'
+            break
+        }
       }
   }
 </wxs>
