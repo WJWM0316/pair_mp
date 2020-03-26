@@ -37,6 +37,10 @@
   line-height: 48rpx;
   font-size: 26rpx;
 }
+.album .photo-ul .cover-img {
+  width: 100%;
+  height: 100%;
+}
 .album .footer {
   height: 240rpx;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
@@ -124,4 +128,8 @@
   color: #fff;
   text-align: center;
   line-height: 48rpx;
+}
+.album .photo-box .cover-img {
+  width: 100%;
+  height: 100%;
 }

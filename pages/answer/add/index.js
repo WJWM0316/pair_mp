@@ -1,5 +1,6 @@
 import {
-  postQuestionApi
+  postQuestionApi,
+  removeQuestionApi
 } from '../../../api/question.js'
 let app = getApp()
 Page({
@@ -20,6 +21,12 @@ Page({
       info.body = value
       this.setData({ info })
     }
+  },
+  delete() {
+    let { options } = this.data
+    removeQuestionApi({id: options.id}).then(res => {
+      wx.navigateBack({ delta: 1 })
+    }).catch(err => app.wxToast({title: err.msg}))
   },
   save() {
     let { info } = this.data

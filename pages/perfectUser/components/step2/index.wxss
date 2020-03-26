@@ -1,1 +1,214 @@
-/* pages/perfectUser/components/step2/index.wxss */
+.holderStyle {
+  color: #CFD4D8;
+  font-size: 36rpx;
+  font-weight: unset;
+}
+.step2 {
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 36rpx 0;
+  display: none;
+}
+.step2:after {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #F1F4F4;
+  display: block;
+  content: '';
+  z-index: -1;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+}
+.step2:before {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #ffffff;
+  display: block;
+  content: '';
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+}
+.step2 .h1 {
+  height: 56rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 56rpx;
+  padding-left: 80rpx;
+  padding-top: 60rpx;
+  position: relative;
+}
+.step2 .progress {
+  height: 8rpx;
+  line-height: 8rpx;
+  margin-top: 20rpx;
+  padding-left: 80rpx;
+  position: relative;
+}
+.step2 .progress .item {
+  width: 60rpx;
+  height: 8rpx;
+  background: #F1F4F4;
+  border-radius: 9rpx;
+  margin-right: 8rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.step2 .progress .active-item {
+  background: #0CCDDA;
+}
+.step2 .scroll-box {
+  padding: 57rpx 0 22rpx 0;
+  position: sticky;
+  padding-left: 80rpx;
+  box-sizing: border-box;
+  background: #ffffff;
+  z-index: 2;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  width: 100vw;
+  top: 0;
+}
+.step2 .scroll-box:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1rpx;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
+}
+.step2 .scroll-box .append {
+  width: 160rpx;
+  height: 48rpx;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 32rpx;
+  color: #9CA1AA;
+}
+.step2 .scroll-box .tab {
+  display: inline-block;
+  position: relative;
+  overflow: scroll;
+  white-space: nowrap;
+  overflow-y: auto;
+  width: calc(100% - 160rpx);
+  vertical-align: middle;
+  line-height: 1;
+}
+.step2 .scroll-box .tab .item {
+  position: relative;
+  margin-right: 40rpx;
+  line-height: 48rpx;
+  text-align: center;
+  display: inline-block;
+  vertical-align: text-top;
+  font-size: 32rpx;
+  color: #9CA1AA;
+}
+.step2 .scroll-box .tab .item:before {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0rpx;
+  content: '';
+  display: block;
+  opacity: 0;
+  transition: all ease 0.4s;
+  width: 68rpx;
+  height: 14rpx;
+  background: #0CCDDA;
+}
+.step2 .scroll-box .tab .active {
+  color: #1F252B;
+  font-weight: 700;
+  pointer-events: none;
+}
+.step2 .scroll-box .tab .active:before {
+  opacity: 1;
+}
+.step2 .scroll-box .tab text {
+  position: relative;
+}
+.step2 .scroll-box .tab .append {
+  background: white;
+  line-height: 48rpx;
+  position: absolute;
+  left: 0;
+  width: 160rpx;
+  top: 4rpx;
+}
+.step2 .fixed-dom {
+  position: fixed;
+  top: 0;
+}
+.step2 .placeholder {
+  padding: 57rpx 0 22rpx 0;
+  height: 48rpx;
+}
+.step2 .tags-box {
+  overflow: hidden;
+  padding: 0 80rpx 164rpx 80rpx;
+  position: relative;
+}
+.step2 .tags-box .ul {
+  overflow: hidden;
+  padding-top: 34rpx;
+}
+.step2 .tags-box .li {
+  height: 76rpx;
+  text-align: center;
+  line-height: 76rpx;
+  margin-bottom: 26rpx;
+  position: relative;
+  display: inline-block;
+  width: calc(calc(100vw - 160rpx - 44rpx) / 3);
+  margin-right: 22rpx;
+  font-size: 30rpx;
+}
+.step2 .tags-box .li:before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border: 1px solid #66666E;
+  transform-origin: 0 0;
+  transform: scale(0.5, 0.5);
+  box-sizing: border-box;
+  border-radius: calc(2 * 37rpx);
+  left: 0;
+}
+.step2 .tags-box .li:nth-child(3n + 1) {
+  margin-right: 0;
+}
+.step2 .tags-box .active {
+  color: #0CCDDA;
+  font-weight: 700;
+}
+.step2 .tags-box .active:before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border: 1px solid #0CCDDA;
+  transform-origin: 0 0;
+  transform: scale(0.5, 0.5);
+  box-sizing: border-box;
+  border-radius: calc(2 * 37rpx);
+  left: 0;
+}
+.step2 .tags-box .key {
+  height: 38rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1f252b;
+  line-height: 38rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}

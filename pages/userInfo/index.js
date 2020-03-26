@@ -12,7 +12,8 @@ Page({
     careerVerifyInfo: {},
     pickIntention: {},
     questionList: [],
-    labelList: []
+    labelList: [],
+    isAll: 0
   },
   onShow() {
     wx.removeStorageSync('userInfo')
@@ -24,7 +25,8 @@ Page({
       this.setData({ userInfo, careerVerifyInfo, pickIntention }, () => {
         if(userInfo.isHasQuestion) {
           getMyQuestionListApi().then(({data}) => {
-            this.setData({questionList: data})
+            let { answerList, isAll} = data
+            this.setData({questionList: answerList, isAll})
           })
         }
         if(userInfo.isHasLabel) {

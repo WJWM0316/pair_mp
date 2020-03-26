@@ -13,7 +13,7 @@
         <view class="number"><text class="{{ info.body ? 'color' : '' }}">{{ info.body.length || 0 }}</text>/100</view>
     </view>
     <view class="footer">
-      <view class="btn btn-add">
+      <view class="btn btn-add" bindtap="delete" wx:if="{{ options.id }}">
         <view class="btn-cover">删除问题</view>
         <view class="shadow"></view>
       </view>
