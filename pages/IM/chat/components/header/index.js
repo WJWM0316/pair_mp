@@ -1,5 +1,7 @@
-// pages/IM/chat/components/header/index.js
+const app =  getApp();
+import {getSelectorQuery} from '../../../../../utils/util.js'
 Component({
+  externalClasses: ['my-class'],
   options: {
     addGlobalClass: true,
   },
@@ -26,8 +28,14 @@ Component({
    */
   data: {
     putUp: true,
+    headerH: 0,
+    tips: true,
+    pxTorpxRatio: app.globalData.systemInfo.pxTorpxRatio
   },
-
+  attached () {
+    this.getHeight()
+  },
+  
   /**
    * 组件的方法列表
    */
@@ -38,6 +46,15 @@ Component({
     toggle () {
       let putUp = this.data.putUp
       this.setData({'putUp': !putUp})
+      this.getHeight()
+    },
+    getHeight () {
+      wx.nextTick(()=>{
+        getSelectorQuery('.header', this).then(res => {
+          this.setData({'headerH': res.height})
+          console.log(res.height, 22)
+        })
+      });
     }
   }
 })

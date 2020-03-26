@@ -9,10 +9,10 @@ App({
   onLaunch: function () {
     // 获取系统参数，计算顶部栏高度
     this.globalData.systemInfo = wx.getSystemInfoSync();
+    this.globalData.systemInfo['pxTorpxRatio'] =  this.globalData.systemInfo.windowWidth / 375 / 2
     this.globalData.systemInfo['titleHeight'] = getTitleHeight(this)
     this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + getTitleHeight(this)
     console.log(this.globalData.systemInfo, '系统参数')
-
 
     // 设置环境变量
     let {appId, envVersion} = wx.getAccountInfoSync().miniProgram
@@ -28,6 +28,8 @@ App({
     
   },
   globalData: {
+    customerPhone: "020-28163063", // 客服电话
+    customerWechat: 'zike04', // 客服微信
     systemInfo: {},
     viewAreaHeight: 0, // 有效区域高度 px
     tabBarHeight: 0, // 底部栏高度 px

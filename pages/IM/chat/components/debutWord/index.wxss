@@ -37,3 +37,59 @@
   top: 0rpx;
   right: -50rpx;
 }
+.debutWord {
+  padding: 54rpx 60rpx;
+}
+.debutWord .title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 44rpx;
+  padding: 0 40rpx;
+}
+.debutWord .desc {
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #9CA1AA;
+  line-height: 32rpx;
+  margin: 6rpx 0 24rpx;
+  padding: 0 40rpx;
+}
+.debutWord .list .item {
+  padding: 22rpx 89rpx 22rpx 36rpx;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #1F252B;
+  background: rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  margin-bottom: 12rpx;
+}
+.debutWord .list .item .text {
+  width: 100%;
+  position: relative;
+}
+.debutWord .list .item .text .icon {
+  position: absolute;
+  color: #0CCDDA;
+  font-size: 28rpx;
+  top: 0rpx;
+  right: -50rpx;
+}
+.debutWord .more {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0CCDDA;
+  line-height: 36rpx;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12rpx;
+  display: flex;
+}
+.debutWord .more .icon {
+  font-size: 19rpx;
+  margin-left: 8rpx;
+}

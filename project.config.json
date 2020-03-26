@@ -65,7 +65,7 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/IM/chat/index",
+					"name": "聊天室",
 					"pathName": "pages/IM/chat/index",
 					"query": "",
 					"scene": null
@@ -89,6 +89,34 @@
 					"name": "pages/editUser/index",
 					"pathName": "pages/editUser/index",
 					"query": "key=isHasQuestion",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "消息列表",
+					"pathName": "pages/IM/list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "系统消息",
+					"pathName": "pages/IM/systemMsg/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "设置页面",
+					"pathName": "pages/setting/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "黑名单",
+					"pathName": "pages/backlist/index",
+					"query": "",
 					"scene": null
 				}
 			]

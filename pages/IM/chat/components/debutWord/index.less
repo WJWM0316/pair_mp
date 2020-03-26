@@ -38,3 +38,62 @@
     }
   }
 }
+
+.debutWord {
+  padding: 54rpx 60rpx;
+  .title {
+    font-size:36rpx;
+    font-weight:700;
+    color:@text-color-1;
+    line-height:44rpx;
+    padding: 0 40rpx;
+  }
+  .desc {
+    font-size:24rpx;
+    font-weight:300;
+    color:@text-color-3;
+    line-height:32rpx;
+    margin: 6rpx 0 24rpx;
+    padding: 0 40rpx;
+  }
+  .list {
+    .item {
+      padding: 22rpx 89rpx 22rpx 36rpx;
+      font-size:28rpx;
+      line-height: 36rpx;
+      color:@text-color-1;
+      background: rgba(255, 255, 255, .6);
+      box-sizing: border-box;
+      border-radius:16rpx;
+      display: flex;
+      align-items: center;
+      min-height: 88rpx;
+      margin-bottom: 12rpx;
+      .text {
+        width: 100%;
+        position: relative;
+        .icon {
+          position: absolute;
+          color: @primary-color;
+          font-size: 28rpx;
+          top: 0rpx;
+          right: -50rpx;
+        }
+      }
+    }
+  }
+  .more {
+    font-size:28rpx;
+    font-weight:700;
+    color: @primary-color;
+    line-height:36rpx;
+    justify-content: center;
+    align-items: center;
+    padding-top: 12rpx;
+    display: flex;
+    .icon {
+      font-size: 19rpx;
+      margin-left: 8rpx;
+    }
+  }
+}

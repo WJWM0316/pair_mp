@@ -1,0 +1,55 @@
+.message-list {
+  position: relative;
+  padding: 0 30rpx;
+}
+.message-list .message-box {
+  margin-bottom: 30rpx;
+}
+.message-list .message-box .time {
+  text-align: center;
+  font-size: 24rpx;
+  color: #9CA1AA;
+  line-height: 32rpx;
+  margin: 56rpx 0 18rpx;
+}
+.message-list .message-box:last-child {
+  margin-bottom: 0;
+}
+.message-list .message-item::before,
+.message-list .message-item::after {
+  content: " ";
+  display: table;
+}
+.message-list .message-item::after {
+  clear: both;
+}
+.message-list .message-item .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.message-list .message-item .message-content {
+  border-radius: 24rpx;
+  position: relative;
+  overflow: visible;
+}
+.message-list .message-item .message-content .text {
+  max-width: 460rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  padding: 26rpx 42rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.message-list .message-item.others .avatar {
+  float: left;
+}
+.message-list .message-item.others .message-content {
+  border-top-left-radius: 8rpx;
+  margin-left: 16rpx;
+  float: left;
+  background: #fff;
+  color: #1F252B;
+}

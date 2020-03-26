@@ -1,35 +1,44 @@
-<view class="header {{putUp ? 'putUp' : ''}}" catchtap = "catchtap">
-  <view class="header-card">
-    <view class="avatar-box">
-      <i-image src="{{detail.path}}" my-class="avatar"></i-image>
-      <i-image src="{{detail.path}}" my-class="avatar"></i-image>
-    </view>
-    <block wx:if="{{putUp}}">
-      <view class="detail">
-        <view class="position">老虎科技-产品经理</view>
-        <view class="infos">
-          <view class="info"><i class="icon iconfont icon_suozaidi"></i>广州·天河</view>
-          <view class="info"><i class="icon iconfont icon_nianling"></i>广州·天河</view>
-          <view class="info"><i class="icon iconfont icon_shengao"></i>广州·天河</view>
-        </view>
+
+<view class="header {{tips ? 'headerTips' : ''}}" catchtap = "catchtap">
+  <view class="header-inner  {{putUp ? 'putUp' : ''}}">
+    <view class="header-card">
+      <view class="avatar-box">
+        <i-image src="{{detail.path}}" my-class="left avatar"></i-image>
+        <i-image src="{{detail.path}}" my-class="right avatar"></i-image>
       </view>
-      <view class="likeTitle">共同爱好<i class="icon iconfont icon_aixin"></i></view>
-      <view class="like">
-        <view class="label">广州</view>
-        <view class="label">广州</view>
-        <view class="label">广州</view>
-      </view>
-    </block>
-  </view>
-  <view class="rightBox">
-    <view class="more-box"><i class="icon iconfont icon_gengduo"></i></view>
-    <view class="toggle" bindtap = "toggle">
       <block wx:if="{{putUp}}">
-        <i class="icon iconfont icon_jiantou-shang"></i>收起
+        <view class="detail">
+          <view class="position">老虎科技-产品经理</view>
+          <view class="infos">
+            <view class="info"><i class="icon iconfont icon_suozaidi"></i>广州·天河</view>
+            <view class="info"><i class="icon iconfont icon_nianling"></i>广州·天河</view>
+            <view class="info"><i class="icon iconfont icon_shengao"></i>广州·天河</view>
+          </view>
+        </view>
+        <view class="likeTitle">共同爱好<i class="icon iconfont icon_aixin"></i></view>
+        <view class="like">
+          <view class="label"><i class="icon iconfont icon_gouxuan"></i>广州</view>
+        </view>
       </block>
-      <block wx:else>
-        <i class="icon iconfont icon_jiantou-xia"></i>
-      </block>
+    </view>
+    <view class="rightBox">
+      <view class="more-box"><i class="icon iconfont icon_gengduo"></i></view>
+      <view class="toggle" bindtap = "toggle">
+        <block wx:if="{{putUp}}">
+          <i class="icon iconfont icon_jiantou-shang"></i>收起
+        </block>
+        <block wx:else>
+          <i class="icon iconfont icon_jiantou-xia"></i>
+        </block>
+      </view>
     </view>
   </view>
 </view>
+<wxs module="parse">
+  module.exports = {
+    setStyle : function(headerH, pxTorpxRatio, putUp){
+      var padding = putUp ? 19 * pxTorpxRatio  :  15 * pxTorpxRatio
+      return 'height:' + headerH + 'px';
+    }
+  }
+</wxs>

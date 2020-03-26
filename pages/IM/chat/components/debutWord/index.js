@@ -7,6 +7,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    type: {
+      type: String,
+      value: 'console'
+    },
     list: {
       type: Array,
       value: [
@@ -35,6 +39,9 @@ Component({
       let index = e.currentTarget.dataset.index,
           word  = this.data.list[index]
       this.triggerEvent('selectResult', word)
+    },
+    tapMpre () {
+      this.triggerEvent('tapMpre')
     }
   }
 })

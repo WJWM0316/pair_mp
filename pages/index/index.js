@@ -68,6 +68,9 @@ Page({
           console.log(res, 111)
         })
         break
+      case 'detail':
+        wx.navigateTo({url: '/pages/userInfo/index'})
+        break
     }
   }
 })

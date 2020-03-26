@@ -1,18 +1,54 @@
 .header {
-  padding: 20rpx 76rpx 20rpx 40rpx;
-  background: #fff;
-  border-radius: 24rpx;
-  box-shadow: 0rpx 12rpx 30rpx 0rpx rgba(30, 102, 102, 0.1);
+  padding: 15rpx 30rpx 0;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+}
+.header .header-inner {
   position: relative;
+  box-shadow: 0rpx 12rpx 30rpx 0rpx rgba(30, 102, 102, 0.1);
+  background: #fff;
+  border-radius: 100rpx 24rpx 24rpx 100rpx;
+  padding: 20rpx 76rpx 20rpx 40rpx;
+}
+.header .header-inner.putUp {
+  padding: 16rpx 76rpx 34rpx 40rpx;
+  border-radius: 24rpx;
+}
+.header .header-inner.putUp .rightBox .toggle {
+  width: 24rpx;
+  padding: 0 26rpx 36rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 24rpx;
+  color: #66666E;
+  line-height: 32rpx;
+}
+.header .header-inner.putUp .rightBox .toggle .icon {
+  font-size: 14rpx;
 }
 .header .header-card .avatar-box {
   font-size: 0;
+  overflow: hidden;
+  padding-right: 40rpx;
 }
 .header .header-card .avatar-box .avatar {
   width: 100rpx;
   height: 100rpx;
   border: 3rpx solid #F46BA1;
   border-radius: 50%;
+  box-sizing: border-box;
+}
+.header .header-card .avatar-box .avatar.left {
+  float: left;
+}
+.header .header-card .avatar-box .avatar.right {
+  float: right;
+  border-color: #0CCDDA;
 }
 .header .header-card .detail {
   margin: 22rpx 0 0;
@@ -84,11 +120,9 @@
   margin-right: 36rpx;
   margin-top: 10rpx;
 }
-.header .header-card .like .label::after {
-  content: '';
-  width: 22rpx;
-  height: 22rpx;
-  background: #0CCDDA;
+.header .header-card .like .label .icon {
+  font-size: 20rpx;
+  color: #0CCDDA;
   position: absolute;
   top: 50%;
   left: 0;
@@ -131,21 +165,5 @@
   line-height: 14rpx;
 }
 .header .rightBox .toggle .icon {
-  font-size: 14rpx;
-}
-.header.putUp {
-  padding: 16rpx 76rpx 34rpx 40rpx;
-}
-.header.putUp .rightBox .toggle {
-  width: 24rpx;
-  padding: 0 26rpx 36rpx;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  font-size: 24rpx;
-  color: #66666E;
-  line-height: 32rpx;
-}
-.header.putUp .rightBox .toggle .icon {
   font-size: 14rpx;
 }

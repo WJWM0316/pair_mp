@@ -1,0 +1,40 @@
+<view class="settingWrap">
+  <view class="item">
+    <view class="item-inner">
+      <view class="name">我的账号</view>
+      <view class="value">18138784647</view>
+    </view>
+  </view>
+  <view class="item" bindtap = "action" data-type="backlist">
+    <view class="item-inner">
+      <view class="name">黑名单</view>
+      <view class="value"><i class="icon iconfont icon_jiantou-you-"></i></view>
+    </view>
+  </view>
+  <view class="item margin" bindtap = "action" data-type="follow">
+    <view class="item-inner">
+      <view class="name">官方公众号</view>
+      <view class="value"><i class="icon iconfont icon_jiantou-you-"></i></view>
+    </view>
+  </view>
+  <view class="item" bindtap = "action" data-type="wechat">
+    <view class="item-inner">
+      <view class="name">客服微信</view>
+      <view class="value"><i class="icon iconfont icon_jiantou-you-"></i></view>
+    </view>
+  </view>
+  <view class="item" bindtap = "action" data-type="callPhone">
+    <view class="item-inner">
+      <view class="name">客服电话</view>
+      <view class="value">{{customerPhone}}<i class="icon iconfont icon_jiantou-you-"></i></view>
+    </view>
+  </view>
+  <view class="item margin" bindtap = "action" data-type="agreement">
+    <view class="item-inner">
+      <view class="name">用户协议与隐私政策</view>
+      <view class="value"><i class="icon iconfont icon_jiantou-you-"></i></view>
+    </view>
+  </view>
+
+  <i-button my-class="logout" bindtap = "action" data-type="logout">退出登录</i-button>
+</view>

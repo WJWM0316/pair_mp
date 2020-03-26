@@ -12,7 +12,10 @@
     "pages/login/index",
     "pages/userInfo/index",
     "pages/editUser/index",
-    "pages/answerList/index"
+    "pages/answerList/index",
+    "pages/IM/systemMsg/index",
+    "pages/setting/index",
+    "pages/backlist/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

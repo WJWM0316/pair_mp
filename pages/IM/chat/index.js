@@ -157,8 +157,6 @@ Page({
         }
       }
     ],
-    firstMessageId: '',
-    refresher: false,
     selectIndex: null,
     consoleBtnType: [
       {
@@ -190,12 +188,11 @@ Page({
         color: '#F46BA1'
       }
     ],
-    
-    pageY: 0,
     word: '', // 编辑框的文本
     textHeight: 0, // 编辑框高度
     canSend: false, // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
-    longpressData: {}
+    longpressData: {},
+    tips: true // 提醒气泡展示
   },
 
   /**
@@ -248,6 +245,7 @@ Page({
   // 滚动到节点
   pageScrollToDom (type = 'bottom') {
     wx.pageScrollTo({
+      duration: 100,
       selector: type === 'top' ? `#msg0` : `#bottom`
     })
   },
@@ -270,6 +268,10 @@ Page({
   selectResult (e) {
     word = word + e.detail
     this.setData({word, canSend: true}) 
+  },
+  // 获取header展开状态
+  headerPutUp (e) {
+    this.putUp = e.detail
   },
   // 文本域编辑
   bindinput (e) {
@@ -294,7 +296,11 @@ Page({
       this.pageScrollToDom('bottom')
     })
   },
-
+  bindtapMpre (e) {
+    console.log(e, 22)
+    e.currentTarget.dataset.index = 4
+    this.selectType(e)
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -309,11 +315,17 @@ Page({
 
   },
 
+  // 页面滚动时执行
+  onPageScroll: function(e) {
+
+  },
+  
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
+  
+  onPullDownRefresh: function (e) {
+    
   },
 
   /**

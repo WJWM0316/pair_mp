@@ -1,0 +1,5 @@
+<view class="bubble" wx:if="{{tips}}">
+  <i class="close iconfont icon_xiaocha"></i>
+  <text>完善个人资料，双倍提高交友成功率</text>
+  <view class="action">去完善<i class="icon iconfont icon_jiantou-you-"></i></view>
+</view>

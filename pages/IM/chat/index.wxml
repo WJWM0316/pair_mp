@@ -1,8 +1,10 @@
 <view class="chatWrap">
+  <chat-bubble tips="{{tips}}"></chat-bubble>
+  <chat-header bindputUp="headerPutUp"></chat-header>
+  <view class="systemHint">TA特别想认识你，缘分来了就不要错过哟~</view>
+  <debutWord bindselectResult="selectResult" type="debutWord" bindtapMpre="bindtapMpre"></debutWord>
   <view class="chatArea" bindtap="resetView">
     <view class="scrollView">
-      <chat-header></chat-header>
-
       <view class="message-list">
         <view class="message-box" wx:for="{{messageList}}" wx:key="id">
           <view class="time" wx:if="{{item.timestamp}}">{{filters.activeTime(item.timestamp)}}</view>
@@ -43,10 +45,8 @@
           </view>
         </view>
       </view>
-      
     </view>
   </view>
-  
   <view class="console">
     <view class="textEdit">
       <view class="textarea-box">

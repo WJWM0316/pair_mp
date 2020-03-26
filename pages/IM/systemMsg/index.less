@@ -1,0 +1,55 @@
+@import '../../../styles/_base.less';
+@import '../../../styles/_mixins.less';
+
+.message-list {
+  position: relative;
+  padding: 0 30rpx;
+  .message-box {
+    margin-bottom: 30rpx;
+    .time {
+      text-align: center;
+      font-size:24rpx;
+      color:@text-color-3;
+      line-height:32rpx;
+      margin: 56rpx 0 18rpx;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .message-item {
+    .setClearfix();
+    .avatar {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .message-content {
+      border-radius: @msg-radius;
+      position: relative;
+      overflow: visible;
+      .text {
+        max-width:460rpx;
+        font-size:30rpx;
+        line-height:40rpx;
+        padding: 26rpx 42rpx;
+        border-radius: 24rpx;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+    }
+    &.others {
+      .avatar {
+        float: left;
+      }
+      .message-content {
+        border-top-left-radius: 8rpx;
+        margin-left: 16rpx;
+        float: left;
+        background: #fff;
+        color: @text-color-1;
+      }
+    }
+  }
+}

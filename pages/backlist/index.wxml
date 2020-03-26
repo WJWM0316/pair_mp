@@ -1,0 +1,9 @@
+<view class="backlist">
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="id">
+      <i-image my-class="avatar" src="{{item.avatar}}"></i-image>
+      <view class="name">{{item.name}}</view>
+      <i-button my-class="delete">删除</i-button>
+    </view>
+  </view>
+</view>

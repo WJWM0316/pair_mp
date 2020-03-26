@@ -1,18 +1,60 @@
 @import "../../../../../styles/_base.less";
+
 .header {
-  padding: 20rpx 76rpx 20rpx 40rpx;
-  background: #fff;
-  border-radius:24rpx;
-  box-shadow:0rpx 12rpx 30rpx 0rpx rgba(30,102,102,0.1);
-  position: relative;
+  padding: 15rpx 30rpx 0;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  &.headerTips {
+    // top: 98rpx;
+  }
+  .header-inner {
+    position: relative;
+    box-shadow:0rpx 12rpx 30rpx 0rpx rgba(30,102,102,0.1);
+    background: #fff;
+    border-radius:100rpx 24rpx 24rpx 100rpx;
+    padding: 20rpx 76rpx 20rpx 40rpx;
+    &.putUp {
+      padding: 16rpx 76rpx 34rpx 40rpx;
+      border-radius: 24rpx;
+      .rightBox {
+        .toggle {
+          width: 24rpx;
+          padding: 0 26rpx 36rpx;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          font-size:24rpx;
+          color: @text-color-2;
+          line-height:32rpx;
+          .icon {
+            font-size: 14rpx;
+          }
+        }
+      }
+    }
+  }
   .header-card {
     .avatar-box {
       font-size: 0;
+      overflow: hidden;
+      padding-right: 40rpx;
       .avatar {
         width:100rpx;
         height:100rpx;
         border:3rpx solid @vice-primary-color-2;
         border-radius: 50%;
+        box-sizing: border-box;
+        &.left {
+          float: left;
+        }
+        &.right {
+          float: right;
+          border-color: @primary-color;
+        }
       }
     }
     .detail {
@@ -83,11 +125,9 @@
         line-height:32rpx;
         margin-right: 36rpx;
         margin-top: 10rpx;
-        &::after {
-          content: '';
-          width: 22rpx;
-          height: 22rpx;
-          background:@primary-color;
+        .icon {
+          font-size: 20rpx;
+          color:@primary-color;
           position: absolute;
           top: 50%;
           left: 0;
@@ -135,22 +175,5 @@
       }
     }
   }
-  &.putUp {
-    padding: 16rpx 76rpx 34rpx 40rpx;
-    .rightBox {
-      .toggle {
-        width: 24rpx;
-        padding: 0 26rpx 36rpx;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        font-size:24rpx;
-        color: @text-color-2;
-        line-height:32rpx;
-        .icon {
-          font-size: 14rpx;
-        }
-      }
-    }
-  }
+  
 }

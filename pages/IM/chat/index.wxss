@@ -2,6 +2,13 @@
   min-height: 100vh;
   background: #F1F4F4;
 }
+.chatWrap .systemHint {
+  text-align: center;
+  font-size: 24rpx;
+  color: #9CA1AA;
+  line-height: 32rpx;
+  margin-top: 56rpx;
+}
 .chatWrap .chatArea {
   padding: 20rpx 30rpx;
   box-sizing: border-box;

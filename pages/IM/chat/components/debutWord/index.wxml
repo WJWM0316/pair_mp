@@ -1,6 +1,15 @@
-<view class="wordWrap">
+<view class="wordWrap" wx:if="{{type === 'console'}}">
   <view class="title">选择一句话，与TA开启话题吧~</view>
   <view class="list">
     <view class="item" bindtap = "selectWord" data-index="{{index}}" wx:for="{{list}}" wx:key="index"><view class="text">{{item}}<i class="icon iconfont icon_fuzhi"></i></view></view>
   </view>
+</view>
+
+<view class="debutWord" wx:else>
+  <view class="title">开场白</view>
+  <view class="desc">在TA回复你之前可以发3条消息，好好把握机会哦~</view>
+  <view class="list">
+    <view class="item" bindtap = "selectWord" data-index="{{index}}" wx:for="{{list}}" wx:key="index" wx:if="{{index < 3}}"><view class="text">{{item}}<i class="icon iconfont icon_fasong"></i></view></view>
+  </view>
+  <view class="more" bindtap="tapMpre">查看更多<i class="icon iconfont icon_shuangjiantou"></i></view>
 </view>

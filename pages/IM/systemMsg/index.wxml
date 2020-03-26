@@ -1,0 +1,23 @@
+<view class="systemWrap">
+  <view class="message-list">
+    <view class="message-box" wx:for="{{messageList}}" wx:key="id">
+      <view class="time" wx:if="{{item.timestamp}}">{{filters.activeTime(item.timestamp)}}</view>
+      <view class="message-item others" id="msg{{index}}">
+        <view class="avatar">
+          <i-image src="{{item.path}}"></i-image>
+        </view>
+        <view 
+          class="message-content {{item.data.type}} msgCon{{index}}" 
+          data-object="{{item}}" 
+          data-class="msgCon{{index}}"
+          data-index="{{index}}"
+          >
+          <block wx:if="{{item.data.type === 'text'}}">
+            <view class="text">{{item.data.text}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<wxs src="../../../utils/filters.wxs" module="filters" />

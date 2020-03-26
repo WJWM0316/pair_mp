@@ -20,7 +20,7 @@ const wxApi = {
       }
     })
   },
-  wxConfirm: ({title = '', content, showCancel = true, cancelText = '取消', confirmText = '确定', cancelColor = '#BCBCBC', confirmColor = '#652791', confirmBack = function() {}, cancelBack = function() {}}) => {
+  wxConfirm: ({title = '', content, showCancel = true, cancelText = '取消', confirmText = '确定', cancelColor = '#BCBCBC', confirmColor = '#0CCDDA', confirmBack = function() {}, cancelBack = function() {}}) => {
     wx.showModal({
       title,
       content,

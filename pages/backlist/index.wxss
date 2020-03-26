@@ -1,0 +1,38 @@
+.backlist {
+  padding: 30rpx 0;
+}
+.backlist .list {
+  padding-left: 50rpx;
+  background: #fff;
+}
+.backlist .list .item {
+  height: 122rpx;
+  padding: 23rpx 50rpx 23rpx 0;
+  border-bottom: 1rpx solid #EDF1F0;
+  box-sizing: border-box;
+}
+.backlist .list .item .avatar {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.backlist .list .item .name {
+  font-size: 30rpx;
+  color: #1F252B;
+  line-height: 76rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.backlist .list .item .delete {
+  width: 108rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #E85274;
+  border-radius: 25rpx;
+  border: 1px solid #E85274;
+  float: right;
+  margin: 13rpx 0;
+  font-size: 28rpx;
+  color: #fff;
+}

@@ -108,12 +108,13 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
         success: function (res0) {
           let code = res0.code
           wx.request({
-            url: `${getApp().globalData.APIHOST}/wechat/oauth/mini`,
+            url: `${getApp().globalData.APIHOST}/wechat/login/mini`,
             data: {code},
             header: addHttpHead,
             method: 'post',
             success(res) {
               if (res.data.data.sessionToken) wx.setStorageSync('sessionToken', res.data.data.sessionToken)
+              if (res.data.data.token) wx.setStorageSync('token', res.data.data.token)
               noAuthRequests.forEach((item, index) => {
                 return item()
               })

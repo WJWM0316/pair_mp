@@ -6,6 +6,7 @@
     "record"   : "./components/record/index",
     "emoji"     : "./components/emoji/index",
     "debutWord": "./components/debutWord/index",
-    "chat-header": "./components/header/index"
+    "chat-header": "./components/header/index",
+    "chat-bubble": "./components/bubble/index"
   }
 }
