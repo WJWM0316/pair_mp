@@ -25,7 +25,7 @@
 }
 .edit .input-birth {
   margin-top: 210rpx;
-  background: #F1F4F4;
+  padding: 0 80rpx;
 }
 .edit .icon1 {
   font-size: 26rpx;

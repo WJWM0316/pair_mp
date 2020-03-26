@@ -11,7 +11,6 @@ Page({
   },
   onLoad(options) {
     this.setData({ options })
-    console.log(options)
   },
   onShow() {
     let { options } = this.data
@@ -58,7 +57,6 @@ Page({
   pickerResult(e) {
     let { options, userInfo } = this.data
     let detail = e.detail
-    console.log(detail)
     switch(options.key) {
       case 'birth':
         userInfo = Object.assign(userInfo, {birth: detail.desc})

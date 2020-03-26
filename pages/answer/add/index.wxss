@@ -2,9 +2,9 @@
   margin-top: 30rpx;
 }
 .answer .input-ownDescribe {
-  height: 522rpx;
+  height: 426rpx;
   background: #ffffff;
-  padding: 60rpx;
+  padding: 48rpx 60rpx 90rpx 60rpx;
   position: relative;
   box-sizing: border-box;
 }
@@ -69,7 +69,6 @@
 .answer .h1 {
   height: 48rpx;
   font-size: 34rpx;
-  font-weight: 700;
   color: #66666E;
   line-height: 48rpx;
   margin: 0 60rpx;
@@ -85,7 +84,6 @@
   display: flex;
 }
 .answer .footer .btn {
-  flex: 1;
   height: 98rpx;
   border-radius: 54rpx;
   text-align: center;

@@ -14,7 +14,7 @@
     </view>
     <view class="footer">
       <view class="btn btn-add">
-        <view class="btn-cover">添加</view>
+        <view class="btn-cover">删除问题</view>
         <view class="shadow"></view>
       </view>
       <view class="btn btn-save">
