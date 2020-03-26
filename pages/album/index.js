@@ -16,12 +16,15 @@ Page({
   onShow() {
     let avatar = wx.getStorageSync('avatar')
     let userInfo = wx.getStorageSync('userInfo')
-    if(avatar) {
-      this.setData({result: avatar}, () => wx.removeStorageSync('avatar'))
-    }
     if (userInfo) {
       let cover = userInfo.userAlbumTempList.find(v => v.isCover)
       this.setData({userInfo, cover}, () => wx.removeStorageSync('userInfo'))
+    }
+    if(avatar) {
+      let { userInfo } = this.data
+      userInfo.userAlbumTempList.push(avatar)
+      avatar = Object.assign(avatar, {isCover: 0})
+      this.setData({result: avatar, userInfo}, () => wx.removeStorageSync('avatar'))
     }
   },
   open(e) {
@@ -44,8 +47,7 @@ Page({
   },
   addAlbum(id) {
     let { userInfo, result, cover } = this.data
-    let userAlbumTempList = data.userAlbumTempList
-    userAlbumTempList.push(result)
+    let userAlbumTempList = userInfo.userAlbumTempList
     userAlbumTempList = userAlbumTempList.filter(v => !v.isCover)
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
@@ -58,7 +60,7 @@ Page({
     let userAlbumTempList = userInfo.userAlbumTempList
     let cover = userAlbumTempList[editIndex]
     userAlbumTempList.splice(editIndex, 1)
-    let photoIds = userAlbumTempList.filter(v => v.id && v.id !== cover.id)
+    let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
@@ -68,7 +70,8 @@ Page({
     let { userInfo, editIndex, cover } = this.data
     let userAlbumTempList = userInfo.userAlbumTempList
     userAlbumTempList.splice(editIndex, 1)
-    let photoIds = userAlbumTempList.filter(v => v.id && v.id !== cover.id)
+    userAlbumTempList = userAlbumTempList.filter(v => v.id !== cover.id)
+    let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
