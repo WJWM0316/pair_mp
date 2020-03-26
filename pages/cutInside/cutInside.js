@@ -56,29 +56,6 @@ Page({
           let data = typeof res.data === "string" ? JSON.parse(res.data) : res.data
           wx.setStorageSync('avatar', data.data.attachListItem[0])
           wx.navigateBack({ delta: 1 })
-        } else {
-          if (res.statusCode === 401) {
-            // 需要用到token， 需要绑定手机号
-            // if (JSON.parse(res.data).code === 4010) {
-            //   wx.removeStorageSync('token')
-            //   wx.navigateTo({
-            //     url: `${COMMON}bindPhone/bindPhone`
-            //   })
-            // }
-            // 需要用到微信token， 需要授权
-            // if (JSON.parse(res.data).code === 0) {
-            //   wx.removeStorageSync('sessionToken')
-            //   wx.removeStorageSync('token')
-            //   wx.navigateTo({
-            //     url: `${COMMON}auth/auth`
-            //   })
-            // }
-          } else {
-            // console.log(res, "上传失败")
-            // this.triggerEvent('failUpload')
-            // let data = typeof res.data === "string" ? JSON.parse(res.data) : res.data
-            // if (data.msg) getApp().wxToast({title: data.msg})
-          }
         }
         wx.hideLoading()
       }
@@ -126,7 +103,7 @@ Page({
         .on('imageLoad', (ctx) => {
           // console.log(`picture loaded`)
           console.log(`current canvas context 2:`, ctx)
-          wx.hideToast()
+          // wx.hideToast()
         })
         .on('beforeDraw', (ctx, instance) => {
           console.log(`current canvas context 3:`, ctx)

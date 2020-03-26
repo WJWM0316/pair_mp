@@ -10,7 +10,7 @@
       <view class="item" wx:for="{{ userInfo.userAlbumTempList }}" wx:key="index">
         <view class="inner">
           <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
-          <view class="action" bindtap="open" data-action="open" data-index="{{index}}"><i class="icon iconfont icon_gengduo"></i></view>
+          <view class="action" bindtap="open" data-action="open" data-index="{{index}}" wx:if="{{!item.isCover}}"><i class="icon iconfont icon_gengduo"></i></view>
           <!-- <view class="txt">1</view> -->
         </view>
       </view>

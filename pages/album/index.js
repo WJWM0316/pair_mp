@@ -43,10 +43,11 @@ Page({
     this.setData({ show: true, itemList, type: 'photo'})
   },
   addAlbum(id) {
-    let { userInfo, editIndex } = this.data
-    let cover = userInfo.userAlbumTempList[editIndex]
-    userInfo.userAlbumTempList.splice(editIndex, 1)
-    let photoIds = userInfo.userAlbumTempList.map(v => v.id)
+    let { userInfo, result, cover } = this.data
+    let userAlbumTempList = data.userAlbumTempList
+    userAlbumTempList.push(result)
+    userAlbumTempList = userAlbumTempList.filter(v => !v.isCover)
+    let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
@@ -57,18 +58,17 @@ Page({
     let userAlbumTempList = userInfo.userAlbumTempList
     let cover = userAlbumTempList[editIndex]
     userAlbumTempList.splice(editIndex, 1)
-    let photoIds = userAlbumTempList.map(v => v.id)
+    let photoIds = userAlbumTempList.filter(v => v.id && v.id !== cover.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   delete() {
-    let { userInfo, editIndex } = this.data
+    let { userInfo, editIndex, cover } = this.data
     let userAlbumTempList = userInfo.userAlbumTempList
-    let cover = userAlbumTempList[editIndex]
     userAlbumTempList.splice(editIndex, 1)
-    let photoIds = userAlbumTempList.map(v => v.id)
+    let photoIds = userAlbumTempList.filter(v => v.id && v.id !== cover.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
@@ -86,10 +86,10 @@ Page({
           cancelText: '取消',
           confirmText: '确认',
           confirmBack() {
-            console.log(1)
+            that.delete()
           },
           cancelBack() {
-            console.log(2)
+            // console.log(2)
           }
         })
         break
