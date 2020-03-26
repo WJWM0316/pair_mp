@@ -9,9 +9,9 @@
     <view class="photo-ul">
       <view class="item" wx:for="{{ userInfo.userAlbumTempList }}" wx:key="index">
         <view class="inner">
-          <i-image my-class="cover-img" src="{{ cover.url }}"></i-image>
-          <view class="action" bindtap="open" data-action="open" data-index="{{item}}"><i class="icon iconfont icon_gengduo"></i></view>
-          <view class="txt">1</view>
+          <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
+          <view class="action" bindtap="open" data-action="open" data-index="{{index}}"><i class="icon iconfont icon_gengduo"></i></view>
+          <!-- <view class="txt">1</view> -->
         </view>
       </view>
     </view>

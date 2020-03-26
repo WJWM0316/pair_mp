@@ -10,16 +10,18 @@ Page({
     type: '',
     navBarHeight: app.globalData.navBarHeight,
     cover: {},
-    userInfo: {}
+    userInfo: {},
+    editIndex: 0
   },
   onShow() {
     let avatar = wx.getStorageSync('avatar')
     let userInfo = wx.getStorageSync('userInfo')
     if(avatar) {
-      this.setData({cover: avatar}, () => wx.removeStorageSync('avatar'))
+      this.setData({result: avatar}, () => wx.removeStorageSync('avatar'))
     }
-    if(userInfo) {
-      this.setData({userInfo}, () => wx.removeStorageSync('userInfo'))
+    if (userInfo) {
+      let cover = userInfo.userAlbumTempList.find(v => v.isCover)
+      this.setData({userInfo, cover}, () => wx.removeStorageSync('userInfo'))
     }
   },
   open(e) {
@@ -28,8 +30,8 @@ Page({
       {text: '删除图片', action: 'delete'},
       {text: '取消', action: 'cancle'}
     ]
-    let params = e
-    this.setData({ show: true, itemList, type: ''})
+    let { index } = e.currentTarget.dataset
+    this.setData({ show: true, itemList, type: '', editIndex: index})
   },
   upload(e) {
     let itemList = [
@@ -41,8 +43,33 @@ Page({
     this.setData({ show: true, itemList, type: 'photo'})
   },
   addAlbum(id) {
-    let { cover, userInfo } = this.data
-    let photo = userInfo.userAlbumTempList.join(',')
+    let { userInfo, editIndex } = this.data
+    let cover = userInfo.userAlbumTempList[editIndex]
+    userInfo.userAlbumTempList.splice(editIndex, 1)
+    let photoIds = userInfo.userAlbumTempList.map(v => v.id)
+    let photo = photoIds.join(',')
+    addAlbumApi({cover: cover.id, photo}).then(res => {
+      wx.navigateBack({ delta: 1 })
+    }).catch(err => app.wxToast({title: err.msg}))
+  },
+  setCover() {
+    let { userInfo, editIndex } = this.data
+    let userAlbumTempList = userInfo.userAlbumTempList
+    let cover = userAlbumTempList[editIndex]
+    userAlbumTempList.splice(editIndex, 1)
+    let photoIds = userAlbumTempList.map(v => v.id)
+    let photo = photoIds.join(',')
+    addAlbumApi({cover: cover.id, photo}).then(res => {
+      wx.navigateBack({ delta: 1 })
+    }).catch(err => app.wxToast({title: err.msg}))
+  },
+  delete() {
+    let { userInfo, editIndex } = this.data
+    let userAlbumTempList = userInfo.userAlbumTempList
+    let cover = userAlbumTempList[editIndex]
+    userAlbumTempList.splice(editIndex, 1)
+    let photoIds = userAlbumTempList.map(v => v.id)
+    let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
@@ -67,18 +94,7 @@ Page({
         })
         break
       case 'set':
-        app.wxConfirm({
-          title: '设置封面',
-          content: '部分接口包括',
-          cancelText: '取消',
-          confirmText: '确认',
-          confirmBack() {
-            console.log(1)
-          },
-          cancelBack() {
-            console.log(2)
-          }
-        })
+        that.setCover()
         break
       case 'photo':
         that.setData({ show: false})
