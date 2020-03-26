@@ -17,7 +17,7 @@
           disabled/>
       </myPicker>
     </view>
-    <block wx:if="{{ formData.occupation }}">
+    <block wx:if="{{ formData.companyRequired }}">
       <view class="li" bindtap="jump">
         <view class="key">所在公司</view>
         <input

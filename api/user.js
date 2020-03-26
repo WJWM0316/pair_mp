@@ -54,3 +54,19 @@ export const updateUserBaseApi = (data) => {
     data
   })
 }
+
+export const addAlbumApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/album/add',
+    data
+  })
+}
+
+export const getMyLabelApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/label/my/label',
+    data
+  })
+}

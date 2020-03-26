@@ -41,6 +41,7 @@
     background: rgba(0, 0, 0, .05);
     position: absolute;
     right: 72rpx;
+    overflow: hidden;
     .tips {
       position: absolute;
       right: 15rpx;
@@ -52,6 +53,10 @@
       font-size: 24rpx;
       color: white;
       margin-right: 5rpx;
+    }
+    .avatarImg{
+      width: 100%;
+      height: 100%;
     }
   }
   .icon-1 {
@@ -249,17 +254,20 @@
       font-size:30rpx;
       color:@text-color-2;
       line-height:38rpx;
+      position: relative;
+      padding-right: 70rpx;
     }
     .h2 {
       font-size:30rpx;
       color:@text-color-3;
       line-height:38rpx;
       margin-top: 12rpx;
+      padding-right: 70rpx;
     }
     .item {
       position: relative;
       padding-left: 40rpx;
-      padding-right: 70rpx;
+      // padding-right: 70rpx;
       position: relative;
       padding-top: 32rpx;
       padding-bottom: 32rpx;

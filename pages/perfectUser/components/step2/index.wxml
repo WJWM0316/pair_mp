@@ -1,0 +1,51 @@
+<view class="step2">
+    <view class="h1">你的标签</view>
+    <view class="progress">
+        <view class="item active-item"></view>
+        <view class="item active-item"></view>
+        <view class="item"></view>
+        <view class="item"></view>
+    </view>
+    <view class="scroll-box {{fixedDom ? 'fixed-dom' : ''}}">
+        <view class="append">
+        已选<text>0</text>/20
+        </view>
+        <scroll-view
+        scroll-with-animation
+        scroll-x
+        class="tab"
+        >
+        <view
+            wx:for="{{ list }}"
+            wx:key="index"
+            class="item {{ item.active ? 'active' : '' }}"
+            bindtap="tabClick"
+            data-dom=".ul{{ index }}"
+            data-index="{{ index }}"
+            >
+            <text>{{item.name}}</text>
+        </view>
+        </scroll-view>
+    </view>
+    <view
+        class="tags-box"
+        scroll-y="{{ true }}"
+        bindscroll="scroll"
+        scroll-top="{{ scrollTop }}"
+        >
+        <view class="ul ul{{ index }}" wx:for="{{ list }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
+            <view class="key">
+                <i class="icon iconfont icon_renshe"></i>{{ pItem.name }}
+            </view>
+            <view
+                class="li {{ item.active ? 'active' : ''}}"
+                wx:for="{{ pItem.children }}"
+                data-parent="{{ pIndex }}"
+                data-child="{{ index }}"
+                wx:key="index"
+                bindtap="check">
+                {{ item.name }}
+            </view>
+        </view>
+    </view>
+</view>

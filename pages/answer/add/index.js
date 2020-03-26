@@ -1,66 +1,45 @@
-// pages/answerList/index.js
+import {
+  postQuestionApi,
+  removeQuestionApi
+} from '../../../api/question.js'
+let app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    info: {
+      body: ''
+    },
+    options: {}
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad(options) {
+    let info = wx.getStorageSync('question')
+    this.setData({ options, info: Object.assign(this.data.info, info)}, () => wx.removeStorageSync('question'))
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  bindInput(e) {
+    let { info } = this.data
+    let { value } = e.detail
+    if(info.body !== value) {
+      info.body = value
+      this.setData({ info })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  delete() {
+    let { options } = this.data
+    removeQuestionApi({id: options.id}).then(res => {
+      wx.navigateBack({ delta: 1 })
+    }).catch(err => app.wxToast({title: err.msg}))
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  save() {
+    let { info } = this.data
+    if(!info.body.trim()) {
+      app.wxToast({title: '请添加问答内容'})
+      return
+    }
+    let params = {
+      question_id: info.questionId || info.id,
+      body: info.body
+    }
+    postQuestionApi(params).then(res => {
+      wx.navigateBack({ delta: 1 })
+    }).catch(err => app.wxToast({title: err.msg}))
   }
 })

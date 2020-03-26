@@ -7,6 +7,122 @@
   top: 0;
   left: 0;
   z-index: 10;
+  .photo-box1 {
+    background:rgba(255,255,255,1);
+    border-radius:24rpx;
+    position: absolute;
+    left: 87rpx;
+    right: 87rpx;
+    z-index: 9;
+    box-sizing: border-box;
+    padding: 40rpx;
+    top: 132rpx;
+    .h11 {
+      height:44rpx;
+      font-size:36rpx;
+      font-weight:700;
+      color:@text-color-1;
+      line-height:44rpx;
+      text-align: center;
+    }
+    .example {
+      height:283rpx;
+      background:rgba(237,232,241,1);
+      border-radius:16rpx;
+      margin: 20rpx 0;
+      position: relative;
+    }
+    .p11 {
+      height:36rpx;
+      font-size:28rpx;
+      color:rgba(31,37,43,1);
+      line-height:36rpx;
+    }
+    .p111 {
+      height:36rpx;
+      font-size:28rpx;
+      color:rgba(31,37,43,1);
+      line-height:36rpx;
+      margin-top: 14rpx;
+      padding-bottom: 30rpx;
+      position: relative;
+      &:after{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .line(@border-color-base)
+      }
+    }
+    .list {
+      overflow: hidden;
+      margin-top: 30rpx;
+    }
+    .item1 {
+      width:142rpx;
+      display: inline-block;
+      text-align: center;
+      &:nth-child(2n) {
+        margin: 0 35rpx;
+      }
+      .box {
+        width:142rpx;
+        height:142rpx;
+        border-radius: 16rpx;
+        background: rgba(0, 0, 0, .05);
+        position: relative;
+      }
+    }
+    .text {
+      height:34rpx;
+      font-size:26rpx;
+      color:@text-color-2;
+      line-height:34rpx;
+      margin-top: 14rpx;
+    }
+    .action {
+      width:30rpx;
+      height:30rpx;
+      border-radius: 50%;
+      border: 2rpx solid #fff;
+      position: absolute;
+      bottom: 14rpx;
+      right: 14rpx;
+      background: @vice-primary-color-3;
+      color: #fff;
+      text-align: center;
+      line-height: 30rpx;
+      .icon {
+        font-size: 12rpx;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .icon2 {
+      width:50rpx;
+      height:50rpx;
+      border-radius: 50%;
+      border: 4rpx solid #fff;
+      position: absolute;
+      bottom: 20rpx;
+      right: 20rpx;
+      color: @primary-color;
+      text-align: center;
+      line-height: 50rpx;
+      font-size: 50rpx;
+      position: absolute;
+    }
+    .icon3 {
+      font-size: 18rpx;
+      color: @text-color-1;
+      position: relative;
+      top: -3rpx;
+      margin-right: 5rpx;
+    }
+  }
   .content {
     width:100vw;
     height:auto;

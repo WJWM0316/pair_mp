@@ -1,14 +1,34 @@
-<!-- <view class="drawer" hidden="{{!show}}"  catchtouchmove="stopPageScroll">
-  <view class="mask"  bindtap="close"></view>
-  <view class="content {{showPop ? 'show' : ''}}">
-    <view wx:if="{{!type}}" class="header">
-    	{{title}}<i class="icon iconfont icon-close" bindtap="close"></i>
-    </view>
-    <slot></slot>
-  </view>
-</view> -->
+<navBar navBarBg="#F1F4F4"></navBar>
 <view class="drawer" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
   <view class="mask"></view>
+  <view class="photo-box1" wx:if="{{ type === 'photo'}}">
+    <view class="h11">照片要求</view>
+    <view class="example">
+      <i class="icon2 icon iconfont icon_gouxuan"></i>
+    </view>
+    <view class="p11"><i class="icon3 icon iconfont icon_gouxuan"></i>本人清晰五官</view>
+    <view class="p111"><i class="icon3 icon iconfont icon_gouxuan"></i>本人生活艺术照、旅行照、视频</view>
+    <view class="list">
+      <view class="item1">
+        <view class="box">
+          <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
+        </view>
+        <view class="text">水印</view>
+      </view>
+      <view class="item1">
+        <view class="box">
+          <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
+        </view>
+        <view class="text">风景</view>
+      </view>
+      <view class="item1">
+        <view class="box">
+          <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
+        </view>
+        <view class="text">模糊</view>
+      </view>
+    </view>
+  </view>
   <view class="content {{ show ? 'show' : ''}}">
     <view class="action-ul">
       <view

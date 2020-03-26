@@ -1,6 +1,6 @@
 <view class="answer">
-    <view class="h1"><view class="my-icon"></view>今年的新年愿望是什么？</view>
+    <view class="h1"><view class="my-icon"></view>选择一个问题</view>
     <view class="ul">
-        <view class="li" wx:for="{{ 20 }}" wx:key="item">今年的新年愿望是什么？</view>
+        <view class="li" wx:for="{{ list }}" wx:key="index" bindtap="onClick" data-info="{{item}}">{{ item.title }}</view>
     </view>
 </view>

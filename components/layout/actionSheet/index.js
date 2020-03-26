@@ -1,4 +1,7 @@
 Component({
+  options: {
+    addGlobalClass: true,
+  },
   properties: {
     show: {
       type: Boolean,
@@ -12,6 +15,10 @@ Component({
     itemList: {
       type: Array,
       default: []
+    },
+    type: {
+      type: String,
+      value: ''
     }
   },
   methods: {

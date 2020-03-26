@@ -10,8 +10,6 @@ import {
   getSelectorQuery
 } from '../../utils/util.js'
 let app = getApp()
-let fixedDomPosition = 0
-let scrollTop = 0
 Page({
   data: {
     step: 1,
@@ -25,14 +23,12 @@ Page({
     canClick: false,
     labels: []
   },
+  fixedDomPosition: 0,
+  scrollTop: 0,
   onLoad(options) {
     if(options.step) {
       this.setData({step: options.step})
     }
-  },
-  onUnload() {
-    fixedDomPosition = 0
-    scrollTop = 0
   },
   onShow() {
     this.init()
@@ -42,17 +38,23 @@ Page({
     step++
     this.setData({ step })
   },
-  init() {
-    if(this.data.step) {
-      this.setData({canClick: true})
-    }
-    getSelectorQuery('.scroll-box').then(res => fixedDomPosition = res.top || 0)
+  init2() {
     getLabelListApi().then(({ data }) => {
-      data.map((v,i) => v.active = !i ? true : false)
-      this.setData({list: data})
+      // getSelectorQuery('.scroll-box').then(res => {
+        // this.fixedDomPosition = res.top || 0
+        data.map((v,i) => v.active = !i ? true : false)
+        this.setData({list: data})
+      // })
     })
   },
+  init() {
+    if(this.data.step === 1) {
+      this.setData({canClick: true})
+    }
+    this.init2()
+  },
   pickerResult(e) {
+    console.log(e)
     let salary = e.detail.id
     if(salary !== this.data.salary) {
       this.setData({ salary })
@@ -87,7 +89,7 @@ Page({
     let { list } = this.data
     let callback = () => {
       getSelectorQuery(dom).then(res => {
-        scrollTop = res.top - 60 + scrollTop
+        this.scrollTop = res.top - 60 + this.scrollTop
         wx.pageScrollTo({
           scrollTop,
           duration: 300
@@ -138,7 +140,10 @@ Page({
     funcApi(params).then(res => {
       let { step } = this.data
       step++
-      this.setData({ step }, () => {
+      this.setData({ step, canClick: false }, () => {
+        if(step == 2) {
+          this.init2()
+        }
         if(step > 4) {
           wx.navigateBack({ delta: 1 })
         }
@@ -146,11 +151,11 @@ Page({
     }).catch(err => app.wxToast({title: err.msg}))
   },
   onPageScroll(e) {
-    scrollTop = e.scrollTop
-    if(e.scrollTop >= fixedDomPosition - 10) {
-      if(!this.data.fixedDom) this.setData({fixedDom: true})
-    } else {
-      if(this.data.fixedDom) this.setData({fixedDom: false})
-    }
+    // this.scrollTop = e.scrollTop
+    // if(e.scrollTop >= this.fixedDomPosition - 10) {
+    //   if(!this.data.fixedDom) this.setData({fixedDom: true})
+    // } else {
+    //   if(this.data.fixedDom) this.setData({fixedDom: false})
+    // }
   }
 })
