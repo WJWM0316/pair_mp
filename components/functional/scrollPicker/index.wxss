@@ -1,5 +1,5 @@
 .scrollPicker .picker {
-  height: 300px;
+  height: 600rpx;
 }
 .scrollPicker .indicator {
   height: 120rpx;

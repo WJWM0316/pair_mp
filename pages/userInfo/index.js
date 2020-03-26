@@ -19,7 +19,7 @@ Page({
     let { userInfo } = this.data
     let { key } = e.currentTarget.dataset
     let { PAGEPATH } = app.globalData
-    wx.setStorageSync('userInfo', userInfo)
+    wx.setStorageSync('user', this.data)
     wx.navigateTo({
       url: `${PAGEPATH}/editUser/index?key=${key}`
     })    

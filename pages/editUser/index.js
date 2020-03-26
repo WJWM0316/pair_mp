@@ -7,15 +7,18 @@ let app = getApp()
 Page({
   data: {
     options: {},
-    userInfo: {}
+    userInfo: {},
+    careerVerifyInfo: {},
+    pickIntention: {}
   },
   onLoad(options) {
     this.setData({ options })
+    console.log(options)
   },
   onShow() {
     let { options } = this.data
     let title = ''
-    let userInfo = wx.getStorageSync('userInfo')
+    let { userInfo, careerVerifyInfo, pickIntention } = wx.getStorageSync('user')
     switch(options.key) {
       case 'nickname':
         title = '昵称'
@@ -38,12 +41,18 @@ Page({
       case 'isHasQuestion':
         title = '我的问答'
         break
+      case 'occupation':
+        title = '职业'
+        break
       default:
         break
     }
     wx.setNavigationBarTitle({title})
-    this.setData({userInfo})
-    setTimeout(() => wx.removeStorageSync('userInfo'), 16.7)
+    if(!Object.keys(careerVerifyInfo).length) {
+      careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
+    }
+    this.setData({ userInfo, careerVerifyInfo, pickIntention }, () => wx.removeStorageSync('user'))
+    console.log({ userInfo, careerVerifyInfo, pickIntention })
   },
   bindInput(e) {
     let { userInfo } = this.data
