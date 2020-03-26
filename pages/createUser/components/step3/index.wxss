@@ -126,25 +126,93 @@
 .icon_im_biaoqing:before {
   content: "\e658";
 }
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
+.step3 .h1 {
+  height: 56rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 56rpx;
 }
-page {
+.step3 .progress {
+  height: 8rpx;
+  line-height: 8rpx;
+  margin-top: 20rpx;
+}
+.step3 .progress .item {
+  width: 60rpx;
+  height: 8rpx;
   background: #F1F4F4;
-  padding-bottom: env(safe-area-inset-bottom);
+  border-radius: 9rpx;
+  margin-right: 8rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.step3 .progress .active-item {
+  background: #0CCDDA;
+}
+.step3 .ul {
+  margin-top: 68rpx;
+}
+.step3 .ul .li {
+  position: relative;
+  margin-bottom: 100rpx;
+}
+.step3 .ul .li:last-child {
+  margin-bottom: unset;
+}
+.step3 .ul .li:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
+}
+.step3 .ul .key {
+  height: 36rpx;
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #1F252B;
+  line-height: 36rpx;
+  margin-bottom: 16rpx;
+}
+.step3 .ul .value {
+  padding: 16rpx 0;
+  height: 44rpx;
+}
+.step3 .tips-box {
+  height: 32rpx;
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #66666E;
+  line-height: 32rpx;
+  margin-top: 40rpx;
+}
+.step3 .tips-box .info {
+  display: inline;
+}
+.step3 .tips-box .strong {
+  text-decoration: underline;
+  color: #0CCDDA;
+  display: inline;
+  padding-left: 24rpx;
+  font-weight: 700;
+}
+.step3 .tips-box .icon {
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1rpx;
+  margin-right: 10rpx;
+  color: #e85274;
+  font-size: 26rpx;
 }
 .holderStyle {
   color: #CFD4D8;
-}
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-  display: none;
+  font-size: 36rpx;
+  font-weight: unset;
 }

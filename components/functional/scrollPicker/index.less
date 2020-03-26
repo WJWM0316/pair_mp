@@ -2,7 +2,7 @@
 @import '../../../styles/_mixins.less';
 .scrollPicker {
 	.picker {
-		height: 300px;
+		height: 600rpx;
 	}	
 	.indicator {
 		height: 120rpx;
@@ -30,5 +30,14 @@
 		color: @text-color-1;
 		text-align: center;
 		line-height: 120rpx;
+	}
+	.mask {
+		background: transparent;
+		// background: linear-gradient(red, yellow, blue);
+	}
+	picker-view-column {
+		&:nth-child(2n) {
+			margin: 0 30rpx;
+		}
 	}
 }

@@ -3,10 +3,10 @@
     "pages/index/index",
     "pages/IM/chat/index",
     "pages/IM/list/index",
-    "pages/createInfo/index",
+    "pages/createUser/index",
     "pages/methods/index",
     "pages/email/index",
-    "pages/perfectInfo/index",
+    "pages/perfectUser/index",
     "pages/loginGuide/index",
     "pages/searchCompany/index",
     "pages/login/index",
@@ -15,7 +15,9 @@
     "pages/answerList/index",
     "pages/IM/systemMsg/index",
     "pages/setting/index",
-    "pages/backlist/index"
+    "pages/backlist/index",
+    "pages/answer/index/index",
+    "pages/album/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

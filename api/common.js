@@ -68,3 +68,18 @@ export const hasCompanyEmailApi = (data) => {
     url: `/company/email/${data.company_id}`
   })
 }
+
+export const getLabelListApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/label/list'
+  })
+}
+
+export const addLabelApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/label/add',
+    data
+  })
+}

@@ -1,5 +1,5 @@
 <view class="scrollPicker">
-  <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange">
+  <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange" mask-class="mask">
     <block wx:if="{{ mode === 'selector'}}">
       <picker-view-column class="column">
         <view wx:for="{{ rangeArray }}" wx:key="index">
@@ -18,7 +18,7 @@
           wx:for="{{ pItem }}"
           wx:key="cIndex"
           wx:for-index="cIndex">
-            {{ item.key || item.title || item.text }}
+            {{ item.key || item.title || item.text || item[rangeKey] }}
         </view>
       </picker-view-column>
     </block> 

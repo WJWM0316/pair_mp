@@ -47,6 +47,7 @@ const wxApi = {
         sizeType: ['original', 'compressed'],
         sourceType: ['album'],
         success (res) {
+          let file = res.tempFiles[0]
           let formData = {
             'img1': file.path,
             'size': file.size || 0,
@@ -87,6 +88,7 @@ const wxApi = {
         sizeType: ['original', 'compressed'],
         sourceType: ['camera'],
         success (res) {
+          let file = res.tempFiles[0]
           let formData = {
             'img1': file.path,
             'size': file.size || 0,

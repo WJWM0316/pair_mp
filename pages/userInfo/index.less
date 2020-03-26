@@ -16,6 +16,13 @@
     font-size:30rpx;
     color:@text-color-1;
   }
+  .placeholder {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 48%;
+    transform: translateY((-50%));
+  }
   .ul-album {
     height:216rpx;
     background:#fff;
@@ -34,6 +41,18 @@
     background: rgba(0, 0, 0, .05);
     position: absolute;
     right: 72rpx;
+    .tips {
+      position: absolute;
+      right: 15rpx;
+      top: 15rpx;
+      font-size: 24rpx;
+      color: white;
+    }
+    .icon {
+      font-size: 24rpx;
+      color: white;
+      margin-right: 5rpx;
+    }
   }
   .icon-1 {
     width: 30rpx;
@@ -67,6 +86,7 @@
     vertical-align: middle;
     text-align: right;
     line-height: 102rpx;
+    position: relative;
   }
   .label {
     display: inline-block;
@@ -259,4 +279,9 @@
       margin-top: 4rpx;
     }
   }
+}
+
+.holderStyle {
+  font-size:30rpx;
+  color:@text-color-4;
 }

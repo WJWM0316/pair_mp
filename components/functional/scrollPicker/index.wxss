@@ -1,5 +1,5 @@
 .scrollPicker .picker {
-  height: 300px;
+  height: 600rpx;
 }
 .scrollPicker .indicator {
   height: 120rpx;
@@ -32,4 +32,10 @@
   color: #1F252B;
   text-align: center;
   line-height: 120rpx;
+}
+.scrollPicker .mask {
+  background: transparent;
+}
+.scrollPicker picker-view-column:nth-child(2n) {
+  margin: 0 30rpx;
 }

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-  	"navBar": "../../components/layout/navBar/index"
+    "navBar": "../../components/layout/navBar/index",
+    "actionSheet": "../../components/layout/actionSheet"
   },
   "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#F1F4F4",

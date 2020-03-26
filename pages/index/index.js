@@ -57,11 +57,11 @@ Page({
       case 'login':
         wx.navigateTo({url: '/pages/login/index'})
         break
-      case 'createInfo':
-        wx.navigateTo({url: '/pages/createInfo/index'})
+      case 'createUser':
+        wx.navigateTo({url: '/pages/createUser/index'})
         break
-      case 'perfectInfo':
-        wx.navigateTo({url: '/pages/perfectInfo/index'})
+      case 'perfectUser':
+        wx.navigateTo({url: '/pages/perfectUser/index'})
         break
       case 'pick':
         pickApi().then(res => {

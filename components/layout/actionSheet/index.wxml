@@ -1,0 +1,26 @@
+<!-- <view class="drawer" hidden="{{!show}}"  catchtouchmove="stopPageScroll">
+  <view class="mask"  bindtap="close"></view>
+  <view class="content {{showPop ? 'show' : ''}}">
+    <view wx:if="{{!type}}" class="header">
+    	{{title}}<i class="icon iconfont icon-close" bindtap="close"></i>
+    </view>
+    <slot></slot>
+  </view>
+</view> -->
+<view class="drawer" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
+  <view class="mask"></view>
+  <view class="content {{ show ? 'show' : ''}}">
+    <view class="action-ul">
+      <view
+        class="item {{ item.action }}"
+        bindtap="todoAction"
+        data-action="{{item.action}}"
+        wx:for="{{ itemList }}"
+        wx:key="index"
+        data-index="{{index}}">
+          {{item.text}}
+      </view>
+      <!-- <view class="item" bindtap="todoAction" data-action="close">取消</view> -->
+    </view>
+  </view>
+</view>

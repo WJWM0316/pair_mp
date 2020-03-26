@@ -4,11 +4,25 @@ import {
 const app = getApp()
 Page({
   data: {
-    show: false,
     CDNPATH: '',
     showEmailEntry: false,
     email: '',
-    emailSuffix: ''
+    emailSuffix: '',
+    show: false,
+    itemList: [
+      {
+        text: '从相册选择相片',
+        action: 'photo'
+      },
+      {
+        text: '拍摄',
+        action: 'camera'
+      },
+      {
+        text: '取消',
+        action: 'cancle'
+      }
+    ]
   },
   onLoad(options) {
     let { CDNPATH } = app.globalData
@@ -24,11 +38,35 @@ Page({
   stopPageScroll() {
 	  return false
   },
+  open(e) {
+    let params = e
+    this.setData({ show: true})
+    console.log(1)
+  },
+  drawerAction(e) {
+    let detail = e.detail
+    let that = this
+    switch(detail.action) {
+      case 'photo':
+        that.setData({ show: false})
+        app.chooseImageUpload(1).then(({ data }) => {
+          let result = data.attachListItem[0]
+          console.log(result)
+        })
+        break
+      case 'camera':
+        that.setData({ show: false})
+        app.photoUpload(1).then(({ data }) => {
+          let result = data.attachListItem[0]
+          console.log(result)
+        })
+        break
+      default:
+        break
+    }
+  },
   close() {
 	  this.setData({ show: false})
-  },
-  open() {
-  	this.setData({ show: true})
   },
   fillEmail() {
     let { PAGEPATH } = app.globalData
@@ -36,27 +74,5 @@ Page({
     wx.navigateTo({
       url: `${PAGEPATH}/email/index?emailSuffix=${emailSuffix}`
     })
-  },
-  chooseImage(e) {
-    let that = this
-    let { from } = e.currentTarget.dataset
-    that.setData({show: false})
-    if(from === 'album') {
-      app.chooseImageUpload().then(res => {
-        app.uploadFile(res.tempFiles[0]).then(({ data }) => {
-          let result = data.attachListItem[0]
-          console.log(result)
-        }).catch(err => {})
-      })
-    } else {
-      app.photoUpload().then(res => {
-        app.uploadFile(res.tempFiles[0]).then(({ data }) => {
-          let result = data.attachListItem[0]
-          console.log(result)
-        }).catch(err => {
-
-        })
-      })
-    }
   }
 })

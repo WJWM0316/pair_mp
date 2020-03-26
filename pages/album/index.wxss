@@ -1,0 +1,104 @@
+.album .photo-ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 6px;
+}
+.album .photo-ul .item {
+  padding-top: 100%;
+  background: rgba(0, 0, 0, 0.01);
+  height: 0;
+  position: relative;
+}
+.album .photo-ul .inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  text-align: center;
+}
+.album .photo-ul .txt {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.album .photo-ul .action {
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  color: white;
+  transform: rotate(90deg);
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 26rpx;
+}
+.album .footer {
+  height: 240rpx;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 0 44rpx;
+  display: flex;
+  padding-top: 92rpx;
+}
+.album .footer .btn {
+  flex: 1;
+  height: 98rpx;
+  border-radius: 54rpx;
+  text-align: center;
+  line-height: 98rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  position: relative;
+}
+.album .footer .btn-add .shadow {
+  background: #C4D2D3;
+  border-radius: 54rpx;
+  opacity: 0.4;
+  filter: blur(10rpx);
+  position: absolute;
+  right: 0;
+  bottom: -10rpx;
+  width: 100%;
+  height: 100%;
+}
+.album .footer .btn-add .btn-cover {
+  color: #0CCDDA;
+  border-radius: 54rpx;
+  position: relative;
+  background: white;
+  z-index: 2;
+}
+.album .footer .btn-save .shadow {
+  background: #0CCDDA;
+  border-radius: 54rpx;
+  opacity: 0.4;
+  filter: blur(10rpx);
+  position: absolute;
+  right: 0;
+  bottom: -10rpx;
+  width: calc(100% - 30rpx);
+  height: 100%;
+}
+.album .footer .btn-save .btn-cover {
+  color: #fff;
+  background: #0CCDDA;
+  margin-left: 30rpx;
+  border-radius: 54rpx;
+  position: relative;
+  z-index: 2;
+}
+.album .photo-box {
+  height: 263rpx;
+  background: yellow;
+  margin-bottom: 14rpx;
+}
