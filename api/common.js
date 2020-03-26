@@ -83,3 +83,11 @@ export const addLabelApi = (data) => {
     data
   })
 }
+
+export const verifyCareerApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/verify/career',
+    data
+  })
+}

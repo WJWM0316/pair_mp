@@ -1,12 +1,18 @@
 import {
-  getMyInfoApi
+  getMyInfoApi,
+  getMyLabelApi
 } from '../../api/user.js'
+import {
+  getMyQuestionListApi
+} from '../../api/question.js'
 let app = getApp()
 Page({
   data: {
     userInfo: {},
     careerVerifyInfo: {},
-    pickIntention: {}
+    pickIntention: {},
+    questionList: [],
+    labelList: []
   },
   onShow() {
     wx.removeStorageSync('userInfo')
@@ -15,7 +21,18 @@ Page({
       if(!Object.keys(careerVerifyInfo).length) {
         careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
       }
-      this.setData({ userInfo, careerVerifyInfo, pickIntention })
+      this.setData({ userInfo, careerVerifyInfo, pickIntention }, () => {
+        if(userInfo.isHasQuestion) {
+          getMyQuestionListApi().then(({data}) => {
+            this.setData({questionList: data})
+          })
+        }
+        if(userInfo.isHasLabel) {
+          getMyLabelApi().then(({data}) => {
+            this.setData({labelList: data})
+          })
+        }
+      })
     })
   },
   routeJump(e) {
@@ -28,8 +45,16 @@ Page({
   },
   openAlbum() {
     let { PAGEPATH } = app.globalData
+    let { userInfo } = this.data
+    wx.setStorageSync('userInfo', userInfo)
     wx.navigateTo({
       url: `${PAGEPATH}/album/index`
+    })   
+  },
+  addQuestion() {
+    let { PAGEPATH } = app.globalData
+    wx.navigateTo({
+      url: `${PAGEPATH}/answer/index/index`
     })   
   }
 })

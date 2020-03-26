@@ -1,44 +1,51 @@
+import {
+  addAlbumApi
+} from '../../api/user.js'
 const app = getApp()
 Page({
   data: {
     show: false,
-    itemList: []
+    itemList: [],
+    result: {},
+    type: '',
+    navBarHeight: app.globalData.navBarHeight,
+    cover: {},
+    userInfo: {}
   },
-  open1(e) {
+  onShow() {
+    let avatar = wx.getStorageSync('avatar')
+    let userInfo = wx.getStorageSync('userInfo')
+    if(avatar) {
+      this.setData({cover: avatar}, () => wx.removeStorageSync('avatar'))
+    }
+    if(userInfo) {
+      this.setData({userInfo}, () => wx.removeStorageSync('userInfo'))
+    }
+  },
+  open(e) {
     let itemList = [
-      {
-        text: '设置为封面',
-        action: 'set'
-      },
-      {
-        text: '删除图片',
-        action: 'delete'
-      },
-      {
-        text: '取消',
-        action: 'cancle'
-      }
+      {text: '设置为封面', action: 'set'},
+      {text: '删除图片', action: 'delete'},
+      {text: '取消', action: 'cancle'}
     ]
     let params = e
-    this.setData({ show: true, itemList})
+    this.setData({ show: true, itemList, type: ''})
   },
-  open2(e) {
+  upload(e) {
     let itemList = [
-      {
-        text: '从相册选择相片',
-        action: 'photo'
-      },
-      {
-        text: '拍摄',
-        action: 'camera'
-      },
-      {
-        text: '取消',
-        action: 'cancle'
-      }
+      {text: '从相册选择相片', action: 'photo'},
+      {text: '拍摄', action: 'camera'},
+      {text: '取消', action: 'cancle'}
     ]
     let params = e
-    this.setData({ show: true, itemList})
+    this.setData({ show: true, itemList, type: 'photo'})
+  },
+  addAlbum(id) {
+    let { cover, userInfo } = this.data
+    let photo = userInfo.userAlbumTempList.join(',')
+    addAlbumApi({cover: cover.id, photo}).then(res => {
+
+    })
   },
   drawerAction(e) {
     let detail = e.detail
@@ -75,16 +82,20 @@ Page({
         break
       case 'photo':
         that.setData({ show: false})
-        app.chooseImageUpload(1).then(({ data }) => {
-          let result = data.attachListItem[0]
-          console.log(result)
+        app.chooseImageUpload(1, true).then(res => {
+          let { PAGEPATH } = app.globalData
+          wx.navigateTo({
+            url: `${PAGEPATH}/cutInside/cutInside?src=${res.path}`
+          })
         })
         break
       case 'camera':
         that.setData({ show: false})
-        app.photoUpload(1).then(({ data }) => {
-          let result = data.attachListItem[0]
-          console.log(result)
+        app.photoUpload(true).then(({ data }) => {
+          let { PAGEPATH } = app.globalData
+          wx.navigateTo({
+            url: `${PAGEPATH}/cutInside/cutInside?src=${res.path}`
+          })
         })
         break
       default:

@@ -1,5 +1,6 @@
 import {
-  hasCompanyEmailApi
+  hasCompanyEmailApi,
+  verifyCareerApi
 } from '../../api/common.js'
 const app = getApp()
 Page({
@@ -33,7 +34,7 @@ Page({
     hasCompanyEmailApi({company_id: options.companyId}).then(({ data }) => {
       let showEmailEntry = data.emailSuffix ? data.emailSuffix : false
       this.setData({showEmailEntry, ...data})
-    })
+    }).catch(err => app.wxToast({title: err.msg}))
   },
   stopPageScroll() {
 	  return false
@@ -43,6 +44,11 @@ Page({
     this.setData({ show: true})
     console.log(1)
   },
+  verifyCareer(attach_id) {
+    verifyCareerApi({attach_id}).then(() => {
+      wx.navigateBack({ delta: 1 })
+    }).catch(err => app.wxToast({title: err.msg}))
+  },
   drawerAction(e) {
     let detail = e.detail
     let that = this
@@ -51,14 +57,14 @@ Page({
         that.setData({ show: false})
         app.chooseImageUpload(1).then(({ data }) => {
           let result = data.attachListItem[0]
-          console.log(result)
+          this.verifyCareer(result.id)
         })
         break
       case 'camera':
         that.setData({ show: false})
         app.photoUpload(1).then(({ data }) => {
           let result = data.attachListItem[0]
-          console.log(result)
+          this.verifyCareer(result.id)
         })
         break
       default:

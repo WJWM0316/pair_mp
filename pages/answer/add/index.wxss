@@ -67,7 +67,6 @@
   transform: scale(0.5, 0.5);
 }
 .answer .h1 {
-  height: 48rpx;
   font-size: 34rpx;
   color: #66666E;
   line-height: 48rpx;

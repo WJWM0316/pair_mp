@@ -108,8 +108,31 @@
     }
   }
   .photo-box {
-    height:263rpx;
-    background: yellow;
+    background: rgba(0, 0, 0, .01);
     margin-bottom: 14rpx;
+    width: 100%;
+    padding-bottom: 100%;
+    height: 0;
+    position: relative;
+    .inner {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+    .tips {
+      width:96rpx;
+      height:48rpx;
+      background:rgba(31,37,43,1);
+      border-radius:24rpx;
+      position: absolute;
+      top: 36rpx;
+      right: 36rpx;
+      font-size:26rpx;
+      color:#fff;
+      text-align: center;
+      line-height: 48rpx;
+    }
   }
 }

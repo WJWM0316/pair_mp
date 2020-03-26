@@ -13,6 +13,7 @@
   height: 100vh;
   box-sizing: border-box;
   padding: 96rpx 80rpx;
+  display: none;
   .h1 {
     height: 56rpx;
     font-size: 48rpx;
@@ -73,6 +74,7 @@
   min-height: 100vh;
   box-sizing: border-box;
   padding: 36rpx 0;
+  display: none;
   // position: fixed;
   // left: 0;
   // right: 0;
@@ -133,13 +135,14 @@
   }
   .scroll-box {
     padding: 57rpx 0 22rpx 0;
-    position: relative;
+    position: sticky;
     padding-left: 80rpx;
     box-sizing: border-box;
     background: #ffffff;
     z-index: 2;
     border-radius:36rpx 36rpx 0rpx 0rpx;
     width: 100vw;
+    top: 0;
     &:after{
       position: absolute;
       left: 0;
@@ -268,6 +271,7 @@
   height: 100vh;
   box-sizing: border-box;
   padding: 96rpx 80rpx;
+  display: none;
   .h1 {
     height: 56rpx;
     font-size: 48rpx;
@@ -345,6 +349,7 @@
   height: 100vh;
   box-sizing: border-box;
   padding: 96rpx 80rpx;
+  display: none;
   .h1 {
     height: 56rpx;
     font-size: 48rpx;
@@ -414,4 +419,8 @@
       .line(@border-color-base)
     }
   }
+}
+
+.show {
+  display: block;
 }

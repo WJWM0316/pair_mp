@@ -210,17 +210,12 @@
       <view class="label">
         <view class="key">我的问答</view>
       </view>
-      <view class="func-btn">完善问答</view>
+      <view class="func-btn" bindtap="addQuestion">完善问答</view>
     </view>
-    <view class="box">
-      <view class="item">
+    <view class="box" wx:if="{{questionList.length}}">
+      <view class="item" wx:for="{{ questionList }}" wx:key="index">
         <view class="h1"><view class="my-icon"></view>今年的新年愿望是什么？</view>
         <view class="h2">找到一个愿意被我打的人</view>
-        <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
-      </view>
-      <view class="item">
-        <view class="h1"><view class="my-icon"></view>今年的新年愿望是什么？</view>
-        <view class="h2">找到一个愿意被我打的人找到一个愿意被我打的人找到一个愿意被我打的人</view>
         <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
       </view>
     </view>

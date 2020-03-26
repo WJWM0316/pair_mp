@@ -1,5 +1,5 @@
 <view class="perfect_info">
-    <view class="step1" wx:if="{{ step === 1 }}">
+    <view class="step1 {{ step === 1 ? 'show' : ''}}">
         <view class="h1">年收入范围</view>
         <view class="progress">
             <view class="item active-item"></view>
@@ -8,10 +8,10 @@
             <view class="item"></view>
         </view>
         <view class="picker-box">
-            <scrollPicker pickerType="salary" initValue="{{ 0 }}" bind:pickerResult="pickerResult"></scrollPicker>
+            <scrollPicker pickerType="salary" initValue="{{ '' }}" bind:pickerResult="pickerResult"></scrollPicker>
         </view>
     </view>
-    <view class="step2" wx:elif="{{ step === 2}}">
+    <view class="step2  {{ step === 2 ? 'show' : ''}}">
         <view class="h1">你的标签</view>
         <view class="progress">
             <view class="item active-item"></view>
@@ -66,7 +66,7 @@
         </view>
     </view>
 
-    <view class="step3" wx:elif="{{ step === 3}}">
+    <view class="step3 {{ step === 3 ? 'show' : ''}}">
         <view class="h1">自我描述</view>
         <view class="h2">介绍你的性格，生活习惯，兴趣爱好等等</view>
         <view class="progress">
@@ -88,7 +88,7 @@
         </view>
         <view class="number"><text class="{{ formData.own_describe.length ? 'strong' : ''}}">{{formData.own_describe.length}}</text>/150</view>
     </view>
-    <view class="step4" wx:else>
+    <view class="step4 {{ step === 4 ? 'show' : ''}}">
         <view class="h1">我的理想型</view>
         <view class="h2">介绍下你心目中的TA应该是怎么样的</view>
         <view class="progress">

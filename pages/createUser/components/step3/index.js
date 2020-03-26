@@ -12,7 +12,8 @@ Component({
       position_name: '',
       occupation: '',
       occupationDesc: '',
-      is_need_email_verify: 0
+      is_need_email_verify: 0,
+      companyRequired: 0
     },
     status: 1,
     canClick: false
@@ -32,9 +33,11 @@ Component({
   },
   methods: {
     getPickerData(e) {
+      console.log(e)
       let { formData } = this.data
       formData.occupationDesc = e.detail.name
       formData.occupation = e.detail.labelId
+      formData.companyRequired = e.detail.companyRequired
       this.setData({ formData, canClick: true })
     },
     legalize() {

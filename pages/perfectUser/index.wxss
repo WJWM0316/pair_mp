@@ -9,6 +9,7 @@
   height: 100vh;
   box-sizing: border-box;
   padding: 96rpx 80rpx;
+  display: none;
 }
 .step1 .h1 {
   height: 56rpx;
@@ -70,6 +71,7 @@
   min-height: 100vh;
   box-sizing: border-box;
   padding: 36rpx 0;
+  display: none;
 }
 .step2:after {
   position: fixed;
@@ -125,13 +127,14 @@
 }
 .step2 .scroll-box {
   padding: 57rpx 0 22rpx 0;
-  position: relative;
+  position: sticky;
   padding-left: 80rpx;
   box-sizing: border-box;
   background: #ffffff;
   z-index: 2;
   border-radius: 36rpx 36rpx 0rpx 0rpx;
   width: 100vw;
+  top: 0;
 }
 .step2 .scroll-box:after {
   position: absolute;
@@ -278,6 +281,7 @@
   height: 100vh;
   box-sizing: border-box;
   padding: 96rpx 80rpx;
+  display: none;
 }
 .step3 .h1 {
   height: 56rpx;
@@ -358,6 +362,7 @@
   height: 100vh;
   box-sizing: border-box;
   padding: 96rpx 80rpx;
+  display: none;
 }
 .step4 .h1 {
   height: 56rpx;
@@ -430,5 +435,8 @@
   height: 1rpx;
   transform: scaleY(0.5);
   background: #EDF1F0;
+  display: block;
+}
+.show {
   display: block;
 }
