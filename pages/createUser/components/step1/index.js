@@ -128,7 +128,6 @@ Component({
       let { formData } = this.data
       let canClick = formData.nickname && formData.birth && formData.address.title && formData.avatar.url ? true : false
       this.setData({ canClick })
-      console.log(this.data)
     },
     getUserInfo(e) {
       if (e.detail.errMsg === 'getUserInfo:ok') {

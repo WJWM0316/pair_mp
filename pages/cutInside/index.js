@@ -62,10 +62,14 @@ Page({
     })
   },
   getCropperImage () {
+    console.log('a')
     this.wecropper.getCropperImage((avatar) => {
+      console.log('b')
       if (avatar) {
+        console.log('c')
         this.wxupLoad({path: avatar, size: 0})
       } else {
+        console.log('d')
         console.log('获取图片失败，请稍后重试')
       }
     })

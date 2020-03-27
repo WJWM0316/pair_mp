@@ -1,7 +1,7 @@
 <navBar navBarBg="#F1F4F4"></navBar>
 <view class="perfect">
   <view class="h1">完善职业信息</view>
-  <view class="h2">所在公司：广州老虎科技信息有限公司</view>
+  <view class="h2">所在公司：{{formData.company_name}}</view>
   <view class="ul">
     <view class="li">
       <view class="h3">职业经历材料</view>

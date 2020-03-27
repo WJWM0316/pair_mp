@@ -43,6 +43,7 @@ Component({
     legalize() {
       let { PAGEPATH } = app.globalData
       let { formData } = this.data
+      wx.setStorageSync('searchCompany', formData)
       wx.navigateTo({
         url: `${PAGEPATH}/methods/index?companyId=${formData.company_id ? formData.company_id : ''}`
       })

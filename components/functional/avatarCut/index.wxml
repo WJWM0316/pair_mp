@@ -3,7 +3,7 @@
 		<image class="avatarImg avatar" src="{{src}}" mode="aspectFill"></image>
 		<i wx:if="{{!src}}" class="static icon iconfont icon_tianjiafengmian"></i>
 		<i wx:if="{{src && icon}}" class="icon iconfont icon_tianjiafengmian"></i>
-		<view class="txt">添加封面</view>
+		<view class="txt" wx:if="{{!src}}">添加封面</view>
 	</block>
 	<block wx:else><slot></slot></block>
 </view>

@@ -17,7 +17,7 @@
     "pages/backlist/index",
     "pages/answer/index/index",
     "pages/album/index",
-    "pages/cutInside/cutInside"
+    "pages/cutInside/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

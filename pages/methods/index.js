@@ -23,12 +23,19 @@ Page({
         text: '取消',
         action: 'cancle'
       }
-    ]
+    ],
+    formData: {}
   },
   onLoad(options) {
     let { CDNPATH } = app.globalData
     this.setData({ CDNPATH })
     options.companyId && this.hasCompanyEmail(options)
+  },
+  onShow() {
+    let formData = wx.getStorageSync('searchCompany')
+    if(formData) {
+      this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
+    }
   },
   hasCompanyEmail(options) {
     hasCompanyEmailApi({company_id: options.companyId}).then(({ data }) => {
@@ -42,7 +49,6 @@ Page({
   open(e) {
     let params = e
     this.setData({ show: true})
-    console.log(1)
   },
   verifyCareer(attach_id) {
     verifyCareerApi({attach_id}).then(() => {
@@ -76,7 +82,8 @@ Page({
   },
   fillEmail() {
     let { PAGEPATH } = app.globalData
-    let { emailSuffix } = this.data
+    let { emailSuffix, formData } = this.data
+    wx.setStorageSync('searchCompany', formData)
     wx.navigateTo({
       url: `${PAGEPATH}/email/index?emailSuffix=${emailSuffix}`
     })
