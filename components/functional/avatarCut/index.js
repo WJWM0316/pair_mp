@@ -47,7 +47,11 @@ Component({
               url: `/pages/cutInside/cutInside`
             })
           }, 200)
-          
+          console.log(src)
+          console.log(`${PAGEPATH}/cutInside/cutInside?src=${src}`)
+          wx.navigateTo({
+            url: `${PAGEPATH}/cutInside/cutInside?src=${src}`
+          })
         }
       })
     }

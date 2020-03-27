@@ -51,7 +51,7 @@
             >
             <view class="ul ul{{ index }}" wx:for="{{ list }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
                 <view class="key">
-                    <i class="icon iconfont icon_renshe"></i>{{ pItem.name }}
+                    <i class="icon iconfont {{pItem.iconName}}"></i>{{ pItem.name }}
                 </view>
                 <view
                     class="li {{ item.active ? 'active' : ''}}"

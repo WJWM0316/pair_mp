@@ -9,9 +9,9 @@
     <view class="photo-ul">
       <view class="item" wx:for="{{ userInfo.userAlbumTempList }}" wx:key="index">
         <view class="inner">
-          <i-image my-class="cover-img" src="{{ cover.url }}"></i-image>
-          <view class="action" bindtap="open" data-action="open" data-index="{{item}}"><i class="icon iconfont icon_gengduo"></i></view>
-          <view class="txt">1</view>
+          <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
+          <view class="action" bindtap="open" data-action="open" data-index="{{index}}" wx:if="{{!item.isCover}}"><i class="icon iconfont icon_gengduo"></i></view>
+          <!-- <view class="txt">1</view> -->
         </view>
       </view>
     </view>
@@ -20,7 +20,7 @@
         <view class="btn-cover">添加</view>
         <view class="shadow"></view>
       </view>
-      <view class="btn btn-save" bindtap="addAlbum">
+      <view class="btn btn-save" bindtap="addAlbum" wx:if="{{result.id}}">
         <view class="btn-cover">保存</view>
         <view class="shadow"></view>
       </view>
