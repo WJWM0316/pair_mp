@@ -33,7 +33,6 @@ Component({
   },
   methods: {
     getPickerData(e) {
-      console.log(e)
       let { formData } = this.data
       formData.occupationDesc = e.detail.name
       formData.occupation = e.detail.labelId

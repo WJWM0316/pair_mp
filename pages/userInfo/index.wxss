@@ -132,6 +132,22 @@
 .user-page .society .status4 {
   background: #CFD4D8;
 }
+.user-page .base-info .limit-company-name,
+.user-page .society .limit-company-name {
+  max-width: 300rpx;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+  margin-right: 14rpx;
+}
+.user-page .base-info .gray,
+.user-page .society .gray {
+  font-size: 30rpx;
+  color: #cfd4d8;
+}
 .user-page .func-btn {
   width: 182rpx;
   height: 64rpx;
@@ -192,6 +208,16 @@
   display: inline-block;
   flex: 0 0 27px;
   position: relative;
+  text-align: center;
+  line-height: 54rpx;
+}
+.user-page .myLabel .type .icon {
+  font-size: 28rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #1F252B;
 }
 .user-page .myLabel .item {
   height: 56rpx;

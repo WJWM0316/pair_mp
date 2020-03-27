@@ -111,6 +111,13 @@
 					"pathName": "pages/backlist/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "pages/userInfo/index",
+					"pathName": "pages/demo/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
