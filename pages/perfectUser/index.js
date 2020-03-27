@@ -50,10 +50,10 @@ Page({
             v.active = true
           }
         } else {
-          let plabelList = labelList.map(v => v.pid)
-          let clabelList = labelList.map(v => v.labelId)
+          let plabelList = labelList.map(v => v.labelId)
 
           if(plabelList.includes(v.labelId)) {
+            let clabelList = labelList.find(a => a.labelId === v.labelId).children.map(v => v.labelId)
             v.children.map(v => {
               v.active = false
               if(clabelList.includes(v.labelId)) {

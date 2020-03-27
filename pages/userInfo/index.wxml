@@ -83,17 +83,20 @@
         <view class="key">公司</view>
       </view>
       <view class="value">
-        <input
+        <text class="limit-company-name {{!userInfo.companyName ? 'gray' : ''}}">{{userInfo.companyName}}</text>
+        <!-- <input
           placeholder-class="holderStyle"
           placeholder="添加公司"
           value="{{ userInfo.companyName }}"
           class="placeholder"
           style="right: 110rpx"
-          disabled/>
-        <view class="btn-status status1" wx:if="{{careerVerifyInfo.status === 1}}">已认证</view>
-        <view class="btn-status status2" wx:if="{{careerVerifyInfo.status === 2}}">未通过</view>
-        <view class="btn-status status3" wx:if="{{careerVerifyInfo.status === -1}}">未认证</view>
-        <view class="btn-status status4" wx:if="{{careerVerifyInfo.status === 0}}">认证中</view>
+          disabled/> -->
+        <block wx:if="{{userInfo.companyName}}">
+          <view class="btn-status status1" wx:if="{{careerVerifyInfo.status === 1}}">已认证</view>
+          <view class="btn-status status2" wx:if="{{careerVerifyInfo.status === 2}}">未通过</view>
+          <view class="btn-status status3" wx:if="{{careerVerifyInfo.status === -1}}">未认证</view>
+          <view class="btn-status status4" wx:if="{{careerVerifyInfo.status === 0}}">认证中</view>
+        </block>
       </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
@@ -162,37 +165,13 @@
       <view class="label">
         <view class="key">我的标签</view>
       </view>
-      <view class="func-btn" wx:if="{{ userInfo.isHasLabel }}" bindtap="updateLabel">完善标签</view>
+      <view class="func-btn" wx:if="{{ !userInfo.isHasLabel }}" bindtap="updateLabel">完善标签</view>
       <i class="icon-2 icon iconfont icon_jiantou-you-" wx:else bindtap="updateLabel"></i>
     </view>
-    <view class="row">
-      <view class="type"></view>
+    <view class="row" wx:for="{{ labelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
+      <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
       <view class="box">
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-      </view>
-    </view>
-    <view class="row">
-      <view class="type"></view>
-      <view class="box">
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-      </view>
-    </view>
-    <view class="row">
-      <view class="type"></view>
-      <view class="box">
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
-        <view class="item">完善标签</view>
+        <view class="item"  wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
       </view>
     </view>
   </view>

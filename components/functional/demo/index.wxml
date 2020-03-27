@@ -1,0 +1,8 @@
+<view class="label-nav">
+	<scroll-view scroll-with-animation scroll-x class="label-scoll" scroll-left="{{ navScrollLeft }}" bindscroll="scroll">
+		<view class="label-item" style="opacity: 0">00</view>
+		<view class="label-item" wx:for="{{ tabs }}" wx:key="index"> {{item.key}} </view>
+		<view class="label-item" style="opacity: 0">00</view>
+	</scroll-view>
+</view>
+<view class="line"></view>

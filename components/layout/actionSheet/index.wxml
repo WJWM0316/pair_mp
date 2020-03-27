@@ -4,6 +4,7 @@
   <view class="photo-box1" wx:if="{{ type === 'photo'}}">
     <view class="h11">照片要求</view>
     <view class="example">
+      <i-image my-class="cover-img" src="{{ '' }}"></i-image>
       <i class="icon2 icon iconfont icon_gouxuan"></i>
     </view>
     <view class="p11"><i class="icon3 icon iconfont icon_gou-"></i>本人清晰五官</view>
@@ -11,18 +12,21 @@
     <view class="list">
       <view class="item1">
         <view class="box">
+          <i-image my-class="cover-img" src="{{ '' }}"></i-image>
           <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
         </view>
         <view class="text">水印</view>
       </view>
       <view class="item1">
         <view class="box">
+          <i-image my-class="cover-img" src="{{ '' }}"></i-image>
           <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
         </view>
         <view class="text">风景</view>
       </view>
       <view class="item1">
         <view class="box">
+          <i-image my-class="cover-img" src="{{ '' }}"></i-image>
           <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
         </view>
         <view class="text">模糊</view>

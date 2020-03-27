@@ -48,7 +48,7 @@
       maxlength="20"
       class="value {{ userInfo.companyName ? 'bold' : '' }}"
       />
-      <view class="tips">
+      <view class="tips" wx:if="{{!nameList.length}}">
         <block wx:if="{{ careerVerifyInfo.status === 1 }}">
           <i class="icon1 icon iconfont icon_gouxuan"></i>职业信息认证成功
         </block>
@@ -56,12 +56,31 @@
           <i class="icon2 icon iconfont icon_jinggao"></i>公司信息审核不通过<text class="strong">前往认证</text>
         </block>
         <block wx:elif="{{careerVerifyInfo.status === 0}}">
-          <i class="icon2 icon iconfont icon_jinggao"></i>公司信息认证中<text class="strong">更改认证信息</text>
+          公司信息认证中<text class="strong">更改认证信息</text>
         </block>
         <block wx:else>
           <i class="icon2 icon iconfont icon_jinggao"></i>公司信息未认证，将降低主页展示率<text class="strong">前往认证</text>
         </block>
       </view>
+      <scroll-view
+        scroll-y="true"
+        class="scroll-view"
+        wx:if="{{nameList.length > 0}}"
+        >
+        <view
+          class="li"
+          bindtap="selectCompany"
+          data-name="{{item.companyName}}"
+          data-id="{{item.id}}"
+          wx:for="{{ nameList }}"
+          wx:for-item="item"
+          data-info="{{item}}"
+          wx:key="index"
+          >
+          {{item.companyName}}
+          <i class="icon iconfont icon-jiantou"></i>
+        </view>
+      </scroll-view>
   </view>
 
   <view class="box input-ownDescribe" wx:if="{{ options.key === 'ownDescribe' }}">

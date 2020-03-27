@@ -3,18 +3,26 @@ import {
   updateUserSalaryApi,
   updateUserDescribeApi
 } from '../../api/user.js'
+import {
+  getCompanyNameListApi
+} from '../../api/common.js'
 let app = getApp()
 Page({
   data: {
     options: {},
     userInfo: {},
     careerVerifyInfo: {},
-    pickIntention: {}
+    pickIntention: {},
+    nameList: []
   },
   onLoad(options) {
     this.setData({ options })
     console.log(options)
   },
+  debounce(fn, context, delay, text) {
+    clearTimeout(fn.timeoutId)
+    fn.timeoutId = setTimeout(() => fn.call(context, text), delay)
+  },
   onShow() {
     let { options } = this.data
     let title = ''
@@ -54,13 +62,38 @@ Page({
     this.setData({ userInfo, careerVerifyInfo, pickIntention }, () => wx.removeStorageSync('user'))
   },
   bindInput(e) {
-    let { userInfo } = this.data
+    let { userInfo, options } = this.data
     let { key } = e.currentTarget.dataset
     let { value } = e.detail
     if(userInfo[key] !== value) {
       userInfo[key] = value
-      this.setData({ userInfo })
+      this.setData({ userInfo }, () => {
+        if(options.key === 'companyName') {
+          this.debounce(this.getCompanyNameList, null, 300, value)
+        }
+      })
     }
+  },
+  getCompanyNameList(name) {
+    let { userInfo } = this.data
+    userInfo.companyName = name
+    this.setData({userInfo, canClick: true}, () => {
+      if (!name) return
+      getCompanyNameListApi({company_name: name}).then(res => {
+        let nameList = res.data
+        nameList.map(field => {
+          field.html = field.companyName.replace(new RegExp(name,'g'),`<span style="color: #00C4CD;">${name}</span>`)
+          field.html = `<div>${field.html}</div>`
+        })
+        this.setData({ nameList })
+      })
+    })
+  },
+  selectCompany(e) {
+    let { userInfo } = this.data
+    let { info } = e.currentTarget.dataset
+    userInfo.companyName = info.companyName
+    this.setData({userInfo, nameList: []})
   },
   pickerResult(e) {
     let { options, userInfo } = this.data

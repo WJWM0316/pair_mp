@@ -13,7 +13,8 @@ Component({
       occupation: '',
       occupationDesc: '',
       is_need_email_verify: 0,
-      companyRequired: 0
+      companyRequired: 0,
+      company_id: 0
     },
     status: 1,
     canClick: false
@@ -33,7 +34,6 @@ Component({
   },
   methods: {
     getPickerData(e) {
-      console.log(e)
       let { formData } = this.data
       formData.occupationDesc = e.detail.name
       formData.occupation = e.detail.labelId
@@ -71,16 +71,34 @@ Component({
         is_need_email_verify: formData.is_need_email_verify
       }
       if(formData.company_name) {
-        params = Object.assign(params, {company_name: formData.company_name})
+        params = Object.assign(params, {company_name: formData.company_name, company_id: formData.company_id ? formData.company_id : 0})
       }
       if(formData.position_name) {
         params = Object.assign(params, {position_name: formData.position_name})
       }
-      createUserStep3Api(params).then(() => {
+      createUserStep3Api(params).then(({ data }) => {
         let { PAGEPATH } = app.globalData
-        wx.navigateTo({
-          url: `${PAGEPATH}/index/index`
-        })
+        let userInfo = data.userInfo
+        if(!userInfo.isCareerIdentity) {
+          app.wxConfirm({
+            title: '认证',
+            content: '是否前往职业认证',
+            cancelText: '取消',
+            confirmText: '确认',
+            confirmBack() {
+              wx.navigateTo({
+                url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+              })
+            },
+            cancelBack() {
+              // console.log(2)
+            }
+          })
+        } else {
+          wx.navigateTo({
+            url: `${PAGEPATH}/index/index`
+          })
+        }
       }).catch(err => app.wxToast({title: err.msg}))
     }
   }

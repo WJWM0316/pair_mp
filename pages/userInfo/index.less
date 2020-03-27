@@ -137,6 +137,21 @@
     .status4 {
       background:#CFD4D8 ;
     }
+    .limit-company-name {
+      max-width: 300rpx;
+      display: inline-block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      line-height: 1;
+      vertical-align: middle;
+      margin-right: 14rpx;
+    }
+    .gray {
+      font-size:30rpx;
+      color:rgba(207,212,216,1);
+    }
   }
   .func-btn {
     width:182rpx;
@@ -195,6 +210,16 @@
       display: inline-block;
       flex: 0 0 27px;
       position: relative;
+      text-align: center;
+      line-height: 54rpx;
+      .icon {
+        font-size: 28rpx;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: @text-color-1;
+      }
     }
     .item{
       height:56rpx;
