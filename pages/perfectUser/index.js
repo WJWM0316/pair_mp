@@ -21,13 +21,14 @@ Page({
     list: [],
     fixedDom: false,
     canClick: false,
-    labels: []
+    labels: [],
+    options: {}
   },
   fixedDomPosition: 0,
   scrollTop: 0,
   onLoad(options) {
     if(options.step) {
-      this.setData({step: options.step})
+      this.setData({step: options.step, options})
     }
   },
   onShow() {
@@ -40,55 +41,78 @@ Page({
   },
   init2() {
     getLabelListApi().then(({ data }) => {
-      // getSelectorQuery('.scroll-box').then(res => {
-        // this.fixedDomPosition = res.top || 0
-        data.map((v,i) => {
-          v.active = false
-          if ( !i) {
+      let { options } = this.data
+      let labelList = wx.getStorageSync('labelList')
+      data.map((v,i) => {
+        v.active = false
+        if (!options.type) {
+          if(!i) {
             v.active = true
           }
-          switch(v.labelId) {
-            case 110000:
-              v.iconName = 'icon_renshe'
-              break
-            case 120000:
-              v.iconName = 'icon_meishi'
-              break
-            case 130000:
-              v.iconName = 'icon_yundong'
-              break
-            case 140000:
-              v.iconName = 'icon_yinle'
-              break
-            case 150000:
-              v.iconName = 'icon_yingshi'
-              break
-            case 160000:
-              v.iconName = 'icon_shuji'
-              break
-            case 170000:
-              v.iconName = 'icon_erciyuan'
-              break
-            case 180000:
-              v.iconName = 'icon_youxi'
-              break
-            case 190000:
-              v.iconName = 'icon_lvhang'
-              break
-            default:
-              v.iconName = 'icon_lvhang'
-              break
+        } else {
+          let plabelList = labelList.map(v => v.pid)
+          let clabelList = labelList.map(v => v.labelId)
+
+          if(plabelList.includes(v.labelId)) {
+            v.children.map(v => {
+              v.active = false
+              if(clabelList.includes(v.labelId)) {
+                v.active = true
+              }
+            })
           }
-        })
-        this.setData({list: data})
-      // })
+        }
+        switch(v.labelId) {
+          case 110000:
+            v.iconName = 'icon_renshe'
+            break
+          case 120000:
+            v.iconName = 'icon_meishi'
+            break
+          case 130000:
+            v.iconName = 'icon_yundong'
+            break
+          case 140000:
+            v.iconName = 'icon_yinle'
+            break
+          case 150000:
+            v.iconName = 'icon_yingshi'
+            break
+          case 160000:
+            v.iconName = 'icon_shuji'
+            break
+          case 170000:
+            v.iconName = 'icon_erciyuan'
+            break
+          case 180000:
+            v.iconName = 'icon_youxi'
+            break
+          case 190000:
+            v.iconName = 'icon_lvhang'
+            break
+          default:
+            v.iconName = 'icon_lvhang'
+            break
+        }
+      })
+      this.setData({list: data}, () => {
+        if(labelList) {
+          let labels = labelList.map(v => v.labelId)
+          this.setData({ labels, canClick: true })
+          wx.removeStorageSync('labelList')
+        }
+      })
     })
   },
   init() {
-    if(this.data.step === 1) {
+    let { step } = this.data
+    if(step == 1) {
       this.setData({canClick: true})
+    } else if(step == 2) {
+      this.init2()
+    } else {
+
     }
-    this.init2()
   },
   pickerResult(e) {
     console.log(e)
@@ -125,12 +149,9 @@ Page({
     let { dom } = e.currentTarget.dataset
     let { list } = this.data
     let callback = () => {
-      getSelectorQuery(dom).then(res => {
+      getSelectorQuery(dom, this).then(res => {
         this.scrollTop = res.top - 60 + this.scrollTop
-        wx.pageScrollTo({
-          scrollTop,
-          duration: 300
-        })
+        wx.pageScrollTo({ scrollTop: this.scrollTop, duration: 300})
       })
     }
     list.map((v, i, a) => {
@@ -142,57 +163,46 @@ Page({
     })
     this.setData({ list })
   },
-  next() {
-    let { formData, labels } = this.data
-    let params = {}
-    let funcApi = null
-    switch(this.data.step) {
-      case 1:
-        params = {
-          salary: this.data.salary
-        }
-        funcApi = updateUserSalaryApi
-        break
-      case 2:
-        params = {
-          label_id: labels.join(',')
-        }
-        funcApi = addLabelApi
-        break
-      case 3:
-        params = {
-          own_describe: formData.own_describe
-        }
-        funcApi = updateUserDescribeApi
-        break
-      case 4:
-        params = {
-          ideal_describe: formData.ideal_describe
-        }
-        funcApi = updateUserDescribeApi
-        break
-      default:
-        break
+  next1() {
+    let params = {
+      salary: this.data.salary
     }
-    funcApi(params).then(res => {
-      let { step } = this.data
-      step++
-      this.setData({ step, canClick: false }, () => {
-        if(step == 2) {
-          this.init2()
-        }
-        if(step > 4) {
-          wx.navigateBack({ delta: 1 })
-        }
-      })
+    updateUserSalaryApi(params).then(() => {
+      this.setData({ step: 2, canClick: false }, () => this.init2())
+    }).catch(err => app.wxToast({title: err.msg}))
+  },
+  next2() {
+    let { labels, options } = this.data
+    let params = {
+      label_id: labels.join(',')
+    }
+    addLabelApi(params).then(() => {
+      if (options.type) {
+        wx.navigateBack({ delta: 1 })
+      } else {
+        this.setData({ step: 3, canClick: false })
+      }
+    }).catch(err => app.wxToast({title: err.msg}))
+  },
+  next3() {
+    let { formData } = this.data
+    let params = {
+      own_describe: formData.own_describe
+    }
+    updateUserDescribeApi(params).then(() => {
+      this.setData({ step: 4, canClick: false })
+    }).catch(err => app.wxToast({title: err.msg}))
+  },
+  next4() {
+    let { formData } = this.data
+    let params = {
+      ideal_describe: formData.ideal_describe
+    }
+    updateUserDescribeApi(params).then(() => {
+      wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   onPageScroll(e) {
-    // this.scrollTop = e.scrollTop
-    // if(e.scrollTop >= this.fixedDomPosition - 10) {
-    //   if(!this.data.fixedDom) this.setData({fixedDom: true})
-    // } else {
-    //   if(this.data.fixedDom) this.setData({fixedDom: false})
-    // }
+    this.scrollTop = e.scrollTop
   }
 })

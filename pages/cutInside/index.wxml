@@ -1,0 +1,10 @@
+<import src="../../components/functional/we-cropper/we-cropper.wxml"/>
+<view class="cropper-wrapper">
+  <template is="we-cropper" data="{{...cropperOpt}}"/>
+  <view class="cropper-buttons">
+    <!-- <view class="upload" bindtap="uploadTap">重新选择</view> -->
+    <!-- <view class="getCropperImage" bindtap="getCropperImage">确定</view> -->
+    <cover-view class="upload" bindtap="uploadTap">重新选择</cover-view>
+    <cover-view class="getCropperImage" bindtap="getCropperImage">确定</cover-view>
+  </view>
+</view>

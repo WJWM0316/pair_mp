@@ -195,9 +195,20 @@
   padding-top: 40rpx;
 }
 .step1 .first .value {
-  border-bottom: 1rpx solid #EDF1F0;
   height: 76rpx;
   width: 100%;
+  position: relative;
+}
+.step1 .first .value:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
 }
 .step1 .first .get-nickname {
   height: 36rpx;
@@ -208,7 +219,18 @@
 .step1 .second {
   margin-top: 63rpx;
   overflow: hidden;
-  border-bottom: 1rpx solid #EDF1F0;
+  position: relative;
+}
+.step1 .second:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
 }
 .step1 .second .row {
   height: 36rpx;
@@ -243,7 +265,6 @@
   font-weight: 400;
   color: #1F252B;
   padding-left: 60rpx;
-  transition: all ease 0.4s;
 }
 .step1 .second .tab-item-active .icon_nan {
   background: #0CCDDA;
@@ -268,7 +289,6 @@
   font-size: 18rpx;
   text-align: center;
   line-height: 36rpx;
-  transition: all ease 0.4s;
 }
 .step1 .third {
   margin-top: 99rpx;
@@ -283,14 +303,25 @@
   margin-top: 16rpx;
 }
 .step1 .third .item {
-  border-bottom: 1rpx solid #EDF1F0;
   width: calc(50% - 25rpx);
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
+  position: relative;
 }
 .step1 .third .item:last-child {
   margin-left: 49rpx;
+}
+.step1 .third .item:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #EDF1F0;
+  display: block;
 }
 .func-btn {
   color: #0CCDDA;

@@ -3,7 +3,7 @@ Page({
     step: 1
   },
   onLoad(options) {
-    if(options.step) {
+    if (options.step) {
       this.setData({step: options.step})
     }
   },

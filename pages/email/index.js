@@ -4,7 +4,9 @@ import {
   verifyEmailApi
 } from '../../api/common.js'
 
-let emailReg = /^([a-zA-Z0-9]+[_|\_|\.|\-]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[-_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$/
+import {
+  emailReg
+} from '../../utils/fieldRegular.js'
 let timer = null
 Page({
   data: {
@@ -20,6 +22,13 @@ Page({
   },
   onLoad(options) {
     this.setData({emailSuffix: options.emailSuffix})
+  },
+  onShow() {
+    let searchCompany = wx.getStorageSync('searchCompany')
+    let formData = Object.assign(this.data.formData, searchCompany)
+    if(searchCompany) {
+      this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
+    }
   },
   bindInput(e) {
     let { key } = e.currentTarget.dataset
@@ -37,8 +46,9 @@ Page({
     return emailReg.test(this.data.formData.email)
   },
   sendEmail() {
+    let { formData } = this.data.formData
     if(!this.isEmail()) return
-    sendEmailApi({email: this.data.formData.email}).then(res => {
+    sendEmailApi({email: this.data.formData.email, company_id: formData.id }).then(res => {
       this.killTime()
     }).catch(err => app.wxToast({title: err.msg}))
   },
@@ -64,7 +74,8 @@ Page({
     clearInterval(timer)
   },
   verifyEmail() {
-    verifyEmailApi({code: this.data.formData.code}).then(res => {
+    let { formData } = this.data.formData
+    verifyEmailApi({code: formData.code, company_id: formData.id}).then(res => {
       wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   }

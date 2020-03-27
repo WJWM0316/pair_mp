@@ -66,5 +66,13 @@ Page({
     wx.navigateTo({
       url: `${PAGEPATH}/answer/add/index?id=${info.id}`
     })   
+  },
+  updateLabel(e) {
+    let { labelList } = this.data
+    let { PAGEPATH } = app.globalData
+    wx.setStorageSync('labelList', labelList)
+    wx.navigateTo({
+      url: `${PAGEPATH}/perfectUser/index?type=edit&step=2`
+    })   
   }
 })

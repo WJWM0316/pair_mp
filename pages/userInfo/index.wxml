@@ -162,8 +162,8 @@
       <view class="label">
         <view class="key">我的标签</view>
       </view>
-      <view class="func-btn" wx:if="{{ 1 > 10}}">完善标签</view>
-      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:if="{{ 1 > 0}}"></i>
+      <view class="func-btn" wx:if="{{ userInfo.isHasLabel }}" bindtap="updateLabel">完善标签</view>
+      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:else bindtap="updateLabel"></i>
     </view>
     <view class="row">
       <view class="type"></view>

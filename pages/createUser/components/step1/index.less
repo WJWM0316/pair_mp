@@ -60,9 +60,17 @@
       padding-top: 40rpx;
     }
     .value {
-      border-bottom: 1rpx solid #EDF1F0;
+      // border-bottom: 1rpx solid #EDF1F0;
       height: 76rpx;
       width: 100%;
+      position: relative;
+      &:after{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .line(@border-color-base)
+      }
     }
     .get-nickname {
       height:36rpx;
@@ -74,7 +82,15 @@
   .second {
     margin-top: 63rpx;
     overflow: hidden;
-    border-bottom: 1rpx solid @border-color-base;
+    // border-bottom: 1rpx solid @border-color-base;
+    position: relative;
+    &:after{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      .line(@border-color-base)
+    }
     .row{
       height:36rpx;
       font-weight:300;
@@ -108,7 +124,6 @@
       font-weight:400;
       color:@text-color-1;
       padding-left: 60rpx;
-      transition: all ease .4s;
     }
     .tab-item-active{
       .icon_nan{
@@ -135,7 +150,6 @@
       font-size: 18rpx;
       text-align: center;
       line-height: 36rpx;
-      transition: all ease .4s;
     }
   }
   .third {
@@ -150,62 +164,25 @@
       margin-top: 16rpx;
     }
     .item{
-      border-bottom: 1rpx solid #EDF1F0;
+      // border-bottom: 1rpx solid #EDF1F0;
       width: calc(50% - 25rpx);
       display: inline-block;
       vertical-align: middle;
       box-sizing: border-box;
+      position: relative;
       &:last-child{
         margin-left: 49rpx;
+      }
+      &:after{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .line(@border-color-base)
       }
     }
   }
 }
-
-// .btn-next {
-//   height:98rpx;
-//   position: fixed !important;
-//   bottom: 110rpx;
-//   left: 80rpx;
-//   right: 80rpx;
-//   width: unset !important;
-//   &:after{
-//     height:98rpx;
-//     background:rgba(223,229,229,1);
-//     border-radius:54rpx;
-//     filter:blur(10rpx);
-//     position: absolute;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     bottom: -10rpx;
-//     content: '';
-//     width: calc(100% - 58rpx);
-//   }
-//   button {
-//     width: 100%;
-//     border-radius:54rpx !important;
-//     background:#F1F4F4 !important;
-//     font-size:32rpx;
-//     font-weight:700;
-//     color:@text-color-4 !important;
-//     position: relative;
-//     z-index: 2;
-//     height: 98rpx;
-//     line-height: 98rpx;
-//     border: 0 !important;
-//   }
-// }
-
-// .btn-next-active {
-//   &:after{
-//     background:@primary-color;
-//     opacity: .4;
-//   }
-//   button {
-//     background:@primary-color !important;
-//     color: white !important;
-//   }
-// }
 
 .func-btn{
   color: @primary-color;

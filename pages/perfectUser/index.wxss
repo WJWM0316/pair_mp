@@ -155,6 +155,9 @@
   font-size: 32rpx;
   color: #9CA1AA;
 }
+.step2 .scroll-box .append .strong {
+  color: #0CCDDA;
+}
 .step2 .scroll-box .tab {
   display: inline-block;
   position: relative;
@@ -223,6 +226,11 @@
 .step2 .tags-box .ul {
   overflow: hidden;
   padding-top: 34rpx;
+}
+.step2 .tags-box .icon {
+  font-size: 28rpx;
+  margin-right: 10rpx;
+  color: #1F252B;
 }
 .step2 .tags-box .li {
   height: 76rpx;
