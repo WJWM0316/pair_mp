@@ -1,6 +1,5 @@
 const app =  getApp();
-import socket from '../../../utils/webSocket.js'
-import emoji from "../../../utils/emoji.js"
+import {getSelectorQuery, socket} from '../../../utils/index.js'
 Page({
 
   /**
@@ -38,6 +37,7 @@ Page({
     let index = this.data.messageList.length
     this.setData({[`messageList[${index}]`]: e.detail}, () => {
       wx.nextTick(()=>{
+        that.resetView()
         that.selectComponent('#footer').pageScrollToDom('bottom')
       });
     })

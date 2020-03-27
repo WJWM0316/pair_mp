@@ -10,12 +10,12 @@
   hidden="{{loading}}"
 ></image>
 <image
-  wx:if="{{loading}}"
+  wx:if="{{hasLodingImg && loading}}"
   src="{{placeholder}}"
   class="my-class"
 ></image>
 <image
-  wx:if="{{error}}"
+  wx:if="{{hasErrorImg && error}}"
   src="{{errorPath}}"
   class="my-class"
 ></image>

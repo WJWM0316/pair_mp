@@ -1,4 +1,4 @@
-<view class="console">
+<view class="console" catchtap = "false">
   <view class="textEdit">
     <view class="textarea-box">
       <textarea 
@@ -23,7 +23,7 @@
       class="item" 
       wx:for="{{consoleBtnType}}" 
       wx:key="type" 
-      bindtap = "selectType" 
+      catchtap = "selectType" 
       data-index="{{index}}">
       <i class="icon iconfont {{item.icon}}"></i>
       <i wx:if="{{selectIndex === index && item.color}}" style="background:{{item.color}}" class="selected"></i>

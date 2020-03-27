@@ -39,7 +39,12 @@ Component({
         maxHeight = 460
         styleString =  `width:${maxHeight * ratio}rpx;height:${maxHeight}rpx;`
       }
-      this.setData({styleString})
+      this.setData({styleString}, () => {
+        wx.pageScrollTo({
+          duration: 200,
+          selector: `#bottomBlock`
+        })
+      })
     }
   }
 })

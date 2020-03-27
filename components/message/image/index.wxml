@@ -1,5 +1,6 @@
 <i-image 
-  class="i-image" 
+  class="i-image"
+  hasLodingImg="{{false}}"
   my-class="msg-image"
   styleString="{{styleString}}" 
   showMenu="{{false}}" 

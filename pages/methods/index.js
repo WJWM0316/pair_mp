@@ -61,7 +61,7 @@ Page({
     switch(detail.action) {
       case 'photo':
         that.setData({ show: false})
-        app.chooseImageUpload(1).then(({ data }) => {
+        app.chooseImageUpload().then(({ data }) => {
           let result = data.attachListItem[0]
           this.verifyCareer(result.id)
         })

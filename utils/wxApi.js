@@ -152,13 +152,12 @@ const wxApi = {
   },
   uploadFile(file) {
     return new Promise((resolve, reject) => {
-      let that = this
       let formData = {
         'img1': file.path,
         'size': file.size || 0,
         attach_type: 'img'
       }
-      let { APIHOST } = this.globalData
+      let { APIHOST } = getApp().globalData
       wx.uploadFile({
         url: `${APIHOST}/attaches`,
         filePath: file.path,

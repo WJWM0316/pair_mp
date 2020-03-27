@@ -54,8 +54,8 @@ Component({
     canSend: false, // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
   },
   attached () {
-    console.log(emoji, 11111111)
   },
+  word: '',
   /**
    * 组件的方法列表
    */
@@ -70,7 +70,7 @@ Component({
     },
     // 选择emoji 或者 出场白
     selectResult (e) {
-      this.word = word + e.detail
+      this.word = this.word ?  `${this.word}${e.detail}` : e.detail
       this.setData({'word': this.word, canSend: true}) 
     },
     // 文本域编辑
@@ -95,18 +95,9 @@ Component({
       this.setData({'selectIndex': index}, () => {
         this.triggerEvent('selectType', index)
         this.pageScrollToDom('bottom')
-        if (index === 1) {
-          app.chooseImageUpload().then(res => {
-            let data = res.data.attachListItem[0]
-            this.sendMsg('img', data)
-          })
-        } else if (index === 2) {
-          app.photoUpload().then(res => {
-            let data = res.data.attachListItem[0]
-            this.sendMsg('img', data)
-          })
+        if (index === 1 || index === 2) {
+          this.sendMsg('img')
         }
-
       })
     },
     // 滚动到节点
@@ -124,6 +115,7 @@ Component({
       this.setData({'word': this.word, 'canSend': false})
     },
     sendMsg (type, content) {
+      const that = this
       let timestamp = new Date().getTime()
       let parmas = {
         cmd: "send.im"
@@ -156,24 +148,40 @@ Component({
             }
           }
           msgData.msgType = 'RC:TxtMsg'
-          console.log(emoji.init(this.word), 222222222222)
           msgData.imData.content = {content: emoji.init(this.word)}
+          that.triggerEvent('sendMsg', msgData)
+          socket.send(parmas)
           break
         case 'img':
-          parmas.data = {
-            toVkey: this.data.toVkey, 
-            msgType: "RC:ImgMsg", 
-            content: {
-              content: "",
-              imageUri: content.url
+          wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: that.data.selectIndex === 1 ? ['camera'] : ['album'],
+            success (res) {
+              let file = res.tempFiles[0]
+              msgData.msgType = 'RC:ImgMsg'
+              msgData.imData.content = {imageUri: file.path}
+              that.triggerEvent('sendMsg', msgData)
+              app.uploadFile(file).then(res0 => {
+                parmas.data = {
+                  toVkey: that.data.toVkey, 
+                  msgType: "RC:ImgMsg", 
+                  content: {
+                    content: res0.data.attachListItem[0].smallUrl,
+                    imageUri: res0.data.attachListItem[0].url
+                  }
+                }
+                socket.send(parmas)
+              })
+            },
+            fail(err) {
+              reject(err)
             }
-          }
-          msgData.msgType = 'RC:ImgMsg'
-          msgData.imData.content = {imageUri: content.url}
+          })
           break
       }
-      socket.send(parmas)
-      this.triggerEvent('sendMsg', msgData)
+      
+      
     }
   }
 })

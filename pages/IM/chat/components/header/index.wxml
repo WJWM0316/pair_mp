@@ -1,5 +1,5 @@
 
-<view class="header {{tips ? 'headerTips' : ''}}" catchtap = "catchtap">
+<view class="header {{tips ? 'headerTips' : ''}}" catchtap = "false">
   <view class="header-inner  {{putUp ? 'putUp' : ''}}">
     <view class="header-card">
       <view class="avatar-box">

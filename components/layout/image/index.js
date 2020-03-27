@@ -9,6 +9,14 @@ Component({
       type: String,
       value: ''
     },
+    hasLodingImg: {
+      type: Boolean,
+      value: true
+    },
+    hasErrorImg: {
+      type: Boolean,
+      value: true
+    },
     borderRadius: String,
     placeholder: {
       type: String,

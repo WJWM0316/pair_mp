@@ -101,7 +101,7 @@ Page({
         break
       case 'photo':
         that.setData({ show: false})
-        app.chooseImageUpload(1, true).then(res => {
+        app.chooseImageUpload({needUpload: true}).then(res => {
           let { PAGEPATH } = app.globalData
           wx.navigateTo({
             url: `${PAGEPATH}/cutInside/cutInside?src=${res.path}`
