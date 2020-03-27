@@ -2,7 +2,7 @@ import Emoji from './emoji.js'
 class Socket {
   constructor () {
     this.apartTime = 60000 // 极限时间，超过极限时间视为异常处理
-    this.heartTime = 5000 // 心跳检测时间间隔
+    this.heartTime = 30000 // 心跳检测时间间隔
     this.receiveMessageTimer = null // 检测接受信息时间的定时器，超过极限时间说明发生异常
     this.keepAliveTimer = null // 检测心跳包的定时器
     this.resetTimes = 0 // 重连次数
@@ -10,6 +10,7 @@ class Socket {
   }
   create (url, token) {
     this.url = url
+    if (this.SocketTask) this.SocketTask.close()
     this.SocketTask = wx.connectSocket({
       url: url,
       header:{
@@ -22,6 +23,7 @@ class Socket {
           this.login(token)
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
+            this.onMessage()
             this.checkConnect() // 开启心跳包检测
           }
           // 一分钟没收到信息，代表服务器出问题了，关闭连接。如果收到消息了，重置该定时器。
@@ -41,11 +43,16 @@ class Socket {
     })
   }
   send (data) {
-    this.SocketTask.send({
-      data: JSON.stringify(data),
-      fail: (err) => {
-        console.log(`======websocket消息发送失败======`, err)
-      }
+    return new Promise((resolve, reject) => {
+      this.SocketTask.send({
+        data: JSON.stringify(data),
+        fail: (err) => {
+          console.log(`======websocket消息发送失败======`, err)
+        },
+        success: (res) => {
+          resolve(res)
+        }
+      })
     })
   }
   readyState () {
@@ -66,11 +73,11 @@ class Socket {
       let data = res.data
       if (res.data === 'a') return
       data = JSON.parse(data)
-      data.imData.content = JSON.parse(data.imData.content)
+      if (data.imData && data.imData.content) data.imData.content = JSON.parse(data.imData.content)
       if (data.msgType === 'RC:TxtMsg') { // 转义emoji 表情
         data.imData.content.content = Emoji.init(data.imData.content.content)
       }
-      callback(data)
+      if (callback) callback(data)
     })
   }
   close () {

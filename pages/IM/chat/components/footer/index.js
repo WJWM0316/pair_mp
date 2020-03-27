@@ -1,7 +1,7 @@
 const app =  getApp();
-let word = ''
-import {getSelectorQuery} from '../../../../../utils/util.js'
+import {getSelectorQuery, socket, emoji} from '../../../../../utils/index.js'
 
+let word = ''
 Component({
   externalClasses: ['my-class'],
   options: {
@@ -48,11 +48,14 @@ Component({
         color: '#F46BA1'
       }
     ],
+    toVkey: 'x2njbxhm',
     word: '', // 编辑框的文本
     textHeight: 0, // 编辑框高度
     canSend: false, // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
   },
-
+  attached () {
+    console.log(emoji, 11111111)
+  },
   /**
    * 组件的方法列表
    */
@@ -67,13 +70,13 @@ Component({
     },
     // 选择emoji 或者 出场白
     selectResult (e) {
-      word = word + e.detail
-      this.setData({word, canSend: true}) 
+      this.word = word + e.detail
+      this.setData({'word': this.word, canSend: true}) 
     },
     // 文本域编辑
     bindinput (e) {
-      word = e.detail.value
-      if (word) {
+      this.word = e.detail.value
+      if (this.word) {
         if (!this.data.canSend) this.setData({canSend: true})
       } else {
         if (this.data.canSend) this.setData({canSend: false})
@@ -81,7 +84,7 @@ Component({
     },
     // 编辑完毕 更新一下data.word 状态
     bindblur (e) {
-      this.setData({word})
+      this.setData({'word': this.word})
     },
     bindfocus () {
       this.pageScrollToDom('bottom')
@@ -92,14 +95,85 @@ Component({
       this.setData({'selectIndex': index}, () => {
         this.triggerEvent('selectType', index)
         this.pageScrollToDom('bottom')
+        if (index === 1) {
+          app.chooseImageUpload().then(res => {
+            let data = res.data.attachListItem[0]
+            this.sendMsg('img', data)
+          })
+        } else if (index === 2) {
+          app.photoUpload().then(res => {
+            let data = res.data.attachListItem[0]
+            this.sendMsg('img', data)
+          })
+        }
+
       })
     },
     // 滚动到节点
     pageScrollToDom (type = 'bottom') {
       wx.pageScrollTo({
-        duration: 100,
-        selector: type === 'top' ? `#msg0` : `#bottom`
+        duration: 200,
+        selector: type === 'top' ? `#msg0` : `#bottomBlock`
       })
     },
+    // 发送文本
+    sendText () {
+      if (!this.data.canSend) return
+      this.sendMsg('text')
+      this.word = ''
+      this.setData({'word': this.word, 'canSend': false})
+    },
+    sendMsg (type, content) {
+      let timestamp = new Date().getTime()
+      let parmas = {
+        cmd: "send.im"
+      },
+      msgData = {
+        "imFromUser": {
+          "uid": "3",
+          "name": "wxian_b",
+          "avatarUrl": "https:\/\/attach.pickme.ziwork.com\/default\/man.png",
+          "uuid": "PickMeTest_dbzpi31r"
+        },
+        "imData": {
+          'sending': true,
+          "channelType": "PERSON",
+          "msgTimestamp": timestamp,
+          "timestamp": timestamp,
+          "objectName": "RC:TxtMsg",
+          "content": '',
+          "msgUID": "BH3B-U1N8-OIM7-EIL5"
+        }
+      }
+      switch (type) {
+        case 'text':
+          parmas.data = {
+            toVkey: this.data.toVkey, 
+            msgType: "RC:TxtMsg", 
+            content: {
+              content: this.word,
+              sendTimestamp: timestamp
+            }
+          }
+          msgData.msgType = 'RC:TxtMsg'
+          console.log(emoji.init(this.word), 222222222222)
+          msgData.imData.content = {content: emoji.init(this.word)}
+          break
+        case 'img':
+          parmas.data = {
+            toVkey: this.data.toVkey, 
+            msgType: "RC:ImgMsg", 
+            content: {
+              content: "",
+              imageUri: content.url
+            }
+          }
+          msgData.msgType = 'RC:ImgMsg'
+          msgData.imData.content = {imageUri: content.url}
+          break
+      }
+      socket.send(parmas)
+      this.triggerEvent('sendMsg', msgData)
+    }
   }
 })

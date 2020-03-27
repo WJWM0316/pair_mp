@@ -16,7 +16,7 @@
         bindconfirm="">
       </textarea>
     </view>
-    <view class="send {{(word && canSend) || (!word && canSend) ? 'can' : ''}}">发送</view>
+    <view class="send {{canSend ? 'can' : ''}}" bindtap="sendText">发送</view>
   </view>
   <view class="other-type">
     <view 
@@ -34,9 +34,8 @@
     <view class="block" hidden="{{parse.hidden('emoji', selectIndex)}}"><emoji bindselectResult="selectResult"></emoji></view>
     <view class="block" hidden="{{parse.hidden('debutWord', selectIndex)}}"><debutWord bindselectResult="selectResult"></debutWord></view>
   </view>
-
 </view>
-    <view id="bottom" style="{{parse.setStyle('chatArea', textHeight, selectIndex)}}"></view>
+<view class="bottom" style="{{parse.setStyle('chatArea', textHeight, selectIndex)}}"></view>
 
 <wxs module="parse">
   module.exports = {

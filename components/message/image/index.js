@@ -6,15 +6,7 @@ Component({
   properties: {
     message: {
       type: Object,
-      value: {},
-      observers: (e) => {
-        console.log(e)
-      }
-    }
-  },
-  observers: {
-    'message': (e) => {
-      console.log(e, 2222)
+      value: {}
     }
   },
   /**

@@ -1,6 +1,4 @@
 const app =  getApp();
-
-let word = ''
 import socket from '../../../utils/webSocket.js'
 import emoji from "../../../utils/emoji.js"
 Page({
@@ -9,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myUid: 3,
+    myUid: '3',
     messageList: [],
     selectIndex: null, // 选择发送类型
     longpressData: {},
@@ -27,16 +25,23 @@ Page({
    */
   onReady: function () {
     socket.onMessage((res) => {
-      let index = this.data.messageList.length
-      this.setData({[`messageList[${index}]`]: res}, () => {
-        wx.nextTick(()=>{
-          this.pageScrollToDom()
-        });
-      })
-      console.log(res.imData.content)
+      // let index = this.data.messageList.length - 1
+      // if (res.hasOwnProperty('msgType')) {
+      //   this.data.messageList[]
+      // }
+      
     })
   },
-
+  // 发送数据， 先显示再界面上
+  sendMsg (e) {
+    const that = this
+    let index = this.data.messageList.length
+    this.setData({[`messageList[${index}]`]: e.detail}, () => {
+      wx.nextTick(()=>{
+        that.selectComponent('#footer').pageScrollToDom('bottom')
+      });
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -71,17 +76,9 @@ Page({
       this.setData({longpressData})
     })
   },
-  // 滚动到节点
-  pageScrollToDom (type = 'bottom') {
-    wx.pageScrollTo({
-      duration: 100,
-      selector: type === 'top' ? `#msg0` : `#bottom`
-    })
-  },
   // 复位
   resetView (e) {
     if ([0, 3, 4].includes(this.data.selectIndex)) {
-      this.pageScrollToDom('bottom')
       this.setData({'selectIndex': null})
     }
   },
@@ -92,11 +89,9 @@ Page({
   headerPutUp (e) {
     this.putUp = e.detail
   },
-  
+  // 打开开场白
   bindtapMpre (e) {
-    console.log(e, 22)
-    e.currentTarget.dataset.index = 4
-    this.selectType(e)
+    this.setData({'selectIndex': 4})
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -129,13 +124,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })
