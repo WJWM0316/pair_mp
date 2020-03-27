@@ -50,11 +50,18 @@ Page({
       code
     }
     registerApi(data).then(res => {
+      let { PAGEPATH } = app.globalData
       if (res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
       if (res.data.userInfo.token) wx.setStorageSync('token', res.data.userInfo.token)
-      wx.navigateBack({
-        delta: 1
-      })
+      if(res.data.userInfo.step === 9) {
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        wx.navigateTo({
+          url: `${PAGEPATH}/createUser/index`
+        })
+      }
     })
   },
   /**
