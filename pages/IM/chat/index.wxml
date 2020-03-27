@@ -1,16 +1,16 @@
-<view class="chatWrap">
+<view class="chatWrap"  bindtap="resetView">
   <chat-bubble tips="{{tips}}"></chat-bubble>
   <chat-header bindputUp="headerPutUp"></chat-header>
   <view class="systemHint" wx:if="{{false}}">TA特别想认识你，缘分来了就不要错过哟~</view>
   <debutWord bindselectResult="selectResult" type="debutWord" bindtapMpre="bindtapMpre" wx:if="{{false}}"></debutWord>
-  <view class="chatArea" bindtap="resetView">
+  <view class="chatArea">
     <view class="scrollView">
       <view class="message-list">
         <view class="message-box" wx:for="{{messageList}}" wx:key="id">
           <view class="time" wx:if="{{item.imData.timestamp}}">{{filters.activeTime(item.imData.timestamp)}}</view>
           <view class="message-item {{item.imFromUser.uid === myUid ? 'mine' : 'others'}}" id="msg{{index}}">
             <view class="avatar">
-              <i-image src="{{item.path}}"></i-image>
+              <i-image src="{{item.imFromUser.uid === myUid ? item.imFromUser.avatarUrl : item.imToUser.avatarUrl}}"></i-image>
             </view>
             <view 
               class="message-content {{parse.setMsgType(item.msgType)}} msgCon{{index}}" 
@@ -22,7 +22,7 @@
               <block wx:if="{{item.msgType === 'RC:TxtMsg'}}">
               <view class="text"><rich-text nodes="{{item.imData.content.content}}" space="emsp"></rich-text></view>
               </block>
-              <block wx:if="{{item.msgType === 'img'}}">
+              <block wx:if="{{item.msgType === 'RC:ImgMsg'}}">
                 <msg-image message="{{item.imData.content}}"></msg-image>
               </block>
               <block wx:if="{{item.msgType === 'audio'}}">
@@ -47,44 +47,7 @@
       </view>
     </view>
   </view>
-  <view class="console">
-    <view class="textEdit">
-      <view class="textarea-box">
-        <textarea 
-          class="textarea" 
-          value="{{word}}" 
-          placeholder="输入新消息" 
-          placeholder-class="textarea-placeholder"
-          disable-default-padding="true"
-          maxlength="1000"
-          style="{{parse.setStyle('textarea', textHeight)}}"
-          bindlinechange="linechange"
-          bindinput="bindinput" 
-          bindblur="bindblur"
-          bindfocus="bindfocus"
-          bindconfirm="">
-        </textarea>
-      </view>
-      <view class="send {{(word && canSend) || (!word && canSend) ? 'can' : ''}}">发送</view>
-    </view>
-    <view class="other-type">
-      <view 
-        class="item" 
-        wx:for="{{consoleBtnType}}" 
-        wx:key="type" 
-        bindtap = "selectType" 
-        data-index="{{index}}">
-        <i class="icon iconfont {{item.icon}}"></i>
-        <i wx:if="{{selectIndex === index && item.color}}" style="background:{{item.color}}" class="selected"></i>
-      </view>
-    </view>
-    <view class="console-area" hidden="{{parse.hidden('console-area', selectIndex)}}">
-      <view class="block" hidden="{{parse.hidden('record', selectIndex)}}"><record></record></view>
-      <view class="block" hidden="{{parse.hidden('emoji', selectIndex)}}"><emoji bindselectResult="selectResult"></emoji></view>
-      <view class="block" hidden="{{parse.hidden('debutWord', selectIndex)}}"><debutWord bindselectResult="selectResult"></debutWord></view>
-    </view>
-  </view>
-  <view id="bottom" style="{{parse.setStyle('chatArea', textHeight, selectIndex)}}"></view>
+  <chat-footer selectIndex="{{selectIndex}}" bindselectType="selectType"></chat-footer>
 </view>
 <wxs src="../../../utils/filters.wxs" module="filters" />
 

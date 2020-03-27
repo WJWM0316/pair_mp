@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "record"   : "../record/index",
+    "emoji"     : "../emoji/index",
+    "debutWord": "../debutWord/index"
+  }
+}

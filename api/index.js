@@ -75,18 +75,21 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   delete addHttpHead['Authorization']
                   delete addHttpHead['Authorization-Wechat']
                   break
+                case 403:
+                  getApp().wxToast({title: msg.msg})
+                  break
                 case 500:
-                this.wxToast({title: '系统异常，请稍后访问'})
+                  getApp().wxToast({title: '系统异常，请稍后访问'})
                 break
               }
             }
           } catch (e) {
-            this.wxToast({title: '系统异常，请稍后访问'})
+            getApp().wxToast({title: '系统异常，请稍后访问'})
           }
         },
         fail(e) {
           closeLoading()
-          this.wxToast({title: '系统异常，请稍后访问'})
+          getApp().wxToast({title: '系统异常，请稍后访问'})
         }
       })
     })

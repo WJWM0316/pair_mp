@@ -1,0 +1,71 @@
+<view class="console">
+  <view class="textEdit">
+    <view class="textarea-box">
+      <textarea 
+        class="textarea" 
+        value="{{word}}" 
+        placeholder="输入新消息" 
+        placeholder-class="textarea-placeholder"
+        disable-default-padding="true"
+        maxlength="1000"
+        style="{{parse.setStyle('textarea', textHeight)}}"
+        bindlinechange="linechange"
+        bindinput="bindinput" 
+        bindblur="bindblur"
+        bindfocus="bindfocus"
+        bindconfirm="">
+      </textarea>
+    </view>
+    <view class="send {{(word && canSend) || (!word && canSend) ? 'can' : ''}}">发送</view>
+  </view>
+  <view class="other-type">
+    <view 
+      class="item" 
+      wx:for="{{consoleBtnType}}" 
+      wx:key="type" 
+      bindtap = "selectType" 
+      data-index="{{index}}">
+      <i class="icon iconfont {{item.icon}}"></i>
+      <i wx:if="{{selectIndex === index && item.color}}" style="background:{{item.color}}" class="selected"></i>
+    </view>
+  </view>
+  <view class="console-area" hidden="{{parse.hidden('console-area', selectIndex)}}">
+    <view class="block" hidden="{{parse.hidden('record', selectIndex)}}"><record></record></view>
+    <view class="block" hidden="{{parse.hidden('emoji', selectIndex)}}"><emoji bindselectResult="selectResult"></emoji></view>
+    <view class="block" hidden="{{parse.hidden('debutWord', selectIndex)}}"><debutWord bindselectResult="selectResult"></debutWord></view>
+  </view>
+
+</view>
+    <view id="bottom" style="{{parse.setStyle('chatArea', textHeight, selectIndex)}}"></view>
+
+<wxs module="parse">
+  module.exports = {
+    hidden: function (type, selectIndex) {
+      switch (type) {
+        case 'console-area':
+          return [null, 1, 2].indexOf(selectIndex) !== -1
+          break
+        case 'record':
+          return [null, 1, 2, 3, 4].indexOf(selectIndex) !== -1
+          break
+        case 'emoji':
+          return [null, 0, 1, 2, 4].indexOf(selectIndex) !== -1
+          break
+        case 'debutWord':
+          return [null, 0, 1, 2, 3].indexOf(selectIndex)  !== -1
+          break
+      }
+    },
+    setStyle : function(type, textHeight, selectIndex){
+      var consoleHeight = [0, 3, 4].indexOf(selectIndex) !== -1 ? 400 : 0
+      switch (type) {
+        case 'chatArea':
+          return 'height: calc(148rpx + ' + textHeight + 'px + ' + consoleHeight + 'rpx)';
+          break
+        case 'textarea':
+          return 'height:' + textHeight + 'px;';
+          break
+      }
+    }
+  }
+</wxs>

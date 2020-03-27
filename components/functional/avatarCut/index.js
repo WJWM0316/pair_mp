@@ -42,9 +42,12 @@ Component({
         success (res) {
           let { PAGEPATH } = app.globalData
           const src = res.tempFilePaths[0]
-          wx.navigateTo({
-            url: `${PAGEPATH}cutInside/cutInside?src=${src}`
-          })
+          setTimeout(() => {
+            wx.navigateTo({
+              url: `/pages/cutInside/cutInside`
+            })
+          }, 200)
+          
         }
       })
     }
