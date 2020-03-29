@@ -2,24 +2,9 @@ import {
   createUserStep2Api
 } from '../../../../api/user'
 const app =  getApp();
-let list = []
-for(let i = 100; i <= 300; i++) {
-  list.push(i)
-}
 Component({
   data: {
-    list,
-    height: '170',
-    value: 0,
-    val: 0,
-    value2: 0,
-    styles: {
-      line: '#C7D7E7',
-      bginner: '#ffffff',
-      bgoutside: '#ffffff',
-      lineSelect: '#0CCDDA',
-      font: '#1F252B'
-    }
+    height: '170'
   },
   methods: {
     bindvalue2(e) {
@@ -32,6 +17,11 @@ Component({
       createUserStep2Api({height: this.data.height}).then(() => {
         this.triggerEvent('next', true)
       }).catch(err => app.wxToast({title: err.msg}))
+    },
+    resultEvent(e) {
+      if(e.detail.value !== this.data.height) {
+        this.setData({height: e.detail.value}, () => wx.vibrateShort())
+      }
     }
   }
 })

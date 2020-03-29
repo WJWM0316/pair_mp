@@ -23,6 +23,16 @@ Page({
     clearTimeout(fn.timeoutId)
     fn.timeoutId = setTimeout(() => fn.call(context, text), delay)
   },
+  legalize() {
+    let { PAGEPATH } = app.globalData
+    let { userInfo } = this.data
+    wx.setStorageSync('searchCompany', {
+      company_name: userInfo.companyName
+    })
+    wx.navigateTo({
+      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+    })
+  },
   onShow() {
     let { options } = this.data
     let title = ''

@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "demo": "../../components/functional/demo"
+    "scale": "../../components/functional/scale"
   }
 }

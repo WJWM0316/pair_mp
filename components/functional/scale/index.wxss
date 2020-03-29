@@ -1,0 +1,61 @@
+.scale {
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+.scale .scroll-view {
+  overflow: hidden;
+  white-space: nowrap;
+  color: #fff;
+}
+.scale .label-item {
+  display: inline-block;
+  min-width: 120rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  text-align: center;
+  width: calc(100%/3);
+  position: relative;
+}
+.scale .unit {
+  font-size: 36rpx;
+  color: #1F252B;
+  opacity: 0;
+  transition: all ease 0.3s;
+}
+.scale .number {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #C7D7E7;
+  transition: all ease 0.3s;
+}
+.scale .line {
+  width: 8rpx;
+  height: 64rpx;
+  background: #C7D7E7;
+  display: inline-block;
+  margin: 0 20rpx;
+  border-radius: 4rpx;
+  vertical-align: top;
+}
+.scale .line:nth-child(3n) {
+  height: 130rpx;
+}
+.scale .active .line {
+  opacity: 1;
+}
+.scale .active .line:nth-child(3n) {
+  background: #0CCDDA;
+  height: 130rpx;
+  width: 14rpx;
+  border-radius: 7rpx;
+}
+.scale .active .unit {
+  opacity: 1;
+}
+.scale .active .number {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #1F252B;
+}

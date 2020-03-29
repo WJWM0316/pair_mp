@@ -16,7 +16,8 @@
   </scroll-view>
   -->
   <view class="box">
-    <wxScale
+    <scale bind:resultEvent="resultEvent" initValue="{{ height }}"></scale>
+    <!-- <wxScale
       min="50"
       max="500"
       int="{{ true }}"
@@ -28,7 +29,7 @@
       styles="{{ styles }}"
       bindvalue="bindvalue2"
       >
-    </wxScale>
+    </wxScale> -->
   </view>
   <!-- <i-button type="success" class="btn-next btn-next-active" long="{{ true }}" bindtap="save">下一步</i-button> -->
   <myButton canClick="{{ true }}" btnTxt="下一步" bind:click="next"></myButton>

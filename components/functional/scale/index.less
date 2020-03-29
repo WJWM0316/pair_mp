@@ -1,0 +1,64 @@
+@import '../../../styles/_base.less';
+.scale {
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  .scroll-view {
+    overflow: hidden;
+    white-space: nowrap;
+    color: #fff;
+  }
+  .label-item {
+    display: inline-block;
+    min-width: 120rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 30rpx;
+    text-align: center;
+    width: calc(100%/3);
+    position: relative;
+  }
+  .unit {
+    font-size:36rpx;
+    color:@text-color-1;
+    opacity: 0;
+    transition: all ease .3s;
+  }
+  .number {
+    font-size:36rpx;
+    font-weight:700;
+    color:@text-color-5;
+    transition: all ease .3s;
+  }
+  .line{
+    width:8rpx;
+    height:64rpx;
+    background:@text-color-5;
+    display: inline-block;
+    margin: 0 20rpx;
+    border-radius: 4rpx;
+    vertical-align: top;
+    &:nth-child(3n) {
+      height: 130rpx;
+    };
+  }
+  .active{
+    .line{
+      opacity: 1;
+      &:nth-child(3n) {
+        background:@primary-color;
+        height: 130rpx;
+        width: 14rpx;
+        border-radius: 7rpx;
+      };
+    }
+    .unit{
+      opacity: 1
+    }
+    .number {
+      font-size:56rpx;
+      font-weight:700;
+      color:@text-color-1;
+    }
+  }
+}
