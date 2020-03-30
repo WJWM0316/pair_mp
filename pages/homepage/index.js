@@ -6,6 +6,7 @@ import {
 import {
   getMyQuestionListApi
 } from '../../api/question.js'
+const app =  getApp();
 Page({
   data: {
     careerVerifyInfo: {},
@@ -13,10 +14,12 @@ Page({
     userInfo: {},
     isOwer: true,
     currentIndex: 0,
-    options: {}
+    options: {},
+    isError: true
   },
   onLoad(options) {
     this.setData({options})
+    console.log(app)
   },
   onShow() {
     getUserInfoApi({vkey: 'ighvcabv'}).then(({ data }) => {

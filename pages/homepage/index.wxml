@@ -1,5 +1,9 @@
 <view class="homepage {{ isOwer ? 'yourself' : 'other'}}">
-  <view class="cover-box">
+  <view class="cover-box {{ isError ? 'isError' : ''}}">
+    <view class="upload-tips" wx:if="{{ isOwer && isError }}">
+      <i class="icon iconfont icon_jinggao"></i>相册审核不通过
+      <view class="re-upload">重新上传</view>
+    </view>
     <view class="number" wx:if="{{ !isOwer }}">{{ currentIndex }}/{{ userInfo.userAlbumTempList.length }}</view>
     <swiper
       indicator-dots="{{ false }}"
@@ -7,7 +11,7 @@
       interval="{{ 2000 }}"
       duration="{{ 500 }}"
       bindchange="bindchange"
-      class="swiper">
+      class="swiper {{ isError ? 'isError' : ''}}">
       <swiper-item wx:for="{{ userInfo.userAlbumTempList }}" wx:key="index">
         <view class="swiper-item">
           <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
@@ -18,13 +22,18 @@
     <view class="footer" wx:if="{{ isOwer }}">
       <view class="h1">{{ userInfo.nickname }}</view>
       <view class="wrap">
-        <view class="btn1"><i class="icon iconfont icon_aixin"></i>{{userInfo.bePickedTimes}}人Pick了我</view>
-        <view class="btn2"><i class="icon iconfont icon_im_tupian"></i>{{ userInfo.userAlbumTempList.length }}</view>
+        <view class="btn1">
+          <i class="icon iconfont icon_aixin"></i>{{ userInfo.bePickedTimes }}人Pick了我
+        </view>
+        <view class="btn2">
+          <i class="icon iconfont icon_im_tupian"></i>{{ userInfo.userAlbumTempList.length }}
+          <i class="icon iconfont icon_jinggao" wx:if="{{ isError }}"></i>
+        </view>
       </view>
       <view class="process">
         <view class="{{ userInfo.infoCompletePercent < 80 ? 'active1' : 'active2'}}" style="width: {{ userInfo.infoCompletePercentDesc }}"></view>
       </view>
-      <view class="tips-row">
+      <view class="tips-row" wx:if="{{ userInfo.infoCompletePercent < 100 }}">
         <block wx:if="{{ userInfo.infoCompletePercent < 80 }}">
           <i class="icon10 icon iconfont icon_gou-"></i>
           资料完善度低于80%，无法发起聊天哦~
@@ -33,7 +42,7 @@
           <i class="icon10 icon iconfont icon_gou-"></i>
           资料完善到100%，被发现的概率翻倍哦！
         </block>
-        <view class="btn" wx:if="{{ userInfo.infoCompletePercent < 100 }}">去完善<i class="icon iconfont icon_shuangjiantou"></i></view>
+        <view class="btn">去完善<i class="icon iconfont icon_shuangjiantou"></i></view>
       </view>
     </view>
   </view>
@@ -60,7 +69,7 @@
       <view class="title">职业信息</view>
       <view class="inner">
         <view class="career-objective">{{ userInfo.industryArr[0].name }}·{{ userInfo.industryArr[1].name }}</view>
-        <view class="work-experience">{{ userInfo.companyName }} | {{ userInfo.positionName }} <i class="icon"></i></view>
+        <view class="work-experience">{{ userInfo.companyName }} | {{ userInfo.positionName }} <i class="icon iconfont icon_baomi"></i></view>
         <view class="work-years" wx:if="{{ isOwer }}">10-15W/年<text>（仅自己可见）</text></view>
         <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}">职业信息未认证，将降低主页展示率</view>
       </view>
@@ -126,5 +135,6 @@
       </view>
     </view>
 
+    <view wx:if="{{!isOwer}}" class="report-entry"><text>投诉该用户</text></view>
   </view>
 </view>
