@@ -1,0 +1,130 @@
+<view class="homepage {{ isOwer ? 'yourself' : 'other'}}">
+  <view class="cover-box">
+    <view class="number" wx:if="{{ !isOwer }}">{{ currentIndex }}/{{ userInfo.userAlbumTempList.length }}</view>
+    <swiper
+      indicator-dots="{{ false }}"
+      autoplay="{{ false }}"
+      interval="{{ 2000 }}"
+      duration="{{ 500 }}"
+      bindchange="bindchange"
+      class="swiper">
+      <swiper-item wx:for="{{ userInfo.userAlbumTempList }}" wx:key="index">
+        <view class="swiper-item">
+          <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="footer" wx:if="{{ isOwer }}">
+      <view class="h1">{{ userInfo.nickname }}</view>
+      <view class="wrap">
+        <view class="btn1"><i class="icon iconfont icon_aixin"></i>{{userInfo.bePickedTimes}}人Pick了我</view>
+        <view class="btn2"><i class="icon iconfont icon_im_tupian"></i>{{ userInfo.userAlbumTempList.length }}</view>
+      </view>
+      <view class="process">
+        <view class="{{ userInfo.infoCompletePercent < 80 ? 'active1' : 'active2'}}" style="width: {{ userInfo.infoCompletePercentDesc }}"></view>
+      </view>
+      <view class="tips-row">
+        <block wx:if="{{ userInfo.infoCompletePercent < 80 }}">
+          <i class="icon10 icon iconfont icon_gou-"></i>
+          资料完善度低于80%，无法发起聊天哦~
+        </block>
+        <block wx:else>
+          <i class="icon10 icon iconfont icon_gou-"></i>
+          资料完善到100%，被发现的概率翻倍哦！
+        </block>
+        <view class="btn" wx:if="{{ userInfo.infoCompletePercent < 100 }}">去完善<i class="icon iconfont icon_shuangjiantou"></i></view>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+
+    <view class="section info-base">
+      <view class="title">基本资料</view>
+      <view class="inner">
+        <view class="label {{ userInfo.gender === 1 ? 'label-bg1' : 'label-bg2' }}">
+          <i class="icon1 icon iconfont {{ userInfo.gender === 1 ? 'icon_nan' : 'icon_nv' }}"></i>
+          {{ userInfo.gender === 1 ? '男' : '女' }}
+        </view>
+        <view class="label label-bg1"><i class="icon1 icon iconfont icon_nianling"></i>93年·{{ userInfo.constellation }}</view>
+        <view class="label label-bg1"><i class="icon1 icon iconfont icon_suozaidi"></i>{{ userInfo.residentArr[1].title }}{{ userInfo.residentArr[2].title }}</view>        
+        <view class="label label-bg1"><i class="icon1 icon iconfont icon_shengao"></i>{{ userInfo.height }}CM</view>
+        <view class="label label-bg1" wx:if="{{ userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_renshe"></i>{{ userInfo.hometownArr[0].title }}{{ userInfo.hometownArr[1].title }}</view>
+        <view class="label label-bg1" wx:if="{{ userInfo.degreeDesc }}"><i class="icon1 icon iconfont icon_renshe"></i>{{ userInfo.school }}·{{ userInfo.degreeDesc }}</view>
+        <view class="label label-bg3" wx:if="{{ isOwer && !userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_renshe"></i>家乡未完善</view>
+        <view class="label label-bg3" wx:if="{{ isOwer && !userInfo.degreeDesc }}"><i class="icon1 icon iconfont icon_renshe"></i>学历未完善</view>
+      </view>
+    </view>
+
+    <view class="section info-employment">
+      <view class="title">职业信息</view>
+      <view class="inner">
+        <view class="career-objective">{{ userInfo.industryArr[0].name }}·{{ userInfo.industryArr[1].name }}</view>
+        <view class="work-experience">{{ userInfo.companyName }} | {{ userInfo.positionName }} <i class="icon"></i></view>
+        <view class="work-years" wx:if="{{ isOwer }}">10-15W/年<text>（仅自己可见）</text></view>
+        <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}">职业信息未认证，将降低主页展示率</view>
+      </view>
+    </view>
+
+    <view class="section info-myself" wx:if="{{ isOwer && !userInfo.ownDescribe}}">
+      <view class="title2">我眼中的自己</view>
+      <view class="tips">介绍自己让更多优秀的人了解你～</view>
+      <view class="perfect-btn">添加描述</view>
+    </view>
+    <view class="section info-myself" wx:else>
+      <view class="title">我眼中的自己</view>
+      <view class="inner">
+        <view class="self-description">{{ userInfo.ownDescribe }}</view>
+      </view>
+    </view>
+
+    <view class="section info-myLabel" wx:if="{{ isOwer && !userInfo.isHasLabel }}">
+      <view class="title2">我的标签</view>
+      <view class="tips">添加个人标签找到兴趣相投的Ta～</view>
+      <view class="perfect-btn">选择标签</view>
+    </view>
+    <view class="section info-myLabel" wx:else>
+      <view class="title">我的标签</view>
+      <view class="inner">
+        <view class="row" wx:for="{{ labelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
+          <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
+          <view class="box">
+            <view class="item" wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+
+    <view class="section info-ideal" wx:if="{{ isOwer && !userInfo.idealDescribe}}">
+      <view class="title2">我的理想型</view>
+      <view class="tips">说说你喜欢怎样的Ta～</view>
+      <view class="perfect-btn">添加理想型</view>
+    </view>
+    <view class="section info-ideal" wx:else>
+      <view class="title">我的理想型</view>
+      <view class="inner">
+        <view class="self-description">{{ userInfo.idealDescribe }}</view>
+      </view>
+    </view>
+
+    <view class="section info-secret" wx:if="{{ isOwer && !questionList.length}}">
+      <view class="title2">我的问答</view>
+      <view class="tips">分享一些小秘密拉近彼此距离～</view>
+      <view class="perfect-btn">添加问答</view>
+    </view>
+    <view class="section info-secret" wx:else>
+      <view class="title">想告诉你的小秘密</view>
+      <view class="inner">
+        <view class="row" wx:for="{{ questionList }}" wx:key="index" bindtap="updateQuestion" data-info="{{item}}">
+          <view class="key">
+            <view class="myIcon">Q</view>
+            <view class="question"><text>{{item.title}}</text></view>
+          </view>
+          <view class="answer">{{item.body}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
