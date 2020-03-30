@@ -115,7 +115,6 @@ Page({
     }
   },
   pickerResult(e) {
-    console.log(e)
     let salary = e.detail.id
     if(salary !== this.data.salary) {
       this.setData({ salary })

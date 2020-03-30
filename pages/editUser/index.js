@@ -23,6 +23,16 @@ Page({
     clearTimeout(fn.timeoutId)
     fn.timeoutId = setTimeout(() => fn.call(context, text), delay)
   },
+  legalize() {
+    let { PAGEPATH } = app.globalData
+    let { userInfo } = this.data
+    wx.setStorageSync('searchCompany', {
+      company_name: userInfo.companyName
+    })
+    wx.navigateTo({
+      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+    })
+  },
   onShow() {
     let { options } = this.data
     let title = ''
@@ -51,6 +61,27 @@ Page({
         break
       case 'occupation':
         title = '职业'
+        break
+      case 'idealDescribe':
+        title = '我的理想型'
+        break
+      case 'ownDescribe':
+        title = '自我描述'
+        break
+      case 'degree':
+        title = '学历'
+        break
+      case 'school':
+        title = '学校'
+        break
+      case 'salary':
+        title = '年收入'
+        break
+      case 'positionName':
+        title = '担任职位'
+        break
+      case 'hometown':
+        title = '家乡'
         break
       default:
         break

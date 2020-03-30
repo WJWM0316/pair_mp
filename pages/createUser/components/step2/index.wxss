@@ -24,4 +24,7 @@
 }
 .step2 .box {
   margin-top: 106rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
 }

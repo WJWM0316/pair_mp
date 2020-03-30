@@ -1,8 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "myPicker": "../../../..//components/functional/myPicker",
-    "avatarCut": "../../../..//components/functional/avatarCut",
+    "myPicker": "../../../../components/functional/myPicker",
+    "avatarCut": "../../../../components/functional/avatarCut",
     "myButton": "../button"
   }
 }

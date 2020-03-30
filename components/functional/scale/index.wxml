@@ -1,0 +1,25 @@
+<view class="scale">
+	<scroll-view
+		scroll-with-animation
+		scroll-x
+		class="scroll-view"
+		scroll-left="{{ navScrollLeft }}"
+		bindscroll="scroll">
+		<view class="label-item" style="opacity: 0">00</view>
+		<view class="label-item {{ item.active ? 'active' : '' }}" wx:for="{{ tabs }}" wx:key="index">
+			<view class="line-box">
+				<view class="line"></view>
+				<view class="line"></view>
+				<view class="line"></view>
+				<view class="line"></view>
+				<view class="line"></view>
+			</view>
+			<view class="value">
+				<text class="number">{{item.key}}</text>
+				<text class="unit">cm</text>
+			</view>
+		</view>
+		<view class="label-item" style="opacity: 0">00</view>
+	</scroll-view>
+</view>
+<view class="line"></view>
