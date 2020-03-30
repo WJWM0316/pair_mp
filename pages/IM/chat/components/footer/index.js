@@ -92,9 +92,10 @@ Component({
     // 选择编辑类型
     selectType (e) {
       let index = e.currentTarget.dataset.index
+      this.pageScrollToDom('bottom')
       this.setData({'selectIndex': index}, () => {
         this.triggerEvent('selectType', index)
-        this.pageScrollToDom('bottom')
+        
         if (index === 1 || index === 2) {
           this.sendMsg('img')
         }
@@ -175,7 +176,7 @@ Component({
               })
             },
             fail(err) {
-              reject(err)
+              console.log(err)
             }
           })
           break
