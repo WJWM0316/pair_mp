@@ -25,3 +25,7 @@
   color: #1F252B;
   font-weight: 500;
 }
+.navWrap .nav-content .center .logo {
+  width: 148rpx;
+  height: 49rpx;
+}

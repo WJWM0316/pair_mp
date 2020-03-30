@@ -1,12 +1,6 @@
 const app =  getApp();
-let ceshi = {
-  avatar: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-  name: '测试小号',
-  content: '测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容',
-  itme: '2.3',
-  messageNum: 3,
-  online: 1
-}
+import {getRelationlistApi} from '../../../api/im.js'
+
 Page({
 
   /**
@@ -14,10 +8,8 @@ Page({
    */
   data: {
     hasTips: true,
-    viewAreaHeight: '',
-    messageList: [
-      ceshi
-    ],
+    messageList: [],
+    viewAreaHeight: 0,
     lockIndex: null
   },
 
@@ -25,9 +17,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    setTimeout (() => {
+    if (!app.globalData.viewAreaHeight) {
+      app.getTabHInit = () => {
+        this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
+        console.log(app.globalData.viewAreaHeight, 111)
+      }
+    } else {
       this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-    }, 500)
+    }
+    this.getList()
+  },
+  getList () {
+    getRelationlistApi({count: 100}).then(res => {
+      let index = this.data.messageList.length ? this.data.messageList.length - 1 : 0
+      this.setData({[`messageList[${index}]`]: res.data})
+    })
   },
   getSwipeStatus (e) {
     let lockIndex = e.detail.lockIndex,

@@ -1,5 +1,6 @@
 
 import {silentLogin} from './auth.js'
+import {getCurrentPagePath} from '../utils/index.js'
 let APIHOST         = '',
     loadNum         = 0,
     token           = wx.getStorageSync('token'),
@@ -74,6 +75,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   wx.removeStorageSync('sessionToken')
                   delete addHttpHead['Authorization']
                   delete addHttpHead['Authorization-Wechat']
+                  wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
                   break
                 case 403:
                   getApp().wxToast({title: msg.msg})

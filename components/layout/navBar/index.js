@@ -7,6 +7,10 @@ Component({
     navBarBg: {
       type: String,
       value: "#F3F3F3"
+    },
+    color: {
+      type: String,
+      value: "#fff"
     }
   },
  

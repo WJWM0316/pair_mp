@@ -1,10 +1,10 @@
 <view class="tabBar">
   <view class="tabBar-content">
-    <view class="tabBar-item" wx:for="{{list}}" wx:key="id">
+    <view class="tabBar-item" wx:for="{{list}}" wx:key="text" bindtap = "jump" data-route="{{item.routerPath}}">
       <i class="icon iconfont {{item.selected ? icon : selectedIcon}}"></i>
       <text class="text">{{item.text}}</text>
     </view>
   </view>
-  <view class="tabBar-mask"></view>
+  <view class="tabBar-mask" wx:if="{{mask}}"></view>
 </view>
 <view class="block" style="background-color:{{tabBgColor}}"></view>

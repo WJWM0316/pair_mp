@@ -8,6 +8,6 @@ module.exports = {
   emoji,
   fieldRegular,
   socket,
-  util,
-  wxApi
+  wxApi,
+  ...util,
 }

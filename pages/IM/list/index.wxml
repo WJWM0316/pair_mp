@@ -1,33 +1,36 @@
 <navBar></navBar>
-<view class="listWrap" wx:if="{{viewAreaHeight}}" style="height:{{viewAreaHeight}}px">
+<view class="listWrap">
   <view class="tips" wx:if="{{hasTips}}">
     <text class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</text>
     <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
   </view>
   <view class="noTips" wx:else></view>
-  <view class="scroll-view">
-    <swipe-out
-      wx:for="{{messageList}}"
-      operateWidth="{{130}}"
-      toggle="{{lockIndex === index ? true : false}}"
-      index="{{index}}"
-      bindswipeStatus = "getSwipeStatus"
-    >
-      <view slot="content" class="scroll-item">
-        <view class="avatar {{item.online ? 'online' : ''}}">
-          <i-image my-class="avatarImg" borderRadius="50%" src="{{item.avatar}}"></i-image>
+  <view class="scroll-view" style="min-height:calc({{viewAreaHeight}}px - 139rpx)">
+    <block wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index">
+      <swipe-out
+        wx:for="{{list}}"
+        wx:key="id"
+        operateWidth="{{130}}"
+        toggle="{{lockIndex === index ? true : false}}"
+        index="{{index}}"
+        bindswipeStatus = "getSwipeStatus"
+      >
+        <view slot="content" class="scroll-item">
+          <view class="avatar {{item.online ? 'online' : ''}}">
+            <i-image my-class="avatarImg" borderRadius="50%" src="{{item.imFromUser.avatarUrl}}"></i-image>
+          </view>
+          
+          <view class="messageContent">
+            <view class="name">{{item.imFromUser.name}}<view class="label">广场</view><view class="time">{{item.lastMsgTimeText}}</view></view>
+            <view class="content">{{item.lastMsg}}</view>
+            <view class="messageNum">{{item.messageNum}}</view>
+          </view>
         </view>
-        
-        <view class="messageContent">
-          <view class="name">{{item.name}}<view class="label">广场</view><view class="time">{{item.itme}}</view></view>
-          <view class="content">{{item.content}}</view>
-          <view class="messageNum">{{item.messageNum}}</view>
+        <view slot="button" class="rightBtn">
+          <i-button my-class="closeBtn"><i class="closeMessage iconfont icon_shanchu"></i></i-button>
         </view>
-      </view>
-      <view slot="button" class="rightBtn">
-        <i-button my-class="closeBtn"><i class="closeMessage iconfont icon_shanchu"></i></i-button>
-      </view>
-    </swipe-out>
+      </swipe-out>
+    </block>
   </view>
 </view>
-<tabBar id="tabBar"></tabBar>
+<tabBar></tabBar>

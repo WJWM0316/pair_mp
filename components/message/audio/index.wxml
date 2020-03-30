@@ -3,9 +3,17 @@
     <view class="icon {{playing ? 'play' : ''}}" wx:if="{{!own}}">
       <i class="line line1"></i><i class="line line2"></i><i class="line line3"></i> 
     </view>
-    <text class="second">1"</text>
+    <text class="second">{{parse.duration(message.duration)}}"</text>
     <view class="icon {{playing ? 'play' : ''}}" wx:if="{{own}}">
       <i class="line line1"></i><i class="line line2"></i><i class="line line3"></i> 
     </view>
   </view>
 </view>
+
+<wxs module="parse">
+  module.exports = {
+    duration: function (duration) {
+      return  (duration/1000).toFixed()
+    }
+  }
+</wxs>

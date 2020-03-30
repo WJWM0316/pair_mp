@@ -4,18 +4,30 @@ const app = getApp()
 let phone = ''
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
 import {getIndustryApi, getAreaApi} from "../../api/fixedData.js"
-import {pickApi} from "../../api/pick.js"
+import {pickApi, pickIndexAvaApi} from "../../api/pick.js"
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    background: '#1F252B',
+    viewAreaHeight: app.globalData.viewAreaHeight,
+    richText: ''
   },
   
   onLoad: function () {
-    getAreaApi()
-    getAreaApi()
+    if (!app.globalData.viewAreaHeight) {
+      app.getTabHInit = () => {
+        this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
+      }
+    } else {
+      this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
+    }
+    pickIndexAvaApi().then(res => {
+      let richText = `<div class="richWrap">`
+      res.data.avatarUrls.forEach((item, index) => {
+        richText = `${richText}<img src='${item}' class='richDom richDom${index}' />`
+      })
+      richText = `${richText}</div>`
+      this.setData({richText})
+    })
   },
   getUserInfo: function(e) {
     let data = {
@@ -51,6 +63,11 @@ Page({
       if (res.data.token) wx.setStorageSync('token', res.data.token)
     })
   },
+  pick () {
+    pickApi().then(res => {
+      console.log(res, 111)
+    })
+  },
   action (e) {
     let type = e.currentTarget.dataset.type
     switch (type) {
@@ -64,9 +81,7 @@ Page({
         wx.navigateTo({url: '/pages/perfectUser/index'})
         break
       case 'pick':
-        pickApi().then(res => {
-          console.log(res, 111)
-        })
+        
         break
       case 'detail':
         wx.navigateTo({url: '/pages/userInfo/index'})

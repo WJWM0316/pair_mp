@@ -8,6 +8,10 @@ Component({
     tabBgColor: {
       type: String,
       value: '#fff'
+    },
+    mask: {
+      type: Boolean,
+      value: true
     }
   },
 
@@ -28,33 +32,37 @@ Component({
         selected: false,
         icon: '',
         selectedIcon: '',
-        routerPath: ''
+        routerPath: '/pages/index/index'
       },
       {
         text: '消息',
         selected: false,
         icon: '',
         selectedIcon: '',
-        routerPath: ''
+        routerPath: '/pages/IM/list/index'
       }
     ]
   },
   ready () {
-    getSelectorQuery(".tabBar", this).then(res => {
-      app.globalData.tabBarHeight = res.height
-      app.globalData.viewAreaHeight = app.globalData.systemInfo.windowHeight - res.height - app.globalData.navBarHeight
-    })
+    if (!app.globalData.tabBarHeight) {
+      getSelectorQuery(".block", this).then(res => {
+        app.globalData.tabBarHeight = res.height
+        app.globalData.viewAreaHeight = app.globalData.systemInfo.windowHeight - res.height - app.globalData.navBarHeight
+        if (app.getTabHInit) {
+          app.getTabHInit()
+          app.getTabHInit = null
+        }
+      })
+    }
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    getTabBarHeight () {
-      return getSelectorQuery(".tabBar", this).then(res => {
-        app.globalData.tabBarHeight = res.height
-        app.globalData.viewAreaHeight = app.globalData.systemInfo.windowHeight - res.height - app.globalData.navBarHeight
-        return res.height
-      })
+    jump (e) {
+      console.log(e, 11)
+      let route = e.currentTarget.dataset.route
+      wx.reLaunch({url: route})
     }
   }
 })

@@ -64,8 +64,9 @@ Component({
     linechange (e) {
       let textHeight = e.detail.height
       if (0 < e.detail.lineCount && e.detail.lineCount <= 3) {
-        this.pageScrollToDom('bottom')
-        this.setData({textHeight})
+        this.pageScrollToDom('bottom').then(res => {
+          this.setData({textHeight})
+        })
       }
     },
     // 选择emoji 或者 出场白
@@ -92,21 +93,29 @@ Component({
     // 选择编辑类型
     selectType (e) {
       let index = e.currentTarget.dataset.index
-      this.pageScrollToDom('bottom')
-      this.setData({'selectIndex': index}, () => {
-        this.triggerEvent('selectType', index)
-        
-        if (index === 1 || index === 2) {
-          this.sendMsg('img')
-        }
+      this.pageScrollToDom('bottom').then(res => {
+        this.setData({'selectIndex': index}, () => {
+          this.triggerEvent('selectType', index)
+          if (index === 1 || index === 2) {
+            this.sendMsg('img')
+          }
+        })
       })
     },
     // 滚动到节点
     pageScrollToDom (type = 'bottom') {
-      wx.pageScrollTo({
-        duration: 200,
-        selector: type === 'top' ? `#msg0` : `#bottomBlock`
+      return new Promise((resolve, reject) => {
+        wx.pageScrollTo({
+          duration: 200,
+          selector: type === 'top' ? `#msg0` : `#bottomBlock`,
+          success: (res) => {
+            resolve(res)
+          }
+        })
       })
+    },
+    getRecord (e) {
+      this.sendMsg('record', e.detail)
     },
     // 发送文本
     sendText () {
@@ -133,7 +142,6 @@ Component({
           "channelType": "PERSON",
           "msgTimestamp": timestamp,
           "timestamp": timestamp,
-          "objectName": "RC:TxtMsg",
           "content": '',
           "msgUID": "BH3B-U1N8-OIM7-EIL5"
         }
@@ -178,6 +186,24 @@ Component({
             fail(err) {
               console.log(err)
             }
+          })
+          break
+        case 'record':
+          msgData.msgType = 'RC:VcMsg'
+          msgData.imData.content = {fileUrl: content.tempFilePath, duration: content.duration, fileSize: content.fileSize}
+          that.triggerEvent('sendMsg', msgData)
+          app.uploadFile(content, 'audio').then(res0 => {
+            parmas.data = {
+              toVkey: that.data.toVkey, 
+              msgType: "RC:VcMsg", 
+              content: {
+                content: '音频',
+                duration: content.duration,
+                fileUrl: res0.data.attachListItem[0].url
+              }
+            }
+            socket.send(parmas)
+          }).catch(e => {
           })
           break
       }

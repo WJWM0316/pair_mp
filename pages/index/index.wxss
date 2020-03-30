@@ -1,9 +1,151 @@
-.abc {
-  color: #0CCDDA;
+.indexWrap {
+  background: #1F252B;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-.btn {
-  color: #0CCDDA;
+.indexWrap .main {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
-.input {
-  border: 1rpx solid #000;
+.indexWrap .main .center {
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+.indexWrap .main .circle1 {
+  width: 980rpx;
+  height: 980rpx;
+  border: 2rpx solid rgba(118, 208, 217, 0.05);
+}
+.indexWrap .main .circle2 {
+  width: 794rpx;
+  height: 794rpx;
+  border: 2rpx solid rgba(118, 208, 217, 0.1);
+}
+.indexWrap .main .circle3 {
+  width: 608rpx;
+  height: 608rpx;
+  border: 2rpx solid rgba(118, 208, 217, 0.15);
+}
+.indexWrap .main .circle4 {
+  width: 422rpx;
+  height: 422rpx;
+  border: 2rpx solid rgba(118, 208, 217, 0.2);
+}
+.indexWrap .main .centerBtn {
+  width: 228rpx;
+  height: 228rpx;
+  overflow: hidden;
+  text-align: center;
+}
+.indexWrap .main .centerBtn .mainBtn {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2rpx solid;
+  background: #0CCDDA;
+  border-image: linear-gradient(143deg, rgba(255, 255, 255, 0.77), #0abfbf) 2 2;
+  padding: 57rpx 46rpx 0;
+  box-sizing: border-box;
+}
+.indexWrap .main .centerBtn .mainBtn .logo {
+  width: 100%;
+  height: 44rpx;
+  margin: 0 auto;
+}
+.indexWrap .main .centerBtn .mainBtn .now_times {
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 300;
+  color: #fff;
+  line-height: 29rpx;
+}
+.richText {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.richText .richWrap {
+  width: 4rpx;
+  height: 4rpx;
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  background: #000;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 10;
+}
+.richText .richWrap .richDom {
+  box-shadow: 10rpx 24rpx 49rpx 0rpx rgba(0, 0, 0, 0.12);
+  border: 2rpx solid #444b51;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 9;
+  left: 50%;
+  bottom: 50%;
+  transform: translate3d(-50%, 50%, 0);
+}
+.richText .richWrap .richDom0 {
+  width: 254rpx;
+  height: 254rpx;
+  left: -84rpx;
+  bottom: -151rpx;
+  transform: translate3d(-100%, 100%, 0);
+}
+.richText .richWrap .richDom1 {
+  width: 165rpx;
+  height: 165rpx;
+  left: 140rpx;
+  bottom: -137rpx;
+  transform: translate3d(0%, 100%, 0);
+}
+.richText .richWrap .richDom2 {
+  width: 219rpx;
+  height: 219rpx;
+  left: 188rpx;
+  bottom: -48rpx;
+  transform: translate3d(0%, 0%, 0);
+}
+.richText .richWrap .richDom3 {
+  width: 88rpx;
+  height: 88rpx;
+  left: 18rpx;
+  bottom: 151rpx;
+  transform: translate3d(0%, 0%, 0);
+}
+.richText .richWrap .richDom4 {
+  width: 132rpx;
+  height: 132rpx;
+  left: 123rpx;
+  bottom: 281rpx;
+  transform: translate3d(0%, 0%, 0);
+}
+.richText .richWrap .richDom5 {
+  width: 186rpx;
+  height: 186rpx;
+  left: -60rpx;
+  bottom: 264rpx;
+  transform: translate3d(-100%, 0, 0);
+}
+.richText .richWrap .richDom6 {
+  width: 86rpx;
+  height: 86rpx;
+  left: -213rpx;
+  bottom: 370rpx;
+  transform: translate3d(-100%, 0, 0);
+}
+.richText .richWrap .richDom7 {
+  width: 132rpx;
+  height: 132rpx;
+  left: -205rpx;
+  bottom: 28rpx;
+  transform: translate3d(-100%, 0, 0);
 }

@@ -29,13 +29,17 @@ var dateFormat = function(timestamp, format) {
     return date.getSeconds()
   }
   switch(format) {
-    case 'YYYY-MM-DD':
+    case 'HH:mm':
+    return hour() + ':' + minute()
+    case 'MM-DD HH:mm':
+    return month + '-' + day + ' ' + hour() + ':' + minute()
+    case 'YY-MM-DD':
     return year + '-' + month + '-' + day
-    case 'YYYY-MM-DD hh:mm':
+    case 'YY-MM-DD HH:mm':
     return year + '-' + month + '-' + day + ' ' + hour() + ':' + minute()
     case 'MM-DD':
     return month + '-' + day
-    case 'YYYY.MM':
+    case 'YY.MM':
     return year + '.' + month
     case 'YM':
     return year+'年'+month+'月'
@@ -48,7 +52,7 @@ var dateFormat = function(timestamp, format) {
 var activeTime = function(timestamp) {
   var releaseTime = timestamp
   var now = getDate()
-  var timeStr = '刚刚'
+  var timeStr = ''
   if (releaseTime) {
     releaseTime = getDate(releaseTime * 1000)
     var differ = parseInt((now.getTime() - releaseTime.getTime()) / 1000)
@@ -68,26 +72,21 @@ var activeTime = function(timestamp) {
       m: releaseTime.getMonth(),
       d: releaseTime.getDate()
     }
+    releaseTime = releaseTime/1000
     // 是否当天
     if (nowDate.y === releaseTimeDate.y && nowDate.m === releaseTimeDate.m && nowDate.d === releaseTimeDate.d) {
-      if (differ < timeCompany.m) { // 一分钟以内
-        timeStr = '刚刚'
-      } else if (differ < timeCompany.h) { // 一小时以内
-        timeStr = parseInt(differ / timeCompany.m) + '分钟前'
-      } else {
-        timeStr = parseInt(differ / timeCompany.h) + '小时前'
-      }
+      timeStr = dateFormat(releaseTime, 'HH:mm')
     } else {
       differ = parseInt((getDate(nowDate.y, nowDate.m, nowDate.d).getTime() - releaseTime.getTime()) / 1000)
       if (differ < timeCompany.d) { // 昨天
-        timeStr = '昨天'
+        timeStr = '昨天 ' + dateFormat(releaseTime, 'HH:mm')
       } else if (differ < timeCompany.d * 2) {
-        timeStr = '前天'
+        timeStr = '前天 ' + dateFormat(releaseTime, 'HH:mm')
       } else {
         if (now.getFullYear() > releaseTime.getFullYear()) { // 超过两天且跨年
-          timeStr = dateFormat(releaseTime, 'YY-MM-DD')
+          timeStr = dateFormat(releaseTime, 'YY-MM-DD  HH:mm')
         } else {
-          timeStr = dateFormat(releaseTime, 'YY-MM-DD HH:mm')
+          timeStr = dateFormat(releaseTime, 'MM-DD HH:mm')
         }
       }
     }

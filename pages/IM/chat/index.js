@@ -1,12 +1,12 @@
 const app =  getApp();
-import {getSelectorQuery, socket} from '../../../utils/index.js'
+import {getSelectorQuery, socket, util} from '../../../utils/index.js'
+import {getChatDetailApi} from '../../../api/im.js'
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    myUid: '3',
+    myUid: 22,
     messageList: [],
     selectIndex: null, // 选择发送类型
     longpressData: {},
@@ -24,10 +24,7 @@ Page({
    */
   onReady: function () {
     socket.onMessage((res) => {
-      // let index = this.data.messageList.length - 1
-      // if (res.hasOwnProperty('msgType')) {
-      //   this.data.messageList[]
-      // }
+      let index = this.data.messageList.length - 1
       
     })
   },
@@ -46,18 +43,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    getChatDetailApi({vkey: 'x2njbxhm', count: 20}).then(res => {
+      console.log(res.data)
+      this.setData({messageList: res.data})
+    })
   },
   // 长按功能
   longpress (e) {
-    let dataset  = e.currentTarget.dataset
-    getSelectorQuery(`.${dataset.class}`).then(res => {
-      console.log(res, 11)
+    let dataset  = e.currentTarget.dataset,
+        own      = dataset.object.imFromUser.uid === this.data.myUid
+    getSelectorQuery(`.${dataset.class}`, this).then(res => {
       let longpressData = {
         index: dataset.index
       },
       position = {}
       if (res.top >= 80) {
-        if (dataset.object.data.own) {
+        if (own) {
           longpressData.style = `right:0;top:-100rpx;`
           longpressData.iconStyle = 'right:45rpx;bottom:-31rpx;'
         } else {
@@ -65,7 +66,7 @@ Page({
           longpressData.iconStyle = 'left:14rpx;bottom:-31rpx;'
         }
       } else {
-        if (dataset.object.data.own) {
+        if (own) {
           longpressData.style = `right:0;bottom:-100rpx;`
           longpressData.iconStyle = 'right:45rpx;top:-31rpx;transform: rotate(180deg);'
         } else {
@@ -78,9 +79,11 @@ Page({
   },
   // 复位
   resetView (e) {
+    let setData = {'longpressData': null}
     if ([0, 3, 4].includes(this.data.selectIndex)) {
-      this.setData({'selectIndex': null})
+      setData.selectIndex = null
     }
+    this.setData(setData)
   },
   selectType (e) {
     this.setData({'selectIndex': e.detail})

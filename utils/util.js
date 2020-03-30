@@ -59,8 +59,29 @@ const getTitleHeight = (that) => {
   return 2 * gap + rect.height;
 }
 
+// 拼接参数成字符串
+const splicingParams = (params) => {
+  let string = ''
+  for (let i in params) {
+    string = `${string}${i}=${params[i]}&`
+  }
+  string = string.slice(0, string.length-1)
+  return string
+}
+// 获取当前页面完整链接
+const getCurrentPagePath = (index) => {
+  var pages = getCurrentPages() //获取加载的页面
+  index = !index ? pages.length - 1 : pages.length - index
+  let pageUrl = pages[index].route
+  if (pages[index] && pages[index].options && this.splicingParams(pages[index].options)) {
+    return `/${pageUrl}?${this.splicingParams(pages[index].options)}`
+  } else {
+    return `/${pageUrl}`
+  }
+}
 module.exports = {
   formatTime: formatTime,
+  getCurrentPagePath: getCurrentPagePath,
   getSelectorQuery,
   getTitleHeight
 }

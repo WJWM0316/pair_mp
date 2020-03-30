@@ -10,3 +10,11 @@ export const pickApi = (data) => {
   })
 }
 
+// 首页 头像列表
+export const pickIndexAvaApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/pick/config/aggr',
+    data
+  })
+}

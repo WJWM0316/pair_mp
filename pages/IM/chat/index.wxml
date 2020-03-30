@@ -25,8 +25,8 @@
               <block wx:if="{{item.msgType === 'RC:ImgMsg'}}">
                 <msg-image message="{{item.imData.content}}"></msg-image>
               </block>
-              <block wx:if="{{item.msgType === 'audio'}}">
-                <msg-audio own="{{item.imFromUser.uid === myUid}}" message="{{item.imData}}"></msg-audio>
+              <block wx:if="{{item.msgType === 'RC:VcMsg'}}">
+                <msg-audio own="{{item.imFromUser.uid === myUid}}" message="{{item.imData.content}}"></msg-audio>
               </block>
               <block wx:if="{{item.msgType === 'video'}}">
                 <msg-video message="{{item.data}}"></msg-video>

@@ -32,22 +32,22 @@ Component({
     InnerAudioContext.onTimeUpdate((e) => {
       if (that.curItem()) {
         console.log('监听当前的音乐————播放中')
-        if (!that.playing) that.setData({'playing': true})
+        if (!that.data.playing) that.setData({'playing': true})
       } else {
-        if (that.playing) that.setData({'playing': false})
+        if (that.data.playing) that.setData({'playing': false})
       }
     })
     // 监听暂停
     InnerAudioContext.onStop((e) => {
       if (that.curItem()) {
         console.log('监听当前的音乐————停止了')
-        if (that.playing) that.setData({'playing': false})
+        if (that.data.playing) that.setData({'playing': false})
       }
     })
-    // 监听暂停
+    // 监听结束
     InnerAudioContext.onEnded((e) => {
       if (that.curItem()) {
-        if (that.playing) that.setData({'playing': false})
+        if (that.data.playing) that.setData({'playing': false})
         console.log('监听当前的音乐————结束了')
       }
     })
@@ -57,15 +57,15 @@ Component({
    */
   methods: {
     curItem () {
-      return app.globalData.InnerAudioContext && app.globalData.InnerAudioContext.src === this.data.message.file
+      return app.globalData.InnerAudioContext && app.globalData.InnerAudioContext.src === this.data.message.fileUrl
     },
     play () {
       let InnerAudioContext = app.globalData.InnerAudioContext
-      if (!InnerAudioContext.src) InnerAudioContext.src = this.data.message.file
-      if (InnerAudioContext.src === this.data.message.file) {
+      if (!InnerAudioContext.src) InnerAudioContext.src = this.data.message.fileUrl
+      if (InnerAudioContext.src === this.data.message.fileUrl) {
         InnerAudioContext.paused ? InnerAudioContext.play() : InnerAudioContext.stop()
       } else {
-        InnerAudioContext.src = this.data.message.file
+        InnerAudioContext.src = this.data.message.fileUrl
         InnerAudioContext.play()
       }
     }

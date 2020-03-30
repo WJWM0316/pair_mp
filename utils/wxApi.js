@@ -150,22 +150,23 @@ const wxApi = {
       })
     })
   },
-  uploadFile(file) {
+  uploadFile(file, type='img') {
     return new Promise((resolve, reject) => {
       let formData = {
-        'img1': file.path,
-        'size': file.size || 0,
-        attach_type: 'img'
+        'img1': file.path || file.tempFilePath,
+        'size': file.size || file.fileSize || 0,
+        'duration': file.duration || 0,
+        attach_type: type || 'img'
       }
+      console.log(type, 222)
       let { APIHOST } = getApp().globalData
       wx.uploadFile({
         url: `${APIHOST}/attaches`,
-        filePath: file.path,
+        filePath: file.path || file.tempFilePath,
         methos: 'post',
         name: 'file',
         header: {
           'Authorization': wx.getStorageSync('token')
-          // 'Wechat-Version': VERSION
         }, 
         formData,
         success(res) {

@@ -1,6 +1,5 @@
 @import "../../../styles/_base.less";
 @import "../../../styles/_mixins.less";
-@import "../../../styles/iconfont.wxss";
 .listWrap {
   width: 100%;
   box-sizing: border-box;
@@ -40,7 +39,8 @@
   }
   .scroll-view {
     padding-top: 20rpx;
-    // box-shadow:0px -4rpx 24rpx 0px rgba(88,102,103,0.07);
+    box-sizing: border-box;
+    box-shadow:0px -4rpx 24rpx 0px rgba(88,102,103,0.07);
     border-radius:36rpx 36rpx 0px 0px;
     overflow: hidden;
     background: #fff;
@@ -58,6 +58,7 @@
         top: 28rpx;
         left: 40rpx;
         border-radius: 50%;
+        overflow: hidden;
         &.online::after {
           position: absolute;
           right: 4rpx;

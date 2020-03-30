@@ -32,7 +32,7 @@ Component({
     recorderManager = app.globalData.recorderManager
     recorderManager.onStop((e) => {
       if (!this.data.status) {
-        console.log(e)
+        this.triggerEvent('getRecord', e)
       }
     })
   },
@@ -47,7 +47,7 @@ Component({
             duration: 60000, 
             sampleRate: 44100, // 采样率
             encodeBitRate: 192000, // 编码码率
-            format: 'aac'
+            format: 'wav'
           })         
           break
         case 2:
