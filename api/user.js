@@ -70,3 +70,10 @@ export const getMyLabelApi = (data) => {
     data
   })
 }
+
+export const getUserInfoApi = (data) => {
+  return request({
+    method: 'get',
+    url: `/user/info/${data.vkey}`
+  })
+}

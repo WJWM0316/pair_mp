@@ -78,13 +78,6 @@
 					"scene": null
 				},
 				{
-					"id": 2,
-					"name": "pages/userInfo/index",
-					"pathName": "pages/userInfo/index",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "消息列表",
 					"pathName": "pages/IM/list/index",
@@ -113,17 +106,10 @@
 					"scene": null
 				},
 				{
-					"id": 7,
-					"name": "pages/userInfo/index",
-					"pathName": "pages/demo/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/demo/index",
-					"pathName": "pages/demo/index",
-					"query": "",
+					"id": 6,
+					"name": "pages/homepage/index",
+					"pathName": "pages/homepage/index",
+					"query": "vkey= ighvcabv",
 					"scene": null
 				}
 			]
