@@ -62,6 +62,27 @@ Page({
       case 'occupation':
         title = '职业'
         break
+      case 'idealDescribe':
+        title = '我的理想型'
+        break
+      case 'ownDescribe':
+        title = '自我描述'
+        break
+      case 'degree':
+        title = '学历'
+        break
+      case 'school':
+        title = '学校'
+        break
+      case 'salary':
+        title = '年收入'
+        break
+      case 'positionName':
+        title = '担任职位'
+        break
+      case 'hometown':
+        title = '家乡'
+        break
       default:
         break
     }

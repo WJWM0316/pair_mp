@@ -1,3 +1,0 @@
-<view class="scale-box">
-	<scale bind:resultEvent="resultEvent"></scale>
-</view>
