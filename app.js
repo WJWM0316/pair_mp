@@ -23,9 +23,7 @@ App({
     Socket.create(this.globalData.SOCKETHOST, wx.getStorageSync('token'))
     
   },
-  onShow (options) {
-    
-  },
+  onShow (options) {},
   globalData: {
     customerPhone: "020-28163063", // 客服电话
     customerWechat: 'zike04', // 客服微信
