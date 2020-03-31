@@ -15,7 +15,7 @@
   z-index: 9;
   box-sizing: border-box;
   padding: 40rpx;
-  top: 132rpx;
+  bottom: 420rpx;
 }
 .drawer .photo-box1 .h11 {
   height: 44rpx;

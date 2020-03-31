@@ -101,10 +101,10 @@ Page({
         break
       case 'photo':
         that.setData({ show: false})
-        app.chooseImageUpload({needUpload: true}).then(res => {
+        app.chooseImageUpload(1, true).then(res => {
           let { PAGEPATH } = app.globalData
           wx.navigateTo({
-            url: `${PAGEPATH}/cutInside/cutInside?src=${res.path}`
+            url: `${PAGEPATH}/cutInside/index?src=${res.path}`
           })
         })
         break
@@ -113,7 +113,7 @@ Page({
         app.photoUpload(true).then(({ data }) => {
           let { PAGEPATH } = app.globalData
           wx.navigateTo({
-            url: `${PAGEPATH}/cutInside/cutInside?src=${res.path}`
+            url: `${PAGEPATH}/cutInside/index?src=${res.path}`
           })
         })
         break

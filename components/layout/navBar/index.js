@@ -29,6 +29,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    routeJump() {
+      let { PAGEPATH } = app.globalData
+      wx.navigateTo({
+        url: `${PAGEPATH}/userInfo/index`
+      })
+    }
   }
 })

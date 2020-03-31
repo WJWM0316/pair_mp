@@ -120,6 +120,13 @@
 					"pathName": "pages/index/index",
 					"query": "a=1",
 					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "pages/userInfo/index",
+					"pathName": "pages/userInfo/index",
+					"query": "vkey= ighvcabv",
+					"scene": null
 				}
 			]
 		}
