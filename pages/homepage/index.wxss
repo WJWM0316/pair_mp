@@ -495,7 +495,13 @@
 .homepage .block {
   width: 100%;
   display: block;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 178rpx);
+  padding-bottom: 178rpx;
+}
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .homepage .block {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 178rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 178rpx);
+  }
 }
 .homepage .action-zone {
   text-align: center;

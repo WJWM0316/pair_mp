@@ -4,7 +4,13 @@
   left: 0;
   bottom: 0;
   z-index: 10;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 30rpx);
+  padding-bottom: 30rpx;
+}
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .tabBar {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 30rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 30rpx);
+  }
 }
 .tabBar .tabBar-content {
   width: 686rpx;
@@ -44,5 +50,11 @@
 .block {
   width: 100%;
   display: block;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 178rpx);
+  padding-bottom: 178rpx;
+}
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .block {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 178rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 178rpx);
+  }
 }

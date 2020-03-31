@@ -43,7 +43,7 @@ Page({
   },
   pick () {
     pickApi().then(res => {
-      console.log(res, 111)
+      wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
     })
   },
   action (e) {

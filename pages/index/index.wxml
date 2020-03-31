@@ -12,6 +12,7 @@
         <view class="now_times">今日剩余<view><text class="times">{{status.pickChance.todayRemain}}</text>次</view></view>
       </i-button>
     </view>
+    <view class="text">Pick一下，为你匹配最适合你的Ta</view>
   </view>
 </view>
 <tabBar tabBgColor="{{background}}" mask="{{false}}"></tabBar>
