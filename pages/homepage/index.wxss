@@ -64,7 +64,7 @@
   bottom: 0;
   box-sizing: border-box;
   padding: 0 60rpx;
-  z-index: 3;
+  z-index: 10;
   border-radius: 36rpx 36rpx 0 0;
 }
 .homepage .cover-box .h1 {
@@ -174,7 +174,8 @@
   border-radius: 36rpx 36rpx 36rpx 0rpx;
   overflow: hidden;
   position: relative;
-  z-index: 3;
+  z-index: 5;
+  background: #ffffff;
 }
 .homepage .cover-box .swiper .swiper-item {
   width: 100%;
@@ -200,10 +201,7 @@
   color: #1F252B;
   text-align: center;
   line-height: 48rpx;
-  z-index: 4;
-}
-.homepage .content {
-  padding-bottom: 213rpx;
+  z-index: 11;
 }
 .homepage .title {
   height: 34rpx;
@@ -218,14 +216,14 @@
   color: #1F252B;
   line-height: 68rpx;
   text-align: center;
-  padding: 0 22rpx;
+  padding: 0 24rpx;
   display: inline-block;
   margin-right: 12rpx;
   margin-bottom: 16rpx;
 }
 .homepage .icon1 {
   font-size: 26rpx;
-  margin-right: 5rpx;
+  margin-right: 12rpx;
   color: #0CCDDA;
 }
 .homepage .icon_nv {
@@ -353,6 +351,16 @@
 .homepage .info-base {
   padding-bottom: 44rpx;
 }
+.homepage .info-base .nickname {
+  height: 64rpx;
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 64rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .homepage .info-secret:after {
   display: none;
 }
@@ -457,6 +465,19 @@
   box-sizing: border-box;
   padding: 0 30rpx;
   margin-top: 36rpx;
+  position: relative;
+}
+.homepage .warning .icon_jiantou-you- {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30rpx;
+  font-size: 20rpx;
+  color: #9CA1AA;
+}
+.homepage .warning .icon13 {
+  font-size: 28rpx;
+  color: #0CCDDA;
 }
 .homepage .report-entry {
   height: 34rpx;
@@ -466,6 +487,101 @@
   text-align: center;
   margin-top: 40rpx;
   margin-bottom: 48rpx;
+}
+.homepage .block {
+  width: 100%;
+  display: block;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 178rpx);
+}
+.homepage .action-zone {
+  text-align: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 47rpx;
+}
+.homepage .action-zone .btn3 {
+  width: 324rpx;
+  height: 98rpx;
+  border-radius: 49rpx;
+  line-height: 98rpx;
+  text-align: center;
+  display: inline-block;
+  border: 0;
+}
+.homepage .action-zone .btn3:before {
+  width: 288rpx;
+  height: 88rpx;
+  background: linear-gradient(180deg, #1ce8ef 0%, #0ccdda 100%);
+  border-radius: 44rpx;
+  opacity: 0.89;
+  filter: blur(10rpx);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -7rpx;
+  content: '';
+  display: block;
+  border: 0;
+}
+.homepage .action-zone .cover {
+  width: 324rpx;
+  height: 98rpx;
+  background: linear-gradient(180deg, #1ce8ef 0%, #0ccdda 100%);
+  border-radius: 49rpx;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+.homepage .icon11 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 80%;
+  color: #F46BA1;
+}
+.homepage .icon12 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 80%;
+  color: #0CCDDA;
+}
+.homepage .icon14 {
+  color: #ffffff;
+  padding-right: 12rpx;
+  font-size: 36rpx;
+}
+.homepage .icon15 {
+  color: #ffffff;
+  padding-right: 12rpx;
+  font-size: 33rpx;
+}
+.homepage .icon16 {
+  width: 12rpx;
+  height: 12rpx;
+  background: #E85274;
+  opacity: 0.9;
+  border: 2rpx solid #ffffff;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5rpx;
+}
+.homepage .icon17 {
+  width: 10rpx;
+  height: 10rpx;
+  background: #ffffff;
+  opacity: 0.9;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  top: -2rpx;
+  position: relative;
 }
 .other {
   margin: 20rpx 30rpx;

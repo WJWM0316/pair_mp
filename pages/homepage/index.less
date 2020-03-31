@@ -65,7 +65,7 @@
       bottom: 0;
       box-sizing: border-box;
       padding: 0 60rpx;
-      z-index: 3;
+      z-index: 10;
       border-radius:36rpx 36rpx 0 0;
     }
     .h1 {
@@ -175,7 +175,8 @@
       border-radius:36rpx 36rpx 36rpx 0rpx;
       overflow: hidden;
       position: relative;
-      z-index: 3;
+      z-index: 5;
+      background: #ffffff;
       .swiper-item {
         width: 100%;
         height: 100%;
@@ -202,11 +203,11 @@
       color:@text-color-1;
       text-align: center;
       line-height: 48rpx;
-      z-index: 4;
+      z-index: 11;
     }
   }
   .content {
-    padding-bottom: 213rpx;
+    // padding-bottom: 213rpx;
   }
   .title {
     height:34rpx;
@@ -221,14 +222,14 @@
     color:@text-color-1;
     line-height: 68rpx;
     text-align: center;
-    padding: 0 22rpx;
+    padding: 0 24rpx;
     display: inline-block;
     margin-right: 12rpx;
     margin-bottom: 16rpx;
   }
   .icon1 {
     font-size: 26rpx;
-    margin-right: 5rpx;
+    margin-right: 12rpx;
     color: @primary-color;
   }
   .icon_nv {
@@ -354,6 +355,16 @@
   }
   .info-base {
     padding-bottom: 44rpx;
+    .nickname {
+      height:64rpx;
+      font-size:56rpx;
+      font-weight:700;
+      color:@text-color-1;
+      line-height:64rpx;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   .info-secret {
     &:after {
@@ -457,6 +468,19 @@
     box-sizing: border-box;
     padding: 0 30rpx;
     margin-top: 36rpx;
+    position: relative;
+    .icon_jiantou-you- {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 30rpx;
+      font-size: 20rpx;
+      color: @text-color-3;
+    }
+    .icon13 {
+      font-size: 28rpx;
+      color: @primary-color;
+    }
   }
   .report-entry {
     height:34rpx;
@@ -466,6 +490,101 @@
     text-align: center;
     margin-top: 40rpx;
     margin-bottom: 48rpx;
+  }
+  .block {
+    width: 100%;
+    display: block;
+    .setSafea-area(178rpx, bottom);
+  }    
+  .action-zone {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 47rpx;
+    .btn3 {
+      width:324rpx;
+      height:98rpx;
+      border-radius:49rpx;
+      line-height: 98rpx;
+      text-align: center;
+      display: inline-block;
+      border: 0;
+      &:before {
+        width:288rpx;
+        height:88rpx;
+        background:linear-gradient(180deg,rgba(28,232,239,1) 0%,rgba(12,205,218,1) 100%);
+        border-radius:44rpx;
+        opacity:0.89;
+        filter:blur(10rpx);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -7rpx;
+        content: '';
+        display: block;
+        border: 0;
+      }
+    }
+    .cover {
+      width:324rpx;
+      height:98rpx;
+      background:linear-gradient(180deg,rgba(28,232,239,1) 0%,rgba(12,205,218,1) 100%);
+      border-radius:49rpx;
+      line-height: 98rpx;
+      text-align: center;
+      font-size:32rpx;
+      font-weight:700;
+      color:#ffffff;
+      position: relative;
+      z-index: 2;
+    }
+  }
+  .icon11 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 80%;
+    color: @vice-primary-color-2;
+  }
+  .icon12 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 80%;
+    color: @primary-color;
+  }
+  .icon14 {
+    color: #ffffff;
+    padding-right: 12rpx;
+    font-size: 36rpx;
+  }
+  .icon15 {
+    color: #ffffff;
+    padding-right: 12rpx;
+    font-size: 33rpx;
+  }
+  .icon16 {
+    width:12rpx;
+    height:12rpx;
+    background:@vice-primary-color-3;
+    opacity:0.9;
+    border:2rpx solid rgba(255,255,255,1);
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5rpx;
+  }
+  .icon17 {
+    width:10rpx;
+    height:10rpx;
+    background: #ffffff;
+    opacity:0.9;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5rpx;
+    vertical-align: middle;
+    top: -2rpx;
+    position: relative;
   }
 }
 

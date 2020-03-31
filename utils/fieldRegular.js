@@ -1,5 +1,5 @@
 // 手机号正则
-export const mobileReg = /^1(3|4|5|6|7|8|9)\d{9}$/
+export const mobileReg = /^1(2|3|4|5|6|7|8|9)\d{9}$/
 
 // 微信号正则
 export const wechatReg = /^.{2,20}$/

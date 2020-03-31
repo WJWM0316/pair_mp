@@ -12,7 +12,7 @@ App({
     this.globalData.systemInfo['pxTorpxRatio'] =  this.globalData.systemInfo.windowWidth / 375 / 2
     this.globalData.systemInfo['titleHeight'] = getTitleHeight(this)
     this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + getTitleHeight(this)
-    console.log(this.globalData.systemInfo, '系统参数')
+    // console.log(this.globalData.systemInfo, '系统参数')
 
     // 设置环境变量
     let {appId, envVersion} = wx.getAccountInfoSync().miniProgram

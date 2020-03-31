@@ -9,7 +9,8 @@ Page({
   data: {
     background: '#1F252B',
     viewAreaHeight: app.globalData.viewAreaHeight,
-    richText: ''
+    richText: '',
+    show: false
   },
   
   onLoad: function () {

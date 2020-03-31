@@ -11,6 +11,10 @@ Component({
     color: {
       type: String,
       value: "#fff"
+    },
+    page: {
+      type: String,
+      value: ''
     }
   },
  
@@ -20,7 +24,8 @@ Component({
   data: {
     titleHeight: app.globalData.systemInfo.titleHeight,
     statusBarHeight: app.globalData.systemInfo.statusBarHeight,
-    navBarHeight: app.globalData.navBarHeight
+    navBarHeight: app.globalData.navBarHeight,
+    show: false
   },
   ready () {
     
@@ -30,10 +35,7 @@ Component({
    */
   methods: {
     routeJump() {
-      let { PAGEPATH } = app.globalData
-      wx.navigateTo({
-        url: `${PAGEPATH}/userInfo/index`
-      })
+      this.setData({show: true})
     }
   }
 })
