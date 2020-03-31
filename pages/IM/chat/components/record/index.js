@@ -44,7 +44,8 @@ Component({
           break
         case 1:
           recorderManager.start({
-            duration: 60000, 
+            duration: 60000,
+            numberOfChannels: 1,
             sampleRate: 44100, // 采样率
             encodeBitRate: 192000, // 编码码率
             format: 'wav'

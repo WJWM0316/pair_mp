@@ -5,7 +5,8 @@ export const setConfig = (appId, envVersion) => {
       WEBVIEW: '',
       CDNPATH: '',
       SOCKETHOST: '',
-      PAGEPATH: '/pages'
+      PAGEPATH: '/pages',
+      
   } 
   switch (envVersion) {
     case 'develop':

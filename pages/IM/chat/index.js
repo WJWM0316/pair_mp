@@ -1,6 +1,6 @@
 const app =  getApp();
 import {getSelectorQuery, socket, util} from '../../../utils/index.js'
-import {getChatDetailApi} from '../../../api/im.js'
+import {getChatDetailApi, getImTopDeatilApi} from '../../../api/im.js'
 Page({
   /**
    * 页面的初始数据
@@ -10,13 +10,16 @@ Page({
     messageList: [],
     selectIndex: null, // 选择发送类型
     longpressData: {},
-    tips: true // 提醒气泡展示
+    othersUserInfo: {},
+    mineUserInfo: {},
+    imagePath: app.globalData.systemInfo.brand === "devtools" ? '../../../images/emoji/' : './images/emoji/'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.options = options
   },
  
   /**
@@ -43,9 +46,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    getChatDetailApi({vkey: 'x2njbxhm', count: 20}).then(res => {
-      console.log(res.data)
-      this.setData({messageList: res.data})
+    this.getChatMsg()
+    this.getImDetail()
+  },
+  getChatMsg () {
+    getChatDetailApi({vkey: this.options.vkey, count: 11}).then(res => {
+      this.setData({messageList: res.data}, () => {
+        wx.nextTick(()=>{
+          this.selectComponent('#footer').pageScrollToDom('bottom')
+        });
+      })
+    })
+  },
+  getImDetail () {
+    getImTopDeatilApi({vkey: this.options.vkey}).then(res => {
+      this.setData({'othersUserInfo': res.data.userInfo, 'mineUserInfo': app.globalData.userInfo.userInfo})
     })
   },
   // 长按功能

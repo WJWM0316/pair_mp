@@ -1,5 +1,5 @@
 const app =  getApp();
-import {getSelectorQuery, socket, emoji} from '../../../../../utils/index.js'
+import {getSelectorQuery, socket} from '../../../../../utils/index.js'
 
 let word = ''
 Component({
@@ -11,7 +11,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    selectIndex: null
+    selectIndex: null,
+    vkey: String,
+    mineUserInfo: Object
   },
 
   /**
@@ -48,13 +50,11 @@ Component({
         color: '#F46BA1'
       }
     ],
-    toVkey: 'x2njbxhm',
     word: '', // 编辑框的文本
     textHeight: 0, // 编辑框高度
     canSend: false, // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
   },
-  attached () {
-  },
+
   word: '',
   /**
    * 组件的方法列表
@@ -93,8 +93,11 @@ Component({
     // 选择编辑类型
     selectType (e) {
       let index = e.currentTarget.dataset.index
-      this.pageScrollToDom('bottom').then(res => {
+      this.pageScrollToDom('bottom').then(() => {
         this.setData({'selectIndex': index}, () => {
+          wx.nextTick(()=>{
+            this.pageScrollToDom('bottom')
+          });
           this.triggerEvent('selectType', index)
           if (index === 1 || index === 2) {
             this.sendMsg('img')
@@ -128,28 +131,28 @@ Component({
       const that = this
       let timestamp = new Date().getTime()
       let parmas = {
-        cmd: "send.im"
+        cmd: "send.im",
+        data: {
+          toVkey: this.data.vkey
+        }
       },
       msgData = {
         "imFromUser": {
-          "uid": "3",
-          "name": "wxian_b",
-          "avatarUrl": "https:\/\/attach.pickme.ziwork.com\/default\/man.png",
-          "uuid": "PickMeTest_dbzpi31r"
+          "uid":  this.data.mineUserInfo.id,
+          "avatarUrl": this.data.mineUserInfo.avatarInfo.middleUrl
         },
         "imData": {
-          'sending': true,
+          'localSend': true,
           "channelType": "PERSON",
           "msgTimestamp": timestamp,
           "timestamp": timestamp,
-          "content": '',
-          "msgUID": "BH3B-U1N8-OIM7-EIL5"
+          "content": ''
         }
       }
       switch (type) {
         case 'text':
           parmas.data = {
-            toVkey: this.data.toVkey, 
+            ...parmas.data,
             msgType: "RC:TxtMsg", 
             content: {
               content: this.word,
@@ -157,7 +160,7 @@ Component({
             }
           }
           msgData.msgType = 'RC:TxtMsg'
-          msgData.imData.content = {content: emoji.init(this.word)}
+          msgData.imData.content = {content: this.word}
           that.triggerEvent('sendMsg', msgData)
           socket.send(parmas)
           break
@@ -173,7 +176,7 @@ Component({
               that.triggerEvent('sendMsg', msgData)
               app.uploadFile(file).then(res0 => {
                 parmas.data = {
-                  toVkey: that.data.toVkey, 
+                  ...parmas.data,
                   msgType: "RC:ImgMsg", 
                   content: {
                     content: res0.data.attachListItem[0].smallUrl,
@@ -194,7 +197,7 @@ Component({
           that.triggerEvent('sendMsg', msgData)
           app.uploadFile(content, 'audio').then(res0 => {
             parmas.data = {
-              toVkey: that.data.toVkey, 
+              ...parmas.data,
               msgType: "RC:VcMsg", 
               content: {
                 content: '音频',
@@ -207,8 +210,6 @@ Component({
           })
           break
       }
-      
-      
     }
   }
 })

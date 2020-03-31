@@ -13,6 +13,8 @@
         operateWidth="{{130}}"
         toggle="{{lockIndex === index ? true : false}}"
         index="{{index}}"
+        bindtap = "startChat"
+        data-vkey = "{{item.imFromUser.vkey}}"
         bindswipeStatus = "getSwipeStatus"
       >
         <view slot="content" class="scroll-item">

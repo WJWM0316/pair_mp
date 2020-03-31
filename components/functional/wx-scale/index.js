@@ -47,7 +47,6 @@ Component({
         // console.log(oldVal)
         let rul = this.data.rul
         rul.active = newVal
-        console.log(newVal, 'new')
         let centerNum = this.assignValue(this, rul)
         this.setData({
           centerNum,

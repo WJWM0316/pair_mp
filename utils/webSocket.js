@@ -74,9 +74,6 @@ class Socket {
       if (res.data === 'a') return
       data = JSON.parse(data)
       if (data.imData && data.imData.content) data.imData.content = JSON.parse(data.imData.content)
-      if (data.msgType === 'RC:TxtMsg') { // 转义emoji 表情
-        data.imData.content.content = Emoji.init(data.imData.content.content)
-      }
       if (callback) callback(data)
     })
   }

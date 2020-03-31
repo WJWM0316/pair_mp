@@ -65,6 +65,7 @@ Component({
     errCallback(e) {
       this.triggerEvent('loadFail', e)
       this.setData({'error': true})
+      console.log('加载错误', this.data.src)
     }
   }
 })

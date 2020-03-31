@@ -9,7 +9,7 @@
     <view class="center centerBtn">
       <i-button my-class="center mainBtn" bindtap = "pick">
         <i-image my-class="logo" src="/images/logo/logo_pickme_white.png"></i-image>
-        <view class="now_times">今日剩余<view><text class="times">10</text>次</view></view>
+        <view class="now_times">今日剩余<view><text class="times">{{status.pickChance.todayRemain}}</text>次</view></view>
       </i-button>
     </view>
   </view>

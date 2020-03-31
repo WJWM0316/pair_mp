@@ -16,3 +16,14 @@ export const getRelationlistApi = (data) => {
     data
   })
 }
+
+
+// 获取IM会话用户详情
+export const getImTopDeatilApi = (data) => {
+  return request({
+    method: 'get',
+    url: `/user/im/top/${data.vkey}`,
+    data
+  })
+}
+

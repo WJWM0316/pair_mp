@@ -20,7 +20,6 @@ Page({
     if (!app.globalData.viewAreaHeight) {
       app.getTabHInit = () => {
         this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-        console.log(app.globalData.viewAreaHeight, 111)
       }
     } else {
       this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
@@ -41,6 +40,10 @@ Page({
         this.setData({'lockIndex': null})
       })
     }
+  },
+  startChat (e) {
+    let vkey = e.currentTarget.dataset.vkey
+    wx.navigateTo({url: `/pages/IM/chat/index?vkey=${vkey}`})
   },
   closeTips () {
     this.setData({'hasTips': false})

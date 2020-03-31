@@ -4,12 +4,13 @@ const app = getApp()
 let phone = ''
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
 import {getIndustryApi, getAreaApi} from "../../api/fixedData.js"
-import {pickApi, pickIndexAvaApi} from "../../api/pick.js"
+import {pickApi, pickIndexAvaApi, pickAggrApi} from "../../api/pick.js"
 Page({
   data: {
     background: '#1F252B',
     viewAreaHeight: app.globalData.viewAreaHeight,
-    richText: ''
+    richText: '',
+    status: {}
   },
   
   onLoad: function () {
@@ -20,6 +21,17 @@ Page({
     } else {
       this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
     }
+    this.getAvatarList()
+  },
+  onShow () {
+    this.getOtherStatus()
+  },
+  getOtherStatus () {
+    pickAggrApi().then(res => {
+      this.setData({'status': res.data})
+    })
+  },
+  getAvatarList () {
     pickIndexAvaApi().then(res => {
       let richText = `<div class="richWrap">`
       res.data.avatarUrls.forEach((item, index) => {
@@ -27,40 +39,6 @@ Page({
       })
       richText = `${richText}</div>`
       this.setData({richText})
-    })
-  },
-  getUserInfo: function(e) {
-    let data = {
-      session_token: wx.getStorageSync('sessionToken'),
-      iv_key: e.detail.iv,
-      data: e.detail.encryptedData
-    }
-    wxLogin(data).then(res => {
-      if (res.data.sessionToken) wx.setStorageSync('sessionToken', res.data.sessionToken)
-      if (res.data.token) wx.setStorageSync('token', res.data.token)
-    })
-  },
-  getPhoneNumber (e) {
-    let data = {
-      session_token: wx.getStorageSync('sessionToken'),
-      iv_key: e.detail.iv,
-      data: e.detail.encryptedData
-    }
-    quickLogin(data).then(res => {
-      if (res.data.wechatInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.wechatInfo.sessionToken)
-      if (res.data.userLogin.token) wx.setStorageSync('token', res.data.userLogin.token)
-    })
-  },
-  bindinput (e) {
-    phone = e.detail.value
-  },
-  sendMsg () {
-    sendMsgApi({mobile: phone})
-  },
-  phoneLogin () {
-    registerApi({mobile: phone, code: '1111'}).then(res => {
-      if (res.data.sessionToken) wx.setStorageSync('sessionToken', res.data.sessionToken)
-      if (res.data.token) wx.setStorageSync('token', res.data.token)
     })
   },
   pick () {
@@ -81,7 +59,7 @@ Page({
         wx.navigateTo({url: '/pages/perfectUser/index'})
         break
       case 'pick':
-        
+        this.pick()
         break
       case 'detail':
         wx.navigateTo({url: '/pages/userInfo/index'})

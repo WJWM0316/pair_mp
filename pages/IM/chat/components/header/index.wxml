@@ -3,22 +3,27 @@
   <view class="header-inner  {{putUp ? 'putUp' : ''}}">
     <view class="header-card">
       <view class="avatar-box">
-        <i-image src="{{detail.path}}" my-class="left avatar"></i-image>
-        <i-image src="{{detail.path}}" my-class="right avatar"></i-image>
+        <i-image src="{{othersUserInfo.avatarInfo.middleUrl}}" my-class="left avatar"></i-image>
+        <i-image src="{{mineUserInfo.avatarInfo.middleUrl}}" my-class="right avatar"></i-image>
       </view>
       <block wx:if="{{putUp}}">
         <view class="detail">
-          <view class="position">老虎科技-产品经理</view>
+          <view class="position">
+            <block wx:if="{{othersUserInfo.companyName}}">{{othersUserInfo.companyName}}-{{othersUserInfo.positionName}}</block>
+            <block wx:else>{{othersUserInfo.industryArr[0].name}}-{{othersUserInfo.industryArr[1].name}}</block>
+          </view>
           <view class="infos">
-            <view class="info"><i class="icon iconfont icon_suozaidi"></i>广州·天河</view>
-            <view class="info"><i class="icon iconfont icon_nianling"></i>广州·天河</view>
-            <view class="info"><i class="icon iconfont icon_shengao"></i>广州·天河</view>
+            <view class="info"><i class="icon iconfont icon_ziliaowanshandudi"></i>{{othersUserInfo.hometownArr[1].title}}·{{othersUserInfo.hometownArr[2].title}}</view>
+            <view class="info"><i class="icon iconfont icon_nianling"></i>{{othersUserInfo.age}}岁</view>
+            <view class="info"><i class="icon iconfont icon_shengao"></i>{{othersUserInfo.height}}cm</view>
           </view>
         </view>
-        <view class="likeTitle">共同爱好<i class="icon iconfont icon_aixin"></i></view>
-        <view class="like">
-          <view class="label"><i class="icon iconfont icon_gouxuan"></i>广州</view>
-        </view>
+        <block wx:if="{{othersUserInfo.sameLabelArr.length}}">
+          <view class="likeTitle">共同爱好<i class="icon iconfont icon_aixin"></i></view>
+          <view class="like">
+            <view class="label" wx:for="{{othersUserInfo.sameLabelArr}}" wx:key="id"><i class="icon iconfont icon_gouxuan"></i>{{item.name}}</view>
+          </view>
+        </block>
       </block>
     </view>
     <view class="rightBox">

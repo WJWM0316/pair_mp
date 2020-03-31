@@ -6,9 +6,10 @@ let APIHOST         = '',
     token           = wx.getStorageSync('token'),
     sessionToken    = wx.getStorageSync('sessionToken'),
     addHttpHead     = {},
-    noAuthRequests  = [] // 没有静默授权就请求的其他接口，需要静默之后再请求
+    noAuthRequests  = [], // 需要静默拦截的接口
+    noUsersRequests = [] // 需要用户信息拦截的接口
 // 开启loading
-let openLoading = () => {
+let openLoading = (loadingContent) => {
   if (loadNum === 0) {
     wx.showLoading({
       title: loadingContent,
@@ -25,7 +26,9 @@ let closeLoading = () => {
     loadNum = 0
   }
 }
-export const request = ({method = 'post', url, host, data = {}, loadingContent = '加载中...'}) => {
+
+// 设置头部信息
+const setHeader = () => {
   // 设置请求域名
   !APIHOST ? APIHOST = getApp().globalData.APIHOST : null
 
@@ -34,13 +37,28 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
   !sessionToken ? sessionToken = wx.getStorageSync('sessionToken') : null
   token && !addHttpHead['Authorization'] ? addHttpHead['Authorization'] = token : null
   sessionToken && !addHttpHead['Authorization-Wechat'] ? addHttpHead['Authorization-Wechat'] = sessionToken : null
+}
 
-  // 请求中间件
-  const promise = () => {
-    return new Promise((resolve, reject) => {
+// 清楚授权相关凭证
+const removeAuth = () => {
+  token = null
+  sessionToken = null
+  wx.removeStorageSync('token')
+  wx.removeStorageSync('sessionToken')
+  delete addHttpHead['Authorization']
+  delete addHttpHead['Authorization-Wechat']
+}
+
+export const request = ({method = 'post', url, host, data = {}, loadingContent = '加载中...'}) => {
+  return new Promise((resolve, reject) => {
+    
+    setHeader()
+
+    // 请求中间件
+    const promise = () => {
       // 开启菊花图
-      if (data.hasOwnProperty('hasLoading')) {
-        openLoading()
+      if (!data.hasOwnProperty('hideLoading')) {
+        openLoading(loadingContent)
       }
       wx.request({
         url: APIHOST+url,
@@ -69,12 +87,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   break
                 case 401:
                   reject(msg)
-                  token = null
-                  sessionToken = null
-                  wx.removeStorageSync('token')
-                  wx.removeStorageSync('sessionToken')
-                  delete addHttpHead['Authorization']
-                  delete addHttpHead['Authorization-Wechat']
+                  removeAuth()
                   wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
                   break
                 case 403:
@@ -90,54 +103,89 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
           }
         },
         fail(e) {
+          reject(e)
           closeLoading()
           getApp().wxToast({title: '系统异常，请稍后访问'})
         }
       })
-    })
-  }
-
-  wx.checkSession({
-    success () {
-      //session_key 未过期，并且在本生命周期一直有效
-    },
-    fail () {
-      // session_key 已经失效，需要重新执行登录流程
-      wx.login() //重新登录
     }
-  })
 
-  if (!sessionToken && !token) {
-    if (!noAuthRequests.length) {
-      wx.login({
-        success: function (res0) {
-          let code = res0.code
+    
+
+    // 需要用户信息的接口拦截
+    const interceptUserIno = (fun) => {
+      if (token && getApp().globalData.userInfo === null) {
+        if (!noUsersRequests.length) {
           wx.request({
-            url: `${getApp().globalData.APIHOST}/wechat/login/mini`,
-            data: {code},
+            url: `${getApp().globalData.APIHOST}/user/info`,
             header: addHttpHead,
-            method: 'post',
+            method: 'get',
             success(res) {
-              if (res.data.data.sessionToken) wx.setStorageSync('sessionToken', res.data.data.sessionToken)
-              if (res.data.data.token) wx.setStorageSync('token', res.data.data.token)
-              noAuthRequests.forEach((item, index) => {
-                return item()
+              getApp().globalData.userInfo = res.data.data
+              noUsersRequests.forEach((item, index) => {
+                item()
               })
-              noAuthRequests = []
+              noUsersRequests = []
             },
             fail(e) {
               console.log('服务器异常，请稍后访问', e)
             }
           })
-        },
-        fail: function (e) {
-          console.log('登录失败', e)
         }
-      })
+        noUsersRequests.push(fun)
+      } else {
+        fun()
+      }
     }
-    noAuthRequests.push(promise)
-  } else {
-    return promise()
-  }
+
+    // 拦截器
+    const controlFun = () => {
+      // 静默登录拦截
+      if (!sessionToken && !token) {
+        if (!noAuthRequests.length) {
+          wx.login({
+            success: function (res0) {
+              let code = res0.code
+              wx.request({
+                url: `${getApp().globalData.APIHOST}/wechat/login/mini`,
+                data: {code},
+                header: addHttpHead,
+                method: 'post',
+                success(res) {
+                  if (res.data.data.sessionToken) wx.setStorageSync('sessionToken', res.data.data.sessionToken)
+                  if (res.data.data.token) wx.setStorageSync('token', res.data.data.token)
+                  setHeader() // 重新设置头部
+                  noAuthRequests.forEach((item, index) => {
+                    interceptUserIno(item)
+                  })
+                },
+                fail(e) {
+                  console.log('服务器异常，请稍后访问', e)
+                }
+              })
+            },
+            fail: function (e) {
+              console.log('登录失败', e)
+            }
+          })
+        }
+        noAuthRequests.push(promise)
+      } else {
+        interceptUserIno(promise)
+      }
+    }
+
+    
+    // 判断微信登录状态
+    wx.checkSession({
+      success () {
+        controlFun()
+      },
+      fail () {
+        removeAuth()
+        controlFun()
+      }
+    })
+  })
 }
 
