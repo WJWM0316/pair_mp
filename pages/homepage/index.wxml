@@ -37,8 +37,10 @@
       </view>
       <view class="process">
         <view class="{{ userInfo.infoCompletePercent < 80 ? 'active1' : 'active2'}}" style="width: {{ userInfo.infoCompletePercentDesc }}"></view>
-        <i class="icon11 icon iconfont icon_ziliaowanshandudi" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i>
-        <i class="icon12 icon iconfont icon_ziliaochao" wx:else></i>
+        <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i-image>
+        <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
+        <!-- <i class="icon11 icon iconfont icon_ziliaowanshandudi" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i>
+        <i class="icon12 icon iconfont icon_ziliaochao" wx:else></i> -->
       </view>
       <view class="tips-row">
         <block wx:if="{{ userInfo.infoCompletePercent < 80 }}">
@@ -77,10 +79,13 @@
       <view class="title">职业信息</view>
       <view class="inner">
         <view class="career-objective">{{ userInfo.industryArr[0].name }}·{{ userInfo.industryArr[1].name }}</view>
-        <view class="work-experience">{{ userInfo.companyName }} | {{ userInfo.positionName }} <i class="icon iconfont icon_baomi"></i></view>
+        <view class="work-experience">
+          {{ userInfo.companyName }} | {{ userInfo.positionName }} 
+          <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ careerVerifyInfo === 1 }}"></i-image> 
+        </view>
         <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text>（仅自己可见）</text></view>
         <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}" bindtap="legalize">
-          <i class="icon13 icon iconfont icon_baomi"></i>
+          <i-image my-class="icon13" src="{{ CDNPATH }}icon_job_legalize.png"></i-image>
           职业信息未认证，将降低主页展示率
           <i class="icon iconfont icon_jiantou-you-"></i>
         </view>

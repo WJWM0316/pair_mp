@@ -17,6 +17,8 @@
     <view class="process">
       <view class="bar">
         <view class="{{ userInfo.infoCompletePercent < 80 ? 'active1' : 'active2'}}" style="width: {{userInfo.infoCompletePercentDesc}}"></view>
+        <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i-image>
+        <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
       </view>
       <view class="tips">
         资料完善度 {{userInfo.infoCompletePercent}}%

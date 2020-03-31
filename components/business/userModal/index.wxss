@@ -330,6 +330,15 @@
   color: #ffffff;
   font-size: 30rpx;
 }
+.mine-modal .icon-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 80%;
+  color: #F46BA1;
+  width: 26rpx;
+  height: 26rpx;
+}
 @keyframes modalopen {
   from {
     opacity: 0.5;

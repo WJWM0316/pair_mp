@@ -14,10 +14,12 @@ Page({
     albumVerifyInfo: {
       status: 1,
       statusDesc: '审核通过'
-    }
+    },
+    CDNPATH: app.globalData.CDNPATH
   },
   onLoad(options) {
     this.setData({ options })
+    console.log(app.globalData.CDNPATH)
   },
   legalize() {
     let { PAGEPATH } = app.globalData

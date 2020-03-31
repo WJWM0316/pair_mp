@@ -4,9 +4,9 @@
       <view class="key">我的相册</view>
     </view>
     <view class="album-box" bindtap="openAlbum">
-      <i-image my-class="avatarImg" src="{{ userInfo.userAlbumTempList[0].smallUrl }}"></i-image>
+      <i-image my-class="avatarImg" src="{{ albumVerifyInfo.status === 1 ? userInfo.userAlbumList[0].smallUrl : userInfo.userAlbumTempList[0].smallUrl }}"></i-image>
       <view class="tips">
-        <i class="icon iconfont icon_im_tupian"></i>{{userInfo.userAlbumTempList.length}}
+        <i class="icon iconfont icon_im_tupian"></i>{{albumVerifyInfo.status === 1 ? userInfo.userAlbumList.length : userInfo.userAlbumTempList.length}}
       </view>
     </view>
     <i class="icon-1 icon iconfont icon_jiantou-you-"></i>

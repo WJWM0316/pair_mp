@@ -11,18 +11,32 @@ Page({
     navBarHeight: app.globalData.navBarHeight,
     cover: {},
     userInfo: {},
-    editIndex: 0
+    editIndex: 0,
+    albumVerifyInfo: {
+      status: 1,
+      statusDesc: '审核通过'
+    }
   },
   onShow() {
     let avatar = wx.getStorageSync('avatar')
-    let userInfo = wx.getStorageSync('userInfo')
-    if (userInfo) {
-      let cover = userInfo.userAlbumTempList.find(v => v.isCover)
-      this.setData({userInfo, cover}, () => wx.removeStorageSync('userInfo'))
+    let albumInfo = wx.getStorageSync('albumInfo')
+    if (albumInfo) {
+      let { userInfo, albumVerifyInfo } = albumInfo
+      let cover = null
+      if(albumVerifyInfo.status === 1) {
+        cover = userInfo.userAlbumList.find(v => v.isCover)
+      } else {
+        cover = userInfo.userAlbumTempList.find(v => v.isCover)
+      }
+      this.setData({userInfo, cover, albumVerifyInfo }, () => wx.removeStorageSync('albumInfo'))
     }
     if(avatar) {
-      let { userInfo } = this.data
-      userInfo.userAlbumTempList.push(avatar)
+      let { userInfo, albumVerifyInfo } = this.data
+      if(albumVerifyInfo.status === 1) {
+        userInfo.userAlbumList.push(avatar)
+      } else {
+        userInfo.userAlbumTempList.push(avatar)
+      }
       avatar = Object.assign(avatar, {isCover: 0})
       this.setData({result: avatar, userInfo}, () => wx.removeStorageSync('avatar'))
     }
@@ -46,8 +60,8 @@ Page({
     this.setData({ show: true, itemList, type: 'photo'})
   },
   addAlbum(id) {
-    let { userInfo, cover } = this.data
-    let userAlbumTempList = userInfo.userAlbumTempList
+    let { userInfo, cover, albumVerifyInfo } = this.data
+    let userAlbumTempList = albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList
     userAlbumTempList = userAlbumTempList.filter(v => !v.isCover)
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
@@ -56,8 +70,8 @@ Page({
     }).catch(err => app.wxToast({title: err.msg}))
   },
   setCover() {
-    let { userInfo, editIndex } = this.data
-    let userAlbumTempList = userInfo.userAlbumTempList
+    let { userInfo, editIndex, albumVerifyInfo } = this.data
+    let userAlbumTempList = albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList
     let cover = userAlbumTempList[editIndex]
     userAlbumTempList.splice(editIndex, 1)
     let photoIds = userAlbumTempList.map(v => v.id)
@@ -67,8 +81,8 @@ Page({
     }).catch(err => app.wxToast({title: err.msg}))
   },
   delete() {
-    let { userInfo, editIndex, cover } = this.data
-    let userAlbumTempList = userInfo.userAlbumTempList
+    let { userInfo, editIndex, cover, albumVerifyInfo } = this.data
+    let userAlbumTempList = albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList
     userAlbumTempList.splice(editIndex, 1)
     userAlbumTempList = userAlbumTempList.filter(v => v.id !== cover.id)
     let photoIds = userAlbumTempList.map(v => v.id)

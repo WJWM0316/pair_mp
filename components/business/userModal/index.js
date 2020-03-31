@@ -1,11 +1,6 @@
 import {
-  getMyInfoApi,
-  getMyLabelApi,
   getUserInfoApi
 } from '../../../api/user.js'
-import {
-  getMyQuestionListApi
-} from '../../../api/question.js'
 
 const app = getApp()
 Component({
@@ -19,7 +14,7 @@ Component({
     }
   },
   data: {
-    
+    CDNPATH: app.globalData.CDNPATH
   },
   pageLifetimes: {
     show() {

@@ -290,6 +290,8 @@
   transform: translateY(-50%);
   font-size: 28rpx;
   color: #0CCDDA;
+  width: 27rpx;
+  height: 27rpx;
 }
 .homepage .work-years {
   height: 36rpx;
@@ -478,6 +480,8 @@
 .homepage .warning .icon13 {
   font-size: 28rpx;
   color: #0CCDDA;
+  width: 27rpx;
+  height: 27rpx;
 }
 .homepage .report-entry {
   height: 34rpx;
@@ -582,6 +586,15 @@
   vertical-align: middle;
   top: -2rpx;
   position: relative;
+}
+.homepage .icon-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 80%;
+  color: #F46BA1;
+  width: 26rpx;
+  height: 26rpx;
 }
 .other {
   margin: 20rpx 30rpx;

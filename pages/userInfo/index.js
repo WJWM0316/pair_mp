@@ -11,12 +11,13 @@ Page({
     pickIntention: {},
     questionList: [],
     userLabelList: [],
-    isAllQuestion: 0
+    isAllQuestion: 0,
+    albumVerifyInfo: {}
   },
   onShow() {
     wx.removeStorageSync('userInfo')
     getMyInfoApi().then(({ data }) => {
-      let { userInfo, careerVerifyInfo, pickIntention } = data
+      let { userInfo, careerVerifyInfo, pickIntention, albumVerifyInfo } = data
       let { userLabelList, userAnswerList, isAllQuestion } = userInfo
       if(!Object.keys(careerVerifyInfo).length) {
         careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
@@ -61,7 +62,8 @@ Page({
         pickIntention,
         userLabelList,
         userAnswerList,
-        isAllQuestion
+        isAllQuestion,
+        albumVerifyInfo
       })
     })
   },
@@ -75,8 +77,8 @@ Page({
   },
   openAlbum() {
     let { PAGEPATH } = app.globalData
-    let { userInfo } = this.data
-    wx.setStorageSync('userInfo', userInfo)
+    let { userInfo, albumVerifyInfo } = this.data
+    wx.setStorageSync('albumInfo', { userInfo, albumVerifyInfo})
     wx.navigateTo({
       url: `${PAGEPATH}/album/index`
     })   
