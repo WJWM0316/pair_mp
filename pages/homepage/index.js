@@ -105,8 +105,8 @@ Page({
   },
   album() {
     let { PAGEPATH } = app.globalData
-    let { userInfo } = this.data
-    wx.setStorageSync('userInfo', userInfo)
+    let { userInfo, albumVerifyInfo } = this.data
+    wx.setStorageSync('albumInfo', {userInfo, albumVerifyInfo})
     wx.navigateTo({
       url: `${PAGEPATH}/album/index`
     })   

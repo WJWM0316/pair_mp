@@ -157,6 +157,7 @@
   color: #ffffff;
   text-align: center;
   line-height: 60rpx;
+  position: relative;
 }
 .mine-modal .bubble .content {
   flex: 1;

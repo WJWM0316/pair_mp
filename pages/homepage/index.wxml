@@ -51,7 +51,7 @@
           <i class="icon17"></i>
           资料完善到100%，被发现的概率翻倍哦！
         </block>
-        <view class="btn" wx:if="{{ userInfo.infoCompletePercent < 100 }}">去完善<i class="icon iconfont icon_shuangjiantou"></i></view>
+        <view class="btn" wx:if="{{ userInfo.infoCompletePercent < 100 }}" bindtap="edit">去完善<i class="icon iconfont icon_shuangjiantou"></i></view>
       </view>
     </view>
   </view>
