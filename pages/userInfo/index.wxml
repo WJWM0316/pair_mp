@@ -4,9 +4,9 @@
       <view class="key">我的相册</view>
     </view>
     <view class="album-box" bindtap="openAlbum">
-      <i-image my-class="avatarImg" src="{{ userInfo.userAlbumTempList[0].smallUrl }}"></i-image>
+      <i-image my-class="avatarImg" src="{{ albumVerifyInfo.status === 1 ? userInfo.userAlbumList[0].smallUrl : userInfo.userAlbumTempList[0].smallUrl }}"></i-image>
       <view class="tips">
-        <i class="icon iconfont icon_im_tupian"></i>{{userInfo.userAlbumTempList.length}}
+        <i class="icon iconfont icon_im_tupian"></i>{{albumVerifyInfo.status === 1 ? userInfo.userAlbumList.length : userInfo.userAlbumTempList.length}}
       </view>
     </view>
     <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
@@ -168,7 +168,7 @@
       <view class="func-btn" wx:if="{{ !userInfo.isHasLabel }}" bindtap="updateLabel">完善标签</view>
       <i class="icon-2 icon iconfont icon_jiantou-you-" wx:else bindtap="updateLabel"></i>
     </view>
-    <view class="row" wx:for="{{ labelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
+    <view class="row" wx:for="{{ userLabelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
       <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
       <view class="box">
         <view class="item"  wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
@@ -190,10 +190,10 @@
       <view class="label">
         <view class="key">我的问答</view>
       </view>
-      <view class="func-btn" bindtap="addQuestion" wx:if="{{!isAll}}">完善问答</view>
+      <view class="func-btn" bindtap="addQuestion" wx:if="{{ !isAllQuestion }}">完善问答</view>
     </view>
-    <view class="box" wx:if="{{questionList.length}}">
-      <view class="item" wx:for="{{ questionList }}" wx:key="index" bindtap="updateQuestion" data-info="{{item}}">
+    <view class="box" wx:if="{{userAnswerList.length}}">
+      <view class="item" wx:for="{{ userAnswerList }}" wx:key="index" bindtap="updateQuestion" data-info="{{ item }}">
         <view class="h1">
           <view class="my-icon"></view>{{item.title}}
           <i class="icon-1 icon iconfont icon_jiantou-you-"></i>

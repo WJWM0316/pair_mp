@@ -1,14 +1,23 @@
 <view class="homepage {{ isOwer ? 'yourself' : 'other'}}">
-  <view class="cover-box">
-    <view class="number" wx:if="{{ !isOwer }}">{{ currentIndex }}/{{ userInfo.userAlbumTempList.length }}</view>
+  <view class="cover-box {{ albumVerifyInfo.status === 2 && isOwer ? 'isError' : ''}}">
+
+    <view class="upload-tips" wx:if="{{ isOwer && albumVerifyInfo.status === 2 }}">
+      <i class="icon iconfont icon_jinggao"></i>相册审核不通过
+      <view class="re-upload" bindtap="album">重新上传</view>
+    </view>
+
+    <view class="number" wx:if="{{ !isOwer }}">{{ currentIndex + 1 }}/{{ userInfo.userAlbumList.length }}</view>
+
     <swiper
       indicator-dots="{{ false }}"
       autoplay="{{ false }}"
       interval="{{ 2000 }}"
       duration="{{ 500 }}"
       bindchange="bindchange"
-      class="swiper">
-      <swiper-item wx:for="{{ userInfo.userAlbumTempList }}" wx:key="index">
+      class="swiper {{ isOwer && albumVerifyInfo.status === 2 ? 'isError' : ''}}">
+      <swiper-item
+        wx:for="{{ isOwer ? ( albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList ) : userInfo.userAlbumList }}"
+        wx:key="index">
         <view class="swiper-item">
           <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
         </view>
@@ -18,29 +27,39 @@
     <view class="footer" wx:if="{{ isOwer }}">
       <view class="h1">{{ userInfo.nickname }}</view>
       <view class="wrap">
-        <view class="btn1"><i class="icon iconfont icon_aixin"></i>{{userInfo.bePickedTimes}}人Pick了我</view>
-        <view class="btn2"><i class="icon iconfont icon_im_tupian"></i>{{ userInfo.userAlbumTempList.length }}</view>
+        <view class="btn1">
+          <i class="icon iconfont icon_aixin"></i>{{ userInfo.bePickedTimes }}人Pick了我
+        </view>
+        <view class="btn2" bindtap="album">
+          <i class="icon iconfont icon_im_tupian"></i>{{ albumVerifyInfo.status !== 1 ? userInfo.userAlbumTempList.length : userInfo.userAlbumList.length }}
+          <i class="icon iconfont icon_jinggao" wx:if="{{ albumVerifyInfo.status === 2 }}"></i>
+        </view>
       </view>
       <view class="process">
         <view class="{{ userInfo.infoCompletePercent < 80 ? 'active1' : 'active2'}}" style="width: {{ userInfo.infoCompletePercentDesc }}"></view>
+        <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i-image>
+        <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
+        <!-- <i class="icon11 icon iconfont icon_ziliaowanshandudi" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i>
+        <i class="icon12 icon iconfont icon_ziliaochao" wx:else></i> -->
       </view>
       <view class="tips-row">
         <block wx:if="{{ userInfo.infoCompletePercent < 80 }}">
-          <i class="icon10 icon iconfont icon_gou-"></i>
+          <i class="icon16"></i>
           资料完善度低于80%，无法发起聊天哦~
         </block>
         <block wx:else>
-          <i class="icon10 icon iconfont icon_gou-"></i>
+          <i class="icon17"></i>
           资料完善到100%，被发现的概率翻倍哦！
         </block>
-        <view class="btn" wx:if="{{ userInfo.infoCompletePercent < 100 }}">去完善<i class="icon iconfont icon_shuangjiantou"></i></view>
+        <view class="btn" wx:if="{{ userInfo.infoCompletePercent < 100 }}" bindtap="edit">去完善<i class="icon iconfont icon_shuangjiantou"></i></view>
       </view>
     </view>
   </view>
   <view class="content">
 
     <view class="section info-base">
-      <view class="title">基本资料</view>
+      <view class="title" wx:if="{{ isOwer }}">基本资料</view>
+      <view class="nickname" wx:if="{{ !isOwer }}"> {{userInfo.nickname}} </view>
       <view class="inner">
         <view class="label {{ userInfo.gender === 1 ? 'label-bg1' : 'label-bg2' }}">
           <i class="icon1 icon iconfont {{ userInfo.gender === 1 ? 'icon_nan' : 'icon_nv' }}"></i>
@@ -49,10 +68,10 @@
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_nianling"></i>93年·{{ userInfo.constellation }}</view>
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_suozaidi"></i>{{ userInfo.residentArr[1].title }}{{ userInfo.residentArr[2].title }}</view>        
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_shengao"></i>{{ userInfo.height }}CM</view>
-        <view class="label label-bg1" wx:if="{{ userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_renshe"></i>{{ userInfo.hometownArr[0].title }}{{ userInfo.hometownArr[1].title }}</view>
-        <view class="label label-bg1" wx:if="{{ userInfo.degreeDesc }}"><i class="icon1 icon iconfont icon_renshe"></i>{{ userInfo.school }}·{{ userInfo.degreeDesc }}</view>
-        <view class="label label-bg3" wx:if="{{ isOwer && !userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_renshe"></i>家乡未完善</view>
-        <view class="label label-bg3" wx:if="{{ isOwer && !userInfo.degreeDesc }}"><i class="icon1 icon iconfont icon_renshe"></i>学历未完善</view>
+        <view class="label label-bg1" wx:if="{{ userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_jiaxiang"></i>{{ userInfo.hometownArr[0].title }}{{ userInfo.hometownArr[1].title }}</view>
+        <view class="label label-bg1" wx:if="{{ userInfo.degreeDesc }}"><i class="icon1 icon iconfont icon_xueli"></i>{{ userInfo.school }}·{{ userInfo.degreeDesc }}</view>
+        <view class="label label-bg3" wx:if="{{ isOwer && !userInfo.hometownArr.length }}" bindtap="edit"><i class="icon1 icon iconfont icon_jiaxiang"></i>家乡未完善</view>
+        <view class="label label-bg3" wx:if="{{ isOwer && !userInfo.degreeDesc }}" bindtap="edit"><i class="icon1 icon iconfont icon_xueli"></i>学历未完善</view>
       </view>
     </view>
 
@@ -60,9 +79,16 @@
       <view class="title">职业信息</view>
       <view class="inner">
         <view class="career-objective">{{ userInfo.industryArr[0].name }}·{{ userInfo.industryArr[1].name }}</view>
-        <view class="work-experience">{{ userInfo.companyName }} | {{ userInfo.positionName }} <i class="icon"></i></view>
-        <view class="work-years" wx:if="{{ isOwer }}">10-15W/年<text>（仅自己可见）</text></view>
-        <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}">职业信息未认证，将降低主页展示率</view>
+        <view class="work-experience">
+          {{ userInfo.companyName }} | {{ userInfo.positionName }} 
+          <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ careerVerifyInfo === 1 }}"></i-image> 
+        </view>
+        <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text>（仅自己可见）</text></view>
+        <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}" bindtap="legalize">
+          <i-image my-class="icon13" src="{{ CDNPATH }}icon_job_legalize.png"></i-image>
+          职业信息未认证，将降低主页展示率
+          <i class="icon iconfont icon_jiantou-you-"></i>
+        </view>
       </view>
     </view>
 
@@ -86,7 +112,7 @@
     <view class="section info-myLabel" wx:else>
       <view class="title">我的标签</view>
       <view class="inner">
-        <view class="row" wx:for="{{ labelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
+        <view class="row" wx:for="{{ userLabelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
           <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
           <view class="box">
             <view class="item" wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
@@ -108,7 +134,7 @@
       </view>
     </view>
 
-    <view class="section info-secret" wx:if="{{ isOwer && !questionList.length}}">
+    <view class="section info-secret" wx:if="{{ isOwer && !userAnswerList.length}}">
       <view class="title2">我的问答</view>
       <view class="tips">分享一些小秘密拉近彼此距离～</view>
       <view class="perfect-btn">添加问答</view>
@@ -116,7 +142,7 @@
     <view class="section info-secret" wx:else>
       <view class="title">想告诉你的小秘密</view>
       <view class="inner">
-        <view class="row" wx:for="{{ questionList }}" wx:key="index" bindtap="updateQuestion" data-info="{{item}}">
+        <view class="row" wx:for="{{ userAnswerList }}" wx:key="index" bindtap="updateQuestion" data-info="{{item}}">
           <view class="key">
             <view class="myIcon">Q</view>
             <view class="question"><text>{{item.title}}</text></view>
@@ -126,5 +152,14 @@
       </view>
     </view>
 
+    <view wx:if="{{!isOwer}}" class="report-entry"><text>投诉该用户</text></view>
+    <view class="block" style="background-color:{{tabBgColor}}"></view>
+  </view>
+  <view class="action-zone">
+    <!-- <i-button my-class="btn3" wx:if="{{isOwer}}" bindtap="edit">
+      <view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view>
+    </i-button> -->
+    <view class="btn3" wx:if="{{isOwer}}" bindtap="edit"><view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view></view>
+    <view class="btn3" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
   </view>
 </view>

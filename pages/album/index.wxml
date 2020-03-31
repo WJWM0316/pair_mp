@@ -1,4 +1,22 @@
 <view style="height: {{navBarHeight}}px"></view>
+<view class="status-bar">
+  <block wx:if="{{ albumVerifyInfo.status === 0 }}">
+    <i class="icon iconfont icon_jinggao"></i>
+    <text class="key">相册审核中…</text>
+    <text class="value"></text>
+  </block>
+  <block wx:elif="{{ albumVerifyInfo.status === 2 }}">
+    <i class="icon iconfont icon_jinggao"></i>
+    <text class="key">相册审核不通过:</text>
+    <text class="value">{{albumVerifyInfo.statusDesc}}</text>
+  </block>
+  <block wx:else="{{ albumVerifyInfo.status === 1 }}">
+    <i class="icon iconfont icon_gouxuan"></i>
+    <text class="key">相册审核成功</text>
+    <text class="value"></text>
+  </block>
+  <i class="icon iconfont icon_xiaocha"></i>
+</view>
 <view class="album">
     <view class="photo-box">
       <view class="inner">
@@ -7,7 +25,7 @@
       </view>
     </view>
     <view class="photo-ul">
-      <view class="item" wx:for="{{ userInfo.userAlbumTempList }}" wx:key="index">
+      <view class="item" wx:for="{{ albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList }}" wx:key="index">
         <view class="inner">
           <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
           <view class="action" bindtap="open" data-action="open" data-index="{{index}}" wx:if="{{!item.isCover}}"><i class="icon iconfont icon_gengduo"></i></view>

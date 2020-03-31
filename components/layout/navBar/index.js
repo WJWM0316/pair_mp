@@ -11,6 +11,10 @@ Component({
     color: {
       type: String,
       value: "#fff"
+    },
+    page: {
+      type: String,
+      value: ''
     }
   },
  
@@ -20,7 +24,8 @@ Component({
   data: {
     titleHeight: app.globalData.systemInfo.titleHeight,
     statusBarHeight: app.globalData.systemInfo.statusBarHeight,
-    navBarHeight: app.globalData.navBarHeight
+    navBarHeight: app.globalData.navBarHeight,
+    show: false
   },
   ready () {
     
@@ -29,6 +34,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    routeJump() {
+      this.setData({show: true})
+    }
   }
 })
