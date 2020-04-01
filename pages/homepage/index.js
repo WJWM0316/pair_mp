@@ -133,5 +133,10 @@ Page({
     wx.navigateTo({
       url: `${PAGEPATH}/album/index`
     })   
+  },
+  picker() {
+    pickApi().then(res => {
+      wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
+    })
   }
 })

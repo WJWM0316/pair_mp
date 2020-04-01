@@ -48,9 +48,14 @@ Page({
     })
   },
   pick () {
-    pickApi().then(res => {
-      wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
-    })
+    let { userInfo } = app.globalData.userInfo
+    if(userInfo.infoCompletePercent >= 40 && userInfo.infoCompletePercent <= 80) {
+      wx.navigateTo({url: `/pages/perfectUser/index?step=1`})
+    } else {
+      pickApi().then(res => {
+        wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
+      })
+    }
   },
   action (e) {
     let type = e.currentTarget.dataset.type

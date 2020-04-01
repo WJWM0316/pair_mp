@@ -53,8 +53,6 @@ Page({
       let { PAGEPATH } = app.globalData
       if (res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
       if (res.data.userInfo.token) wx.setStorageSync('token', res.data.userInfo.token)
-
-      redirectTo
       if(res.data.userInfo.step === 9) {
         if (this.options.redirectTo) wx.redirectTo({url: decodeURIComponent(this.options.redirectTo)})
       } else {
