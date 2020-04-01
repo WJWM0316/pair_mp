@@ -2,7 +2,7 @@
   <view class="status" style="height:{{statusBarHeight}}px"></view>
   <view class="nav-content" style="height:{{titleHeight}}px;color: {{color}}">
     <view class="left"  bindtap="routeJump" wx:if="{{ page === 'picker' }}">我的</view>
-    <view class="left"  bindtap="routeJump" wx:else>左边</view>
+    <view class="left"  bindtap="back" wx:else>左边</view>
     <view class="center">
       <block wx:if="{{title}}">{{title}}</block>
       <block wx:else><i-image my-class="logo" src="/images/logo/logo_pickme_white.png"></i-image></block>

@@ -1,6 +1,8 @@
 import {
   getUserInfoApi
 } from '../../api/user.js'
+import {pickApi} from "../../api/pick.js"
+
 const app =  getApp();
 Page({
   data: {
@@ -133,5 +135,11 @@ Page({
     wx.navigateTo({
       url: `${PAGEPATH}/album/index`
     })   
+  },
+  picker() {
+    app.wxToast({title: '操作成功~'})
+    // pickApi().then(res => {
+    //   wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
+    // })
   }
 })

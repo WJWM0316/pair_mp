@@ -42,6 +42,9 @@ Component({
   methods: {
     routeJump() {
       this.setData({show: true})
+    },
+    back() {
+      wx.navigateBack({ delta: 1 })
     }
   }
 })

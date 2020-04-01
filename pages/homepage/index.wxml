@@ -97,69 +97,78 @@
       <view class="tips">介绍自己让更多优秀的人了解你～</view>
       <view class="perfect-btn">添加描述</view>
     </view>
-    <view class="section info-myself" wx:else>
-      <view class="title">我眼中的自己</view>
-      <view class="inner">
-        <view class="self-description">{{ userInfo.ownDescribe }}</view>
+    <block wx:else>
+      <view class="section info-myself" wx:if="{{ userInfo.ownDescribe }}">
+        <view class="title">我眼中的自己</view>
+        <view class="inner">
+          <view class="self-description">{{ userInfo.ownDescribe }}</view>
+        </view>
       </view>
-    </view>
+    </block>
 
     <view class="section info-myLabel" wx:if="{{ isOwer && !userInfo.isHasLabel }}">
       <view class="title2">我的标签</view>
       <view class="tips">添加个人标签找到兴趣相投的Ta～</view>
       <view class="perfect-btn">选择标签</view>
     </view>
-    <view class="section info-myLabel" wx:else>
-      <view class="title">我的标签</view>
-      <view class="inner">
-        <view class="row" wx:for="{{ userLabelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
-          <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
-          <view class="box">
-            <view class="item {{ item.active ? 'active' : '' }}" wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
+    <block wx:else>
+      <view class="section info-myLabel" wx:if="{{ userLabelList.length }}">
+        <view class="title">我的标签</view>
+        <view class="inner">
+          <view class="row" wx:for="{{ userLabelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
+            <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
+            <view class="box">
+              <view class="item {{ item.active ? 'active' : '' }}" wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    
+    </block>
 
     <view class="section info-ideal" wx:if="{{ isOwer && !userInfo.idealDescribe}}">
       <view class="title2">我的理想型</view>
       <view class="tips">说说你喜欢怎样的Ta～</view>
       <view class="perfect-btn">添加理想型</view>
     </view>
-    <view class="section info-ideal" wx:else>
-      <view class="title">我的理想型</view>
-      <view class="inner">
-        <view class="self-description">{{ userInfo.idealDescribe }}</view>
+    <block wx:else>
+      <view class="section info-ideal" wx:if="{{ userInfo.idealDescribe }}">
+        <view class="title">我的理想型</view>
+        <view class="inner">
+          <view class="self-description">{{ userInfo.idealDescribe }}</view>
+        </view>
       </view>
-    </view>
+    </block>
 
     <view class="section info-secret" wx:if="{{ isOwer && !userAnswerList.length}}">
       <view class="title2">我的问答</view>
       <view class="tips">分享一些小秘密拉近彼此距离～</view>
       <view class="perfect-btn">添加问答</view>
     </view>
-    <view class="section info-secret" wx:else>
-      <view class="title">想告诉你的小秘密</view>
-      <view class="inner">
-        <view class="row" wx:for="{{ userAnswerList }}" wx:key="index" bindtap="updateQuestion" data-info="{{item}}">
-          <view class="key">
-            <view class="myIcon">Q</view>
-            <view class="question"><text>{{item.title}}</text></view>
+    <block wx:else>
+      <view class="section info-secret" wx:if="{{userAnswerList.length}}">
+        <view class="title">想告诉你的小秘密</view>
+        <view class="inner">
+          <view class="row" wx:for="{{ userAnswerList }}" wx:key="index" bindtap="updateQuestion" data-info="{{item}}">
+            <view class="key">
+              <view class="myIcon">Q</view>
+              <view class="question"><text>{{item.title}}</text></view>
+            </view>
+            <view class="answer">{{item.body}}</view>
           </view>
-          <view class="answer">{{item.body}}</view>
         </view>
       </view>
-    </view>
-
+    </block>
     <view wx:if="{{!isOwer}}" class="report-entry"><text>投诉该用户</text></view>
     <view class="block" style="background-color:{{tabBgColor}}"></view>
   </view>
   <view class="action-zone">
     <!-- <i-button my-class="btn3" wx:if="{{isOwer}}" bindtap="edit">
       <view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view>
+    </i-button>
+    <i-button my-class="btn3" wx:else bindtap="edit">
+      <view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view>
     </i-button> -->
     <view class="btn3" wx:if="{{isOwer}}" bindtap="edit"><view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view></view>
-    <view class="btn3" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
+    <view class="btn3" bindtap="picker" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
   </view>
 </view>

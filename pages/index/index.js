@@ -51,11 +51,12 @@ Page({
     })
   },
   pick () {
-    if (!this.data.userInfo.userInfo.salary) {
+    let { userInfo } = app.globalData.userInfo
+    if(userInfo.infoCompletePercent >= 40 && userInfo.infoCompletePercent < 80) {
       wx.navigateTo({url: `/pages/perfectUser/index`})
     } else {
-      pickApi().then(res => {
-        wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
+      pickApi().then(({ data }) => {
+        wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
       })
     }
   }
