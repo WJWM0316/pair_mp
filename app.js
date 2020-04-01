@@ -4,6 +4,7 @@ import {setConfig} from './env.config'
 import { request } from './api/index'
 import wxApi from './utils/wxApi'
 import {getTitleHeight} from './utils/util.js'
+import {getSubscribeApi} from './api/subscribe.js'
 App({
   ...wxApi, // 挂载二次封装的微信API
   onLaunch: function () {
@@ -19,9 +20,11 @@ App({
     let config = setConfig(appId, envVersion)
     Object.assign(this.globalData, config)
 
+    
+
     // 开启socket
     Socket.create(this.globalData.SOCKETHOST, wx.getStorageSync('token'))
-    
+    getSubscribeApi({hideLoading: true}, this)
   },
   onShow (options) {},
   globalData: {
@@ -31,9 +34,8 @@ App({
     viewAreaHeight: 0, // 有效区域高度 px
     tabBarHeight: 0, // 底部栏高度 px
     navBarHeight: 0, // 顶部栏高度 px
-    userInfo: null
-  },
-  
+    userInfo: 0
+  }
 })
 
   

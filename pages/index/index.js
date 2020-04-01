@@ -3,7 +3,6 @@
 const app = getApp()
 let phone = ''
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
-import {getIndustryApi, getAreaApi} from "../../api/fixedData.js"
 import {pickApi, pickIndexAvaApi, pickAggrApi} from "../../api/pick.js"
 Page({
   data: {

@@ -4,6 +4,7 @@ import {getMyInfoApi} from './user.js'
 import {getCurrentPagePath} from '../utils/index.js'
 let APIHOST         = '',
     loadNum         = 0,
+    app             = getApp(),
     token           = wx.getStorageSync('token'),
     sessionToken    = wx.getStorageSync('sessionToken'),
     addHttpHead     = {},
@@ -33,7 +34,7 @@ const setHeader = () => {
   addHttpHead = {}
   token = ''
   // 设置请求域名
-  !APIHOST ? APIHOST = getApp().globalData.APIHOST : null
+  !APIHOST ? APIHOST = app.globalData.APIHOST : null
 
   // 设置授权信息
   !token ? token = wx.getStorageSync('token') : null
@@ -52,7 +53,8 @@ const removeAuth = () => {
   delete addHttpHead['Authorization-Wechat']
 }
 
-export const request = ({method = 'post', url, host, data = {}, loadingContent = '加载中...'}) => {
+export const request = ({method = 'post', url, host, data = {}, instance, loadingContent = '加载中...'}) => {
+  app = !getApp() ? instance : getApp()
   return new Promise((resolve, reject) => {
     removeAuth()
     setHeader()
@@ -84,7 +86,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   if (msg.code === 0 || msg.code === 200) {
                     resolve(msg)
                   } else {
-                    getApp().wxToast({title: msg.msg})
+                    app.wxToast({title: msg.msg})
                     reject(msg)
                   }
                   break
@@ -94,21 +96,21 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
                   break
                 case 403:
-                  getApp().wxToast({title: msg.msg})
+                  app.wxToast({title: msg.msg})
                   break
                 case 500:
-                  getApp().wxToast({title: '系统异常，请稍后访问'})
+                  app.wxToast({title: '系统异常，请稍后访问'})
                 break
               }
             }
           } catch (e) {
-            getApp().wxToast({title: '系统异常，请稍后访问'})
+            app.wxToast({title: '系统异常，请稍后访问'})
           }
         },
         fail(e) {
           reject(e)
           closeLoading()
-          getApp().wxToast({title: '系统异常，请稍后访问'})
+          app.wxToast({title: '系统异常，请稍后访问'})
         }
       })
     }
@@ -117,13 +119,13 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
 
     // 需要用户信息
     const getUserInfo = () => {
-      if (getUserInfoTimes) return
-      if (getApp().globalData.userInfo === null) {
+      if (!getUserInfoTimes) return
+      if (!app.globalData.userInfo) {
         getMyInfoApi().then(res => {
-          getApp().globalData.userInfo = res.data
-          if (getApp().getUserInfo) {
-            getApp().getUserInfo()
-            getApp().getUserInfo = null
+          app.globalData.userInfo = res.data
+          if (app.getUserInfo) {
+            app.getUserInfo()
+            app.getUserInfo = null
           }
         })
       }
@@ -139,7 +141,7 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
             success: function (res0) {
               let code = res0.code
               wx.request({
-                url: `${getApp().globalData.APIHOST}/wechat/login/mini`,
+                url: `${app.globalData.APIHOST}/wechat/login/mini`,
                 data: {code},
                 header: addHttpHead,
                 method: 'post',
