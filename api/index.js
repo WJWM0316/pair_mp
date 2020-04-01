@@ -119,7 +119,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
 
     // 需要用户信息
     const getUserInfo = () => {
-      if (!getUserInfoTimes) return
+      if (getUserInfoTimes) return
       if (!app.globalData.userInfo) {
         getMyInfoApi().then(res => {
           app.globalData.userInfo = res.data
