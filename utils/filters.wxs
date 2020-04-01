@@ -77,16 +77,17 @@ var activeTime = function(timestamp) {
     if (nowDate.y === releaseTimeDate.y && nowDate.m === releaseTimeDate.m && nowDate.d === releaseTimeDate.d) {
       timeStr = dateFormat(releaseTime / 1000, 'HH:mm')
     } else {
-      differ = parseInt((getDate(nowDate.y, nowDate.m, nowDate.d).getTime() - releaseTime) / 1000)
-      if (differ < timeCompany.d) { // 昨天
-        timeStr = '昨天 ' + dateFormat(releaseTime / 1000, 'HH:mm')
-      } else if (differ < timeCompany.d * 2) {
-        timeStr = '前天 ' + dateFormat(releaseTime / 1000, 'HH:mm')
+      // 跨年
+      if (nowDate.y > releaseTimeDate.y) {
+        timeStr = dateFormat(releaseTime / 1000, 'YY-MM-DD  HH:mm')
       } else {
-        if (nowDate.y > releaseTimeDate.y) { // 超过两天且跨年
-          timeStr = dateFormat(releaseTime / 1000, 'YY-MM-DD  HH:mm')
-        } else {
+        // 超过两天
+        if (nowDate.d - releaseTimeDate.d > 2) {
           timeStr = dateFormat(releaseTime / 1000, 'MM-DD HH:mm')
+        } else if (nowDate.d - releaseTimeDate.d === 2) { // 两天
+          timeStr = '前天 ' + dateFormat(releaseTime / 1000, 'HH:mm')
+        } else if (nowDate.d - releaseTimeDate.d === 1) { // 一天
+          timeStr = '昨天 ' + dateFormat(releaseTime / 1000, 'HH:mm')
         }
       }
     }

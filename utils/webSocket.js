@@ -73,7 +73,7 @@ class Socket {
       let data = res.data
       if (res.data === 'a') return // 心跳包的不需要监听
       data = JSON.parse(data)
-      if (data.cmd === 'send.im') return // 后端返回的不监听，只处理融云的
+      if (data.cmd === 'send.im' || data.cmd === 'login.token') return // 后端返回的不监听，只处理融云的
       if (data.imData && data.imData.content) data.imData.content = JSON.parse(data.imData.content)
       if (callback) callback(data)
     })

@@ -1,4 +1,4 @@
-// pages/IM/chat/components/debutWord/index.js
+import {getTopicApi} from '../../../../../api/im.js'
 Component({
   options: {
     addGlobalClass: true,
@@ -13,14 +13,7 @@ Component({
     },
     list: {
       type: Array,
-      value: [
-        '叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了',
-        '叮咚，一个有趣的灵魂来造访了叮咚',
-        '叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了',
-        '叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了',
-        '叮咚，一个有趣的灵魂来造访了叮咚',
-        '叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了叮咚，一个有趣的灵魂来造访了'
-      ]
+      value: []
     }
   },
 
@@ -28,16 +21,20 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    allList: [],
+    topList: []
   },
-
+  attached () {
+    getTopicApi().then(res => {
+      this.setData({'allList': res.data.allList, 'topList': res.data.topList})
+    })
+  },
   /**
    * 组件的方法列表
    */
   methods: {
     selectWord (e) {
-      let index = e.currentTarget.dataset.index,
-          word  = this.data.list[index]
+      let word = e.currentTarget.dataset.word
       this.triggerEvent('selectResult', word)
     },
     tapMpre () {

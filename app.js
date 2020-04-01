@@ -1,11 +1,11 @@
 //app.js
-import Socket from './utils/webSocket.js'
 import {setConfig} from './env.config'
 import { request } from './api/index'
 import wxApi from './utils/wxApi'
 import {getTitleHeight} from './utils/util.js'
 import {getSubscribeApi} from './api/subscribe.js'
 import {getMyInfoApi} from './api/user.js'
+import {socket} from './utils/index.js'
 
 App({
   ...wxApi, // 挂载二次封装的微信API
@@ -23,9 +23,8 @@ App({
     Object.assign(this.globalData, config)
 
     
-
-    // 开启socket
-    Socket.create(this.globalData.SOCKETHOST, wx.getStorageSync('token'))
+    socket.create(this.globalData.SOCKETHOST, wx.getStorageSync('token'))
+    
     getSubscribeApi({hideLoading: true}, this)
   },
   onShow (options) {},

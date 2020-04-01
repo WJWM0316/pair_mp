@@ -27,3 +27,12 @@ export const getImTopDeatilApi = (data) => {
   })
 }
 
+// 获取开场白数据
+export const getTopicApi = (data) => {
+  return request({
+    method: 'get',
+    url: `/topic`,
+    data
+  })
+}
+

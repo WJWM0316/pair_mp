@@ -169,7 +169,7 @@ Component({
           wx.chooseImage({
             count: 1,
             sizeType: ['original', 'compressed'],
-            sourceType: that.data.selectIndex === 1 ? ['camera'] : ['album'],
+            sourceType: that.data.selectIndex === 1 ? ['album'] : ['camera'],
             success (res) {
               let file = res.tempFiles[0]
               msgData.msgType = 'RC:ImgMsg'

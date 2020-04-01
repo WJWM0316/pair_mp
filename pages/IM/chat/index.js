@@ -28,21 +28,28 @@ Page({
     socket.onMessage((res) => {
       let data = res.imData
       // 如果是自己发的消息IM回调了需要更替成IM的数据
-      if (data.content.sendTimestamp) {
+      if (Number(res.imFromUser.uid) === Number(this.data.mineUserInfo.id)) {
         // 数组倒叙容易找到自己发送的那条
-        let messageList = this.data.messageList.reverse(),
-            index       = 0 // 要替换的索引
-        for (let i = 0; i < messageList.length - 1; i++) {
-          if (messageList[i].imFromUser.sendTimestamp === data.content.sendTimestamp) {
-            index = parseInt(messageList.length - 1 - index) // 正序的消息索引
-            this.setData({[`messageList[${index}]`]: res})
-            console.log(this.data.messageList)
-            return
-          }
-        }
+        // let messageList = this.data.messageList.reverse(),
+        //     index       = 0 // 要替换的索引
+        // for (let i = 0; i < messageList.length - 1; i++) {
+        //   if (messageList[i].imFromUser.sendTimestamp === data.content.sendTimestamp) {
+        //     index = parseInt(messageList.length - 1 - index) // 正序的消息索引
+        //     this.setData({[`messageList[${index}]`]: res}, () => {
+        //       wx.nextTick(()=>{
+        //         this.selectComponent('#footer').pageScrollToDom('bottom')
+        //       });
+        //     })
+        //     return
+        //   }
+        // }
       } else {
-        let index = this.data.messageList.length - 1
-        this.setData({[`messageList[${index}]`]: res.data})
+        let index = this.data.messageList.length
+        this.setData({[`messageList[${index}]`]: res}, () => {
+          wx.nextTick(()=>{
+            this.selectComponent('#footer').pageScrollToDom('bottom')
+          });
+        })
       }
     })
   },
@@ -50,7 +57,6 @@ Page({
   sendMsg (e) {
     const that = this
     let index = this.data.messageList.length
-    console.log(e.detail, 222)
     this.setData({[`messageList[${index}]`]: e.detail}, () => {
       wx.nextTick(()=>{
         that.resetView()
@@ -64,19 +70,29 @@ Page({
   onShow: function () {
     this.getChatMsg()
     this.getImDetail()
+    if (app.globalData.userInfo) {
+      this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
+    } else {
+      app.getUserInfo = () => {
+        this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
+      }
+    }
   },
   getChatMsg () {
     getChatDetailApi({vkey: this.options.vkey, count: 11}).then(res => {
       this.setData({messageList: res.data}, () => {
         wx.nextTick(()=>{
-          this.selectComponent('#footer').pageScrollToDom('bottom')
+          wx.pageScrollTo({
+            duration: 1,
+            selector: `#bottomBlock`
+          })
         });
       })
     })
   },
   getImDetail () {
     getImTopDeatilApi({vkey: this.options.vkey}).then(res => {
-      this.setData({'othersUserInfo': res.data.userInfo, 'mineUserInfo': app.globalData.userInfo.userInfo})
+      this.setData({'othersUserInfo': res.data.userInfo})
     })
   },
   // 长按功能
@@ -159,5 +175,14 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+
+  onShareAppMessage: function (options) {
+    let that = this
+    return app.wxShare({
+      options, 
+      title: '来撩吧！', 
+      path: `/pages/IM/chat/index?vkey=${that.data.mineUserInfo}.vkey`
+    })
   }
 })

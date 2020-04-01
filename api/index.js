@@ -1,7 +1,6 @@
 
-import {silentLogin} from './auth.js'
 import {getMyInfoApi} from './user.js'
-import {getCurrentPagePath} from '../utils/index.js'
+import {getCurrentPagePath, socket, loginCallback} from '../utils/index.js'
 let APIHOST         = '',
     loadNum         = 0,
     app             = getApp(),
@@ -95,6 +94,8 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                   reject(msg)
                   if (msg.code === 4010) {
                     wx.removeStorageSync('token')
+                  } else if (msg.code === 401) {
+                    wx.removeStorageSync('sessionToken')
                   } else {
                     removeAuth()
                   }
@@ -154,8 +155,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                 header: addHttpHead,
                 method: 'post',
                 success(res) {
-                  if (res.data.data.sessionToken) wx.setStorageSync('sessionToken', res.data.data.sessionToken)
-                  if (res.data.data.token) wx.setStorageSync('token', res.data.data.token)
+                  loginCallback(res.data)
                   setHeader() // 重新设置头部
                   noAuthRequests.forEach((item, index) => {
                     item()
@@ -175,6 +175,10 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         }
         noAuthRequests.push(promise)
       } else {
+        if (token && !socket.SocketTask) {
+          // 开启socket
+          socket.create(app.globalData.SOCKETHOST, token)
+        }
         getUserInfo()
         promise()
       }

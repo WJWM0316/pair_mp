@@ -178,6 +178,37 @@ const wxApi = {
         }
       })
     })
+  },
+  // 微信分享
+  wxShare({options, title, path, imageUrl, noImg, btnTitle, btnPath, btnImageUrl}) {
+    let shareObj = {
+      title: title,
+      path: path,
+      imageUrl: imageUrl,
+      success: function(res){
+        // 转发成功之后的回调
+        if (res.errMsg == 'shareAppMessage:ok'){
+        }
+      },
+      fail: function(){
+        // 转发失败之后的回调
+        if (res.errMsg == 'shareAppMessage:fail cancel'){
+        // 用户取消转发
+        } else if (res.errMsg == 'shareAppMessage:fail'){
+        // 转发失败，其中 detail message 为详细失败信息
+        }
+      }
+    }
+    // 来自页面内的按钮的转发
+    if (options.from == 'button') {
+      var eData = options.target.dataset
+      shareObj = {
+        title: btnTitle || shareObj.title,
+        path: btnPath || shareObj.path,
+        imageUrl: btnImageUrl || shareObj.imageUrl
+      }
+    }
+    return shareObj
   }
 }
 
