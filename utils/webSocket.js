@@ -71,8 +71,9 @@ class Socket {
       // 收到消息，重置接收消息定时器, 因为已开启心跳检查，保证间隔发送消息出去
       this.checkResolve()
       let data = res.data
-      if (res.data === 'a') return
+      if (res.data === 'a') return // 心跳包的不需要监听
       data = JSON.parse(data)
+      if (data.cmd === 'send.im') return // 后端返回的不监听，只处理融云的
       if (data.imData && data.imData.content) data.imData.content = JSON.parse(data.imData.content)
       if (callback) callback(data)
     })

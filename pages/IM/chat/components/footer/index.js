@@ -139,6 +139,7 @@ Component({
       msgData = {
         "imFromUser": {
           "uid":  this.data.mineUserInfo.id,
+          "sendTimestamp": timestamp,
           "avatarUrl": this.data.mineUserInfo.avatarInfo.middleUrl
         },
         "imData": {

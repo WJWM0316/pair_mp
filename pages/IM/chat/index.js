@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myUid: 22,
     messageList: [],
     selectIndex: null, // 选择发送类型
     longpressData: {},
@@ -27,14 +26,31 @@ Page({
    */
   onReady: function () {
     socket.onMessage((res) => {
-      let index = this.data.messageList.length - 1
-      
+      let data = res.imData
+      // 如果是自己发的消息IM回调了需要更替成IM的数据
+      if (data.content.sendTimestamp) {
+        // 数组倒叙容易找到自己发送的那条
+        let messageList = this.data.messageList.reverse(),
+            index       = 0 // 要替换的索引
+        for (let i = 0; i < messageList.length - 1; i++) {
+          if (messageList[i].imFromUser.sendTimestamp === data.content.sendTimestamp) {
+            index = parseInt(messageList.length - 1 - index) // 正序的消息索引
+            this.setData({[`messageList[${index}]`]: res})
+            console.log(this.data.messageList)
+            return
+          }
+        }
+      } else {
+        let index = this.data.messageList.length - 1
+        this.setData({[`messageList[${index}]`]: res.data})
+      }
     })
   },
   // 发送数据， 先显示再界面上
   sendMsg (e) {
     const that = this
     let index = this.data.messageList.length
+    console.log(e.detail, 222)
     this.setData({[`messageList[${index}]`]: e.detail}, () => {
       wx.nextTick(()=>{
         that.resetView()
