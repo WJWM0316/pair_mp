@@ -1,5 +1,6 @@
 
 import {silentLogin} from './auth.js'
+import {getMyInfoApi} from './user.js'
 import {getCurrentPagePath} from '../utils/index.js'
 let APIHOST         = '',
     loadNum         = 0,
@@ -7,7 +8,7 @@ let APIHOST         = '',
     sessionToken    = wx.getStorageSync('sessionToken'),
     addHttpHead     = {},
     noAuthRequests  = [], // 需要静默拦截的接口
-    noUsersRequests = [] // 需要用户信息拦截的接口
+    getUserInfoTimes= 0 // 获取用户信息接口次数
 // 开启loading
 let openLoading = (loadingContent) => {
   if (loadNum === 0) {
@@ -29,6 +30,8 @@ let closeLoading = () => {
 
 // 设置头部信息
 const setHeader = () => {
+  addHttpHead = {}
+  token = ''
   // 设置请求域名
   !APIHOST ? APIHOST = getApp().globalData.APIHOST : null
 
@@ -51,7 +54,7 @@ const removeAuth = () => {
 
 export const request = ({method = 'post', url, host, data = {}, loadingContent = '加载中...'}) => {
   return new Promise((resolve, reject) => {
-    
+    removeAuth()
     setHeader()
 
     // 请求中间件
@@ -112,30 +115,19 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
 
     
 
-    // 需要用户信息的接口拦截
-    const interceptUserIno = (fun) => {
-      if (token && getApp().globalData.userInfo === null) {
-        if (!noUsersRequests.length) {
-          wx.request({
-            url: `${getApp().globalData.APIHOST}/user/info`,
-            header: addHttpHead,
-            method: 'get',
-            success(res) {
-              getApp().globalData.userInfo = res.data.data
-              noUsersRequests.forEach((item, index) => {
-                item()
-              })
-              noUsersRequests = []
-            },
-            fail(e) {
-              console.log('服务器异常，请稍后访问', e)
-            }
-          })
-        }
-        noUsersRequests.push(fun)
-      } else {
-        fun()
+    // 需要用户信息
+    const getUserInfo = () => {
+      if (getUserInfoTimes) return
+      if (getApp().globalData.userInfo === null) {
+        getMyInfoApi().then(res => {
+          getApp().globalData.userInfo = res.data
+          if (getApp().getUserInfo) {
+            getApp().getUserInfo()
+            getApp().getUserInfo = null
+          }
+        })
       }
+      getUserInfoTimes = 1
     }
 
     // 拦截器
@@ -156,8 +148,10 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
                   if (res.data.data.token) wx.setStorageSync('token', res.data.data.token)
                   setHeader() // 重新设置头部
                   noAuthRequests.forEach((item, index) => {
-                    interceptUserIno(item)
+                    item()
                   })
+                  noAuthRequests = []
+                  getUserInfo()
                 },
                 fail(e) {
                   console.log('服务器异常，请稍后访问', e)
@@ -171,7 +165,8 @@ export const request = ({method = 'post', url, host, data = {}, loadingContent =
         }
         noAuthRequests.push(promise)
       } else {
-        interceptUserIno(promise)
+        getUserInfo()
+        promise()
       }
     }
 

@@ -24,6 +24,13 @@ Page({
     this.getAvatarList()
   },
   onShow () {
+    if (app.globalData.userInfo) {
+      console.log(app.globalData.userInfo, 11111111111)
+    } else {
+      app.getUserInfo = () => {
+        console.log(app.globalData.userInfo, 2222222222222)
+      }
+    }
     this.getOtherStatus()
   },
   getOtherStatus () {
@@ -49,23 +56,9 @@ Page({
   action (e) {
     let type = e.currentTarget.dataset.type
     switch (type) {
-      case 'login':
-        wx.navigateTo({url: '/pages/login/index'})
-        break
-      case 'createUser':
-        wx.navigateTo({url: '/pages/createUser/index'})
-        break
-      case 'perfectUser':
-        wx.navigateTo({url: '/pages/perfectUser/index'})
-        break
       case 'pick':
         this.pick()
         break
-      case 'detail':
-        wx.navigateTo({url: '/pages/userInfo/index'})
-        break
-      case 'logout':
-        logoutApi()
     }
   }
 })
