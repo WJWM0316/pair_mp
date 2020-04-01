@@ -9,6 +9,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  box-sizing: border-box;
 }
 .mine-modal.show {
   transform: translateY(0);
@@ -314,9 +315,12 @@
   left: 0;
   right: 0;
   border-radius: 36rpx 36rpx 0rpx 0rpx;
-  padding: 80rpx 0;
+  padding-top: 80rpx;
   box-sizing: border-box;
   height: calc(100vh - 186rpx);
+}
+.mine-modal .scroll-view {
+  height: calc(100vh - 186rpx - 80rpx);
 }
 .mine-modal .close {
   width: 80rpx;

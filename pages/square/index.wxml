@@ -1,0 +1,26 @@
+<view class="square">
+  <view class="item" wx:for="{{10}}" wx:key="item">
+    <view class="cover">
+      <i-image my-class="photo" src="{{ item.smallUrl }}"></i-image>
+      <view class="mask">
+        <view class="album" bindtap="album">
+          <i class="icon iconfont icon_im_tupian"></i>10
+        </view>
+        <view class="info">
+          <view class="row1">
+            <view class="nickname">小书包</view>
+            <view class="year">92年</view>
+            <view class="height">166CM</view>
+          </view>
+          <view class="row2">
+            <view class="city-area">广州天河</view>
+            <view class="industry-position">|互联网 - 设计</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="brief">
+      对陌生人比较慢热，多年的留学生活让我养成了比较独立的习惯，喜欢尝试新鲜事
+    </view>
+  </view>
+</view>

@@ -25,7 +25,7 @@ Component({
         selected: false,
         icon: '',
         selectedIcon: '',
-        routerPath: ''
+        routerPath: '/pages/square/index'
       },
       {
         text: 'pick',

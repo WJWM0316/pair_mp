@@ -80,7 +80,7 @@ Component({
         app.reloadUserInfo().then(() => {         
           let { PAGEPATH } = app.globalData
           let userInfo = data.userInfo
-          if(!userInfo.isCareerIdentity) {
+          if(!userInfo.isCareerIdentity && userInfo.companyId && userInfo.isNeedCareerIdentity) {
             app.wxConfirm({
               title: '认证',
               content: '是否前往职业认证',
@@ -88,7 +88,7 @@ Component({
               confirmText: '确认',
               confirmBack() {
                 wx.redirectTo({
-                  url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+                  url: `${PAGEPATH}/methods/index?type=createUser&companyId=${userInfo.companyId ? userInfo.companyId : ''}`
                 })
               },
               cancelBack() {
