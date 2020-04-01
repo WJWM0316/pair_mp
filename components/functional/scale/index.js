@@ -16,46 +16,84 @@ Component({
       systemInfo: app.globalData.systemInfo,
       timer: null
   },
-  pageLifetimes: {
-    show() {
-      let tabs = []
-      for(let i = 100; i <= 300; i++) {
-        tabs.push({
-          key: i,
-          value: String(i),
-          active: false,
-          startX: 0,
-          endX: 0
-        })
-      }
-      this.setData({ tabs }, () => {
-        getSelectorQuery('.label-scoll', this).then(res => {
-          let { screenWidth } = this.data.systemInfo
-          let itemLength = parseInt(screenWidth / 3)
-          tabs.map((v, i) => {
-            v.startX = itemLength * i
-          })
-          this.setData({ tabs }, () => {
-            let { navScrollLeft, initValue } = this.data
-            if(initValue) {
-              tabs.map(v => {
-                v.active = false
-                if(v.value == initValue) {
-                  v.active = true
-                  navScrollLeft = v.startX
-                }
-              })
-              this.setData({ navScrollLeft, tabs })
-            } else {
-              tabs[0].active = true
-              navScrollLeft = tabs[0].startX
-              this.setData({ navScrollLeft, tabs })
-            }
-          })
-        })
+  ready() {
+  let tabs = []
+    for(let i = 100; i <= 300; i++) {
+      tabs.push({
+        key: i,
+        value: String(i),
+        active: false,
+        startX: 0,
+        endX: 0
       })
     }
+    this.setData({ tabs }, () => {
+      getSelectorQuery('.label-scoll', this).then(res => {
+        let { screenWidth } = this.data.systemInfo
+        let itemLength = parseInt(screenWidth / 3)
+        tabs.map((v, i) => {
+          v.startX = itemLength * i
+        })
+        this.setData({ tabs }, () => {
+          let { navScrollLeft, initValue } = this.data
+          if(initValue) {
+            tabs.map(v => {
+              v.active = false
+              if(v.value == initValue) {
+                v.active = true
+                navScrollLeft = v.startX
+              }
+            })
+            this.setData({ navScrollLeft, tabs })
+          } else {
+            tabs[0].active = true
+            navScrollLeft = tabs[0].startX
+            this.setData({ navScrollLeft, tabs })
+          }
+        })
+      })
+    })
   },
+  // pageLifetimes: {
+  //   show() {
+  //     let tabs = []
+  //     for(let i = 100; i <= 300; i++) {
+  //       tabs.push({
+  //         key: i,
+  //         value: String(i),
+  //         active: false,
+  //         startX: 0,
+  //         endX: 0
+  //       })
+  //     }
+  //     this.setData({ tabs }, () => {
+  //       getSelectorQuery('.label-scoll', this).then(res => {
+  //         let { screenWidth } = this.data.systemInfo
+  //         let itemLength = parseInt(screenWidth / 3)
+  //         tabs.map((v, i) => {
+  //           v.startX = itemLength * i
+  //         })
+  //         this.setData({ tabs }, () => {
+  //           let { navScrollLeft, initValue } = this.data
+  //           if(initValue) {
+  //             tabs.map(v => {
+  //               v.active = false
+  //               if(v.value == initValue) {
+  //                 v.active = true
+  //                 navScrollLeft = v.startX
+  //               }
+  //             })
+  //             this.setData({ navScrollLeft, tabs })
+  //           } else {
+  //             tabs[0].active = true
+  //             navScrollLeft = tabs[0].startX
+  //             this.setData({ navScrollLeft, tabs })
+  //           }
+  //         })
+  //       })
+  //     })
+  //   }
+  // },
   methods: {
     closest(arr, num) {
       var left = 0;
