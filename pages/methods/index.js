@@ -28,7 +28,7 @@ Page({
   },
   onLoad(options) {
     let { CDNPATH } = app.globalData
-    this.setData({ CDNPATH })
+    this.setData({ CDNPATH, options })
     options.companyId && this.hasCompanyEmail(options)
   },
   onShow() {
@@ -51,8 +51,18 @@ Page({
     this.setData({ show: true})
   },
   verifyCareer(attach_id) {
+    let { PAGEPATH } = app.globalData
+    let { options } = this.data
     verifyCareerApi({attach_id}).then(() => {
-      wx.navigateBack({ delta: 1 })
+      app.reloadUserInfo().then(() => {
+        if(options.type === 'createUser') {
+          wx.reLaunch({
+            url: `${PAGEPATH}/index/index`
+          })
+        } else {
+          wx.navigateBack({ delta: 1 })
+        }        
+      })     
     }).catch(err => app.wxToast({title: err.msg}))
   },
   drawerAction(e) {
@@ -68,7 +78,7 @@ Page({
         break
       case 'camera':
         that.setData({ show: false})
-        app.photoUpload(1).then(({ data }) => {
+        app.photoUpload(false).then(({ data }) => {
           let result = data.attachListItem[0]
           this.verifyCareer(result.id)
         })

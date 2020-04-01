@@ -134,7 +134,7 @@ Page({
         break
       case 'camera':
         that.setData({ show: false})
-        app.photoUpload(true).then(({ data }) => {
+        app.photoUpload(true).then(res => {
           let { PAGEPATH } = app.globalData
           wx.navigateTo({
             url: `${PAGEPATH}/cutInside/index?src=${res.path}`

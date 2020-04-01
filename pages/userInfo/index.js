@@ -76,7 +76,6 @@ Page({
   routeJump(e) {
     let { key } = e.currentTarget.dataset
     let { PAGEPATH } = app.globalData
-    wx.setStorageSync('user', this.data)
     wx.navigateTo({
       url: `${PAGEPATH}/editUser/index?key=${key}`
     })    

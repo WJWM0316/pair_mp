@@ -18,7 +18,8 @@
     "pages/answer/index/index",
     "pages/album/index",
     "pages/cutInside/index",
-    "pages/homepage/index"
+    "pages/homepage/index",
+    "pages/square/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
