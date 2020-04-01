@@ -167,7 +167,10 @@ Page({
       salary: this.data.salary
     }
     updateUserSalaryApi(params).then(() => {
-      this.setData({ step: 2, canClick: false }, () => this.init2())
+      app.reloadUserInfo().then(() => {
+        app.globalData.userInfo = null
+        this.setData({ step: 2, canClick: false }, () => this.init2())
+      })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   next2() {
@@ -176,11 +179,13 @@ Page({
       label_id: labels.join(',')
     }
     addLabelApi(params).then(() => {
-      if (options.type) {
-        wx.navigateBack({ delta: 1 })
-      } else {
-        this.setData({ step: 3, canClick: false })
-      }
+      app.reloadUserInfo().then(() => {
+        if (options.type) {
+          wx.navigateBack({ delta: 1 })
+        } else {
+          this.setData({ step: 3, canClick: false })
+        }
+      })      
     }).catch(err => app.wxToast({title: err.msg}))
   },
   next3() {
@@ -189,7 +194,9 @@ Page({
       own_describe: formData.own_describe
     }
     updateUserDescribeApi(params).then(() => {
-      this.setData({ step: 4, canClick: false })
+      app.reloadUserInfo().then(() => {
+        this.setData({ step: 4, canClick: false })
+      })      
     }).catch(err => app.wxToast({title: err.msg}))
   },
   next4() {
@@ -198,7 +205,9 @@ Page({
       ideal_describe: formData.ideal_describe
     }
     updateUserDescribeApi(params).then(() => {
-      wx.navigateBack({ delta: 1 })
+      app.reloadUserInfo().then(() => {
+        wx.navigateBack({ delta: 1 })
+      })      
     }).catch(err => app.wxToast({title: err.msg}))
   },
   onPageScroll(e) {

@@ -38,18 +38,14 @@ App({
     navBarHeight: 0, // 顶部栏高度 px
     userInfo: 0
   },
-  getMyselInfo() {
+  reloadUserInfo(hideLoading = false) {
     return new Promise((resolve, reject) => {
-      if (this.globalData.userInfo) {
-        resolve(this.globalData.userInfo)
-      } else {
-        getMyInfoApi().then(({ data }) => {
-          this.globalData.userInfo = data
-          resolve(data)
-        }).catch((e) => {
-          reject(e)
-        })
-      }
+      getMyInfoApi({ hideLoading }).then(({ data }) => {
+        this.globalData.userInfo = data
+        resolve(data)
+      }).catch((e) => {
+        reject(e)
+      })
     })
   }
 })

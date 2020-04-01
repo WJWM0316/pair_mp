@@ -77,30 +77,32 @@ Component({
         params = Object.assign(params, {position_name: formData.position_name})
       }
       createUserStep3Api(params).then(({ data }) => {
-        let { PAGEPATH } = app.globalData
-        let userInfo = data.userInfo
-        if(!userInfo.isCareerIdentity) {
-          app.wxConfirm({
-            title: '认证',
-            content: '是否前往职业认证',
-            cancelText: '取消',
-            confirmText: '确认',
-            confirmBack() {
-              wx.navigateTo({
-                url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
-              })
-            },
-            cancelBack() {
-              wx.navigateTo({
-                url: `${PAGEPATH}/index/index`
-              })
-            }
-          })
-        } else {
-          wx.navigateTo({
-            url: `${PAGEPATH}/index/index`
-          })
-        }
+        app.reloadUserInfo().then(() => {         
+          let { PAGEPATH } = app.globalData
+          let userInfo = data.userInfo
+          if(!userInfo.isCareerIdentity) {
+            app.wxConfirm({
+              title: '认证',
+              content: '是否前往职业认证',
+              cancelText: '取消',
+              confirmText: '确认',
+              confirmBack() {
+                wx.redirectTo({
+                  url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+                })
+              },
+              cancelBack() {
+                wx.reLaunch({
+                  url: `${PAGEPATH}/index/index`
+                })
+              }
+            })
+          } else {
+            wx.reLaunch({
+              url: `${PAGEPATH}/index/index`
+            })
+          }
+        })
       }).catch(err => app.wxToast({title: err.msg}))
     }
   }
