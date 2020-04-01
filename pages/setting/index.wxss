@@ -51,7 +51,7 @@
   bottom: 0;
   transform: scaleY(0.5);
 }
-.settingWrap .item.margin {
+.settingWrap .margin {
   margin-top: 24rpx;
 }
 .settingWrap .logout {

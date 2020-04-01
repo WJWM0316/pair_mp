@@ -1,3 +1,4 @@
+
 const app = getApp()
 Component({
   options: {
@@ -29,31 +30,7 @@ Component({
       app.getUserInfo = () => callback()
     }
   },
-  // attached () {
-  //   let callback = () => {
-  //     let { userInfo } = app.globalData.userInfo
-  //     this.setData({ userInfo })
-  //     console.log(userInfo, 'llll')
-  //   }
-  //   if (app.globalData.userInfo) {
-  //     callback()
-  //   } else {
-  //     app.getUserInfo = () => {
-  //       callback()
-  //     }
-  //   }
-  // },
-  // pageLifetimes: {
-  //   show() {
-  //     if (app.globalData.userInfo) {
-  //       console.log(app.globalData.userInfo, 'k')
-  //     } else {
-  //       app.getUserInfo = () => {
-  //         console.log(app.globalData.userInfo, 'b')
-  //       }
-  //     }
-  //   }
-  // },
+
   methods: {
     close() {
       this.setData({show: !this.data.show})
@@ -76,6 +53,12 @@ Component({
       let { PAGEPATH } = app.globalData
       wx.navigateTo({
         url: `${PAGEPATH}/userInfo/index`
+      })
+    },
+    setting () {
+      let { PAGEPATH } = app.globalData
+      wx.navigateTo({
+        url: `${PAGEPATH}/setting/index`
       })
     }
   }

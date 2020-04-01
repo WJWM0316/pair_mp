@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 let phone = ''
+import {getCurrentPagePath} from '../../utils/index.js'
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
 import {pickApi, pickIndexAvaApi, pickAggrApi} from "../../api/pick.js"
 Page({
@@ -24,10 +25,8 @@ Page({
   },
   onShow () {
     if (app.globalData.userInfo) {
-      console.log(app.globalData.userInfo, 11111111111)
     } else {
       app.getUserInfo = () => {
-        console.log(app.globalData.userInfo, 2222222222222)
       }
     }
     this.getOtherStatus()

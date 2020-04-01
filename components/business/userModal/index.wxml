@@ -70,7 +70,7 @@
         <view class="value">免费领皮糖</view>
         <i class="icon iconfont icon_jiantou-you-"></i>
       </view>
-      <view class="li">
+      <view class="li" bindtap="setting">
         <i class="icon1 icon iconfont icon_shezhi"></i>
         <view class="key">设置</view>
         <!-- <view class="value">匹配偏好</view> -->
