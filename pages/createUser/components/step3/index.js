@@ -91,7 +91,9 @@ Component({
               })
             },
             cancelBack() {
-              // console.log(2)
+              wx.navigateTo({
+                url: `${PAGEPATH}/index/index`
+              })
             }
           })
         } else {

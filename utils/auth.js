@@ -14,6 +14,7 @@ const phoneCodeLogin = (data, options) => {
   registerApi(data).then(res => {
     if (res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
     if (res.data.userInfo.token) wx.setStorageSync('token', res.data.userInfo.token)
+    console.log(res, '注册')
     if(res.data.userInfo.step === 9) {
       if (options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
     } else {
