@@ -164,8 +164,11 @@
   <view class="action-zone">
     <!-- <i-button my-class="btn3" wx:if="{{isOwer}}" bindtap="edit">
       <view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view>
+    </i-button>
+    <i-button my-class="btn3" wx:else bindtap="edit">
+      <view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view>
     </i-button> -->
     <view class="btn3" wx:if="{{isOwer}}" bindtap="edit"><view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view></view>
-    <view class="btn3" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
+    <view class="btn3" bindtap="picker" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
   </view>
 </view>
