@@ -1,5 +1,7 @@
 {
-	"usingComponents": {},
+	"usingComponents": {
+    "chooseSex": "../../components/business/chooseSex/index"
+  },
   "navigationBarTitleText": "个人资料",
   "navigationBarBackgroundColor": "#F1F4F4"
 }

@@ -4,6 +4,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
+    CDNPATH: app.globalData.CDNPATH,
     userData: {
       list: [],
       pageNum: 1,
@@ -18,12 +19,21 @@ Page({
 
   },
   onShow() {
-    this.getUserList()
+    let userData = {
+      list: [],
+      pageNum: 1,
+      isLastPage: false,
+      isRequire: false
+    }
+    let callback = () => {
+      this.getUserList()
+      this.setData({'userInfo': app.globalData.userInfo, userData})
+    }
     if (app.globalData.userInfo) {
-      this.setData({'userInfo': app.globalData.userInfo})
+      callback()
     } else {
       app.getUserInfo = () => {
-        this.setData({'userInfo': app.globalData.userInfo})
+        callback()
       }
     }
   },

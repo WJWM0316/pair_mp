@@ -1,0 +1,4 @@
+<view class="chooseSex show">
+     <view class="mask show"></view>
+     <view class="content"></view>
+</view>

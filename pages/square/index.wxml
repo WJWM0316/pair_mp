@@ -19,14 +19,15 @@
             <view class="height">{{ item.heightDesc }}</view>
           </view>
           <view class="row2">
-            <view class="city-area">广州天河</view>
-            <view class="industry-position">互联网 - 设计</view>
+            <view class="city-area">{{ item.residentArr[1].title }}{{ item.residentArr[2].title }}</view>
+            <view class="industry-position">{{ item.industryArr[0].name }} - {{ item.industryArr[1].name }}</view>
+            <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix" wx:if="{{item.isCareerIdentity}}"></i-image> 
           </view>
         </view>
       </view>
     </view>
     <view class="brief">
-      对陌生人比较慢热，多年的留学生活让我养成了比较独立的习惯，喜欢尝试新鲜事
+      {{ item.ownDescribe }}
     </view>
   </view>
 </view>
