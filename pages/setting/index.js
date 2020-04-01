@@ -1,4 +1,5 @@
 const app =  getApp();
+import {logout} from '../../utils/index.js'
 Page({
 
   /**
@@ -38,7 +39,6 @@ Page({
         })
         break
       case 'wechat':
-        console.log(111111111)
         app.wxConfirm({
           title: '客服微信', 
           content: `客服微信：${that.data.customerWechat}。有任何产品使用问题都可以反馈哦`,
@@ -58,7 +58,7 @@ Page({
           title: '退出登录', 
           content: `确定要退出登录吗?退出后无法接收他人的消息哦。`,
           confirmBack: () => {
-            
+            logout()
           }
         })
         break

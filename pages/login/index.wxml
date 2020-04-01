@@ -7,5 +7,5 @@
     <view class="send" bindtap = "sendMsg">发送验证码</view>
   </view>
   <i-button my-class="loginBtn {{canClick ? 'canClick' : ''}}" bindtap = "login">登录</i-button>
-
+  <button class="wxLogin" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信快捷登录</button>
 </view>

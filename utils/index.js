@@ -1,3 +1,4 @@
+import auth from './auth.js'
 import emoji from './emoji.js'
 import fieldRegular from './fieldRegular.js'
 import util from './util.js'
@@ -13,4 +14,5 @@ module.exports = {
   wxApi,
   localstorage,
   ...util,
+  ...auth
 }

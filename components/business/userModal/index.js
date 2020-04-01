@@ -1,7 +1,6 @@
 import {
   getUserInfoApi
 } from '../../../api/user.js'
-
 const app = getApp()
 Component({
   options: {
@@ -47,6 +46,12 @@ Component({
       let { PAGEPATH } = app.globalData
       wx.navigateTo({
         url: `${PAGEPATH}/userInfo/index`
+      })
+    },
+    setting () {
+      let { PAGEPATH } = app.globalData
+      wx.navigateTo({
+        url: `${PAGEPATH}/setting/index`
       })
     }
   }

@@ -39,8 +39,8 @@ const setHeader = () => {
   // 设置授权信息
   !token ? token = wx.getStorageSync('token') : null
   !sessionToken ? sessionToken = wx.getStorageSync('sessionToken') : null
-  token && !addHttpHead['Authorization'] ? addHttpHead['Authorization'] = token : null
-  sessionToken && !addHttpHead['Authorization-Wechat'] ? addHttpHead['Authorization-Wechat'] = sessionToken : null
+  token ? addHttpHead['Authorization'] = token : null
+  sessionToken ? addHttpHead['Authorization-Wechat'] = sessionToken : null
 }
 
 // 清楚授权相关凭证
@@ -57,7 +57,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
   app = !getApp() ? instance : getApp()
 
   return new Promise((resolve, reject) => {
-    removeAuth()
+    
     setHeader()
 
     // 请求中间件
@@ -93,7 +93,11 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                   break
                 case 401:
                   reject(msg)
-                  removeAuth()
+                  if (msg.code === 4010) {
+                    wx.removeStorageSync('token')
+                  } else {
+                    removeAuth()
+                  }
                   wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
                   break
                 case 403:
@@ -105,12 +109,16 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
               }
             }
           } catch (e) {
+            reject(e)
+            closeLoading()
+            console.log(e)
             getApp().wxToast({title: '系统异常，请稍后访问'})
           }
         },
         fail(e) {
           reject(e)
           closeLoading()
+          console.log(e)
           getApp().wxToast({title: '系统异常，请稍后访问'})
         }
       })
@@ -120,9 +128,9 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
 
     // 需要用户信息
     const getUserInfo = () => {
-      if (getUserInfoTimes) return
+      if (getUserInfoTimes || !token) return
       if (!app.globalData.userInfo) {
-        getMyInfoApi().then(res => {
+        getMyInfoApi({hideLoading: true}).then(res => {
           app.globalData.userInfo = res.data
           if (app.getUserInfo) {
             app.getUserInfo()

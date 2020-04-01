@@ -36,5 +36,5 @@
     </view>
   </view>
 
-  <i-button my-class="logout" bindtap = "action" data-type="logout">退出登录</i-button>
+  <i-button my-class="logout margin" bindtap = "action" data-type="logout">退出登录</i-button>
 </view>
