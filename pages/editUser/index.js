@@ -36,7 +36,6 @@ Page({
   onShow() {
     let { options } = this.data
     let title = ''
-    let { userInfo, careerVerifyInfo, pickIntention } = wx.getStorageSync('user')
     switch(options.key) {
       case 'nickname':
         title = '昵称'
@@ -87,10 +86,24 @@ Page({
         break
     }
     wx.setNavigationBarTitle({title})
-    if(!Object.keys(careerVerifyInfo).length) {
-      careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
+    
+    let callback = () => {
+      let { userInfo, careerVerifyInfo, pickIntention } = app.globalData.userInfo
+      if(!Object.keys(careerVerifyInfo).length) {
+        careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
+      }
+      this.setData({
+        userInfo,
+        careerVerifyInfo,
+        pickIntention
+      })
     }
-    this.setData({ userInfo, careerVerifyInfo, pickIntention }, () => wx.removeStorageSync('user'))
+
+    if (app.globalData.userInfo) {
+      callback()
+    } else {
+      app.getUserInfo = () => callback()
+    }
   },
   bindInput(e) {
     let { userInfo, options } = this.data

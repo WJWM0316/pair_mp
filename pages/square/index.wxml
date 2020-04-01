@@ -1,20 +1,26 @@
+<navBar
+  navBarBg="{{background}}"
+  page="picker"
+  userInfo="{{userInfo.userInfo}}"
+  >
+</navBar>
 <view class="square">
-  <view class="item" wx:for="{{10}}" wx:key="item">
+  <view class="item" wx:for="{{ userData.list }}" wx:key="index">
     <view class="cover">
-      <i-image my-class="photo" src="{{ item.smallUrl }}"></i-image>
+      <i-image my-class="photo" src="{{ item.avatarInfo.url }}"></i-image>
       <view class="mask">
         <view class="album" bindtap="album">
           <i class="icon iconfont icon_im_tupian"></i>10
         </view>
         <view class="info">
           <view class="row1">
-            <view class="nickname">小书包</view>
-            <view class="year">92年</view>
-            <view class="height">166CM</view>
+            <view class="nickname">{{ item.nickname }}</view>
+            <view class="year">{{ item.birthDesc }}</view>
+            <view class="height">{{ item.heightDesc }}</view>
           </view>
           <view class="row2">
             <view class="city-area">广州天河</view>
-            <view class="industry-position">|互联网 - 设计</view>
+            <view class="industry-position">互联网 - 设计</view>
           </view>
         </view>
       </view>
@@ -24,3 +30,4 @@
     </view>
   </view>
 </view>
+<tabBar tabBgColor="{{background}}" mask="{{false}}"></tabBar>

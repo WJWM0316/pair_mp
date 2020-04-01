@@ -101,6 +101,7 @@ Component({
               })
             }
             rangeArray = heights
+            console.log(this.data.initValue, 'kkkk')
             if(this.data.initValue) {
               let heightIndex = heights.findIndex((v,i,a) => v.value == this.data.initValue) || 0
               value = [ heightIndex ]
@@ -226,11 +227,12 @@ Component({
             getAggrApi({type: 'industry'}).then(({ data }) => {
               let industry = data.industryArr
               let children = []
+              
               if(this.data.initValue) {
                 let tem = this.data.initValue.split('-')
-                let industryIndex = industry.findIndex((v,i,a) => v.labelId == tem[0]) || 0              
-                children = industry[tem[0]].children
-                let childrenIndex = children.findIndex((v,i,a) => v.labelId == tem[1]) || 0
+                let industryIndex = industry.findIndex(v => v.labelId == tem[0]) || 0
+                children = industry.find(v => v.labelId == tem[0]).children
+                let childrenIndex = children.findIndex(v => v.labelId == tem[1]) || 0
                 value = [industryIndex, childrenIndex]
                 this.setData({ active: value })
               } else {

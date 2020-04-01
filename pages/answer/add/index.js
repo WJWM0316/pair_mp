@@ -39,7 +39,9 @@ Page({
       body: info.body
     }
     postQuestionApi(params).then(res => {
-      wx.navigateBack({ delta: 1 })
+      app.reloadUserInfo().then(() => {
+        wx.navigateBack({ delta: 1 })
+      })   
     }).catch(err => app.wxToast({title: err.msg}))
   }
 })
