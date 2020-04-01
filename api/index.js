@@ -55,6 +55,7 @@ const removeAuth = () => {
 
 export const request = ({method = 'post', url, host, data = {}, instance, loadingContent = '加载中...'}) => {
   app = !getApp() ? instance : getApp()
+
   return new Promise((resolve, reject) => {
     removeAuth()
     setHeader()
@@ -104,13 +105,13 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
               }
             }
           } catch (e) {
-            app.wxToast({title: '系统异常，请稍后访问'})
+            getApp().wxToast({title: '系统异常，请稍后访问'})
           }
         },
         fail(e) {
           reject(e)
           closeLoading()
-          app.wxToast({title: '系统异常，请稍后访问'})
+          getApp().wxToast({title: '系统异常，请稍后访问'})
         }
       })
     }
@@ -141,7 +142,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
             success: function (res0) {
               let code = res0.code
               wx.request({
-                url: `${app.globalData.APIHOST}/wechat/login/mini`,
+                url: `${getApp().globalData.APIHOST}/wechat/login/mini`,
                 data: {code},
                 header: addHttpHead,
                 method: 'post',
