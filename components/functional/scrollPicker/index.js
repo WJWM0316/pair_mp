@@ -19,7 +19,7 @@ Component({
     rangeKey: '',
     mode: ''
   },
-  attached () {
+  ready () {
     this.init()
   },
   methods: {
@@ -279,7 +279,7 @@ Component({
             rangeArray[2] = days
             let year = rangeArray[0][value[0]].value
             let month = rangeArray[1][value[1]].value
-            let day = rangeArray[2][value[2]].value
+            let day = rangeArray[2][value[2]] ? rangeArray[2][value[2]].value : '1'
             rtnResult = {
               year,
               month,
