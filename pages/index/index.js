@@ -51,8 +51,8 @@ Page({
     if(userInfo.infoCompletePercent >= 40 && userInfo.infoCompletePercent <= 80) {
       wx.navigateTo({url: `/pages/perfectUser/index?step=1`})
     } else {
-      pickApi().then(res => {
-        wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
+      pickApi().then(({ data }) => {
+        wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
       })
     }
   },
