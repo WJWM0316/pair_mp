@@ -11,4 +11,4 @@
   </view>
 </view>
 <view class="block" style="height:{{navBarHeight}}px"></view>
-<userModal show="{{show}}"></userModal>
+<userModal wx:if="{{userInfo && userInfo.id}}" show="{{show}}"></userModal>

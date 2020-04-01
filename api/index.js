@@ -134,7 +134,6 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
           app.globalData.userInfo = res.data
           if (app.getUserInfo) {
             app.getUserInfo()
-            app.getUserInfo = null
           }
         })
       }

@@ -1,4 +1,4 @@
-<navBar navBarBg="{{background}}" page="picker"></navBar>
+<navBar navBarBg="{{background}}" page="picker" userInfo="{{userInfo.userInfo}}"></navBar>
 <view class="indexWrap" style="height: {{viewAreaHeight}}px">
   <view class="main">
     <rich-text class="richText" nodes="{{richText}}"></rich-text>

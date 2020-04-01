@@ -15,9 +15,16 @@ Component({
     page: {
       type: String,
       value: ''
+    },
+    userInfo: {
+      type: Object,
+      value: {},
+      observer (val) {
+      }
     }
   },
- 
+  attached () {
+  },
   /**
    * 组件的初始数据
    */

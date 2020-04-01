@@ -10,7 +10,8 @@ Page({
     background: '#1F252B',
     viewAreaHeight: app.globalData.viewAreaHeight,
     richText: '',
-    status: {}
+    status: {},
+    userInfo: 0
   },
   
   onLoad: function () {
@@ -21,12 +22,15 @@ Page({
     } else {
       this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
     }
+    
     this.getAvatarList()
   },
   onShow () {
     if (app.globalData.userInfo) {
+      this.setData({'userInfo': app.globalData.userInfo})
     } else {
       app.getUserInfo = () => {
+        this.setData({'userInfo': app.globalData.userInfo})
       }
     }
     this.getOtherStatus()
@@ -47,10 +51,12 @@ Page({
     })
   },
   pick () {
-    wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
-        return
-    pickApi().then(res => {
-      wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
-    })
+    if (!this.data.userInfo.userInfo.salary) {
+      wx.navigateTo({url: `/pages/perfectUser/index`})
+    } else {
+      pickApi().then(res => {
+        wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
+      })
+    }
   }
 })

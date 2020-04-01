@@ -19,16 +19,7 @@ Component({
     userInfo: {}
   },
   ready () {
-    let callback = () => {
-      let { userInfo } = app.globalData.userInfo
-      this.setData({ userInfo })
-    }
-
-    if (app.globalData.userInfo) {
-      callback()
-    } else {
-      app.getUserInfo = () => callback()
-    }
+    this.setData({'userInfo': app.globalData.userInfo.userInfo})
   },
 
   methods: {
