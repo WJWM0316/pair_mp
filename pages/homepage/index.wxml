@@ -65,7 +65,7 @@
           <i class="icon1 icon iconfont {{ userInfo.gender === 1 ? 'icon_nan' : 'icon_nv' }}"></i>
           {{ userInfo.gender === 1 ? '男' : '女' }}
         </view>
-        <view class="label label-bg1"><i class="icon1 icon iconfont icon_nianling"></i>93年·{{ userInfo.constellation }}</view>
+        <view class="label label-bg1"><i class="icon1 icon iconfont icon_nianling"></i>{{userInfo.birthDesc}}年·{{ userInfo.constellation }}</view>
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_suozaidi"></i>{{ userInfo.residentArr[1].title }}{{ userInfo.residentArr[2].title }}</view>        
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_shengao"></i>{{ userInfo.height }}CM</view>
         <view class="label label-bg1" wx:if="{{ userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_jiaxiang"></i>{{ userInfo.hometownArr[0].title }}{{ userInfo.hometownArr[1].title }}</view>
@@ -83,7 +83,7 @@
           {{ userInfo.companyName }} | {{ userInfo.positionName }} 
           <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ careerVerifyInfo === 1 }}"></i-image> 
         </view>
-        <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text>（仅自己可见）</text></view>
+        <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text wx:if="{{ isOwer }}">（仅自己可见）</text></view>
         <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}" bindtap="legalize">
           <i-image my-class="icon13" src="{{ CDNPATH }}icon_job_legalize.png"></i-image>
           职业信息未认证，将降低主页展示率
@@ -115,7 +115,7 @@
         <view class="row" wx:for="{{ userLabelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
           <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
           <view class="box">
-            <view class="item" wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
+            <view class="item {{ item.active ? 'active' : '' }}" wx:for="{{ pItem.children }}" wx:key="index">{{item.name}}</view>
           </view>
         </view>
       </view>

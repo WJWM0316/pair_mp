@@ -18,18 +18,27 @@ Page({
     }
   },
   onShow() {
-    let avatar = wx.getStorageSync('avatar')
-    let albumInfo = wx.getStorageSync('albumInfo')
-    if (albumInfo) {
-      let { userInfo, albumVerifyInfo } = albumInfo
+    let callback = () => {
+      let { userInfo, albumVerifyInfo } = app.globalData.userInfo
       let cover = null
       if(albumVerifyInfo.status === 1) {
         cover = userInfo.userAlbumList.find(v => v.isCover)
       } else {
         cover = userInfo.userAlbumTempList.find(v => v.isCover)
       }
-      this.setData({userInfo, cover, albumVerifyInfo }, () => wx.removeStorageSync('albumInfo'))
+      this.setData({
+        userInfo,
+        albumVerifyInfo,
+        cover
+      })
     }
+    if (app.globalData.userInfo) {
+      callback()
+    } else {
+      app.getUserInfo = () => callback()
+    }
+
+    let avatar = wx.getStorageSync('avatar')
     if(avatar) {
       let { userInfo, albumVerifyInfo } = this.data
       if(albumVerifyInfo.status === 1) {
@@ -59,12 +68,13 @@ Page({
     let params = e
     this.setData({ show: true, itemList, type: 'photo'})
   },
-  addAlbum(id) {
+  addAlbum() {
     let { userInfo, cover, albumVerifyInfo } = this.data
     let userAlbumTempList = albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList
     userAlbumTempList = userAlbumTempList.filter(v => !v.isCover)
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
+    console.log(userInfo, cover, albumVerifyInfo)
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))

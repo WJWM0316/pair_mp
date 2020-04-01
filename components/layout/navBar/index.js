@@ -28,7 +28,6 @@ Component({
     show: false
   },
   ready () {
-    
   },
   /**
    * 组件的方法列表
