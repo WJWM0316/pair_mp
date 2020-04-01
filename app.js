@@ -5,6 +5,8 @@ import { request } from './api/index'
 import wxApi from './utils/wxApi'
 import {getTitleHeight} from './utils/util.js'
 import {getSubscribeApi} from './api/subscribe.js'
+import {getMyInfoApi} from './api/user.js'
+
 App({
   ...wxApi, // 挂载二次封装的微信API
   onLaunch: function () {
@@ -35,6 +37,20 @@ App({
     tabBarHeight: 0, // 底部栏高度 px
     navBarHeight: 0, // 顶部栏高度 px
     userInfo: 0
+  },
+  getMyselInfo() {
+    return new Promise((resolve, reject) => {
+      if (this.globalData.userInfo) {
+        resolve(this.globalData.userInfo)
+      } else {
+        getMyInfoApi().then(({ data }) => {
+          this.globalData.userInfo = data
+          resolve(data)
+        }).catch((e) => {
+          reject(e)
+        })
+      }
+    })
   }
 })
 
