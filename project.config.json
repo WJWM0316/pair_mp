@@ -109,8 +109,8 @@
 				},
 				{
 					"id": 6,
-					"name": "pages/homepage/index",
-					"pathName": "pages/homepage/index",
+					"name": "pages/perfectUser/index",
+					"pathName": "pages/perfectUser/index",
 					"query": "vkey=o7zm6ja7",
 					"scene": null
 				},

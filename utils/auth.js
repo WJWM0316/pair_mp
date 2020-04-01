@@ -19,7 +19,7 @@ const phoneCodeLogin = (data, options) => {
       if (options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
     } else {
       wx.navigateTo({
-        url: `/pages/createUser/index`
+        url: `/pages/createUser/index?step=${res.data.userInfo.step}`
       })
     }
   })
