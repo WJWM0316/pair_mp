@@ -16,6 +16,10 @@ Component({
       type: String,
       value: ''
     },
+    title: {
+      type: String,
+      value: ''
+    },
     userInfo: {
       type: Object,
       value: {},

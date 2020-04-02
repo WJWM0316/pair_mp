@@ -10,7 +10,8 @@ Page({
       pageNum: 1,
       isLastPage: false,
       isRequire: false
-    }
+    },
+    onBottomStatus: 0
   },
   onLoad(options) {
 
@@ -39,9 +40,10 @@ Page({
   },
   getUserList() {
     return new Promise((resolve, reject) => {
-      let { userData } = this.data
+      let { userData, onBottomStatus } = this.data
       let params = { count: 3, page: userData.pageNum }
       getSquareListApi(params).then(res => {
+        onBottomStatus = res.meta && res.meta.nextPageUrl ? 0 : 2
         let list = res.data
         list.map(v => {
           v.birthDesc = `${v.birth.slice(2,4)}年`
@@ -51,14 +53,21 @@ Page({
         userData.isLastPage = res.meta && res.meta.nextPageUrl ? false : true
         userData.pageNum++
         userData.isRequire = true
-        this.setData({ userData }, () => resolve(res))
+        this.setData({ userData, onBottomStatus }, () => resolve(res))
       })
+    })
+  },
+  routeJump(e) {
+    let { item } = e.currentTarget.dataset
+    let { PAGEPATH } = app.globalData
+    wx.navigateTo({
+      url: `${PAGEPATH}/homepage/index?vkey=${item.vkey}`
     })
   },
   onReachBottom() {
     const userData = this.data.userData
     if (!userData.isLastPage) {
-      this.getUserList()
+      this.setData({onBottomStatus: 1}, () => this.getUserList())
     }
   }
 })

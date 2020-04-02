@@ -137,7 +137,7 @@
   position: absolute;
   left: 0;
 }
-.item .icon {
+.item .icon-image {
   width: 27rpx;
   margin-left: 12rpx;
   display: inline-block;

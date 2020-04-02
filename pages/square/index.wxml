@@ -5,7 +5,7 @@
   >
 </navBar>
 <view class="square">
-  <view class="item" wx:for="{{ userData.list }}" wx:key="index">
+  <view class="item" wx:for="{{ userData.list }}" wx:key="index" bindtap="routeJump" data-item="{{ item }}">
     <view class="cover">
       <i-image my-class="photo" src="{{ item.avatarInfo.url }}"></i-image>
       <view class="mask">
@@ -21,7 +21,7 @@
           <view class="row2">
             <view class="city-area">{{ item.residentArr[1].title }}{{ item.residentArr[2].title }}</view>
             <view class="industry-position">{{ item.industryArr[0].name }} - {{ item.industryArr[1].name }}</view>
-            <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix" wx:if="{{item.isCareerIdentity}}"></i-image> 
+            <i-image my-class="icon-image" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix" wx:if="{{item.isCareerIdentity}}"></i-image> 
           </view>
         </view>
       </view>
@@ -31,4 +31,5 @@
     </view>
   </view>
 </view>
+<bottomStatus status="{{ onBottomStatus }}" listData="{{ userData.list }}"  marginTop="{{30}}" desc="已经到底啦！"></bottomStatus>
 <tabBar tabBgColor="{{background}}" mask="{{false}}"></tabBar>

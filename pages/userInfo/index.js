@@ -15,7 +15,6 @@ Page({
     albumVerifyInfo: {}
   },
   onShow() {
-    wx.removeStorageSync('userInfo')
     let callback = () => {
       let res = app.globalData.userInfo
       let { userInfo, careerVerifyInfo, pickIntention, albumVerifyInfo } = res
