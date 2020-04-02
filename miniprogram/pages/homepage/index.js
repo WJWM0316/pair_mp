@@ -1,7 +1,8 @@
 import {
   getUserInfoApi
 } from '../../api/user.js'
-import {pickApi} from "../../api/pick.js"
+
+import { getSquareListApi } from "../../api/square.js"
 
 const app =  getApp();
 Page({
@@ -17,7 +18,8 @@ Page({
       status: 1,
       statusDesc: '审核通过'
     },
-    CDNPATH: app.globalData.CDNPATH
+    CDNPATH: app.globalData.CDNPATH,
+    buttonInfo: {}
   },
   onLoad(options) {
     this.setData({ options })
@@ -44,7 +46,8 @@ Page({
           albumVerifyInfo = {
             status: 1,
             statusDesc: '审核通过'
-          }
+          },
+          buttonInfo = {}
         } = res
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
         if(!Object.keys(careerVerifyInfo).length) {
@@ -105,13 +108,16 @@ Page({
           userAnswerList,
           isAllQuestion,
           albumVerifyInfo,
-          isOwer: myself ? false : true
+          isOwer: myself ? false : true,
+          buttonInfo
         })
       }
       if(res.userInfo.vkey === options.vkey) {
         callback(res)
       } else {
-        getUserInfoApi({vkey: options.vkey}).then(({ data }) => callback(data, res))
+        getUserInfoApi({vkey: options.vkey}).then(({ data }) => {
+          callback(data, res)
+        })
       }
     }
     if (app.globalData.userInfo) {
@@ -136,8 +142,18 @@ Page({
       url: `${PAGEPATH}/album/index`
     })   
   },
-  picker() {
-    app.wxToast({title: '操作成功~'})
+  chat() {
+    let { PAGEPATH } = app.globalData
+    let { options } = this.data
+    wx.navigateTo({
+      url: `${PAGEPATH}/IM/chat/index?vkey=${options.vkey}`
+    })
+  },
+  fetch() {
+    getSquareListApi({}).then(res => {
+      console.log(res)
+    })
+    // app.wxToast({title: '操作成功~'})
     // pickApi().then(res => {
     //   wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
     // })

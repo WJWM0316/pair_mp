@@ -7,3 +7,11 @@ export const getSquareListApi = (data) => {
     data
   })
 }
+
+export const getChargeInfoApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/square/user/charge',
+    data
+  })
+}

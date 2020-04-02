@@ -6,16 +6,16 @@
                <view class="title">匹配偏好</view>
                <view class="p1">你想认识？</view>
                <view class="sex-ul">
-                    <view class="li boy"><i class="icon iconfont icon_nan"></i>男</view>
-                    <view class="li girl"><i class="icon iconfont icon_nv"></i>女</view>
+                    <view class="li boy" bindtap="click" data-sex="1"><i class="icon iconfont icon_nan"></i>男</view>
+                    <view class="li girl" bindtap="click" data-sex="2"><i class="icon iconfont icon_nv"></i>女</view>
                </view>
-               <view class="p2"><text>不限性别</text></view>
+               <view class="p2"><text bindtap="click" data-sex="0">不限性别</text></view>
           </block>
           <block wx:elif="{{code === 2}}">
                <view class="title">个人资料完善度</view>
                <view class="process">
                     <view class="bar">
-                         <view class="active2" style="width: {{userInfo.infoCompletePercentDesc}}"></view>
+                         <view class="active2" style="width: {{ userInfo.infoCompletePercentDesc}}"></view>
                          <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i-image>
                          <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
                     </view>
@@ -24,41 +24,58 @@
                     </view>
                </view>
                <view class="perfect-ul">
-                    <view class="li">
+                    <view class="li" bindtap="routeJump" data-page="userInfo">
                          <i class="icon iconfont icon_im_biaoqing"></i>
                          <text class="text">补充基本资料</text>
-                         <view class="btn bg">去完善</view>
+                         <view class="btn {{ userCompleteInfo.baseComplete ? '' : 'bg' }}">
+                              {{userCompleteInfo.baseComplete ? '已完善' : '去完善'}}
+                         </view>
                     </view>
-                    <view class="li">
+
+                    <view class="li" bindtap="routeJump" data-page="album">
                          <i class="icon iconfont icon_im_tupian"></i>
                          <text class="text">丰富个人相册</text>
-                         <view class="btn bg">去完善</view>
+                         <view class="btn {{ userCompleteInfo.albumComplete ? '' : 'bg' }}">
+                              {{ userCompleteInfo.albumComplete ? '已完善' : '去完善'}}
+                         </view>
                     </view>
-                    <view class="li">
+
+                    <view class="li" bindtap="routeJump" data-page="answer">
                          <i class="icon iconfont icon_im_kaichangbai"></i>
                          <text class="text">我的问答</text>
-                         <view class="btn">已完善</view>
+                         <view class="btn {{ userCompleteInfo.questionComplete ? '' : 'bg'}}">
+                              {{ userCompleteInfo.questionComplete ? '已完善' : '去完善'}}                              
+                         </view>
                     </view>
                </view>
           </block>
           <block wx:elif="{{code === 3}}">
                <view class="title">为保证双方的交友体验需完善以下信息才可继续Pick</view>
                <view class="perfect-ul2">
-                    <view class="li bg">
-                         <i class="icon iconfont icon_im_biaoqing"></i>
+                    <view class="li">
+                         <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{ !userCompleteInfo.baseComplete }}"></i>
+                         <i class="icon2 iconfont icon_gouxuan" wx:else></i>
                          <text class="text">补充基本资料</text>
-                         <view class="btn">去完善</view>
-                    </view>
-                    <view class="li bg">
-                         <i class="icon iconfont icon_im_tupian"></i>
-                         <text class="text">个人封面审核</text>
-                         <text class="error">未通过</text>
-                         <view class="btn">去上传</view>
+                         <view class="btn" wx:if="{{ userCompleteInfo.baseComplete }}">已完善</view>
+                         <view class="btn bg" wx:else bindtap="routeJump" data-page="userInfo">去完善</view>
                     </view>
                     <view class="li">
-                         <i class="icon iconfont icon_gouxuan"></i>
+                         <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0}}"></i>
+                         <i class="icon2 iconfont icon_gouxuan" wx:else></i>
+                         <text class="text">个人封面审核</text>
+                         <text class="error" wx:if="{{albumVerifyInfo.status === 2}}">未通过</text>
+                         <view class="btn {{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0 ? 'bg' : ''}}" wx:if="{{albumVerifyInfo.status === 2}}" bindtap="routeJump" data-page="album">去上传</view>
+                         <view class="btn2" wx:if="{{albumVerifyInfo.status === 0}}">审核中</view>
+                         <view class="btn" wx:if="{{albumVerifyInfo.status === 1}}">已通过</view>
+                    </view>
+                    <view class="li {{ careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : '' }}">
+                         <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}"></i>
+                         <i class="icon2 iconfont icon_gouxuan" wx:else></i>
                          <text class="text">职业信息认证</text>
-                         <view class="btn">已通过</view>
+                         <text class="error" wx:if="{{careerVerifyInfo.status === 2}}">未通过</text>
+                         <view class="btn {{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : ''}}" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}" bindtap="routeJump" data-page="career">去上传</view>
+                         <view class="btn2" wx:if="{{careerVerifyInfo.status === 0}}">审核中</view>
+                         <view class="btn" wx:if="{{careerVerifyInfo.status === 1}}">已通过</view>
                     </view>
                </view>
           </block>

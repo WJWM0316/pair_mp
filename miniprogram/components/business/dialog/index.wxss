@@ -10,8 +10,10 @@
   bottom: 0;
   box-sizing: border-box;
   opacity: 0;
+  display: none;
 }
 .chooseSex.show {
+  display: block;
   opacity: 1;
 }
 .chooseSex .mask {
@@ -49,10 +51,11 @@
 }
 .chooseSex .icon_xiaocha {
   position: absolute;
-  top: 38rpx;
-  right: 38rpx;
+  top: 0;
+  right: 0;
   font-size: 20rpx;
   color: #CFD4D8;
+  padding: 38rpx;
 }
 .chooseSex .p1 {
   height: 38rpx;
@@ -76,12 +79,12 @@
   text-align: center;
 }
 .chooseSex .sex-ul .li.boy {
-  background: #ECFBFC;
+  background: rgba(12, 205, 218, 0.08);
   margin-right: 16rpx;
   color: #0CCDDA;
 }
 .chooseSex .sex-ul .li.girl {
-  background: #FFF4F8;
+  background: rgba(244, 107, 161, 0.08);
   color: #F46BA1;
 }
 .chooseSex .sex-ul .icon {
@@ -154,6 +157,7 @@
 .chooseSex .perfect-ul .text {
   color: #1F252B;
   padding-left: 16rpx;
+  font-size: 30rpx;
 }
 .chooseSex .perfect-ul .btn {
   width: 138rpx;
@@ -193,14 +197,6 @@
 .chooseSex .perfect-ul2 .li:last-child {
   margin-bottom: 0rpx;
 }
-.chooseSex .perfect-ul2 .li.bg .btn {
-  background: #E85274;
-  color: #ffffff;
-  font-weight: 700;
-}
-.chooseSex .perfect-ul2 .li.bg .icon {
-  color: #E85274;
-}
 .chooseSex .perfect-ul2 .text {
   color: #1F252B;
   padding-left: 16rpx;
@@ -219,9 +215,34 @@
   right: 36rpx;
   color: #0CCDDA;
 }
-.chooseSex .perfect-ul2 .icon {
+.chooseSex .perfect-ul2 .btn.bg {
+  background: #E85274;
+  color: #ffffff;
+  font-weight: 700;
+}
+.chooseSex .perfect-ul2 .icon1 {
   font-size: 30rpx;
   color: #0CCDDA;
+}
+.chooseSex .perfect-ul2 .icon2 {
+  font-size: 30rpx;
+  color: #0CCDDA;
+}
+.chooseSex .perfect-ul2 .btn2 {
+  width: 138rpx;
+  height: 60rpx;
+  border-radius: 33rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 36rpx;
+  color: #9CA1AA;
+}
+.chooseSex .perfect-ul2 .icon1_error {
+  color: #E85274;
 }
 .chooseSex .error {
   width: 82rpx;

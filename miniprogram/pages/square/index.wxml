@@ -10,7 +10,7 @@
       <i-image my-class="photo" src="{{ item.avatarInfo.url }}"></i-image>
       <view class="mask">
         <view class="album" bindtap="album">
-          <i class="icon iconfont icon_im_tupian"></i>10
+          <i class="icon iconfont icon_im_tupian"></i>{{item.userAlbumList.length}}
         </view>
         <view class="info">
           <view class="row1">

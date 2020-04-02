@@ -1,7 +1,9 @@
 {
   "navigationBarTextStyle":"white",
   "usingComponents": {
-    "contach-btn": "../../components/business/contactBtn"
+    "contach-btn": "../../components/business/contactBtn",
+    "swipe-out": "../../components/layout/swipeout",
+    "dialog": "../../components/business/dialog"
   },
   "navigationStyle": "custom"
 }

@@ -137,6 +137,13 @@
 					"pathName": "pages/createUser/index",
 					"query": "step=2",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/homepage/index",
+					"pathName": "pages/homepage/index",
+					"query": "vkey=fbz8km4i",
+					"scene": null
 				}
 			]
 		}

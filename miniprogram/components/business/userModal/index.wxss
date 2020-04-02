@@ -307,6 +307,9 @@
   content: '';
   left: -24rpx;
 }
+.mine-modal .ul .color1 {
+  color: #9CA1AA;
+}
 .mine-modal .overlay {
   position: fixed;
   z-index: 10;

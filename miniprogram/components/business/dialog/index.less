@@ -13,8 +13,9 @@
   bottom: 0;
   box-sizing: border-box;
   opacity: 0;
-  // display: none;
+  display: none;
   &.show {
+    display: block;
     opacity: 1;
   }
   .mask {
@@ -52,10 +53,11 @@
   }
   .icon_xiaocha {
     position: absolute;
-    top: 38rpx;
-    right: 38rpx;
+    top: 0;
+    right: 0;
     font-size: 20rpx;
     color: @text-color-4;
+    padding: 38rpx;
   }
   .p1 {
     height:38rpx;
@@ -77,12 +79,12 @@
       line-height: 280rpx;
       text-align: center;
       &.boy {
-        background:#ECFBFC;
+        background:rgba(@primary-color, .08);
         margin-right: 16rpx;
         color: @primary-color;
       }
       &.girl {
-        background:#FFF4F8;
+        background:rgba(@vice-primary-color-2, .08);
         color: @vice-primary-color-2;
       }
     }
@@ -158,6 +160,7 @@
     .text {
       color: @text-color-1;
       padding-left: 16rpx;
+      font-size: 30rpx;
     }
     .btn {
       width:138rpx;
@@ -196,16 +199,6 @@
       &:last-child{
         margin-bottom: 0rpx;
       }
-      &.bg {
-        .btn {
-          background:@vice-primary-color-3 ;
-          color:rgba(255,255,255,1);
-          font-weight: 700;
-        }
-        .icon {
-          color: @vice-primary-color-3;
-        }
-      }
     }
     .text {
       color: @text-color-1;
@@ -224,10 +217,35 @@
       transform: translateY(-50%);
       right: 36rpx;
       color: @primary-color;
+      &.bg {
+        background:@vice-primary-color-3 ;
+        color:rgba(255,255,255,1);
+        font-weight: 700;
+      }
     }
-    .icon {
+    .icon1 {
       font-size: 30rpx;
       color:@primary-color;
+    }
+    .icon2 {
+      font-size: 30rpx;
+      color:@primary-color;
+    }
+    .btn2 {
+      width:138rpx;
+      height:60rpx;
+      border-radius:33rpx;
+      text-align: center;
+      line-height: 60rpx;
+      font-size:28rpx;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 36rpx;
+      color: @text-color-3 ;
+    }
+    .icon1_error {
+      color: @vice-primary-color-3;
     }
   }
   .error {

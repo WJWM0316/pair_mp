@@ -77,3 +77,10 @@ export const getUserInfoApi = (data) => {
     url: `/user/info/${data.vkey}`
   })
 }
+
+export const getUserInfoCompleteApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/user/complete'
+  })
+}
