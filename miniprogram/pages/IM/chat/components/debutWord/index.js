@@ -14,6 +14,15 @@ Component({
     list: {
       type: Array,
       value: []
+    },
+    vkey: {
+      type: String,
+      value: '',
+      observer(val)  {
+        if (val) {
+          this.getDataList()
+        }
+      }
     }
   },
 
@@ -25,14 +34,18 @@ Component({
     topList: []
   },
   attached () {
-    getTopicApi().then(res => {
-      this.setData({'allList': res.data.allList, 'topList': res.data.topList})
-    })
+    
   },
+  
   /**
    * 组件的方法列表
    */
   methods: {
+    getDataList () {
+      getTopicApi({vkey: this.data.vkey, hideLoading: true}).then(res => {
+        this.setData({'allList': res.data.allList, 'topList': res.data.topList})
+      })
+    },
     selectWord (e) {
       let word = e.currentTarget.dataset.word
       this.triggerEvent('selectResult', word)

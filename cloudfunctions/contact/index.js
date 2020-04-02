@@ -7,17 +7,31 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-
-  console.log(event)
+  let callBack = {}
+  if (event.SessionFrom) {
+    SessionFrom = JSON.parse(event.SessionFrom)
+    let {token, path, type, title} = SessionFrom
+    switch (type) {
+      case 'recharge':
+        callBack = {
+          msgtype: 'link',
+          link: {
+            title: '充值',
+            description: '这个问题充钱就可以解决！',
+            url: `https://h5.pickme.ziwork.com/art/wxpay/index.html?token=${token}`,
+            thumb_url: 'https://attach.pickme.ziwork.com/avatar/2020/0330/15/5e819c718f3cc.jpg'
+          }
+        }
+        break
+    }
+  }
 
   const { OPENID } = cloud.getWXContext()
 
   const result = await cloud.openapi.customerServiceMessage.send({
     touser: OPENID,
-    msgtype: 'text',
-    text: {
-      content: '收到：' + event.Content,
-    }
+    msgtype: callBack.msgtype,
+    link: callBack.link
   })
 
   console.log(result)

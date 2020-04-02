@@ -1,0 +1,1 @@
+<button class="my-class" open-type="contact" session-from="{{sessionFrom}}">{{title}}</button>

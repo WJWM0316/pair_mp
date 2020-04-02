@@ -47,7 +47,7 @@ Component({
     if (!app.globalData.tabBarHeight) {
       getSelectorQuery(".block", this).then(res => {
         app.globalData.tabBarHeight = res.height
-        app.globalData.viewAreaHeight = app.globalData.systemInfo.windowHeight - res.height - app.globalData.navBarHeight
+        app.globalData.viewAreaHeight = app.globalData.systemInfo.screenHeight - res.height - app.globalData.navBarHeight
         if (app.getTabHInit) {
           app.getTabHInit()
           app.getTabHInit = null

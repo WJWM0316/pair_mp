@@ -72,7 +72,6 @@ const splicingParams = (params) => {
 const getCurrentPagePath = (index = 0) => {
   var pages = getCurrentPages() //获取加载的页面
   index = !index ? pages.length - 1 : pages.length - index
-  console.log(getCurrentPages()[0])
   let pageUrl = pages[index].route
   if (pages[index] && pages[index].options && splicingParams(pages[index].options)) {
     return `/${pageUrl}?${splicingParams(pages[index].options)}`

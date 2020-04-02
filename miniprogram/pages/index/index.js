@@ -22,7 +22,6 @@ Page({
     } else {
       this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
     }
-    
     this.getAvatarList()
   },
   onShow () {
@@ -35,12 +34,9 @@ Page({
     }
     this.getOtherStatus()
   },
-  handleContact (e) {
-    console.log(e.detail.path)
-        console.log(e.detail.query)
-  },
+  
   getOtherStatus () {
-    pickAggrApi().then(res => {
+    pickAggrApi({hideLoading: true}).then(res => {
       this.setData({'status': res.data})
     })
   },
@@ -59,7 +55,7 @@ Page({
     if(userInfo.infoCompletePercent >= 40 && userInfo.infoCompletePercent < 80) {
       wx.navigateTo({url: `/pages/perfectUser/index`})
     } else {
-      pickApi().then(({ data }) => {
+      pickApi({hideLoading: true}).then(({ data }) => {
         wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
       })
     }

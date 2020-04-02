@@ -17,7 +17,6 @@ const loginCallback = (res, options) => {
   if (res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
   if (res.data.userInfo.token) {
     wx.setStorageSync('token', res.data.userInfo.token)
-    console.log(Socket, 1111)
     Socket.login(res.data.userInfo.token)
     if(res.data.userInfo.step === 9) {
       if (options && options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})

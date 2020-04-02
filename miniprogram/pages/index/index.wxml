@@ -1,6 +1,6 @@
 <navBar navBarBg="{{background}}" page="picker" userInfo="{{userInfo.userInfo}}"></navBar>
 <view class="indexWrap" style="height: {{viewAreaHeight}}px">
-<button open-type="contact" bindcontact="handleContact" session-from="recharge" show-message-card="{{true}}">客服会话</button>
+  
   <view class="main">
    
     <rich-text class="richText" nodes="{{richText}}"></rich-text>
@@ -9,10 +9,15 @@
     <view class="center circle3"></view>
     <view class="center circle4"></view>
     <view class="center centerBtn">
-      <i-button my-class="center mainBtn" bindtap = "pick">
-        <i-image my-class="logo" src="/images/logo/logo_pickme_white.png"></i-image>
-        <view class="now_times">今日剩余<view><text class="times">{{status.pickChance.todayRemain}}</text>次</view></view>
-      </i-button>
+      <block wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
+        <contach-btn contactType="recharge" title="客服会话"></contach-btn>
+      </block>
+      <block wx:if="{{status.pickChance.todayRemain}}">
+        <i-button my-class="center mainBtn" bindtap = "pick">
+          <i-image my-class="logo" src="/images/logo/logo_pickme_white.png"></i-image>
+          <view class="now_times">今日剩余<view><text class="times">{{status.pickChance.todayRemain}}</text>次</view></view>
+        </i-button>
+      </block>
     </view>
     <view class="text">Pick一下，为你匹配最适合你的Ta</view>
   </view>

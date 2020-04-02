@@ -31,7 +31,16 @@ export const getImTopDeatilApi = (data) => {
 export const getTopicApi = (data) => {
   return request({
     method: 'get',
-    url: `/topic`,
+    url: `/topic/${data.vkey}`,
+    data
+  })
+}
+
+// 删除消息会话
+export const deleteMsgApi = (data) => {
+  return request({
+    method: 'delete',
+    url: `/relation/del/${data.vkey}`,
     data
   })
 }

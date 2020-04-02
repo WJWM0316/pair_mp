@@ -6,7 +6,7 @@
   </view>
   <view class="noTips" wx:else></view>
   <view class="scroll-view" style="min-height:calc({{viewAreaHeight}}px - 139rpx)">
-    <block wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index">
+    <block wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index0">
       <swipe-out
         wx:for="{{list}}"
         wx:key="id"
@@ -16,6 +16,7 @@
         bindtap = "startChat"
         data-vkey = "{{item.imFromUser.vkey}}"
         bindswipeStatus = "getSwipeStatus"
+        wx:if="{{item}}"
       >
         <view slot="content" class="scroll-item">
           <view class="avatar {{item.online ? 'online' : ''}}">
@@ -27,7 +28,7 @@
             <view class="messageNum">{{item.messageNum}}</view>
           </view>
         </view>
-        <view slot="button" class="rightBtn">
+        <view slot="button" class="rightBtn"  catchtap = "remove" data-index0="{{index0}}" data-index="{{index}}">
           <i-button my-class="closeBtn"><i class="closeMessage iconfont icon_shanchu"></i></i-button>
         </view>
       </swipe-out>

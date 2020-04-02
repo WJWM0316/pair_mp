@@ -1,5 +1,5 @@
 const app =  getApp();
-import {getRelationlistApi} from '../../../api/im.js'
+import {getRelationlistApi, deleteMsgApi} from '../../../api/im.js'
 
 Page({
 
@@ -47,6 +47,12 @@ Page({
   },
   closeTips () {
     this.setData({'hasTips': false})
+  },
+  remove (e) {
+    let index = e.currentTarget.dataset.index,
+        index0= e.currentTarget.dataset.index0
+    deleteMsgApi({vkey: this.data.messageList[index0][index].vkey, hideLoding: true})
+    this.setData({[`messageList[${index0}][${index}]`]: ''})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
