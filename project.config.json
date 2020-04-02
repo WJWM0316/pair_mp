@@ -111,13 +111,6 @@
 					"scene": null
 				},
 				{
-					"id": 6,
-					"name": "pages/square/index",
-					"pathName": "pages/square/index",
-					"query": "vkey=o7zm6ja7",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "pick",
 					"pathName": "pages/index/index",
@@ -126,23 +119,16 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/userInfo/index",
-					"pathName": "pages/userInfo/index",
-					"query": "vkey=o7zm6ja7",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/createUser/index",
-					"pathName": "pages/createUser/index",
-					"query": "step=2",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/homepage/index",
 					"pathName": "pages/homepage/index",
 					"query": "vkey=fbz8km4i",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/report/index",
+					"pathName": "pages/report/index",
+					"query": "a=1",
 					"scene": null
 				}
 			]
