@@ -6,7 +6,7 @@
       <view class="header">
         <view class="key">邮箱</view>
         <block wx:if="{{ editable }}">
-          <view class="email">{{ formData.email }}</view>
+          <view class="email">{{ formData.email }}{{ emailSuffix }}</view>
           <view class="edit" bindtap="editEmail">编辑邮箱</view>
         </block>
       </view>
@@ -32,7 +32,7 @@
           />
       </view>
     </view>
-    <view class="func-li">
+    <view class="func-li {{ !editable || canResend ? '' : 'padding'}}">
       <text bindtap="sendEmail" class="bold2 {{formData.email ? 'strong' : ''}}" wx:if="{{ !editable || canResend }}">
         {{ canResend ? '重新发送邮箱验证码' : '获取邮箱认证码'}}
       </text>
