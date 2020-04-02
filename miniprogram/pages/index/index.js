@@ -11,7 +11,8 @@ Page({
     viewAreaHeight: app.globalData.viewAreaHeight,
     richText: '',
     status: {},
-    userInfo: 0
+    userInfo: 0,
+    code: 0
   },
   
   onLoad: function () {
@@ -56,8 +57,9 @@ Page({
   },
   pick () {
     let { userInfo } = app.globalData.userInfo
-    if(userInfo.infoCompletePercent >= 40 && userInfo.infoCompletePercent < 80) {
-      wx.navigateTo({url: `/pages/perfectUser/index`})
+    if(userInfo.infoCompletePercent < 80) {
+      this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+      // wx.navigateTo({url: `/pages/perfectUser/index`})
     } else {
       pickApi().then(({ data }) => {
         wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})

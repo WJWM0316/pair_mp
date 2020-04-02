@@ -132,7 +132,11 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
       if (getUserInfoTimes || !token) return
       if (!app.globalData.userInfo) {
         getMyInfoApi({hideLoading: true}).then(res => {
-          app.globalData.userInfo = res.data
+          let userInfo = res.data
+          if(!Object.keys(userInfo.careerVerifyInfo).length) {
+            userInfo.careerVerifyInfo = Object.assign(userInfo.careerVerifyInfo, { status: -1})
+          }
+          app.globalData.userInfo = userInfo
           if (app.getUserInfo) {
             app.getUserInfo()
           }

@@ -1,7 +1,8 @@
 {
   "navigationBarTextStyle":"white",
   "usingComponents": {
-    "swipe-out": "../../components/layout/swipeout"
+    "swipe-out": "../../components/layout/swipeout",
+    "dialog": "../../components/business/dialog"
   },
   "navigationStyle": "custom"
 }

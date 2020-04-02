@@ -25,3 +25,12 @@ export const pickAggrApi = (data) => {
     data
   })
 }
+
+// 设置pick意向：性别
+export const setPickerIntentionApi = (data) => {
+  return request({
+    method: 'put',
+    url: '/pick/intention/gender',
+    data
+  })
+}

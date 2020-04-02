@@ -292,7 +292,7 @@
   display: inline-block;
 }
 .step1 .second .tab-item:last-child {
-  margin-left: 49rpx;
+  margin-left: 48rpx;
 }
 .step1 .second text {
   font-weight: 400;

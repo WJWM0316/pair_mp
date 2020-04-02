@@ -1,6 +1,3 @@
-import {
-  getMyInfoApi
-} from '../../api/user.js'
 let app = getApp()
 Page({
   data: {
