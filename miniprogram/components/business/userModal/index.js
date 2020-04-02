@@ -30,6 +30,7 @@ Component({
     todoAction(e) {
       let { dataset } = e.currentTarget
       let { PAGEPATH } = app.globalData
+      let { userInfo } = this.data
       switch(dataset.action) {
         case 'close':
           this.setData({show: !this.data.show})
@@ -37,7 +38,7 @@ Component({
         case 'homepage':
           this.setData({show: !this.data.show}, () => {
             wx.navigateTo({
-              url: `${PAGEPATH}/homepage/index?vkey=${'ighvcabv'}`
+              url: `${PAGEPATH}/homepage/index?vkey=${userInfo.vkey}`
             })
           })
           break

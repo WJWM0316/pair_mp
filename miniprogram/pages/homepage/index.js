@@ -2,7 +2,7 @@ import {
   getUserInfoApi
 } from '../../api/user.js'
 
-import { getSquareListApi } from "../../api/square.js"
+import { getChargeInfoApi, chatApi } from "../../api/square.js"
 
 const app =  getApp();
 Page({
@@ -19,7 +19,9 @@ Page({
       statusDesc: '审核通过'
     },
     CDNPATH: app.globalData.CDNPATH,
-    buttonInfo: {}
+    buttonInfo: {},
+    code: 0,
+    chargeInfo: {}
   },
   onLoad(options) {
     this.setData({ options })
@@ -37,8 +39,8 @@ Page({
   onShow() {
     let { options } = this.data
     let todoAction = () => {
-      let res = app.globalData.userInfo
-      let callback = (res, myself) => {
+      let rtn = app.globalData.userInfo
+      let callback = (data, myself) => {
         let {
           userInfo,
           careerVerifyInfo = {},
@@ -48,7 +50,7 @@ Page({
             statusDesc: '审核通过'
           },
           buttonInfo = {}
-        } = res
+        } = data
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
         if(!Object.keys(careerVerifyInfo).length) {
           careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
@@ -112,11 +114,11 @@ Page({
           buttonInfo
         })
       }
-      if(res.userInfo.vkey === options.vkey) {
-        callback(res)
+      if(rtn.userInfo.vkey == options.vkey) {
+        callback(rtn)
       } else {
         getUserInfoApi({vkey: options.vkey}).then(({ data }) => {
-          callback(data, res)
+          callback(data, rtn)
         })
       }
     }
@@ -150,12 +152,30 @@ Page({
     })
   },
   fetch() {
-    getSquareListApi({}).then(res => {
-      console.log(res)
+    let { options } = this.data
+    getChargeInfoApi({toUserVkey: options.vkey}).then(({ data }) => {
+      if(data.needCharge) {
+        this.setData({code: 4, chargeInfo: data}, () => this.selectComponent('#dialog').show())
+      } else {
+        this.picker()
+      }
     })
-    // app.wxToast({title: '操作成功~'})
-    // pickApi().then(res => {
-    //   wx.navigateTo({url: `/pages/homepage/index?vkey=${res.data.vkey}`})
+  },
+  picker() {
+    let { options } = this.data
+    chatApi({toUserVkey: options.vkey}).then(res => {
+      console.log(res)
+      this.chat()
+    })
+  },
+  dialogEvent(e) {
+    let rtn = e.detail
+    console.log(rtn)
+    // setPickerIntentionApi({gender: rtn.sex}).then(() => {
+    //   app.globalData.userInfo.pickIntention.gender = Number(rtn.sex)
+    //   this.setData({
+    //     pickIntention: app.globalData.userInfo.pickIntention
+    //   })
     // })
   }
 })
