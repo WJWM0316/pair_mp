@@ -39,7 +39,6 @@ Component({
               albumVerifyInfo: app.globalData.userInfo.albumVerifyInfo,
               userInfo: app.globalData.userInfo.userInfo
             })
-            console.log(this.data)
           }) 
           break
         default:
@@ -95,10 +94,8 @@ Component({
           })    
           break
         default:
-          this.setData({ show: true })
           break
       }
-      console.log(dataset)
     }
   }
 })
