@@ -68,8 +68,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getChatMsg()
-    this.getImDetail()
+    if (!app.globalData.lockonShow) {
+      this.getChatMsg()
+      this.getImDetail()
+    }
     if (app.globalData.userInfo) {
       this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
     } else {
@@ -77,6 +79,7 @@ Page({
         this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
       }
     }
+    app.globalData.lockonShow = false
   },
   getChatMsg () {
     getChatDetailApi({vkey: this.options.vkey, count: 11}).then(res => {
@@ -178,11 +181,12 @@ Page({
   },
 
   onShareAppMessage: function (options) {
+    app.globalData.lockonShow = true
     let that = this
     return app.wxShare({
       options, 
       title: '来撩吧！', 
-      path: `/pages/IM/chat/index?vkey=${that.data.mineUserInfo}.vkey`
+      path: `/pages/IM/chat/index?vkey=${that.data.mineUserInfo.vkey}`
     })
   }
 })

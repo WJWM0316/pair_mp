@@ -35,6 +35,10 @@ Page({
     }
     this.getOtherStatus()
   },
+  handleContact (e) {
+    console.log(e.detail.path)
+        console.log(e.detail.query)
+  },
   getOtherStatus () {
     pickAggrApi().then(res => {
       this.setData({'status': res.data})

@@ -166,6 +166,7 @@ Component({
           socket.send(parmas)
           break
         case 'img':
+          app.globalData.lockonShow = true
           wx.chooseImage({
             count: 1,
             sizeType: ['original', 'compressed'],

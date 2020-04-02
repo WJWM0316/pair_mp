@@ -1,6 +1,8 @@
 <navBar navBarBg="{{background}}" page="picker" userInfo="{{userInfo.userInfo}}"></navBar>
 <view class="indexWrap" style="height: {{viewAreaHeight}}px">
+<button open-type="contact" bindcontact="handleContact" session-from="recharge" show-message-card="{{true}}">客服会话</button>
   <view class="main">
+   
     <rich-text class="richText" nodes="{{richText}}"></rich-text>
     <view class="center circle1"></view>
     <view class="center circle2"></view>

@@ -21,7 +21,6 @@
           <view class="avatar {{item.online ? 'online' : ''}}">
             <i-image my-class="avatarImg" borderRadius="50%" src="{{item.imFromUser.avatarUrl}}"></i-image>
           </view>
-          
           <view class="messageContent">
             <view class="name">{{item.imFromUser.name}}<view class="label">广场</view><view class="time">{{item.lastMsgTimeText}}</view></view>
             <view class="content">{{item.lastMsg}}</view>
