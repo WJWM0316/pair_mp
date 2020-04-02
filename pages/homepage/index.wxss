@@ -288,12 +288,11 @@
 .homepage .work-experience .icon {
   position: absolute;
   right: 0rpx;
-  top: 50%;
+  top: 52%;
   transform: translateY(-50%);
   font-size: 28rpx;
   color: #0CCDDA;
   width: 27rpx;
-  height: 27rpx;
 }
 .homepage .work-years {
   height: 36rpx;
@@ -483,7 +482,8 @@
   font-size: 28rpx;
   color: #0CCDDA;
   width: 27rpx;
-  height: 27rpx;
+  position: relative;
+  top: 5rpx;
 }
 .homepage .report-entry {
   height: 34rpx;

@@ -1,4 +1,5 @@
 <view class="user-page">
+  <dialog code="{{3}}"></dialog>
   <view class="ul ul-album">
     <view class="label">
       <view class="key">我的相册</view>

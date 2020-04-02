@@ -28,6 +28,7 @@ Page({
     let formData = Object.assign(this.data.formData, searchCompany)
     if(searchCompany) {
       this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
+      console.log(this.data, 'app')
     }
   },
   bindInput(e) {
@@ -35,20 +36,22 @@ Page({
     let { value } = e.detail
     let { formData, emailSuffix } = this.data
     if(`${value}${emailSuffix}` !== formData[key]) {
-      formData[key] = `${value}${emailSuffix}`
+      formData[key] = value
       this.setData({ formData })
     }
   },
   isEmail() {
-    if(!emailReg.test(this.data.formData.email)) {
+    let { formData, emailSuffix } = this.data
+    if(!emailReg.test(`${formData.email}${emailSuffix}`)) {
       app.wxToast({title: '请输入正确的邮箱地址'})
     }
-    return emailReg.test(this.data.formData.email)
+    return emailReg.test(`${formData.email}${emailSuffix}`)
   },
   sendEmail() {
-    let { formData } = this.data.formData
+    let { formData, emailSuffix } = this.data
+    let email = `${formData.email}${emailSuffix}`
     if(!this.isEmail()) return
-    sendEmailApi({email: this.data.formData.email, company_id: formData.id }).then(res => {
+    sendEmailApi({email, company_id: formData.company_id }).then(res => {
       this.killTime()
     }).catch(err => app.wxToast({title: err.msg}))
   },
@@ -74,9 +77,13 @@ Page({
     clearInterval(timer)
   },
   verifyEmail() {
-    let { formData } = this.data.formData
+    let { formData } = this.data
+    let { PAGEPATH } = app.globalData
     verifyEmailApi({code: formData.code, company_id: formData.id}).then(res => {
-      wx.navigateBack({ delta: 1 })
+      wx.reLaunch({
+        url: `${PAGEPATH}/index/index`
+      })
+      // wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   }
 })

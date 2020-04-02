@@ -129,6 +129,13 @@
 					"pathName": "pages/userInfo/index",
 					"query": "vkey=o7zm6ja7",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/createUser/index",
+					"pathName": "pages/createUser/index",
+					"query": "step=2",
+					"scene": null
 				}
 			]
 		}

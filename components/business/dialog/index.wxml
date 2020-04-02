@@ -1,0 +1,66 @@
+<view class="chooseSex {{ show ? 'show' : ''}}">
+     <view class="mask {{ show ? 'show' : ''}}"></view>
+     <view class="content">
+          <i class="icon iconfont icon_xiaocha" bindtap="close"></i>
+          <block wx:if="{{code === 1}}">
+               <view class="title">匹配偏好</view>
+               <view class="p1">你想认识？</view>
+               <view class="sex-ul">
+                    <view class="li boy"><i class="icon iconfont icon_nan"></i>男</view>
+                    <view class="li girl"><i class="icon iconfont icon_nv"></i>女</view>
+               </view>
+               <view class="p2"><text>不限性别</text></view>
+          </block>
+          <block wx:elif="{{code === 2}}">
+               <view class="title">个人资料完善度</view>
+               <view class="process">
+                    <view class="bar">
+                         <view class="active2" style="width: {{userInfo.infoCompletePercentDesc}}"></view>
+                         <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i-image>
+                         <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
+                    </view>
+                    <view class="tips">
+                         资料完善度完善到100%，提高双倍交友成功率
+                    </view>
+               </view>
+               <view class="perfect-ul">
+                    <view class="li">
+                         <i class="icon iconfont icon_im_biaoqing"></i>
+                         <text class="text">补充基本资料</text>
+                         <view class="btn bg">去完善</view>
+                    </view>
+                    <view class="li">
+                         <i class="icon iconfont icon_im_tupian"></i>
+                         <text class="text">丰富个人相册</text>
+                         <view class="btn bg">去完善</view>
+                    </view>
+                    <view class="li">
+                         <i class="icon iconfont icon_im_kaichangbai"></i>
+                         <text class="text">我的问答</text>
+                         <view class="btn">已完善</view>
+                    </view>
+               </view>
+          </block>
+          <block wx:elif="{{code === 3}}">
+               <view class="title">为保证双方的交友体验需完善以下信息才可继续Pick</view>
+               <view class="perfect-ul2">
+                    <view class="li bg">
+                         <i class="icon iconfont icon_im_biaoqing"></i>
+                         <text class="text">补充基本资料</text>
+                         <view class="btn">去完善</view>
+                    </view>
+                    <view class="li bg">
+                         <i class="icon iconfont icon_im_tupian"></i>
+                         <text class="text">个人封面审核</text>
+                         <text class="error">未通过</text>
+                         <view class="btn">去上传</view>
+                    </view>
+                    <view class="li">
+                         <i class="icon iconfont icon_gouxuan"></i>
+                         <text class="text">职业信息认证</text>
+                         <view class="btn">已通过</view>
+                    </view>
+               </view>
+          </block>
+     </view>
+</view>

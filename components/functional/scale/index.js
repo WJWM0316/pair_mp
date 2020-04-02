@@ -130,7 +130,7 @@ Component({
       this.timer = setTimeout(() => {
         let moveTo = this.closest(array, scrollLeft)
         let navScrollLeft = moveTo
-        if(array.includes(moveTo)) {
+        if(array.includes(moveTo) && scrollLeft !== moveTo) {
           tabs.map(v => {
             v.active = false
             if(v.startX == moveTo) {

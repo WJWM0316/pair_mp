@@ -14,7 +14,8 @@ Component({
       occupationDesc: '',
       is_need_email_verify: 0,
       companyRequired: 0,
-      company_id: 0
+      company_id: 0,
+      from: 'createUser'
     },
     status: 1,
     canClick: false
@@ -80,6 +81,8 @@ Component({
         app.reloadUserInfo().then(() => {         
           let { PAGEPATH } = app.globalData
           let userInfo = data.userInfo
+          let { formData } = this.data
+          let that = that
           if(!userInfo.isCareerIdentity && userInfo.companyId && userInfo.isNeedCareerIdentity) {
             app.wxConfirm({
               title: '认证',
@@ -87,6 +90,7 @@ Component({
               cancelText: '取消',
               confirmText: '确认',
               confirmBack() {
+                wx.setStorageSync('searchCompany', formData)
                 wx.redirectTo({
                   url: `${PAGEPATH}/methods/index?type=createUser&companyId=${userInfo.companyId ? userInfo.companyId : ''}`
                 })

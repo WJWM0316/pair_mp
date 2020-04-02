@@ -1,0 +1,248 @@
+.chooseSex {
+  transition: all ease 0.2s;
+  z-index: 12;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  opacity: 0;
+}
+.chooseSex.show {
+  opacity: 1;
+}
+.chooseSex .mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  z-index: 9;
+  animation-name: modalopen;
+  animation-duration: 0.2s;
+}
+.chooseSex .mask.show {
+  opacity: 1;
+}
+.chooseSex .content {
+  width: 650rpx;
+  background: #ffffff;
+  border-radius: 24rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.chooseSex .title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 46rpx;
+  text-align: center;
+  margin: 80rpx 90rpx 0 90rpx;
+}
+.chooseSex .icon_xiaocha {
+  position: absolute;
+  top: 38rpx;
+  right: 38rpx;
+  font-size: 20rpx;
+  color: #CFD4D8;
+}
+.chooseSex .p1 {
+  height: 38rpx;
+  font-size: 30rpx;
+  font-weight: 300;
+  color: #1F252B;
+  line-height: 38rpx;
+  text-align: center;
+  margin-top: 36rpx;
+}
+.chooseSex .sex-ul {
+  height: 280rpx;
+  padding: 24rpx 75rpx 48rpx 75rpx;
+}
+.chooseSex .sex-ul .li {
+  width: 242rpx;
+  height: 280rpx;
+  border-radius: 36rpx;
+  display: inline-block;
+  line-height: 280rpx;
+  text-align: center;
+}
+.chooseSex .sex-ul .li.boy {
+  background: #ECFBFC;
+  margin-right: 16rpx;
+  color: #0CCDDA;
+}
+.chooseSex .sex-ul .li.girl {
+  background: #FFF4F8;
+  color: #F46BA1;
+}
+.chooseSex .sex-ul .icon {
+  margin-right: 16rpx;
+  font-size: 30rpx;
+}
+.chooseSex .p2 {
+  height: 36rpx;
+  font-size: 28rpx;
+  color: #1F252B;
+  line-height: 36rpx;
+  text-align: center;
+  padding-bottom: 90rpx;
+}
+.chooseSex .p2 text {
+  text-decoration: underline;
+}
+.chooseSex .process {
+  padding: 0 60rpx;
+  margin: 38rpx 0 48rpx 0;
+}
+.chooseSex .process .bar {
+  height: 10rpx;
+  background: #F1F4F4;
+  border-radius: 5rpx;
+  position: relative;
+}
+.chooseSex .process .active1 {
+  height: 100%;
+  background: #E85274;
+  border-radius: 5rpx;
+}
+.chooseSex .process .active2 {
+  height: 100%;
+  background: #0CCDDA;
+  border-radius: 5rpx;
+}
+.chooseSex .process .tips {
+  font-size: 26rpx;
+  color: #1F252B;
+  line-height: 32rpx;
+  font-weight: 300;
+  margin-top: 30rpx;
+}
+.chooseSex .process .icon-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 80%;
+  color: #F46BA1;
+  width: 26rpx;
+  height: 26rpx;
+}
+.chooseSex .perfect-ul {
+  padding: 0 40rpx 80rpx 40rpx;
+}
+.chooseSex .perfect-ul .li {
+  height: 110rpx;
+  background: #F1F4F4;
+  border-radius: 55rpx;
+  position: relative;
+  padding-left: 50rpx;
+  padding-right: 36rpx;
+  line-height: 110rpx;
+  margin-bottom: 24rpx;
+}
+.chooseSex .perfect-ul .li:last-child {
+  margin-bottom: 0rpx;
+}
+.chooseSex .perfect-ul .text {
+  color: #1F252B;
+  padding-left: 16rpx;
+}
+.chooseSex .perfect-ul .btn {
+  width: 138rpx;
+  height: 60rpx;
+  border-radius: 33rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 36rpx;
+  color: #0CCDDA;
+}
+.chooseSex .perfect-ul .btn.bg {
+  background: #0CCDDA;
+  color: #ffffff;
+}
+.chooseSex .perfect-ul .icon {
+  font-size: 30rpx;
+  color: #1F252B;
+}
+.chooseSex .perfect-ul2 {
+  padding: 48rpx 40rpx 80rpx 40rpx;
+}
+.chooseSex .perfect-ul2 .li {
+  height: 110rpx;
+  background: rgba(241, 244, 244, 0.46);
+  border-radius: 55rpx;
+  position: relative;
+  padding-left: 50rpx;
+  padding-right: 36rpx;
+  line-height: 110rpx;
+  margin-bottom: 24rpx;
+}
+.chooseSex .perfect-ul2 .li:last-child {
+  margin-bottom: 0rpx;
+}
+.chooseSex .perfect-ul2 .li.bg .btn {
+  background: #E85274;
+  color: #ffffff;
+  font-weight: 700;
+}
+.chooseSex .perfect-ul2 .li.bg .icon {
+  color: #E85274;
+}
+.chooseSex .perfect-ul2 .text {
+  color: #1F252B;
+  padding-left: 16rpx;
+  font-size: 30rpx;
+}
+.chooseSex .perfect-ul2 .btn {
+  width: 138rpx;
+  height: 60rpx;
+  border-radius: 33rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 36rpx;
+  color: #0CCDDA;
+}
+.chooseSex .perfect-ul2 .icon {
+  font-size: 30rpx;
+  color: #0CCDDA;
+}
+.chooseSex .error {
+  width: 82rpx;
+  height: 36rpx;
+  background: rgba(232, 82, 116, 0.1);
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  color: #E85274;
+  text-align: center;
+  line-height: 36rpx;
+  margin-left: 10rpx;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -2rpx;
+}
+@keyframes modalopen {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
