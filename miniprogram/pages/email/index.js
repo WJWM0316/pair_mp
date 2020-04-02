@@ -80,10 +80,13 @@ Page({
     let { formData } = this.data
     let { PAGEPATH } = app.globalData
     verifyEmailApi({code: formData.code, company_id: formData.id}).then(res => {
-      wx.reLaunch({
-        url: `${PAGEPATH}/index/index`
-      })
-      // wx.navigateBack({ delta: 1 })
+      if(formData.from) {
+        wx.reLaunch({
+          url: `${PAGEPATH}/index/index`
+        })
+      } else {
+        wx.navigateBack({ delta: 1 })
+      }
     }).catch(err => app.wxToast({title: err.msg}))
   }
 })
