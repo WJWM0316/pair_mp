@@ -14,7 +14,8 @@ Component({
       occupationDesc: '',
       is_need_email_verify: 0,
       companyRequired: 0,
-      company_id: 0
+      company_id: 0,
+      from: 'createUser'
     },
     status: 1,
     canClick: false
