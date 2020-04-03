@@ -169,11 +169,11 @@
       <view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view>
     </i-button> -->
     <view class="btn3" wx:if="{{isOwer}}" bindtap="edit"><view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view></view>
-    <!-- <view class="btn3" bindtap="chat" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view></view> -->
-    <block wx:else>
+    <view class="btn3" bindtap="chat" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view></view>
+    <!-- <block wx:else>
       <view class="btn3" bindtap="fetch" wx:if="{{buttonInfo.buttonType === 2}}"><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
       <view class="btn3" bindtap="chat" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view></view>
-    </block>
+    </block> -->
   </view>
   <dialog code="{{ code }}" id="dialog" bind:click="dialogEvent" other="{{ chargeInfo }}"></dialog>
 </view>
