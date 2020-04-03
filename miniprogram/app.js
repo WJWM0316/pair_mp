@@ -1,11 +1,9 @@
 //app.js
 import {setConfig} from './env.config'
-import { request } from './api/index'
-import wxApi from './utils/wxApi'
-import {getTitleHeight} from './utils/util.js'
 import {getSubscribeApi} from './api/subscribe.js'
 import {getMyInfoApi} from './api/user.js'
-import {socket} from './utils/index.js'
+import {wxApi, getTitleHeight, socket, loginCallback} from './utils/index.js'
+
 
 App({
   ...wxApi, // 挂载二次封装的微信API
@@ -15,10 +13,6 @@ App({
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
       wx.cloud.init({
-        // env 参数说明：
-        //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
-        //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
-        //   如不填则使用默认环境（第一个创建的环境）
         env: 'global-qlebi',
         traceUser: true,
       })
@@ -36,8 +30,23 @@ App({
     let config = setConfig(appId, envVersion)
     Object.assign(this.globalData, config)
 
+    let token = wx.getStorageSync('token')
     
-    socket.create(this.globalData.SOCKETHOST, wx.getStorageSync('token'))
+    socket.create(this.globalData.SOCKETHOST, token)
+    
+    // 判断微信登录状态
+    wx.checkSession({
+      success () {
+        if (token) {
+          let res = {data: {userInfo: {token}}}
+          loginCallback(res)
+        }
+      },
+      fail () {
+        wx.removeStorageSync('token')
+        wx.removeStorageSync('sessionToken')
+      }
+    })
     
     getSubscribeApi({hideLoading: true}, this)
   },

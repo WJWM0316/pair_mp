@@ -1,5 +1,5 @@
 
-import {getMyInfoApi} from './user.js'
+
 import {getCurrentPagePath, socket, loginCallback} from '../utils/index.js'
 let APIHOST         = '',
     loadNum         = 0,
@@ -7,8 +7,7 @@ let APIHOST         = '',
     token           = wx.getStorageSync('token'),
     sessionToken    = wx.getStorageSync('sessionToken'),
     addHttpHead     = {},
-    noAuthRequests  = [], // 需要静默拦截的接口
-    getUserInfoTimes= 0 // 获取用户信息接口次数
+    noAuthRequests  = [] // 需要静默拦截的接口
 // 开启loading
 let openLoading = (loadingContent) => {
   if (loadNum === 0) {
@@ -53,10 +52,10 @@ const removeAuth = () => {
 }
 
 export const request = ({method = 'post', url, host, data = {}, instance, loadingContent = '加载中...'}) => {
+  // onLaunch 的时候获取不到getApp() 需要传递this过来
   app = !getApp() ? instance : getApp()
 
   return new Promise((resolve, reject) => {
-    
     setHeader()
 
     // 请求中间件
@@ -125,26 +124,6 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
       })
     }
 
-    
-
-    // 需要用户信息
-    const getUserInfo = () => {
-      if (getUserInfoTimes || !token) return
-      if (!app.globalData.userInfo) {
-        getMyInfoApi({hideLoading: true}).then(res => {
-          let userInfo = res.data
-          if(!Object.keys(userInfo.careerVerifyInfo).length) {
-            userInfo.careerVerifyInfo = Object.assign(userInfo.careerVerifyInfo, { status: -1})
-          }
-          app.globalData.userInfo = userInfo
-          if (app.getUserInfo) {
-            app.getUserInfo()
-          }
-        })
-      }
-      getUserInfoTimes = 1
-    }
-
     // 拦截器
     const controlFun = () => {
       // 静默登录拦截
@@ -179,11 +158,6 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         }
         noAuthRequests.push(promise)
       } else {
-        if (token && !socket.SocketTask) {
-          // 开启socket
-          socket.create(app.globalData.SOCKETHOST, token)
-        }
-        getUserInfo()
         promise()
       }
     }

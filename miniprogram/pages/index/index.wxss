@@ -53,7 +53,6 @@
 .indexWrap .main .centerBtn .btnContent .mainBtn {
   width: 224rpx;
   height: 224rpx;
-  padding: 57rpx 46rpx 0;
   box-sizing: border-box;
   background: #0CCDDA;
   border-radius: 50%;
@@ -66,9 +65,10 @@
   border: none;
 }
 .indexWrap .main .centerBtn .btnContent .mainBtn .logo {
-  width: 100%;
-  height: 44rpx;
-  margin: 0 auto;
+  width: 160rpx;
+  height: 77rpx;
+  margin: 57rpx auto 9rpx;
+  display: block;
 }
 .indexWrap .main .centerBtn .btnContent .mainBtn .now_times {
   text-align: center;
@@ -76,6 +76,9 @@
   font-weight: 300;
   color: #fff;
   line-height: 29rpx;
+}
+.indexWrap .main .centerBtn .btnContent .mainBtn .now_times .times {
+  font-weight: 700;
 }
 .indexWrap .main .centerBtn .btnContent::before {
   width: 228rpx;
@@ -114,7 +117,6 @@
   background: #F46BA1;
 }
 .indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot {
-  padding: 57rpx 45rpx 0;
   width: 100%;
   height: 100%;
   text-align: center;
@@ -126,6 +128,13 @@
   color: #fff;
   line-height: 46rpx;
   letter-spacing: 2rpx;
+  margin: 38rpx 0 4rpx;
+}
+.indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .logo {
+  width: 134rpx;
+  height: 65rpx;
+  display: block;
+  margin: 0 auto 15rpx;
 }
 .indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .timesTxt {
   font-size: 22rpx;
@@ -137,7 +146,7 @@
   border-radius: 106rpx;
   position: absolute;
   left: 0;
-  bottom: -168rpx;
+  bottom: -136rpx;
 }
 .indexWrap .main .centerBtn .btnContent.contactBtn::before {
   background: #93224E;
@@ -151,6 +160,10 @@
 }
 .indexWrap .main .centerBtn .btnContent.default .mainBtn {
   background: #32474A;
+}
+.indexWrap .main .centerBtn .btnContent.default .mainBtn .logo,
+.indexWrap .main .centerBtn .btnContent.default .mainBtn .now_times {
+  opacity: 0.5;
 }
 .indexWrap .main .centerBtn .btnContent.default::after {
   background: linear-gradient(143deg, rgba(255, 255, 255, 0.09), #ffffff);
@@ -168,6 +181,7 @@
   color: #fff;
   line-height: 40rpx;
   text-align: center;
+  z-index: 5;
 }
 .indexWrap .main .footerTxt .txt2 {
   font-size: 88rpx;
@@ -195,12 +209,11 @@
   left: 0;
 }
 .richText .richWrap {
-  width: 4rpx;
-  height: 4rpx;
+  width: 1rpx;
+  height: 1rpx;
   position: absolute;
   left: 50%;
   bottom: 50%;
-  background: #000;
   transform: translate3d(-50%, -50%, 0);
   z-index: 10;
 }

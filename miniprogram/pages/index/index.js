@@ -13,7 +13,9 @@ Page({
     status: {},
     userInfo: 0,
     countDown: 0,
-    code: 0
+    code: 0,
+    hasLogin: app.globalData.hasLogin,
+    cdnPath: app.globalData.CDNPATH
   },
   
   onLoad: function () {
@@ -62,21 +64,26 @@ Page({
   },
   getAvatarList () {
     pickIndexAvaApi().then(res => {
+      let hasLogin = app.globalData.hasLogin
       let richText = `<div class="richWrap">`
       res.data.avatarUrls.forEach((item, index) => {
         richText = `${richText}<img src='${item}' class='richDom richDom${index}' />`
       })
       richText = `${richText}</div>`
-      this.setData({richText})
+      this.setData({richText, hasLogin})
     })
   },
   pick () {
     let { userInfo } = app.globalData.userInfo
-    if(userInfo.infoCompletePercent < 80) {
+    if(!this.data.status.canPick) {
       this.setData({code: 3}, () => this.selectComponent('#dialog').show())
     } else {
       pickApi({hideLoading: true}).then(({ data }) => {
         wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
+      }).catch(e => {
+        if (e.data.code === 2204) {
+          this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+        }
       })
     }
   },

@@ -58,9 +58,7 @@ Component({
     let route = getCurrentPages()
     route = route[route.length - 1].route
     let list  = this.data.list
-    
     list.map(field => field.selected = field.routerPath === route ? true : false)
-    console.log(route, list, 11111111)
     this.setData({list})
   },
   /**
