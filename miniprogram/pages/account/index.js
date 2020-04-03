@@ -19,25 +19,35 @@ Page({
       topUpTimes: 0,
       uid: 0,
       vkey: "rypbaeb3",
+      todaySigned: false
     }
   },
   onShow() {
+    console.log(this.getRurrentDate())
     this.getCurrentWeekSignIn()
     getSugarInfoApi().then(({data}) => {
       this.setData({wallet: data.wallet})
-      console.log(data)
     })
+  },
+  getRurrentDate() {
+    let date = new Date();
+    let month = date.getMonth() + 1 < 10 ? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+    let strDate = date.getDate() <10 ? "0" + date.getDate():date.getDate();
+    return date.getFullYear() + '-'  + month  + '-'  + strDate;
   },
   getCurrentWeekSignIn() {
     getCurrentWeekSignInApi().then(({ data }) => {
       let signIndex = data.list.map(v => v.weekDateIndex)
+      let dateArr = data.list.map(v => v.date) || []
+      let currentDate = this.getRurrentDate()
       data.configList.map((v, i) => {
         v.hasSign = false
         if(signIndex.includes(i+1)) {
           v.hasSign = true
         }
       })
-      this.setData({ weekSignConfig: data})
+      this.setData({ weekSignConfig: data, todaySigned: dateArr.includes(currentDate)})
+      console.log(this.data)
     })
   },
   viewBill() {

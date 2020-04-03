@@ -82,6 +82,20 @@
   top: 0;
   right: 0;
 }
+.account .my-header .btn2 {
+  width: 158rpx;
+  height: 60rpx;
+  border-radius: 31rpx;
+  border: 2rpx solid #9CA1AA;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #9CA1AA;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .account .my-header .h1 {
   font-size: 36rpx;
   font-weight: 700;
@@ -205,4 +219,8 @@
   font-weight: 300;
   color: #9CA1AA;
   margin-top: 4rpx;
+}
+.account .my-header2 text {
+  font-size: 30rpx;
+  color: #0CCDDA;
 }

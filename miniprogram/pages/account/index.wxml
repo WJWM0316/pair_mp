@@ -13,7 +13,8 @@
     <view class="my-header">
       <view class="h1">签到有礼</view>
       <view class="h2">每日签到可以免费获取相应皮糖哦~</view>
-      <view class="btn" bindtap="sign">立即签到</view>
+      <view class="btn" bindtap="sign" wx:if="{{ !todaySigned }}">立即签到</view>
+      <view class="btn2" wx:else>已签到</view>
     </view>
     <view class="ul">
       <view class="li" wx:for="{{ weekSignConfig.configList }}" wx:key="index">
@@ -27,7 +28,7 @@
       </view>
     </view>
     <view class="my-header2">
-      <view class="h1">邀请好友</view>
+      <view class="h1">邀请好友<text>+38皮糖/位</text></view>
       <view class="h2">每邀请1位均可获得38皮糖，不设上限</view>
       <view class="btn">立即邀请</view>
     </view>
