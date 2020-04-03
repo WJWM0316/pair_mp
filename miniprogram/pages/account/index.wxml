@@ -3,10 +3,33 @@
     <view class="inner">
       <i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png" mode="heightFix"></i-image>
       <view class="info">
-        <view class="number">2000</view>
-        <view class="entry">我的账单</view>
+        <view class="number">{{wallet.remain}}</view>
+        <view class="entry" bindtap="viewBill">我的账单<i class="icon iconfont icon_jiantoumian_huaban"></i></view>
       </view>
     </view>
     <contactBtn contactType="recharge" title="去充值" my-class="btn"></contactBtn>    
+  </view>
+  <view class="my-box">
+    <view class="my-header">
+      <view class="h1">签到有礼</view>
+      <view class="h2">每日签到可以免费获取相应皮糖哦~</view>
+      <view class="btn" bindtap="sign">立即签到</view>
+    </view>
+    <view class="ul">
+      <view class="li" wx:for="{{ weekSignConfig.configList }}" wx:key="index">
+        <view class="item">          
+          <view class="fanbei" wx:if="{{ item.sugarTimes === 2 }}">翻倍</view>
+          <i-image my-class="sign-bg" src="{{ CDNPATH }}img_nosignin@3x.png" wx:if="{{!item.hasSign}}"></i-image>
+          <i-image my-class="sign-bg" src="{{ CDNPATH }}img_signin@3x.png" wx:else></i-image>
+          <view class="txt1">+{{ item.sugarBase }}x{{ item.sugarTimes }} </view>
+        </view>
+        <text class="day">{{item.day}}</text>
+      </view>
+    </view>
+    <view class="my-header2">
+      <view class="h1">邀请好友</view>
+      <view class="h2">每邀请1位均可获得38皮糖，不设上限</view>
+      <view class="btn">立即邀请</view>
+    </view>
   </view>
 </view>

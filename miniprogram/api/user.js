@@ -84,3 +84,17 @@ export const getUserInfoCompleteApi = (data) => {
     url: '/user/complete'
   })
 }
+
+export const userSignApi = (data) => {
+  return request({
+    method: 'put',
+    url: '/sign_in'
+  })
+}
+
+export const getCurrentWeekSignInApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/sign_in/list/cur_week'
+  })
+}

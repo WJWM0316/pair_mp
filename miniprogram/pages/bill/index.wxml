@@ -10,7 +10,7 @@
         <view class="desc">{{ item.note }}</view>
         <view class="value get">+{{item.diff}}</view>
       </view>
-      <bottomStatus status="{{obtainData.onBottomStatus}}" desc="暂无数据~" listData="{{ obtainData.list }}"></bottomStatus>
+      <!-- <bottomStatus status="{{obtainData.onBottomStatus}}" desc="暂无数据~" listData="{{ obtainData.list }}"></bottomStatus> -->
     </block>
     <block wx:else>
       <view class="li" wx:for="{{ useData.list }}" wx:key="index">
@@ -18,7 +18,7 @@
         <view class="desc">{{ item.note }}</view>
         <view class="value use">-{{item.diff}}</view>
       </view>
-      <bottomStatus status="{{useData.onBottomStatus}}" desc="暂无数据~" listData="{{ useData.list }}"></bottomStatus>
+      <!-- <bottomStatus status="{{useData.onBottomStatus}}" desc="暂无数据~" listData="{{ useData.list }}"></bottomStatus> -->
     </block>
   </view>
 </view>
