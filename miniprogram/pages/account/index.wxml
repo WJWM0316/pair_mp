@@ -7,6 +7,6 @@
         <view class="entry">我的账单</view>
       </view>
     </view>
-    <contactBtn contactType="recharge"><view class="btn">去充值</view></contactBtn>    
+    <contactBtn contactType="recharge" title="去充值" my-class="btn"></contactBtn>    
   </view>
 </view>

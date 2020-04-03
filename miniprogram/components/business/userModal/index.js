@@ -62,6 +62,13 @@ Component({
         case 'sex':
           this.setData({code: 1}, () => this.selectComponent('#dialog').show())
           break
+        case 'account':
+          this.setData({show: !this.data.show}, () => {
+            wx.navigateTo({
+              url: `${PAGEPATH}/account/index`
+            })
+          })
+          break
       }
     },
     dialogEvent(e) {
