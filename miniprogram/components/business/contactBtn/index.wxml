@@ -1,1 +1,3 @@
-<button class="my-class" open-type="contact" session-from="{{sessionFrom}}">{{title}}</button>
+<button class="my-class" open-type="contact" session-from="{{sessionFrom}}">
+<slot name="content"></slot>{{title}}
+</button>

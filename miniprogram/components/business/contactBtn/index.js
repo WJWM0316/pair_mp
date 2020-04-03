@@ -15,6 +15,10 @@ Component({
   data: {
     sessionFrom: ''
   },
+  options: {
+    // 在组件定义时的选项中启用多slot支持
+    multipleSlots: true
+  },
   attached () {
     let sessionFrom = {}
     switch (this.data.contactType) {

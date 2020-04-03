@@ -12,6 +12,7 @@ Page({
     richText: '',
     status: {},
     userInfo: 0,
+    countDown: 0,
     code: 0
   },
   
@@ -38,7 +39,25 @@ Page({
   
   getOtherStatus () {
     pickAggrApi({hideLoading: true}).then(res => {
-      this.setData({'status': res.data})
+      let countDown = 0
+      if (res.data.pickChance.todayRemain) {
+        countDown = res.data.refreshAt - res.data.curTime
+        let startCountDown = () => {
+          this.countDownTimers = setTimeout(() => {
+            if (countDown > 0) {
+              countDown--
+              this.setData({countDown})
+              startCountDown()
+            } else {
+              countDown = 0
+              clearInterval(this.countDownTimers)
+              this.getOtherStatus()
+            }
+          }, 1000)
+        }
+        startCountDown()
+      }
+      this.setData({'status': res.data, countDown})
     })
   },
   getAvatarList () {
@@ -55,11 +74,13 @@ Page({
     let { userInfo } = app.globalData.userInfo
     if(userInfo.infoCompletePercent < 80) {
       this.setData({code: 3}, () => this.selectComponent('#dialog').show())
-      // wx.navigateTo({url: `/pages/perfectUser/index`})
     } else {
       pickApi({hideLoading: true}).then(({ data }) => {
         wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
       })
     }
-  }
+  },
+  onHide: function () {
+    clearInterval(this.countDownTimers)
+  },
 })

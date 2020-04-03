@@ -27,16 +27,40 @@
   position: relative;
   z-index: 2;
 }
-.tabBar .tabBar-content .icon {
-  display: block;
-  color: #C7D7E7;
+.tabBar .tabBar-content .tabBar-item {
+  text-align: center;
 }
-.tabBar .tabBar-content .text {
+.tabBar .tabBar-content .tabBar-item .icon {
+  display: block;
+  width: 54rpx;
+  height: 54rpx;
+}
+.tabBar .tabBar-content .tabBar-item .text {
   display: block;
   color: #C7D7E7;
   font-size: 22rpx;
   line-height: 30rpx;
-  font-weight: 500;
+  font-weight: 700;
+}
+.tabBar .tabBar-content .tabBar-item .text.selected {
+  color: #0CCDDA;
+}
+.tabBar .tabBar-content .tabBar-item.center {
+  position: absolute;
+  left: 50%;
+  width: 125rpx;
+  margin-left: -67.5rpx;
+  top: -16rpx;
+}
+.tabBar .tabBar-content .tabBar-item.center .icon {
+  width: 125rpx;
+  height: 108rpx;
+}
+.tabBar .tabBar-content .tabBar-item.center .text {
+  margin-top: -18rpx;
+}
+.tabBar .tabBar-content .tabBar-item.center .text.selected {
+  color: #F46BA1;
 }
 .tabBar .tabBar-mask {
   width: 100%;

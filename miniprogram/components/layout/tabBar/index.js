@@ -1,5 +1,5 @@
 const app =  getApp();
-import {getSelectorQuery} from '../../../utils/util.js'
+import {getSelectorQuery, } from '../../../utils/util.js'
 Component({
   /**
    * 组件的属性列表
@@ -23,27 +23,28 @@ Component({
       {
         text: '广场',
         selected: false,
-        icon: '',
-        selectedIcon: '',
-        routerPath: '/pages/square/index'
+        icon: 'tab_square@3x.png',
+        selectedIcon: 'tab_square_pre@3x.png',
+        routerPath: 'pages/square/index'
       },
       {
-        text: 'pick',
+        text: 'Pick',
         selected: false,
-        icon: '',
-        selectedIcon: '',
-        routerPath: '/pages/index/index'
+        icon: 'tab_pick@3x.png',
+        selectedIcon: 'tab_pick_pre@3x.png',
+        routerPath: 'pages/index/index'
       },
       {
         text: '消息',
         selected: false,
-        icon: '',
-        selectedIcon: '',
-        routerPath: '/pages/IM/list/index'
+        icon: 'tab_message@3x.png',
+        selectedIcon: 'tab_message_pre@3x.png',
+        routerPath: 'pages/IM/list/index'
       }
-    ]
+    ],
+    cdnPath: app.globalData.CDNPATH
   },
-  ready () {
+  attached () {
     if (!app.globalData.tabBarHeight) {
       getSelectorQuery(".block", this).then(res => {
         app.globalData.tabBarHeight = res.height
@@ -54,6 +55,13 @@ Component({
         }
       })
     }
+    let route = getCurrentPages()
+    route = route[route.length - 1].route
+    let list  = this.data.list
+    
+    list.map(field => field.selected = field.routerPath === route ? true : false)
+    console.log(route, list, 11111111)
+    this.setData({list})
   },
   /**
    * 组件的方法列表
@@ -62,7 +70,7 @@ Component({
     jump (e) {
       console.log(e, 11)
       let route = e.currentTarget.dataset.route
-      wx.reLaunch({url: route})
+      wx.reLaunch({url: '/' + route})
     }
   }
 })

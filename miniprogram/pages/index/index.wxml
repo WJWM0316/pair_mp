@@ -8,19 +8,56 @@
     <view class="center circle2"></view>
     <view class="center circle3"></view>
     <view class="center circle4"></view>
-    <view class="center centerBtn">
-      <block wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
-        <contach-btn contactType="recharge" title="客服会话"></contach-btn>
-      </block>
-      <block wx:if="{{status.pickChance.todayRemain}}">
-        <i-button my-class="center mainBtn" bindtap = "pick">
+    <view class="center centerBtn" style="{{parse.setStyle('centerBtn', status.pickChance.todayRemain, status.pickChance.todayRemainExchangeTimes)}}">
+      <view class="center btnContent contactBtn" wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
+        <contach-btn my-class="mainBtn" contactType="recharge">
+          <view slot="content" class="contactSlot">
+            <view class="moreTxt">获取更多</view>
+            <view class="timesTxt">次数已用完</view>
+          </view>
+        </contach-btn>
+      </view>
+      <view wx:else class="center btnContent {{!status.pickChance.todayRemain && !status.pickChance.todayRemainExchangeTimes ? 'default' : ''}}">
+        <i-button my-class="mainBtn" bindtap = "pick">
           <i-image my-class="logo" src="/images/logo/logo_pickme_white.png"></i-image>
           <view class="now_times">今日剩余<view><text class="times">{{status.pickChance.todayRemain}}</text>次</view></view>
         </i-button>
-      </block>
+      </view>
     </view>
-    <view class="text">Pick一下，为你匹配最适合你的Ta</view>
+
+    <block wx:if="{{status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
+      <view class="footerTxt">
+        <view class="txt1">{{status.refreshText}}</view>
+        <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
+        <view class="txt3">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
+      </view>
+    </block>
+    <block wx:elif="{{status.pickChance.todayRemain}}">
+      <view class="footerTxt">Pick一下，为你匹配最适合你的Ta</view>
+    </block>
+    <block wx:else>
+      
+    </block>
+    
   </view>
 </view>
 <tabBar tabBgColor="{{background}}" mask="{{false}}"></tabBar>
 <dialog code="{{ code }}" id="dialog" bind:click="dialogEvent"></dialog>
+<wxs src="../../utils/filters.wxs" module="filters" />
+
+<wxs module="parse">
+  module.exports = {
+
+    setStyle : function(dom, todayRemain, todayRemainExchangeTimes){
+      switch (dom) {
+        case 'centerBtn':
+          if (!todayRemain && todayRemainExchangeTimes) {
+            return 'box-shadow: 0 0 0rpx 123rpx rgba(244,107, 161, 0.09);'
+          } else if (todayRemain) {
+            return 'box-shadow: 0 0 0rpx 123rpx rgba(12, 205, 218, 0.09);'
+          }
+          break
+      }
+    }
+  }
+</wxs>

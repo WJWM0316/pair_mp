@@ -32,6 +32,8 @@ var dateFormat = function(timestamp, format) {
   switch(format) {
     case 'HH:mm':
     return hour() + ':' + minute()
+    case 'HH:mm:ss':
+    return hour() + ':' + minute() + ':' + second()
     case 'MM-DD HH:mm':
     return month + '-' + day + ' ' + hour() + ':' + minute()
     case 'YY-MM-DD':
