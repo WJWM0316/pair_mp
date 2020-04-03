@@ -2,7 +2,7 @@
     <view class="h1">请过诉我们该用户在哪类聊天过程中违规了</view>
     <view class="ul">
         <view class="li {{item.active ? 'active' : ''}}" wx:for="{{reason}}" wx:key="index" bindtap="check" data-item="{{item}}">
-            {{item.name}}<i class="icon1 icon iconfont icon_gouxuan" wx:if="{{item.active}}"></i><i class="icon2 icon iconfont icon_bofang" wx:else></i>
+            {{item.name}}<i class="icon1 icon iconfont icon_gouxuan" wx:if="{{item.active}}"></i><i class="icon2" wx:else></i>
         </view>
     </view>
     <view class="h1 add">图片证据（必填，最多上传4张）</view>

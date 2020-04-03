@@ -349,7 +349,7 @@
   position: relative;
 }
 .step1 .third .item:last-child {
-  margin-left: 49rpx;
+  margin-left: 48rpx;
 }
 .step1 .third .item:after {
   position: absolute;

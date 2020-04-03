@@ -1,0 +1,91 @@
+.account {
+  background: white;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.account .tab {
+  height: 40rpx;
+  font-size: 32rpx;
+  color: #1F252B;
+  line-height: 40rpx;
+  padding: 45rpx 226rpx;
+  display: flex;
+}
+.account .tab .item {
+  display: inline-block;
+  flex: 1;
+  position: relative;
+}
+.account .tab .item:first-child {
+  text-align: left;
+}
+.account .tab .item:last-child {
+  text-align: right;
+}
+.account .tab .item.active {
+  font-weight: 700;
+  pointer-events: none;
+}
+.account .tab .item.active text:after {
+  opacity: 1;
+}
+.account .tab text {
+  position: relative;
+}
+.account .tab text:after {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  bottom: -13rpx;
+  width: 32rpx;
+  height: 6rpx;
+  background: #0CCDDA;
+  border-radius: 3rpx;
+  content: '';
+  display: block;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.account .ul .date {
+  height: 32rpx;
+  font-size: 24rpx;
+  color: #9CA1AA;
+  line-height: 32rpx;
+}
+.account .ul .desc {
+  height: 38rpx;
+  font-size: 30rpx;
+  color: #1F252B;
+  line-height: 38rpx;
+  margin-top: 8rpx;
+}
+.account .ul .value {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 60rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+.account .ul .value.get {
+  color: #0CCDDA;
+}
+.account .ul .value.use {
+  color: #0CCDDA;
+}
+.account .ul .li {
+  position: relative;
+  padding: 21rpx 60rpx;
+}
+.account .ul .li:after {
+  position: absolute;
+  left: 60rpx;
+  right: 60rpx;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #e9eaec;
+  display: block;
+}

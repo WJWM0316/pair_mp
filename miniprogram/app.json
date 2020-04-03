@@ -20,7 +20,8 @@
     "pages/cutInside/index",
     "pages/homepage/index",
     "pages/square/index",
-    "pages/report/index"
+    "pages/report/index",
+    "pages/account/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

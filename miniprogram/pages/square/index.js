@@ -11,10 +11,11 @@ Page({
       isLastPage: false,
       isRequire: false
     },
-    onBottomStatus: 0
+    onBottomStatus: 0,
+    background: ''
   },
   onLoad(options) {
-
+    
   },
   onReady() {
 
@@ -69,5 +70,13 @@ Page({
     if (!userData.isLastPage) {
       this.setData({onBottomStatus: 1}, () => this.getUserList())
     }
+  },
+  onPageScroll(e) {
+    if(e.scrollTop > 0) {
+      if(this.data.background !== '#1F252B') this.setData({background: '#1F252B'})
+    } else {
+      if(this.data.background !== 'transparent') this.setData({background: 'transparent'})
+    }
+    console.log(e)
   }
 })

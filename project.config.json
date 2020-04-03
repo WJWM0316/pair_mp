@@ -119,16 +119,9 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/homepage/index",
-					"pathName": "pages/homepage/index",
+					"name": "pages/account/index",
+					"pathName": "pages/account/index",
 					"query": "vkey=fbz8km4i",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "pages/report/index",
-					"pathName": "pages/report/index",
-					"query": "vkey=kfxt0oot",
 					"scene": null
 				}
 			]
