@@ -53,11 +53,11 @@
                <view class="model_title">为保证双方的交友体验需完善以下信息才可继续Pick</view>
                <view class="perfect-ul2">
                     <view class="li">
-                         <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{ !userCompleteInfo.baseComplete }}"></i>
+                         <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{ userCompleteInfo.infoCompletePercent < 80 }}"></i>
                          <i class="icon2 iconfont icon_gouxuan" wx:else></i>
                          <text class="text">补充基本资料</text>
-                         <view class="btn" wx:if="{{ userCompleteInfo.baseComplete }}">已完善</view>
-                         <view class="btn bg" wx:else bindtap="routeJump" data-page="userInfo">去完善</view>
+                         <view class="btn bg" bindtap="routeJump" data-page="userInfo" wx:if="{{ userCompleteInfo.baseComplete < 80 }}">去完善</view>
+                         <view class="btn" wx:else>已完善</view>                         
                     </view>
                     <view class="li">
                          <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0}}"></i>

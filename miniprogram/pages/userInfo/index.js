@@ -16,9 +16,6 @@ Page({
       let res = app.globalData.userInfo
       let { userInfo, careerVerifyInfo, pickIntention, albumVerifyInfo } = res
       let { userLabelList, userAnswerList, isAllQuestion } = userInfo
-      if(!Object.keys(careerVerifyInfo).length) {
-        careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
-      }
       userLabelList.map((v,i) => {
         switch(v.labelId) {
           case 110000:
