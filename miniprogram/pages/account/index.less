@@ -2,92 +2,43 @@
 @import '../../styles/_mixins.less';
 
 .account {
-  background: white;
-  border-radius:36rpx 36rpx 0rpx 0rpx;
+  background: @vice-primary-color-1;
   min-height: 100vh;
   box-sizing: border-box;
-  .tab {
-    height:40rpx;
-    font-size:32rpx;
-    color:@text-color-1;
-    line-height:40rpx;
-    padding: 45rpx 226rpx;
+  .header {
+    height: 242rpx;
+    padding: 40rpx 60rpx 63rpx 48rpx;
     display: flex;
-    .item {
-      display: inline-block;
-      flex: 1;
-      position: relative;
-      &:first-child {
-        text-align: left;
-      }
-      &:last-child {
-        text-align: right;
-      }
-      &.active {
-        font-weight: 700;
-        pointer-events: none;
-        text{
-          &:after {
-            opacity: 1;
-          }
-        }
-      }
-    }
-    text {
-      position: relative;
-      &:after {
-        position: absolute;
-        left: 50%;
-        right: 0;
-        bottom: -13rpx;
-        width:32rpx;
-        height:6rpx;
-        background:@primary-color;
-        border-radius:3rpx;
-        content: '';
-        display: block;
-        transform: translateX(-50%);
-        opacity: 0;
-      }
-    }
-  }
-  .ul {
-    .date {
-      height:32rpx;
-      font-size:24rpx;
-      color:@text-color-3;
-      line-height:32rpx;
-    }
-    .desc {
-      height:38rpx;
+    align-items: center;
+    box-sizing: border-box;
+    .btn {
+      width:197rpx;
+      height:80rpx;
+      background:@primary-color;
+      border-radius:44rpx;
+      line-height: 80rpx;
+      text-align: center;
+      flex: 0 0 0 197rpx;
       font-size:30rpx;
-      color:@text-color-1;
-      line-height:38rpx;
-      margin-top: 8rpx;
-    }
-    .value {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 60rpx;
-      font-size:38rpx;
       font-weight:700;
-      &.get {
-        color:@primary-color;
-      }
-      &.use {
-        color:@primary-color;
-      }
+      color:rgba(255,255,255,1);
     }
-    .li {
-      position: relative;
-      padding: 21rpx 60rpx;
-      &:after {
-        position: absolute;
-        left: 60rpx;
-        right: 60rpx;
-        bottom: 0;
-        .line()
+    .inner {
+      flex: 1;
+    }
+    .pitang {
+      height:140rpx;
+      display: inline-block;
+    }
+    .info {
+      height: 140rpx;
+      display: inline-block;
+      .number {
+        font-size:96rpx;
+        font-weight:700;
+        color:rgba(255,255,255,1);
+        line-height:96rpx;
+        letter-spacing:1px;
       }
     }
   }

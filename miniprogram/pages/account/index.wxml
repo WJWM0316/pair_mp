@@ -1,24 +1,12 @@
 <view class="account">
-  <view class="tab">
-    <view class="item {{ tab === 'obtainData' ? 'active' : ''}}"><text bindtap="onClickTab" data-tab="obtainData">获取</text></view>
-    <view class="item {{ tab === 'useData' ? 'active' : ''}}"><text bindtap="onClickTab" data-tab="useData">消耗</text></view>
-  </view>
-  <view class="ul">
-    <block wx:if="{{ tab === 'obtainData' }}">
-      <view class="li" wx:for="{{ obtainData.list }}" wx:key="index">
-        <view class="date">{{ item.createdAt }}</view>
-        <view class="desc">{{ item.note }}</view>
-        <view class="value get">+{{item.diff}}</view>
+  <view class="header">
+    <view class="inner">
+      <i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png" mode="heightFix"></i-image>
+      <view class="info">
+        <view class="number">2000</view>
+        <view class="entry">我的账单</view>
       </view>
-      <bottomStatus status="{{obtainData.onBottomStatus}}" desc="暂无数据~" listData="{{ obtainData.list }}"></bottomStatus>
-    </block>
-    <block wx:else>
-      <view class="li" wx:for="{{ useData.list }}" wx:key="index">
-        <view class="date">{{ item.createdAt }}</view>
-        <view class="desc">{{ item.note }}</view>
-        <view class="value use">-{{item.diff}}</view>
-      </view>
-      <bottomStatus status="{{useData.onBottomStatus}}" desc="暂无数据~" listData="{{ useData.list }}"></bottomStatus>
-    </block>
+    </view>
+    <contactBtn contactType="recharge"><view class="btn">去充值</view></contactBtn>    
   </view>
 </view>

@@ -1,0 +1,91 @@
+.bill {
+  background: white;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.bill .tab {
+  height: 40rpx;
+  font-size: 32rpx;
+  color: #1F252B;
+  line-height: 40rpx;
+  padding: 45rpx 226rpx;
+  display: flex;
+}
+.bill .tab .item {
+  display: inline-block;
+  flex: 1;
+  position: relative;
+}
+.bill .tab .item:first-child {
+  text-align: left;
+}
+.bill .tab .item:last-child {
+  text-align: right;
+}
+.bill .tab .item.active {
+  font-weight: 700;
+  pointer-events: none;
+}
+.bill .tab .item.active text:after {
+  opacity: 1;
+}
+.bill .tab text {
+  position: relative;
+}
+.bill .tab text:after {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  bottom: -13rpx;
+  width: 32rpx;
+  height: 6rpx;
+  background: #0CCDDA;
+  border-radius: 3rpx;
+  content: '';
+  display: block;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.bill .ul .date {
+  height: 32rpx;
+  font-size: 24rpx;
+  color: #9CA1AA;
+  line-height: 32rpx;
+}
+.bill .ul .desc {
+  height: 38rpx;
+  font-size: 30rpx;
+  color: #1F252B;
+  line-height: 38rpx;
+  margin-top: 8rpx;
+}
+.bill .ul .value {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 60rpx;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+.bill .ul .value.get {
+  color: #0CCDDA;
+}
+.bill .ul .value.use {
+  color: #0CCDDA;
+}
+.bill .ul .li {
+  position: relative;
+  padding: 21rpx 60rpx;
+}
+.bill .ul .li:after {
+  position: absolute;
+  left: 60rpx;
+  right: 60rpx;
+  bottom: 0;
+  content: '';
+  height: 1rpx;
+  transform: scaleY(0.5);
+  background: #e9eaec;
+  display: block;
+}

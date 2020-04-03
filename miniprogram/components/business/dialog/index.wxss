@@ -280,12 +280,16 @@
   display: inline-block;
   overflow: hidden;
 }
-.modal-dialog .charge-box .circle_v1.girl {
+.modal-dialog .charge-box .circle_v1:first-child {
   transform: translateX(5rpx);
+}
+.modal-dialog .charge-box .circle_v1:last-child {
+  transform: translateX(-5rpx);
+}
+.modal-dialog .charge-box .circle_v1.girl {
   background: #F46BA1;
 }
 .modal-dialog .charge-box .circle_v1.boy {
-  transform: translateX(-5rpx);
   background: #0CCDDA;
 }
 .modal-dialog .charge-box .circle_v1 .use_avatar {
@@ -293,25 +297,14 @@
   height: 100%;
 }
 .modal-dialog .charge-box .love_v1 {
-  width: 60rpx;
-  height: 60rpx;
-  background: #ffffff;
-  box-shadow: 0rpx 2rpx 15rpx 0rpx rgba(0, 0, 0, 0.15);
+  width: 70rpx;
+  height: 70rpx;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  line-height: 60rpx;
   text-align: center;
-}
-.modal-dialog .charge-box .love_v1 .icon_aixin {
-  font-size: 32rpx;
-  color: #F46BA1;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 .modal-dialog .charge-box .model_title_v2 {
   height: 44rpx;

@@ -88,7 +88,7 @@
                          <view class="circle_v1 {{other.mySex === 1 ? 'boy' : 'girl'}}">
                               <i-image my-class="use_avatar" src="{{ other.myAvatar }}"></i-image>
                          </view>
-                         <view class="love_v1"><i class="icon iconfont icon_aixin"></i></view>
+                         <i-image my-class="love_v1" src="{{ CDNPATH }}icon_heart_whitepink.png"></i-image>
                     </view>
                     <view class="model_title_v2">想认识Ta</view>
                     <view class="p_v2">抓住机会，主动向TA发起对话</view>

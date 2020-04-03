@@ -282,12 +282,16 @@
       box-sizing: border-box;
       display: inline-block;
       overflow: hidden;
-      &.girl {
+      &:first-child {
         transform: translateX(5rpx);
+      }
+      &:last-child {
+        transform: translateX(-5rpx);
+      }
+      &.girl {
         background: @vice-primary-color-2;
       }
       &.boy {
-        transform: translateX(-5rpx);
         background: @primary-color;
       }
       .use_avatar {
@@ -296,25 +300,14 @@
       }
     }
     .love_v1 {
-      width:60rpx;
-      height:60rpx;
-      background:rgba(255,255,255,1);
-      box-shadow:0rpx 2rpx 15rpx 0rpx rgba(0,0,0,0.15);
+      width:70rpx;
+      height:70rpx;
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      line-height: 60rpx;
       text-align: center;
-      .icon_aixin {
-        font-size: 32rpx;
-        color:  @vice-primary-color-2;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
     }
     .model_title_v2 {
       height:44rpx;

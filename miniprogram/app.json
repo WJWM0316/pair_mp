@@ -21,7 +21,8 @@
     "pages/homepage/index",
     "pages/square/index",
     "pages/report/index",
-    "pages/account/index"
+    "pages/account/index",
+    "pages/bill/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

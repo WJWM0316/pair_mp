@@ -28,7 +28,9 @@
       <view class="h1">{{ userInfo.nickname }}</view>
       <view class="wrap">
         <view class="btn1">
-          <i class="icon iconfont icon_aixin"></i>{{ userInfo.bePickedTimes }}人Pick了我
+          <!-- <i-image my-class="icon_aixin" src="{{ CDNPATH }}icon_heart_whitepink.png"></i-image> -->
+          <i class="icon iconfont icon_aixin"></i>
+          {{ userInfo.bePickedTimes }}人Pick了我
         </view>
         <view class="btn2" bindtap="album">
           <i class="icon iconfont icon_im_tupian"></i>{{ albumVerifyInfo.status !== 1 ? userInfo.userAlbumTempList.length : userInfo.userAlbumList.length }}
