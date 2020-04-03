@@ -77,6 +77,5 @@ Page({
     } else {
       if(this.data.background !== 'transparent') this.setData({background: 'transparent'})
     }
-    console.log(e)
   }
 })
