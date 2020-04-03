@@ -281,6 +281,7 @@
       border-radius: 50%;
       box-sizing: border-box;
       display: inline-block;
+      overflow: hidden;
       &.girl {
         transform: translateX(5rpx);
         background: @vice-primary-color-2;
@@ -288,6 +289,10 @@
       &.boy {
         transform: translateX(-5rpx);
         background: @primary-color;
+      }
+      .use_avatar {
+        width: 100%;
+        height: 100%;
       }
     }
     .love_v1 {
@@ -348,24 +353,29 @@
         opacity:0.09;
       }
       .pitang {
-        width: 77rpx;
-        height: 77rpx;
         position: absolute;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
-        background: red;
+        background: @primary-color;
+        width:60rpx;
+        height:60rpx;
+        box-shadow:0rpx 0rpx 24rpx 0rpx rgba(244,107,161,0.3);
+        border-radius: 50%;
+        box-sizing: border-box;
+        padding: 8rpx;
       }
     }
     .text_v1 {
       font-size:28rpx;
       font-weight:300;
       color:@text-color-1 ;
-      padding-left: 89rpx;
+      padding-left: 80rpx;
     }
     .strong_v1 {
       padding: 0 5rpx;
       color: @primary-color;
+      font-weight: 700;
     }
     .action-button_v1 {
       text-align: center;
@@ -381,7 +391,6 @@
       border: 0;
       width: 100%;
       &:before {
-        width:288rpx;
         height:88rpx;
         background:linear-gradient(180deg,rgba(28,232,239,1) 0%,rgba(12,205,218,1) 100%);
         border-radius:44rpx;
@@ -394,7 +403,7 @@
         content: '';
         display: block;
         border: 0;
-        width: 100%;
+        width: 430rpx;
       }
     }
     .btn_cover_v1 {

@@ -82,15 +82,20 @@
           <block wx:elif="{{code === 4}}">
                <view class="charge-box">
                     <view class="img-box_v1">
-                         <view class="circle_v1 girl"></view>
-                         <view class="circle_v1 boy"></view>
+                         <view class="circle_v1 {{other.userSex === 1 ? 'boy' : 'girl'}}">
+                              <i-image my-class="use_avatar" src="{{ other.userAvatar }}"></i-image>
+                         </view>
+                         <view class="circle_v1 {{other.mySex === 1 ? 'boy' : 'girl'}}">
+                              <i-image my-class="use_avatar" src="{{ other.myAvatar }}"></i-image>
+                         </view>
                          <view class="love_v1"><i class="icon iconfont icon_aixin"></i></view>
                     </view>
                     <view class="model_title_v2">想认识Ta</view>
                     <view class="p_v2">抓住机会，主动向TA发起对话</view>
                     <view class="row-botton">
-                         <view class="pitang"></view>
-                         <view class="text_v1"> 使用<text class="strong_v1">{{ other.charge }}</text>个皮糖开始聊天</view>
+                         <!-- <view class="pitang"></view> -->
+                         <i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png"></i-image>
+                         <view class="text_v1"> 使用<text class="strong_v1"> {{ other.charge }}</text>个皮糖开始聊天</view>
                     </view>
                     <view class="action-button_v1">
                          <view class="btn_v1" bindtap="click" data-action="charge"><view class="btn_cover_v1">立即开始聊天</view></view>

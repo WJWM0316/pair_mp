@@ -153,30 +153,37 @@ Page({
   },
   fetch() {
     let { options } = this.data
+    let { userInfo } = this.data
     getChargeInfoApi({toUserVkey: options.vkey}).then(({ data }) => {
-      if(data.needCharge) {
-        this.setData({code: 4, chargeInfo: data}, () => this.selectComponent('#dialog').show())
+      if(data.needCharge ) {
+        if( data.wallet.remain >= data.charge ) {
+          let myAvatar = app.globalData.userInfo.userInfo.avatarInfo.smallUrl
+          let mySex = app.globalData.userInfo.userInfo.gender
+          let userAvatar = userInfo.avatarInfo.smallUrl
+          let userSex = userInfo.gender
+          data = Object.assign(data, {myAvatar, userAvatar, mySex, userSex})
+          this.setData({code: 4, chargeInfo: data}, () => this.selectComponent('#dialog').show())
+        } else {
+          app.wxToast({title: '账户余额不足'})
+        }
       } else {
-        this.picker()
+        this.chat()
       }
     })
   },
   picker() {
     let { options } = this.data
     chatApi({toUserVkey: options.vkey}).then(res => {
-      console.log(res)
       this.chat()
     })
   },
   dialogEvent(e) {
     let rtn = e.detail
-    console.log(rtn)
-    // setPickerIntentionApi({gender: rtn.sex}).then(() => {
-    //   app.globalData.userInfo.pickIntention.gender = Number(rtn.sex)
-    //   this.setData({
-    //     pickIntention: app.globalData.userInfo.pickIntention
-    //   })
-    // })
+    switch(rtn.action) {
+      case 'charge':
+        this.picker()
+        break
+    }
   },
   report() {
     let { PAGEPATH } = app.globalData

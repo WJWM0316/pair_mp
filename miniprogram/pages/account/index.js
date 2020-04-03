@@ -21,6 +21,23 @@ Page({
       onBottomStatus: 0
     }
   },
+  onShow() {
+    let useData = {
+      list: [],
+      pageNum: 1,
+      isLastPage: false,
+      isRequire: false,
+      onBottomStatus: 0
+    }
+    let obtainData = {
+      list: [],
+      pageNum: 1,
+      isLastPage: false,
+      isRequire: false,
+      onBottomStatus: 0
+    }
+    this.setData({ useData, obtainData}, () => this.getLists())
+  },
   getLists() {
     let funcApi = this.data.tab  === 'obtainData' ? 'getObtainData' : 'getUseData'
     return this[funcApi]()
@@ -34,8 +51,8 @@ Page({
   getUseData() {
     return new Promise((resolve, reject) => {
       let { useData, pageCount } = this.data
-      let params = { count: pageCount, page: useData.pageNum }
-      getMyCollectPositionsApi(params).then(res => {
+      let params = { count: pageCount, page: useData.pageNum, incrType: 'decr' }
+      getSugarWalletApi(params).then(res => {
         const useData = this.data.useData
         useData.onBottomStatus = res.meta && res.meta.nextPageUrl ? 0 : 2
         useData.list = useData.list.concat(res.data)
@@ -55,8 +72,8 @@ Page({
   getObtainData() {
     return new Promise((resolve, reject) => {
       let { obtainData, pageCount } = this.data
-      let params = { count: pageCount, page: obtainData.pageNum }
-      getMyCollectUsersApi(params).then(res => {
+      let params = { count: pageCount, page: obtainData.pageNum, incrType: 'incr' }
+      getSugarWalletApi(params).then(res => {
         obtainData.onBottomStatus = res.meta && res.meta.nextPageUrl ? 0 : 2
         obtainData.list = obtainData.list.concat(res.data)
         obtainData.isLastPage = res.meta && res.meta.nextPageUrl ? false : true
@@ -69,7 +86,7 @@ Page({
   onClickTab(e) {
     let { dataset } = e.currentTarget
     this.setData({tab: dataset.tab }, () => {
-      if(!this.data[tab].isRequire) this.getLists()
+      if(!this.data[dataset.tab].isRequire) this.getLists()
     })
   }
 })
