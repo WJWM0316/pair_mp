@@ -16,6 +16,7 @@ Page({
   },
   onShow() {
     getReportListApi().then(({data}) => {
+      data.map(v => v.active = false)
       this.setData({reason: data})
     })
   },
@@ -33,20 +34,27 @@ Page({
     this.setData({ list })
   },
   check(e) {
+    let { reason } = this.data
     let { item } = e.currentTarget.dataset
-    this.setData({ title:  item.name})
+    reason.map(v => {
+      v.active = false
+      if(v.id === item.id) {
+        v.active = true
+      }
+    })
+    this.setData({ title:  item.name, reason})
   },
   bindInput(e) {
     this.setData({body: e.detail.value})
   },
-  report() {
-    let { option } = this.data
+  submit() {
+    let { options } = this.data
     let imgIds = this.data.list.map(v => v.id)
     let params = {
       body: this.data.body,
       title: this.data.title,
       img_id: imgIds.join(','),
-      vkey: option.vkey
+      vkey: options.vkey
     }
     if(!params.title) {
       app.wxToast({title: '请选择标题'})
@@ -56,8 +64,6 @@ Page({
       app.wxToast({title: '请上传图片'})
       return
     }
-    console.log(params);
-    return
     reportApi(params).then(() => {
       wx.navigateBack({ delta: 1 })
     })

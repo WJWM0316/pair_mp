@@ -1,7 +1,9 @@
 <view class="report">
     <view class="h1">请过诉我们该用户在哪类聊天过程中违规了</view>
     <view class="ul">
-        <view class="li" wx:for="{{reason}}" wx:key="index" bindtap="check" data-item="{{item}}">{{item.name}}<i class="icon1 icon iconfont icon_gouxuan"></i></view>
+        <view class="li {{item.active ? 'active' : ''}}" wx:for="{{reason}}" wx:key="index" bindtap="check" data-item="{{item}}">
+            {{item.name}}<i class="icon1 icon iconfont icon_gouxuan" wx:if="{{item.active}}"></i><i class="icon2 icon iconfont icon_bofang" wx:else></i>
+        </view>
     </view>
     <view class="h1 add">图片证据（必填，最多上传4张）</view>
     <view class="photo-ul">
@@ -17,7 +19,7 @@
     <view class="user-input">
         <textarea
             class="input"
-            placeholder="请输入"
+            placeholder="为协助审核人员更快处理，可补充描述举报说明"
             placeholder-class="holderStyle"
             maxlength="200"
             bindinput="bindInput"
@@ -26,4 +28,5 @@
             <text class="{{ body ? 'strong' : ''}}">{{body.length}}</text>/200
         </view>
     </view>
+    <view class="footer"><i-button my-class="btn" bindtap = "submit">确认提交</i-button></view>
 </view>

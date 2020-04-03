@@ -125,10 +125,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "pages/report/index",
 					"pathName": "pages/report/index",
-					"query": "a=1",
+					"query": "vkey=kfxt0oot",
 					"scene": null
 				}
 			]

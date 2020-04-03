@@ -177,5 +177,12 @@ Page({
     //     pickIntention: app.globalData.userInfo.pickIntention
     //   })
     // })
+  },
+  report() {
+    let { PAGEPATH } = app.globalData
+    let { options } = this.data
+    wx.navigateTo({
+      url: `${PAGEPATH}/report/index?vkey=${options.vkey}`
+    })
   }
 })

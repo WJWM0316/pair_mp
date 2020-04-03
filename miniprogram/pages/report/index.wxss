@@ -1,3 +1,6 @@
+.report {
+  padding-bottom: 130rpx;
+}
 .report .h1 {
   font-size: 28rpx;
   color: #66666E;
@@ -38,7 +41,16 @@
   background: #e9eaec;
   display: block;
 }
-.report .ul .li .icon {
+.report .ul .li .icon2 {
+  position: absolute;
+  right: 60rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32rpx;
+  color: #EDF1F0;
+}
+.report .ul .li .icon1 {
+  color: #0CCDDA;
   position: absolute;
   right: 60rpx;
   top: 50%;
@@ -154,6 +166,7 @@
   background: white;
   box-sizing: border-box;
   padding: 24rpx 60rpx 64rpx 60rpx;
+  margin-bottom: 40rpx;
 }
 .report .user-input textarea {
   width: 100%;
@@ -188,6 +201,29 @@
 }
 .report .user-input .number .strong {
   color: #0CCDDA;
+}
+.report .footer {
+  width: 750rpx;
+  height: 138rpx;
+  background: #ffffff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 25rpx 60rpx;
+}
+.report .footer .btn {
+  height: 88rpx;
+  background: #0CCDDA;
+  border-radius: 54rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #ffffff;
+  width: 100%;
+  border: 0;
 }
 .holderStyle {
   color: #CFD4D8;

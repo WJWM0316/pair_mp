@@ -158,7 +158,7 @@
         </view>
       </view>
     </block>
-    <view wx:if="{{!isOwer}}" class="report-entry"><text>投诉该用户</text></view>
+    <view wx:if="{{!isOwer}}" class="report-entry"><text bindtap="report">投诉该用户</text></view>
     <view class="block" style="background-color:{{tabBgColor}}"></view>
   </view>
   <view class="action-zone">
