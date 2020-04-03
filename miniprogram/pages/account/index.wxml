@@ -1,0 +1,13 @@
+<view class="account">
+  <view class="tab">
+    <view class="item {{ tab === 'obtainData' ? 'active' : ''}}"><text bindtap="onClickTab" data-tab="obtainData">获取</text></view>
+    <view class="item {{ tab === 'useData' ? 'active' : ''}}"><text bindtap="onClickTab" data-tab="useData">消耗</text></view>
+  </view>
+  <view class="ul">
+    <view class="li">
+      <view class="date">2020-3-21 21:35</view>
+      <view class="desc">2020-3-21 21:35</view>
+      <view class="value get">+50</view>
+    </view>
+  </view>
+</view>

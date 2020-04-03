@@ -1,9 +1,9 @@
-<view class="chooseSex {{ show ? 'show' : ''}}">
+<view class="modal-dialog {{ show ? 'show' : ''}}">
      <view class="mask {{ show ? 'show' : ''}}"></view>
      <view class="content">
-          <i class="icon iconfont icon_xiaocha" bindtap="close"></i>
+          <i class="icon iconfont icon_xiaocha" bindtap="close" wx:if="{{showClose}}"></i>
           <block wx:if="{{code === 1}}">
-               <view class="title">匹配偏好</view>
+               <view class="model_title">匹配偏好</view>
                <view class="p1">你想认识？</view>
                <view class="sex-ul">
                     <view class="li boy" bindtap="click" data-sex="1"><i class="icon iconfont icon_nan"></i>男</view>
@@ -12,7 +12,7 @@
                <view class="p2"><text bindtap="click" data-sex="0">不限性别</text></view>
           </block>
           <block wx:elif="{{code === 2}}">
-               <view class="title">个人资料完善度</view>
+               <view class="model_title">个人资料完善度</view>
                <view class="process">
                     <view class="bar">
                          <view class="active2" style="width: {{ userInfo.infoCompletePercentDesc}}"></view>
@@ -50,14 +50,14 @@
                </view>
           </block>
           <block wx:elif="{{code === 3}}">
-               <view class="title">为保证双方的交友体验需完善以下信息才可继续Pick</view>
+               <view class="model_title">为保证双方的交友体验需完善以下信息才可继续Pick</view>
                <view class="perfect-ul2">
                     <view class="li">
-                         <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{ !userCompleteInfo.baseComplete }}"></i>
+                         <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{ userCompleteInfo.infoCompletePercent < 80 }}"></i>
                          <i class="icon2 iconfont icon_gouxuan" wx:else></i>
                          <text class="text">补充基本资料</text>
-                         <view class="btn" wx:if="{{ userCompleteInfo.baseComplete }}">已完善</view>
-                         <view class="btn bg" wx:else bindtap="routeJump" data-page="userInfo">去完善</view>
+                         <view class="btn bg" bindtap="routeJump" data-page="userInfo" wx:if="{{ userCompleteInfo.baseComplete < 80 }}">去完善</view>
+                         <view class="btn" wx:else>已完善</view>                         
                     </view>
                     <view class="li">
                          <i class="icon1_error icon iconfont icon_gouxuan" wx:if="{{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0}}"></i>
@@ -76,6 +76,24 @@
                          <view class="btn {{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : ''}}" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}" bindtap="routeJump" data-page="career">去上传</view>
                          <view class="btn2" wx:if="{{careerVerifyInfo.status === 0}}">审核中</view>
                          <view class="btn" wx:if="{{careerVerifyInfo.status === 1}}">已通过</view>
+                    </view>
+               </view>
+          </block>
+          <block wx:elif="{{code === 4}}">
+               <view class="charge-box">
+                    <view class="img-box_v1">
+                         <view class="circle_v1 girl"></view>
+                         <view class="circle_v1 boy"></view>
+                         <view class="love_v1"><i class="icon iconfont icon_aixin"></i></view>
+                    </view>
+                    <view class="model_title_v2">想认识Ta</view>
+                    <view class="p_v2">抓住机会，主动向TA发起对话</view>
+                    <view class="row-botton">
+                         <view class="pitang"></view>
+                         <view class="text_v1"> 使用<text class="strong_v1">{{ other.charge }}</text>个皮糖开始聊天</view>
+                    </view>
+                    <view class="action-button_v1">
+                         <view class="btn_v1" bindtap="click" data-action="charge"><view class="btn_cover_v1">立即开始聊天</view></view>
                     </view>
                </view>
           </block>

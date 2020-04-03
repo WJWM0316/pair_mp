@@ -1,4 +1,4 @@
-<view class="homepage {{ isOwer ? 'yourself' : 'other'}}">
+<view class="homepage {{ isOwer ? 'yourself' : 'other'}}" wx:if="{{ userInfo.vkey }}">
   <view class="cover-box {{ albumVerifyInfo.status === 2 && isOwer ? 'isError' : ''}}">
 
     <view class="upload-tips" wx:if="{{ isOwer && albumVerifyInfo.status === 2 }}">
@@ -158,7 +158,7 @@
         </view>
       </view>
     </block>
-    <view wx:if="{{!isOwer}}" class="report-entry"><text>投诉该用户</text></view>
+    <view wx:if="{{!isOwer}}" class="report-entry"><text bindtap="report">投诉该用户</text></view>
     <view class="block" style="background-color:{{tabBgColor}}"></view>
   </view>
   <view class="action-zone">
@@ -172,7 +172,8 @@
     <view class="btn3" bindtap="chat" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view></view>
     <!-- <block wx:else>
       <view class="btn3" bindtap="fetch" wx:if="{{buttonInfo.buttonType === 2}}"><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
-      <view class="btn3" bindtap="picker" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view></view>
+      <view class="btn3" bindtap="chat" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view></view>
     </block> -->
   </view>
+  <dialog code="{{ code }}" id="dialog" bind:click="dialogEvent" other="{{ chargeInfo }}"></dialog>
 </view>

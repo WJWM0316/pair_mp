@@ -1,5 +1,7 @@
 {
-	"usingComponents": {},
+	"usingComponents": {
+    "dialog": "../../components/business/dialog/index"
+  },
   "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#F1F4F4"
 }

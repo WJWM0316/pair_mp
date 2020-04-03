@@ -15,3 +15,11 @@ export const getChargeInfoApi = (data) => {
     data
   })
 }
+
+export const chatApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/square/user/chat',
+    data
+  })
+}

@@ -11,6 +11,14 @@ Component({
     code: {
       type: Number,
       value: 0
+    },
+    showClose: {
+      type: Boolean,
+      value: true
+    },
+    other: {
+      type: Object,
+      value: {}
     }
   },
   data: {

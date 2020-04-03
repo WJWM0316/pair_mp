@@ -1,4 +1,4 @@
-// components/layout/bottomStatus/bottomStatus.js
+const app = getApp()
 Component({
   externalClasses: ['my-class', 'my-item-class'],
   properties: {
@@ -31,18 +31,11 @@ Component({
       value: 120
     }
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-    cdnImagePath: getApp().globalData.cdnImagePath
+    CDNPATH: app.globalData.CDNPATH,
   },
   attached() {
   },
-  /**
-   * 组件的方法列表
-   */
   methods: {
 
   }

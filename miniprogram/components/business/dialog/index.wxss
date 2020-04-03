@@ -1,4 +1,4 @@
-.chooseSex {
+.modal-dialog {
   transition: all ease 0.2s;
   z-index: 12;
   position: relative;
@@ -12,11 +12,11 @@
   opacity: 0;
   display: none;
 }
-.chooseSex.show {
+.modal-dialog.show {
   display: block;
   opacity: 1;
 }
-.chooseSex .mask {
+.modal-dialog .mask {
   position: fixed;
   left: 0;
   right: 0;
@@ -28,10 +28,10 @@
   animation-name: modalopen;
   animation-duration: 0.2s;
 }
-.chooseSex .mask.show {
+.modal-dialog .mask.show {
   opacity: 1;
 }
-.chooseSex .content {
+.modal-dialog .content {
   width: 650rpx;
   background: #ffffff;
   border-radius: 24rpx;
@@ -41,7 +41,7 @@
   transform: translate(-50%, -50%);
   z-index: 10;
 }
-.chooseSex .title {
+.modal-dialog .model_title {
   font-size: 36rpx;
   font-weight: 700;
   color: #1F252B;
@@ -49,7 +49,7 @@
   text-align: center;
   margin: 80rpx 90rpx 0 90rpx;
 }
-.chooseSex .icon_xiaocha {
+.modal-dialog .icon_xiaocha {
   position: absolute;
   top: 0;
   right: 0;
@@ -57,7 +57,7 @@
   color: #CFD4D8;
   padding: 38rpx;
 }
-.chooseSex .p1 {
+.modal-dialog .p1 {
   height: 38rpx;
   font-size: 30rpx;
   font-weight: 300;
@@ -66,11 +66,11 @@
   text-align: center;
   margin-top: 36rpx;
 }
-.chooseSex .sex-ul {
+.modal-dialog .sex-ul {
   height: 280rpx;
   padding: 24rpx 75rpx 48rpx 75rpx;
 }
-.chooseSex .sex-ul .li {
+.modal-dialog .sex-ul .li {
   width: 242rpx;
   height: 280rpx;
   border-radius: 36rpx;
@@ -78,20 +78,20 @@
   line-height: 280rpx;
   text-align: center;
 }
-.chooseSex .sex-ul .li.boy {
+.modal-dialog .sex-ul .li.boy {
   background: rgba(12, 205, 218, 0.08);
   margin-right: 16rpx;
   color: #0CCDDA;
 }
-.chooseSex .sex-ul .li.girl {
+.modal-dialog .sex-ul .li.girl {
   background: rgba(244, 107, 161, 0.08);
   color: #F46BA1;
 }
-.chooseSex .sex-ul .icon {
+.modal-dialog .sex-ul .icon {
   margin-right: 16rpx;
   font-size: 30rpx;
 }
-.chooseSex .p2 {
+.modal-dialog .p2 {
   height: 36rpx;
   font-size: 28rpx;
   color: #1F252B;
@@ -99,37 +99,37 @@
   text-align: center;
   padding-bottom: 90rpx;
 }
-.chooseSex .p2 text {
+.modal-dialog .p2 text {
   text-decoration: underline;
 }
-.chooseSex .process {
+.modal-dialog .process {
   padding: 0 60rpx;
   margin: 38rpx 0 48rpx 0;
 }
-.chooseSex .process .bar {
+.modal-dialog .process .bar {
   height: 10rpx;
   background: #F1F4F4;
   border-radius: 5rpx;
   position: relative;
 }
-.chooseSex .process .active1 {
+.modal-dialog .process .active1 {
   height: 100%;
   background: #E85274;
   border-radius: 5rpx;
 }
-.chooseSex .process .active2 {
+.modal-dialog .process .active2 {
   height: 100%;
   background: #0CCDDA;
   border-radius: 5rpx;
 }
-.chooseSex .process .tips {
+.modal-dialog .process .tips {
   font-size: 26rpx;
   color: #1F252B;
   line-height: 32rpx;
   font-weight: 300;
   margin-top: 30rpx;
 }
-.chooseSex .process .icon-image {
+.modal-dialog .process .icon-image {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -138,10 +138,10 @@
   width: 26rpx;
   height: 26rpx;
 }
-.chooseSex .perfect-ul {
+.modal-dialog .perfect-ul {
   padding: 0 40rpx 80rpx 40rpx;
 }
-.chooseSex .perfect-ul .li {
+.modal-dialog .perfect-ul .li {
   height: 110rpx;
   background: #F1F4F4;
   border-radius: 55rpx;
@@ -151,15 +151,15 @@
   line-height: 110rpx;
   margin-bottom: 24rpx;
 }
-.chooseSex .perfect-ul .li:last-child {
+.modal-dialog .perfect-ul .li:last-child {
   margin-bottom: 0rpx;
 }
-.chooseSex .perfect-ul .text {
+.modal-dialog .perfect-ul .text {
   color: #1F252B;
   padding-left: 16rpx;
   font-size: 30rpx;
 }
-.chooseSex .perfect-ul .btn {
+.modal-dialog .perfect-ul .btn {
   width: 138rpx;
   height: 60rpx;
   border-radius: 33rpx;
@@ -173,18 +173,18 @@
   right: 36rpx;
   color: #0CCDDA;
 }
-.chooseSex .perfect-ul .btn.bg {
+.modal-dialog .perfect-ul .btn.bg {
   background: #0CCDDA;
   color: #ffffff;
 }
-.chooseSex .perfect-ul .icon {
+.modal-dialog .perfect-ul .icon {
   font-size: 30rpx;
   color: #1F252B;
 }
-.chooseSex .perfect-ul2 {
+.modal-dialog .perfect-ul2 {
   padding: 48rpx 40rpx 80rpx 40rpx;
 }
-.chooseSex .perfect-ul2 .li {
+.modal-dialog .perfect-ul2 .li {
   height: 110rpx;
   background: rgba(241, 244, 244, 0.46);
   border-radius: 55rpx;
@@ -194,15 +194,15 @@
   line-height: 110rpx;
   margin-bottom: 24rpx;
 }
-.chooseSex .perfect-ul2 .li:last-child {
+.modal-dialog .perfect-ul2 .li:last-child {
   margin-bottom: 0rpx;
 }
-.chooseSex .perfect-ul2 .text {
+.modal-dialog .perfect-ul2 .text {
   color: #1F252B;
   padding-left: 16rpx;
   font-size: 30rpx;
 }
-.chooseSex .perfect-ul2 .btn {
+.modal-dialog .perfect-ul2 .btn {
   width: 138rpx;
   height: 60rpx;
   border-radius: 33rpx;
@@ -215,20 +215,20 @@
   right: 36rpx;
   color: #0CCDDA;
 }
-.chooseSex .perfect-ul2 .btn.bg {
+.modal-dialog .perfect-ul2 .btn.bg {
   background: #E85274;
   color: #ffffff;
   font-weight: 700;
 }
-.chooseSex .perfect-ul2 .icon1 {
+.modal-dialog .perfect-ul2 .icon1 {
   font-size: 30rpx;
   color: #0CCDDA;
 }
-.chooseSex .perfect-ul2 .icon2 {
+.modal-dialog .perfect-ul2 .icon2 {
   font-size: 30rpx;
   color: #0CCDDA;
 }
-.chooseSex .perfect-ul2 .btn2 {
+.modal-dialog .perfect-ul2 .btn2 {
   width: 138rpx;
   height: 60rpx;
   border-radius: 33rpx;
@@ -241,10 +241,10 @@
   right: 36rpx;
   color: #9CA1AA;
 }
-.chooseSex .perfect-ul2 .icon1_error {
+.modal-dialog .perfect-ul2 .icon1_error {
   color: #E85274;
 }
-.chooseSex .error {
+.modal-dialog .error {
   width: 82rpx;
   height: 36rpx;
   background: rgba(232, 82, 116, 0.1);
@@ -258,6 +258,154 @@
   vertical-align: middle;
   position: relative;
   top: -2rpx;
+}
+.modal-dialog .charge-box {
+  width: 650rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 11rpx 28rpx 0rpx rgba(181, 201, 201, 0.1);
+  border-radius: 36rpx;
+}
+.modal-dialog .charge-box .img-box_v1 {
+  height: 168rpx;
+  margin-top: 60rpx;
+  text-align: center;
+  position: relative;
+}
+.modal-dialog .charge-box .circle_v1 {
+  width: 168rpx;
+  height: 168rpx;
+  border: 3rpx solid #0ccdda;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.modal-dialog .charge-box .circle_v1.girl {
+  transform: translateX(5rpx);
+  background: #F46BA1;
+}
+.modal-dialog .charge-box .circle_v1.boy {
+  transform: translateX(-5rpx);
+  background: #0CCDDA;
+}
+.modal-dialog .charge-box .love_v1 {
+  width: 60rpx;
+  height: 60rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 2rpx 15rpx 0rpx rgba(0, 0, 0, 0.15);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  line-height: 60rpx;
+  text-align: center;
+}
+.modal-dialog .charge-box .love_v1 .icon_aixin {
+  font-size: 32rpx;
+  color: #F46BA1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal-dialog .charge-box .model_title_v2 {
+  height: 44rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 44rpx;
+  margin-top: 60rpx;
+  text-align: center;
+}
+.modal-dialog .charge-box .p_v2 {
+  height: 38rpx;
+  font-size: 30rpx;
+  font-weight: 300;
+  color: #1F252B;
+  line-height: 38rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.modal-dialog .charge-box .row-botton {
+  height: 68rpx;
+  border-radius: 34rpx;
+  position: relative;
+  margin: 20rpx 119rpx 64rpx 119rpx;
+  line-height: 68rpx;
+}
+.modal-dialog .charge-box .row-botton:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: #0CCDDA;
+  border-radius: 34rpx;
+  opacity: 0.09;
+}
+.modal-dialog .charge-box .row-botton .pitang {
+  width: 77rpx;
+  height: 77rpx;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: red;
+}
+.modal-dialog .charge-box .text_v1 {
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #1F252B;
+  padding-left: 89rpx;
+}
+.modal-dialog .charge-box .strong_v1 {
+  padding: 0 5rpx;
+  color: #0CCDDA;
+}
+.modal-dialog .charge-box .action-button_v1 {
+  text-align: center;
+  position: relative;
+  margin: 0 70rpx 64rpx 70rpx;
+}
+.modal-dialog .charge-box .btn_v1 {
+  height: 98rpx;
+  border-radius: 49rpx;
+  line-height: 98rpx;
+  text-align: center;
+  display: inline-block;
+  border: 0;
+  width: 100%;
+}
+.modal-dialog .charge-box .btn_v1:before {
+  width: 288rpx;
+  height: 88rpx;
+  background: linear-gradient(180deg, #1ce8ef 0%, #0ccdda 100%);
+  border-radius: 44rpx;
+  opacity: 0.89;
+  filter: blur(10rpx);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -7rpx;
+  content: '';
+  display: block;
+  border: 0;
+  width: 100%;
+}
+.modal-dialog .charge-box .btn_cover_v1 {
+  height: 98rpx;
+  background: linear-gradient(180deg, #1ce8ef 0%, #0ccdda 100%);
+  border-radius: 49rpx;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 @keyframes modalopen {
   from {

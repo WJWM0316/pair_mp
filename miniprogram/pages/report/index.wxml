@@ -1,0 +1,32 @@
+<view class="report">
+    <view class="h1">请过诉我们该用户在哪类聊天过程中违规了</view>
+    <view class="ul">
+        <view class="li {{item.active ? 'active' : ''}}" wx:for="{{reason}}" wx:key="index" bindtap="check" data-item="{{item}}">
+            {{item.name}}<i class="icon1 icon iconfont icon_gouxuan" wx:if="{{item.active}}"></i><i class="icon2" wx:else></i>
+        </view>
+    </view>
+    <view class="h1 add">图片证据（必填，最多上传4张）</view>
+    <view class="photo-ul">
+        <view class="item" wx:for="{{ list }}" wx:key="index">
+            <view class="inner">
+                <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
+                <view class="close-btn" bindtap="remove" data-index="{{index}}"><i class="icon1 icon iconfont icon_xiaocha"></i></view>
+            </view>
+        </view>
+        <view class="item upload-btn" wx:if="{{ list.length < 4 }}" bindtap="upload"><view class="upload-icon"></view></view>
+    </view>
+    <view class="h1 add">举报内容（选填）</view>
+    <view class="user-input">
+        <textarea
+            class="input"
+            placeholder="为协助审核人员更快处理，可补充描述举报说明"
+            placeholder-class="holderStyle"
+            maxlength="200"
+            bindinput="bindInput"
+            />
+        <view class="number">
+            <text class="{{ body ? 'strong' : ''}}">{{body.length}}</text>/200
+        </view>
+    </view>
+    <view class="footer"><i-button my-class="btn" bindtap = "submit">确认提交</i-button></view>
+</view>
