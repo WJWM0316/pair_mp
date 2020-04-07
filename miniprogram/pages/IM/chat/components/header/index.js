@@ -38,6 +38,10 @@ Component({
       this.setData({'putUp': !putUp})
       this.getHeight()
     },
+    jump (e) {
+      let vkey = e.currentTarget.dataset.vkey
+      wx.navigateTo({url: `/pages/homepage/index?vkey=${vkey}`})
+    },
     getHeight () {
       wx.nextTick(()=>{
         getSelectorQuery('.header', this).then(res => {

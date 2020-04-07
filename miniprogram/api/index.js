@@ -29,16 +29,14 @@ let closeLoading = () => {
 
 // 设置头部信息
 const setHeader = () => {
-  addHttpHead = {}
-  token = ''
   // 设置请求域名
   !APIHOST ? APIHOST = app.globalData.APIHOST : null
 
   // 设置授权信息
-  !token ? token = wx.getStorageSync('token') : null
-  !sessionToken ? sessionToken = wx.getStorageSync('sessionToken') : null
-  token ? addHttpHead['Authorization'] = token : null
-  sessionToken ? addHttpHead['Authorization-Wechat'] = sessionToken : null
+  token = wx.getStorageSync('token')
+  sessionToken = wx.getStorageSync('sessionToken')
+  addHttpHead['Authorization'] = token
+  addHttpHead['Authorization-Wechat'] = sessionToken
 }
 
 // 清楚授权相关凭证
@@ -55,9 +53,9 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
   // onLaunch 的时候获取不到getApp() 需要传递this过来
   app = !getApp() ? instance : getApp()
 
+
   return new Promise((resolve, reject) => {
     setHeader()
-
     // 请求中间件
     const promise = () => {
       // 开启菊花图
@@ -94,14 +92,12 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                   reject(msg)
                   if (msg.code === 4010) {
                     wx.removeStorageSync('token')
-                  } else if (msg.code === 401) {
-                    wx.removeStorageSync('sessionToken')
                   } else {
                     removeAuth()
                   }
-                  app.wxToast({title: msg.msg}, () => {
+                  app.wxToast({title: msg.msg, callback: () => {
                     wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
-                  })
+                  }})
                   break
                 case 403:
                   app.wxToast({title: msg.msg})

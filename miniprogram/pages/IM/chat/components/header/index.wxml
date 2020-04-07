@@ -1,10 +1,10 @@
 
-<view class="header {{tips ? 'headerTips' : ''}}" catchtap = "false">
+<view class="header {{tips ? 'headerTips' : ''}}">
   <view class="header-inner  {{putUp ? 'putUp' : ''}}">
     <view class="header-card">
       <view class="avatar-box">
-        <i-image src="{{othersUserInfo.avatarInfo.middleUrl}}" my-class="left avatar"></i-image>
-        <i-image src="{{mineUserInfo.avatarInfo.middleUrl}}" my-class="right avatar"></i-image>
+        <i-image src="{{othersUserInfo.avatarInfo.middleUrl}}" my-class="left avatar"  catchtap = "jump" data-vkey="{{othersUserInfo.vkey}}"></i-image>
+        <i-image src="{{mineUserInfo.avatarInfo.middleUrl}}" my-class="right avatar"   catchtap = "jump" data-vkey="{{othersUserInfo.vkey}}"></i-image>
       </view>
       <block wx:if="{{putUp}}">
         <view class="detail">
