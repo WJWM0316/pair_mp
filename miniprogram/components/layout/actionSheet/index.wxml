@@ -1,38 +1,7 @@
 <navBar navBarBg="#F1F4F4"></navBar>
 <view class="drawer" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
   <view class="mask"></view>
-  <view class="photo-box1" wx:if="{{ type === 'photo'}}">
-    <view class="h11">照片要求</view>
-    <view class="example">
-      <i-image my-class="cover-img" src="{{ '' }}"></i-image>
-      <i class="icon2 icon iconfont icon_gouxuan"></i>
-    </view>
-    <view class="p11"><i class="icon3 icon iconfont icon_gou-"></i>本人清晰五官</view>
-    <view class="p111"><i class="icon3 icon iconfont icon_gou-"></i>本人生活艺术照、旅行照、视频</view>
-    <view class="list">
-      <view class="item1">
-        <view class="box">
-          <i-image my-class="cover-img" src="{{ '' }}"></i-image>
-          <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
-        </view>
-        <view class="text">水印</view>
-      </view>
-      <view class="item1">
-        <view class="box">
-          <i-image my-class="cover-img" src="{{ '' }}"></i-image>
-          <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
-        </view>
-        <view class="text">风景</view>
-      </view>
-      <view class="item1">
-        <view class="box">
-          <i-image my-class="cover-img" src="{{ '' }}"></i-image>
-          <view class="action"><i class="icon iconfont icon_xiaocha"></i></view>
-        </view>
-        <view class="text">模糊</view>
-      </view>
-    </view>
-  </view>
+  <i-image my-class="photo-box1" src="{{ CDNPATH }}img_popup_photorhint.png" wx:if="{{ type === 'photo'}}" mode="widthFix"></i-image>
   <view class="content {{ show ? 'show' : ''}}">
     <view class="action-ul">
       <view

@@ -1,7 +1,12 @@
 <view class="navWrap" style="background:{{navBarBg}}">
   <view class="status" style="height:{{statusBarHeight}}px"></view>
   <view class="nav-content" style="height:{{titleHeight}}px;color: {{color}}">
-    <view class="left"  bindtap="routeJump">我的</view>
+    <view class="left"  bindtap="openPicker" wx:if="{{page === 'console'}}">
+      <i class="icon iconfont icon_aixin icon_aixin-box">
+        <!-- <i-image my-class="logo" src="{{ userInfo.avatarInfo.smallUrl }}" class="avatar_v1" mode="widthFix"></i-image> -->
+      </i>
+    </view>
+    <view class="left"  bindtap="reback" wx:else><i class="icon iconnfont icon_fanhui"></i></view>
     <view class="center">
       <block wx:if="{{title}}">{{title}}</block>
       <block wx:else><i-image my-class="logo" src="/images/logo/logo_pickme_white.png"></i-image></block>

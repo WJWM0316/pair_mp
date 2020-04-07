@@ -42,7 +42,7 @@ Page({
   getUserList() {
     return new Promise((resolve, reject) => {
       let { userData, onBottomStatus } = this.data
-      let params = { count: 3, page: userData.pageNum }
+      let params = { count: 20, page: userData.pageNum }
       getSquareListApi(params).then(res => {
         onBottomStatus = res.meta && res.meta.nextPageUrl ? 0 : 2
         let list = res.data

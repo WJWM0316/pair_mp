@@ -9,17 +9,21 @@
   overflow: hidden;
 }
 .item .cover {
-  height: 800rpx;
   border-radius: 36rpx 36rpx 36rpx 0rpx;
   overflow: hidden;
   position: relative;
 }
 .item .brief {
-  padding: 46rpx 50rpx;
+  margin: 46rpx 50rpx;
   font-size: 28rpx;
   font-weight: 300;
   color: #1F252B;
   line-height: 40rpx;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .item .mask {
   position: absolute;
@@ -29,8 +33,8 @@
   bottom: 0;
 }
 .item .photo {
-  width: 100%;
-  height: 100%;
+  width: calc(100vw - 60rpx);
+  display: block;
 }
 .item .album {
   height: 48rpx;

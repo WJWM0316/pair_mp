@@ -1,9 +1,13 @@
 <view class="backlist">
-  <view class="list">
-    <view class="item" wx:for="{{list}}" wx:key="id">
-      <i-image my-class="avatar" src="{{item.avatar}}"></i-image>
-      <view class="name">{{item.name}}</view>
-      <i-button my-class="delete">删除</i-button>
+  <view class="list" wx:if="{{ backList.list.length }}">
+    <view class="item" wx:for="{{ backList.list }}" wx:key="id">
+      <i-image my-class="avatar" src="{{item.avatarInfo.smallUrl}}"></i-image>
+      <view class="name">{{item.nickname}}</view>
+      <i-button my-class="delete" bindtap="removeBack" data-vkey="{{item.vkey}}" data-index="{{index}}">删除</i-button>
     </view>
+  </view>
+  <view class="no-data" wx:else>
+    <i-image my-class="nodata" src="{{ CDNPATH }}img_noblackList@3x.png" mode="widthFix"></i-image> 
+    <view class="tips">好棒呦,一个黑名单都没有哦~</view>
   </view>
 </view>
