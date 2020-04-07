@@ -129,6 +129,16 @@
 					"name": "pages/login/index",
 					"pathName": "pages/login/index",
 					"query": "vkey=x2njbxhm",
+					"name": "pages/homepage/index",
+					"pathName": "pages/homepage/index",
+					"query": "vkey=sumwmoo1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/bill/index",
+					"pathName": "pages/bill/index",
+					"query": "vkey=sumwmoo1",
 					"scene": null
 				}
 			]

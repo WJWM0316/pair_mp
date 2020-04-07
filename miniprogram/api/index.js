@@ -64,6 +64,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
       if (!data.hasOwnProperty('hideLoading')) {
         openLoading(loadingContent)
       }
+      delete data.hideLoading
       wx.request({
         url: APIHOST+url,
         header: addHttpHead,

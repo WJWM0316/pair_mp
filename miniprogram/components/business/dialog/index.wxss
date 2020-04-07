@@ -409,6 +409,20 @@
   z-index: 2;
   width: 100%;
 }
+.modal-dialog .charge-box .btn_v2 {
+  background: linear-gradient(180deg, #1ce8ef 0%, #0ccdda 100%);
+  border-radius: 44rpx;
+  text-align: center;
+  flex: 0 0 0 197rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 0;
+  width: 510rpx;
+  height: 98rpx;
+  border-radius: 50rpx;
+  line-height: 98rpx;
+}
 @keyframes modalopen {
   from {
     opacity: 0.5;

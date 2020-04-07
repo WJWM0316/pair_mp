@@ -17,6 +17,16 @@ Page({
       app.getUserInfo = () => {
         this.setData({'userInfo': app.globalData.userInfo.userInfo})
       }
+  },
+  onShow() {
+    let callback = () => {
+      this.setData({userInfo: app.globalData.userInfo.userInfo})
+      console.log(app.globalData.userInfo.userInfo)
+    }
+    if (app.globalData.userInfo) {
+      callback()
+    } else {
+      app.getUserInfo = () => callback()
     }
   },
   action (e) {
@@ -49,6 +59,12 @@ Page({
           confirmBack: () => {
             logout()
           }
+        })
+        break
+      case 'backlist':
+        let { PAGEPATH } = app.globalData
+        wx.navigateTo({
+          url: `${PAGEPATH}/backlist/index`
         })
         break
     }

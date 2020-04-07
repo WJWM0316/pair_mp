@@ -7,3 +7,11 @@ export const getSugarWalletApi = (data) => {
     data
   })
 }
+
+export const getSugarInfoApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/sugar_wallet',
+    data
+  })
+}
