@@ -10,14 +10,6 @@ Page({
     customerWechat: app.globalData.customerWechat,
     userInfo: 0
   },
-  onShow () {
-    if (app.globalData.userInfo) {
-      this.setData({'userInfo': app.globalData.userInfo.userInfo})
-    } else {
-      app.getUserInfo = () => {
-        this.setData({'userInfo': app.globalData.userInfo.userInfo})
-      }
-  },
   onShow() {
     let callback = () => {
       this.setData({userInfo: app.globalData.userInfo.userInfo})
