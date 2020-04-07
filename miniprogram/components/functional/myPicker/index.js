@@ -21,7 +21,14 @@ Component({
     needSlot: {
       type: Boolean,
       value: false
-    }
+    },
+    // initValue: {
+    //   type: String,
+    //   observer(newVal, oldVal) {
+    //     console.log(newVal, oldVal, 'kkk')
+    //     this.init()
+    //   }
+    // }
   },
   data: {
     rangeArray: [],
@@ -82,6 +89,8 @@ Component({
             let dayIndex = days.findIndex((v, i, a) => v.value == tem[2]) || 0
             value = [yearIndex, monthIndex, dayIndex]
             this.setData({active: value})
+          } else {
+            value = [0,0,0]
           }
           this.setData({ rangeArray, value, mode: 'multiSelector', rangeKey: 'key', placeHolder: '选择生日' })
           break
@@ -225,7 +234,7 @@ Component({
           let months = rangeArray[1]
           let days = []
           tem[column] = value
-          let length = this.getDaysInMonth(rangeArray[0][tem[0]].value, rangeArray[1][tem[1]].value)
+          let length = this.getDaysInMonth(rangeArray[0][tem[0]].value, months[tem[1]].value)
           let add0 = (m) => {return m < 10 ? '0' + m : m }
           for (let i = 1; i <= length; i++) {
             days.push({

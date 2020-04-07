@@ -15,15 +15,18 @@ import Socket from './webSocket.js'
 
 // 需要用户信息
 const getUserInfo = () => {
-  getMyInfoApi({hideLoading: true}).then(res => {
-    let userInfo = res.data
-    if(!Object.keys(userInfo.careerVerifyInfo).length) {
-      userInfo.careerVerifyInfo = Object.assign(userInfo.careerVerifyInfo, {status: -1})
-    }
-    getApp().globalData.userInfo = userInfo
-    if (getApp().getUserInfo) {
-      getApp().getUserInfo()
-    }
+  return new Promise((resolve, reject) => {
+    getMyInfoApi({hideLoading: true}).then(res => {
+      let userInfo = res.data
+      if(!Object.keys(userInfo.careerVerifyInfo).length) {
+        userInfo.careerVerifyInfo = Object.assign(userInfo.careerVerifyInfo, {status: -1})
+      }
+      getApp().globalData.userInfo = userInfo
+      resolve(userInfo)
+      if (getApp().getUserInfo) {
+        getApp().getUserInfo()
+      }
+    })
   })
 }
 

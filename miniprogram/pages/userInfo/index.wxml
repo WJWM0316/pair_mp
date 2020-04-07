@@ -158,7 +158,7 @@
       <view class="func-btn" bindtap="routeJump" data-key="ownDescribe" wx:if="{{ !userInfo.ownDescribe }}">完善描述</view>
       <i bindtap="routeJump" data-key="ownDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
-    <view class="desc" wx:if="{{ userInfo.ownDescribe }}">{{ userInfo.ownDescribe }}</view>
+    <text class="desc" wx:if="{{ userInfo.ownDescribe }}">{{ userInfo.ownDescribe }}</text>
   </view>
   <view class="ul myLabel">
     <view class="li">
@@ -183,7 +183,7 @@
       <view class="func-btn" bindtap="routeJump" data-key="idealDescribe" wx:if="{{ !userInfo.idealDescribe}}">完善理想型</view>
       <i bindtap="routeJump" data-key="idealDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
-    <view class="desc" wx:if="{{ userInfo.idealDescribe }}">{{userInfo.idealDescribe}}</view>
+    <text class="desc" wx:if="{{ userInfo.idealDescribe }}">{{userInfo.idealDescribe}}</text>
   </view>
   <view class="ul answer">
     <view class="li">
@@ -198,7 +198,7 @@
           <view class="my-icon"></view>{{item.title}}
           <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
         </view>
-        <view class="h2">{{item.body}}</view>
+        <text class="h2">{{item.body}}</text>
       </view>
     </view>
   </view>

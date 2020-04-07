@@ -15,9 +15,13 @@ Page({
     albumVerifyInfo: {
       status: 1,
       statusDesc: '审核通过'
-    }
+    },
+    showStatus: true
   },
-  onShow() {
+  close() {
+    this.setData({ showStatus: false })
+  },
+  init() {
     let callback = () => {
       let { userInfo, albumVerifyInfo } = app.globalData.userInfo
       let cover = null
@@ -37,7 +41,9 @@ Page({
     } else {
       app.getUserInfo = () => callback()
     }
-
+  },
+  onShow() {    
+    this.init()
     let avatar = wx.getStorageSync('avatar')
     if(avatar) {
       let { userInfo, albumVerifyInfo } = this.data
@@ -80,14 +86,27 @@ Page({
     }).catch(err => app.wxToast({title: err.msg}))
   },
   setCover() {
-    let { userInfo, editIndex, albumVerifyInfo } = this.data
+    let { userInfo, editIndex, albumVerifyInfo, cover } = this.data
     let userAlbumTempList = albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList
-    let cover = userAlbumTempList[editIndex]
+    let item = userAlbumTempList[editIndex]
     userAlbumTempList.splice(editIndex, 1)
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
-    addAlbumApi({cover: cover.id, photo}).then(res => {
-      wx.navigateBack({ delta: 1 })
+    addAlbumApi({cover: item.id, photo}).then(() => {
+      // let { albumVerifyInfo } = app.globalData.userInfo
+      // let result = null
+      // app.globalData.userInfo.userInfo.userAlbumTempList.map(v => {
+      //   v.isCover = false
+      //   if(v.id == item.id) {
+      //     result = v
+      //     v = cover
+      //     v.isCover = true
+      //   }
+      // })
+      // albumVerifyInfo.status = 0
+      // app.globalData.userInfo.userInfo.userAlbumTempList.push(cover)
+      // this.setData({ albumVerifyInfo, cover: result }, () => this.init())
+      // wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   delete() {

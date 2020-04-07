@@ -131,7 +131,7 @@
     <scrollPicker
       bind:pickerResult="pickerResult"
       pickerType="hometown"
-      initValue="{{ aa.hometownArr.length ? userInfo.hometownArr[0].areaId + '-' + userInfo.hometownArr[1].areaId : '' }}"
+      initValue="{{ userInfo.hometownArr.length ? userInfo.hometownArr[0].areaId + '-' + userInfo.hometownArr[1].areaId : '' }}"
       >
     </scrollPicker>
   </view>

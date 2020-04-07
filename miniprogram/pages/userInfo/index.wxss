@@ -167,6 +167,7 @@
   color: #66666E;
   line-height: 40rpx;
   margin: -16rpx 70rpx 50rpx 40rpx;
+  display: block;
 }
 .user-page .description,
 .user-page .ideal {

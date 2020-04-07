@@ -1,3 +1,6 @@
+.album {
+  padding-bottom: 244rpx;
+}
 .album .photo-ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -16,6 +19,7 @@
   bottom: 0;
   top: 0;
   text-align: center;
+  overflow: hidden;
 }
 .album .photo-ul .txt {
   position: absolute;
@@ -115,6 +119,7 @@
   right: 0;
   bottom: 0;
   top: 0;
+  overflow: hidden;
 }
 .album .photo-box .tips {
   width: 96rpx;
