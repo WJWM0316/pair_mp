@@ -77,6 +77,13 @@ Component({
             }) 
           })          
           break
+        case 'perfectUser':
+          this.setData({ show: false }, () => {
+            wx.navigateTo({
+              url: `${PAGEPATH}/perfectUser/index`
+            }) 
+          })     
+          break
         case 'album':
           this.setData({ show: false }, () => {
             wx.navigateTo({
