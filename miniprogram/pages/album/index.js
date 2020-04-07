@@ -86,38 +86,43 @@ Page({
     }).catch(err => app.wxToast({title: err.msg}))
   },
   setCover() {
-    let { userInfo, editIndex, albumVerifyInfo, cover } = this.data
+    let { userInfo, editIndex, albumVerifyInfo } = this.data
     let userAlbumTempList = albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList
     let item = userAlbumTempList[editIndex]
     userAlbumTempList.splice(editIndex, 1)
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: item.id, photo}).then(() => {
-      // let { albumVerifyInfo } = app.globalData.userInfo
-      // let result = null
-      // app.globalData.userInfo.userInfo.userAlbumTempList.map(v => {
-      //   v.isCover = false
-      //   if(v.id == item.id) {
-      //     result = v
-      //     v = cover
-      //     v.isCover = true
-      //   }
-      // })
-      // albumVerifyInfo.status = 0
-      // app.globalData.userInfo.userInfo.userAlbumTempList.push(cover)
-      // this.setData({ albumVerifyInfo, cover: result }, () => this.init())
+      let { userInfo } = app.globalData.userInfo
+      userInfo.userAlbumTempList.push(item)
+      userInfo.userAlbumTempList.map(v => {
+        v.isCover = false
+        if(v.id == item.id) {
+          v = item
+          v.isCover = true
+          app.globalData.userInfo.albumVerifyInfo.status = 0
+          console.log(1)
+          this.setData({ cover: item }, () => {            
+            this.init()
+          })
+        }
+      })
       // wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   delete() {
     let { userInfo, editIndex, cover, albumVerifyInfo } = this.data
     let userAlbumTempList = albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList
-    userAlbumTempList.splice(editIndex, 1)
+    let item = userAlbumTempList.splice(editIndex, 1)
     userAlbumTempList = userAlbumTempList.filter(v => v.id !== cover.id)
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
-    addAlbumApi({cover: cover.id, photo}).then(res => {
-      wx.navigateBack({ delta: 1 })
+    addAlbumApi({cover: cover.id, photo}).then(() => {
+      let { userInfo } = app.globalData.userInfo
+      userInfo.userAlbumTempList.splice(editIndex, 1)
+      app.globalData.userInfo.albumVerifyInfo.status = 0
+      this.init()
+      // wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   drawerAction(e) {

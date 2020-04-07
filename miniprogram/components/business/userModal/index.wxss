@@ -46,6 +46,10 @@
   font-weight: 700;
   color: #1F252B;
   line-height: 50rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300rpx;
 }
 .mine-modal .base .h2 {
   height: 32rpx;

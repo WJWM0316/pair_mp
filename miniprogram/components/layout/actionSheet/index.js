@@ -1,3 +1,4 @@
+const app = getApp()
 Component({
   options: {
     addGlobalClass: true,
@@ -20,6 +21,9 @@ Component({
       type: String,
       value: ''
     }
+  },
+  data: {
+    CDNPATH: app.globalData.CDNPATH
   },
   methods: {
     stopPageScroll () {

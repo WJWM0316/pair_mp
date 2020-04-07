@@ -84,15 +84,10 @@
       </view>
       <view class="value">
         <text class="limit-company-name {{!userInfo.companyName ? 'gray' : ''}}">{{userInfo.companyName}}</text>
-        <!-- <input
-          placeholder-class="holderStyle"
-          placeholder="添加公司"
-          value="{{ userInfo.companyName }}"
-          class="placeholder"
-          style="right: 110rpx"
-          disabled/> -->
-        <block wx:if="{{userInfo.companyName}}">
-          <view class="btn-status status1" wx:if="{{careerVerifyInfo.status === 1}}">已认证</view>
+        <block wx:if="{{userInfo.isCareerIdentity || careerVerifyInfo.status === 1}}">
+          <view class="btn-status status1">已认证</view>
+        </block>
+        <block wx:else>
           <view class="btn-status status2" wx:if="{{careerVerifyInfo.status === 2}}">未通过</view>
           <view class="btn-status status3" wx:if="{{careerVerifyInfo.status === -1}}">未认证</view>
           <view class="btn-status status4" wx:if="{{careerVerifyInfo.status === 0}}">认证中</view>

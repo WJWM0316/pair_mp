@@ -1,8 +1,8 @@
 const app =  getApp();
 Component({
-  /**
-   * 组件的属性列表
-   */
+  options: {
+    addGlobalClass: true,
+  },
   properties: {
     navBarBg: {
       type: String,
@@ -44,11 +44,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    routeJump() {
+    openPicker() {
       this.setData({show: true})
     },
-    back() {
-      wx.navigateBack({ delta: 1 })
+    reback() {
+      if (this.data.customBack) {
+        this.triggerEvent('backEvent')
+      } else {
+        wx.navigateBack({delta: 1})
+      }
     }
   }
 })
