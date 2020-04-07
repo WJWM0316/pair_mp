@@ -83,6 +83,10 @@ Page({
   },
   pick () {
     let { userInfo } = app.globalData.userInfo
+    if(userInfo.step !== 9) {
+      wx.navigateTo({url: `/pages/createUser/index?step=${userInfo.step}`})
+      return
+    }
     if(!this.data.status.canPick) { // 用户信息未完善或者未认证不给pick
       this.setData({code: 3}, () => this.selectComponent('#dialog').show())
     } else {
