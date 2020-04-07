@@ -29,3 +29,14 @@
   width: 148rpx;
   height: 49rpx;
 }
+.navWrap .icon_aixin-box {
+  position: relative;
+  overflow: hidden;
+}
+.navWrap .icon_aixin-box .avatar_v1 {
+  width: 24rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

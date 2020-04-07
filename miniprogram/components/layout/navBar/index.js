@@ -36,7 +36,8 @@ Component({
     titleHeight: app.globalData.systemInfo.titleHeight,
     statusBarHeight: app.globalData.systemInfo.statusBarHeight,
     navBarHeight: app.globalData.navBarHeight,
-    show: false
+    show: false,
+    CDNPATH: app.globalData.CDNPATH
   },
   ready () {
   },

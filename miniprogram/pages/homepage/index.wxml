@@ -19,7 +19,7 @@
         wx:for="{{ isOwer ? ( albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList ) : userInfo.userAlbumList }}"
         wx:key="index">
         <view class="swiper-item">
-          <i-image my-class="cover-img" src="{{ item.smallUrl }}"></i-image>
+          <i-image my-class="cover-img" src="{{ item.smallUrl }}" mode="widthFix"></i-image>
         </view>
       </swiper-item>
     </swiper>
