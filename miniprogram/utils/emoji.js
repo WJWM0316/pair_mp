@@ -5,11 +5,13 @@ class Emoji {
     this.emojiList = ["ee_024", "ee_041", "ee_020", "ee_044", "ee_022", "ee_010", "ee_021", "ee_105", "ee_036", "ee_011", "ee_026", "ee_025", "ee_002", "ee_001", "ee_034", "ee_033", "ee_013", "ee_028", "ee_014", "ee_023", "ee_004", "ee_019", "ee_031", "ee_032", "ee_080", "ee_081", "ee_027", "ee_003", "ee_038", "ee_051", "ee_043", "ee_082", "ee_035", "ee_012", "ee_050", "ee_014", "ee_040", "ee_077", "ee_006", "ee_005", "ee_007", "ee_084", "ee_085", "ee_086", "ee_047", "ee_087", "ee_045", "ee_088", "ee_049", "ee_015", "ee_089", "ee_042", "ee_037", "ee_090", "ee_052", "ee_018", "ee_061", "ee_062", "ee_091", "ee_092", "ee_067", "ee_059", "ee_008", "ee_009", "ee_061", "ee_030", "ee_029", "ee_073", "ee_060", "ee_079", "ee_017", "ee_069", "ee_076", "ee_063", "ee_016", "ee_068", "ee_074", "ee_075", "ee_046", "ee_053", "ee_054", "ee_055", "ee_056", "ee_057", "ee_064", "ee_072", "ee_071", "ee_066", "ee_093", "ee_065", "ee_039", "ee_048", "ee_094", "ee_070", "ee_095", "ee_096", "ee_097", "ee_098", "ee_099", "ee_078", "ee_100", "ee_101", "ee_102", "ee_103", "ee_104", "ee_107", "ee_108", "ee_109", "ee_110", "ee_111", "ee_112", "ee_113", "ee_114", "ee_115", "ee_116", "ee_117", "ee_118", "ee_119", "ee_120", "ee_121", "ee_112", "ee_123", "ee_124", "ee_125", "ee_126", "ee_127", "ee_128", "ee_129", "ee_130", "ee_131", "ee_132", "ee_133", "ee_134", "ee_135", "ee_136", "ee_137", "ee_138", "ee_139", "ee_140", "ee_141"]
   }
   init (string) {
+    this.cdnPath = getApp().globalData.CDNPATH
     let data = string
     let getEmoji = Array.from(new Set(data.match(/\[.+?\]/g))) // 获取表情符号，并去重
     let data1, data2
+    console.log(this.cdnPath, 111)
     getEmoji.forEach((item, index) => {
-      let img = `<img class='emoji' style=vertical-align:middle;width:30px src='../../../images/emoji/${this.emojiList[this.emojiName.indexOf(item)]}.png' />` // 将获取到的表情符号转成img
+      let img = `<img class='emoji' style=vertical-align:middle;width:30px src='${this.cdnPath}emoji/${this.emojiList[this.emojiName.indexOf(item)]}.png' />` // 将获取到的表情符号转成img
       var reg = new RegExp(`\\${item}`, "g")
       data = data.replace(reg, img)
     })

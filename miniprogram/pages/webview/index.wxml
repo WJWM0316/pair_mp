@@ -1,0 +1,5 @@
+<view class="webView">
+	<block wx:if="{{pageUrl}}">
+		<web-view src="{{pageUrl}}" bindmessage="getMessage" bindload="webLoad"></web-view>
+	</block>
+</view>

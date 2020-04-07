@@ -1,6 +1,6 @@
 const app =  getApp();
 import {getSelectorQuery, socket, util} from '../../../utils/index.js'
-import {getChatDetailApi, getImTopDeatilApi} from '../../../api/im.js'
+import {getChatDetailApi, getImTopDeatilApi, } from '../../../api/im.js'
 Page({
   /**
    * 页面的初始数据
@@ -11,7 +11,7 @@ Page({
     longpressData: {},
     othersUserInfo: {},
     mineUserInfo: {},
-    imagePath: app.globalData.systemInfo.brand === "devtools" ? '../../../images/emoji/' : './images/emoji/'
+    emojiPath: app.globalData.CDNPATH
   },
 
   /**
@@ -137,12 +137,28 @@ Page({
   onHide: function () {
 
   },
-
+  // 记录最后一条记录发送时间
+  sendLastMsgTime () {
+    let that = this
+    socket.send({
+      cmd: 'send.im',
+      data: {
+          "toVkey": that.options.vkey, 
+          "msgType": 
+          "RC:ReadNtf", 
+          "content": {
+            "lastMessageSendTime": that.data.messageList[that.data.messageList.length - 1].imData.timestamp, 
+            "type":1, 
+            "extra": "额外数据"
+          }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.sendLastMsgTime
   },
 
   // 页面滚动时执行

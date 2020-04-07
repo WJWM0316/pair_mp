@@ -20,7 +20,7 @@
               data-index="{{index}}"
               >
               <block wx:if="{{item.msgType === 'RC:TxtMsg'}}">
-              <view class="text"><rich-text nodes="{{filters.setEmoji(item.imData.content.content, imagePath)}}" space="emsp"></rich-text></view>
+              <view class="text"><rich-text nodes="{{filters.setEmoji(item.imData.content.content, emojiPath)}}" space="emsp"></rich-text></view>
               </block>
               <block wx:if="{{item.msgType === 'RC:ImgMsg'}}">
                 <msg-image message="{{item.imData.content}}"></msg-image>
@@ -36,7 +36,6 @@
                 <i class="icon" style="{{longpressData.iconStyle}}"></i>
                 <text class="textBtn">复制</text>
                 <text class="textBtn">撤回</text>
-                <text class="textBtn">删除</text>
               </view>
             </view>
           </view>

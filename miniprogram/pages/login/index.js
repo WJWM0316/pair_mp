@@ -77,6 +77,11 @@ Page({
     }
     phoneCodeLogin(data, this.options)
   },
+  userAgreement () {
+    let WEBVIEW = app.globalData.WEBVIEW,
+        url     = `${WEBVIEW}/art/userProtocol/index.html`
+    wx.navigateTo({url: `/pages/webview/index?p=${encodeURIComponent(url)}`})
+  },
   /**
    * 生命周期函数--监听页面显示
    */

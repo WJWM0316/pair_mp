@@ -22,7 +22,8 @@
     "pages/square/index",
     "pages/report/index",
     "pages/account/index",
-    "pages/bill/index"
+    "pages/bill/index",
+    "pages/webview/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

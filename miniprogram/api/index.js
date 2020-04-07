@@ -126,7 +126,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
     // 拦截器
     const controlFun = () => {
       // 静默登录拦截
-      if (!sessionToken && !token) {
+      if (!sessionToken) {
         if (!noAuthRequests.length) {
           wx.login({
             success: function (res0) {

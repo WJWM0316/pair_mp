@@ -40,7 +40,7 @@ const loginCallback = (res, options) => {
     Socket.login(res.data.userInfo.token)
     getUserInfo()
     if (res.data.userInfo.hasOwnProperty('step') && res.data.userInfo.step !== 9) {
-      wx.navigateTo({
+      wx.redirectTo({
         url: `/pages/createUser/index?step=${res.data.userInfo.step}`
       })
     } else {

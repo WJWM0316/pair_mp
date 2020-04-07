@@ -1,4 +1,5 @@
 import emoji from '../../../../../utils/emoji.js'
+const app =  getApp();
 Component({
   /**
    * 组件的属性列表
@@ -11,7 +12,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    list: emoji.emojiList
+    list: emoji.emojiList,
+    cdnPath: app.globalData.CDNPATH
   },
 
   /**
