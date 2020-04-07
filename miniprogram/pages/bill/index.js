@@ -1,9 +1,10 @@
 import {
   getSugarWalletApi
 } from '../../api/sugar'
-const app = getApp()
+let app = getApp()
 Page({
   data: {
+    CDNPATH: app.globalData.CDNPATH,
     pageCount: 20,
     tab: 'obtainData',
     useData: {
@@ -53,7 +54,7 @@ Page({
       let { useData, pageCount } = this.data
       let params = { count: pageCount, page: useData.pageNum, incrType: 'decr' }
       getSugarWalletApi(params).then(res => {
-        const useData = this.data.useData
+        let useData = this.data.useData
         useData.onBottomStatus = res.meta && res.meta.nextPageUrl ? 0 : 2
         useData.list = useData.list.concat(res.data)
         useData.isLastPage = res.meta && res.meta.nextPageUrl ? false : true
@@ -88,5 +89,11 @@ Page({
     this.setData({tab: dataset.tab }, () => {
       if(!this.data[dataset.tab].isRequire) this.getLists()
     })
-  }
+  },
+  onReachBottom() {
+    let data = this.data[this.data.tab]
+    if (!data.isLastPage) {
+      this.getLists()
+    }
+  },
 })

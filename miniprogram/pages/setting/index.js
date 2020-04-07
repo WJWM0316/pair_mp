@@ -7,7 +7,19 @@ Page({
    */
   data: {
     customerPhone: app.globalData.customerPhone,
-    customerWechat: app.globalData.customerWechat
+    customerWechat: app.globalData.customerWechat,
+    userInfo: {}
+  },
+  onShow() {
+    let callback = () => {
+      this.setData({userInfo: app.globalData.userInfo.userInfo})
+      console.log(app.globalData.userInfo.userInfo)
+    }
+    if (app.globalData.userInfo) {
+      callback()
+    } else {
+      app.getUserInfo = () => callback()
+    }
   },
   action (e) {
     const that = this
@@ -39,6 +51,12 @@ Page({
           confirmBack: () => {
             logout()
           }
+        })
+        break
+      case 'backlist':
+        let { PAGEPATH } = app.globalData
+        wx.navigateTo({
+          url: `${PAGEPATH}/backlist/index`
         })
         break
     }

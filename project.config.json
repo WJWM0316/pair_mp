@@ -123,6 +123,20 @@
 					"pathName": "pages/account/index",
 					"query": "vkey=oeyatwbc",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/homepage/index",
+					"pathName": "pages/homepage/index",
+					"query": "vkey=sumwmoo1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/bill/index",
+					"pathName": "pages/bill/index",
+					"query": "vkey=sumwmoo1",
+					"scene": null
 				}
 			]
 		}

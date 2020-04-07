@@ -11,6 +11,10 @@
         <view class="value get">+{{item.diff}}</view>
       </view>
       <!-- <bottomStatus status="{{obtainData.onBottomStatus}}" desc="暂无数据~" listData="{{ obtainData.list }}"></bottomStatus> -->
+      <view class="no-data" wx:if="{{ !obtainData.list.length }}">
+        <i-image my-class="nodata" src="{{ CDNPATH }}img_nobill@3x.png" mode="widthFix"></i-image> 
+        <view class="tips">一个皮糖都没有哦~</view>
+      </view>
     </block>
     <block wx:else>
       <view class="li" wx:for="{{ useData.list }}" wx:key="index">
@@ -19,6 +23,10 @@
         <view class="value use">-{{item.diff}}</view>
       </view>
       <!-- <bottomStatus status="{{useData.onBottomStatus}}" desc="暂无数据~" listData="{{ useData.list }}"></bottomStatus> -->
+      <view class="no-data" wx:if="{{ !useData.list.length }}">
+        <i-image my-class="nodata" src="{{ CDNPATH }}img_nobill@3x.png" mode="widthFix"></i-image> 
+        <view class="tips">一个皮糖都没有哦~</view>
+      </view>
     </block>
   </view>
 </view>

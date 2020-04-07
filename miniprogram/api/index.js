@@ -64,6 +64,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
       if (!data.hasOwnProperty('hideLoading')) {
         openLoading(loadingContent)
       }
+      delete data.hideLoading
       wx.request({
         url: APIHOST+url,
         header: addHttpHead,
@@ -144,7 +145,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                     item()
                   })
                   noAuthRequests = []
-                  getUserInfo()
+                  // getUserInfo()
                 },
                 fail(e) {
                   console.log('服务器异常，请稍后访问', e)

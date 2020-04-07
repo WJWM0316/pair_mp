@@ -98,7 +98,10 @@
                          <view class="text_v1"> 使用<text class="strong_v1"> {{ other.charge }}</text>个皮糖开始聊天</view>
                     </view>
                     <view class="action-button_v1">
-                         <view class="btn_v1" bindtap="click" data-action="charge"><view class="btn_cover_v1">立即开始聊天</view></view>
+                         <view class="btn_v1" bindtap="click" data-action="charge">
+                              <view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.charge }}">立即开始聊天</view>
+                              <contactBtn contactType="recharge" title="余额不足  获取皮糖" my-class="btn_v2" wx:else></contactBtn>   
+                         </view>
                     </view>
                </view>
           </block>

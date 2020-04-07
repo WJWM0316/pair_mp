@@ -56,20 +56,19 @@
     </view>
     <view class="item">
       <view class="key">常驻地</view>
-      <input
+      <!-- <input
           placeholder-class="holderStyle"
           placeholder="请选择"
           value="{{formData.address.title}}"
           class="value {{formData.address.title ? 'bold' : ''}}"
           wx:if="{{ isFirst }}"
           bindtap="ask"
-          disabled/>
+          disabled/> -->
       <myPicker
         pickerType="region"
         initValue="{{ formData.address.default }}"
         needSlot="{{ true }}"
         bindresultevent="getPickerData"
-        wx:else
         data-key="address">
         <input
           placeholder-class="holderStyle"

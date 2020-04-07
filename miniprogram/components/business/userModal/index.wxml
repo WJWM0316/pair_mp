@@ -74,15 +74,16 @@
         <view class="li" bindtap="todoAction" data-action="account">
           <i class="icon1 icon iconfont icon_zhanghu"></i>
           <view class="key">账户</view>
-          <view class="value redot">每日签到</view>
+          <view class="value">每日签到</view>
+          <!-- <view class="value redot">每日签到</view> -->
           <i class="icon iconfont icon_jiantou-you-"></i>
         </view>
-        <view class="li">
+        <!-- <view class="li">
           <i class="icon1 icon iconfont icon_yaoqinghaoyou"></i>
           <view class="key">邀请好友</view>
           <view class="value">免费领皮糖</view>
           <i class="icon iconfont icon_jiantou-you-"></i>
-        </view>
+        </view> -->
         <view class="li" bindtap="todoAction" data-action="setting">
           <i class="icon1 icon iconfont icon_shezhi"></i>
           <view class="key">设置</view>

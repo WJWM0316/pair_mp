@@ -19,15 +19,12 @@ Page({
       topUpTimes: 0,
       uid: 0,
       vkey: "rypbaeb3",
-      todaySigned: false
+      todaySigned: true
     }
   },
   onShow() {
-    console.log(this.getRurrentDate())
     this.getCurrentWeekSignIn()
-    getSugarInfoApi().then(({data}) => {
-      this.setData({wallet: data.wallet})
-    })
+    getSugarInfoApi().then(({data}) => this.setData({wallet: data.wallet}))
   },
   getRurrentDate() {
     let date = new Date();
@@ -47,7 +44,6 @@ Page({
         }
       })
       this.setData({ weekSignConfig: data, todaySigned: dateArr.includes(currentDate)})
-      console.log(this.data)
     })
   },
   viewBill() {

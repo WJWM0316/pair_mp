@@ -27,10 +27,10 @@
         <text class="day">{{item.day}}</text>
       </view>
     </view>
-    <view class="my-header2">
+    <!-- <view class="my-header2">
       <view class="h1">邀请好友<text>+38皮糖/位</text></view>
       <view class="h2">每邀请1位均可获得38皮糖，不设上限</view>
       <view class="btn">立即邀请</view>
-    </view>
+    </view> -->
   </view>
 </view>
