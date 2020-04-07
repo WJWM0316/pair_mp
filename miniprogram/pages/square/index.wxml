@@ -1,5 +1,6 @@
 <navBar
   navBarBg="{{background}}"
+  title="单身广场"
   userInfo="{{userInfo.userInfo}}"
   >
 </navBar>

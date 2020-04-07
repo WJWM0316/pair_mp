@@ -1,7 +1,10 @@
 import {
   getUserInfoCompleteApi
 } from '../../../api/user.js'
-
+import {
+  getPickChanceApi,
+  pickChanceApi
+} from '../../../api/pick'
 const app = getApp()
 Component({
   options: {

@@ -1,0 +1,8 @@
+<view class="wrapPopUp" wx:if="{{show}}">
+  <view class="content" wx:for="{{awardList}}" wx:key="id" hidden="{{index !== curIndex}}">
+    <i-image my-class="img" src="{{cdnPath}}glowCandy.png"></i-image>
+    <view class="tips1">{{item.text}}</view>
+    <view class="tips2">活动<text class="bold">{{item.sugarNum}}</text>块皮糖</view>
+    <i class="icon iconfont icon_guanbi-xian-" bindtap = "close" data-index="{{index}}"></i>
+  </view>
+</view>

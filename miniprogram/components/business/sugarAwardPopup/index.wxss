@@ -1,0 +1,36 @@
+.wrapPopUp {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapPopUp .img {
+  width: 243rpx;
+  height: 244rpx;
+  display: block;
+  margin: 0 auto 16rpx;
+}
+.wrapPopUp .tips1,
+.wrapPopUp .tips2 {
+  text-align: center;
+  font-size: 36rpx;
+  color: #fff;
+  line-height: 56rpx;
+}
+.wrapPopUp .tips1 .bold,
+.wrapPopUp .tips2 .bold {
+  color: #0CCDDA;
+}
+.wrapPopUp .icon {
+  font-size: 60rpx;
+  color: #fff;
+  margin: 80rpx auto 0;
+  display: block;
+  text-align: center;
+}

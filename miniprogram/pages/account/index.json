@@ -1,7 +1,8 @@
 {
 	"usingComponents": {
     "contactBtn": "../../components/business/contactBtn/index",
-    "scrollPicker": "../../components/functional/scrollPicker/index"
+    "scrollPicker": "../../components/functional/scrollPicker/index",
+    "sugar-award-popup": "../../components/business/sugarAwardPopup/index"
   },
   "navigationBarTitleText": "我的皮糖",
   "navigationBarBackgroundColor": "#F1F4F4"

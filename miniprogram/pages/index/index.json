@@ -3,7 +3,8 @@
   "usingComponents": {
     "contach-btn": "../../components/business/contactBtn",
     "swipe-out": "../../components/layout/swipeout",
-    "dialog": "../../components/business/dialog"
+    "dialog": "../../components/business/dialog",
+    "sugar-award-popUp": "../../components/business/sugarAwardPopup"
   },
   "navigationStyle": "custom"
 }

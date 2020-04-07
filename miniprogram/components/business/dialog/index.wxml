@@ -1,109 +1,170 @@
 <view class="modal-dialog {{ show ? 'show' : ''}}">
-     <view class="mask {{ show ? 'show' : ''}}"></view>
-     <view class="content">
-          <i class="icon iconfont icon_xiaocha" bindtap="close" wx:if="{{showClose}}"></i>
-          <block wx:if="{{code === 1}}">
-               <view class="model_title">匹配偏好</view>
-               <view class="p1">你想认识？</view>
-               <view class="sex-ul">
-                    <view class="li boy" bindtap="click" data-sex="1"><i class="icon iconfont icon_nan"></i>男</view>
-                    <view class="li girl" bindtap="click" data-sex="2"><i class="icon iconfont icon_nv"></i>女</view>
-               </view>
-               <view class="p2"><text bindtap="click" data-sex="0">不限性别</text></view>
-          </block>
-          <block wx:elif="{{code === 2}}">
-               <view class="model_title">个人资料完善度</view>
-               <view class="process">
-                    <view class="bar">
-                         <view class="active2" style="width: {{ userInfo.infoCompletePercentDesc}}"></view>
-                         <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i-image>
-                         <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
-                    </view>
-                    <view class="tips">
-                         资料完善度完善到100%，提高双倍交友成功率
-                    </view>
-               </view>
-               <view class="perfect-ul">
-                    <view class="li" bindtap="routeJump" data-page="userInfo">
-                         <i class="icon iconfont icon_im_biaoqing"></i>
-                         <text class="text">补充基本资料</text>
-                         <view class="btn {{ userCompleteInfo.baseComplete ? '' : 'bg' }}">
-                              {{userCompleteInfo.baseComplete ? '已完善' : '去完善'}}
-                         </view>
-                    </view>
+	<view class="mask {{ show ? 'show' : ''}}" />
+	<view class="content">
+		<i class="icon iconfont icon_xiaocha" bindtap="close" wx:if="{{showClose}}" />
+		<block wx:if="{{code === 1}}">
+			<view class="model_title">匹配偏好</view>
+			<view class="p1">你想认识？</view>
+			<view class="sex-ul">
+				<view class="li boy" bindtap="click" data-sex="1">
+					<i class="icon iconfont icon_nan" />
+					男
+				</view>
+				<view class="li girl" bindtap="click" data-sex="2">
+					<i class="icon iconfont icon_nv" />
+					女
+				</view>
+			</view>
+			<view class="p2">
+				<text bindtap="click" data-sex="0">不限性别</text>
+			</view>
+		</block>
+		<block wx:elif="{{code === 2}}">
+			<view class="model_title">个人资料完善度</view>
+			<view class="process">
+				<view class="bar">
+					<view class="active2" style="width: {{ userInfo.infoCompletePercentDesc}}" />
+					<i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}" />
+					<i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
+				</view>
+				<view class="tips">
+					资料完善度完善到100%，提高双倍交友成功率
+				</view>
+			</view>
+			<view class="perfect-ul">
+				<view class="li" bindtap="routeJump" data-page="userInfo">
+					<i class="icon iconfont icon_im_biaoqing" />
+					<text class="text">补充基本资料</text>
+					<view class="btn {{ userCompleteInfo.baseComplete ? '' : 'bg' }}">
+						{{userCompleteInfo.baseComplete ? '已完善' : '去完善'}}
+					</view>
+				</view>
 
-                    <view class="li" bindtap="routeJump" data-page="album">
-                         <i class="icon iconfont icon_im_tupian"></i>
-                         <text class="text">丰富个人相册</text>
-                         <view class="btn {{ userCompleteInfo.albumComplete ? '' : 'bg' }}">
-                              {{ userCompleteInfo.albumComplete ? '已完善' : '去完善'}}
-                         </view>
-                    </view>
+				<view class="li" bindtap="routeJump" data-page="album">
+					<i class="icon iconfont icon_im_tupian" />
+					<text class="text">丰富个人相册</text>
+					<view class="btn {{ userCompleteInfo.albumComplete ? '' : 'bg' }}">
+						{{ userCompleteInfo.albumComplete ? '已完善' : '去完善'}}
+					</view>
+				</view>
 
-                    <view class="li" bindtap="routeJump" data-page="answer">
-                         <i class="icon iconfont icon_im_kaichangbai"></i>
-                         <text class="text">我的问答</text>
-                         <view class="btn {{ userCompleteInfo.questionComplete ? '' : 'bg'}}">
-                              {{ userCompleteInfo.questionComplete ? '已完善' : '去完善'}}                              
-                         </view>
-                    </view>
-               </view>
-          </block>
-          <block wx:elif="{{code === 3}}">
-               <view class="model_title">为保证双方的交友体验需完善以下信息才可继续Pick</view>
-               <view class="perfect-ul2">
-                    <view class="li">
-                         <i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{ userCompleteInfo.infoCompletePercent < 80 }}"></i>
-                         <i class="icon2 iconfont icon_gouxuan" wx:else></i>
-                         <text class="text">补充基本资料</text>
-                         <view class="btn bg" bindtap="routeJump" data-page="userInfo" wx:if="{{ userCompleteInfo.baseComplete < 80 }}">去完善</view>
-                         <view class="btn" wx:else>已完善</view>                         
-                    </view>
-                    <view class="li">
-                         <i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0}}"></i>
-                         <i class="icon2 iconfont icon_gouxuan" wx:else></i>
-                         <text class="text">个人封面审核</text>
-                         <text class="error" wx:if="{{albumVerifyInfo.status === 2}}">未通过</text>
-                         <view class="btn {{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0 ? 'bg' : ''}}" wx:if="{{albumVerifyInfo.status === 2}}" bindtap="routeJump" data-page="album">去上传</view>
-                         <view class="btn2" wx:if="{{albumVerifyInfo.status === 0}}">审核中</view>
-                         <view class="btn" wx:if="{{albumVerifyInfo.status === 1}}">已通过</view>
-                    </view>
-                    <view class="li {{ careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : '' }}">
-                         <i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}"></i>
-                         <i class="icon2 iconfont icon_gouxuan" wx:else></i>
-                         <text class="text">职业信息认证</text>
-                         <text class="error" wx:if="{{careerVerifyInfo.status === 2}}">未通过</text>
-                         <view class="btn {{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : ''}}" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}" bindtap="routeJump" data-page="career">去上传</view>
-                         <view class="btn2" wx:if="{{careerVerifyInfo.status === 0}}">审核中</view>
-                         <view class="btn" wx:if="{{careerVerifyInfo.status === 1}}">已通过</view>
-                    </view>
-               </view>
-          </block>
-          <block wx:elif="{{code === 4}}">
-               <view class="charge-box">
-                    <view class="img-box_v1">
-                         <view class="circle_v1 {{other.userSex === 1 ? 'boy' : 'girl'}}">
-                              <i-image my-class="use_avatar" src="{{ other.userAvatar }}"></i-image>
-                         </view>
-                         <view class="circle_v1 {{other.mySex === 1 ? 'boy' : 'girl'}}">
-                              <i-image my-class="use_avatar" src="{{ other.myAvatar }}"></i-image>
-                         </view>
-                         <i-image my-class="love_v1" src="{{ CDNPATH }}icon_heart_whitepink.png"></i-image>
-                    </view>
-                    <view class="model_title_v2">想认识Ta</view>
-                    <view class="p_v2">抓住机会，主动向TA发起对话</view>
-                    <view class="row-botton">
-                         <!-- <view class="pitang"></view> -->
-                         <i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png"></i-image>
-                         <view class="text_v1"> 使用<text class="strong_v1"> {{ other.charge }}</text>个皮糖开始聊天</view>
-                    </view>
-                    <view class="action-button_v1">
-                         <view class="btn_v1" bindtap="click" data-action="charge">
-                              <view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.charge }}">立即开始聊天</view>
-                              <contactBtn contactType="recharge" title="余额不足  获取皮糖" my-class="btn_v2" wx:else></contactBtn>   
-                         </view>
-                    </view>
-               </view>
-          </block>
-     </view>
+				<view class="li" bindtap="routeJump" data-page="answer">
+					<i class="icon iconfont icon_im_kaichangbai" />
+					<text class="text">我的问答</text>
+					<view class="btn {{ userCompleteInfo.questionComplete ? '' : 'bg'}}">
+						{{ userCompleteInfo.questionComplete ? '已完善' : '去完善'}}
+					</view>
+				</view>
+			</view>
+		</block>
+		<block wx:elif="{{code === 3}}">
+			<view class="model_title">为保证双方的交友体验需完善以下信息才可继续Pick</view>
+			<view class="perfect-ul2">
+				<view class="li">
+					<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{ userCompleteInfo.infoCompletePercent < 80 }}" />
+					<i class="icon2 iconfont icon_gouxuan" wx:else></i>
+					<text class="text">补充基本资料</text>
+					<view
+					 class="btn bg"
+					 bindtap="routeJump"
+					 data-page="userInfo"
+					 wx:if="{{ userCompleteInfo.baseComplete < 80 }}"
+					>去完善
+					</view>
+					<view class="btn" wx:else>已完善</view>
+				</view>
+				<view class="li">
+					<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0}}" />
+					<i class="icon2 iconfont icon_gouxuan" wx:else></i>
+					<text class="text">个人封面审核</text>
+					<text class="error" wx:if="{{albumVerifyInfo.status === 2}}">未通过</text>
+					<view
+					 class="btn {{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0 ? 'bg' : ''}}"
+					 wx:if="{{albumVerifyInfo.status === 2}}"
+					 bindtap="routeJump"
+					 data-page="album"
+					>去上传
+					</view>
+					<view class="btn2" wx:if="{{albumVerifyInfo.status === 0}}">审核中</view>
+					<view class="btn" wx:if="{{albumVerifyInfo.status === 1}}">已通过</view>
+				</view>
+				<view class="li {{ careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : '' }}">
+					<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}" />
+					<i class="icon2 iconfont icon_gouxuan" wx:else></i>
+					<text class="text">职业信息认证</text>
+					<text class="error" wx:if="{{careerVerifyInfo.status === 2}}">未通过</text>
+					<view
+					 class="btn {{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : ''}}"
+					 wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}"
+					 bindtap="routeJump"
+					 data-page="career"
+					>去上传
+					</view>
+					<view class="btn2" wx:if="{{careerVerifyInfo.status === 0}}">审核中</view>
+					<view class="btn" wx:if="{{careerVerifyInfo.status === 1}}">已通过</view>
+				</view>
+			</view>
+		</block>
+		<block wx:elif="{{code === 4}}">
+			<view class="charge-box">
+				<view class="img-box_v1">
+					<view class="circle_v1 {{other.userSex === 1 ? 'boy' : 'girl'}}">
+						<i-image my-class="use_avatar" src="{{ other.userAvatar }}" />
+					</view>
+					<view class="circle_v1 {{other.mySex === 1 ? 'boy' : 'girl'}}">
+						<i-image my-class="use_avatar" src="{{ other.myAvatar }}" />
+					</view>
+					<i-image my-class="love_v1" src="{{ CDNPATH }}icon_heart_whitepink.png" />
+				</view>
+				<view class="model_title_v2">想认识Ta</view>
+				<view class="p_v2">抓住机会，主动向TA发起对话</view>
+				<view class="row-botton">
+					<!-- <view class="pitang"></view> -->
+					<i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png" />
+					<view class="text_v1"> 使用
+						<text class="strong_v1"> {{ other.charge }}</text>
+						个皮糖开始聊天
+					</view>
+				</view>
+				<view class="action-button_v1">
+					<view class="btn_v1" bindtap="click" data-action="charge">
+						<view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.charge }}">立即开始聊天</view>
+						<contactBtn
+						 contactType="recharge"
+						 title="余额不足  获取皮糖"
+						 my-class="btn_v2"
+						 wx:else
+						></contactBtn>
+					</view>
+				</view>
+			</view>
+		</block>
+		<block wx:elif="{{code === 5}}">
+			<view class="charge-box">
+				<i-image my-class="headImg" src="{{ CDNPATH }}img_popup_buypick.png" />
+				<view class="model_title_v2">获取更多次数</view>
+				<view class="p_v2">每天最多可 +5 次Pick</view>
+				<view class="row-botton">
+					<!-- <view class="pitang"></view> -->
+					<i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png" />
+					<view class="text_v1"> 使用
+						<text class="strong_v1"> {{ other.exchange.sugar }}</text>
+						个皮糖获取Pick
+					</view>
+				</view>
+				<view class="action-button_v1">
+					<view class="btn_v1" bindtap="click" data-action="charge">
+						<view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.exchange.sugar }}">立即换取</view>
+						<contactBtn
+						 contactType="recharge"
+						 title="余额不足  获取皮糖"
+						 my-class="btn_v2"
+						 wx:else
+						></contactBtn>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
 </view>
+

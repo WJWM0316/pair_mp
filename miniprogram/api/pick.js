@@ -34,3 +34,21 @@ export const setPickerIntentionApi = (data) => {
     data
   })
 }
+
+// 获取 皮糖换pick次数的相关信息
+export const getPickChanceApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/pick_chance/exchange_info',
+    data
+  })
+}
+
+// 皮糖换pick次数
+export const pickChanceApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/pick_chance/exchange',
+    data
+  })
+}

@@ -34,3 +34,4 @@
     </view> -->
   </view>
 </view>
+<sugar-award-popup awardList="{{awardPopData}}" id="awardPopUp"></sugar-award-popup>

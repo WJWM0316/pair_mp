@@ -4,7 +4,7 @@ const app = getApp()
 let phone = ''
 import {getCurrentPagePath} from '../../utils/index.js'
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
-import {pickApi, pickIndexAvaApi, pickAggrApi} from "../../api/pick.js"
+import {pickApi, pickIndexAvaApi, pickAggrApi, getPickChanceApi, pickChanceApi} from "../../api/pick.js"
 Page({
   data: {
     background: '#1F252B',
@@ -14,6 +14,7 @@ Page({
     userInfo: 0,
     countDown: 0,
     code: 0,
+    dialogData: {},
     hasLogin: app.globalData.hasLogin,
     cdnPath: app.globalData.CDNPATH
   },
@@ -59,6 +60,9 @@ Page({
         }
         startCountDown()
       }
+      if (res.data.popups.length) {
+        this.selectComponent('#awardPopUp').show()
+      }
       this.setData({'status': res.data, countDown})
     })
   },
@@ -73,18 +77,45 @@ Page({
       this.setData({richText, hasLogin})
     })
   },
+  getPickChance () {
+    return getPickChanceApi().then(res => {
+      this.setData({'dialogData': res.data})
+    })
+  },
+  // 开始兑换
+  pickChance (e) {
+    pickChanceApi().then(() => {
+      this.getOtherStatus()
+    })
+  },
   pick () {
     let { userInfo } = app.globalData.userInfo
-    if(!this.data.status.canPick) {
+    if(!this.data.status.canPick) { // 用户信息未完善或者未认证不给pick
       this.setData({code: 3}, () => this.selectComponent('#dialog').show())
     } else {
-      pickApi({hideLoading: true}).then(({ data }) => {
-        wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
-      }).catch(e => {
-        if (e.data.code === 2204) {
-          this.setData({code: 3}, () => this.selectComponent('#dialog').show())
-        }
-      })
+      // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
+      if (!this.data.status.pickChance.todayRemain && this.data.status.pickChance.todayRemainExchangeTimes) {
+        this.getPickChance().then(res => {
+          this.setData({code: 5}, () => this.selectComponent('#dialog').show())
+        })
+      } else {
+        // 有次数直接pick
+        pickApi({hideLoading: true}).then(({ data }) => {
+          wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
+        }).catch(e => {
+          if (e.data.code === 2204) {
+            this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+          }
+        })
+      }
+      
+    }
+  },
+  routeJump (e) {
+    let type = e.currentTarget.dataset.route
+    switch (type) {
+      case 'square':
+        wx.reLaunch({url: `/pages/square/index`})
     }
   },
   onHide: function () {

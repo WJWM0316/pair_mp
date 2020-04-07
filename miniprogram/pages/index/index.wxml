@@ -9,13 +9,13 @@
     <view class="center centerBtn" style="{{parse.setStyle('centerBtn', status.pickChance.todayRemain, status.pickChance.todayRemainExchangeTimes)}}">
       <block wx:if="{{hasLogin}}">
         <view class="center btnContent contactBtn" wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
-          <contach-btn my-class="mainBtn" contactType="recharge">
+          <view class="mainBtn" bindtap = "pick">
             <view slot="content" class="contactSlot">
               <view class="moreTxt">获取更多</view>
               <i-image my-class="logo" src="{{cdnPath}}icon_picktab_btn_pick@3x.png"></i-image>
               <view class="timesTxt">次数已用完</view>
             </view>
-          </contach-btn>
+          </view>
         </view>
         <view wx:else class="center btnContent {{!status.pickChance.todayRemain && !status.pickChance.todayRemainExchangeTimes ? 'default' : ''}}">
           <i-button my-class="mainBtn" bindtap = "pick">
@@ -27,13 +27,11 @@
       <block wx:else>
       </block>
     </view>
-
-
     <block wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
       <view class="footerTxt">
         <view class="txt1">{{status.refreshText}}</view>
         <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
-        <view class="txt3">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
+        <view class="txt3" bindtap="routeJump" data-route="square">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
       </view>
     </block>
     <block wx:elif="{{status.pickChance.todayRemain}}">
@@ -43,19 +41,19 @@
       <view class="footerTxt">
         <view class="txt1">距离下次更新</view>
         <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
-        <view class="txt3">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
+        <view class="txt3" bindtap="routeJump" data-route="square">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
       </view>
     </block>
     
   </view>
 </view>
 <tabBar tabBgColor="{{background}}" mask="{{false}}"></tabBar>
-<dialog code="{{ code }}" id="dialog" bind:click="dialogEvent"></dialog>
+<dialog code="{{ code }}" other="{{dialogData}}" id="dialog" bind:click="pickChance"></dialog>
+<sugar-award-popUp id="awardPopUp" awardList="{{status.popups}}"></sugar-award-popUp>
 <wxs src="../../utils/filters.wxs" module="filters" />
 
 <wxs module="parse">
   module.exports = {
-
     setStyle : function(dom, todayRemain, todayRemainExchangeTimes){
       switch (dom) {
         case 'centerBtn':
