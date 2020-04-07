@@ -42,7 +42,7 @@ Page({
   getOtherStatus () {
     pickAggrApi({hideLoading: true}).then(res => {
       let countDown = 0
-      if (res.data.pickChance.todayRemain) {
+      if (!res.data.pickChance.todayRemain) {
         countDown = res.data.refreshAt - res.data.curTime
         let startCountDown = () => {
           this.countDownTimers = setTimeout(() => {

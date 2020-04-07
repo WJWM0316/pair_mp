@@ -1,15 +1,17 @@
 const app =  getApp();
 import {registerApi, sendMsgApi} from '../../api/auth.js'
 import {getPhoneNumber, phoneCodeLogin} from '../../utils/index.js'
-let phone = '',
-    code = ''
+import {mobileReg} from '../../utils/fieldRegular.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    canClick: false
+    canClick: false,
+    cdnPath: app.globalData.CDNPATH,
+    sendTimes: 60
   },
 
   /**
@@ -26,32 +28,52 @@ Page({
 
   },
   getPhoneNumber (e) {
+    if (e.detail.errMsg.indexOf('fail') !== -1) return
     getPhoneNumber(e, this.options)
   },
   bindinput (e) {
     switch(e.currentTarget.dataset.type) {
       case 'phone':
-        phone = e.detail.value
+        this.phone = e.detail.value
         break
       case 'code':
-        code = e.detail.value
+        this.code = e.detail.value
         break
     }
-    if (phone && code) {
+    if (this.phone && this.code) {
       if (!this.data.canClick) this.setData({canClick: true})
     } else {
       if (this.data.canClick) this.setData({canClick: false})
     }
   },
+  countDown () {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      let sendTimes = this.data.sendTimes
+      if (sendTimes > 0) {
+        sendTimes--
+        this.countDown()
+      } else {
+        sendTimes = 60
+        clearTimeout(this.timer)
+      }
+      this.setData({sendTimes})
+    }, 1000)
+  },
   sendMsg () {
-    sendMsgApi({mobile: phone}).then(res => {
-      app.wxToast({title: '发送成功', icon: 'success'})
-    })
+    if (mobileReg.test(this.phone)) {
+      sendMsgApi({mobile: this.phone}).then(res => {
+        this.countDown()
+        app.wxToast({title: '发送成功', icon: 'success'})
+      })
+    } else {
+      app.wxToast({title: '请输入正确是手机号'})
+    }
   },
   login () {
     let data = {
-      mobile: phone,
-      code
+      mobile: this.phone,
+      code: this.code
     }
     phoneCodeLogin(data, this.options)
   },

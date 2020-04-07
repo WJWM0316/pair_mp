@@ -28,22 +28,7 @@ Page({
     socket.onMessage((res) => {
       let data = res.imData
       // 如果是自己发的消息IM回调了需要更替成IM的数据
-      if (Number(res.imFromUser.uid) === Number(this.data.mineUserInfo.id)) {
-        // 数组倒叙容易找到自己发送的那条
-        // let messageList = this.data.messageList.reverse(),
-        //     index       = 0 // 要替换的索引
-        // for (let i = 0; i < messageList.length - 1; i++) {
-        //   if (messageList[i].imFromUser.sendTimestamp === data.content.sendTimestamp) {
-        //     index = parseInt(messageList.length - 1 - index) // 正序的消息索引
-        //     this.setData({[`messageList[${index}]`]: res}, () => {
-        //       wx.nextTick(()=>{
-        //         this.selectComponent('#footer').pageScrollToDom('bottom')
-        //       });
-        //     })
-        //     return
-        //   }
-        // }
-      } else {
+      if (Number(res.imFromUser.vkey) === this.options.vkey && Number(res.imFromUser.uid) !== Number(this.data.mineUserInfo.id)) {
         let index = this.data.messageList.length
         this.setData({[`messageList[${index}]`]: res}, () => {
           wx.nextTick(()=>{

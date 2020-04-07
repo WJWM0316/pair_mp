@@ -98,7 +98,9 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                   } else {
                     removeAuth()
                   }
-                  wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                  app.wxToast({title: msg.msg}, () => {
+                    wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                  })
                   break
                 case 403:
                   app.wxToast({title: msg.msg})
@@ -144,7 +146,6 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                     item()
                   })
                   noAuthRequests = []
-                  getUserInfo()
                 },
                 fail(e) {
                   console.log('服务器异常，请稍后访问', e)

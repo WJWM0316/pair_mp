@@ -1,5 +1,39 @@
 .loginWrap {
   padding-top: 374rpx;
+  position: relative;
+}
+.loginWrap .header {
+  position: absolute;
+  top: 138rpx;
+  left: 0%;
+  width: 100%;
+}
+.loginWrap .header .logo {
+  width: 222rpx;
+  height: 74rpx;
+  margin: 0 auto 12rpx;
+  display: block;
+}
+.loginWrap .header .tips {
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 300;
+  color: #66666E;
+  line-height: 42rpx;
+  letter-spacing: 1rpx;
+}
+.loginWrap .footer {
+  font-size: 24rpx;
+  color: #9CA1AA;
+  line-height: 33rpx;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 74rpx;
+  text-align: center;
+}
+.loginWrap .footer .bold {
+  color: #0CCDDA;
 }
 .loginWrap .box {
   width: 560rpx;
@@ -14,6 +48,20 @@
 .loginWrap .box.codeBox {
   padding: 23rpx 190rpx 23rpx 112rpx;
 }
+.loginWrap .box .icon_shouji {
+  font-size: 33rpx;
+  position: absolute;
+  left: 48rpx;
+  top: 34rpx;
+  color: #CFD4D8;
+}
+.loginWrap .box .icon_duanxin {
+  font-size: 26rpx;
+  position: absolute;
+  left: 51rpx;
+  top: 36rpx;
+  color: #CFD4D8;
+}
 .loginWrap .box .input {
   width: 100%;
   height: 100%;
@@ -21,12 +69,13 @@
 }
 .loginWrap .box .send {
   position: absolute;
-  top: 30rpx;
+  top: 0;
   right: 50rpx;
   font-size: 28rpx;
   font-weight: 700;
   color: #0CCDDA;
-  line-height: 38rpx;
+  line-height: 99rpx;
+  height: 100%;
 }
 .loginWrap .loginBtn {
   width: 560rpx;
@@ -41,4 +90,19 @@
 }
 .loginWrap .loginBtn.canClick {
   background: #0CCDDA;
+}
+.loginWrap .wxLogin {
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+  color: #17C18A;
+  line-height: 40rpx;
+  letter-spacing: 1rpx;
+  background: none;
+  position: fixed;
+  bottom: 213rpx;
+}
+.loginWrap .wxLogin .icon {
+  font-size: 32rpx;
+  margin-right: 18rpx;
 }

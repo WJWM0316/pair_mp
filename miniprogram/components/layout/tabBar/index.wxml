@@ -1,6 +1,6 @@
 <view class="tabBar">
   <view class="tabBar-content">
-    <view class="tabBar-item {{index === 1 ? 'center' : ''}}" wx:for="{{list}}" wx:key="text" bindtap = "jump" data-route="{{item.routerPath}}">
+    <view class="tabBar-item {{index === 1 ? 'center' : ''}}" wx:for="{{list}}" wx:key="text" bindtap = "jump" data-selected="{{item.selected}}" data-route="{{item.routerPath}}">
       <image class="icon" src="{{cdnPath}}{{item.selected ? item.selectedIcon : item.icon}}"></image>
       <text class="text {{item.selected ? 'selected' : ''}}">{{item.text}}</text>
     </view>

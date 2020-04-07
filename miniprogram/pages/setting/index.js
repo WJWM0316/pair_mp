@@ -7,7 +7,17 @@ Page({
    */
   data: {
     customerPhone: app.globalData.customerPhone,
-    customerWechat: app.globalData.customerWechat
+    customerWechat: app.globalData.customerWechat,
+    userInfo: 0
+  },
+  onShow () {
+    if (app.globalData.userInfo) {
+      this.setData({'userInfo': app.globalData.userInfo.userInfo})
+    } else {
+      app.getUserInfo = () => {
+        this.setData({'userInfo': app.globalData.userInfo.userInfo})
+      }
+    }
   },
   action (e) {
     const that = this

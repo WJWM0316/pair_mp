@@ -9,7 +9,7 @@ import localstorage from './localstorage.js'
 
 module.exports = {
   emoji,
-  fieldRegular,
+  ...fieldRegular,
   socket,
   wxApi,
   localstorage,

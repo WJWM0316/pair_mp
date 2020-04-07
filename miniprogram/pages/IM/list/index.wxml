@@ -1,4 +1,4 @@
-<navBar></navBar>
+<navBar title="消息" userInfo="{{userInfo.userInfo}}"></navBar>
 <view class="listWrap">
   <view class="tips" wx:if="{{hasTips}}">
     <text class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</text>

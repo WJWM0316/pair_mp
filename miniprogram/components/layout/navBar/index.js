@@ -10,7 +10,7 @@ Component({
     },
     color: {
       type: String,
-      value: "#fff"
+      value: "#1F252B"
     },
     page: {
       type: String,

@@ -20,7 +20,6 @@ class Socket {
         // 握手环节
         wx.onSocketOpen((res0) => {
           console.log(this.SocketTask, '握手状态')
-          this.login(token)
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
             this.onMessage()

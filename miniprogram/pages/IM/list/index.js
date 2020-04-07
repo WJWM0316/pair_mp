@@ -8,6 +8,7 @@ Page({
    */
   data: {
     hasTips: true,
+    userInfo: app.globalData.userInfo,
     messageList: [],
     viewAreaHeight: 0,
     lockIndex: null
@@ -24,10 +25,9 @@ Page({
     } else {
       this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
     }
-    this.getList()
   },
   getList () {
-    getRelationlistApi({count: 100}).then(res => {
+    getRelationlistApi({count: 100, hideLoding: true}).then(res => {
       let index = this.data.messageList.length ? this.data.messageList.length - 1 : 0
       this.setData({[`messageList[${index}]`]: res.data})
     })
@@ -65,7 +65,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (!this.data.userInfo && app.globalData.userInfo) {
+      this.setData({'userInfo': app.globalData.userInfo})
+    } else {
+      app.getUserInfo = () => {
+        this.setData({'userInfo': app.globalData.userInfo})
+      }
+    }
+    this.getList()
   },
 
   /**

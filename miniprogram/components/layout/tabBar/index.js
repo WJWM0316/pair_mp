@@ -66,7 +66,7 @@ Component({
    */
   methods: {
     jump (e) {
-      console.log(e, 11)
+      if (e.currentTarget.dataset.selected) return
       let route = e.currentTarget.dataset.route
       wx.reLaunch({url: '/' + route})
     }

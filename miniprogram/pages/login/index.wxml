@@ -1,11 +1,18 @@
 <view class="loginWrap">
-  <view class="box"> 
+  <view class="header">
+    <i-image my-class="logo" src="{{cdnPath}}logo_pickme_black.png"></i-image>
+    <view class="tips">互联网单身青年配对交友</view>
+  </view>
+  <view class="footer">登录代表你已同意<text class="bold">《用户协议与隐私政策》</text></view>
+  <view class="box">
+    <i class="icon iconfont icon_shouji"></i>
     <input class="input phone" maxlength="11" placeholder="请输入手机号码" value="{{phone}}" bindinput = "bindinput" data-type="phone" placeholder-class="holderStyle"></input>
   </view>
   <view class="box codeBox">
+    <i class="icon iconfont icon_duanxin"></i>
     <input class="input code" maxlength="4" placeholder="请输入验证码" value="{{code}}" bindinput = "bindinput" data-type="code" placeholder-class="holderStyle"></input>
-    <view class="send" bindtap = "sendMsg">发送验证码</view>
+    <view class="send" bindtap = "sendMsg">{{sendTimes === 60 ? '发送验证码' : sendTimes}}</view>
   </view>
   <i-button my-class="loginBtn {{canClick ? 'canClick' : ''}}" bindtap = "login">登录</i-button>
-  <button class="wxLogin" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信快捷登录</button>
+  <button class="wxLogin" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"><i class="icon iconfont icon_weixin"></i>微信快捷登录</button>
 </view>
