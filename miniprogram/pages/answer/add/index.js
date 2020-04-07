@@ -24,7 +24,8 @@ Page({
   },
   delete() {
     let { options } = this.data
-    removeQuestionApi({id: options.id}).then(res => {
+    removeQuestionApi({id: options.id}).then(() => {
+      app.globalData.userInfo.userInfo.userAnswerList = app.globalData.userInfo.userInfo.userAnswerList.filter(v => v.id != options.id )
       wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
