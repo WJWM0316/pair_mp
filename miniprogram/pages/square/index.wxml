@@ -2,7 +2,6 @@
   navBarBg="{{background}}"
   title="单身广场"
   page="console"
-  userInfo="{{userInfo.userInfo}}"
   >
 </navBar>
 <view class="square">

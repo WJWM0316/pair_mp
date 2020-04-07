@@ -114,6 +114,14 @@
   margin-left: 16rpx;
   vertical-align: top;
 }
+.listWrap .scroll-view .scroll-item .messageContent .name .label.square {
+  color: #0CCDDA;
+  background: #E6FAFB;
+}
+.listWrap .scroll-view .scroll-item .messageContent .name .label.pick {
+  color: #9CA1AA;
+  background: #EDF1F0;
+}
 .listWrap .scroll-view .scroll-item .messageContent .content {
   width: 481rpx;
   overflow: hidden;

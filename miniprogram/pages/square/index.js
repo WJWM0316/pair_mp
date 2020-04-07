@@ -3,7 +3,6 @@ import { getSquareListApi } from "../../api/square.js"
 const app = getApp()
 Page({
   data: {
-    userInfo: {},
     CDNPATH: app.globalData.CDNPATH,
     userData: {
       list: [],
@@ -15,12 +14,6 @@ Page({
     background: ''
   },
   onLoad(options) {
-    
-  },
-  onReady() {
-
-  },
-  onShow() {
     let userData = {
       list: [],
       pageNum: 1,
@@ -29,7 +22,7 @@ Page({
     }
     let callback = () => {
       this.getUserList()
-      this.setData({'userInfo': app.globalData.userInfo, userData})
+      this.setData({userData})
     }
     if (app.globalData.userInfo) {
       callback()

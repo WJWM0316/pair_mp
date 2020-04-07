@@ -52,13 +52,13 @@
   overflow: visible;
 }
 .chatWrap .chatArea .message-list .message-item .message-content .longpress {
-  width: 374rpx;
   position: absolute;
   height: 80rpx;
   background: #1F252B;
   border-radius: 8rpx;
   font-size: 0;
   z-index: 2;
+  white-space: nowrap;
 }
 .chatWrap .chatArea .message-list .message-item .message-content .longpress .icon {
   margin-left: 10px;

@@ -11,6 +11,7 @@ Page({
     longpressData: {},
     othersUserInfo: {},
     mineUserInfo: {},
+    curTimestamp: '',
     emojiPath: app.globalData.CDNPATH
   },
 
@@ -86,11 +87,12 @@ Page({
   // 长按功能
   longpress (e) {
     let dataset  = e.currentTarget.dataset,
-        own      = dataset.object.imFromUser.uid === this.data.myUid
+        own      = dataset.object.imFromUser.vkey === app.globalData.userInfo.userInfo.vkey
     getSelectorQuery(`.${dataset.class}`, this).then(res => {
       let longpressData = {
         index: dataset.index
       },
+      curTimestamp = new Date().getTime(),
       position = {}
       if (res.top >= 80) {
         if (own) {
@@ -109,7 +111,48 @@ Page({
           longpressData.iconStyle = 'left:14rpx;top:-31rpx;transform: rotate(180deg);'
         }
       }
-      this.setData({longpressData})
+      this.setData({longpressData, curTimestamp})
+    })
+  },
+  // 长按功能-列表选项
+  action (e) {
+    let type = e.currentTarget.dataset.type,
+        msgdata = e.currentTarget.dataset.msgdata,
+        index  = e.currentTarget.dataset.index
+    switch (type) {
+      case 'copy':
+        wx.setClipboardData({
+          data: msgdata.imData.content.content,
+          success: () => {
+            let longpressData = {
+              index: null
+            }
+            this.setData({'longpressData': null})
+            app.wxToast({title: '已复制'})
+          }
+        })
+        break
+      case 'withdraw':
+        this.withdrawMsg(msgdata.imData.msgUID)
+        let longpressData = {
+          index: null
+        }
+        this.setData({[`messageList[${index}]`]: '', longpressData})
+        break
+    }
+  },
+  // 撤销消息
+  withdrawMsg (msgUID) {
+    let that = this
+    socket.send({
+      cmd: 'send.im',
+      data: {
+          "toVkey": that.options.vkey, 
+          "msgType": "RC:RcCmd", 
+          "content": {
+            "messageUId": msgUID
+          }
+      }
     })
   },
   // 复位
@@ -122,6 +165,22 @@ Page({
   },
   selectType (e) {
     this.setData({'selectIndex': e.detail})
+  },
+  // 记录最后一条记录发送时间
+  sendLastMsgTime () {
+    let that = this
+    socket.send({
+      cmd: 'send.im',
+      data: {
+          "toVkey": that.options.vkey, 
+          "msgType": "RC:ReadNtf", 
+          "content": {
+            "lastMessageSendTime": that.data.messageList[that.data.messageList.length - 1].imData.timestamp, 
+            "type":1, 
+            "extra": "额外数据"
+          }
+      }
+    })
   },
   // 获取header展开状态
   headerPutUp (e) {
@@ -158,7 +217,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.sendLastMsgTime
+    console.log(2222222222222222)
+    this.sendLastMsgTime()
   },
 
   // 页面滚动时执行

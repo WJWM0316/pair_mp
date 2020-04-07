@@ -30,13 +30,6 @@ Page({
     this.getAvatarList()
   },
   onShow () {
-    if (app.globalData.userInfo) {
-      this.setData({'userInfo': app.globalData.userInfo})
-    } else {
-      app.getUserInfo = () => {
-        this.setData({'userInfo': app.globalData.userInfo})
-      }
-    }
     this.getOtherStatus()
   },
   

@@ -122,13 +122,13 @@
 					<!-- <view class="pitang"></view> -->
 					<i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png" />
 					<view class="text_v1"> 使用
-						<text class="strong_v1"> {{ other.charge }}</text>
+						<text class="strong_v1"> {{ other.chargeInfo.charge }}</text>
 						个皮糖开始聊天
 					</view>
 				</view>
 				<view class="action-button_v1">
 					<view class="btn_v1" bindtap="click" data-action="charge">
-						<view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.charge }}">立即开始聊天</view>
+						<view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.chargeInfo.charge }}">立即开始聊天</view>
 						<contactBtn
 						 contactType="recharge"
 						 title="余额不足  获取皮糖"
@@ -148,13 +148,13 @@
 					<!-- <view class="pitang"></view> -->
 					<i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png" />
 					<view class="text_v1"> 使用
-						<text class="strong_v1"> {{ other.exchange.sugar }}</text>
+						<text class="strong_v1"> {{ other.exchange.charge }}</text>
 						个皮糖获取Pick
 					</view>
 				</view>
 				<view class="action-button_v1">
 					<view class="btn_v1" bindtap="click" data-action="charge">
-						<view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.exchange.sugar }}">立即换取</view>
+						<view class="btn_cover_v1" wx:if="{{ other.wallet.remain >= other.exchange.charge }}">立即换取</view>
 						<contactBtn
 						 contactType="recharge"
 						 title="余额不足  获取皮糖"

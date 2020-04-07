@@ -19,15 +19,18 @@ Component({
     title: {
       type: String,
       value: ''
-    },
-    userInfo: {
-      type: Object,
-      value: {},
-      observer (val) {
-      }
     }
   },
-  attached () {
+  pageLifetimes: {
+    show: function() {
+      if (app.globalData.userInfo) {
+        this.setData({'userInfo': app.globalData.userInfo.userInfo})
+      } else {
+        app.getUserInfo = () => {
+          this.setData({'userInfo': app.globalData.userInfo.userInfo})
+        }
+      }
+    }
   },
   /**
    * 组件的初始数据
@@ -37,6 +40,7 @@ Component({
     statusBarHeight: app.globalData.systemInfo.statusBarHeight,
     navBarHeight: app.globalData.navBarHeight,
     show: false,
+    userInfo: {},
     CDNPATH: app.globalData.CDNPATH
   },
   ready () {

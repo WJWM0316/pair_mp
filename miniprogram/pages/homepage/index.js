@@ -155,23 +155,13 @@ Page({
     let { options } = this.data
     let { userInfo } = this.data
     getChargeInfoApi({toUserVkey: options.vkey}).then(({ data }) => {
-      if(data.needCharge ) {
+      if(data.chargeInfo.needCharge ) {
         let myAvatar = app.globalData.userInfo.userInfo.avatarInfo.smallUrl
         let mySex = app.globalData.userInfo.userInfo.gender
         let userAvatar = userInfo.avatarInfo.smallUrl
         let userSex = userInfo.gender
         data = Object.assign(data, {myAvatar, userAvatar, mySex, userSex})
         this.setData({code: 4, chargeInfo: data}, () => this.selectComponent('#dialog').show())
-        // if( data.wallet.remain >= data.charge ) {
-        //   let myAvatar = app.globalData.userInfo.userInfo.avatarInfo.smallUrl
-        //   let mySex = app.globalData.userInfo.userInfo.gender
-        //   let userAvatar = userInfo.avatarInfo.smallUrl
-        //   let userSex = userInfo.gender
-        //   data = Object.assign(data, {myAvatar, userAvatar, mySex, userSex})
-        //   this.setData({code: 4, chargeInfo: data}, () => this.selectComponent('#dialog').show())
-        // } else {
-        //   app.wxToast({title: '账户余额不足'})
-        // }
       } else {
         this.chat()
       }
