@@ -1,3 +1,4 @@
+import { getUserInfo } from '../../api/auth.js'
 let app = getApp()
 Page({
   data: {

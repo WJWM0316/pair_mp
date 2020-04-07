@@ -10,7 +10,14 @@ Component({
     initValue: {
       type: String,
       value: ''
-    }
+    },
+    // initValue: {
+    //   type: String,
+    //   observer(newVal, oldVal) {
+    //     console.log(newVal, oldVal, 'kkk')
+    //     this.init()
+    //   }
+    // }
   },
   data: {
     rangeArray: [],
@@ -159,13 +166,16 @@ Component({
             getAreaListApi({level: 3}).then(({ data }) => {
               let provinces = data
               let citys = []
+              console.log(this.data.initValue)
               if(this.data.initValue) {
+                console.log(1)
                 let tem = this.data.initValue.split('-')
                 let provinceIndex = provinces.findIndex((v,i,a) => v.areaId == tem[0]) || 0
                 citys = provinces[provinceIndex].children
                 let cityIndex = citys.findIndex((v,i,a) => v.areaId == tem[1]) || 0
                 value = [provinceIndex, cityIndex]
               } else {
+                console.log(2)
                 value = [0, 0]
                 citys = provinces[0].children || []
               }
@@ -267,7 +277,7 @@ Component({
           callback = () => {
             let days = []
             let months = rangeArray[1]
-            let length = this.getDaysInMonth(rangeArray[0][value[0]].value, rangeArray[1][value[1]].value)
+            let length = this.getDaysInMonth(rangeArray[0][value[0]].value, months[value[1]].value)
             let add0 = (m) => {return m < 10 ? '0' + m : m }
             for (let i = 1; i <= length; i++) {
               days.push({
