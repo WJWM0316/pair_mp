@@ -13,8 +13,8 @@ Page({
     userInfo: {},
     editIndex: 0,
     albumVerifyInfo: {
-      status: 1,
-      statusDesc: '审核通过'
+      status: 0,
+      statusDesc: '相册审核中…'
     },
     showStatus: true
   },
@@ -168,5 +168,8 @@ Page({
       default:
         break
     }
-  }
+  },
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh()
+  },
 })

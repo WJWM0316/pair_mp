@@ -67,7 +67,7 @@
 					<view
 					 class="btn bg"
 					 bindtap="routeJump"
-					 data-page="userInfo"
+					 data-page="perfectUser"
 					 wx:if="{{ userCompleteInfo.baseComplete < 80 }}"
 					>去完善
 					</view>
