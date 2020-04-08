@@ -43,6 +43,8 @@
   width: 228rpx;
   height: 228rpx;
   overflow: visible;
+  z-index: 2;
+  position: relative;
 }
 .indexWrap .main .centerBtn .btnContent {
   width: 100%;

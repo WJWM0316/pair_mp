@@ -23,6 +23,7 @@ Page({
   },
   action (e) {
     const that = this
+    let { PAGEPATH } = app.globalData
     switch (e.currentTarget.dataset.type) {
       case 'callPhone':
         wx.makePhoneCall({
@@ -54,10 +55,13 @@ Page({
         })
         break
       case 'backlist':
-        let { PAGEPATH } = app.globalData
         wx.navigateTo({
           url: `${PAGEPATH}/backlist/index`
         })
+        break
+      case 'agreement':
+        let url = `${app.globalData.WEBVIEW}/art/userProtocol/index.html`
+        wx.navigateTo({url: `/pages/webview/index?p=${encodeURIComponent(url)}`})
         break
     }
   }
