@@ -5,6 +5,7 @@ let phone = ''
 import {getCurrentPagePath} from '../../utils/index.js'
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
 import {pickApi, pickIndexAvaApi, pickAggrApi, getPickChanceApi, pickChanceApi} from "../../api/pick.js"
+import localstorage from "../../utils/localstorage.js"
 Page({
   data: {
     background: '#1F252B',
@@ -16,7 +17,8 @@ Page({
     code: 0,
     dialogData: {},
     hasLogin: app.globalData.hasLogin,
-    cdnPath: app.globalData.CDNPATH
+    cdnPath: app.globalData.CDNPATH,
+    hasPicker: false
   },
   
   onLoad: function () {
@@ -30,6 +32,9 @@ Page({
     this.getAvatarList()
   },
   onShow () {
+    if(localstorage.get('hasPicker')) {
+      this.setData({hasPicker: true})
+    }
     this.getOtherStatus()
   },
   
@@ -82,11 +87,14 @@ Page({
     })
   },
   pick () {
-    // let { userInfo } = app.globalData.userInfo
-    // if(userInfo.step !== 9) {
-    //   wx.navigateTo({url: `/pages/createUser/index?step=${userInfo.step}`})
-    //   return
-    // }
+    // this.setData({hasPicker: true}, () => {
+    //   localstorage.set('hasPicker', { type: 'resetTheDay' })
+    // })
+    let { userInfo } = app.globalData.userInfo
+    if(userInfo.step !== 9) {
+      wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
+      return
+    }
     if(!this.data.status.canPick) { // 用户信息未完善或者未认证不给pick
       this.setData({code: 3}, () => this.selectComponent('#dialog').show())
     } else {

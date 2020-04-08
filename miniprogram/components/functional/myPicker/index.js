@@ -49,7 +49,7 @@ Component({
         case 'birthday':
           let days = []
           let years = []
-          let curYear = new Date().getFullYear()
+          let curYear = new Date().getFullYear() - 18
           let curMounth = new Date().getMonth() + 1
           let months = [
             {key: '1月', value: '01'},
@@ -90,7 +90,7 @@ Component({
             value = [yearIndex, monthIndex, dayIndex]
             this.setData({active: value})
           } else {
-            value = [0,0,0]
+            value = [2,0,0]
           }
           this.setData({ rangeArray, value, mode: 'multiSelector', rangeKey: 'key', placeHolder: '选择生日' })
           break

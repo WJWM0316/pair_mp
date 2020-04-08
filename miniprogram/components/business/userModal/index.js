@@ -28,7 +28,7 @@ Component({
     todoAction(e) {
       let { dataset } = e.currentTarget
       let { PAGEPATH } = app.globalData
-      let { userInfo } = this.data.userInfo
+      let { userInfo } = this.data.infos
       switch(dataset.action) {
         case 'close':
           this.setData({show: !this.data.show})
@@ -73,9 +73,9 @@ Component({
       let rtn = e.detail
       setPickerIntentionApi({gender: rtn.sex}).then(() => {
         app.globalData.userInfo.pickIntention.gender = Number(rtn.sex)
-        this.setData({
-          pickIntention: app.globalData.userInfo.pickIntention
-        })
+        let { infos } = this.data
+        infos = app.globalData.userInfo
+        this.setData({ infos })
       })
     }
   }

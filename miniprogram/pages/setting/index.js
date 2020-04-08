@@ -13,7 +13,6 @@ Page({
   onShow() {
     let callback = () => {
       this.setData({userInfo: app.globalData.userInfo.userInfo})
-      console.log(app.globalData.userInfo.userInfo)
     }
     if (app.globalData.userInfo) {
       callback()

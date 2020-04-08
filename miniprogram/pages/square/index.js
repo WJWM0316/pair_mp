@@ -64,13 +64,13 @@ Page({
       this.setData({onBottomStatus: 1}, () => this.getUserList())
     }
   },
-  onPageScroll(e) {
-    if(e.scrollTop > 0) {
-      if(this.data.background !== '#1F252B') this.setData({background: '#1F252B'})
-    } else {
-      if(this.data.background !== 'transparent') this.setData({background: 'transparent'})
-    }
-  },
+  // onPageScroll(e) {
+  //   if(e.scrollTop > 0) {
+  //     if(this.data.background !== '#1F252B') this.setData({background: '#1F252B'})
+  //   } else {
+  //     if(this.data.background !== 'transparent') this.setData({background: 'transparent'})
+  //   }
+  // },
   /**
    * 用户点击右上角分享
    */

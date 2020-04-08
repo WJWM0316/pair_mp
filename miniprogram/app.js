@@ -1,6 +1,6 @@
 //app.js
 import {setConfig} from './env.config'
-import {getSubscribeApi} from './api/subscribe.js'
+import {getConfigMiniProgramApi} from './api/subscribe.js'
 import {shareInfosApi} from './api/common.js'
 import {getMyInfoApi} from './api/user.js'
 import {wxApi, getTitleHeight, socket, loginCallback, localstorage} from './utils/index.js'
@@ -48,7 +48,10 @@ App({
         wx.removeStorageSync('sessionToken')
       }
     })
-    
+    getConfigMiniProgramApi({hideLoading: true}, this).then(({ data }) => {
+      let { subscribeConfig } = data.miniProgram
+      Object.assign(this.globalData, { subscribeConfig })
+    })
     // getSubscribeApi({hideLoading: true}, this)
     this.getShareInfos()
   },

@@ -17,6 +17,7 @@
         <view
           wx:for="{{ pItem }}"
           wx:key="cIndex"
+          class="{{ rangeArray[pIndex][value[pIndex]] ? 'active' : 'default' }}"
           wx:for-index="cIndex">
             {{ item.key || item.title || item.text || item[rangeKey] }}
         </view>

@@ -6,6 +6,13 @@ import {
 import {
   getCompanyNameListApi
 } from '../../api/common.js'
+import {
+  idealDescribeReg,
+  ownDescribeReg,
+  companyNameReg,
+  positionReg
+} from '../../utils/fieldRegular'
+
 let app = getApp()
 Page({
   data: {
@@ -173,6 +180,12 @@ Page({
     let { options, userInfo } = this.data
     let params = {}
     let funcApi = updateUserBaseApi
+    let needCheck = [
+      'companyName',
+      'positionName',
+      'ownDescribe',
+      'idealDescribe'
+    ]
     switch(options.key) {
       case 'nickname':
         params = Object.assign(params, {nickname: userInfo.nickname})
@@ -193,10 +206,10 @@ Page({
         params = Object.assign(params, {occupation: userInfo.occupation})
         break
       case 'companyName':
-        params = Object.assign(params, {company_name: userInfo.companyName})
+        params = Object.assign(params, {company_name: userInfo.companyName.trim()})
         break
       case 'positionName':
-        params = Object.assign(params, {position_name: userInfo.positionName})
+        params = Object.assign(params, {position_name: userInfo.positionName.trim()})
         break
       case 'salary':
         params = Object.assign(params, {salary: userInfo.salary})
@@ -209,11 +222,11 @@ Page({
         params = Object.assign(params, {degree: userInfo.degree})
         break
       case 'ownDescribe':
-        params = Object.assign(params, {own_describe: userInfo.ownDescribe})
+        params = Object.assign(params, {own_describe: userInfo.ownDescribe.trim()})
         funcApi = updateUserDescribeApi
         break
       case 'idealDescribe':
-        params = Object.assign(params, {ideal_describe: userInfo.idealDescribe})
+        params = Object.assign(params, {ideal_describe: userInfo.idealDescribe.trim()})
         funcApi = updateUserDescribeApi
         break
       default:

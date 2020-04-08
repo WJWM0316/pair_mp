@@ -2,6 +2,7 @@
 <view class="drawer" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
   <view class="mask"></view>
   <i-image my-class="photo-box1" src="{{ CDNPATH }}img_popup_photorhint.png" wx:if="{{ type === 'photo'}}" mode="widthFix"></i-image>
+  <i-image my-class="uploadTips" src="{{ CDNPATH }}img_picker_jobpic@3x.png" wx:if="{{ type === 'uploadTips'}}" mode="widthFix"></i-image>
   <view class="content {{ show ? 'show' : ''}}">
     <view class="action-ul">
       <view

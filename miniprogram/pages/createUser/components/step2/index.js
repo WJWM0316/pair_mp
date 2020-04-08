@@ -4,7 +4,7 @@ import {
 const app =  getApp();
 Component({
   data: {
-    height: '170'
+    height: '163'
   },
   methods: {
     bindvalue2(e) {
@@ -15,7 +15,9 @@ Component({
     },
     next() {
       createUserStep2Api({height: this.data.height}).then(() => {
-        this.triggerEvent('next', true)
+        app.reloadUserInfo().then(() => {         
+          this.triggerEvent('next', true)
+        })
       }).catch(err => app.wxToast({title: err.msg}))
     },
     resultEvent(e) {

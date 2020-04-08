@@ -80,7 +80,6 @@ Page({
     userAlbumTempList = userAlbumTempList.filter(v => !v.isCover)
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
-    console.log(userInfo, cover, albumVerifyInfo)
     addAlbumApi({cover: cover.id, photo}).then(res => {
       wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
@@ -101,7 +100,6 @@ Page({
           v = item
           v.isCover = true
           app.globalData.userInfo.albumVerifyInfo.status = 0
-          console.log(1)
           this.setData({ cover: item }, () => {            
             this.init()
           })
@@ -139,9 +137,7 @@ Page({
           confirmBack() {
             that.delete()
           },
-          cancelBack() {
-            // console.log(2)
-          }
+          cancelBack() {}
         })
         break
       case 'set':

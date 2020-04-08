@@ -1,3 +1,5 @@
+import {subscribeWechatMessageApi} from '../api/subscribe.js'
+
 const QQMapWX = require('./qqmap-wx-jssdk.min.js');
 const qqmapsdk = new QQMapWX({
   key: 'TMZBZ-S72K6-66ISB-ES3XG-CVJC6-HKFZG'
@@ -95,7 +97,6 @@ const wxApi = {
         sizeType: ['original', 'compressed'],
         sourceType: ['camera'],
         success (res) {
-          console.log(res)
           let file = res.tempFiles[0]
           let callback = (file) => {
             let formData = {
@@ -159,7 +160,6 @@ const wxApi = {
         'duration': file.duration || 0,
         attach_type: type || 'img'
       }
-      console.log(type, 222)
       let { APIHOST } = getApp().globalData
       wx.uploadFile({
         url: `${APIHOST}/attaches`,
@@ -218,6 +218,44 @@ const wxApi = {
       }
     }
     return shareObj
+  },
+  subscribeMessage(key) {
+    return new Promise((resolve, reject) => {
+      let that = this
+      let subscribeConfig = that.globalData.subscribeConfig[key]
+      if (this.globalData.platform == 'devtools' || !wx.requestSubscribeMessage || !subscribeConfig) {
+        resolve()
+        return
+      }
+      let tmplIds = subscribeConfig.map(v => v.templateId)
+      wx.requestSubscribeMessage({
+        tmplIds,
+        success (res) {
+          if (res[tmplIds[0]] == 'accept') {
+            subscribeWechatMessageApi({ tmplIds }).then(() => resolve())
+          } else {
+            resolve()
+          }
+        },
+        fail(err) {
+          console.log(err, 'fail')
+          if(err.errCode == 20004) {
+            that.wxConfirm({
+              title: '订阅消息',
+              content: `您关闭了“接受订阅消息”，请前往设置打开！`,
+              cancelText: '算了',
+              confirmText: '去设置',
+              confirmBack: () => {
+                wx.openSetting({})
+              },
+              cancelBack: () => {
+                resolve()
+              }
+            })
+          }
+        }
+      })
+    })
   }
 }
 

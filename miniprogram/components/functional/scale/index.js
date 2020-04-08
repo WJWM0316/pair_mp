@@ -17,7 +17,7 @@ Component({
   },
   ready() {
   let tabs = []
-    for(let i = 100; i <= 300; i++) {
+    for(let i = 140; i <= 220; i++) {
       tabs.push({
         key: i,
         value: String(i),

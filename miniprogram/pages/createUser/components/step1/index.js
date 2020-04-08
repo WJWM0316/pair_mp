@@ -32,9 +32,6 @@ Component({
     canClick: false,
     isFirst: true
   },
-  ready() {
-    console.log(111)
-  },
   pageLifetimes: {
     show() {
       let avatar = wx.getStorageSync('avatar')
@@ -99,9 +96,7 @@ Component({
                           })
                         }
                       },
-                      fail() {
-                        console.log(222)
-                      }
+                      fail() {}
                     })
                   },
                   cancelBack() {
@@ -193,7 +188,9 @@ Component({
         return
       }
       createUserStep1Api(params).then(res => {
-        this.triggerEvent('next', true)
+        app.reloadUserInfo().then(() => {         
+          this.triggerEvent('next', true)
+        })
       }).catch(err => app.wxToast({title: err.msg}))
     }
   }
