@@ -9,7 +9,6 @@ class Emoji {
     let data = string
     let getEmoji = Array.from(new Set(data.match(/\[.+?\]/g))) // 获取表情符号，并去重
     let data1, data2
-    console.log(this.cdnPath, 111)
     getEmoji.forEach((item, index) => {
       let img = `<img class='emoji' style=vertical-align:middle;width:30px src='${this.cdnPath}emoji/${this.emojiList[this.emojiName.indexOf(item)]}.png' />` // 将获取到的表情符号转成img
       var reg = new RegExp(`\\${item}`, "g")

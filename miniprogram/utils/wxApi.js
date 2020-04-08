@@ -97,7 +97,6 @@ const wxApi = {
         sizeType: ['original', 'compressed'],
         sourceType: ['camera'],
         success (res) {
-          console.log(res)
           let file = res.tempFiles[0]
           let callback = (file) => {
             let formData = {
@@ -161,7 +160,6 @@ const wxApi = {
         'duration': file.duration || 0,
         attach_type: type || 'img'
       }
-      console.log(type, 222)
       let { APIHOST } = getApp().globalData
       wx.uploadFile({
         url: `${APIHOST}/attaches`,

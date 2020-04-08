@@ -99,6 +99,8 @@ Component({
           let userInfo = data.userInfo
           let { formData } = this.data
           let that = that
+          app.globalData.userInfo.userInfo.infoCompletePercent = 40
+          app.globalData.userInfo.userInfo.infoCompletePercentDesc = '40%'
           if(!userInfo.isCareerIdentity && userInfo.companyId && userInfo.isNeedCareerIdentity) {
             app.wxConfirm({
               title: '职业信息尚未认证',

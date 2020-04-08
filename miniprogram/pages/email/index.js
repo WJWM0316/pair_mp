@@ -28,7 +28,6 @@ Page({
     let formData = Object.assign(this.data.formData, searchCompany)
     if(searchCompany) {
       this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
-      console.log(this.data, 'app')
     }
   },
   bindInput(e) {
@@ -60,7 +59,6 @@ Page({
     this.setData({editable: false, time: this.data.defaultTime})
   },
   killTime() {
-    console.log(1)
     let time = this.data.time
     this.setData({ editable: true })
     timer = setInterval(() => {
