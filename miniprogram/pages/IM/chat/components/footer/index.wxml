@@ -7,6 +7,7 @@
         placeholder="输入新消息" 
         placeholder-class="textarea-placeholder"
         disable-default-padding="true"
+        fixed="true"
         maxlength="1000"
         style="{{parse.setStyle('textarea', textHeight)}}"
         bindlinechange="linechange"

@@ -91,3 +91,13 @@ export const verifyCareerApi = (data) => {
     data
   })
 }
+
+
+export const shareInfosApi = (data, instance) => {
+  return request({
+    method: 'get',
+    url: '/share/info',
+    data,
+    instance
+  })
+}

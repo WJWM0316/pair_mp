@@ -23,7 +23,8 @@
     "pages/report/index",
     "pages/account/index",
     "pages/bill/index",
-    "pages/webview/index"
+    "pages/webview/index",
+    "pages/startupPage/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

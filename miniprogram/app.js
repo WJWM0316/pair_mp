@@ -1,6 +1,7 @@
 //app.js
 import {setConfig} from './env.config'
 import {getConfigMiniProgramApi} from './api/subscribe.js'
+import {shareInfosApi} from './api/common.js'
 import {getMyInfoApi} from './api/user.js'
 import {wxApi, getTitleHeight, socket, loginCallback} from './utils/index.js'
 
@@ -51,6 +52,8 @@ App({
       let { subscribeConfig } = data.miniProgram
       Object.assign(this.globalData, { subscribeConfig })
     })
+    // getSubscribeApi({hideLoading: true}, this)
+    this.getShareInfos()
   },
   onShow (options) {},
   globalData: {
@@ -61,6 +64,11 @@ App({
     tabBarHeight: 0, // 底部栏高度 px
     navBarHeight: 0, // 顶部栏高度 px
     userInfo: 0
+  },
+  getShareInfos () {
+    shareInfosApi({hideLoading: true}, this).then(({data}) => {
+      this.globalData.shareInfos = data
+    })
   },
   reloadUserInfo(hideLoading = false) {
     return new Promise((resolve, reject) => {

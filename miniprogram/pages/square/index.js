@@ -1,5 +1,5 @@
 import { getSquareListApi } from "../../api/square.js"
-
+import { getCurrentPagePath } from '../../utils/index'
 const app = getApp()
 Page({
   data: {
@@ -70,5 +70,19 @@ Page({
     } else {
       if(this.data.background !== 'transparent') this.setData({background: 'transparent'})
     }
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (options) {
+    let shareInfos = app.globalData.shareInfos.shareSingleSquare,
+        random     = parseInt(Math.random() * (shareInfos.title.length - 1)),
+        path       = `/pages/startupPage/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`
+    return app.wxShare({
+      options,
+      title: shareInfos.title[random],
+      path,
+      imageUrl: shareInfos.imageUrl
+    })
   }
 })

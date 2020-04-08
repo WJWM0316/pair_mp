@@ -22,6 +22,7 @@
   color: #1F252B;
   line-height: 38rpx;
   height: 38rpx;
+  min-height: 38rpx;
 }
 .console .textEdit .send {
   bottom: 12rpx;

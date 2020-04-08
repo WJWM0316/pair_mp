@@ -145,6 +145,7 @@ Page({
   },
   // 撤销消息
   withdrawMsg (msgUID) {
+    console.log(msgUID, 111)
     let that = this
     socket.send({
       cmd: 'send.im',

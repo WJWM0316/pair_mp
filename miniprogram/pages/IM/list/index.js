@@ -65,13 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (!this.data.userInfo && app.globalData.userInfo) {
-      this.setData({'userInfo': app.globalData.userInfo})
-    } else {
-      app.getUserInfo = () => {
-        this.setData({'userInfo': app.globalData.userInfo})
-      }
-    }
+    
     this.getList()
   },
 
