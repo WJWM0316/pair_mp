@@ -85,10 +85,10 @@ Component({
           let that = that
           if(!userInfo.isCareerIdentity && userInfo.companyId && userInfo.isNeedCareerIdentity) {
             app.wxConfirm({
-              title: '认证',
-              content: '是否前往职业认证',
-              cancelText: '取消',
-              confirmText: '确认',
+              title: '职业信息尚未认证',
+              content: '跳过认证将降低你的主页展示率',
+              cancelText: '暂不认证',
+              confirmText: '前往认证',
               confirmBack() {
                 wx.setStorageSync('searchCompany', formData)
                 wx.redirectTo({

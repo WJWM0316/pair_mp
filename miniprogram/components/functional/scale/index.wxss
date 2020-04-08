@@ -3,10 +3,31 @@
   display: flex;
   position: relative;
 }
+.scale:before {
+  position: fixed;
+  left: 0;
+  content: '';
+  display: block;
+  background: white;
+  width: 65rpx;
+  height: 220rpx;
+  z-index: 2;
+}
+.scale:after {
+  position: fixed;
+  right: 0;
+  content: '';
+  display: block;
+  background: white;
+  width: 65rpx;
+  height: 220rpx;
+  z-index: 2;
+}
 .scale .scroll-view {
   overflow: hidden;
   white-space: nowrap;
   color: #fff;
+  height: 220rpx;
 }
 .scale .label-item {
   display: inline-block;
@@ -17,6 +38,7 @@
   text-align: center;
   width: calc(100%/3);
   position: relative;
+  vertical-align: top;
 }
 .scale .unit {
   font-size: 36rpx;
@@ -30,16 +52,19 @@
   color: #C7D7E7;
   transition: all ease 0.3s;
 }
+.scale .line-box {
+  position: relative;
+}
 .scale .line {
   width: 8rpx;
   height: 64rpx;
   background: #C7D7E7;
   display: inline-block;
-  margin: 0 20rpx;
+  margin: 0 22rpx;
   border-radius: 4rpx;
   vertical-align: top;
 }
-.scale .line:nth-child(3n) {
+.scale .line:nth-child(3) {
   height: 130rpx;
 }
 .scale .active .line {

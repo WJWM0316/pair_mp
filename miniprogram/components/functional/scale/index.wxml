@@ -1,4 +1,4 @@
-<view class="scale">
+<view class="scale myscale">
 	<scroll-view
 		scroll-with-animation
 		scroll-x
@@ -15,7 +15,7 @@
 				<view class="line"></view>
 			</view>
 			<view class="value">
-				<text class="number">{{item.key}}</text>
+				<text class="number">{{ item.key }}</text>
 				<text class="unit">cm</text>
 			</view>
 		</view>

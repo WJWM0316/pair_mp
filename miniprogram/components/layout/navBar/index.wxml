@@ -3,7 +3,7 @@
   <view class="nav-content" style="height:{{titleHeight}}px;color: {{color}}">
     <view class="left"  bindtap="openPicker" wx:if="{{page === 'console'}}">
       <view class="icon_aixin-box">
-        <i-image my-class="logo" src="{{ userInfo.avatarInfo.smallUrl }}" class="avatar_v1" mode="widthFix"></i-image>
+        <i-image my-class="logo" src="{{ userInfo.userInfo.avatarInfo.smallUrl }}" class="avatar_v1" mode="widthFix"></i-image>
         <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_dack.png" mode="widthFix" wx:if="{{navBarBg === '#1F252B'}}"></i-image>
         <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_light.png" mode="widthFix" wx:else></i-image> 
       </view>
@@ -19,4 +19,4 @@
   </view>
 </view>
 <view class="block" style="height:{{navBarHeight}}px"></view>
-<userModal wx:if="{{userInfo && userInfo.id}}" show="{{show}}"></userModal>
+<userModal wx:if="{{userInfo.userInfo && userInfo.userInfo.id}}" show="{{show}}" infos="{{ userInfo }}"></userModal>

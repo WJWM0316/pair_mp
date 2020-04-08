@@ -25,11 +25,11 @@ Component({
     showBackBtn: false,
   },
   pageLifetimes: {
-    show: function() {
+    show() {
       let callback = () => {
         let route = getCurrentPages()
         let  { showBackBtn } = this.data
-        let { userInfo } = app.globalData.userInfo
+        let { userInfo } = app.globalData
         showBackBtn = route.length > 1 ? true : false
         this.setData({userInfo, showBackBtn})
       }

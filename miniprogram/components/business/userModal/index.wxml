@@ -9,30 +9,30 @@
     <scroll-view class="scroll-view" scroll-y="true">
       <view class="base" bindtap="todoAction" data-action="homepage">
         <view class="avatar">
-          <i-image my-class="avatarImg" src="{{ userInfo.avatarInfo.smallUrl }}"></i-image>
+          <i-image my-class="avatarImg" src="{{ infos.userInfo.avatarInfo.smallUrl }}"></i-image>
         </view>
         <view class="content">
-          <view class="h1">{{ userInfo.nickname }}</view>
-          <view class="h2"><i class="icon iconfont icon_aixin"></i>{{ userInfo.bePickedTimes }}人Pick了我</view>
+          <view class="h1">{{ infos.userInfo.nickname }}</view>
+          <view class="h2"><i class="icon iconfont icon_aixin"></i>{{ infos.userInfo.bePickedTimes }}人Pick了我</view>
         </view>
         <i class="icon iconfont icon_jiantou-you-"></i>
       </view>
       <view class="process">
         <view class="bar">
-          <view class="{{ userInfo.infoCompletePercent < 80 ? 'active1' : 'active2'}}" style="width: {{userInfo.infoCompletePercentDesc}}"></view>
-          <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ userInfo.infoCompletePercent < 80 }}"></i-image>
+          <view class="{{ infos.userInfo.infoCompletePercent < 80 ? 'active1' : 'active2'}}" style="width: {{infos.userInfo.infoCompletePercentDesc}}"></view>
+          <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_low.png" wx:if="{{ infos.userInfo.infoCompletePercent < 80 }}"></i-image>
           <i-image my-class="icon-image" src="{{ CDNPATH }}icon_prof_good.png" wx:else></i-image>
         </view>
         <view class="tips">
-          资料完善度 {{userInfo.infoCompletePercent}}%
+          资料完善度 {{infos.userInfo.infoCompletePercent}}%
         </view>
       </view>
 
-      <view class="bubble {{ userInfo.infoCompletePercent < 80 ? 'style1' : 'style2'}}" wx:if="{{ userInfo.infoCompletePercent < 100 }}">
+      <view class="bubble {{ infos.userInfo.infoCompletePercent < 80 ? 'style1' : 'style2'}}" wx:if="{{ infos.userInfo.infoCompletePercent < 100 }}">
         <view class="bg1"></view>
         <!-- <view class="bg2"></view> -->
         <view class="content">
-          <block wx:if="{{ userInfo.infoCompletePercent < 80 }}">
+          <block wx:if="{{ infos.userInfo.infoCompletePercent < 80 }}">
             <view class="h1">资料完善度偏低</view>
             <view class="h2">低于80%，无法发起聊天哦~</view>
           </block>
@@ -59,10 +59,10 @@
           <i class="icon1 icon iconfont icon_shaixuan"></i>
           <view class="key">匹配偏好</view>
           <view class="value color1">
-            <block wx:if="{{pickIntention.gender === 1}}">
+            <block wx:if="{{infos.pickIntention.gender === 1}}">
               男
             </block>
-            <block wx:elif="{{pickIntention.gender === 2}}">
+            <block wx:elif="{{infos.pickIntention.gender === 2}}">
               女
             </block>
             <block wx:else>
