@@ -7,11 +7,19 @@
   z-index: 10;
 }
 .drawer .photo-box1 {
-  background: #ffffff;
   border-radius: 24rpx;
   position: absolute;
   z-index: 9;
   bottom: 420rpx;
+  width: 576rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.drawer .uploadTips {
+  border-radius: 24rpx;
+  position: absolute;
+  z-index: 9;
+  bottom: 470rpx;
   width: 576rpx;
   left: 50%;
   transform: translateX(-50%);

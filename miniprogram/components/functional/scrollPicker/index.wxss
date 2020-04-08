@@ -39,6 +39,7 @@
 }
 .scrollPicker .mask {
   background: transparent;
+  color: red;
 }
 .scrollPicker picker-view-column:nth-child(2n) {
   margin: 0 30rpx;

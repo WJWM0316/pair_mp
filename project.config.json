@@ -119,29 +119,9 @@
 				},
 				{
 					"id": 7,
-					"name": "pages/searchCompany/index",
-					"pathName": "pages/searchCompany/index",
-					"query": "vkey=oeyatwbc",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "pages/homepage/index",
-					"pathName": "pages/homepage/index",
-					"query": "vkey=ab3frqkj",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/bill/index",
-					"pathName": "pages/bill/index",
-					"query": "vkey=sumwmoo1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/startupPage/index",
-					"pathName": "pages/startupPage/index",
+					"name": "pages/methods/index",
+					"pathName": "pages/methods/index",
+					"query": "step=3",
 					"scene": null
 				}
 			]

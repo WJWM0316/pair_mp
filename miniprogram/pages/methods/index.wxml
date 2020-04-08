@@ -15,5 +15,5 @@
     </view>
   </view>
   <view class="tips"><i class="icon iconfont icon_baomi"></i>提交的信息仅供认证使用，将严格保密</view>
-  <actionSheet show="{{ show }}" itemList="{{ itemList }}" bind:drawerAction="drawerAction"></actionSheet>
+  <actionSheet show="{{ show }}" itemList="{{ itemList }}" bind:drawerAction="drawerAction" type="uploadTips"></actionSheet>
 </view>
