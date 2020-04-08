@@ -78,7 +78,7 @@
           wx:key="index"
           >
           {{item.companyName}}
-          <i class="icon iconfont icon-jiantou"></i>
+          <i class="icon iconfont icon_fuzhi"></i>
         </view>
       </scroll-view>
   </view>

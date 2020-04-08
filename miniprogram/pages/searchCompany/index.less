@@ -72,22 +72,20 @@
 		color:@text-color-3;
 		position: relative;
 		overflow: hidden;
-		height: 80rpx;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		border-bottom: 1rpx solid @border-color-base;
-		// &:after {
-		// 	left: 0;
-		// 	right: 0;
-		// 	bottom: 0;
-		// 	.line(@border-color-base)
-		// }
+		// border-bottom: 1rpx solid @border-color-base;
+		&:after {
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
 	}
-	.icon-jiantou {
+	.icon_fuzhi {
 		float: right;
 		color: #DCDCDC;
 		position: absolute;
-		right: 40rpx;
+		right: 0;
 		top: 50%;
 		transform: translateY(-50%);
 		font-size: 17rpx;

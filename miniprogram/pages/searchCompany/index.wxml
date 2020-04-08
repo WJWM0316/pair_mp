@@ -29,7 +29,7 @@
 				>
 				<!-- <rich-text nodes="{{item.html}}"></rich-text> -->
 				{{item.companyName}}
-				<i class="icon iconfont icon-jiantou"></i>
+				<i class="icon iconfont icon_fuzhi"></i>
 			</view>
 		</scroll-view>
 		<myButton canClick="{{ canClick }}" btnTxt="确定" bind:click="next"></myButton>

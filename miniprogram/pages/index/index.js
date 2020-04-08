@@ -33,8 +33,8 @@ Page({
     this.getOtherStatus()
   },
   
-  getOtherStatus () {
-    pickAggrApi({hideLoading: true}).then(res => {
+  getOtherStatus (hideLoading = true) {
+    pickAggrApi({hideLoading}).then(res => {
       let countDown = 0
       if (!res.data.pickChance.todayRemain) {
         countDown = res.data.refreshAt - res.data.curTime
