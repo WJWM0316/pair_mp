@@ -12,6 +12,7 @@ Page({
     othersUserInfo: {},
     mineUserInfo: {},
     curTimestamp: '',
+    options: {},
     emojiPath: app.globalData.CDNPATH
   },
 
@@ -20,6 +21,7 @@ Page({
    */
   onLoad: function (options) {
     this.options = options
+    this.setData({options})
   },
  
   /**
@@ -27,9 +29,9 @@ Page({
    */
   onReady: function () {
     socket.onMessage((res) => {
-      let data = res.imData
       // 如果是自己发的消息IM回调了需要更替成IM的数据
-      if (Number(res.imFromUser.vkey) === this.options.vkey && Number(res.imFromUser.uid) !== Number(this.data.mineUserInfo.id)) {
+      if (res.imFromUser.vkey === this.options.vkey || res.imToUser.vkey === this.options.vkey
+          && res.imFromUser.vkey !== this.data.mineUserInfo.vkey) {
         let index = this.data.messageList.length
         this.setData({[`messageList[${index}]`]: res}, () => {
           wx.nextTick(()=>{
@@ -168,6 +170,7 @@ Page({
   },
   // 记录最后一条记录发送时间
   sendLastMsgTime () {
+    if (!that.data.messageList.length) return
     let that = this
     socket.send({
       cmd: 'send.im',
