@@ -84,8 +84,13 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                   if (msg.code === 0 || msg.code === 200) {
                     resolve(msg)
                   } else {
-                    app.wxToast({title: msg.msg})
-                    reject(msg)
+                    if(msg.code === 2301) {
+                      reject(msg)
+                      wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}`})
+                    } else {
+                      app.wxToast({title: msg.msg})
+                      reject(msg)            
+                    }                    
                   }
                   break
                 case 401:
