@@ -9,6 +9,12 @@ import {
 import {
   getSelectorQuery
 } from '../../utils/util.js'
+
+import {
+  idealDescribeReg,
+  ownDescribeReg
+} from '../../utils/fieldRegular'
+
 let app = getApp()
 Page({
   data: {
@@ -132,7 +138,7 @@ Page({
       item.active = true
       labels.push(item.labelId)
     }
-    this.setData({ list, labels, canClick: !!labels.length})
+    this.setData({ list, labels, canClick: labels.length >= 5})
   },
   bindInput(e) {
     let { formData } = this.data
@@ -140,7 +146,7 @@ Page({
     let { key } = e.currentTarget.dataset
     if(value !== formData[key]) {
       formData[key] = value
-      this.setData({ formData, canClick: true })
+      this.setData({ formData, canClick: value.length >= 5 })
     }
   },
   tabClick(e) {
@@ -191,7 +197,12 @@ Page({
   next3() {
     let { formData } = this.data
     let params = {
-      own_describe: formData.own_describe
+      own_describe: formData.own_describe.trim()
+    }
+    if(!ownDescribeReg.test(params.own_describe)) {
+      formData['own_describe'] = params.own_describe
+      this.setData({ formData }, () => app.wxToast({title: '自我描述至少需要5个字'}))
+      return
     }
     updateUserDescribeApi(params).then(() => {
       app.reloadUserInfo().then(() => {
@@ -202,7 +213,12 @@ Page({
   next4() {
     let { formData } = this.data
     let params = {
-      ideal_describe: formData.ideal_describe
+      ideal_describe: formData.ideal_describe.trim()
+    }
+    if(!idealDescribeReg.test(params.ideal_describe)) {
+      formData['ideal_describe'] = params.ideal_describe
+      this.setData({ formData }, () => app.wxToast({title: '理想型描述至少需要5个字'}))
+      return
     }
     updateUserDescribeApi(params).then(() => {
       app.reloadUserInfo().then(() => {

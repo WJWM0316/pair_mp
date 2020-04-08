@@ -86,7 +86,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                   } else {
                     if(msg.code === 2301) {
                       reject(msg)
-                      wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}`})
+                      wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}&redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
                     } else {
                       app.wxToast({title: msg.msg})
                       reject(msg)            

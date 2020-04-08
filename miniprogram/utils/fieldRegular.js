@@ -56,3 +56,7 @@ export const majorNameReg = /^[\u0391-\uFFE5A-Za-z\s]{2,50}$/
 
 // 公司简介
 export const companyIntroReg = /^[\u0391-\uFFE5A-Za-z\s]{20,5000}$/
+// 理想性描述
+export const idealDescribeReg = /^.{5,150}$/
+// 自我描述
+export const ownDescribeReg = /^.{5,150}$/

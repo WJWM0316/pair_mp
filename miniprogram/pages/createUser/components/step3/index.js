@@ -1,6 +1,12 @@
 import {
   createUserStep3Api
 } from '../../../../api/user'
+
+import {
+  companyNameReg,
+  positionReg
+} from '../../../../utils/fieldRegular'
+
 const app = getApp()
 Component({
   properties: {
@@ -72,10 +78,20 @@ Component({
         is_need_email_verify: formData.is_need_email_verify
       }
       if(formData.company_name) {
-        params = Object.assign(params, {company_name: formData.company_name, company_id: formData.company_id ? formData.company_id : 0})
+        params = Object.assign(params, {company_name: formData.company_name.trim(), company_id: formData.company_id ? formData.company_id : 0})
       }
       if(formData.position_name) {
-        params = Object.assign(params, {position_name: formData.position_name})
+        params = Object.assign(params, {position_name: formData.position_name.trim()})
+      }
+      if(!positionReg.test(params.position_name)) {
+        formData['position_name'] = params.position_name
+        this.setData({ formData }, () => app.wxToast({title: '职位名称需为2-20个字'}))
+        return
+      }
+      if(!companyNameReg.test(params.company_name)) {
+        formData['company_name'] = params.company_name
+        this.setData({ formData }, () => app.wxToast({title: '公司名称需为2-50个字'}))
+        return
       }
       createUserStep3Api(params).then(({ data }) => {
         app.reloadUserInfo().then(() => {         

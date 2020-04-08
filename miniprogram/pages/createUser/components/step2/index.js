@@ -4,7 +4,7 @@ import {
 const app =  getApp();
 Component({
   data: {
-    height: '170'
+    height: '163'
   },
   methods: {
     bindvalue2(e) {

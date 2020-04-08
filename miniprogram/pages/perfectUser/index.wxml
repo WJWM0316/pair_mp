@@ -86,6 +86,7 @@
                 maxlength="150"
                 bindinput="bindInput"
                 data-key="own_describe"
+                value="{{formData.own_describe}}"
                 />
         </view>
         <view class="number"><text class="{{ formData.own_describe.length ? 'strong' : ''}}">{{formData.own_describe.length}}</text>/150</view>
@@ -109,6 +110,7 @@
                 maxlength="150"
                 bindinput="bindInput"
                 data-key="ideal_describe"
+                value="{{formData.ideal_describe}}"
                 />
         </view>
         <view class="number"><text class="{{ formData.ideal_describe.length ? 'strong' : ''}}">{{formData.ideal_describe.length}}</text>/150</view>

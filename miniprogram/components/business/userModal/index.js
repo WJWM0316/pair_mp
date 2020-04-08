@@ -28,7 +28,7 @@ Component({
     todoAction(e) {
       let { dataset } = e.currentTarget
       let { PAGEPATH } = app.globalData
-      let { userInfo } = this.data.userInfo
+      let { userInfo } = this.data.infos
       switch(dataset.action) {
         case 'close':
           this.setData({show: !this.data.show})
