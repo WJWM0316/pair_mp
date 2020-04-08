@@ -67,5 +67,11 @@ Page({
     reportApi(params).then(() => {
       wx.navigateBack({ delta: 1 })
     })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (options) {
+    return app.wxShare({options})
   }
 })

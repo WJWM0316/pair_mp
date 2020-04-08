@@ -244,14 +244,10 @@ Page({
   onReachBottom: function () {
 
   },
-
+  /**
+   * 用户点击右上角分享
+   */
   onShareAppMessage: function (options) {
-    app.globalData.lockonShow = true
-    let that = this
-    return app.wxShare({
-      options, 
-      title: '来撩吧！', 
-      path: `/pages/IM/chat/index?vkey=${that.data.mineUserInfo.vkey}`
-    })
+    return app.wxShare({options})
   }
 })

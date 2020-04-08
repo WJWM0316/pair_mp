@@ -1,0 +1,13 @@
+<view class="guideLogin">
+  <view class="footer">
+    <i class="icon iconfont {{!open ? 'icon_jiantou-shang' : 'icon_jiantou-xia'}}" bindtap = "toggle"></i>
+    <view class="tips">登录后为你Pick更适合的Ta</view>
+    <view hidden="{{!open}}">
+      <view class="btnBox">
+        <view class="btn1" bindtap="login"><i class="icon1 iconfont icon_shouji"></i>手机号登录</view>
+        <button class="btn2" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"><i class="icon1 iconfont icon_weixin"></i>微信登录</button>
+      </view>
+      <view class="tips2">登录代表你已同意<text class="bold" bindtap="userAgreement">《用户协议与隐私政策》</text></view>
+    </view>
+  </view>
+</view>

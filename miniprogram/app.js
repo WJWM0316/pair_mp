@@ -3,7 +3,7 @@ import {setConfig} from './env.config'
 import {getSubscribeApi} from './api/subscribe.js'
 import {shareInfosApi} from './api/common.js'
 import {getMyInfoApi} from './api/user.js'
-import {wxApi, getTitleHeight, socket, loginCallback} from './utils/index.js'
+import {wxApi, getTitleHeight, socket, loginCallback, localstorage} from './utils/index.js'
 
 
 App({
@@ -31,7 +31,7 @@ App({
     let config = setConfig(appId, envVersion)
     Object.assign(this.globalData, config)
 
-    let token = wx.getStorageSync('token')
+    let token = localstorage.get('token')
     
     socket.create(this.globalData.SOCKETHOST, token)
     
@@ -57,7 +57,7 @@ App({
     customerPhone: "020-28163063", // 客服电话
     customerWechat: 'zike04', // 客服微信
     systemInfo: {},
-    viewAreaHeight: 0, // 有效区域高度 px
+    viewAreaHeight: 0, // 除去自定义顶部栏 + 自定义底部栏，有效区域高度 px
     tabBarHeight: 0, // 底部栏高度 px
     navBarHeight: 0, // 顶部栏高度 px
     userInfo: 0

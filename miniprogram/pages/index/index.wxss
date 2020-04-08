@@ -1,4 +1,5 @@
 .indexWrap {
+  width: 100%;
   background: #1F252B;
   color: #fff;
   display: flex;

@@ -47,9 +47,10 @@
     
   </view>
 </view>
-<tabBar tabBgColor="{{background}}" mask="{{false}}"></tabBar>
+<tabBar tabBgColor="{{background}}" mask="{{false}}" wx:if="{{hasLogin}}"></tabBar>
 <dialog code="{{ code }}" other="{{dialogData}}" id="dialog" bind:click="pickChance"></dialog>
 <sugar-award-popUp id="awardPopUp" awardList="{{status.popups}}"></sugar-award-popUp>
+<guide-login></guide-login>
 <wxs src="../../utils/filters.wxs" module="filters" />
 
 <wxs module="parse">

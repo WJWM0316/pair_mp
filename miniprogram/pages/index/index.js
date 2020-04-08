@@ -118,4 +118,16 @@ Page({
   onHide: function () {
     clearInterval(this.countDownTimers)
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (options) {
+    let shareInfos = app.globalData.shareInfos.sharePickme,
+        random     = parseInt(Math.random() * (shareInfos.title.length - 1))
+    return app.wxShare({
+      options,
+      title: shareInfos.title[random],
+      imageUrl: shareInfos.imageUrl
+    })
+  }
 })

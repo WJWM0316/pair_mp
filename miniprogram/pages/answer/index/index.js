@@ -18,5 +18,11 @@ Page({
     wx.redirectTo({
       url: `${PAGEPATH}/answer/add/index`
     })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (options) {
+    return app.wxShare({options})
   }
 })

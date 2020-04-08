@@ -1,6 +1,6 @@
 
 
-import {getCurrentPagePath, socket, loginCallback} from '../utils/index.js'
+import {getCurrentPagePath, socket, loginCallback, localstorage} from '../utils/index.js'
 let APIHOST         = '',
     loadNum         = 0,
     app             = getApp(),
@@ -33,8 +33,8 @@ const setHeader = () => {
   !APIHOST ? APIHOST = app.globalData.APIHOST : null
 
   // 设置授权信息
-  token = wx.getStorageSync('token')
-  sessionToken = wx.getStorageSync('sessionToken')
+  token = localstorage.get('token')
+  sessionToken = localstorage.get('sessionToken')
   addHttpHead['Authorization'] = token
   addHttpHead['Authorization-Wechat'] = sessionToken
 }

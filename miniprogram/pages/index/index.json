@@ -4,7 +4,8 @@
     "contach-btn": "../../components/business/contactBtn",
     "swipe-out": "../../components/layout/swipeout",
     "dialog": "../../components/business/dialog",
-    "sugar-award-popUp": "../../components/business/sugarAwardPopup"
+    "sugar-award-popUp": "../../components/business/sugarAwardPopup",
+    "guide-login": "../../components/business/guideLogin"
   },
   "navigationStyle": "custom"
 }

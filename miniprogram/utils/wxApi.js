@@ -181,10 +181,18 @@ const wxApi = {
     })
   },
   // 微信分享
-  wxShare({options, title, path, imageUrl, noImg, btnTitle, btnPath, btnImageUrl}) {
+  wxShare ({options, title, path, imageUrl, noImg, btnTitle, btnPath, btnImageUrl}) {
+    let shareInfos = app.globalData.shareInfos.shareMiniprogram,
+        random     = parseInt(Math.random() * (shareInfos.title.length - 1))
+    if (!title) {
+      title = shareInfos[random]
+    }
+    if (!imageUrl) {
+      imageUrl = shareInfos.imageUrl
+    }
     let shareObj = {
       title: title,
-      path: path,
+      path: path || '/pages/index/index',
       imageUrl: imageUrl,
       success: function(res){
         // 转发成功之后的回调

@@ -1,0 +1,83 @@
+.guideLogin {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 11;
+}
+.guideLogin .footer {
+  width: 100%;
+  background: #000;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
+  box-sizing: border-box;
+  padding-bottom: 38rpx;
+  text-align: center;
+}
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .guideLogin .footer {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 38rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 38rpx);
+  }
+}
+.guideLogin .footer .icon {
+  font-size: 10rpx;
+  color: #0CCDDA;
+  margin: 0 auto;
+  padding: 32rpx 0 22rpx;
+  display: block;
+}
+.guideLogin .footer .tips {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0CCDDA;
+  line-height: 44rpx;
+  padding-bottom: 30rpx;
+}
+.guideLogin .footer .btnBox {
+  padding: 0 56rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 98rpx;
+  box-sizing: border-box;
+}
+.guideLogin .footer .btnBox .btn1,
+.guideLogin .footer .btnBox .btn2 {
+  flex: 1;
+  height: 100%;
+  border-radius: 49rpx;
+  line-height: 98rpx;
+  box-sizing: border-box;
+  font-size: 32rpx;
+}
+.guideLogin .footer .btnBox .btn1 .icon1,
+.guideLogin .footer .btnBox .btn2 .icon1 {
+  font-size: 36rpx;
+  margin-right: 6rpx;
+}
+.guideLogin .footer .btnBox .btn1.btn1,
+.guideLogin .footer .btnBox .btn2.btn1 {
+  margin-right: 18rpx;
+  border: 1rpx solid #0CCDDA;
+  color: #0CCDDA;
+}
+.guideLogin .footer .btnBox .btn1.btn2,
+.guideLogin .footer .btnBox .btn2.btn2 {
+  padding: 0;
+  background: #0CCDDA;
+  color: #fff;
+}
+.guideLogin .footer .btnBox .btn1.btn2 .icon1,
+.guideLogin .footer .btnBox .btn2.btn2 .icon1 {
+  font-size: 30rpx;
+}
+.guideLogin .footer .tips2 {
+  font-size: 24rpx;
+  color: #9CA1AA;
+  line-height: 32rpx;
+  padding-bottom: 2rpx;
+  padding-top: 50rpx;
+}
+.guideLogin .footer .tips2 .bold {
+  color: #fff;
+}
