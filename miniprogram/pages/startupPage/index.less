@@ -1,0 +1,44 @@
+@import '../../styles/_base.less';
+@import '../../styles/_mixins.less';
+
+.startupPage {
+  height: 100vh;
+  .logo {
+    width: 180rpx;
+    height: 180rpx;
+    margin: 111rpx auto 30rpx;
+    display: block;
+  }
+  .tips1 {
+    font-size:32rpx;
+    font-weight:300;
+    color:@text-color-1;
+    line-height:45rpx;
+    text-align: center;
+  }
+  .footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    .setSafea-area(240rpx);
+    .icon {
+      width: 87rpx;
+      height: 40rpx;
+      margin: 0 auto 32rpx;
+      animation: dropdown 1s linear infinite;
+    }
+    .tips2 {
+      font-size:28rpx;
+      font-weight:300;
+      color: @text-color-5;
+      line-height:36prx;
+    }
+  }
+}
+@keyframes dropdown {
+  0% { background: url('https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/loading1.png');background-size: 100% 100%; }
+  50% { background: url('https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/loading2.png');background-size: 100% 100%; }
+  100% { background: url('https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/loading1.png');background-size: 100% 100%; }
+}

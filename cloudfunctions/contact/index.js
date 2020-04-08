@@ -8,6 +8,7 @@ cloud.init({
 // 云函数入口函数
 exports.main = async (event, context) => {
   let callBack = {}
+  console.log(event)
   if (event.SessionFrom) {
     SessionFrom = JSON.parse(event.SessionFrom)
     let {token, path, type, title} = SessionFrom

@@ -1,6 +1,5 @@
 @import '../../styles/_base.less';
 @import '../../styles/_mixins.less';
-
 .indexWrap {
   background: @vice-primary-color-1;
   color: #fff;
@@ -209,7 +208,6 @@
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 1;
       .richWrap {
         width: 1rpx;
         height: 1rpx;
@@ -217,13 +215,11 @@
         left: 50%;
         bottom: 50%;
         transform: translate3d(-50%, -50%, 0);
-        z-index: 10;
         .richDom {
           box-shadow:10rpx 24rpx 49rpx 0rpx rgba(0,0,0,0.12);
           border:2rpx solid rgba(68,75,81,1);
           position: absolute;
           border-radius: 50%;
-          z-index: 9;
           left: 50%;
           bottom: 50%;
           transform: translate3d(-50%, 50%, 0);

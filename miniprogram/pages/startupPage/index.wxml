@@ -1,0 +1,9 @@
+<view class="startupPage">
+  <i-image my-class="logo" src="{{cdnPath}}logo_green.png"></i-image>
+  <view class="tips1">互联网单身青年配对交友</view>
+
+  <view class="footer">
+    <view class="icon"></view>
+    <view class="tips2">正在为你加载缘分</view>
+  </view>
+</view>

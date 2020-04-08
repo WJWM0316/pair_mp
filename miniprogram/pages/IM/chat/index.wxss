@@ -22,7 +22,8 @@
 .chatWrap .chatArea .message-list .message-box {
   margin-bottom: 30rpx;
 }
-.chatWrap .chatArea .message-list .message-box .time {
+.chatWrap .chatArea .message-list .message-box .time,
+.chatWrap .chatArea .message-list .message-box .customMsg {
   text-align: center;
   font-size: 24rpx;
   color: #9CA1AA;

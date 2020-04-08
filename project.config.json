@@ -137,6 +137,12 @@
 					"pathName": "pages/bill/index",
 					"query": "vkey=sumwmoo1",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/startupPage/index",
+					"pathName": "pages/startupPage/index",
+					"scene": null
 				}
 			]
 		}
