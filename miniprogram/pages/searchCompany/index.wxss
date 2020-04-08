@@ -74,16 +74,19 @@
   color: #9CA1AA;
   position: relative;
   overflow: hidden;
-  height: 80rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
-  border-bottom: 1rpx solid #EDF1F0;
 }
-.search-company-page .icon-jiantou {
+.search-company-page .li:after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.search-company-page .icon_fuzhi {
   float: right;
   color: #DCDCDC;
   position: absolute;
-  right: 40rpx;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
   font-size: 17rpx;

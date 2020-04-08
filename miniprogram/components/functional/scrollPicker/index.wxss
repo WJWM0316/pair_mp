@@ -27,9 +27,13 @@
   background: #CFD4D8;
   display: block;
 }
-.scrollPicker .column {
-  font-size: 42rpx;
+.scrollPicker .indicator picker-view-column {
   color: #1F252B;
+  font-size: 42rpx;
+}
+.scrollPicker .column {
+  font-size: 38rpx;
+  color: #9CA1AA;
   text-align: center;
   line-height: 120rpx;
 }

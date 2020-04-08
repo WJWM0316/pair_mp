@@ -13,7 +13,6 @@ Component({
       showNavDrap: false,
       activeIndex: 0,
       navScrollLeft: 0,
-      systemInfo: app.globalData.systemInfo,
       timer: null
   },
   ready() {
@@ -28,9 +27,9 @@ Component({
       })
     }
     this.setData({ tabs }, () => {
-      getSelectorQuery('.label-scoll', this).then(res => {
-        let { screenWidth } = this.data.systemInfo
-        let itemLength = parseInt(screenWidth / 3)
+      getSelectorQuery('.myscale', this).then(res => {
+        console.log(res.width)
+        let itemLength = parseInt(res.width / 3)
         tabs.map((v, i) => {
           v.startX = itemLength * i
         })
@@ -42,9 +41,9 @@ Component({
               if(v.value == initValue) {
                 v.active = true
                 navScrollLeft = v.startX
+                this.setData({ navScrollLeft, tabs })
               }
             })
-            this.setData({ navScrollLeft, tabs })
           } else {
             tabs[0].active = true
             navScrollLeft = tabs[0].startX
@@ -54,46 +53,6 @@ Component({
       })
     })
   },
-  // pageLifetimes: {
-  //   show() {
-  //     let tabs = []
-  //     for(let i = 100; i <= 300; i++) {
-  //       tabs.push({
-  //         key: i,
-  //         value: String(i),
-  //         active: false,
-  //         startX: 0,
-  //         endX: 0
-  //       })
-  //     }
-  //     this.setData({ tabs }, () => {
-  //       getSelectorQuery('.label-scoll', this).then(res => {
-  //         let { screenWidth } = this.data.systemInfo
-  //         let itemLength = parseInt(screenWidth / 3)
-  //         tabs.map((v, i) => {
-  //           v.startX = itemLength * i
-  //         })
-  //         this.setData({ tabs }, () => {
-  //           let { navScrollLeft, initValue } = this.data
-  //           if(initValue) {
-  //             tabs.map(v => {
-  //               v.active = false
-  //               if(v.value == initValue) {
-  //                 v.active = true
-  //                 navScrollLeft = v.startX
-  //               }
-  //             })
-  //             this.setData({ navScrollLeft, tabs })
-  //           } else {
-  //             tabs[0].active = true
-  //             navScrollLeft = tabs[0].startX
-  //             this.setData({ navScrollLeft, tabs })
-  //           }
-  //         })
-  //       })
-  //     })
-  //   }
-  // },
   methods: {
     closest(arr, num) {
       var left = 0;
@@ -131,15 +90,17 @@ Component({
         let moveTo = this.closest(array, scrollLeft)
         let navScrollLeft = moveTo
         if(array.includes(moveTo) && scrollLeft !== moveTo) {
+          let item = null
           tabs.map(v => {
             v.active = false
             if(v.startX == moveTo) {
+              item = v
               v.active = true
-              this.setData({ navScrollLeft, tabs }, () => this.triggerEvent('resultEvent', v))
             }
           })
+          this.setData({ navScrollLeft, tabs }, () => this.triggerEvent('resultEvent', item))
         }
-      }, 100)
+      }, 50)
     }
   }
 })

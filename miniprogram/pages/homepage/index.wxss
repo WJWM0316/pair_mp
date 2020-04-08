@@ -349,6 +349,7 @@
   color: #1F252B;
   line-height: 48rpx;
   text-align: center;
+  vertical-align: top;
 }
 .homepage .info-base {
   padding-bottom: 44rpx;
@@ -509,7 +510,8 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 47rpx;
+  bottom: 0;
+  padding-bottom: 67rpx;
 }
 .homepage .action-zone .btn3 {
   width: 324rpx;
@@ -530,7 +532,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -7rpx;
+  bottom: 53rpx;
   content: '';
   display: block;
   border: 0;
@@ -547,6 +549,15 @@
   color: #ffffff;
   position: relative;
   z-index: 2;
+}
+.homepage .action-zone .footer-mask {
+  width: 100%;
+  height: 117rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
 }
 .homepage .icon11 {
   position: absolute;

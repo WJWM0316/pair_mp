@@ -221,7 +221,11 @@ Page({
     }
     funcApi(params).then(() => {
       app.reloadUserInfo().then(() => {
-        wx.navigateBack({ delta: 1 })
+        if(options.key === 'companyName') {
+
+        } else {
+          wx.navigateBack({ delta: 1 })
+        }        
       })      
     }).catch(err => app.wxToast({title: err.msg}))
   }

@@ -1,12 +1,35 @@
 @import '../../../styles/_base.less';
+@pos : (100% - 40rpx) / 10;
+
 .scale {
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  &:before {
+    position: fixed;
+    left: 0;
+    content: '';
+    display: block;
+    background: white;
+    width: 65rpx;
+    height: 220rpx;
+    z-index: 2;
+  }
+  &:after {
+    position: fixed;
+    right: 0;
+    content: '';
+    display: block;
+    background: white;
+    width: 65rpx;
+    height: 220rpx;
+    z-index: 2;
+  }
   .scroll-view {
     overflow: hidden;
     white-space: nowrap;
     color: #fff;
+    height: 220rpx;
   }
   .label-item {
     display: inline-block;
@@ -17,6 +40,7 @@
     text-align: center;
     width: calc(100%/3);
     position: relative;
+    vertical-align: top;
   }
   .unit {
     font-size:36rpx;
@@ -30,19 +54,38 @@
     color:@text-color-5;
     transition: all ease .3s;
   }
+  .line-box {
+    position: relative;
+  }
   .line{
     width:8rpx;
     height:64rpx;
     background:@text-color-5;
     display: inline-block;
-    margin: 0 20rpx;
+    margin: 0 22rpx;
     border-radius: 4rpx;
     vertical-align: top;
-    &:nth-child(3n) {
+    // position: absolute;
+    // &:nth-child(1) {
+    //   left: calc(calc(@pos)rpx);
+    // };
+    // &:nth-child(2) {
+    //   left: calc(calc( 3 * @pos)rpx);
+    // };
+    &:nth-child(3) {
       height: 130rpx;
+      // left: calc(calc( 5 * @pos)rpx);
     };
+    // &:nth-child(4) {
+    //   left: calc( 7 * @pos)rpx;
+    // };
+    // &:nth-child(5) {
+    //   left: calc(calc( 9 * @pos)rpx);
+    // };
   }
   .active{
+    // position: relative;
+    // top: 10rpx;
     .line{
       opacity: 1;
       &:nth-child(3n) {

@@ -96,11 +96,16 @@
   text-overflow: ellipsis;
   padding: 0 60rpx;
 }
-.scroll-view .icon-jiantou {
+.scroll-view .li:after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.scroll-view .icon_fuzhi {
   float: right;
   color: #DCDCDC;
   position: absolute;
-  right: 40rpx;
+  right: 60rpx;
   top: 50%;
   transform: translateY(-50%);
   font-size: 17rpx;

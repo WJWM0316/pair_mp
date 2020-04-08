@@ -21,14 +21,22 @@ Component({
       value: ''
     }
   },
+  data: {
+    showBackBtn: false,
+  },
   pageLifetimes: {
-    show: function() {
+    show() {
+      let callback = () => {
+        let route = getCurrentPages()
+        let  { showBackBtn } = this.data
+        let { userInfo } = app.globalData
+        showBackBtn = route.length > 1 ? true : false
+        this.setData({userInfo, showBackBtn})
+      }
       if (app.globalData.userInfo) {
-        this.setData({'userInfo': app.globalData.userInfo.userInfo})
+        callback()
       } else {
-        app.getUserInfo = () => {
-          this.setData({'userInfo': app.globalData.userInfo.userInfo})
-        }
+        app.getUserInfo = () => callback()
       }
     }
   },

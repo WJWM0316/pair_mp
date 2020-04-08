@@ -11,26 +11,24 @@ Component({
     show: {
       type: Boolean,
       value: false
+    },
+    infos: {
+      type: Object,
+      default: {
+        userInfo: {},
+        pickIntention: {}
+      }
     }
   },
   data: {
     CDNPATH: app.globalData.CDNPATH,
-    userInfo: {},
     code: 0,
-    pickIntention: {id: 0, uid: 0, gender: -1}
   },
-  ready () {
-    this.setData({
-      userInfo: app.globalData.userInfo.userInfo,
-      pickIntention: app.globalData.userInfo.pickIntention
-    })
-  },
-
   methods: {
     todoAction(e) {
       let { dataset } = e.currentTarget
       let { PAGEPATH } = app.globalData
-      let { userInfo } = this.data
+      let { userInfo } = this.data.userInfo
       switch(dataset.action) {
         case 'close':
           this.setData({show: !this.data.show})
