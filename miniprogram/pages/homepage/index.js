@@ -1,7 +1,7 @@
 import {
   getUserInfoApi
 } from '../../api/user.js'
-
+import {localStorage} from "../../utils/index.js"
 import { getChargeInfoApi, chatApi } from "../../api/square.js"
 
 const app =  getApp();
@@ -10,6 +10,7 @@ Page({
     careerVerifyInfo: {},
     pickIntention: {},
     userInfo: {},
+    hasLogin: true,
     isOwer: true,
     currentIndex: 0,
     options: {},
@@ -38,6 +39,8 @@ Page({
   },
   onShow() {
     let { options } = this.data
+    let hasLogin = localStorage.get('token')
+    this.setData({hasLogin})
     let todoAction = () => {
       let rtn = app.globalData.userInfo
       let callback = (data, myself) => {

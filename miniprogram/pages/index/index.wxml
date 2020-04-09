@@ -1,57 +1,66 @@
-<navBar navBarBg="{{background}}" color="#fff" page="console" userInfo="{{userInfo.userInfo}}"></navBar>
-<view class="indexWrap" style="height: {{viewAreaHeight}}px">
-  <view class="main">
-    <rich-text class="richText" nodes="{{richText}}"></rich-text>
-    <view class="center circle1"></view>
-    <view class="center circle2"></view>
-    <view class="center circle3"></view>
-    <view class="center circle4"></view>
-    <view class="center centerBtn" style="{{parse.setStyle('centerBtn', status.pickChance.todayRemain, status.pickChance.todayRemainExchangeTimes)}}">
-      <block wx:if="{{hasLogin}}">
-        <view class="subscribe" bindtap="subscribe" wx:if="{{!hasPicker}}"></view>
-        <view class="center btnContent contactBtn" wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
-          <view class="mainBtn" bindtap = "pick">
-            <view slot="content" class="contactSlot">
-              <view class="moreTxt">获取更多</view>
-              <i-image my-class="logo" src="{{cdnPath}}icon_picktab_btn_pick@3x.png"></i-image>
-              <view class="timesTxt">次数已用完</view>
+<view class="page">
+  <navBar navBarBg="{{background}}" color="#fff" page="console" hasLogin="{{hasLogin}}" userInfo="{{userInfo.userInfo}}" bindgenderToggle="genderToggle"></navBar>
+  <view class="indexWrap" style="height: {{viewAreaHeight}}px">
+    <view class="main">
+      <rich-text class="richText" nodes="{{richText}}"></rich-text>
+      <view class="center circle1"></view>
+      <view class="center circle2"></view>
+      <view class="center circle3"></view>
+      <view class="center circle4"></view>
+      <view class="center centerBtn" style="{{parse.setStyle('centerBtn', status.pickChance.todayRemain, status.pickChance.todayRemainExchangeTimes)}}">
+        <block wx:if="{{hasLogin}}">
+          <view class="subscribe" bindtap="subscribe" wx:if="{{!hasPicker}}"></view>
+          <view class="center btnContent contactBtn" wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
+            <view class="mainBtn" bindtap = "pick">
+              <view slot="content" class="contactSlot">
+                <view class="moreTxt">获取更多</view>
+                <i-image my-class="logo" src="{{cdnPath}}icon_picktab_btn_pick@3x.png"></i-image>
+                <view class="timesTxt">次数已用完</view>
+              </view>
             </view>
           </view>
-        </view>
-        <view wx:else class="center btnContent {{!status.pickChance.todayRemain && !status.pickChance.todayRemainExchangeTimes ? 'default' : ''}}">
-          <i-button my-class="mainBtn" bindtap = "pick">
-            <i-image my-class="logo" src="{{cdnPath}}icon_picktab_btn_pick_ph@3x.png"></i-image>
-            <view class="now_times">今日剩余<view><text class="times">{{status.pickChance.todayRemain}}</text>次</view></view>
-          </i-button>
-        </view>
-      </block>
-      <block wx:else>
+          <view wx:else class="center btnContent {{!status.pickChance.todayRemain && !status.pickChance.todayRemainExchangeTimes ? 'default' : ''}}">
+            <i-button my-class="mainBtn" bindtap = "pick">
+              <i-image my-class="logo" src="{{cdnPath}}icon_picktab_btn_pick_ph@3x.png"></i-image>
+              <view class="now_times">今日剩余<view><text class="times">{{status.pickChance.todayRemain}}</text>次</view></view>
+            </i-button>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="center btnContent noLogin">
+            <i-button my-class="mainBtn" bindtap = "pick">
+              <i-image my-class="logo" src="{{cdnPath}}icon_picktab_btn_pick_ph@3x.png"></i-image>
+            </i-button>
+          </view>
+        </block>
+      </view>
+      <block wx:if="{{hasLogin}}">
+        <block wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
+          <view class="footerTxt">
+            <view class="txt1">{{status.refreshText}}</view>
+            <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
+            <view class="txt3" bindtap="routeJump" data-route="square">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
+          </view>
+        </block>
+        <block wx:elif="{{status.pickChance.todayRemain}}">
+          <view class="footerTxt">Pick一下，为你匹配最适合你的Ta</view>
+        </block>
+        <block wx:else>
+          <view class="footerTxt">
+            <view class="txt1">距离下次更新</view>
+            <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
+            <view class="txt3" bindtap="routeJump" data-route="square">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
+          </view>
+        </block>
       </block>
     </view>
-    <block wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
-      <view class="footerTxt">
-        <view class="txt1">{{status.refreshText}}</view>
-        <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
-        <view class="txt3" bindtap="routeJump" data-route="square">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
-      </view>
-    </block>
-    <block wx:elif="{{status.pickChance.todayRemain}}">
-      <view class="footerTxt">Pick一下，为你匹配最适合你的Ta</view>
-    </block>
-    <block wx:else>
-      <view class="footerTxt">
-        <view class="txt1">距离下次更新</view>
-        <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
-        <view class="txt3" bindtap="routeJump" data-route="square">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
-      </view>
-    </block>
-    
   </view>
+
+  <tabBar tabBgColor="{{background}}" mask="{{false}}" wx:if="{{hasLogin}}"></tabBar>
+  <dialog code="{{ code }}" other="{{dialogData}}" id="dialog" bind:click="pickChance"></dialog>
+  <guide-login id="guideLogin" wx:if="{{!hasLogin && showLoginGuide}}"></guide-login>
+  <sugar-award-popUp id="awardPopUp" awardList="{{status.popups}}"></sugar-award-popUp>
 </view>
-<tabBar tabBgColor="{{background}}" mask="{{false}}" wx:if="{{hasLogin}}"></tabBar>
-<dialog code="{{ code }}" other="{{dialogData}}" id="dialog" bind:click="pickChance"></dialog>
-<sugar-award-popUp id="awardPopUp" awardList="{{status.popups}}"></sugar-award-popUp>
-<guide-login></guide-login>
 <wxs src="../../utils/filters.wxs" module="filters" />
 
 <wxs module="parse">

@@ -4,6 +4,10 @@ Component({
     addGlobalClass: true,
   },
   properties: {
+    hasLogin: {
+      type: Boolean,
+      value: true
+    },
     navBarBg: {
       type: String,
       value: "#F3F3F3"
@@ -22,7 +26,7 @@ Component({
     }
   },
   data: {
-    showBackBtn: false,
+    showBackBtn: true,
   },
   pageLifetimes: {
     show() {
@@ -48,17 +52,28 @@ Component({
     statusBarHeight: app.globalData.systemInfo.statusBarHeight,
     navBarHeight: app.globalData.navBarHeight,
     show: false,
+    showGender: false,
     userInfo: {},
     CDNPATH: app.globalData.CDNPATH
   },
-  ready () {
+  attached () {
+    this.triggerEvent('genderToggle', this.data.showGender)
   },
   /**
    * 组件的方法列表
    */
   methods: {
     openPicker() {
-      this.setData({show: true})
+      let userInfo = this.data.userInfo
+      if (userInfo && userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step !== 9) {
+        this.setData({show: !this.data.show})
+      } else {
+        this.setData({showGender: !this.data.showGender})
+        this.triggerEvent('genderToggle', this.data.showGender)
+      }
+    },
+    choiceGender () {
+      this.openPicker()
     },
     reback() {
       if (this.data.customBack) {

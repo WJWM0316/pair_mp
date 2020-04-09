@@ -45,16 +45,6 @@ Component({
     cdnPath: app.globalData.CDNPATH
   },
   attached () {
-    if (!app.globalData.tabBarHeight) {
-      getSelectorQuery(".block", this).then(res => {
-        app.globalData.tabBarHeight = res.height
-        app.globalData.viewAreaHeight = app.globalData.systemInfo.screenHeight - res.height - app.globalData.navBarHeight
-        if (app.getTabHInit) {
-          app.getTabHInit()
-          app.getTabHInit = null
-        }
-      })
-    }
     let route = getCurrentPages()
     route = route[route.length - 1].route
     let list  = this.data.list

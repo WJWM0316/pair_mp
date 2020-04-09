@@ -13,6 +13,28 @@
     .left, .right {
       flex: 1;
     }
+    .left {
+      .icon_aixin-box {
+        position: relative;
+        display: inline-block;
+        width: 64rpx;
+        height: 64rpx;
+        overflow: hidden;
+        .mask {
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .avatar_v1 {
+          width: 100%;
+          position: relative;
+        }
+      } 
+      .icon_shaixuan {
+        color: @text-color-4;
+      }
+    }
     .right {
       background: #000;
     }
@@ -28,21 +50,4 @@
       }
     }
   }
-  .icon_aixin-box {
-    position: relative;
-    display: inline-block;
-    width: 64rpx;
-    height: 64rpx;
-    overflow: hidden;
-    .mask {
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .avatar_v1 {
-      width: 100%;
-      position: relative;
-    }
-  }  
 }

@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "userModal": "../../../components/business/userModal/index"
+    "userModal": "../../../components/business/userModal/index",
+    "gender-choice": "../../../components/business/genderChoice/index"
   }
 }

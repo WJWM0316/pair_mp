@@ -5,14 +5,15 @@
   width: 100%;
   position: fixed;
   bottom: 0;
+  left: 0;
   z-index: 11;
   .footer {
     width:100%;
-    background:#000;
+    background:rgba(0,0,0,0.7);
     border-radius:36rpx 36rpx 0rpx 0rpx;
     box-sizing: border-box;
-    .setSafea-area(38rpx);
     text-align: center;
+    .setSafea-area(38rpx);
     .icon {
       font-size: 10rpx;
       color: @primary-color;
@@ -71,5 +72,21 @@
         color: #fff;
       }
     }
+    &.navType {
+      border-radius: 0;
+      background: none;
+    }
+    &.homePage {
+      background: #fff;
+      .tips2 {
+        .bold {
+          color: @text-color-1;
+        }
+      }
+    }
   }
+}
+.guideLoginBlock {
+  box-sizing: border-box;
+  .setSafea-area(38rpx);
 }

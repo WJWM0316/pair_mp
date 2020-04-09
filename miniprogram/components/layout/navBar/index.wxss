@@ -15,6 +15,26 @@
 .navWrap .nav-content .right {
   flex: 1;
 }
+.navWrap .nav-content .left .icon_aixin-box {
+  position: relative;
+  display: inline-block;
+  width: 64rpx;
+  height: 64rpx;
+  overflow: hidden;
+}
+.navWrap .nav-content .left .icon_aixin-box .mask {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.navWrap .nav-content .left .icon_aixin-box .avatar_v1 {
+  width: 100%;
+  position: relative;
+}
+.navWrap .nav-content .left .icon_shaixuan {
+  color: #CFD4D8;
+}
 .navWrap .nav-content .right {
   background: #000;
 }
@@ -28,21 +48,4 @@
 .navWrap .nav-content .center .logo {
   width: 148rpx;
   height: 49rpx;
-}
-.navWrap .icon_aixin-box {
-  position: relative;
-  display: inline-block;
-  width: 64rpx;
-  height: 64rpx;
-  overflow: hidden;
-}
-.navWrap .icon_aixin-box .mask {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.navWrap .icon_aixin-box .avatar_v1 {
-  width: 100%;
-  position: relative;
 }

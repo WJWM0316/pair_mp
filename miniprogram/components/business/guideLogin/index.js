@@ -8,14 +8,23 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    open: {
+      type: Boolean,
+      value: false
+    },
+    type: {
+      type: String,
+      value: 'default',
+      observer(newVal, oldVal) {
+        console.log(newVal, oldVal, 'kkk')
+      } 
+    }
   },
-
+  
   /**
    * 组件的初始数据
    */
   data: {
-    open: false
   },
 
   /**

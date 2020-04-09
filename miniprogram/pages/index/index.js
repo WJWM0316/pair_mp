@@ -11,24 +11,18 @@ Page({
     background: '#1F252B',
     viewAreaHeight: app.globalData.viewAreaHeight,
     richText: '',
+    showLoginGuide: false,
     status: {},
     userInfo: 0,
     countDown: 0,
     code: 0,
     dialogData: {},
-    hasLogin: app.globalData.hasLogin,
+    hasLogin: true,
     cdnPath: app.globalData.CDNPATH,
     hasPicker: false
   },
   
   onLoad: function () {
-    if (!app.globalData.viewAreaHeight) {
-      app.getTabHInit = () => {
-        this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-      }
-    } else {
-      this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-    }
     this.getAvatarList()
   },
   onShow () {
@@ -36,6 +30,8 @@ Page({
       this.setData({hasPicker: true})
     }
     this.getOtherStatus()
+    let hasLogin = localstorage.get('token')
+    this.setData({hasLogin})
   },
   getOtherStatus (hideLoading = true) {
     pickAggrApi({hideLoading}).then(res => {
@@ -79,6 +75,9 @@ Page({
       this.setData({'dialogData': res.data})
     })
   },
+  genderToggle (e) {
+    this.setData({'showLoginGuide': e.detail})
+  },
   // 开始兑换
   pickChance (e) {
     pickChanceApi().then(() => {
@@ -97,6 +96,10 @@ Page({
   },
   pick () {
     let { userInfo } = app.globalData.userInfo
+    if (!this.data.hasLogin) {
+      this.selectComponent('#guideLogin').toggle()
+      return
+    }
     if(userInfo.step !== 9) {
       wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
       return
@@ -112,7 +115,7 @@ Page({
       } else {
         // 有次数直接pick
         pickApi({hideLoading: true}).then(({ data }) => {
-          wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
+          wx.navigateTo({url: `/pages/IM/chat/index?vkey=${data.user.vkey}`})
         }).catch(e => {
           if (e.data.code === 2204) {
             this.setData({code: 3}, () => this.selectComponent('#dialog').show())
