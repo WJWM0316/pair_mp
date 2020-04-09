@@ -1,9 +1,9 @@
 import {
   getUserInfoApi
 } from '../../api/user.js'
-import { localstorage } from "../../utils/index.js"
+import {localstorage, hasLogin} from "../../utils/index.js"
 import { getChargeInfoApi, chatApi } from "../../api/square.js"
-console.log(localstorage)
+
 const app =  getApp();
 Page({
   data: {
@@ -37,11 +37,8 @@ Page({
       url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
     })
   },
-  onShow() {
+  async onShow() {
     let { options } = this.data
-    let hasLogin = localstorage.get('token')
-    this.setData({hasLogin})
-    console.log(app.globalData.userInfo)
     let todoAction = () => {
       let rtn = app.globalData.userInfo
       let callback = (data, myself) => {
@@ -131,6 +128,8 @@ Page({
     } else {
       app.getUserInfo = () => todoAction()
     }
+    let data = await hasLogin()
+    this.setData({'hasLogin': data})
   },
   bindchange(e) {
     let { current } = e.detail

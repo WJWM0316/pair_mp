@@ -6,6 +6,7 @@ import {
   companyNameReg,
   positionReg
 } from '../../../../utils/fieldRegular'
+import {getUserInfo} from '../../../../utils/auth.js'
 
 const app = getApp()
 Component({
@@ -94,7 +95,7 @@ Component({
         return
       }
       createUserStep3Api(params).then(({ data }) => {
-        app.reloadUserInfo().then(() => {         
+        getUserInfo().then(() => {         
           let { PAGEPATH } = app.globalData
           let userInfo = data.userInfo
           let { formData } = this.data

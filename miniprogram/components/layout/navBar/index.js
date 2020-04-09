@@ -1,4 +1,4 @@
-import {localstorage} from "../../../utils/index.js"
+import {localstorage, hasLogin} from "../../../utils/index.js"
 const app =  getApp();
 Component({
   options: {
@@ -24,14 +24,17 @@ Component({
     title: {
       type: String,
       value: ''
+    },
+    hasLogin: {
+      type: Boolean,
+      value: true
     }
   },
   data: {
-    showBackBtn: true,
-    hasLogin: true
+    showBackBtn: true
   },
   pageLifetimes: {
-    show() {
+    async show() {
       let callback = () => {
         let route = getCurrentPages()
         let  { showBackBtn } = this.data
@@ -44,8 +47,6 @@ Component({
       } else {
         app.getUserInfo = () => callback()
       }
-      let hasLogin = localstorage.get('token')
-      this.setData({hasLogin})
     }
   },
   /**

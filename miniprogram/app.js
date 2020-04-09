@@ -72,19 +72,6 @@ App({
     shareInfosApi({hideLoading: true}, this).then(({data}) => {
       this.globalData.shareInfos = data
     })
-  },
-  reloadUserInfo(hideLoading = false) {
-    return new Promise((resolve, reject) => {
-      getMyInfoApi({ hideLoading }).then(({ data }) => {
-        if(!Object.keys(data.careerVerifyInfo).length) {
-          data.careerVerifyInfo = Object.assign(data.careerVerifyInfo, { status: -1})
-        }
-        this.globalData.userInfo = data
-        resolve(data)
-      }).catch((e) => {
-        reject(e)
-      })
-    })
   }
 })
 

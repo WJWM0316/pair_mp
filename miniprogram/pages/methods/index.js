@@ -2,6 +2,7 @@ import {
   hasCompanyEmailApi,
   verifyCareerApi
 } from '../../api/common.js'
+import {getUserInfo} from '../../utils/index.js'
 const app = getApp()
 Page({
   data: {
@@ -54,7 +55,7 @@ Page({
     let { PAGEPATH } = app.globalData
     let { options } = this.data
     verifyCareerApi({attach_id}).then(() => {
-      app.reloadUserInfo().then(() => {
+      getUserInfo().then(() => {
         if(options.type === 'createUser') {
           wx.reLaunch({
             url: `${PAGEPATH}/index/index`

@@ -13,6 +13,22 @@ import Socket from './webSocket.js'
 //   })
 // }
 
+const hasLogin = () => {
+  let hasLogin = 0
+  return new Promise((resolve, reject) => {
+    let app = getApp()
+    if (app.globalData.hasLogin) {
+      hasLogin = app.globalData.hasLogin
+      resolve(hasLogin)
+    } else {
+      app.loginInit = () => {
+        hasLogin = app.globalData.hasLogin
+        resolve(hasLogin)
+      }
+    }
+  })
+}
+
 // 需要用户信息
 const getUserInfo = () => {
   return new Promise((resolve, reject) => {
@@ -35,7 +51,8 @@ const getUserInfo = () => {
 const loginCallback = (res, options) => {
   if (res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
   if (res.data.userInfo.token) {
-    getApp().globalData.hasLogin = true
+    getApp().globalData['hasLogin'] = true
+    if (getApp().loginInit) getApp().loginInit()
     wx.setStorageSync('token', res.data.userInfo.token)
     Socket.login(res.data.userInfo.token)
     getUserInfo()
@@ -77,6 +94,7 @@ const logout = (e) => {
 }
 
 module.exports = {
+  hasLogin,
   getUserInfo,
   getPhoneNumber,
   phoneCodeLogin,

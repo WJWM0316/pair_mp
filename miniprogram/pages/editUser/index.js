@@ -233,7 +233,7 @@ Page({
         break
     }
     funcApi(params).then(() => {
-      app.reloadUserInfo().then(() => {
+      getUserInfo().then(() => {
         if(options.key === 'companyName') {
 
         } else {

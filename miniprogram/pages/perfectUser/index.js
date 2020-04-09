@@ -7,7 +7,8 @@ import {
   updateUserDescribeApi
 } from '../../api/user'
 import {
-  getSelectorQuery
+  getSelectorQuery,
+  getUserInfo
 } from '../../utils/util.js'
 
 import {
@@ -173,7 +174,7 @@ Page({
       salary: this.data.salary
     }
     updateUserSalaryApi(params).then(() => {
-      app.reloadUserInfo().then(() => {
+      getUserInfo().then(() => {
         app.globalData.userInfo = null
         this.setData({ step: 2, canClick: false }, () => this.init2())
       })
@@ -185,7 +186,7 @@ Page({
       label_id: labels.join(',')
     }
     addLabelApi(params).then(() => {
-      app.reloadUserInfo().then(() => {
+      getUserInfo().then(() => {
         if (options.type) {
           wx.navigateBack({ delta: 1 })
         } else {
@@ -205,7 +206,7 @@ Page({
       return
     }
     updateUserDescribeApi(params).then(() => {
-      app.reloadUserInfo().then(() => {
+      getUserInfo().then(() => {
         this.setData({ step: 4, canClick: false })
       })      
     }).catch(err => app.wxToast({title: err.msg}))
@@ -221,7 +222,7 @@ Page({
       return
     }
     updateUserDescribeApi(params).then(() => {
-      app.reloadUserInfo().then(() => {
+      getUserInfo().then(() => {
         wx.navigateBack({ delta: 1 })
       })      
     }).catch(err => app.wxToast({title: err.msg}))
