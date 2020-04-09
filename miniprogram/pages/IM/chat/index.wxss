@@ -1,3 +1,11 @@
+.headerBox {
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  position: sticky;
+  position: -webkit-sticky;
+}
 .chatWrap {
   min-height: 100vh;
   background: #F1F4F4;

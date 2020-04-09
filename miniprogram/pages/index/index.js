@@ -5,7 +5,7 @@ let phone = ''
 import {getCurrentPagePath} from '../../utils/index.js'
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
 import {pickApi, pickIndexAvaApi, pickAggrApi, getPickChanceApi, pickChanceApi} from "../../api/pick.js"
-import localstorage from "../../utils/localstorage.js"
+import {localstorage} from "../../utils/index.js"
 Page({
   data: {
     background: '#1F252B',
