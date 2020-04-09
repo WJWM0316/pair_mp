@@ -1,5 +1,5 @@
 <view class="mine-modal {{show ? 'show' : ''}}">
-  <view class="mask {{show ? 'show' : ''}}"></view>
+  <view class="mask {{show ? 'show' : ''}}" bindtap="todoAction" data-action="close"></view>
   <view scroll-y="true" class="overlay">
 
     <view class="close" bindtap="todoAction" data-action="close">

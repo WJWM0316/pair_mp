@@ -128,7 +128,7 @@
 					"id": 8,
 					"name": "pages/createUser/index",
 					"pathName": "pages/createUser/index",
-					"query": "step=3",
+					"query": "step=1",
 					"scene": null
 				},
 				{
@@ -136,6 +136,13 @@
 					"name": "pages/searchCompany/index",
 					"pathName": "pages/searchCompany/index",
 					"query": "step=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/account/index",
+					"pathName": "pages/account/index",
+					"query": "step=1",
 					"scene": null
 				}
 			]
