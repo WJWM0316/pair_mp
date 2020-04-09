@@ -1,6 +1,7 @@
+<chat-bubble mineUserInfo="{{mineUserInfo}}"></chat-bubble>
+<chat-header bindputUp="headerPutUp" mineUserInfo="{{mineUserInfo}}" othersUserInfo="{{othersUserInfo}}"></chat-header>
+
 <view class="chatWrap"  bindtap="resetView">
-  <chat-bubble mineUserInfo="{{mineUserInfo}}"></chat-bubble>
-  <chat-header bindputUp="headerPutUp" mineUserInfo="{{mineUserInfo}}" othersUserInfo="{{othersUserInfo}}"></chat-header>
   <view class="systemHint" wx:if="{{false}}">TA特别想认识你，缘分来了就不要错过哟~</view>
   <debutWord bindselectResult="selectResult" type="debutWord" bindtapMpre="bindtapMpre" vkey="{{othersUserInfo.vkey}}" wx:if="{{false}}"></debutWord>
   <view class="chatArea">

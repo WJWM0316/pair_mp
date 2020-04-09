@@ -1,12 +1,13 @@
+import {localstorage} from "../../../utils/index.js"
 const app =  getApp();
 Component({
   options: {
     addGlobalClass: true,
   },
   properties: {
-    hasLogin: {
-      type: Boolean,
-      value: true
+    type: {
+      type: String,
+      value: ''
     },
     navBarBg: {
       type: String,
@@ -27,6 +28,7 @@ Component({
   },
   data: {
     showBackBtn: true,
+    hasLogin: true
   },
   pageLifetimes: {
     show() {
@@ -42,6 +44,8 @@ Component({
       } else {
         app.getUserInfo = () => callback()
       }
+      let hasLogin = localstorage.get('token')
+      this.setData({hasLogin})
     }
   },
   /**
@@ -64,12 +68,14 @@ Component({
    */
   methods: {
     openPicker() {
-      let userInfo = this.data.userInfo
-      if (userInfo && userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step !== 9) {
-        this.setData({show: !this.data.show})
-      } else {
+      if (!this.data.hasLogin) {
         this.setData({showGender: !this.data.showGender})
         this.triggerEvent('genderToggle', this.data.showGender)
+        return
+      }
+      let userInfo = this.data.userInfo
+      if (userInfo && userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step === 9) {
+        this.setData({show: true})
       }
     },
     choiceGender () {

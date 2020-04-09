@@ -36,7 +36,7 @@ Component({
       this.setData({'tips': false})
     },
     toPrfect () {
-      wx.navigateTo({url: '/pages/editUser/index'})
+      wx.navigateTo({url: '/pages/userInfo/index'})
     }
   }
 })

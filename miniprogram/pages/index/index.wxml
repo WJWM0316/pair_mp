@@ -1,5 +1,5 @@
 <view class="page">
-  <navBar navBarBg="{{background}}" color="#fff" page="console" hasLogin="{{hasLogin}}" userInfo="{{userInfo.userInfo}}" bindgenderToggle="genderToggle"></navBar>
+  <navBar navBarBg="{{background}}" color="#fff" page="console" type="index" hasLogin="{{hasLogin}}" userInfo="{{userInfo.userInfo}}" bindgenderToggle="genderToggle"></navBar>
   <view class="indexWrap" style="height: {{viewAreaHeight}}px">
     <view class="main">
       <rich-text class="richText" nodes="{{richText}}"></rich-text>

@@ -1,5 +1,3 @@
-<navBar title="  "></navBar>
-
 <view class="loginWrap">
   <view class="header">
     <i-image my-class="logo" src="{{cdnPath}}logo_pickme_black.png"></i-image>

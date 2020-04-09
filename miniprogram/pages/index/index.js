@@ -29,12 +29,13 @@ Page({
     if(localstorage.get('hasPicker')) {
       this.setData({hasPicker: true})
     }
-    this.getOtherStatus()
     let hasLogin = localstorage.get('token')
     this.setData({hasLogin})
+    this.getOtherStatus()
   },
   
   getOtherStatus (hideLoading = true) {
+    if (!this.data.hasLogin) return
     pickAggrApi({hideLoading}).then(res => {
       let countDown = 0
       if (!res.data.pickChance.todayRemain) {
@@ -61,14 +62,15 @@ Page({
     })
   },
   getAvatarList () {
-    pickIndexAvaApi().then(res => {
-      let hasLogin = app.globalData.hasLogin
+    let data = {}
+    if (!this.data.hasLogin) data = {gender: localStorage.get('sex')}
+    pickIndexAvaApi(data).then(res => {
       let richText = `<div class="richWrap">`
       res.data.avatarUrls.forEach((item, index) => {
         richText = `${richText}<img src='${item}' class='richDom richDom${index}' />`
       })
       richText = `${richText}</div>`
-      this.setData({richText, hasLogin})
+      this.setData({richText})
     })
   },
   getPickChance () {

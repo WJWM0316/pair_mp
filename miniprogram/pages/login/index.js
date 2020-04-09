@@ -35,7 +35,6 @@ Page({
   countDown () {
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {
-      console.log('enter')
       let sendTimes = this.data.sendTimes
       if (sendTimes > 0) {
         sendTimes--
@@ -70,7 +69,7 @@ Page({
     wx.navigateTo({url: `/pages/webview/index?p=${encodeURIComponent(url)}`})
   },
   onUnload() {
-    clearInterval(timer)
+    clearTimeout(this.timer)
   },
   onShareAppMessage(options) {
     return app.wxShare({options})
