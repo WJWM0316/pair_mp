@@ -8,7 +8,6 @@ import {
 } from '../../api/user'
 import {
   getSelectorQuery,
-  getUserInfo
 } from '../../utils/util.js'
 
 import {

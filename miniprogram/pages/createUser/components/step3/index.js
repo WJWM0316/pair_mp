@@ -8,10 +8,6 @@ import {
 } from '../../../../utils/fieldRegular'
 import {getUserInfo} from '../../../../utils/auth.js'
 
-import {
-  getUserInfo
-} from '../../../../utils/auth'
-
 const app = getApp()
 Component({
   properties: {
