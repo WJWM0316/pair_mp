@@ -27,14 +27,8 @@ Page({
       let cover = null
       if(albumVerifyInfo.status === 1) {
         cover = userInfo.userAlbumList.find(v => v.isCover)
-        if(userInfo.userAlbumList.length === 1) {
-          userInfo.userAlbumList = []
-        }
       } else {
         cover = userInfo.userAlbumTempList.find(v => v.isCover)
-        if(userInfo.userAlbumTempList.length === 1) {
-          userInfo.userAlbumTempList = []
-        }
       }
       this.setData({
         userInfo,
