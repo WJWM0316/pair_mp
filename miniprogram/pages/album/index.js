@@ -41,7 +41,6 @@ Page({
         albumVerifyInfo,
         cover
       })
-      console.log(this.data)
     }
     if (app.globalData.userInfo) {
       callback()

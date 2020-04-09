@@ -1,9 +1,9 @@
 import {
   getUserInfoApi
 } from '../../api/user.js'
-import {localStorage} from "../../utils/index.js"
+import { localstorage } from "../../utils/index.js"
 import { getChargeInfoApi, chatApi } from "../../api/square.js"
-
+console.log(localstorage)
 const app =  getApp();
 Page({
   data: {
@@ -39,8 +39,9 @@ Page({
   },
   onShow() {
     let { options } = this.data
-    let hasLogin = localStorage.get('token')
+    let hasLogin = localstorage.get('token')
     this.setData({hasLogin})
+    console.log(app.globalData.userInfo)
     let todoAction = () => {
       let rtn = app.globalData.userInfo
       let callback = (data, myself) => {
