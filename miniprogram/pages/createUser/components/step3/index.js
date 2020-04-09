@@ -6,6 +6,7 @@ import {
   companyNameReg,
   positionReg
 } from '../../../../utils/fieldRegular'
+import {getUserInfo} from '../../../../utils/auth.js'
 
 import {
   getUserInfo

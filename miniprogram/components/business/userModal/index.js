@@ -1,7 +1,7 @@
 import {
   setPickerIntentionApi
 } from '../../../api/pick.js'
-import {localStorage} from '../../../utils/index.js'
+import {localstorage} from '../../../utils/index.js'
 const app = getApp()
 Component({
   options: {
@@ -73,7 +73,7 @@ Component({
       let rtn = e.detail
       setPickerIntentionApi({gender: rtn.sex}).then(() => {
         app.globalData.userInfo.pickIntention.gender = Number(rtn.sex)
-        localStorage.set('sex', rtn.sex)
+        localstorage.set('sex', rtn.sex)
         let { infos } = this.data
         infos = app.globalData.userInfo
         this.setData({ infos })

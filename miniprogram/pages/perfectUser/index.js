@@ -7,7 +7,8 @@ import {
   updateUserDescribeApi
 } from '../../api/user'
 import {
-  getSelectorQuery
+  getSelectorQuery,
+  getUserInfo
 } from '../../utils/util.js'
 
 import {

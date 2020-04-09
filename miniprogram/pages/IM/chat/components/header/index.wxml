@@ -1,5 +1,5 @@
 
-<view class="header {{tips ? 'headerTips' : ''}}">
+<view class="header">
   <view class="header-inner  {{putUp ? 'putUp' : ''}}">
     <view class="header-card">
       <view class="avatar-box">

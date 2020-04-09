@@ -237,8 +237,8 @@ Page({
         break
     }
     funcApi(params).then(() => {
-      getUserInfo().then((userInfo) => {
-        wx.navigateBack({ delta: 1 })  
+      getUserInfo().then(() => {
+        wx.navigateBack({ delta: 1 })     
       })      
     }).catch(err => app.wxToast({title: err.msg}))
   },

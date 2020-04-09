@@ -2,10 +2,7 @@ import {
   postQuestionApi,
   removeQuestionApi
 } from '../../../api/question.js'
-
-import {
-  getUserInfo
-} from '../../../utils/auth'
+import {getUserInfo} from '../../../utils/auth.js'
 let app = getApp()
 Page({
   data: {

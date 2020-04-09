@@ -2,9 +2,7 @@ import {
   hasCompanyEmailApi,
   verifyCareerApi
 } from '../../api/common.js'
-import {
-  getUserInfo
-} from '../../utils/auth'
+import {getUserInfo} from '../../utils/index.js'
 const app = getApp()
 Page({
   data: {

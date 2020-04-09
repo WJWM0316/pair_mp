@@ -1,6 +1,7 @@
 import {
   createUserStep1Api
 } from '../../../../api/user'
+import {getUserInfo} from '../../../../utils/auth.js'
 const app =  getApp();
 Component({
   data: {
@@ -188,7 +189,9 @@ Component({
         return
       }
       createUserStep1Api(params).then(res => {
-        this.triggerEvent('next', true)
+        getUserInfo().then(() => {         
+          this.triggerEvent('next', true)
+        })
       }).catch(err => app.wxToast({title: err.msg}))
     }
   }

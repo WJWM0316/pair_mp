@@ -1,6 +1,7 @@
 import {
   createUserStep2Api
 } from '../../../../api/user'
+import {getUserInfo} from '../../../../utils/auth.js'
 const app =  getApp();
 Component({
   data: {
@@ -15,7 +16,9 @@ Component({
     },
     next() {
       createUserStep2Api({height: this.data.height}).then(() => {
-        this.triggerEvent('next', true)
+        getUserInfo().then(() => {         
+          this.triggerEvent('next', true)
+        })
       }).catch(err => app.wxToast({title: err.msg}))
     },
     resultEvent(e) {
