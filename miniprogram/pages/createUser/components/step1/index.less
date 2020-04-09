@@ -23,13 +23,14 @@
       vertical-align: top;
     }
     .active-item {
-      background: @primary-color;
+      background: rgba(@primary-color, .5);
     }
   }
   .key{
     color:@text-color-1;
     font-size:28rpx;
     display: inline;
+    font-weight: 300;
   }
   .value{
     font-size:36rpx;
@@ -61,9 +62,11 @@
     }
     .value {
       // border-bottom: 1rpx solid #EDF1F0;
-      height: 76rpx;
+      height: 44rpx;
       width: 100%;
       position: relative;
+      padding-top: 33rpx;
+      padding-bottom: 16rpx;
       &:after{
         position: absolute;
         left: 0;

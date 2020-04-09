@@ -208,12 +208,13 @@
   vertical-align: top;
 }
 .step1 .progress .active-item {
-  background: #0CCDDA;
+  background: rgba(12, 205, 218, 0.5);
 }
 .step1 .key {
   color: #1F252B;
   font-size: 28rpx;
   display: inline;
+  font-weight: 300;
 }
 .step1 .value {
   font-size: 36rpx;
@@ -252,9 +253,11 @@
   padding-top: 40rpx;
 }
 .step1 .first .value {
-  height: 76rpx;
+  height: 44rpx;
   width: 100%;
   position: relative;
+  padding-top: 33rpx;
+  padding-bottom: 16rpx;
 }
 .step1 .first .value:after {
   position: absolute;

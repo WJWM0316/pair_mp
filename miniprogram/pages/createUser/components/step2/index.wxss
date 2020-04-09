@@ -20,7 +20,7 @@
   vertical-align: top;
 }
 .step2 .progress .active-item {
-  background: #0CCDDA;
+  background: rgba(12, 205, 218, 0.5);
 }
 .step2 .box {
   margin-top: 106rpx;

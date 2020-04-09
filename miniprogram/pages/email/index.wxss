@@ -24,7 +24,7 @@
   bottom: 262rpx;
 }
 .email-page .ul {
-  margin-top: 68rpx;
+  margin-top: 96rpx;
 }
 .email-page .ul .header {
   height: 36rpx;

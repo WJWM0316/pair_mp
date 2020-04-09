@@ -70,7 +70,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 114rpx;
+  bottom: 144rpx;
   text-align: center;
 }
 .perfect .icon_baomi {

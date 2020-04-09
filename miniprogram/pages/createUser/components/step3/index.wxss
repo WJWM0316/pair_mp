@@ -208,7 +208,10 @@
   vertical-align: top;
 }
 .step3 .progress .active-item {
-  background: #0CCDDA;
+  background: rgba(12, 205, 218, 0.5);
+}
+.step3 .bold {
+  font-weight: 700;
 }
 .step3 .ul {
   margin-top: 68rpx;
