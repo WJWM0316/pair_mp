@@ -33,7 +33,7 @@
       bindinput="bindInput"
       data-key="school"
       value="{{ userInfo.school }}"
-      maxlength="20"
+      maxlength="50"
       class="value {{ userInfo.school ? 'bold' : '' }}"
       />
   </view>

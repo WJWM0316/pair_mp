@@ -90,7 +90,7 @@
 				</view>
 				<block wx:if="{{userCompleteInfo.showCareerVerify}}">
 					<view class="li {{ careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : '' }}">
-						<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}" />
+						<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 || careerVerifyInfo.status === 0}}" />
 						<i class="icon2 iconfont icon_gouxuan" wx:else></i>
 						<text class="text">职业信息认证</text>
 						<text class="error" wx:if="{{careerVerifyInfo.status === 2}}">未通过</text>
