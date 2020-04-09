@@ -31,5 +31,5 @@
     </view>
   </view>
 </view>
-<bottomStatus status="{{ onBottomStatus }}" listData="{{ userData.list }}"  marginTop="{{30}}" desc="已经到底啦！"></bottomStatus>
+<!-- <bottomStatus status="{{ onBottomStatus }}" listData="{{ userData.list }}"  marginTop="{{30}}" desc="已经到底啦！"></bottomStatus> -->
 <tabBar></tabBar>

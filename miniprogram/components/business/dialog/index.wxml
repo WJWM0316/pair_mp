@@ -68,7 +68,7 @@
 					 class="btn bg"
 					 bindtap="routeJump"
 					 data-page="perfectUser"
-					 wx:if="{{ userCompleteInfo.baseComplete < 80 }}"
+					 wx:if="{{ userCompleteInfo.infoCompletePercent < 80 }}"
 					>去完善
 					</view>
 					<view class="btn" wx:else>已完善</view>

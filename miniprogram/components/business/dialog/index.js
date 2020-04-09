@@ -71,7 +71,7 @@ Component({
     routeJump(e) {
       let { dataset } = e.currentTarget
       let { PAGEPATH } = app.globalData
-      let { userInfo } = this.data
+      let { userInfo, userCompleteInfo } = this.data
       switch(dataset.page) {
         case 'userInfo':
           this.setData({ show: false }, () => {
@@ -82,9 +82,15 @@ Component({
           break
         case 'perfectUser':
           this.setData({ show: false }, () => {
-            wx.navigateTo({
-              url: `${PAGEPATH}/perfectUser/index`
-            }) 
+            if(userCompleteInfo.infoCompletePercent > 40 && userCompleteInfo.infoCompletePercent < 80) {
+              wx.navigateTo({
+                url: `${PAGEPATH}/perfectUser/index`
+              }) 
+            } else {
+              wx.navigateTo({
+                url: `${PAGEPATH}/userInfo/index`
+              })
+            }            
           })     
           break
         case 'album':
