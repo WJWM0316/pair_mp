@@ -37,7 +37,6 @@ Page({
     }
     this.getOtherStatus()
   },
-  
   getOtherStatus (hideLoading = true) {
     pickAggrApi({hideLoading}).then(res => {
       let countDown = 0
@@ -86,10 +85,17 @@ Page({
       this.getOtherStatus()
     })
   },
+  subscribe() {
+    app.subscribeMessage('openChat').then(() => {
+      this.setData({hasPicker: true})
+      localstorage.set('hasPicker', { type: 'resetTheDay' })
+      this.pick()
+    }).catch(() => {
+      this.setData({hasPicker: true})
+      localstorage.set('hasPicker', { type: 'resetTheDay' })
+    })
+  },
   pick () {
-    // this.setData({hasPicker: true}, () => {
-    //   localstorage.set('hasPicker', { type: 'resetTheDay' })
-    // })
     let { userInfo } = app.globalData.userInfo
     if(userInfo.step !== 9) {
       wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
