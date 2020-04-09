@@ -185,7 +185,7 @@
       <view class="label">
         <view class="key">我的问答</view>
       </view>
-      <view class="func-btn" bindtap="addQuestion" wx:if="{{ !isAllQuestion }}">完善问答</view>
+      <view class="func-btn" bindtap="addQuestion" wx:if="{{ !isAllQuestion }}">{{userAnswerList.length ? '添加问答' : '完善问答'}}</view>
     </view>
     <view class="box" wx:if="{{userAnswerList.length}}">
       <view class="item" wx:for="{{ userAnswerList }}" wx:key="index" bindtap="updateQuestion" data-info="{{ item }}">

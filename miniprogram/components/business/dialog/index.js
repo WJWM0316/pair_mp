@@ -43,11 +43,14 @@ Component({
           break
         case 3:
           getUserInfoCompleteApi({hideLoading: true}).then(({ data }) => {
+            if(!Object.keys(data.careerVerifyInfo).length) {
+              data.careerVerifyInfo = Object.assign(data.careerVerifyInfo, { status: -1})
+            }
             this.setData({
               userCompleteInfo: data.userCompleteInfo,
               show: true,
-              careerVerifyInfo: app.globalData.userInfo.careerVerifyInfo,
-              albumVerifyInfo: app.globalData.userInfo.albumVerifyInfo,
+              careerVerifyInfo: data.careerVerifyInfo,
+              albumVerifyInfo: data.albumVerifyInfo,
               userInfo: app.globalData.userInfo.userInfo
             })
           }) 

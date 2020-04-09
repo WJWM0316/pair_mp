@@ -2,6 +2,10 @@ import {
   postQuestionApi,
   removeQuestionApi
 } from '../../../api/question.js'
+
+import {
+  getUserInfo
+} from '../../../utils/auth'
 let app = getApp()
 Page({
   data: {
@@ -40,7 +44,7 @@ Page({
       body: info.body
     }
     postQuestionApi(params).then(res => {
-      app.reloadUserInfo().then(() => {
+      getUserInfo().then(() => {
         wx.navigateBack({ delta: 1 })
       })   
     }).catch(err => app.wxToast({title: err.msg}))

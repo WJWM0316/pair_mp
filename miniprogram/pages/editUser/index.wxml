@@ -29,7 +29,7 @@
   <view class="box input-position" wx:if="{{options.key === 'school'}}">
     <input
       placeholder-class="holderStyle"
-      placeholder="请输入职位"
+      placeholder="请输入学校"
       bindinput="bindInput"
       data-key="school"
       value="{{ userInfo.school }}"
@@ -56,7 +56,7 @@
           <i class="icon2 icon iconfont icon_jinggao"></i>公司信息审核不通过<text class="strong" bindtap="legalize">前往认证</text>
         </block>
         <block wx:elif="{{careerVerifyInfo.status === 0}}">
-          公司信息认证中<text class="strong" bindtap="legalize">更改认证信息</text>
+          <i class="icon2 icon iconfont icon_jinggao"></i>公司信息认证中<text class="strong" bindtap="legalize">更改认证信息</text>
         </block>
         <block wx:else>
           <i class="icon2 icon iconfont icon_jinggao"></i>公司信息未认证，将降低主页展示率<text class="strong" bindtap="legalize">前往认证</text>

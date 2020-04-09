@@ -7,6 +7,10 @@ import {
   positionReg
 } from '../../../../utils/fieldRegular'
 
+import {
+  getUserInfo
+} from '../../../../utils/auth'
+
 const app = getApp()
 Component({
   properties: {
@@ -41,11 +45,10 @@ Component({
   methods: {
     getPickerData(e) {
       let { formData } = this.data
-      formData.occupationDesc = e.detail.name
+      formData.occupationDesc = `${e.detail.p.name} - ${e.detail.name}`
       formData.occupation = e.detail.labelId
       formData.companyRequired = e.detail.companyRequired
       this.setData({ formData, canClick: true })
-      console.log(formData)
     },
     legalize() {
       let { PAGEPATH } = app.globalData
@@ -94,13 +97,11 @@ Component({
         return
       }
       createUserStep3Api(params).then(({ data }) => {
-        app.reloadUserInfo().then(() => {         
+        getUserInfo().then(() => {         
           let { PAGEPATH } = app.globalData
           let userInfo = data.userInfo
           let { formData } = this.data
           let that = that
-          app.globalData.userInfo.userInfo.infoCompletePercent = 40
-          app.globalData.userInfo.userInfo.infoCompletePercentDesc = '40%'
           if(!userInfo.isCareerIdentity && userInfo.companyId && userInfo.isNeedCareerIdentity) {
             app.wxConfirm({
               title: '职业信息尚未认证',

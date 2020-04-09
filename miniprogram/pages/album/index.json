@@ -5,6 +5,5 @@
     "actionSheet": "../../components/layout/actionSheet"
   },
   "navigationBarTitleText": "上传相册",
-  "navigationBarBackgroundColor": "#F1F4F4",
-  "navigationStyle": "custom"
+  "navigationBarBackgroundColor": "#F1F4F4"
 }

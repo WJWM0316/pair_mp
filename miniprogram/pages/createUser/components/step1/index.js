@@ -188,9 +188,7 @@ Component({
         return
       }
       createUserStep1Api(params).then(res => {
-        app.reloadUserInfo().then(() => {         
-          this.triggerEvent('next', true)
-        })
+        this.triggerEvent('next', true)
       }).catch(err => app.wxToast({title: err.msg}))
     }
   }

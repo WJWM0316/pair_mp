@@ -95,9 +95,7 @@ Page({
     })   
   },
   updateLabel(e) {
-    let { userLabelList } = this.data
     let { PAGEPATH } = app.globalData
-    wx.setStorageSync('labelList', userLabelList)
     wx.navigateTo({
       url: `${PAGEPATH}/perfectUser/index?type=edit&step=2`
     })   

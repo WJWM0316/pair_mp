@@ -1,4 +1,4 @@
-<navBar navBarBg="#F1F4F4"></navBar>
+<!-- <navBar navBarBg="#F1F4F4"></navBar> -->
 <view class="drawer" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
   <view class="mask"></view>
   <i-image my-class="photo-box1" src="{{ CDNPATH }}img_popup_photorhint.png" wx:if="{{ type === 'photo'}}" mode="widthFix"></i-image>
