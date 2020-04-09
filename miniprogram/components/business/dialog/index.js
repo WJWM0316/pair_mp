@@ -82,7 +82,7 @@ Component({
           break
         case 'perfectUser':
           this.setData({ show: false }, () => {
-            if(userCompleteInfo.infoCompletePercent > 40 && userCompleteInfo.infoCompletePercent < 80) {
+            if(userCompleteInfo.infoCompletePercent >= 40 && userCompleteInfo.infoCompletePercent < 80) {
               wx.navigateTo({
                 url: `${PAGEPATH}/perfectUser/index`
               }) 

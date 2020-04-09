@@ -63,7 +63,7 @@
 				<view class="li">
 					<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{ userCompleteInfo.infoCompletePercent < 80 }}" />
 					<i class="icon2 iconfont icon_gouxuan" wx:else></i>
-					<text class="text">补充基本资料</text>
+					<text class="text">资料完善度超80%</text>
 					<view
 					 class="btn bg"
 					 bindtap="routeJump"

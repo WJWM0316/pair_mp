@@ -1,6 +1,10 @@
 import {
   addAlbumApi
 } from '../../api/user.js'
+
+import {
+  getUserInfo
+} from '../../utils/auth'
 const app = getApp()
 Page({
   data: {
@@ -54,6 +58,7 @@ Page({
       }
       avatar = Object.assign(avatar, {isCover: 0})
       this.setData({result: avatar, userInfo}, () => wx.removeStorageSync('avatar'))
+      console.log(this.data)
     }
   },
   open(e) {
@@ -166,7 +171,10 @@ Page({
     }
   },
   onPullDownRefresh() {
-    wx.stopPullDownRefresh()
+    getUserInfo().then(() => {
+      wx.stopPullDownRefresh()
+      this.init()
+    })    
   },
   /**
    * 用户点击右上角分享
