@@ -58,22 +58,12 @@ Page({
       url: `${PAGEPATH}/homepage/index?vkey=${item.vkey}`
     })
   },
-  onReachBottom() {
-    const userData = this.data.userData
-    if (!userData.isLastPage) {
-      this.setData({onBottomStatus: 1}, () => this.getUserList())
-    }
-  },
-  // onPageScroll(e) {
-  //   if(e.scrollTop > 0) {
-  //     if(this.data.background !== '#1F252B') this.setData({background: '#1F252B'})
-  //   } else {
-  //     if(this.data.background !== 'transparent') this.setData({background: 'transparent'})
+  // onReachBottom() {
+  //   const userData = this.data.userData
+  //   if (!userData.isLastPage) {
+  //     this.setData({onBottomStatus: 1}, () => this.getUserList())
   //   }
   // },
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function (options) {
     let shareInfos = app.globalData.shareInfos.shareSingleSquare,
         random     = parseInt(Math.random() * (shareInfos.title.length - 1)),

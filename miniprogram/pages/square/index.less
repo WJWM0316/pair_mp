@@ -122,13 +122,16 @@
     padding: 0 50rpx;
     margin-top: 16rpx;
     position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .city-area {
-    display: inline-block;
-    margin-right: 16rpx;
+    display: inline;
+    padding-right: 16rpx;
   }
   .industry-position {
-    display: inline-block;
+    display: inline;
     padding-left: 16rpx;
     position: relative;
     &:before{
@@ -149,4 +152,15 @@
     display: inline-block;
     vertical-align: text-bottom;
   }
+}
+
+.no-data {
+  width: 380rpx;
+  display: block;
+  margin: 180rpx auto 46rpx auto;
+  text-align: center;
+  height:36rpx;
+  font-size:28rpx;
+  color:rgba(102,102,110,1);
+  line-height:36rpx;
 }

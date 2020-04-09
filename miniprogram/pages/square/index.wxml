@@ -4,7 +4,7 @@
   page="console"
   >
 </navBar>
-<view class="square">
+<view class="square" wx:if="{{userData.list.length}}">
   <view class="item" wx:for="{{ userData.list }}" wx:key="index" bindtap="routeJump" data-item="{{ item }}">
     <view class="cover">
       <i-image my-class="photo" src="{{ item.avatarInfo.url }}" mode="aspectFill"></i-image>
@@ -31,5 +31,8 @@
     </view>
   </view>
 </view>
-<!-- <bottomStatus status="{{ onBottomStatus }}" listData="{{ userData.list }}"  marginTop="{{30}}" desc="已经到底啦！"></bottomStatus> -->
-<tabBar></tabBar>
+<view class="no-data" wx:else>
+  <i-image my-class="nodata" src="{{ CDNPATH }}img_noblackList@3x.png" mode="widthFix"></i-image> 
+  <view class="tips">一大波优质用户正在赶来哦~</view>
+</view>
+<tabBar tabBgColor="transparent"></tabBar>
