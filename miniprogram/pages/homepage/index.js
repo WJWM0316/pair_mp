@@ -7,7 +7,6 @@ import { getChargeInfoApi, chatApi } from "../../api/square.js"
 const app =  getApp();
 Page({
   data: {
-    careerVerifyInfo: {},
     pickIntention: {},
     userInfo: {},
     hasLogin: true,
@@ -40,100 +39,80 @@ Page({
   getUser() {
     return new Promise((resolve, reject) => {
       let { options } = this.data
-      let todoAction = () => {
-        let rtn = app.globalData.userInfo
-        let callback = (data, myself) => {
-          if(!myself) app.globalData.userInfo = data
-          let {
-            userInfo,
-            careerVerifyInfo = {},
-            pickIntention = {},
-            albumVerifyInfo = {
-              status: 1,
-              statusDesc: '审核通过'
-            },
-            buttonInfo = {}
-          } = data
-          let { userLabelList, userAnswerList, isAllQuestion } = userInfo
-          if(!Object.keys(careerVerifyInfo).length) {
-            careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
+      let rtn = app.globalData.userInfo
+      let callback = (data, myself) => {
+        if(!myself) app.globalData.userInfo = data
+        let {
+          userInfo,
+          pickIntention = {},
+          albumVerifyInfo = {
+            status: 1,
+            statusDesc: '审核通过'
+          },
+          buttonInfo = {}
+        } = data
+        let { userLabelList, userAnswerList, isAllQuestion } = userInfo
+        let pIds = myself ? myself.userInfo.userLabelList.map(v => v.labelId): [];
+        userLabelList.map((v,i) => {
+          if (myself) {
+            if(pIds.includes(v.labelId)) {
+              let cIds = myself.userInfo.userLabelList.find(field => field.labelId === v.labelId).children.map(field => field.labelId)
+              v.children.map(c => {
+                if(cIds.includes(c.labelId)) {
+                  c.active = true
+                }
+              })
+            }
           }
-          let pIds = myself ? myself.userInfo.userLabelList.map(v => v.labelId): [];
-          userLabelList.map((v,i) => {
-            if (myself) {
-              if(pIds.includes(v.labelId)) {
-                let cIds = myself.userInfo.userLabelList.find(field => field.labelId === v.labelId).children.map(field => field.labelId)
-                v.children.map(c => {
-                  if(cIds.includes(c.labelId)) {
-                    c.active = true
-                  }
-                })
-              }
-            }
-            switch(v.labelId) {
-              case 110000:
-                v.iconName = 'icon_renshe'
-                break
-              case 120000:
-                v.iconName = 'icon_meishi'
-                break
-              case 130000:
-                v.iconName = 'icon_yundong'
-                break
-              case 140000:
-                v.iconName = 'icon_yinle'
-                break
-              case 150000:
-                v.iconName = 'icon_yingshi'
-                break
-              case 160000:
-                v.iconName = 'icon_shuji'
-                break
-              case 170000:
-                v.iconName = 'icon_erciyuan'
-                break
-              case 180000:
-                v.iconName = 'icon_youxi'
-                break
-              case 190000:
-                v.iconName = 'icon_lvhang'
-                break
-              default:
-                v.iconName = 'icon_lvhang'
-                break
-            }
-          })
-          userInfo.birthDesc = userInfo.birth.slice(2, 4)
-          wx.setNavigationBarTitle({title: userInfo.nickname})
-          this.setData({
-            userInfo,
-            careerVerifyInfo,
-            pickIntention,
-            userLabelList,
-            userAnswerList,
-            isAllQuestion,
-            albumVerifyInfo,
-            isOwer: myself ? false : true,
-            buttonInfo
-          }, () => resolve())
-        }
-
-        getUserInfoApi({vkey: options.vkey}).then(({ data }) => {
-          callback(data, rtn.userInfo.vkey == options.vkey ? 0 : rtn)
+          switch(v.labelId) {
+            case 110000:
+              v.iconName = 'icon_renshe'
+              break
+            case 120000:
+              v.iconName = 'icon_meishi'
+              break
+            case 130000:
+              v.iconName = 'icon_yundong'
+              break
+            case 140000:
+              v.iconName = 'icon_yinle'
+              break
+            case 150000:
+              v.iconName = 'icon_yingshi'
+              break
+            case 160000:
+              v.iconName = 'icon_shuji'
+              break
+            case 170000:
+              v.iconName = 'icon_erciyuan'
+              break
+            case 180000:
+              v.iconName = 'icon_youxi'
+              break
+            case 190000:
+              v.iconName = 'icon_lvhang'
+              break
+            default:
+              v.iconName = 'icon_lvhang'
+              break
+          }
         })
-
-        // if(rtn.userInfo.vkey == options.vkey) {
-        //   getUserInfoApi({vkey: options.vkey}).then(({ data }) => callback(data))
-        //   // callback(rtn)
-        // } else {
-        //   getUserInfoApi({vkey: options.vkey}).then(({ data }) => callback(data, rtn))
-        // }
+        userInfo.birthDesc = userInfo.birth.slice(2, 4)
+        wx.setNavigationBarTitle({title: userInfo.nickname})
+        this.setData({
+          userInfo,
+          pickIntention,
+          userLabelList,
+          userAnswerList,
+          isAllQuestion,
+          albumVerifyInfo,
+          isOwer: myself ? false : true,
+          buttonInfo
+        }, () => resolve())
       }
-      if (app.globalData.userInfo) {
-        todoAction()
-      } else {
-        app.getUserInfo = () => todoAction()
-      }
+      getUserInfoApi({vkey: options.vkey}).then(({ data }) => {
+        callback(data, rtn.userInfo.vkey == options.vkey ? 0 : rtn)
+      })
     })
   },
   async onShow() {
@@ -191,6 +170,32 @@ Page({
     switch(rtn.action) {
       case 'charge':
         this.picker()
+        break
+    }
+  },
+  todoAction(e) {
+    let { PAGEPATH } = app.globalData
+    let { dataset } = e.currentTarget
+    switch(dataset.action) {
+      case 'answer':
+        wx.navigateTo({
+          url: `${PAGEPATH}/answer/index/index`
+        })
+        break
+      case 'label':
+        wx.navigateTo({
+          url: `${PAGEPATH}/perfectUser/index?type=edit&step=2`
+        })
+        break
+      case 'ownDescribe':
+        wx.navigateTo({
+          url: `${PAGEPATH}/editUser/index?key=ownDescribe`
+        })   
+        break
+      case 'idealDescribe':
+        wx.navigateTo({
+          url: `${PAGEPATH}/editUser/index?key=idealDescribe`
+        })   
         break
     }
   },

@@ -81,23 +81,25 @@
       <view class="title">职业信息</view>
       <view class="inner">
         <view class="career-objective">{{ userInfo.industryArr[0].name }}·{{ userInfo.industryArr[1].name }}</view>
-        <view class="work-experience">
-          {{ userInfo.companyName }} | {{ userInfo.positionName }} 
-          <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ careerVerifyInfo === 1 }}" mode="widthFix"></i-image> 
-        </view>
-        <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text wx:if="{{ isOwer }}">（仅自己可见）</text></view>
-        <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}" bindtap="legalize">
-          <i-image my-class="icon13" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix"></i-image>
-          职业信息未认证，将降低主页展示率
-          <i class="icon iconfont icon_jiantou-you-"></i>
-        </view>
+        <block wx:if="{{userInfo.industryArr[0].companyRequired}}">
+          <view class="work-experience">
+            {{ userInfo.companyName }} | {{ userInfo.positionName }} 
+            <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ userInfo.isCareerIdentity }}" mode="widthFix"></i-image> 
+          </view>
+          <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text wx:if="{{ isOwer }}">（仅自己可见）</text></view>
+          <view class="warning" wx:if="{{ isOwer && !userInfo.isCareerIdentity }}" bindtap="legalize">
+            <i-image my-class="icon13" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix"></i-image>
+            职业信息未认证，将降低主页展示率
+            <i class="icon iconfont icon_jiantou-you-"></i>
+          </view>
+        </block>
       </view>
     </view>
 
     <view class="section info-myself" wx:if="{{ isOwer && !userInfo.ownDescribe}}">
       <view class="title2">我眼中的自己</view>
       <view class="tips">介绍自己让更多优秀的人了解你～</view>
-      <view class="perfect-btn">添加描述</view>
+      <view class="perfect-btn"  bindtap="todoAction" data-action="ownDescribe">添加描述</view>
     </view>
     <block wx:else>
       <view class="section info-myself" wx:if="{{ userInfo.ownDescribe }}">
@@ -111,7 +113,7 @@
     <view class="section info-myLabel" wx:if="{{ isOwer && !userInfo.isHasLabel }}">
       <view class="title2">我的标签</view>
       <view class="tips">添加个人标签找到兴趣相投的Ta～</view>
-      <view class="perfect-btn">选择标签</view>
+      <view class="perfect-btn"  bindtap="todoAction" data-action="label">选择标签</view>
     </view>
     <block wx:else>
       <view class="section info-myLabel" wx:if="{{ userLabelList.length }}">
@@ -130,7 +132,7 @@
     <view class="section info-ideal" wx:if="{{ isOwer && !userInfo.idealDescribe}}">
       <view class="title2">我的理想型</view>
       <view class="tips">说说你喜欢怎样的Ta～</view>
-      <view class="perfect-btn">添加理想型</view>
+      <view class="perfect-btn" bindtap="todoAction" data-action="idealDescribe">添加理想型</view>
     </view>
     <block wx:else>
       <view class="section info-ideal" wx:if="{{ userInfo.idealDescribe }}">
@@ -144,7 +146,7 @@
     <view class="section info-secret" wx:if="{{ isOwer && !userAnswerList.length}}">
       <view class="title2">我的问答</view>
       <view class="tips">分享一些小秘密拉近彼此距离～</view>
-      <view class="perfect-btn">添加问答</view>
+      <view class="perfect-btn" bindtap="todoAction" data-action="answer">添加问答</view>
     </view>
     <block wx:else>
       <view class="section info-secret" wx:if="{{userAnswerList.length}}">
