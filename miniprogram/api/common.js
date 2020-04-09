@@ -101,3 +101,11 @@ export const shareInfosApi = (data, instance) => {
     instance
   })
 }
+
+export const captchaApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/auth/captcha',
+    data
+  })
+}

@@ -82,6 +82,9 @@ Component({
     choiceGender () {
       this.openPicker()
     },
+    hasSexChange () {
+      this.triggerEvent('hasSexChange')
+    },
     reback() {
       if (this.data.customBack) {
         this.triggerEvent('backEvent')

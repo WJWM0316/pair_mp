@@ -105,9 +105,11 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                   }})
                   break
                 case 403:
+                  reject(msg)
                   app.wxToast({title: msg.msg})
                   break
                 case 500:
+                  reject(msg)
                   app.wxToast({title: '系统异常，请稍后访问'})
                 break
               }

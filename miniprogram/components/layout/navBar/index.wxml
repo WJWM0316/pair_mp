@@ -9,7 +9,7 @@
           <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_light.png" mode="widthFix" wx:else></i-image>
         </view>
       </block>    
-      <block wx:if="{{!hasLogin}}">
+      <block wx:if="{{!hasLogin && type === 'index'}}">
         <i class="icon iconfont icon_shaixuan"></i>
       </block>
     </view>
@@ -25,5 +25,5 @@
 </view>
 <view class="block" style="height:{{navBarHeight}}px"></view>
 
-<userModal wx:if="{{userInfo && userInfo.userInfo.step === 9}}" show="{{show}}" infos="{{ userInfo }}"></userModal>
-<gender-choice wx:if="{{!hasLogin}}" show="{{showGender}}" bindchoiceGender="choiceGender"></gender-choice>
+<userModal wx:if="{{userInfo && userInfo.userInfo.step === 9}}" show="{{show}}" infos="{{ userInfo }}" bindhasSexChange="hasSexChange"></userModal>
+<gender-choice wx:if="{{!hasLogin}}" show="{{showGender}}" bindchoiceGender="choiceGender" bindhasSexChange="hasSexChange"></gender-choice>

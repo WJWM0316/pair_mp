@@ -1,4 +1,4 @@
-<view class="genderChoice" hidden="{{show}}" style="height: calc(100vh - {{navBarHeight}}px - 10rpx); top: calc({{navBarHeight}}px + 10rpx)">
+<view class="genderChoice" catchmove="" hidden="{{show}}" style="height: calc(100vh - {{navBarHeight}}px - 10rpx); top: calc({{navBarHeight}}px + 10rpx)">
   <view class="content">
     <view class="title">你想认识</view>
     <i-button my-class="btn btn1" bind:click="setPickerIntention" data-sex="{{1}}"><i class="icon iconfont icon_nan"></i>男</i-button>

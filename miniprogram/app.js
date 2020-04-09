@@ -9,7 +9,7 @@ import {wxApi, getTitleHeight, socket, loginCallback, localstorage} from './util
 App({
   ...wxApi, // 挂载二次封装的微信API
   onLaunch: function () {
-
+    const that = this
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -44,6 +44,9 @@ App({
         if (token) {
           let res = {data: {userInfo: {token}}}
           loginCallback(res)
+        } else {
+          that.globalData['hasLogin'] = false
+          if (that.loginInit) that.loginInit()
         }
       },
       fail () {

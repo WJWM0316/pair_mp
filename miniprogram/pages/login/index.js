@@ -2,11 +2,12 @@ const app =  getApp();
 import {registerApi, sendMsgApi} from '../../api/auth.js'
 import {getPhoneNumber, phoneCodeLogin} from '../../utils/index.js'
 import {mobileReg} from '../../utils/fieldRegular.js'
-
+import {captchaApi} from '../../api/common.js'
 Page({
   data: {
     canClick: false,
     cdnPath: app.globalData.CDNPATH,
+    imgPath: '',
     sendTimes: 60
   },
   onLoad(options) {
@@ -25,12 +26,23 @@ Page({
       case 'code':
         this.code = e.detail.value
         break
+      case 'imgcode':
+        this.imgCode = e.detail.value
+        break
     }
-    if (this.phone && this.code) {
+    let canClick = !this.key ? this.phone && this.code : this.phone && this.code && this.imgCode
+    if (canClick) {
       if (!this.data.canClick) this.setData({canClick: true})
     } else {
       if (this.data.canClick) this.setData({canClick: false})
     }
+  },
+  changeImg () {
+    captchaApi().then(res => {
+      this.key = res.data.key
+      let imgPath = res.data.img
+      this.setData({imgPath})
+    })
   },
   countDown () {
     clearTimeout(this.timer)
@@ -53,15 +65,24 @@ Page({
         app.wxToast({title: '发送成功', icon: 'success'})
       })
     } else {
-      app.wxToast({title: '请输入正确是手机号'})
+      app.wxToast({title: '请输入正确的手机号'})
     }
   },
   login () {
-    let data = {
+    let params = {
       mobile: this.phone,
-      code: this.code
+      code: this.code,
+      captchaKey: this.key,
+      captchaValue: this.imgCode
     }
-    phoneCodeLogin(data, this.options)
+    console.log(params, this.key, this.imgCode)
+    phoneCodeLogin(params, this.options).catch(e => {
+      if (e.code = 419) {
+        this.key = e.data.key
+        let imgPath = e.data.img
+        this.setData({imgPath})
+      }
+    })
   },
   userAgreement () {
     let WEBVIEW = app.globalData.WEBVIEW,
@@ -69,6 +90,9 @@ Page({
     wx.navigateTo({url: `/pages/webview/index?p=${encodeURIComponent(url)}`})
   },
   onUnload() {
+    clearTimeout(this.timer)
+  },
+  onHide() {
     clearTimeout(this.timer)
   },
   onShareAppMessage(options) {

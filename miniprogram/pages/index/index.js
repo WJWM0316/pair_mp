@@ -29,9 +29,13 @@ Page({
     if(localstorage.get('hasPicker')) {
       this.setData({hasPicker: true})
     }
-    this.getOtherStatus()
     let data = await hasLogin()
     this.setData({'hasLogin': data})
+    if (this.data.hasLogin) this.getOtherStatus()
+  },
+  // 性别变化了
+  hasSexChange () {
+    this.getAvatarList()
   },
   getOtherStatus (hideLoading = true) {
     if (!this.data.hasLogin) return

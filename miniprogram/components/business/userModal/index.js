@@ -72,11 +72,14 @@ Component({
     dialogEvent(e) {
       let rtn = e.detail
       setPickerIntentionApi({gender: rtn.sex}).then(() => {
-        app.globalData.userInfo.pickIntention.gender = Number(rtn.sex)
-        localstorage.set('sex', rtn.sex)
+        if (app.globalData.userInfo.pickIntention.gender !== rtn.sex) {
+          this.triggerEvent('hasSexChange')
+        }
+        app.globalData.userInfo.pickIntention.gender = rtn.sex
         let { infos } = this.data
         infos = app.globalData.userInfo
         this.setData({ infos })
+        
       })
     }
   }

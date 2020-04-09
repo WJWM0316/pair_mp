@@ -31,10 +31,11 @@ Component({
     setPickerIntention (e) {
       let sex = e.currentTarget.dataset.sex
       this.setData({'show': false})
-      wx.setStorageSync('sex', sex)
       this.triggerEvent('choiceGender')
-      if (!this.data.hasLogin) return
-      setPickerIntentionApi({gender: sex, hideLoading: true})
+      if (wx.getStorageSync('sex') !== sex) {
+        this.triggerEvent('hasSexChange')
+      }
+      wx.setStorageSync('sex', sex)
     }
   }
 })

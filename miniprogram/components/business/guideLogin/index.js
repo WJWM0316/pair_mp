@@ -16,7 +16,6 @@ Component({
       type: String,
       value: 'default',
       observer(newVal, oldVal) {
-        console.log(newVal, oldVal, 'kkk')
       } 
     }
   },

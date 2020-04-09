@@ -17,7 +17,7 @@ const hasLogin = () => {
   let hasLogin = 0
   return new Promise((resolve, reject) => {
     let app = getApp()
-    if (app.globalData.hasLogin) {
+    if (app.globalData.hasOwnProperty('hasLogin')) {
       hasLogin = app.globalData.hasLogin
       resolve(hasLogin)
     } else {
@@ -63,13 +63,20 @@ const loginCallback = (res, options) => {
     } else {
       if (options && options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
     }
+  } else {
+    getApp().globalData['hasLogin'] = false
+    if (getApp().loginInit) getApp().loginInit()
   }
 }
 
 // 手机号登录
 const phoneCodeLogin = (data, options) => {
-  registerApi(data).then(res => {
-    loginCallback(res, options)
+  return new Promise((resolve, reject) => {
+    registerApi(data).then(res => {
+      loginCallback(res, options)
+    }).catch(e => {
+      reject(e)
+    })
   })
 }
 
