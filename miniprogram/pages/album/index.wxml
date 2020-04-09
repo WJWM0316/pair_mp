@@ -1,4 +1,8 @@
-<view style="height: {{navBarHeight}}px"></view>
+<navBar
+  title="1"
+  >
+</navBar>
+<!-- <view style="height: {{navBarHeight}}px"></view> -->
 <view class="status-bar" wx:if="{{ showStatus }}">
   <block wx:if="{{ albumVerifyInfo.status === 0 }}">
     <i class="icon iconfont icon_jinggao"></i>
@@ -20,7 +24,7 @@
 <view class="album">
     <view class="photo-box">
       <view class="inner">
-        <i-image my-class="cover-img" src="{{ cover.url }}"></i-image>
+        <i-image my-class="cover-img" src="{{ cover.url }}" mode="widthFix"></i-image>
         <view class="tips">封面</view>
       </view>
     </view>

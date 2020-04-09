@@ -238,6 +238,7 @@ const wxApi = {
           }
         },
         fail(err) {
+          reject()
           console.log(err, 'fail')
           if(err.errCode == 20004) {
             that.wxConfirm({

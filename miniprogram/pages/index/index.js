@@ -33,7 +33,6 @@ Page({
     this.setData({hasLogin})
     this.getOtherStatus()
   },
-  
   getOtherStatus (hideLoading = true) {
     if (!this.data.hasLogin) return
     pickAggrApi({hideLoading}).then(res => {
@@ -87,10 +86,17 @@ Page({
       this.getOtherStatus()
     })
   },
+  subscribe() {
+    app.subscribeMessage('openChat').then(() => {
+      this.setData({hasPicker: true})
+      localstorage.set('hasPicker', { type: 'resetTheDay' })
+      this.pick()
+    }).catch(() => {
+      this.setData({hasPicker: true})
+      localstorage.set('hasPicker', { type: 'resetTheDay' })
+    })
+  },
   pick () {
-    // this.setData({hasPicker: true}, () => {
-    //   localstorage.set('hasPicker', { type: 'resetTheDay' })
-    // })
     let { userInfo } = app.globalData.userInfo
     if (!this.data.hasLogin) {
       this.selectComponent('#guideLogin').toggle()
