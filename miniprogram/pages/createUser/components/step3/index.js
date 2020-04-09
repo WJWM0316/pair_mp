@@ -34,8 +34,7 @@ Component({
         formData.company_name = storage.company_name
         formData.is_need_email_verify = storage.is_need_email_verify
         formData.company_id = storage.company_id
-        this.setData({formData})
-        setTimeout(() => wx.removeStorageSync('searchCompany'), 16.7)
+        this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
       }
     }
   },
@@ -46,6 +45,7 @@ Component({
       formData.occupation = e.detail.labelId
       formData.companyRequired = e.detail.companyRequired
       this.setData({ formData, canClick: true })
+      console.log(formData)
     },
     legalize() {
       let { PAGEPATH } = app.globalData

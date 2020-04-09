@@ -30,7 +30,14 @@ Page({
   },
   onShow() {
     this.getCurrentWeekSignIn()
-    getSugarInfoApi().then(({data}) => this.setData({wallet: data.wallet}))
+    this.getSugarInfo()
+  },
+  getSugarInfo() {
+    return new Promise((resolve, reject) => {
+      getSugarInfoApi().then(({data}) => {
+        this.setData({wallet: data.wallet}, () => resolve())
+      }).catch(() => resolve())
+    })
   },
   getRurrentDate() {
     let date = new Date();
@@ -69,5 +76,8 @@ Page({
    */
   onShareAppMessage: function (options) {
     return app.wxShare({options})
+  },
+  onPullDownRefresh() {
+    this.getSugarInfo().then(() => wx.stopPullDownRefresh())
   }
 })

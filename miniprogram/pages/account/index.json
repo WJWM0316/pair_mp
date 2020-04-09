@@ -1,4 +1,6 @@
 {
+  "enablePullDownRefresh": true,
+	"backgroundTextStyle": "light",
 	"usingComponents": {
     "contactBtn": "../../components/business/contactBtn/index",
     "scrollPicker": "../../components/functional/scrollPicker/index",

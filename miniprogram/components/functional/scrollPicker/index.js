@@ -101,7 +101,7 @@ Component({
         case 'height':
           callback = () => {
             let heights = []
-            for(let i = 100; i <= 300; i++) {
+            for(let i = 140; i <= 220; i++) {
               heights.push({
                 key: i,
                 value: i

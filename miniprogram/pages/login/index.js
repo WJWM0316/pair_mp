@@ -4,29 +4,15 @@ import {getPhoneNumber, phoneCodeLogin} from '../../utils/index.js'
 import {mobileReg} from '../../utils/fieldRegular.js'
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     canClick: false,
     cdnPath: app.globalData.CDNPATH,
     sendTimes: 60
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onLoad(options) {
     this.options = options
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
+  onShow() {},
   getPhoneNumber (e) {
     if (e.detail.errMsg.indexOf('fail') !== -1) return
     getPhoneNumber(e, this.options)
@@ -49,6 +35,7 @@ Page({
   countDown () {
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {
+      console.log('enter')
       let sendTimes = this.data.sendTimes
       if (sendTimes > 0) {
         sendTimes--
@@ -82,44 +69,10 @@ Page({
         url     = `${WEBVIEW}/art/userProtocol/index.html`
     wx.navigateTo({url: `/pages/webview/index?p=${encodeURIComponent(url)}`})
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onUnload() {
+    clearInterval(timer)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function (options) {
+  onShareAppMessage(options) {
     return app.wxShare({options})
   }
 })

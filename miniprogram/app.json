@@ -42,7 +42,8 @@
     "tabBar": "./components/layout/tabBar/index",
     "i-button": "./components/layout/button/index",
     "i-image": "./components/layout/image/index",
-    "bottomStatus": "./components/layout/bottomStatus/index"
+    "bottomStatus": "./components/layout/bottomStatus/index",
+    "refreshStatus": "./components/layout/refreshStatus/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
