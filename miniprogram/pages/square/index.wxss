@@ -12,6 +12,7 @@
   border-radius: 36rpx 36rpx 36rpx 0rpx;
   overflow: hidden;
   position: relative;
+  height: 800rpx;
 }
 .item .brief {
   margin: 46rpx 50rpx;

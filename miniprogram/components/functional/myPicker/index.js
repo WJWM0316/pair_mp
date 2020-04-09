@@ -169,7 +169,10 @@ Component({
       switch(this.data.pickerType) {
         case 'industry_occupation':
           rtnResult = {
-            ...rangeArray[0][value[0]].children[value[1]]
+            ...rangeArray[0][value[0]].children[value[1]],
+            p: {
+              ...rangeArray[0][value[1]]
+            }
           }
           break
         case 'region':

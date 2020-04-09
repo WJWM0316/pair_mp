@@ -65,7 +65,7 @@
   transform: translateY(-50%);
   line-height: 1.11;
   color: #CFD4D8;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 .user-page .icon-2 {
   width: 30rpx;
@@ -75,7 +75,7 @@
   top: 40rpx;
   line-height: 1.11;
   color: #CFD4D8;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 .user-page .value {
   font-size: 30rpx;

@@ -1,4 +1,6 @@
 {
+  "enablePullDownRefresh": true,
+	"backgroundTextStyle": "light",
 	"usingComponents": {
     "dialog": "../../components/business/dialog/index",
     "guide-login": "../../components/business/guideLogin"

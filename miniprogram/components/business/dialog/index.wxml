@@ -68,7 +68,7 @@
 					 class="btn bg"
 					 bindtap="routeJump"
 					 data-page="perfectUser"
-					 wx:if="{{ userCompleteInfo.baseComplete < 80 }}"
+					 wx:if="{{ userCompleteInfo.infoCompletePercent < 80 }}"
 					>去完善
 					</view>
 					<view class="btn" wx:else>已完善</view>
@@ -88,21 +88,23 @@
 					<view class="btn2" wx:if="{{albumVerifyInfo.status === 0}}">审核中</view>
 					<view class="btn" wx:if="{{albumVerifyInfo.status === 1}}">已通过</view>
 				</view>
-				<view class="li {{ careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : '' }}">
-					<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}" />
-					<i class="icon2 iconfont icon_gouxuan" wx:else></i>
-					<text class="text">职业信息认证</text>
-					<text class="error" wx:if="{{careerVerifyInfo.status === 2}}">未通过</text>
-					<view
-					 class="btn {{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : ''}}"
-					 wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}"
-					 bindtap="routeJump"
-					 data-page="career"
-					>去上传
+				<block wx:if="{{userCompleteInfo.showCareerVerify}}">
+					<view class="li {{ careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : '' }}">
+						<i class="icon1_error icon iconfont icon_danchuang-cha" wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}" />
+						<i class="icon2 iconfont icon_gouxuan" wx:else></i>
+						<text class="text">职业信息认证</text>
+						<text class="error" wx:if="{{careerVerifyInfo.status === 2}}">未通过</text>
+						<view
+						class="btn {{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1 ? 'bg' : ''}}"
+						wx:if="{{careerVerifyInfo.status === 2 || careerVerifyInfo.status === -1}}"
+						bindtap="routeJump"
+						data-page="career"
+						>去上传
+						</view>
+						<view class="btn2" wx:if="{{careerVerifyInfo.status === 0}}">审核中</view>
+						<view class="btn" wx:if="{{careerVerifyInfo.status === 1}}">已通过</view>
 					</view>
-					<view class="btn2" wx:if="{{careerVerifyInfo.status === 0}}">审核中</view>
-					<view class="btn" wx:if="{{careerVerifyInfo.status === 1}}">已通过</view>
-				</view>
+				</block>
 			</view>
 		</block>
 		<block wx:elif="{{code === 4}}">

@@ -1,7 +1,3 @@
-<navBar
-  title="1"
-  >
-</navBar>
 <!-- <view style="height: {{navBarHeight}}px"></view> -->
 <view class="status-bar" wx:if="{{ showStatus }}">
   <block wx:if="{{ albumVerifyInfo.status === 0 }}">

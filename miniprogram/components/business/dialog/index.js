@@ -43,11 +43,14 @@ Component({
           break
         case 3:
           getUserInfoCompleteApi({hideLoading: true}).then(({ data }) => {
+            if(!Object.keys(data.careerVerifyInfo).length) {
+              data.careerVerifyInfo = Object.assign(data.careerVerifyInfo, { status: -1})
+            }
             this.setData({
               userCompleteInfo: data.userCompleteInfo,
               show: true,
-              careerVerifyInfo: app.globalData.userInfo.careerVerifyInfo,
-              albumVerifyInfo: app.globalData.userInfo.albumVerifyInfo,
+              careerVerifyInfo: data.careerVerifyInfo,
+              albumVerifyInfo: data.albumVerifyInfo,
               userInfo: app.globalData.userInfo.userInfo
             })
           }) 
@@ -68,7 +71,7 @@ Component({
     routeJump(e) {
       let { dataset } = e.currentTarget
       let { PAGEPATH } = app.globalData
-      let { userInfo } = this.data
+      let { userInfo, userCompleteInfo } = this.data
       switch(dataset.page) {
         case 'userInfo':
           this.setData({ show: false }, () => {
@@ -79,9 +82,15 @@ Component({
           break
         case 'perfectUser':
           this.setData({ show: false }, () => {
-            wx.navigateTo({
-              url: `${PAGEPATH}/perfectUser/index`
-            }) 
+            if(userCompleteInfo.infoCompletePercent > 40 && userCompleteInfo.infoCompletePercent < 80) {
+              wx.navigateTo({
+                url: `${PAGEPATH}/perfectUser/index`
+              }) 
+            } else {
+              wx.navigateTo({
+                url: `${PAGEPATH}/userInfo/index`
+              })
+            }            
           })     
           break
         case 'album':

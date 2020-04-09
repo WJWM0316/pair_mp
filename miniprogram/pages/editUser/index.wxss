@@ -16,9 +16,6 @@
   padding: 0 60rpx;
   margin-top: 26rpx;
 }
-.edit .bold {
-  font-weight: 700;
-}
 .edit .input-nickname,
 .edit .input-company {
   overflow: hidden;
@@ -40,7 +37,6 @@
 .edit .strong {
   color: #0CCDDA;
   font-size: 24rpx;
-  font-weight: 700;
   padding-left: 24rpx;
 }
 .edit .input-ownDescribe {

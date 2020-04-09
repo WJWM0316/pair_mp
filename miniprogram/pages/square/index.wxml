@@ -1,5 +1,5 @@
 <navBar
-  navBarBg="{{background}}"
+  navBarBg="#F1F4F4"
   title="单身广场"
   page="console"
   >
@@ -7,7 +7,7 @@
 <view class="square">
   <view class="item" wx:for="{{ userData.list }}" wx:key="index" bindtap="routeJump" data-item="{{ item }}">
     <view class="cover">
-      <i-image my-class="photo" src="{{ item.avatarInfo.url }}" mode="widthFix"></i-image>
+      <i-image my-class="photo" src="{{ item.avatarInfo.url }}" mode="aspectFill"></i-image>
       <view class="mask">
         <view class="album" bindtap="album">
           <i class="icon iconfont icon_im_tupian"></i>{{item.userAlbumList.length}}
@@ -31,5 +31,5 @@
     </view>
   </view>
 </view>
-<bottomStatus status="{{ onBottomStatus }}" listData="{{ userData.list }}"  marginTop="{{30}}" desc="已经到底啦！"></bottomStatus>
+<!-- <bottomStatus status="{{ onBottomStatus }}" listData="{{ userData.list }}"  marginTop="{{30}}" desc="已经到底啦！"></bottomStatus> -->
 <tabBar></tabBar>

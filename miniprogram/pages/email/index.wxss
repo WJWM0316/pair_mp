@@ -29,11 +29,11 @@
 .email-page .ul .header {
   height: 36rpx;
   font-size: 28rpx;
-  font-weight: 300;
   color: #1F252B;
   line-height: 36rpx;
   margin-bottom: 16rpx;
   position: relative;
+  font-weight: 300;
 }
 .email-page .ul .key {
   font-size: 28rpx;
@@ -61,6 +61,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  font-weight: 400;
 }
 .email-page .ul .bold {
   font-weight: 700;

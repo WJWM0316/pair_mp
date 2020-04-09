@@ -8,8 +8,11 @@ import {
 } from '../../api/user'
 import {
   getSelectorQuery,
-  getUserInfo
 } from '../../utils/util.js'
+
+import {
+  getUserInfo
+} from '../../utils/auth.js'
 
 import {
   idealDescribeReg,
@@ -49,7 +52,7 @@ Page({
   init2() {
     getLabelListApi().then(({ data }) => {
       let { options } = this.data
-      let labelList = wx.getStorageSync('labelList')
+      let userLabelList = app.globalData.userInfo && app.globalData.userInfo.userInfo && app.globalData.userInfo.userInfo.userLabelList
       data.map((v,i) => {
         v.active = false
         if (!options.type) {
@@ -57,10 +60,12 @@ Page({
             v.active = true
           }
         } else {
-          let plabelList = labelList.map(v => v.labelId)
-
+          if(!i) {
+            v.active = true
+          }
+          let plabelList = userLabelList.map(v => v.labelId)
           if(plabelList.includes(v.labelId)) {
-            let clabelList = labelList.find(a => a.labelId === v.labelId).children.map(v => v.labelId)
+            let clabelList = userLabelList.find(a => a.labelId === v.labelId).children.map(v => v.labelId)
             v.children.map(v => {
               v.active = false
               if(clabelList.includes(v.labelId)) {
@@ -103,10 +108,14 @@ Page({
         }
       })
       this.setData({list: data}, () => {
-        if(labelList) {
-          let labels = labelList.map(v => v.labelId)
+        if(userLabelList) {
+          let labels = []
+          userLabelList.map(v => {
+            v.children.map(c => {
+              labels.push(c.labelId)
+            })
+          })
           this.setData({ labels, canClick: true })
-          wx.removeStorageSync('labelList')
         }
       })
     })
@@ -175,7 +184,6 @@ Page({
     }
     updateUserSalaryApi(params).then(() => {
       getUserInfo().then(() => {
-        app.globalData.userInfo = null
         this.setData({ step: 2, canClick: false }, () => this.init2())
       })
     }).catch(err => app.wxToast({title: err.msg}))
