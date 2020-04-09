@@ -1,6 +1,6 @@
 const app =  getApp();
 import {getRelationlistApi, deleteMsgApi} from '../../../api/im.js'
-
+import {getUserInfoAuth} from '../../../utils/index.js'
 Page({
 
   /**
@@ -53,6 +53,9 @@ Page({
         index0= e.currentTarget.dataset.index0
     deleteMsgApi({vkey: this.data.messageList[index0][index].vkey, hideLoding: true})
     this.setData({[`messageList[${index0}][${index}]`]: ''})
+  },
+  onGotUserInfo (e) {
+    getUserInfoAuth(e)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

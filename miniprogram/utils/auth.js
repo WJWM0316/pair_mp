@@ -2,16 +2,16 @@ import {logoutApi, wxLogin, registerApi, quickLogin} from '../api/auth.js'
 import {getMyInfoApi} from '../api/user.js'
 import Socket from './webSocket.js'
 // 主动授权
-// const getUserInfo = function(e) {
-//   let data = {
-//     session_token: wx.getStorageSync('sessionToken'),
-//     iv_key: e.detail.iv,
-//     data: e.detail.encryptedData
-//   }
-//   wxLogin(data).then(res => {
-//     loginCallback(res)
-//   })
-// }
+const getUserInfoAuth = function(e) {
+  let data = {
+    session_token: wx.getStorageSync('sessionToken'),
+    iv_key: e.detail.iv,
+    data: e.detail.encryptedData
+  }
+  wxLogin(data).then(res => {
+    loginCallback(res)
+  })
+}
 
 const hasLogin = () => {
   let hasLogin = 0
@@ -95,6 +95,7 @@ const getPhoneNumber =  (e, options) => {
 // 退出登录
 const logout = (e) => {
   logoutApi().then(res => {
+    getApp().globalData.userInfo = 0
     wx.removeStorageSync('token')
     wx.reLaunch({url: `/pages/index/index`})
   })
@@ -102,6 +103,7 @@ const logout = (e) => {
 
 module.exports = {
   hasLogin,
+  getUserInfoAuth,
   getUserInfo,
   getPhoneNumber,
   phoneCodeLogin,

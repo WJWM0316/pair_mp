@@ -27,8 +27,8 @@
       </block>
     </view>
     <view class="rightBox">
-      <view class="more-box"><i class="icon iconfont icon_gengduo"></i></view>
-      <view class="toggle" bindtap = "toggle">
+      <view class="more-box" catchtap="more"><i class="icon iconfont icon_gengduo"></i></view>
+      <view class="toggle" catchtap = "toggle">
         <block wx:if="{{putUp}}">
           <i class="icon iconfont icon_jiantou-shang"></i>收起
         </block>
@@ -39,11 +39,4 @@
     </view>
   </view>
 </view>
-<wxs module="parse">
-  module.exports = {
-    setStyle : function(headerH, pxTorpxRatio, putUp){
-      var padding = putUp ? 19 * pxTorpxRatio  :  15 * pxTorpxRatio
-      return 'height:' + headerH + 'px';
-    }
-  }
-</wxs>
+

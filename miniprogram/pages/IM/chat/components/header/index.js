@@ -1,5 +1,6 @@
 const app =  getApp();
 import {getSelectorQuery} from '../../../../../utils/util.js'
+import {setBackApi, removeBackApi} from '../../../../../api/black.js'
 Component({
   externalClasses: ['my-class'],
   options: {
@@ -10,7 +11,8 @@ Component({
    */
   properties: {
     othersUserInfo: Object,
-    mineUserInfo: Object
+    mineUserInfo: Object,
+    chatDetail: Object
   },
 
   /**
@@ -37,6 +39,44 @@ Component({
       let putUp = this.data.putUp
       this.setData({'putUp': !putUp})
       this.getHeight()
+    },
+    more () {
+      const that = this
+      let itemList = that.data.chatDetail.blackInfo.blacked ? ['举报', '移出黑名单'] : ['举报', '拉入黑名单']
+      wx.showActionSheet({
+        itemList,
+        success (res) {
+          switch (res.tapIndex) {
+            case 0:
+              that.report()
+              break
+            case 1:
+              that.setBlack()
+              break
+          }
+        },
+        fail (res) {
+          console.log(res.errMsg)
+        }
+      })
+    },
+    setBlack () {
+      const that = this
+      let isBlacked = this.data.chatDetail.blackInfo.blacked
+      app.wxConfirm({
+        title: isBlacked ? '移出黑名单' : '拉入黑名单',
+        content: isBlacked ? '移出黑名单后，你将继续收到对方发送的消息，确认将其移出黑名单？' : '拉入黑名单后，你将不再收到对方发送的消息，确认将其拉入黑名单？',
+        confirmBack: () => {
+          let fun = isBlacked ? removeBackApi : setBackApi
+          fun({vkey: this.data.othersUserInfo.vkey}).then(res => {
+            that.setData({[`chatDetail.blackInfo.blacked`]: !isBlacked})
+            app.wxToast({title: isBlacked ? '已移出黑名单' : '已拉入黑名单', icon: 'success'})
+          })
+        }
+      })
+    },
+    report () {
+      wx.navigateTo({url: `/pages/report/index?vkey=${this.data.othersUserInfo.vkey}`})
     },
     jump (e) {
       let vkey = e.currentTarget.dataset.vkey

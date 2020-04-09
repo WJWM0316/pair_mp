@@ -1,9 +1,9 @@
 <navBar title="消息" userInfo="{{userInfo.userInfo}}" page="console"></navBar>
 <view class="listWrap">
-  <view class="tips" wx:if="{{hasTips}}">
+  <button class="tips" wx:if="{{hasTips}}" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" lang="zh_CN">
     <text class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</text>
     <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
-  </view>
+  </button>
   <view class="noTips" wx:else></view>
   <view class="scroll-view" style="min-height:calc({{viewAreaHeight}}px - 139rpx)">
     <block wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index0">

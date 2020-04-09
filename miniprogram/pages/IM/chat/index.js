@@ -13,6 +13,7 @@ Page({
     mineUserInfo: {},
     curTimestamp: '',
     options: {},
+    chatDetail: {},
     emojiPath: app.globalData.CDNPATH
   },
 
@@ -83,7 +84,8 @@ Page({
   },
   getImDetail () {
     getImTopDeatilApi({vkey: this.options.vkey}).then(res => {
-      this.setData({'othersUserInfo': res.data.userInfo})
+      console.log(res.data, 22222222222)
+      this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data})
     })
   },
   // 长按功能
@@ -150,11 +152,11 @@ Page({
     socket.send({
       cmd: 'send.im',
       data: {
-          "toVkey": that.options.vkey, 
-          "msgType": "RC:RcCmd", 
-          "content": {
-            "messageUId": msgUID
-          }
+        "toVkey": that.options.vkey, 
+        "msgType": "RC:RcCmd", 
+        "content": {
+          "messageUId": msgUID
+        }
       }
     })
   },

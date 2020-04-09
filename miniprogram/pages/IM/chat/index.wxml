@@ -1,7 +1,7 @@
 <chat-bubble mineUserInfo="{{mineUserInfo}}"></chat-bubble>
 
 <view class="headerBox">
-  <chat-header bindputUp="headerPutUp" mineUserInfo="{{mineUserInfo}}" othersUserInfo="{{othersUserInfo}}"></chat-header>
+  <chat-header bindputUp="headerPutUp" mineUserInfo="{{mineUserInfo}}" othersUserInfo="{{othersUserInfo}}" chatDetail="{{chatDetail}}"></chat-header>
 </view>
 
 <view class="chatWrap"  bindtap="resetView">
