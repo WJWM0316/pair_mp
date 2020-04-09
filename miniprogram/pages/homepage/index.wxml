@@ -84,10 +84,10 @@
         <block wx:if="{{userInfo.industryArr[0].companyRequired}}">
           <view class="work-experience">
             {{ userInfo.companyName }} | {{ userInfo.positionName }} 
-            <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ careerVerifyInfo === 1 }}" mode="widthFix"></i-image> 
+            <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ userInfo.isCareerIdentity }}" mode="widthFix"></i-image> 
           </view>
           <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text wx:if="{{ isOwer }}">（仅自己可见）</text></view>
-          <view class="warning" wx:if="{{ isOwer && careerVerifyInfo !== 1 }}" bindtap="legalize">
+          <view class="warning" wx:if="{{ isOwer && !userInfo.isCareerIdentity }}" bindtap="legalize">
             <i-image my-class="icon13" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix"></i-image>
             职业信息未认证，将降低主页展示率
             <i class="icon iconfont icon_jiantou-you-"></i>

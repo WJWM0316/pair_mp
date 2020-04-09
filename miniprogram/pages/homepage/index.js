@@ -7,7 +7,6 @@ import { getChargeInfoApi, chatApi } from "../../api/square.js"
 const app =  getApp();
 Page({
   data: {
-    careerVerifyInfo: {},
     pickIntention: {},
     userInfo: {},
     hasLogin: true,
@@ -45,7 +44,6 @@ Page({
         if(!myself) app.globalData.userInfo = data
         let {
           userInfo,
-          careerVerifyInfo = {},
           pickIntention = {},
           albumVerifyInfo = {
             status: 1,
@@ -54,9 +52,6 @@ Page({
           buttonInfo = {}
         } = data
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
-        if(!Object.keys(careerVerifyInfo).length) {
-          careerVerifyInfo = Object.assign(careerVerifyInfo, { status: -1})
-        }
         let pIds = myself ? myself.userInfo.userLabelList.map(v => v.labelId): [];
         userLabelList.map((v,i) => {
           if (myself) {
@@ -106,7 +101,6 @@ Page({
         wx.setNavigationBarTitle({title: userInfo.nickname})
         this.setData({
           userInfo,
-          careerVerifyInfo,
           pickIntention,
           userLabelList,
           userAnswerList,
@@ -180,7 +174,6 @@ Page({
     }
   },
   todoAction(e) {
-    console.log(e)
     let { PAGEPATH } = app.globalData
     let { dataset } = e.currentTarget
     switch(dataset.action) {
