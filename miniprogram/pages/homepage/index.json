@@ -1,6 +1,7 @@
 {
 	"usingComponents": {
-    "dialog": "../../components/business/dialog/index"
+    "dialog": "../../components/business/dialog/index",
+    "guide-login": "../../components/business/guideLogin"
   },
   "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#F1F4F4"

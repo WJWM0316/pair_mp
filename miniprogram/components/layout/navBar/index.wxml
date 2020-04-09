@@ -2,11 +2,16 @@
   <view class="status" style="height:{{statusBarHeight}}px"></view>
   <view class="nav-content" style="height:{{titleHeight}}px;color: {{color}}">
     <view class="left"  bindtap="openPicker" wx:if="{{page === 'console'}}">
-      <view class="icon_aixin-box">
-        <i-image my-class="logo" src="{{ userInfo.userInfo.avatarInfo.smallUrl }}" class="avatar_v1" mode="widthFix"></i-image>
-        <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_dack.png" mode="widthFix" wx:if="{{navBarBg === '#1F252B'}}"></i-image>
-        <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_light.png" mode="widthFix" wx:else></i-image> 
-      </view>
+      <block wx:if="{{userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step === 9}}">
+        <view class="icon_aixin-box">
+          <i-image my-class="logo" src="{{ userInfo.userInfo.avatarInfo.smallUrl }}" class="avatar_v1" mode="widthFix"></i-image>
+          <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_dack.png" mode="widthFix" wx:if="{{navBarBg === '#1F252B'}}"></i-image>
+          <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_light.png" mode="widthFix" wx:else></i-image>
+        </view>
+      </block>    
+      <block wx:if="{{!hasLogin}}">
+        <i class="icon iconfont icon_shaixuan"></i>
+      </block>
     </view>
     <block wx:else>
       <view class="left"  bindtap="reback" wx:if="{{ showBackBtn }}"><i class="icon iconfont icon_fanhui"></i></view>
@@ -19,4 +24,6 @@
   </view>
 </view>
 <view class="block" style="height:{{navBarHeight}}px"></view>
-<userModal wx:if="{{userInfo.userInfo && userInfo.userInfo.id}}" show="{{show}}" infos="{{ userInfo }}"></userModal>
+
+<userModal wx:if="{{userInfo && userInfo.userInfo.step === 9}}" show="{{show}}" infos="{{ userInfo }}"></userModal>
+<gender-choice wx:if="{{!hasLogin}}" show="{{showGender}}" bindchoiceGender="choiceGender"></gender-choice>

@@ -24,6 +24,9 @@ App({
     this.globalData.systemInfo['pxTorpxRatio'] =  this.globalData.systemInfo.windowWidth / 375 / 2
     this.globalData.systemInfo['titleHeight'] = getTitleHeight(this)
     this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + getTitleHeight(this)
+    this.globalData.tabBarHeight = this.globalData.systemInfo.screenHeight - this.globalData.systemInfo.safeArea.bottom + (178 * this.globalData.systemInfo['pxTorpxRatio'])
+    
+    this.globalData.viewAreaHeight = this.globalData.systemInfo.screenHeight - this.globalData.tabBarHeight - this.globalData.navBarHeight
     console.log(this.globalData.systemInfo, '系统参数')
 
     // 设置环境变量

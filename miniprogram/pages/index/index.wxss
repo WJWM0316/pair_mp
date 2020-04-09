@@ -1,4 +1,8 @@
-.indexWrap {
+.page {
+  min-height: 100vh;
+  background: #1F252B;
+}
+.page .indexWrap {
   width: 100%;
   background: #1F252B;
   color: #fff;
@@ -7,39 +11,39 @@
   align-items: center;
   flex-direction: column;
 }
-.indexWrap .main {
+.page .indexWrap .main {
   width: 100%;
   height: 100%;
   position: relative;
 }
-.indexWrap .main .center {
+.page .indexWrap .main .center {
   border-radius: 50%;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
-.indexWrap .main .circle1 {
+.page .indexWrap .main .circle1 {
   width: 980rpx;
   height: 980rpx;
   border: 2rpx solid rgba(118, 208, 217, 0.05);
 }
-.indexWrap .main .circle2 {
+.page .indexWrap .main .circle2 {
   width: 794rpx;
   height: 794rpx;
   border: 2rpx solid rgba(118, 208, 217, 0.1);
 }
-.indexWrap .main .circle3 {
+.page .indexWrap .main .circle3 {
   width: 608rpx;
   height: 608rpx;
   border: 2rpx solid rgba(118, 208, 217, 0.15);
 }
-.indexWrap .main .circle4 {
+.page .indexWrap .main .circle4 {
   width: 400rpx;
   height: 400rpx;
   border: 2rpx solid rgba(118, 208, 217, 0.2);
 }
-.indexWrap .main .centerBtn {
+.page .indexWrap .main .centerBtn {
   text-align: center;
   width: 228rpx;
   height: 228rpx;
@@ -47,13 +51,13 @@
   z-index: 2;
   position: relative;
 }
-.indexWrap .main .centerBtn .btnContent {
+.page .indexWrap .main .centerBtn .btnContent {
   width: 100%;
   height: 100%;
   box-shadow: 0 0 0rpx 44rpx rgba(12, 205, 218, 0.1);
   overflow: visible;
 }
-.indexWrap .main .centerBtn .btnContent .mainBtn {
+.page .indexWrap .main .centerBtn .btnContent .mainBtn {
   width: 224rpx;
   height: 224rpx;
   box-sizing: border-box;
@@ -67,23 +71,23 @@
   z-index: 3;
   border: none;
 }
-.indexWrap .main .centerBtn .btnContent .mainBtn .logo {
+.page .indexWrap .main .centerBtn .btnContent .mainBtn .logo {
   width: 160rpx;
   height: 77rpx;
   margin: 57rpx auto 9rpx;
   display: block;
 }
-.indexWrap .main .centerBtn .btnContent .mainBtn .now_times {
+.page .indexWrap .main .centerBtn .btnContent .mainBtn .now_times {
   text-align: center;
   font-size: 26rpx;
   font-weight: 300;
   color: #fff;
   line-height: 29rpx;
 }
-.indexWrap .main .centerBtn .btnContent .mainBtn .now_times .times {
+.page .indexWrap .main .centerBtn .btnContent .mainBtn .now_times .times {
   font-weight: 700;
 }
-.indexWrap .main .centerBtn .btnContent::before {
+.page .indexWrap .main .centerBtn .btnContent::before {
   width: 228rpx;
   height: 228rpx;
   border-radius: 50%;
@@ -98,7 +102,7 @@
   box-shadow: 8px 11px 23px 0px rgba(25, 33, 34, 0.62);
   transform: none;
 }
-.indexWrap .main .centerBtn .btnContent::after {
+.page .indexWrap .main .centerBtn .btnContent::after {
   width: 228rpx;
   height: 228rpx;
   border-radius: 50%;
@@ -112,34 +116,34 @@
   background: linear-gradient(143deg, rgba(255, 255, 255, 0.77), #0abfbf);
   transform: none;
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn {
   box-shadow: 0 0 0rpx 44rpx rgba(244, 107, 161, 0.1);
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn {
   padding: 0;
   background: #F46BA1;
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot {
   width: 100%;
   height: 100%;
   text-align: center;
   box-sizing: border-box;
   position: relative;
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .moreTxt {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .moreTxt {
   font-size: 32rpx;
   color: #fff;
   line-height: 46rpx;
   letter-spacing: 2rpx;
   margin: 38rpx 0 4rpx;
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .logo {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .logo {
   width: 134rpx;
   height: 65rpx;
   display: block;
   margin: 0 auto 15rpx;
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .timesTxt {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn .mainBtn .contactSlot .timesTxt {
   font-size: 22rpx;
   color: #F46BA1;
   line-height: 50rpx;
@@ -151,30 +155,33 @@
   left: 0;
   bottom: -136rpx;
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn::before {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn::before {
   background: #93224E;
   box-shadow: 8px 11px 23px 0px rgba(147, 34, 78, 0.62);
 }
-.indexWrap .main .centerBtn .btnContent.contactBtn::after {
+.page .indexWrap .main .centerBtn .btnContent.contactBtn::after {
   background: linear-gradient(143deg, rgba(255, 255, 255, 0.6), #e2558d);
 }
-.indexWrap .main .centerBtn .btnContent.default {
+.page .indexWrap .main .centerBtn .btnContent.default {
   box-shadow: none;
 }
-.indexWrap .main .centerBtn .btnContent.default .mainBtn {
+.page .indexWrap .main .centerBtn .btnContent.default .mainBtn {
   background: #32474A;
 }
-.indexWrap .main .centerBtn .btnContent.default .mainBtn .logo,
-.indexWrap .main .centerBtn .btnContent.default .mainBtn .now_times {
+.page .indexWrap .main .centerBtn .btnContent.default .mainBtn .logo,
+.page .indexWrap .main .centerBtn .btnContent.default .mainBtn .now_times {
   opacity: 0.5;
 }
-.indexWrap .main .centerBtn .btnContent.default::after {
+.page .indexWrap .main .centerBtn .btnContent.default::after {
   background: linear-gradient(143deg, rgba(255, 255, 255, 0.09), #ffffff);
 }
-.indexWrap .main .centerBtn .btnContent.default::before {
+.page .indexWrap .main .centerBtn .btnContent.default::before {
   display: none !important;
 }
-.indexWrap .main .footerTxt {
+.page .indexWrap .main .centerBtn .btnContent.noLogin .mainBtn .logo {
+  margin: 75rpx auto 9rpx;
+}
+.page .indexWrap .main .footerTxt {
   width: 100%;
   position: absolute;
   left: 0;
@@ -186,32 +193,32 @@
   text-align: center;
   z-index: 2;
 }
-.indexWrap .main .footerTxt .txt2 {
+.page .indexWrap .main .footerTxt .txt2 {
   font-size: 88rpx;
   line-height: 88rpx;
   letter-spacing: 10rpx;
   margin: 4rpx 0 32rpx;
 }
-.indexWrap .main .footerTxt .txt3 {
+.page .indexWrap .main .footerTxt .txt3 {
   font-size: 32rpx;
   color: #0CCDDA;
   line-height: 40rpx;
 }
-.indexWrap .main .footerTxt .txt3 .icon {
+.page .indexWrap .main .footerTxt .txt3 .icon {
   vertical-align: top;
   font-size: 20rpx;
   margin-left: 13rpx;
   line-height: 40rpx;
   display: inline-block;
 }
-.indexWrap .main .richText {
+.page .indexWrap .main .richText {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
 }
-.indexWrap .main .richText .richWrap {
+.page .indexWrap .main .richText .richWrap {
   width: 1rpx;
   height: 1rpx;
   position: absolute;
@@ -219,7 +226,7 @@
   bottom: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
-.indexWrap .main .richText .richWrap .richDom {
+.page .indexWrap .main .richText .richWrap .richDom {
   box-shadow: 10rpx 24rpx 49rpx 0rpx rgba(0, 0, 0, 0.12);
   border: 2rpx solid #444b51;
   position: absolute;
@@ -228,56 +235,56 @@
   bottom: 50%;
   transform: translate3d(-50%, 50%, 0);
 }
-.indexWrap .main .richText .richWrap .richDom0 {
+.page .indexWrap .main .richText .richWrap .richDom0 {
   width: 254rpx;
   height: 254rpx;
   left: -84rpx;
   bottom: -151rpx;
   transform: translate3d(-100%, 100%, 0);
 }
-.indexWrap .main .richText .richWrap .richDom1 {
+.page .indexWrap .main .richText .richWrap .richDom1 {
   width: 165rpx;
   height: 165rpx;
   left: 140rpx;
   bottom: -137rpx;
   transform: translate3d(0%, 100%, 0);
 }
-.indexWrap .main .richText .richWrap .richDom2 {
+.page .indexWrap .main .richText .richWrap .richDom2 {
   width: 219rpx;
   height: 219rpx;
   left: 188rpx;
   bottom: -48rpx;
   transform: translate3d(0%, 0%, 0);
 }
-.indexWrap .main .richText .richWrap .richDom3 {
+.page .indexWrap .main .richText .richWrap .richDom3 {
   width: 88rpx;
   height: 88rpx;
   left: 18rpx;
   bottom: 151rpx;
   transform: translate3d(0%, 0%, 0);
 }
-.indexWrap .main .richText .richWrap .richDom4 {
+.page .indexWrap .main .richText .richWrap .richDom4 {
   width: 132rpx;
   height: 132rpx;
   left: 123rpx;
   bottom: 281rpx;
   transform: translate3d(0%, 0%, 0);
 }
-.indexWrap .main .richText .richWrap .richDom5 {
+.page .indexWrap .main .richText .richWrap .richDom5 {
   width: 186rpx;
   height: 186rpx;
   left: -60rpx;
   bottom: 264rpx;
   transform: translate3d(-100%, 0, 0);
 }
-.indexWrap .main .richText .richWrap .richDom6 {
+.page .indexWrap .main .richText .richWrap .richDom6 {
   width: 86rpx;
   height: 86rpx;
   left: -213rpx;
   bottom: 370rpx;
   transform: translate3d(-100%, 0, 0);
 }
-.indexWrap .main .richText .richWrap .richDom7 {
+.page .indexWrap .main .richText .richWrap .richDom7 {
   width: 132rpx;
   height: 132rpx;
   left: -205rpx;

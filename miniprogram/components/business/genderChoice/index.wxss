@@ -1,0 +1,78 @@
+.genderChoice {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+  border-radius: 36rpx 36rpx 0px 0px;
+}
+.genderChoice .content {
+  padding: 158rpx 128rpx 157rpx;
+  position: relative;
+}
+.genderChoice .content::after {
+  height: 2rpx;
+  background: rgba(255, 255, 255, 0.49);
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 477rpx;
+  transform: translate3d(-50%, 0, 0);
+}
+.genderChoice .content .title {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #fff;
+  line-height: 64rpx;
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+.genderChoice .content .btn {
+  width: 497rpx;
+  height: 140rpx;
+  line-height: 140rpx;
+  font-size: 36rpx;
+  background: #ECFBFC;
+  border-radius: 70rpx;
+  color: #1F252B;
+  font-weight: 700;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.genderChoice .content .btn .icon {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 20rpx;
+  text-align: center;
+  line-height: 46rpx;
+  color: #fff;
+  font-size: 20rpx;
+}
+.genderChoice .content .btn .icon.icon_nan {
+  background: #0CCDDA;
+}
+.genderChoice .content .btn .icon.icon_nv {
+  background: #F46BA1;
+}
+.genderChoice .content .btn.btn1 {
+  background: #ECFBFC;
+  border: 1rpx solid #979797;
+  margin-bottom: 30rpx;
+}
+.genderChoice .content .btn.btn2 {
+  background: #FFF4F8;
+  margin-bottom: 52rpx;
+}
+.genderChoice .content .unlimited {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #fff;
+  line-height: 40rpx;
+  margin: 0 auto;
+  text-align: center;
+}

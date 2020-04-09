@@ -203,6 +203,7 @@ Page({
   // 记录最后一条记录发送时间
   sendLastMsgTime () {
     let that = this
+    if (!that.data.messageList.length) return
     socket.send({
       cmd: 'send.im',
       data: {
@@ -221,7 +222,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log(2222222222222222)
     this.sendLastMsgTime()
   },
 
