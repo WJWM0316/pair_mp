@@ -1,5 +1,5 @@
 <navBar
-  navBarBg="{{background}}"
+  navBarBg="#F1F4F4"
   title="单身广场"
   page="console"
   >

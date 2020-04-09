@@ -43,6 +43,7 @@ Page({
       let todoAction = () => {
         let rtn = app.globalData.userInfo
         let callback = (data, myself) => {
+          if(!myself) app.globalData.userInfo = data
           let {
             userInfo,
             careerVerifyInfo = {},
