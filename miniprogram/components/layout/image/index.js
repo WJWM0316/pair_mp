@@ -20,11 +20,11 @@ Component({
     borderRadius: String,
     placeholder: {
       type: String,
-      value: '../../../styles/bg_24hinfro_banner@2x.png'
+      value: '../../../images/block.png'
     },
     errorPath: {
       type: String,
-      value: '../../../styles/bg_24hinfro_banner@2x_new.jpg'
+      value: '../../../images/block.png'
     },
     styleString: {
       type: String,

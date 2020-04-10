@@ -96,7 +96,8 @@ const getPhoneNumber =  (e, options) => {
 const logout = (e) => {
   logoutApi().then(res => {
     getApp().globalData.userInfo = 0
-    delete getApp().globalData['hasLogin']
+    getApp().globalData['hasLogin'] = false
+    getApp().loginInit = ''
     wx.removeStorageSync('token')
     wx.reLaunch({url: `/pages/index/index`})
   })

@@ -38,3 +38,4 @@
 
   <i-button my-class="logout margin" bindtap = "action" data-type="logout">退出登录</i-button>
 </view>
+<popup type="follow" id="popup"></popup>

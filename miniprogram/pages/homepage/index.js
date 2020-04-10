@@ -13,7 +13,7 @@ Page({
     pickIntention: {},
     userInfo: {},
     hasLogin: true,
-    isOwer: true,
+    isOwner: true,
     currentIndex: 0,
     options: {},
     isError: false,
@@ -250,5 +250,39 @@ Page({
   },
   onPullDownRefresh() {
     this.getUser().then(() => wx.stopPullDownRefresh())
+  },
+  onShareAppMessage: function (options) {
+    let wxShare = {},
+        userInfo= app.globalData.userInfo.userInfo
+    let title   = `${userInfo.birth.slice(2, 4)}年身高${userInfo.height}`
+    if (userInfo.industryArr && userInfo.industryArr.length) {
+      title = title + '，' + userInfo.industryArr[0].name
+    }
+    if (userInfo.residentArr && userInfo.residentArr.length) {
+      title = title + '，现居' + userInfo.residentArr[1].title + userInfo.residentArr[2].title
+    }
+    if (userInfo.degreeDesc && userInfo.degreeDesc !== '其他') {
+      title = title + '，' + userInfo.degreeDesc + '学历'
+    }
+    if (userInfo.userLabelList && userInfo.userLabelList.length) {
+      let label = []
+      userInfo.userLabelList.forEach((item) => {
+        item.children.forEach((item0) => {
+          label.push(item0.name)
+        })
+      })
+      title = title + '，' + label.join('、')
+    }
+    if (this.data.isOwner) {
+      wxShare = {
+        title,
+        imageUrl: userInfo.avatarInfo.middleUrl,
+        page: `/pages/homepage/index?vkey=${userInfo.vkey}`
+      }
+    }
+    return app.wxShare({
+      options,
+      ...wxShare
+    })
   }
 })

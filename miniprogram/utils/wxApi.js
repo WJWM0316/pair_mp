@@ -182,7 +182,7 @@ const wxApi = {
   },
   // 微信分享
   wxShare ({options, title, path, imageUrl, noImg, btnTitle, btnPath, btnImageUrl}) {
-    let shareInfos = app.globalData.shareInfos.shareMiniprogram,
+    let shareInfos = getApp().globalData.shareInfos.shareMiniprogram,
         random     = parseInt(Math.random() * (shareInfos.title.length - 1))
     if (!title) {
       title = shareInfos[random]

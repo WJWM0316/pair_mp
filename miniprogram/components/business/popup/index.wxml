@@ -1,0 +1,9 @@
+<view class="popup" wx:if="{{show}}">
+  <view class="content">
+    <i class="close iconfont icon_xiaocha" bindtap = "close"></i>
+    <view class="title">关注公众号</view>
+    <view class="tips1">联系客服，点击右下角发送小程序，可获取公众号二维码进行关注</view>
+    <image class="img" src="{{cdnPath}}img_popup_followgzh@3x.png"></image>
+    <contact-btn my-class="btn" title="联系客服" contactType="follow"></contact-btn>
+  </view>
+</view>

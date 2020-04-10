@@ -25,7 +25,7 @@ Component({
     let cardData = {}
     switch (this.data.contactType) {
       case 'recharge':
-        cardData.title = '充值皮糖'
+        cardData.title = '获取皮糖'
         cardData.img = `${this.data.cdnPath}chongzhi.png`
         break
       case 'follow':

@@ -24,6 +24,9 @@ Page({
     const that = this
     let { PAGEPATH } = app.globalData
     switch (e.currentTarget.dataset.type) {
+      case 'follow':
+        this.selectComponent('#popup').show()
+        break
       case 'callPhone':
         wx.makePhoneCall({
           phoneNumber: that.data.customerPhone
