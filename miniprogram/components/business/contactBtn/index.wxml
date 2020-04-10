@@ -1,3 +1,4 @@
-<button class="my-class" open-type="contact" session-from="{{sessionFrom}}" send-message-path="{{pagePath}}" send-message-path="{{pagePath}}" send-message-img="https://attach.pickme.ziwork.com/default/female/5.png!330xauto" show-message-card="true">
-<slot name="content"></slot>{{title}}
+<button class="my-class" open-type="contact" send-message-img="{{cardData.img}}" send-message-title="{{cardData.title}}"  show-message-card="true">
+  <block wx:if="{{title}}">{{title}}</block>
+  <block wx:else><slot name="content"></slot></block>
 </button>

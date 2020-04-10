@@ -11,12 +11,7 @@ Page({
   data: {
     CDNPATH: app.globalData.CDNPATH,
     weekSignConfig: {},
-    awardPopData: [
-      {
-        sugarNum: 1,
-        text: '签到成功'
-      }
-    ],
+    awardPopData: [],
     wallet: {
       amount: 0,
       id: 0,
@@ -66,8 +61,10 @@ Page({
     })
   },
   sign() {
-    userSignApi().then(() => {
-      this.selectComponent('#awardPopUp').show()
+    userSignApi().then(({data}) => {
+      this.setData({'awardPopData': data.popup}, () => {
+        this.selectComponent('#awardPopUp').show()
+      })
       this.getCurrentWeekSignIn()
     })
   },

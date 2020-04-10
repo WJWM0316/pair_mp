@@ -66,7 +66,7 @@ Page({
   },
   getAvatarList () {
     let data = {}
-    if (!this.data.hasLogin) data = {gender: localStorage.get('sex')}
+    if (!this.data.hasLogin) data = {gender: localstorage.get('sex')}
     pickIndexAvaApi(data).then(res => {
       let richText = `<div class="richWrap">`
       res.data.avatarUrls.forEach((item, index) => {

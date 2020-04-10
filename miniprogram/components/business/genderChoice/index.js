@@ -33,6 +33,7 @@ Component({
       this.setData({'show': false})
       this.triggerEvent('choiceGender')
       if (wx.getStorageSync('sex') !== sex) {
+        console.log(1111111)
         this.triggerEvent('hasSexChange')
       }
       wx.setStorageSync('sex', sex)

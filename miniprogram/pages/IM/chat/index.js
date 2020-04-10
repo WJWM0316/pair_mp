@@ -84,7 +84,6 @@ Page({
   },
   getImDetail () {
     getImTopDeatilApi({vkey: this.options.vkey}).then(res => {
-      console.log(res.data, 22222222222)
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data})
     })
   },

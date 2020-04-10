@@ -1,4 +1,5 @@
 import {getCurrentPagePath} from '../../../utils/index.js'
+const app =  getApp();
 Component({
   externalClasses: ['my-class'],
   /**
@@ -13,31 +14,26 @@ Component({
    * 组件的初始数据
    */
   data: {
-    sessionFrom: '',
-    pagePath: ''
+    cardData: {},
+    cdnPath: app.globalData.CDNPATH
   },
   options: {
     // 在组件定义时的选项中启用多slot支持
     multipleSlots: true
   },
   attached () {
-    let sessionFrom = {},
-        pagePath    = ''
+    let cardData = {}
     switch (this.data.contactType) {
       case 'recharge':
-        let token = wx.getStorageSync('token')
-        pagePath = getCurrentPagePath()
-        sessionFrom = {
-          token,
-          type: 'recharge',
-          title: '充值',
-          path: pagePath
-        }
-        pagePath = pagePath.indexof('?') !== -1 ? `${pagePath}&token=${token}` : `${pagePath}?token=${token}`
-        sessionFrom = JSON.stringify(sessionFrom)
+        cardData.title = '充值皮糖'
+        cardData.img = `${this.data.cdnPath}chongzhi.png`
+        break
+      case 'follow':
+        cardData.title = '关注公众号'
+        cardData.img = `${this.data.cdnPath}img_QR code@3x.png`
         break
     }
-    this.setData({sessionFrom, pagePath})
+    this.setData({cardData})
   },
   /**
    * 组件的方法列表
