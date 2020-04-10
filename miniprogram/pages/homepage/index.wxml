@@ -1,4 +1,7 @@
+<view wx:if="{{isOwner}}"><view class="radius100"></view><view class="radius101"></view></view>
+<view wx:else><view class="index100" style="top: 24rpx"></view><view class="index101" style="top: 24rpx"></view><view class="index102" style="top: 0rpx"></view></view>
 <view class="homepage {{ isOwner ? 'yourself' : 'other'}}" wx:if="{{ userInfo.vkey }}">
+
   <view class="cover-box {{ albumVerifyInfo.status === 2 && isOwner ? 'isError' : ''}}">
 
     <view class="upload-tips" wx:if="{{ isOwner && albumVerifyInfo.status === 2 }}">

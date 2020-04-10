@@ -4,6 +4,7 @@
   page="console"
   >
 </navBar>
+<view><view class="index100" style="top: calc({{navBarHeight}}px + 24rpx)"></view><view class="index101" style="top: calc({{navBarHeight}}px + 24rpx)"></view><view class="index102" style="top: {{navBarHeight}}px"></view></view>
 <view class="square" wx:if="{{userData.list.length}}">
   <view class="item" wx:for="{{ userData.list }}" wx:key="index" bindtap="routeJump" data-item="{{ item }}">
     <view class="cover">
