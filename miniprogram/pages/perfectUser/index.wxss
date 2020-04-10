@@ -40,31 +40,11 @@
 .step1 .picker-box {
   margin-top: 93rpx;
 }
-.step1 .indicator {
-  height: 120rpx;
-  position: relative;
-}
-.step1 .indicator:before {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  content: '';
-  height: 1rpx;
-  transform: scaleY(0.5);
-  background: #EDF1F0;
-  display: block;
-}
-.step1 .indicator:after {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  height: 1rpx;
-  transform: scaleY(0.5);
-  background: #EDF1F0;
-  display: block;
+.step1 .p11 {
+  height: 37rpx;
+  font-size: 26rpx;
+  color: #9CA1AA;
+  line-height: 37rpx;
 }
 .step2 {
   border-radius: 36rpx 36rpx 0rpx 0rpx;
