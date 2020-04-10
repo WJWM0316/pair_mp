@@ -313,11 +313,7 @@
 }
 .homepage .info-myLabel .row {
   position: relative;
-  margin-bottom: 24rpx;
   display: flex;
-}
-.homepage .info-myLabel .row:last-child {
-  margin-bottom: 0;
 }
 .homepage .info-myLabel .type {
   width: 48rpx;
