@@ -5,8 +5,8 @@
       <block wx:if="{{userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step === 9}}">
         <view class="icon_aixin-box">
           <i-image my-class="logo" src="{{ userInfo.userInfo.avatarInfo.smallUrl }}" class="avatar_v1" mode="widthFix"></i-image>
-          <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_dack.png" mode="widthFix" wx:if="{{navBarBg === '#1F252B'}}"></i-image>
-          <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_light.png" mode="widthFix" wx:else></i-image>
+          <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_dack.png" mode="aspectFill" wx:if="{{navBarBg === '#1F252B'}}"></i-image>
+          <i-image my-class="mask" src="{{ CDNPATH }}btn_my_hearthead_light.png" mode="aspectFill" wx:else></i-image>
         </view>
       </block>    
       <block wx:if="{{!hasLogin && type === 'index'}}">
