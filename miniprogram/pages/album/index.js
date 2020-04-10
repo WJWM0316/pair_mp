@@ -25,6 +25,9 @@ Page({
   close() {
     this.setData({ showStatus: false })
   },
+  onLoad() {
+    this.init()
+  },
   init() {
     let callback = () => {
       let { userInfo, albumVerifyInfo } = app.globalData.userInfo
@@ -47,7 +50,6 @@ Page({
     }
   },
   onShow() {    
-    this.init()
     let avatar = wx.getStorageSync('avatar')
     if(avatar) {
       let { userInfo, albumVerifyInfo } = this.data
@@ -58,7 +60,6 @@ Page({
       }
       avatar = Object.assign(avatar, {isCover: 0})
       this.setData({result: avatar, userInfo}, () => wx.removeStorageSync('avatar'))
-      console.log(this.data)
     }
   },
   open(e) {
@@ -86,7 +87,10 @@ Page({
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
-      wx.navigateBack({ delta: 1 })
+      getUserInfo().then(() => {
+        this.init()
+      })
+      // wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   setCover() {
@@ -97,19 +101,22 @@ Page({
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: item.id, photo}).then(() => {
-      let { userInfo } = app.globalData.userInfo
-      userInfo.userAlbumTempList.push(item)
-      userInfo.userAlbumTempList.map(v => {
-        v.isCover = false
-        if(v.id == item.id) {
-          v = item
-          v.isCover = true
-          app.globalData.userInfo.albumVerifyInfo.status = 0
-          this.setData({ cover: item }, () => {            
-            this.init()
-          })
-        }
+      getUserInfo().then(() => {
+        this.init()
       })
+      // let { userInfo } = app.globalData.userInfo
+      // userInfo.userAlbumTempList.push(item)
+      // userInfo.userAlbumTempList.map(v => {
+      //   v.isCover = false
+      //   if(v.id == item.id) {
+      //     v = item
+      //     v.isCover = true
+      //     app.globalData.userInfo.albumVerifyInfo.status = 0
+      //     this.setData({ cover: item }, () => {            
+      //       this.init()
+      //     })
+      //   }
+      // })
       // wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))
   },
@@ -121,11 +128,9 @@ Page({
     let photoIds = userAlbumTempList.map(v => v.id)
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(() => {
-      let { userInfo } = app.globalData.userInfo
-      userInfo.userAlbumTempList.splice(editIndex, 1)
-      app.globalData.userInfo.albumVerifyInfo.status = 0
-      this.init()
-      // wx.navigateBack({ delta: 1 })
+      getUserInfo().then(() => {
+        this.init()
+      })
     }).catch(err => app.wxToast({title: err.msg}))
   },
   drawerAction(e) {
