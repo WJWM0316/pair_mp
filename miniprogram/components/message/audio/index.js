@@ -15,41 +15,40 @@ Component({
    * 组件的初始数据
    */
   data: {
-    playing: false
+    playing: false,
+    curPlayAudioUrl: '',
+    InnerAudioContext: {}
   },
 
   attached () {
     const that = this
-    if (!app.globalData.InnerAudioContext) app.globalData.InnerAudioContext = wx.createInnerAudioContext()
+    if (!app.globalData.InnerAudioContext) app.globalData.InnerAudioContext = wx.createInnerAudioContext({obeyMuteSwitch: false})
     let InnerAudioContext = app.globalData.InnerAudioContext
     // 为了填坑，在开发工具上onTimeUpdate回调正常，不要删除
     InnerAudioContext.onCanplay(function (e) {
-      if (that.curItem()) {
-        console.log('勿删', InnerAudioContext.duration)
-      }
+      console.log('勿删', InnerAudioContext.duration)
+      // if (that.curItem()) {
+      //   console.log('勿删', InnerAudioContext.duration)
+      // }
     })
-    // 播放过程
-    InnerAudioContext.onTimeUpdate((e) => {
-      if (that.curItem()) {
-        console.log('监听当前的音乐————播放中')
-        if (!that.data.playing) that.setData({'playing': true})
-      } else {
-        if (that.data.playing) that.setData({'playing': false})
-      }
-    })
+    
     // 监听暂停
     InnerAudioContext.onStop((e) => {
-      if (that.curItem()) {
-        console.log('监听当前的音乐————停止了')
-        if (that.data.playing) that.setData({'playing': false})
-      }
+      console.log('监听当前的音乐————停止了')
+      if (that.data.playing) that.setData({'playing': false})
+      
+      // if (that.curItem()) {
+      //   console.log('监听当前的音乐————停止了')
+      //   if (that.data.playing) that.setData({'playing': false})
+      // }
     })
     // 监听结束
     InnerAudioContext.onEnded((e) => {
-      if (that.curItem()) {
-        if (that.data.playing) that.setData({'playing': false})
-        console.log('监听当前的音乐————结束了')
-      }
+      if (that.data.playing) that.setData({'playing': false})
+      // if (that.curItem()) {
+      //   if (that.data.playing) that.setData({'playing': false})
+      //   console.log('监听当前的音乐————结束了')
+      // }
     })
   },
   /**
@@ -57,16 +56,38 @@ Component({
    */
   methods: {
     curItem () {
-      return app.globalData.InnerAudioContext && app.globalData.InnerAudioContext.src === this.data.message.fileUrl
+      return app.globalData.InnerAudioContext && app.globalData.InnerAudioContext.src === this.fileUrl
+    },
+    audioPlay (InnerAudioContext) {
+      const that = this
+      InnerAudioContext.stop()
+      app.globalData.InnerAudioContext.src = this.data.message.fileUrl
+      this.fileUrl = app.globalData.InnerAudioContext.src
+      console.log(this.data.message.fileUrl, 333333333333333333)
+      InnerAudioContext.play()
+      // 播放过程
+      InnerAudioContext.onTimeUpdate((e) => {
+        if (that.curItem()) {
+          if (!that.data.playing) that.setData({'playing': true})
+        } else {
+          if (that.data.playing) that.setData({'playing': false})
+        }
+      })
     },
     play () {
+      if (!app.globalData.InnerAudioContext.src) app.globalData.InnerAudioContext.src = this.data.message.fileUrl
       let InnerAudioContext = app.globalData.InnerAudioContext
-      if (!InnerAudioContext.src) InnerAudioContext.src = this.data.message.fileUrl
       if (InnerAudioContext.src === this.data.message.fileUrl) {
-        InnerAudioContext.paused ? InnerAudioContext.play() : InnerAudioContext.stop()
+        if(InnerAudioContext.paused) {
+          this.audioPlay(InnerAudioContext)
+        } else {
+          InnerAudioContext.stop()
+        }
       } else {
+        console.log(12121212)
+        InnerAudioContext.stop()
         InnerAudioContext.src = this.data.message.fileUrl
-        InnerAudioContext.play()
+        this.audioPlay(InnerAudioContext)
       }
     }
   }

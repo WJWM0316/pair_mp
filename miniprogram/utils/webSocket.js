@@ -1,4 +1,4 @@
-import Emoji from './emoji.js'
+import localstorage from './localstorage.js'
 class Socket {
   constructor () {
     this.apartTime = 60000 // 极限时间，超过极限时间视为异常处理
@@ -20,6 +20,7 @@ class Socket {
         // 握手环节
         wx.onSocketOpen((res0) => {
           console.log(this.SocketTask, '握手状态')
+          this.login(localstorage.get('token'))
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
             this.onMessage()
