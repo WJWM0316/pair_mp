@@ -11,7 +11,8 @@ Page({
       isRequire: false
     },
     onBottomStatus: 0,
-    background: ''
+    background: '',
+    navBarHeight: app.globalData.navBarHeight
   },
   onLoad(options) {
     let userData = {

@@ -28,7 +28,8 @@ Page({
     httpCode: 0,
     userCompleteInfo: {
       canPick: 0
-    }    
+    },
+    navBarHeight: app.globalData.navBarHeight
   },
   onLoad(options) {
     this.setData({ options })
