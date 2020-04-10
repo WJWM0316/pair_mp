@@ -7,7 +7,9 @@ let APIHOST         = '',
     token           = wx.getStorageSync('token'),
     sessionToken    = wx.getStorageSync('sessionToken'),
     addHttpHead     = {},
-    noAuthRequests  = [] // 需要静默拦截的接口
+    noAuthRequests  = [], // 需要静默拦截的接口
+    noConnectedReqs = [], // 没有网络是的接口
+    isNoConnected   = false // 是否断网
 // 开启loading
 let openLoading = (loadingContent) => {
   if (loadNum === 0) {
@@ -49,10 +51,28 @@ const removeAuth = () => {
   delete addHttpHead['Authorization-Wechat']
 }
 
+// 网络检测
+wx.onNetworkStatusChange(function (res) {
+  console.log(res, 22)
+  if (!res.isConnected) {
+    isNoConnected = true
+    wx.showLoading({
+      title: '网络异常',
+    })
+  } else {
+    if (isNoConnected) {
+      isNoConnected = false
+      wx.hideLoading()
+      noConnectedReqs.forEach((item) => {
+        item()
+      })
+      noConnectedReqs = []
+    }
+  }
+})
 export const request = ({method = 'post', url, host, data = {}, instance, loadingContent = '加载中...'}) => {
   // onLaunch 的时候获取不到getApp() 需要传递this过来
   app = !getApp() ? instance : getApp()
-
 
   return new Promise((resolve, reject) => {
     setHeader()
@@ -150,7 +170,8 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         fail(e) {
           reject(e)
           closeLoading()
-          console.log(e)
+          console.log(e, 1111111111)
+          noConnectedReqs.push(promise)
           getApp().wxToast({title: '系统异常，请稍后访问'})
         }
       })

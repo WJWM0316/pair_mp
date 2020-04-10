@@ -38,7 +38,16 @@ App({
     let token = localstorage.get('token')
     
     socket.create(this.globalData.SOCKETHOST, token)
-    
+    wx.onNetworkStatusChange(function (res) {
+      if (!res.isConnected) {
+        that.isNoConnected = true
+      } else {
+        if (that.isNoConnected) {
+          that.isNoConnected = false
+          socket.create(that.globalData.SOCKETHOST, token)
+        }
+      }
+    })
     // 判断微信登录状态
     wx.checkSession({
       success () {

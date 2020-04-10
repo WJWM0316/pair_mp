@@ -51,6 +51,7 @@ Component({
           recorderManager.stop()
           startTime = 0
           endTime   = 0
+          clearInterval(timer)
           break
         case 1:
           startTime = new Date().getTime()
@@ -65,11 +66,13 @@ Component({
         case 2:
           // 暂停待取消录音
           recorderManager.stop()
+          clearInterval(timer)
           break
         case 3:
           // 停止录音 发送录音
           endTime = new Date().getTime() 
           recorderManager.stop()
+          clearInterval(timer)
           break
       }
     }
@@ -92,7 +95,7 @@ Component({
    */
   methods: {
     limitedDur () {
-      clearInterval(timer)
+      this.resetTimer()
       seconds = 0
       timer = setInterval(() => {
         seconds++
@@ -103,6 +106,10 @@ Component({
         }
         this.setData({seconds})
       }, 1000);
+    },
+    resetTimer () {
+      clearInterval(timer)
+      this.setData({'seconds': 0})
     },
     wxApiAuthorize (e) {
       let that = this
@@ -147,16 +154,19 @@ Component({
       position.move = position.startY - moveY
       if (position.move >= 40) {
         this.setData({"status": 2})
+        this.resetTimer()
       }
     },
     hanlderTouchend (e) {
-      if (!hasAuth) return
-      if (position.move <= 50) {
-        this.setData({"status": 3})
-        clearInterval(timer)
-      } else {
-        this.setData({"status": 0})
-      }
+      setTimeout(() => {
+        if (!hasAuth) return
+        if (position.move <= 50) {
+          this.setData({"status": 3})
+        } else {
+          this.setData({"status": 0})
+        }
+        this.resetTimer()
+      }, 300);
     }
   }
 })
