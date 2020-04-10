@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "navBar": "../../components/layout/navBar/index",
     "actionSheet": "../../components/layout/actionSheet"
   },
   "navigationBarTitleText": "",
