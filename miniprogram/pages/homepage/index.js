@@ -25,7 +25,10 @@ Page({
     buttonInfo: {},
     code: 0,
     chargeInfo: {},
-    httpCode: 0
+    httpCode: 0,
+    userCompleteInfo: {
+      canPick: 0
+    }    
   },
   onLoad(options) {
     this.setData({ options })
@@ -53,7 +56,10 @@ Page({
             status: 1,
             statusDesc: '审核通过'
           },
-          buttonInfo = {}
+          buttonInfo = {},
+          userCompleteInfo = {
+            canPick: 0
+          }
         } = data
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
         let pIds = isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
@@ -111,7 +117,8 @@ Page({
           isAllQuestion,
           albumVerifyInfo,
           isOwner,
-          buttonInfo
+          buttonInfo,
+          userCompleteInfo
         }, () => resolve())
       }
       getUserInfoApi({vkey: options.vkey}).then(res => {
@@ -171,20 +178,36 @@ Page({
     }    
   },
   fetch() {
-    let { options } = this.data
-    let { userInfo } = this.data
-    getChargeInfoApi({toUserVkey: options.vkey}).then(({ data }) => {
-      if(data.chargeInfo.needCharge ) {
-        let myAvatar = app.globalData.userInfo.userInfo.avatarInfo.smallUrl
-        let mySex = app.globalData.userInfo.userInfo.gender
-        let userAvatar = userInfo.avatarInfo.smallUrl
-        let userSex = userInfo.gender
-        data = Object.assign(data, {myAvatar, userAvatar, mySex, userSex})
-        this.setData({code: 4, chargeInfo: data}, () => this.selectComponent('#dialog').show())
-      } else {
-        this.chat()
-      }
-    })
+
+    let { userInfo } = app.globalData.userInfo
+    let { options, userCompleteInfo } = this.data
+    let otherInfo = this.data.userInfo
+
+    // if (!this.data.hasLogin) {
+    //   this.selectComponent('#guideLogin').toggle()
+    //   return
+    // }
+
+    if(userInfo.step !== 9) {
+      wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
+      return
+    }
+    if(!userCompleteInfo.canPick) {
+      this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+    } else {
+      getChargeInfoApi({toUserVkey: options.vkey}).then(({ data }) => {
+        if(data.chargeInfo.needCharge ) {
+          let myAvatar = userInfo.avatarInfo.smallUrl
+          let mySex = userInfo.gender
+          let userAvatar = otherInfo.avatarInfo.smallUrl
+          let userSex = otherInfo.gender
+          data = Object.assign(data, {myAvatar, userAvatar, mySex, userSex})
+          this.setData({code: 4, chargeInfo: data}, () => this.selectComponent('#dialog').show())
+        } else {
+          this.chat()
+        }
+      })
+    }
   },
   picker() {
     let { options } = this.data

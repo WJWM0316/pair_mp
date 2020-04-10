@@ -61,7 +61,7 @@ Page({
       vkey: options.vkey
     }
     if(!params.title) {
-      app.wxToast({title: '请选择标题'})
+      app.wxToast({title: '请选择举报类型'})
       return
     }
     if(!params.img_id) {
@@ -69,7 +69,12 @@ Page({
       return
     }
     reportApi(params).then(() => {
-      wx.navigateBack({ delta: 1 })
+      app.wxToast({
+        title: '成功提交，审核人员将核实并处理该举报内容',
+        callback() {
+          wx.navigateBack({delta: 1 })
+        }
+      })
     })
   },
   /**
