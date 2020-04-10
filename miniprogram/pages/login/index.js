@@ -93,7 +93,7 @@ Page({
     clearTimeout(this.timer)
   },
   onHide() {
-    clearTimeout(this.timer)
+    // clearTimeout(this.timer)
   },
   onShareAppMessage(options) {
     return app.wxShare({options})

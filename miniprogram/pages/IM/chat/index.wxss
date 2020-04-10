@@ -7,7 +7,6 @@
   position: -webkit-sticky;
 }
 .chatWrap {
-  min-height: 100vh;
   background: #F1F4F4;
 }
 .chatWrap .systemHint {
