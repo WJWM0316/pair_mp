@@ -99,7 +99,7 @@ Component({
       seconds = 0
       timer = setInterval(() => {
         seconds++
-        if (seconds >= 5) {
+        if (seconds >= 60) {
           clearInterval(timer)
           this.setData({"status": 3})
           seconds = 0
@@ -158,15 +158,13 @@ Component({
       }
     },
     hanlderTouchend (e) {
-      setTimeout(() => {
-        if (!hasAuth) return
-        if (position.move <= 50) {
-          this.setData({"status": 3})
-        } else {
-          this.setData({"status": 0})
-        }
-        this.resetTimer()
-      }, 300);
+      if (!hasAuth || !startTime) return
+      if (position.move <= 50) {
+        this.setData({"status": 3})
+      } else {
+        this.setData({"status": 0})
+      }
+      this.resetTimer()
     }
   }
 })

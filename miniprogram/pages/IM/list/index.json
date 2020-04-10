@@ -1,8 +1,8 @@
 {
-  "enablePullDownRefresh": true,
   "navigationBarTextStyle":"white",
   "usingComponents": {
-    "swipe-out": "../../components/layout/swipeout"
+    "swipe-out": "../../../components/layout/swipeout",
+    "contact-btn": "../../../components/business/contactBtn"
   },
   "navigationStyle": "custom"
 }

@@ -1,11 +1,11 @@
-<view class="recordWrap" catchtouchmove>
+<view class="recordWrap" catchtouchmove catchtap="wxApiAuthorize">
   <view class="tips">
     <text>{{tips[status]}}</text>
     <text class="seconds" hidden="{{!seconds}}">{{seconds}}s</text>
   </view>
   <i-button 
-    bindtap="wxApiAuthorize"
-    bindtouchstart="hanlderTouchstart"
+    
+    bindlongpress="hanlderTouchstart"
     bindtouchmove="hanlderTouchmove"
     bindtouchend="hanlderTouchend"
     my-class="button {{status === 1 ? 'breathing' : ''}}"

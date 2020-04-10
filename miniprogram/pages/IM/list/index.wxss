@@ -1,7 +1,7 @@
 .listWrap {
   width: 100%;
   box-sizing: border-box;
-  background: #fff;
+  background: #EDF1F0;
 }
 .listWrap .tips {
   width: 100%;
@@ -37,7 +37,6 @@
 .listWrap .noTips {
   height: 40rpx;
   margin-bottom: -20rpx;
-  background: #EDF1F0;
 }
 .listWrap .scroll-view {
   padding-top: 20rpx;
