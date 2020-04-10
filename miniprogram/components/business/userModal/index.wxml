@@ -13,7 +13,7 @@
         </view>
         <view class="content">
           <view class="h1">{{ infos.userInfo.nickname }}</view>
-          <view class="h2"><i class="icon iconfont icon_aixin"></i>{{ infos.userInfo.bePickedTimes }}人Pick了我</view>
+          <view class="h2"><i class="icon iconfont icon_aixin"></i><text class="strong22">{{ infos.userInfo.bePickedTimes }}</text>人Pick了我</view>
         </view>
         <i class="icon iconfont icon_jiantou-you-"></i>
       </view>

@@ -118,10 +118,10 @@
 					"scene": null
 				},
 				{
-					"id": 7,
-					"name": "pages/homepage/index",
-					"pathName": "pages/homepage/index",
-					"query": "vkey=co4gpxxo",
+					"id": -1,
+					"name": "pages/account/index",
+					"pathName": "pages/account/index",
+					"query": "vkey=tuppkbn8",
 					"scene": null
 				}
 			]

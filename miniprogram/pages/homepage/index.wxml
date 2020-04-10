@@ -30,7 +30,7 @@
         <view class="btn1">
           <!-- <i-image my-class="icon_aixin" src="{{ CDNPATH }}icon_heart_whitepink.png"></i-image> -->
           <i class="icon iconfont icon_aixin"></i>
-          {{ userInfo.bePickedTimes }}人Pick了我
+          <text class="strong11">{{ userInfo.bePickedTimes }}</text>人Pick了我
         </view>
         <view class="btn2" bindtap="album">
           <i class="icon iconfont icon_im_tupian"></i>{{ albumVerifyInfo.status !== 1 ? userInfo.userAlbumTempList.length : userInfo.userAlbumList.length }}
@@ -86,7 +86,7 @@
             {{ userInfo.companyName }} | {{ userInfo.positionName }} 
             <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ userInfo.isCareerIdentity }}" mode="widthFix"></i-image> 
           </view>
-          <view class="work-years" wx:if="{{ userInfo.showSalary }}">10-15W/年<text wx:if="{{ isOwner }}">（仅自己可见）</text></view>
+          <view class="work-years" wx:if="{{ userInfo.showSalary && userInfo.salaryDesc }}">{{ userInfo.salaryDesc }}<text wx:if="{{ isOwner }}">（仅自己可见）</text></view>
           <view class="warning" wx:if="{{ isOwner && !userInfo.isCareerIdentity }}" bindtap="legalize">
             <i-image my-class="icon13" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix"></i-image>
             职业信息未认证，将降低主页展示率
@@ -105,7 +105,7 @@
       <view class="section info-myself" wx:if="{{ userInfo.ownDescribe }}">
         <view class="title">我眼中的自己</view>
         <view class="inner">
-          <view class="self-description">{{ userInfo.ownDescribe }}</view>
+          <text class="self-description">{{ userInfo.ownDescribe }}</text>
         </view>
       </view>
     </block>
@@ -138,7 +138,7 @@
       <view class="section info-ideal" wx:if="{{ userInfo.idealDescribe }}">
         <view class="title">我的理想型</view>
         <view class="inner">
-          <view class="self-description">{{ userInfo.idealDescribe }}</view>
+          <text class="self-description">{{ userInfo.idealDescribe }}</text>
         </view>
       </view>
     </block>
@@ -157,7 +157,7 @@
               <view class="myIcon">Q</view>
               <view class="question"><text>{{item.title}}</text></view>
             </view>
-            <view class="answer">{{item.body}}</view>
+            <text class="answer">{{item.body}}</text>
           </view>
         </view>
       </view>

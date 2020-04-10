@@ -54,10 +54,12 @@
 .mine-modal .base .h2 {
   height: 32rpx;
   font-size: 28rpx;
-  font-weight: 700;
   color: #1F252B;
   line-height: 32rpx;
   margin-top: 18rpx;
+}
+.mine-modal .base .h2 .strong22 {
+  font-weight: 700;
 }
 .mine-modal .base .avatar {
   width: 148rpx;
@@ -84,7 +86,7 @@
   height: 100%;
 }
 .mine-modal .base .icon_aixin {
-  font-size: 26rpx;
+  font-size: 24rpx;
   color: #F46BA1;
   margin-right: 12rpx;
 }
@@ -177,7 +179,6 @@
 .mine-modal .bubble .h2 {
   height: 32rpx;
   font-size: 28rpx;
-  font-weight: 700;
   line-height: 32rpx;
   margin-top: 3rpx;
   font-size: 24rpx;
@@ -251,7 +252,6 @@
 .mine-modal .upload .h2 {
   height: 32rpx;
   font-size: 28rpx;
-  font-weight: 700;
   color: #66666E;
   line-height: 32rpx;
   margin-top: 3rpx;
@@ -269,7 +269,7 @@
   padding: 0 80rpx;
 }
 .mine-modal .ul .icon1 {
-  font-size: 44rpx;
+  font-size: 40rpx;
   display: inline-block;
   vertical-align: middle;
   color: #1F252B;
@@ -280,7 +280,6 @@
   margin-left: 47rpx;
   color: #1F252B;
   font-size: 30rpx;
-  font-weight: 700;
 }
 .mine-modal .ul .value {
   display: inline-block;

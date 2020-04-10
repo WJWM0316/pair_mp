@@ -102,10 +102,12 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 24rpx;
-  font-weight: 700;
   color: #ffffff;
   line-height: 48rpx;
   text-align: center;
+}
+.homepage .cover-box .btn1 .strong11 {
+  font-weight: 700;
 }
 .homepage .cover-box .btn2 {
   height: 48rpx;
@@ -124,7 +126,7 @@
 }
 .homepage .cover-box .icon_aixin {
   margin-right: 8rpx;
-  font-size: 24rpx;
+  font-size: 21rpx;
 }
 .homepage .cover-box .icon_im_tupian {
   margin-right: 10rpx;
@@ -240,11 +242,11 @@
   background: rgba(244, 107, 161, 0.1);
 }
 .homepage .label-bg3 {
-  background: #F1F4F4;
+  background: rgba(241, 244, 244, 0.5);
   color: #9CA1AA;
 }
 .homepage .label-bg3 .icon1 {
-  color: #9CA1AA;
+  color: #CFD4D8;
 }
 .homepage .section {
   position: relative;
@@ -264,7 +266,7 @@
 }
 .homepage .career-objective {
   height: 44rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 44rpx;
@@ -274,7 +276,7 @@
   font-size: 28rpx;
   color: #1F252B;
   line-height: 36rpx;
-  margin-top: 18rpx;
+  margin-top: 12rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -298,13 +300,13 @@
   font-size: 28rpx;
   color: #1F252B;
   line-height: 36rpx;
-  margin-top: 12rpx;
+  margin-top: 4rpx;
 }
 .homepage .work-years text {
   color: #CFD4D8;
 }
 .homepage .self-description {
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 50rpx;
@@ -344,7 +346,7 @@
   padding: 0 30rpx;
   display: inline-block;
   margin-right: 12rpx;
-  margin-bottom: 12rpx;
+  margin-bottom: 24rpx;
   font-size: 24rpx;
   color: #1F252B;
   line-height: 48rpx;
@@ -369,7 +371,7 @@
 }
 .homepage .info-secret .row {
   overflow: hidden;
-  margin-bottom: 60rpx;
+  margin-bottom: 68rpx;
 }
 .homepage .info-secret .row:last-child {
   margin-bottom: 0;
@@ -409,7 +411,7 @@
   display: flex;
 }
 .homepage .info-secret .answer {
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 50rpx;
@@ -417,7 +419,7 @@
 }
 .homepage .title2 {
   height: 44rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 44rpx;
@@ -629,7 +631,7 @@
 }
 .other .swiper {
   border-radius: 36rpx !important;
-  height: 880rpx;
+  height: 880rpx !important;
 }
 .other .cover-box {
   border-radius: 36rpx;
