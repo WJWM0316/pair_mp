@@ -1,7 +1,7 @@
 <view class="account">
   <view class="header">
     <view class="inner">
-      <i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_45.png" mode="heightFix"></i-image>
+      <i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_30.png" mode="heightFix"></i-image>
       <view class="info">
         <view class="number">{{wallet.remain}}</view>
         <view class="entry" bindtap="viewBill">我的账单<i class="icon iconfont icon_jiantoumian_huaban"></i></view>
@@ -22,9 +22,12 @@
           <view class="fanbei" wx:if="{{ item.sugarTimes === 2 }}">翻倍</view>
           <i-image my-class="sign-bg" src="{{ CDNPATH }}img_nosignin@3x.png" wx:if="{{!item.hasSign}}"></i-image>
           <i-image my-class="sign-bg" src="{{ CDNPATH }}img_signin@3x.png" wx:else></i-image>
-          <view class="txt1">+{{ item.sugarBase }}x{{ item.sugarTimes }} </view>
+          <view class="txt1">
+            <block wx:if="{{item.sugarBase > 1 || item.sugarTimes > 1}}">+<block wx:if="{{ item.sugarBase > 1 }}">{{ item.sugarBase }}x</block><block wx:if="{{ item.sugarTimes > 1 }}">{{ item.sugarTimes }}</block></block>
+            <block wx:else>+1</block>
+          </view>
         </view>
-        <text class="day">{{item.day}}</text>
+        <view class="day">第{{index+1}}天</view>
       </view>
     </view>
     <!-- <view class="my-header2">

@@ -7,5 +7,6 @@
     "sugar-award-popup": "../../components/business/sugarAwardPopup/index"
   },
   "navigationBarTitleText": "我的皮糖",
-  "navigationBarBackgroundColor": "#F1F4F4"
+  "navigationBarBackgroundColor": "#F1F4F4",
+  "backgroundColor": "#F1F4F4"
 }

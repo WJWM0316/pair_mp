@@ -35,7 +35,7 @@
   vertical-align: top;
 }
 .step1 .progress .active-item {
-  background: #0CCDDA;
+  background: rgba(12, 205, 218, 0.5);
 }
 .step1 .picker-box {
   margin-top: 93rpx;
@@ -137,7 +137,7 @@
   vertical-align: top;
 }
 .step2 .progress .active-item {
-  background: #0CCDDA;
+  background: rgba(12, 205, 218, 0.5);
 }
 .step2 .scroll-box {
   padding: 57rpx 0 22rpx 0;
@@ -335,7 +335,7 @@
   vertical-align: top;
 }
 .step3 .progress .active-item {
-  background: #0CCDDA;
+  background: rgba(12, 205, 218, 0.5);
 }
 .step3 .input {
   font-size: 36rpx;
@@ -358,7 +358,6 @@
   margin-top: 76rpx;
   padding: 16rpx 0;
   width: 100%;
-  max-height: 400rpx;
 }
 .step3 .row textarea {
   width: 590rpx;
@@ -416,7 +415,7 @@
   vertical-align: top;
 }
 .step4 .progress .active-item {
-  background: #0CCDDA;
+  background: rgba(12, 205, 218, 0.5);
 }
 .step4 .input {
   font-size: 36rpx;
@@ -439,7 +438,6 @@
   margin-top: 76rpx;
   padding: 16rpx 0;
   width: 100%;
-  max-height: 400rpx;
 }
 .step4 .row textarea {
   width: 590rpx;

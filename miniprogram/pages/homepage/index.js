@@ -46,7 +46,6 @@ Page({
   getUser() {
     return new Promise((resolve, reject) => {
       let { options, hasLogin } = this.data
-      let rtn = app.globalData.userInfo
       let callback = (data) => {
         let isOwner = hasLogin && options.vkey === app.globalData.userInfo.userInfo.vkey ? true : false
         let {
@@ -127,9 +126,9 @@ Page({
     })
   },
   async onShow() {
-    this.getUser()
     let data = await hasLogin()
     this.setData({'hasLogin': data})
+    await this.getUser()
   },
   bindchange(e) {
     let { current } = e.detail
@@ -155,39 +154,29 @@ Page({
         url: `${PAGEPATH}/IM/chat/index?vkey=${options.vkey}`
       })
     }
-    let alert = (options) => {
+    if(httpCode === 2101) {
       app.wxConfirm({
         title: '取消拉黑',
         content: '你已拉黑对方，是否取消拉黑？',
         cancelText: '否',
-        confirmText: '你已拉黑对方，是否取消拉黑？',
+        confirmText: '是',
         confirmBack() {
           removeBackApi({vkey: options.vkey}).then(() => jump(options))
         },
-        cancelBack() {
-          wx.reLaunch({
-            url: `${PAGEPATH}/index/index`
-          })
-        }
+        cancelBack() {}
       })
-    }
-    if(httpCode === 2101) {
-      alert(options)
     } else {
       jump(options)
     }    
   },
   fetch() {
-
     let { userInfo } = app.globalData.userInfo
     let { options, userCompleteInfo } = this.data
     let otherInfo = this.data.userInfo
-
     // if (!this.data.hasLogin) {
     //   this.selectComponent('#guideLogin').toggle()
     //   return
     // }
-
     if(userInfo.step !== 9) {
       wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
       return

@@ -43,17 +43,20 @@ Component({
           break
         case 3:
           getUserInfoCompleteApi({hideLoading: true}).then(({ data }) => {
+            let { userInfo } = app.globalData.userInfo
             if(!Object.keys(data.careerVerifyInfo).length) {
               data.careerVerifyInfo = Object.assign(data.careerVerifyInfo, { status: -1})
             }
+            userInfo.infoCompletePercent = data.userCompleteInfo.infoCompletePercent
+            userInfo.infoCompletePercentDesc = `${data.userCompleteInfo.infoCompletePercent}%`
             this.setData({
               userCompleteInfo: data.userCompleteInfo,
               show: true,
               careerVerifyInfo: data.careerVerifyInfo,
               albumVerifyInfo: data.albumVerifyInfo,
-              userInfo: app.globalData.userInfo.userInfo
+              userInfo
             })
-            console.log(this.data)
+            console.log(userInfo)
           }) 
           break
         default:

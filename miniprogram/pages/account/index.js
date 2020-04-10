@@ -19,11 +19,11 @@ Page({
       topUpAmount: 0,
       topUpTimes: 0,
       uid: 0,
-      vkey: "rypbaeb3",
+      vkey: '',
       todaySigned: true
     }
   },
-  onShow() {
+  onLoad() {
     this.getCurrentWeekSignIn()
     this.getSugarInfo()
   },

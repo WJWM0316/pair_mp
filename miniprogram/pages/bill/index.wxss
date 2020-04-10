@@ -92,10 +92,13 @@
 .bill .ul .no-data {
   width: 380rpx;
   display: block;
-  margin: 190rpx auto 46rpx auto;
+  margin: 180rpx auto 46rpx auto;
   text-align: center;
   height: 36rpx;
   font-size: 28rpx;
   color: #66666e;
   line-height: 36rpx;
+}
+.bill .ul .no-data .tips {
+  margin-top: 46rpx;
 }

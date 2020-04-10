@@ -103,10 +103,12 @@
       top: 50%;
       transform: translateY(-50%);
       font-size:24rpx;
-      font-weight:700;
       color:#ffffff;
       line-height: 48rpx;
       text-align: center;
+      .strong11 {
+        font-weight: 700;
+      }
     }
     .btn2 {
       height:48rpx;
@@ -125,7 +127,7 @@
     }
     .icon_aixin {
       margin-right: 8rpx;
-      font-size: 24rpx;
+      font-size: 21rpx;
     }
     .icon_im_tupian {
       margin-right: 10rpx;
@@ -166,6 +168,8 @@
     .icon_shuangjiantou {
       font-size: 20rpx;
       padding-left: 8rpx;
+      position: relative;
+      top: -2rpx;
     }
     .icon10 {
       font-size: 12rpx;
@@ -247,10 +251,10 @@
     background: rgba(@vice-primary-color-2, .1);
   }
   .label-bg3 {
-    background: @background-color-base;
+    background: rgba(@background-color-base, .5);
     color: @text-color-3;
     .icon1 {
-      color: @text-color-3;
+      color: @text-color-4;
     }
   }
   .section {
@@ -267,7 +271,7 @@
   }
   .career-objective {
     height:44rpx;
-    font-size:36rpx;
+    font-size:32rpx;
     font-weight:700;
     color:@text-color-1;
     line-height:44rpx;
@@ -277,7 +281,7 @@
     font-size:28rpx;
     color:@text-color-1;
     line-height:36rpx;
-    margin-top: 18rpx;
+    margin-top: 12rpx;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -301,13 +305,13 @@
     font-size:28rpx;
     color:@text-color-1;
     line-height:36rpx;
-    margin-top: 12rpx;
+    margin-top: 4rpx;
     text {
       color: @text-color-4;
     }
   }
   .self-description {
-    font-size:36rpx;
+    font-size:32rpx;
     font-weight:700;
     color:@text-color-1;
     line-height:50rpx;
@@ -349,7 +353,7 @@
       padding: 0 30rpx;
       display: inline-block;
       margin-right: 12rpx;
-      margin-bottom: 12rpx;
+      margin-bottom: 24rpx;
       font-size:24rpx;
       color:@text-color-1;
       line-height: 48rpx;
@@ -376,7 +380,7 @@
     }
     .row {
       overflow: hidden;
-      margin-bottom: 60rpx;
+      margin-bottom: 68rpx;
       &:last-child {
         margin-bottom: 0;
       }
@@ -418,7 +422,7 @@
       display: flex;
     }
     .answer {
-      font-size:36rpx;
+      font-size:32rpx;
       font-weight:700;
       color:@text-color-1;
       line-height:50rpx;
@@ -429,7 +433,7 @@
   .info-ideal {}
   .title2 {
     height:44rpx;
-    font-size:36rpx;
+    font-size:32rpx;
     font-weight:700;
     color:@text-color-1;
     line-height:44rpx;
@@ -636,7 +640,7 @@
   }
   .swiper {
     border-radius: 36rpx !important;
-    height: 880rpx;
+    height: 880rpx !important;
   }
   .cover-box {
     border-radius: 36rpx;
@@ -700,4 +704,8 @@
       margin-top: 24rpx;
     }
   }
+}
+
+.btn5 {
+  
 }

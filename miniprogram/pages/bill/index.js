@@ -22,7 +22,7 @@ Page({
       onBottomStatus: 0
     }
   },
-  onShow() {
+  onLoad() {
     let useData = {
       list: [],
       pageNum: 1,
