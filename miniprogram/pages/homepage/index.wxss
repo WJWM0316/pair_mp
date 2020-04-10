@@ -167,6 +167,8 @@
 .homepage .cover-box .icon_shuangjiantou {
   font-size: 20rpx;
   padding-left: 8rpx;
+  position: relative;
+  top: -2rpx;
 }
 .homepage .cover-box .icon10 {
   font-size: 12rpx;

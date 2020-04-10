@@ -126,9 +126,9 @@ Page({
     })
   },
   async onShow() {
-    this.getUser()
     let data = await hasLogin()
     this.setData({'hasLogin': data})
+    await this.getUser()
   },
   bindchange(e) {
     let { current } = e.detail
