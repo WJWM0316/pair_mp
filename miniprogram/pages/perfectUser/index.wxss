@@ -45,6 +45,40 @@
   font-size: 26rpx;
   color: #9CA1AA;
   line-height: 37rpx;
+  text-align: center;
+  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 198rpx;
+  z-index: 2;
+}
+.step1 .p11 .btn-set {
+  display: inline;
+  padding-left: 40rpx;
+  position: relative;
+}
+.step1 .p11 .icon2 {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+  color: #EDF1F0;
+  width: 28rpx;
+  height: 28rpx;
+  border: 1rpx solid #EDF1F0;
+  margin-right: 12rpx;
+  border-radius: 50%;
+  display: inline-block;
+}
+.step1 .p11 .icon1 {
+  color: #0CCDDA;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
 }
 .step2 {
   border-radius: 36rpx 36rpx 0rpx 0rpx;

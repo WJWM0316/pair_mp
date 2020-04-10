@@ -10,7 +10,7 @@
         <view class="picker-box">
             <scrollPicker pickerType="salary" initValue="{{ '' }}" bind:pickerResult="pickerResult"></scrollPicker>
         </view>
-        <view class="p11">仅自己可见</view>
+        <view class="p11"><view class="btn-set" bindtap="toggle"><i class="icon1 icon iconfont icon_gouxuan" wx:if="{{ show }}"></i><i class="icon2" wx:else></i>仅自己可见</view></view>
         <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next1"></myButton>
     </view>
     <view class="step2  {{ step == 2 ? 'show' : ''}}">

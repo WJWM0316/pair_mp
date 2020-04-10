@@ -3,6 +3,9 @@ import {
 } from '../../api/user.js'
 import {localstorage, hasLogin} from "../../utils/index.js"
 import { getChargeInfoApi, chatApi } from "../../api/square.js"
+import {
+  removeBackApi
+} from '../../api/black.js'
 
 const app =  getApp();
 Page({
@@ -21,7 +24,8 @@ Page({
     CDNPATH: app.globalData.CDNPATH,
     buttonInfo: {},
     code: 0,
-    chargeInfo: {}
+    chargeInfo: {},
+    httpCode: 0
   },
   onLoad(options) {
     this.setData({ options })
@@ -38,10 +42,10 @@ Page({
   },
   getUser() {
     return new Promise((resolve, reject) => {
-      let { options } = this.data
+      let { options, hasLogin } = this.data
       let rtn = app.globalData.userInfo
-      let callback = (data, myself) => {
-        if(!myself) app.globalData.userInfo = data
+      let callback = (data) => {
+        let isOwner = hasLogin && options.vkey === app.globalData.userInfo.userInfo.vkey ? true : false
         let {
           userInfo,
           pickIntention = {},
@@ -52,11 +56,11 @@ Page({
           buttonInfo = {}
         } = data
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
-        let pIds = myself ? myself.userInfo.userLabelList.map(v => v.labelId): [];
+        let pIds = isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
         userLabelList.map((v,i) => {
-          if (myself) {
+          if (isOwner) {
             if(pIds.includes(v.labelId)) {
-              let cIds = myself.userInfo.userLabelList.find(field => field.labelId === v.labelId).children.map(field => field.labelId)
+              let cIds = app.globalData.userInfo.userInfo.userLabelList.find(field => field.labelId === v.labelId).children.map(field => field.labelId)
               v.children.map(c => {
                 if(cIds.includes(c.labelId)) {
                   c.active = true
@@ -106,12 +110,12 @@ Page({
           userAnswerList,
           isAllQuestion,
           albumVerifyInfo,
-          isOwer: myself ? false : true,
+          isOwner,
           buttonInfo
         }, () => resolve())
       }
-      getUserInfoApi({vkey: options.vkey}).then(({ data }) => {
-        callback(data, rtn.userInfo.vkey == options.vkey ? 0 : rtn)
+      getUserInfoApi({vkey: options.vkey}).then(res => {
+        this.setData({httpCode: res.code}, () => callback(res.data))        
       })
     })
   },
@@ -138,10 +142,33 @@ Page({
   },
   chat() {
     let { PAGEPATH } = app.globalData
-    let { options } = this.data
-    wx.navigateTo({
-      url: `${PAGEPATH}/IM/chat/index?vkey=${options.vkey}`
-    })
+    let { options, httpCode } = this.data
+    let jump = (options) => {
+      wx.navigateTo({
+        url: `${PAGEPATH}/IM/chat/index?vkey=${options.vkey}`
+      })
+    }
+    let alert = (options) => {
+      app.wxConfirm({
+        title: '取消拉黑',
+        content: '你已拉黑对方，是否取消拉黑？',
+        cancelText: '否',
+        confirmText: '你已拉黑对方，是否取消拉黑？',
+        confirmBack() {
+          removeBackApi({vkey: options.vkey}).then(() => jump(options))
+        },
+        cancelBack() {
+          wx.reLaunch({
+            url: `${PAGEPATH}/index/index`
+          })
+        }
+      })
+    }
+    if(httpCode === 2101) {
+      alert(options)
+    } else {
+      jump(options)
+    }    
   },
   fetch() {
     let { options } = this.data

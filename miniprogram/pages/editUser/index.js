@@ -116,6 +116,11 @@ Page({
       app.getUserInfo = () => callback()
     }
   },
+  toggle() {
+    let { userInfo } = this.data
+    userInfo.showSalary = !userInfo.showSalary
+    this.setData({userInfo})
+  },
   bindInput(e) {
     let { userInfo, options } = this.data
     let { key } = e.currentTarget.dataset
@@ -216,7 +221,7 @@ Page({
         params = Object.assign(params, {position_name: userInfo.positionName.trim()})
         break
       case 'salary':
-        params = Object.assign(params, {salary: userInfo.salary})
+        params = Object.assign(params, {salary: userInfo.salary, show: userInfo.showSalary})
         funcApi = updateUserSalaryApi
         break
       case 'school':
