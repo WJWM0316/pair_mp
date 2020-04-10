@@ -40,31 +40,45 @@
 .step1 .picker-box {
   margin-top: 93rpx;
 }
-.step1 .indicator {
-  height: 120rpx;
+.step1 .p11 {
+  height: 37rpx;
+  font-size: 26rpx;
+  color: #9CA1AA;
+  line-height: 37rpx;
+  text-align: center;
+  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 198rpx;
+  z-index: 2;
+}
+.step1 .p11 .btn-set {
+  display: inline;
+  padding-left: 40rpx;
   position: relative;
 }
-.step1 .indicator:before {
+.step1 .p11 .icon2 {
   position: absolute;
   left: 0;
-  right: 0;
-  top: 0;
-  content: '';
-  height: 1rpx;
-  transform: scaleY(0.5);
-  background: #EDF1F0;
-  display: block;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+  color: #EDF1F0;
+  width: 28rpx;
+  height: 28rpx;
+  border: 1rpx solid #EDF1F0;
+  margin-right: 12rpx;
+  border-radius: 50%;
+  display: inline-block;
 }
-.step1 .indicator:after {
+.step1 .p11 .icon1 {
+  color: #0CCDDA;
   position: absolute;
   left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  height: 1rpx;
-  transform: scaleY(0.5);
-  background: #EDF1F0;
-  display: block;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
 }
 .step2 {
   border-radius: 36rpx 36rpx 0rpx 0rpx;

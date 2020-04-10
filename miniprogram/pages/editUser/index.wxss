@@ -73,6 +73,46 @@
 .edit .box {
   margin-top: 30rpx;
 }
+.edit .p11 {
+  height: 37rpx;
+  font-size: 26rpx;
+  color: #9CA1AA;
+  line-height: 37rpx;
+  text-align: center;
+  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 248rpx;
+  z-index: 2;
+}
+.edit .p11 .btn-set {
+  display: inline;
+  padding-left: 40rpx;
+  position: relative;
+}
+.edit .p11 .icon22 {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+  color: #EDF1F0;
+  width: 28rpx;
+  height: 28rpx;
+  border: 1rpx solid #EDF1F0;
+  margin-right: 12rpx;
+  border-radius: 50%;
+  display: inline-block;
+}
+.edit .p11 .icon11 {
+  color: #0CCDDA;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28rpx;
+}
 .holderStyle {
   color: #CFD4D8;
   font-size: 36rpx;

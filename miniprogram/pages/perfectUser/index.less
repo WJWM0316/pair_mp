@@ -43,28 +43,45 @@
   .picker-box {
     margin-top: 93rpx;
   }
-  .indicator {
-    height: 120rpx;
+  .p11 {
+    height:37rpx;
+    font-size:26rpx;
+    color:@text-color-3;
+    line-height:37rpx;
+    text-align: center;
     position: relative;
-    &:before{
-      height: 1rpx;
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      .line(@border-color-base)
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 198rpx;
+    z-index: 2;
+    .btn-set {
+      display: inline;
+      padding-left: 40rpx;
+      position: relative;
     }
-    &:after{
-      height: 1rpx;
-      content: '';
-      display: block;
+    .icon2 {
       position: absolute;
       left: 0;
-      right: 0;
-      bottom: 0;
-      .line(@border-color-base)
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28rpx;
+      color: @border-color-base;
+      width: 28rpx;
+      height: 28rpx;
+      border: 1rpx solid @border-color-base;
+      border-radius: 50%;
+      margin-right: 12rpx;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .icon1 {
+      color: @primary-color;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28rpx;
     }
   }
 }

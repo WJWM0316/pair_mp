@@ -119,16 +119,9 @@
 				},
 				{
 					"id": 7,
-					"name": "pages/perfectUser/index",
-					"pathName": "pages/perfectUser/index",
-					"query": "step=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/square/index",
-					"pathName": "pages/square/index",
-					"query": "step=2",
+					"name": "pages/homepage/index",
+					"pathName": "pages/homepage/index",
+					"query": "vkey=co4gpxxo",
 					"scene": null
 				}
 			]

@@ -24,7 +24,8 @@ Component({
     value: [0,0,0],
     active: [],
     rangeKey: '',
-    mode: ''
+    mode: '',
+    result: []
   },
   ready () {
     this.init()
@@ -108,7 +109,6 @@ Component({
               })
             }
             rangeArray = heights
-            console.log(this.data.initValue, 'kkkk')
             if(this.data.initValue) {
               let heightIndex = heights.findIndex((v,i,a) => v.value == this.data.initValue) || 0
               value = [ heightIndex ]

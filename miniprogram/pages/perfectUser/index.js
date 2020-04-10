@@ -24,6 +24,7 @@ Page({
   data: {
     step: 1,
     salary: 2,
+    show: true,
     formData: {
       ideal_describe: '',
       own_describe: ''
@@ -150,6 +151,10 @@ Page({
     }
     this.setData({ list, labels, canClick: labels.length >= 5})
   },
+  toggle() {
+    console.log(this.data)
+    this.setData({show: !this.data.show})
+  },
   bindInput(e) {
     let { formData } = this.data
     let { value } = e.detail
@@ -180,7 +185,8 @@ Page({
   },
   next1() {
     let params = {
-      salary: this.data.salary
+      salary: this.data.salary,
+      show: this.data.show
     }
     updateUserSalaryApi(params).then(() => {
       getUserInfo().then(() => {

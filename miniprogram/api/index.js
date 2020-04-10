@@ -81,16 +81,42 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
               msg.httpStatus = parseInt(msg.httpStatus)
               switch (msg.httpStatus) {
                 case 200:
-                  if (msg.code === 0 || msg.code === 200) {
+                  if (msg.code === 0 || msg.code === 200 || msg.code === 2101) {
                     resolve(msg)
                   } else {
-                    if(msg.code === 2301) {
-                      reject(msg)
-                      wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}&redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
-                    } else {
-                      app.wxToast({title: msg.msg})
-                      reject(msg)            
-                    }                    
+                    switch(msg.code) {
+                      case 2301:
+                        reject(msg)
+                        wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}&redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                        break
+                      case 2102:                        
+                        app.wxConfirm({
+                          title: '无法访问主页',
+                          content: '你已被对方拉黑，无法访问TA的主页。',
+                          confirmText: '好的',
+                          showCancel: false,
+                          confirmBack() {
+                            if(getCurrentPages().length) {
+                              wx.navigateBack({delta: 1})
+                            } else {
+                              wx.reLaunch({url: 'pages/index/index'})
+                            }
+                          }
+                        })
+                        reject(msg)
+                        break
+                      default:
+                        app.wxToast({title: msg.msg})
+                        reject(msg)  
+                        break
+                    }
+                    // if(msg.code === 2301) {
+                    //   reject(msg)
+                    //   wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}&redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                    // } else {
+                    //   app.wxToast({title: msg.msg})
+                    //   reject(msg)            
+                    // }                    
                   }
                   break
                 case 401:

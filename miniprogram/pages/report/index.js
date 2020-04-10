@@ -13,13 +13,17 @@ Page({
   },
   onLoad(options) {
     this.setData({ options })
-  },
-  onShow() {
     getReportListApi().then(({data}) => {
       data.map(v => v.active = false)
       this.setData({reason: data})
     })
   },
+  // onShow() {
+  //   getReportListApi().then(({data}) => {
+  //     data.map(v => v.active = false)
+  //     this.setData({reason: data})
+  //   })
+  // },
   upload() {
     app.chooseImageUpload().then(({ data }) => {
       let { list } = this.data
