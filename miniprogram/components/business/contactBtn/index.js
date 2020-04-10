@@ -30,7 +30,7 @@ Component({
         break
       case 'follow':
         cardData.title = '关注公众号'
-        cardData.img = `${this.data.cdnPath}img_QR code@3x.png`
+        cardData.img = `${this.data.cdnPath}img_QR.png`
         break
     }
     this.setData({cardData})

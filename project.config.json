@@ -72,7 +72,7 @@
 					"id": 0,
 					"name": "聊天室",
 					"pathName": "pages/IM/chat/index",
-					"query": "vkey=x2njbxhm",
+					"query": "vkey=evprmfsh",
 					"scene": null
 				},
 				{
@@ -118,17 +118,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/account/index",
-					"pathName": "pages/account/index",
-					"query": "vkey=tuppkbn8",
-					"scene": null
-				},
-				{
-					"id": -1,
+					"id": 7,
 					"name": "pages/homepage/index",
 					"pathName": "pages/homepage/index",
-					"query": "vkey=ighvcabv",
+					"query": "vkey=co4gpxxo",
 					"scene": null
 				}
 			]

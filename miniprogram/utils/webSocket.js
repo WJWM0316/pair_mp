@@ -6,10 +6,11 @@ class Socket {
     this.receiveMessageTimer = null // 检测接受信息时间的定时器，超过极限时间说明发生异常
     this.keepAliveTimer = null // 检测心跳包的定时器
     this.resetTimes = 0 // 重连次数
-
+    this.hasCreated = false
   }
   create (url, token) {
     this.url = url
+    
     if (this.SocketTask) this.SocketTask.close()
     this.SocketTask = wx.connectSocket({
       url: url,
@@ -23,6 +24,7 @@ class Socket {
           this.login(localstorage.get('token'))
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
+            this.hasCreated = true
             this.onMessage()
             this.checkConnect() // 开启心跳包检测
           }
@@ -73,7 +75,8 @@ class Socket {
       let data = res.data
       if (res.data === 'a') return // 心跳包的不需要监听
       data = JSON.parse(data)
-      if (data.cmd === 'send.im' || data.cmd === 'login.token') return // 后端返回的不监听，只处理融云的
+      
+      if (data.cmd === 'send.im' || data.cmd === 'login.token' || data.msgType === 'RC:ReadNtf') return // 后端返回的不监听，只处理融云的
       if (data.imData && data.imData.content) data.imData.content = JSON.parse(data.imData.content)
       if (callback) callback(data)
     })

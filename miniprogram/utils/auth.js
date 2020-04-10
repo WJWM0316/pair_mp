@@ -3,6 +3,7 @@ import {getMyInfoApi} from '../api/user.js'
 import Socket from './webSocket.js'
 // 主动授权
 const getUserInfoAuth = function(e) {
+  if (e.detail.detail.errMsg.indexof('fail') !== -1) return
   let data = {
     session_token: wx.getStorageSync('sessionToken'),
     iv_key: e.detail.iv,
@@ -82,6 +83,7 @@ const phoneCodeLogin = (data, options) => {
 
 // 微信快捷登录
 const getPhoneNumber =  (e, options) => {
+  if (e.detail.detail.errMsg.indexof('fail') !== -1) return
   let data = {
     session_token: wx.getStorageSync('sessionToken'),
     iv_key: e.detail.iv,

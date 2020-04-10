@@ -9,6 +9,7 @@ import {wxApi, getTitleHeight, socket, loginCallback, localstorage} from './util
 App({
   ...wxApi, // 挂载二次封装的微信API
   onLaunch: function () {
+    this.hasLaunch = true
     const that = this
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -61,7 +62,14 @@ App({
     // getSubscribeApi({hideLoading: true}, this)
     this.getShareInfos()
   },
-  onShow (options) {},
+  onShow (options) {
+    if (socket.hasCreated) {
+      if (socket.SocketTask.readyState !== 1) {
+        let token = localstorage.get('token')
+        socket.create(this.globalData.SOCKETHOST, token)
+      }
+    }
+  },
   globalData: {
     customerPhone: "020-28163063", // 客服电话
     customerWechat: 'zike04', // 客服微信
