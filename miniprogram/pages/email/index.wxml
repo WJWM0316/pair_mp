@@ -1,4 +1,4 @@
-<navBar navBarBg="#F1F4F4"></navBar>
+<!-- <navBar navBarBg="#F1F4F4"></navBar> -->
 <view class="email-page">
   <view class="h1">公司邮箱认证</view>
   <view class="ul">

@@ -41,8 +41,8 @@
       line-height:42rpx;
     }
     .img {
-      width:440rpx;
-      height:242rpx;
+      width:447rpx;
+      // height:242rpx;
       background:rgba(0,0,0,0.3);
       border-radius:10rpx;
       margin: 29rpx auto 50rpx;
@@ -58,6 +58,25 @@
       font-size:32rpx;
       font-weight:700;
       color:#fff;
+      overflow: unset;
+      text{
+        position: relative;
+        z-index: 2;
+      }
+      &:before {
+        width:449rpx;
+        height:88rpx;
+        background:rgba(12,205,218,1);
+        border-radius:54rpx;
+        opacity:0.4;
+        filter:blur(10rpx);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        content: '';
+        display: block;
+        bottom: -10rpx;
+      }
     }
   }
 }

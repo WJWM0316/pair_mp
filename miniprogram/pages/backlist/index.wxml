@@ -3,7 +3,7 @@
     <view class="item" wx:for="{{ backList.list }}" wx:key="id">
       <i-image my-class="avatar" src="{{item.avatarInfo.smallUrl}}"></i-image>
       <view class="name">{{item.nickname}}</view>
-      <i-button my-class="delete" bindtap="removeBack" data-vkey="{{item.vkey}}" data-index="{{index}}">删除</i-button>
+      <i-button my-class="delete" bindtap="removeBack" data-vkey="{{item.vkey}}" data-index="{{index}}">移除</i-button>
     </view>
   </view>
   <view class="no-data" wx:else>

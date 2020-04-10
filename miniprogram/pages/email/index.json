@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "navBar": "../../components/layout/navBar/index"
   },
-  "navigationStyle": "custom"
+  "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#F1F4F4"
 }

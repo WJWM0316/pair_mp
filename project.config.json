@@ -72,7 +72,7 @@
 					"id": 0,
 					"name": "聊天室",
 					"pathName": "pages/IM/chat/index",
-					"query": "vkey=evprmfsh",
+					"query": "vkey=x2njbxhm",
 					"scene": null
 				},
 				{
@@ -118,10 +118,31 @@
 					"scene": null
 				},
 				{
-					"id": 7,
+					"id": -1,
+					"name": "pages/account/index",
+					"pathName": "pages/account/index",
+					"query": "vkey=tuppkbn8",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "pages/homepage/index",
 					"pathName": "pages/homepage/index",
-					"query": "vkey=co4gpxxo",
+					"query": "vkey=ighvcabv",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/methods/index",
+					"pathName": "pages/methods/index",
+					"query": "type=createUser&companyId=1348",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userInfo/index",
+					"pathName": "pages/userInfo/index",
+					"query": "type=createUser&companyId=1348",
 					"scene": null
 				}
 			]

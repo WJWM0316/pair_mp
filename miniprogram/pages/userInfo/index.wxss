@@ -156,11 +156,11 @@
   line-height: 64rpx;
   text-align: center;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 22rpx;
   right: 40rpx;
   font-size: 28rpx;
   color: #0CCDDA;
+  box-sizing: border-box;
 }
 .user-page .desc {
   font-size: 30rpx;
@@ -238,10 +238,10 @@
   padding-bottom: 0;
 }
 .user-page .answer .li {
-  line-height: 1;
+  line-height: 64rpx;
   position: relative;
   display: flex;
-  padding: 36rpx 70rpx 36rpx 40rpx;
+  padding: 22rpx 70rpx 0 40rpx;
 }
 .user-page .answer .my-icon {
   display: inline-block;

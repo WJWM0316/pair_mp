@@ -26,7 +26,7 @@
   float: left;
 }
 .settingWrap .item .item-inner .value {
-  font-size: 30rpx;
+  font-size: 26rpx;
   color: #66666E;
   display: inline-block;
   float: right;
@@ -40,6 +40,7 @@
   line-height: 108rpx;
   height: 108rpx;
   display: inline-block;
+  color: #CFD4D8;
 }
 .settingWrap .item:after {
   content: '';
@@ -63,4 +64,5 @@
   color: #E85274;
   font-size: 30rpx;
   box-shadow: none;
+  font-weight: unset;
 }
