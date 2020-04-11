@@ -1,8 +1,8 @@
 .listWrap {
   width: 100%;
   box-sizing: border-box;
-  background: #EDF1F0;
   min-height: 100vh;
+  background: linear-gradient(transparent, #fff);
 }
 .listWrap .tips {
   width: 100%;
