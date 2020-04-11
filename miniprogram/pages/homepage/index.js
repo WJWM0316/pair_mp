@@ -34,6 +34,11 @@ Page({
   onLoad(options) {
     this.setData({ options })
   },
+  async onShow() {
+    let data = await hasLogin()
+    this.setData({'hasLogin': data})
+    await this.getUser()
+  },
   legalize() {
     let { PAGEPATH } = app.globalData
     let { userInfo } = this.data
@@ -126,11 +131,7 @@ Page({
       })
     })
   },
-  async onShow() {
-    let data = await hasLogin()
-    this.setData({'hasLogin': data})
-    await this.getUser()
-  },
+  
   bindchange(e) {
     let { current } = e.detail
     this.setData({currentIndex: current})
