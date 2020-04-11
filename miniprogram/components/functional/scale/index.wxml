@@ -16,7 +16,7 @@
 			</view>
 			<view class="value">
 				<text class="number">{{ item.key }}</text>
-				<text class="unit">cm</text>
+				<text class="unit" wx:if="{{item.active}}">cm</text>
 			</view>
 		</view>
 		<view class="label-item" style="opacity: 0">00</view>

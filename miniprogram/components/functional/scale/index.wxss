@@ -40,6 +40,10 @@
   position: relative;
   vertical-align: top;
 }
+.scale .label-item .value {
+  display: inline;
+  padding-left: 10rpx;
+}
 .scale .unit {
   font-size: 36rpx;
   color: #1F252B;
