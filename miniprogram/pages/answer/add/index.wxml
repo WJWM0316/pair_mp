@@ -1,5 +1,5 @@
   <view class="answer">
-    <view class="h1"><view class="my-icon"></view>{{info.title}}</view>
+    <view class="h1"><i-image my-class="my-icon" src="{{ CDNPATH }}img_decorate.png" mode="heightFix"></i-image>{{info.title}}</view>
     <view class="box input-ownDescribe">
         <textarea
         placeholder-class="holderStyle"

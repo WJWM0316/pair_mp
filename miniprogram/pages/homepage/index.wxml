@@ -172,10 +172,16 @@
     <view wx:if="{{!isOwner}}" class="report-entry"><text bindtap="report">投诉该用户</text></view>
     <view class="block" style="background-color:{{tabBgColor}}"></view>
     <view class="action-zone">
-      <view class="btn3" wx:if="{{isOwner}}" bindtap="edit"><view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view></view>
+      <i-button my-class="btn3" wx:if="{{isOwner}}" bindtap="edit">
+        <view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view>
+      </i-button>
       <block wx:else>
-        <view class="btn3" bindtap="fetch" wx:if="{{buttonInfo.buttonType === 2}}"><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view></view>
-        <view class="btn3" bindtap="chat" wx:else><view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view></view>
+        <i-button my-class="btn3" bindtap="fetch" wx:if="{{buttonInfo.buttonType === 2}}">
+          <view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>想认识Ta</view>
+        </i-button>
+        <i-button my-class="btn3" bindtap="chat" wx:else>
+          <view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view>
+        </i-button>
       </block>
       <view class="footer-mask"></view>
     </view>

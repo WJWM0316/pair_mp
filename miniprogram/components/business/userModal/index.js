@@ -16,7 +16,10 @@ Component({
       type: Object,
       default: {
         userInfo: {},
-        pickIntention: {}
+        pickIntention: {},
+        albumVerifyInfo: {
+          status: 1
+        }
       }
     }
   },
@@ -64,6 +67,13 @@ Component({
           this.setData({show: !this.data.show}, () => {
             wx.navigateTo({
               url: `${PAGEPATH}/account/index`
+            })
+          })
+          break
+        case 'album':
+          this.setData({show: !this.data.show}, () => {
+            wx.navigateTo({
+              url: `${PAGEPATH}/album/index`
             })
           })
           break

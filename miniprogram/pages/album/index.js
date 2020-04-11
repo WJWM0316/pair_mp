@@ -88,7 +88,7 @@ Page({
     let photo = photoIds.join(',')
     addAlbumApi({cover: cover.id, photo}).then(res => {
       getUserInfo().then(() => {
-        this.init()
+        this.setData({result: {}}, () => this.init())
       })
       // wx.navigateBack({ delta: 1 })
     }).catch(err => app.wxToast({title: err.msg}))

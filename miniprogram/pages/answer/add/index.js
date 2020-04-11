@@ -9,7 +9,8 @@ Page({
     info: {
       body: ''
     },
-    options: {}
+    options: {},
+    CDNPATH: app.globalData.CDNPATH
   },
   onLoad(options) {
     let info = wx.getStorageSync('question')

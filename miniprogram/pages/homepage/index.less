@@ -530,6 +530,10 @@
       text-align: center;
       display: inline-block;
       border: 0;
+      border: unset;
+      outline: unset;
+      box-shadow: unset;
+      overflow: unset;
       &:before {
         width:288rpx;
         height:88rpx;
@@ -540,10 +544,13 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 53rpx;
+        bottom: -7rpx;
         content: '';
         display: block;
         border: 0;
+      }
+      &:after {
+        display: none
       }
     }
     .cover {

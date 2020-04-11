@@ -190,7 +190,8 @@
     <view class="box" wx:if="{{userAnswerList.length}}">
       <view class="item" wx:for="{{ userAnswerList }}" wx:key="index" bindtap="updateQuestion" data-info="{{ item }}">
         <view class="h1">
-          <view class="my-icon"></view>{{item.title}}
+          <i-image my-class="my-icon" src="{{ CDNPATH }}img_decorate.png" mode="heightFix"></i-image>
+          {{item.title}}
           <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
         </view>
         <text class="h2">{{item.body}}</text>

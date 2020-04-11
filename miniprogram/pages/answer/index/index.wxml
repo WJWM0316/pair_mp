@@ -1,5 +1,5 @@
 <view class="answer">
-    <view class="h1"><view class="my-icon"></view>选择一个问题</view>
+    <view class="h1"><i-image my-class="my-icon" src="{{ CDNPATH }}img_decorate.png" mode="heightFix"></i-image>选择一个问题</view>
     <view class="ul">
         <view class="li" wx:for="{{ list }}" wx:key="index" bindtap="onClick" data-info="{{item}}">{{ item.title }}</view>
     </view>

@@ -520,6 +520,10 @@
   text-align: center;
   display: inline-block;
   border: 0;
+  border: unset;
+  outline: unset;
+  box-shadow: unset;
+  overflow: unset;
 }
 .homepage .action-zone .btn3:before {
   width: 288rpx;
@@ -531,10 +535,13 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 53rpx;
+  bottom: -7rpx;
   content: '';
   display: block;
   border: 0;
+}
+.homepage .action-zone .btn3:after {
+  display: none;
 }
 .homepage .action-zone .cover {
   width: 324rpx;
