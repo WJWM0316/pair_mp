@@ -51,7 +51,7 @@
   left: 0;
   right: 0;
   bottom: 198rpx;
-  z-index: 2;
+  z-index: 3;
 }
 .step1 .p11 .btn-set {
   display: inline;
