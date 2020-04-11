@@ -41,6 +41,7 @@
   font-size: 22rpx;
   line-height: 30rpx;
   font-weight: 700;
+  margin-top: 6rpx;
 }
 .tabBar .tabBar-content .tabBar-item .text.selected {
   color: #0CCDDA;
@@ -57,7 +58,7 @@
   height: 108rpx;
 }
 .tabBar .tabBar-content .tabBar-item.center .text {
-  margin-top: -18rpx;
+  margin-top: -16rpx;
 }
 .tabBar .tabBar-content .tabBar-item.center .text.selected {
   color: #F46BA1;

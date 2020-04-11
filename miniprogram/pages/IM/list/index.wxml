@@ -4,15 +4,16 @@
     <view class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</view>
     <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
   </button>
-  <contact-btn class="" wx:else>
+  <view class="tips" wx:elif="{{userInfo.wechatInfo && userInfo.wechatInfo.officialId !== '1'}}" hidden="{{!hasTips}}" bindtap = "follow">
     <view slot="content">
       <text class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</text>
       <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
     </view>
-  </contact-btn>
+  </view>
+  <view class="noTips" wx:else></view>
   <view class="noTips" hidden="{{hasTips}}"></view>
   <view class="scroll-view" style="min-height:calc({{viewAreaHeight}}px - 139rpx)">
-    <block wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index0">
+    <block wx:if="{{messageList.length}}" wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index0">
       <swipe-out
         wx:for="{{list}}"
         wx:key="id"
@@ -29,7 +30,7 @@
             <i-image my-class="avatarImg" borderRadius="50%" src="{{item.imFromUser.avatarUrl}}"></i-image>
           </view>
           <view class="messageContent">
-            <view class="name">{{item.imFromUser.name}}<view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{item.lastMsgTimeText}}</view></view>
+            <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{item.lastMsgTimeText}}</view></view>
             <view class="content">{{item.lastMsg}}</view>
             <view class="messageNum" wx:if="{{item.unreadMsgNum}}">{{item.unreadMsgNum}}</view>
           </view>
@@ -39,6 +40,13 @@
         </view>
       </swipe-out>
     </block>
+    <block wx:if="{{!messageList.length}}">
+      <view class="empty">
+        <i-image my-class="img" src="{{cdnPath}}img_im_empty.png"></i-image>
+        <i-button my-class="btn" bindtap = "pick">Pick一下</i-button>
+      </view>
+    </block>
   </view>
 </view>
 <tabBar tabBgColor="#fff"></tabBar>
+<popup id="popup"></popup>

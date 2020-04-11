@@ -86,15 +86,19 @@
   position: relative;
 }
 .listWrap .scroll-view .scroll-item .messageContent .name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-wrap: normal;
   padding: 8rpx 0;
   font-size: 32rpx;
   font-weight: 700;
   color: #1F252B;
   line-height: 40rpx;
+}
+.listWrap .scroll-view .scroll-item .messageContent .name .name-box {
+  display: inline-block;
+  max-width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
 }
 .listWrap .scroll-view .scroll-item .messageContent .name .time {
   float: right;
@@ -114,6 +118,7 @@
   font-weight: 700;
   color: #F46BA1;
   margin-left: 16rpx;
+  margin-top: 5rpx;
   vertical-align: top;
 }
 .listWrap .scroll-view .scroll-item .messageContent .name .label.square {
@@ -161,4 +166,25 @@
   color: #fff;
   font-size: 32rpx;
   line-height: 100rpx;
+}
+.listWrap .scroll-view .empty {
+  width: 100%;
+}
+.listWrap .scroll-view .empty .img {
+  width: 380rpx;
+  height: 240rpx;
+  display: block;
+  margin: 164rpx auto 46rpx;
+}
+.listWrap .scroll-view .empty .btn {
+  width: 351rpx;
+  height: 108rpx;
+  background: #F46BA1;
+  box-shadow: 0rpx 16rpx 30rpx 0rpx #E85274;
+  border-radius: 54rpx;
+  border: none;
+  line-height: 108rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #fff;
 }

@@ -85,12 +85,16 @@
         height: 100rpx;
         position: relative;
         .name {
-          .setEllipsis();
           padding: 8rpx 0;
           font-size:32rpx;
           font-weight:700;
           color:@text-color-1;
           line-height:40rpx;
+          .name-box {
+            display: inline-block;
+            max-width: 280rpx;
+            .setEllipsis();
+          }
           .time {
             float: right;
             font-size:24rpx;
@@ -109,6 +113,7 @@
             font-weight:700;
             color: @vice-primary-color-2;
             margin-left: 16rpx;
+            margin-top: 5rpx;
             vertical-align: top;
             &.square {
               color: @primary-color;
@@ -159,7 +164,27 @@
         }
       }
     }
-    
+    .empty {
+      width: 100%;
+      .img {
+        width: 380rpx;
+        height: 240rpx;
+        display: block;
+        margin: 164rpx auto 46rpx;
+      }
+      .btn {
+        width:351rpx;
+        height:108rpx;
+        background: @vice-primary-color-2;
+        box-shadow:0rpx 16rpx 30rpx 0rpx @vice-primary-color-3;
+        border-radius:54rpx;
+        border: none;
+        line-height: 108rpx;
+        font-size: 28rpx;
+        font-weight: 700;
+        color: #fff;
+      }
+    }
   }
   
 }

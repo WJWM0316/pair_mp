@@ -45,6 +45,9 @@
     "bottomStatus": "./components/layout/bottomStatus/index",
     "refreshStatus": "./components/layout/refreshStatus/index"
   },
+  "networkTimeout": {
+    "request": 15000
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

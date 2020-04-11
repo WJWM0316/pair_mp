@@ -94,7 +94,7 @@ Page({
       if (!res.data.chatInfo || (res.data.chatInfo && res.data.chatInfo.fromVkey === this.data.mineUserInfo.vkey)) {
         showDebutWord = true
       } 
-      if (res.data.chatInfo && res.data.chatInfo.fromVkey !== this.data.mineUserInfo.vkey) {
+      if (res.data.chatInfo && res.data.chatInfo.toVkey === this.data.mineUserInfo.vkey) {
         if (res.data.chatInfo.source === 2) showSystemHint = true
       }
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data, showDebutWord, showSystemHint})

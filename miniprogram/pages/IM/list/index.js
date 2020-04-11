@@ -8,7 +8,8 @@ Page({
    */
   data: {
     hasTips: true,
-    userInfo: app.globalData.userInfo,
+    userInfo: 0,
+    cdnPath: app.globalData.CDNPATH,
     messageList: [],
     viewAreaHeight: 0,
     lockIndex: null
@@ -18,13 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (!app.globalData.viewAreaHeight) {
-      app.getTabHInit = () => {
-        this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-      }
-    } else {
-      this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-    }
+    this.setData({'userInfo': app.globalData.userInfo})
+    console.log(this.data.userInfo, 22222222222222)
   },
   getList () {
     getRelationlistApi({count: 100, hideLoding: true}).then(res => {
@@ -53,6 +49,12 @@ Page({
         index0= e.currentTarget.dataset.index0
     deleteMsgApi({vkey: this.data.messageList[index0][index].vkey, hideLoding: true})
     this.setData({[`messageList[${index0}][${index}]`]: ''})
+  },
+  pick () {
+    wx.navigateTo({url: '/pages/index/index'})
+  },
+  follow () {
+    this.selectComponent('#popup').show()
   },
   onGotUserInfo (e) {
     getUserInfoAuth(e)

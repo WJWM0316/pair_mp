@@ -2,7 +2,8 @@
   "navigationBarTextStyle":"white",
   "usingComponents": {
     "swipe-out": "../../../components/layout/swipeout",
-    "contact-btn": "../../../components/business/contactBtn"
+    "contact-btn": "../../../components/business/contactBtn",
+    "popup": "../../../components/business/popup"
   },
   "navigationStyle": "custom"
 }
