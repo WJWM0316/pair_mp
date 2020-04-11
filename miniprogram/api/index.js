@@ -138,7 +138,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                           confirmText: '好的',
                           showCancel: false,
                           confirmBack() {
-                            wx.reLaunch({url: 'pages/index/index'})
+                            wx.reLaunch({url: '/pages/index/index'})
                           }
                         })
                         reject(msg)
