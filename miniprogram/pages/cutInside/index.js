@@ -3,7 +3,7 @@ import WeCropper from '../../components/functional/we-cropper/we-cropper.js'
 // import {APPLICANTHOST, RECRUITERHOST, COMMON, VERSION} from '../../config.js'
 let device = wx.getSystemInfoSync()
 let width = device.windowWidth
-let height = device.windowHeight
+let height = device.windowHeight - 60
 let app = getApp()
 Page({
   data: {

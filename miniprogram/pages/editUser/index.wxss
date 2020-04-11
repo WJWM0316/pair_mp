@@ -146,3 +146,9 @@
   transform: translateY(-50%);
   font-size: 17rpx;
 }
+.scroll-view .color01 {
+  color: #F46BA1 !important;
+}
+.scroll-view .color02 {
+  color: #F46BA1;
+}

@@ -226,11 +226,13 @@ Page({
     let params = {
       own_describe: formData.own_describe.trim()
     }
-    if(!ownDescribeReg.test(params.own_describe)) {
+    console.log(ownDescribeReg.test(params.own_describe), 'hhhh')
+    if(params.own_describe.length < 5) {
       formData['own_describe'] = params.own_describe
       this.setData({ formData }, () => app.wxToast({title: '自我描述至少需要5个字'}))
       return
     }
+    
     updateUserDescribeApi(params).then(() => {
       getUserInfo().then(() => {
         this.setData({ step: 4, canClick: false })
@@ -242,7 +244,7 @@ Page({
     let params = {
       ideal_describe: formData.ideal_describe.trim()
     }
-    if(!idealDescribeReg.test(params.ideal_describe)) {
+    if(params.ideal_describe.length < 5) {
       formData['ideal_describe'] = params.ideal_describe
       this.setData({ formData }, () => app.wxToast({title: '理想型描述至少需要5个字'}))
       return
