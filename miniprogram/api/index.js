@@ -30,15 +30,36 @@ let closeLoading = () => {
 }
 
 // 设置头部信息
-const setHeader = () => {
+const setHeader = (url) => {
   // 设置请求域名
   !APIHOST ? APIHOST = app.globalData.APIHOST : null
 
   // 设置授权信息
   token = localstorage.get('token')
   sessionToken = localstorage.get('sessionToken')
-  addHttpHead['Authorization'] = token
-  addHttpHead['Authorization-Wechat'] = sessionToken
+
+  if (sessionToken && !token) {
+    addHttpHead['Authorization-Wechat'] = sessionToken
+  } else {
+    delete addHttpHead['Authorization']
+  }
+  if (token) {
+    if (url !== '/bind/register' 
+        && url !== '/bind/quick_login' 
+        && url !== '/bind/quick_login' 
+        && url !== '/wechat/login/mini' 
+        && url !== '/wechat/oauth/mini'
+      ) {
+      addHttpHead['Authorization'] = token
+    } else {
+      delete addHttpHead['Authorization']
+    }
+  } else {
+    delete addHttpHead['Authorization']
+  }
+  if (sessionToken) {
+    addHttpHead['Authorization-Wechat'] = sessionToken
+  }
 }
 
 // 清楚授权相关凭证
@@ -70,12 +91,13 @@ wx.onNetworkStatusChange(function (res) {
     }
   }
 })
+
 export const request = ({method = 'post', url, host, data = {}, instance, loadingContent = '加载中...'}) => {
   // onLaunch 的时候获取不到getApp() 需要传递this过来
   app = !getApp() ? instance : getApp()
 
   return new Promise((resolve, reject) => {
-    setHeader()
+    setHeader(url)
     // 请求中间件
     const promise = () => {
       // 开启菊花图

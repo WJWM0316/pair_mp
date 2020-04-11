@@ -25,7 +25,7 @@ Page({
   getList () {
     getRelationlistApi({count: 100, hideLoding: true}).then(res => {
       let index = this.data.messageList.length ? this.data.messageList.length - 1 : 0
-      this.setData({[`messageList[${index}]`]: res.data, hasRequire: true})
+      this.setData({messageList: res.data, hasRequire: true})
     })
   },
   getSwipeStatus (e) {
@@ -45,10 +45,9 @@ Page({
     this.setData({'hasTips': false})
   },
   remove (e) {
-    let index = e.currentTarget.dataset.index,
-        index0= e.currentTarget.dataset.index0
-    deleteMsgApi({vkey: this.data.messageList[index0][index].vkey, hideLoding: true})
-    this.setData({[`messageList[${index0}][${index}]`]: ''})
+    let index = e.currentTarget.dataset.index
+    deleteMsgApi({vkey: this.data.messageList[index].vkey, hideLoding: true})
+    this.setData({[`messageList[${index}]`]: ''})
   },
   pick () {
     wx.navigateTo({url: '/pages/index/index'})

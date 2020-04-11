@@ -172,7 +172,7 @@
 }
 .listWrap .scroll-view .empty .img {
   width: 380rpx;
-  height: 240rpx;
+  height: 340rpx;
   display: block;
   margin: 164rpx auto 46rpx;
 }
@@ -180,11 +180,12 @@
   width: 351rpx;
   height: 108rpx;
   background: #F46BA1;
-  box-shadow: 0rpx 16rpx 30rpx 0rpx #E85274;
+  box-shadow: 0px 16rpx 30px 0px #ffbad5;
   border-radius: 54rpx;
   border: none;
   line-height: 108rpx;
   font-size: 28rpx;
   font-weight: 700;
   color: #fff;
+  overflow: visible;
 }

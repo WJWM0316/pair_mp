@@ -6,17 +6,17 @@
   </button>
   <view class="tips" wx:elif="{{userInfo.wechatInfo && userInfo.wechatInfo.officialId !== '1'}}" hidden="{{!hasTips}}" bindtap = "follow">
     <view slot="content">
-      <text class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</text>
+      <view class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</view>
       <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
     </view>
   </view>
   <view class="noTips" wx:else></view>
   <view class="noTips" hidden="{{hasTips}}"></view>
-  <view class="scroll-view" style="min-height:calc({{viewAreaHeight}}px - 139rpx)">
+  <view class="scroll-view" style="min-height:{{viewAreaHeight}}px">
     <block wx:if="{{hasRequire}}">
-      <block wx:if="{{messageList.length}}" wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index0">
+      <block wx:if="{{messageList.length}}">
         <swipe-out
-          wx:for="{{list}}"
+          wx:for="{{messageList}}"
           wx:key="id"
           operateWidth="{{130}}"
           toggle="{{lockIndex === index ? true : false}}"
@@ -28,7 +28,7 @@
         >
           <view slot="content" class="scroll-item">
             <view class="avatar {{item.online ? 'online' : ''}}">
-              <i-image my-class="avatarImg" borderRadius="50%" src="{{item.imFromUser.avatarUrl}}"></i-image>
+              <i-image my-class="avatarImg" src="{{item.imFromUser.avatarUrl}}"></i-image>
             </view>
             <view class="messageContent">
               <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{item.lastMsgTimeText}}</view></view>
@@ -36,7 +36,7 @@
               <view class="messageNum" wx:if="{{item.unreadMsgNum}}">{{item.unreadMsgNum}}</view>
             </view>
           </view>
-          <view slot="button" class="rightBtn"  catchtap = "remove" data-index0="{{index0}}" data-index="{{index}}">
+          <view slot="button" class="rightBtn"  catchtap = "remove" data-index="{{index}}">
             <i-button my-class="closeBtn"><i class="closeMessage iconfont icon_shanchu"></i></i-button>
           </view>
         </swipe-out>
