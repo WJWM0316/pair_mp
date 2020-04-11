@@ -4,7 +4,8 @@ import {
 let app = getApp()
 Page({
   data: {
-    list: []
+    list: [],
+    CDNPATH: app.globalData.CDNPATH
   },
   onShow() {
     getQuestionListApi().then(({ data }) => {

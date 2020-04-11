@@ -45,7 +45,11 @@
       
     </view>
     <view class="footer">
-      <view class="btn btn-add" bindtap="upload">
+      <view class="btn btn-add" bindtap="upload" wx:if="{{albumVerifyInfo.status === 1 && userInfo.userAlbumList.length < 9}}">
+        <view class="btn-cover">添加</view>
+        <view class="shadow"></view>
+      </view>
+      <view class="btn btn-add" bindtap="upload" wx:if="{{albumVerifyInfo.status !== 1 && userInfo.userAlbumTempList.length < 9}}">
         <view class="btn-cover">添加</view>
         <view class="shadow"></view>
       </view>

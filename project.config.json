@@ -144,6 +144,25 @@
 					"pathName": "pages/userInfo/index",
 					"query": "type=createUser&companyId=1348",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/perfectUser/index",
+					"pathName": "pages/perfectUser/index",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/square/index",
+					"pathName": "pages/square/index",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/createUser/index",
+					"pathName": "pages/createUser/index",
+					"query": "step=3",
+					"scene": null
 				}
 			]
 		}

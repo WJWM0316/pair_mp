@@ -1,4 +1,9 @@
 import {localstorage, hasLogin} from "../../../utils/index.js"
+
+import {
+  getUserInfo
+} from '../../../utils/auth'
+
 const app =  getApp();
 Component({
   options: {
@@ -35,18 +40,7 @@ Component({
   },
   pageLifetimes: {
     async show() {
-      let callback = () => {
-        let route = getCurrentPages()
-        let  { showBackBtn } = this.data
-        let { userInfo } = app.globalData
-        showBackBtn = route.length > 1 ? true : false
-        this.setData({userInfo, showBackBtn})
-      }
-      if (app.globalData.userInfo) {
-        callback()
-      } else {
-        app.getUserInfo = () => callback()
-      }
+      this.init()
     }
   },
   /**
@@ -68,16 +62,33 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    init() {
+      let callback = () => {
+        let route = getCurrentPages()
+        let  { showBackBtn } = this.data
+        let { userInfo } = app.globalData
+        showBackBtn = route.length > 1 ? true : false
+        this.setData({userInfo, showBackBtn})
+      }
+      if (app.globalData.userInfo) {
+        callback()
+      } else {
+        app.getUserInfo = () => callback()
+      }
+    },
     openPicker() {
       if (!this.data.hasLogin) {
         this.setData({showGender: !this.data.showGender})
         this.triggerEvent('genderToggle', this.data.showGender)
         return
       }
-      let userInfo = this.data.userInfo
-      if (userInfo && userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step === 9) {
-        this.setData({show: true})
-      }
+      getUserInfo().then(() => {
+        let userInfo = this.data.userInfo
+        this.init()
+        if (userInfo && userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step === 9) {
+          this.setData({show: true})
+        }
+      })      
     },
     choiceGender () {
       this.openPicker()

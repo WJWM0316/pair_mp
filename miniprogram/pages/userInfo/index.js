@@ -10,7 +10,8 @@ Page({
     questionList: [],
     userLabelList: [],
     isAllQuestion: 0,
-    albumVerifyInfo: {}
+    albumVerifyInfo: {},
+    CDNPATH: app.globalData.CDNPATH
   },
   onShow() {
     let callback = () => {

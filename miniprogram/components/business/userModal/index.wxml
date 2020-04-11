@@ -46,14 +46,14 @@
         <view class="btn" bindtap="todoAction" data-action="update">立即完善</view>
       </view>
 
-      <view class="upload" wx:if="{{ albumVerifyInfo.status === 2 }}">
+      <view class="upload" wx:if="{{ infos.albumVerifyInfo.status === 2 }}">
         <view class="bg1"></view>
-        <!-- <view class="bg2"></view> -->
+        <i-image my-class="bg2" src="{{ CDNPATH }}bg_my_card_red.png" mode="widthFix"></i-image>
         <view class="content">
           <view class="h1">相册审核不通过</view>
           <view class="h2">没法更新你最新的帅照哦～</view>
         </view>
-        <view class="btn" bindtap="upload">重新上传</view>
+        <view class="btn" bindtap="todoAction" data-action="album">重新上传</view>
       </view>
 
       <view class="ul">
