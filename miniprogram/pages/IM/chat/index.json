@@ -3,9 +3,9 @@
     "msg-image": "../../../components/message/image",
     "msg-audio": "../../../components/message/audio",
     "msg-video": "../../../components/message/video",
-    
     "chat-header": "./components/header/index",
     "chat-footer": "./components/footer/index",
-    "chat-bubble": "./components/bubble/index"
+    "chat-bubble": "./components/bubble/index",
+    "debutWord": "./components/debutWord/index"
   }
 }

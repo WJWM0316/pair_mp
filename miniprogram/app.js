@@ -54,21 +54,10 @@ App({
         if (token) {
           let res = {data: {userInfo: {token}}}
           loginCallback(res)
-        } else {
-          that.globalData['hasLogin'] = false
-          if (that.loginInit) that.loginInit()
         }
-      },
-      fail () {
-        wx.removeStorageSync('token')
-        wx.removeStorageSync('sessionToken')
       }
     })
-    getConfigMiniProgramApi({hideLoading: true}, this).then(({ data }) => {
-      let { subscribeConfig } = data.miniProgram
-      Object.assign(this.globalData, { subscribeConfig })
-    })
-    // getSubscribeApi({hideLoading: true}, this)
+    this.getConfigMiniProgram()
     this.getShareInfos()
   },
   onShow (options) {
@@ -91,6 +80,12 @@ App({
   getShareInfos () {
     shareInfosApi({hideLoading: true}, this).then(({data}) => {
       this.globalData.shareInfos = data
+    })
+  },
+  getConfigMiniProgram () {
+    getConfigMiniProgramApi({hideLoading: true}, this).then(({ data }) => {
+      let { subscribeConfig } = data.miniProgram
+      Object.assign(this.globalData, { subscribeConfig })
     })
   }
 })

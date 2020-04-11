@@ -83,7 +83,6 @@ Component({
       this.openPicker()
     },
     hasSexChange () {
-      console.log(2222222222)
       this.triggerEvent('hasSexChange')
     },
     reback() {

@@ -26,17 +26,15 @@ Component({
     let InnerAudioContext = app.globalData.InnerAudioContext
     // 为了填坑，在开发工具上onTimeUpdate回调正常，不要删除
     InnerAudioContext.onCanplay(function (e) {
-      console.log('勿删', InnerAudioContext.duration)
-      // if (that.curItem()) {
-      //   console.log('勿删', InnerAudioContext.duration)
-      // }
+      if (that.curItem()) {
+        console.log('勿删', InnerAudioContext.duration)
+      }
     })
     
     // 监听暂停
     InnerAudioContext.onStop((e) => {
       console.log('监听当前的音乐————停止了')
       if (that.data.playing) that.setData({'playing': false})
-      
       // if (that.curItem()) {
       //   console.log('监听当前的音乐————停止了')
       //   if (that.data.playing) that.setData({'playing': false})
@@ -44,6 +42,7 @@ Component({
     })
     // 监听结束
     InnerAudioContext.onEnded((e) => {
+      console.log('监听当前的音乐————结束了')
       if (that.data.playing) that.setData({'playing': false})
       // if (that.curItem()) {
       //   if (that.data.playing) that.setData({'playing': false})
@@ -63,7 +62,6 @@ Component({
       InnerAudioContext.stop()
       app.globalData.InnerAudioContext.src = this.data.message.fileUrl
       this.fileUrl = app.globalData.InnerAudioContext.src
-      console.log(this.data.message.fileUrl, 333333333333333333)
       InnerAudioContext.play()
       // 播放过程
       InnerAudioContext.onTimeUpdate((e) => {
@@ -84,7 +82,6 @@ Component({
           InnerAudioContext.stop()
         }
       } else {
-        console.log(12121212)
         InnerAudioContext.stop()
         InnerAudioContext.src = this.data.message.fileUrl
         this.audioPlay(InnerAudioContext)

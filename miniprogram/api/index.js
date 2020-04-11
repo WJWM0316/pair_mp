@@ -176,11 +176,10 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         }
       })
     }
-
     // 拦截器
     const controlFun = () => {
-      // 静默登录拦截
-      if (!sessionToken) {
+      // 没有静默登录的必须走一遍静默登录
+      if (!app.globalData.hasOwnProperty('hasLogin')) {
         if (!noAuthRequests.length) {
           wx.login({
             success: function (res0) {
@@ -213,18 +212,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         promise()
       }
     }
-
-    
-    // 判断微信登录状态
-    wx.checkSession({
-      success () {
-        controlFun()
-      },
-      fail () {
-        removeAuth()
-        controlFun()
-      }
-    })
+    controlFun()
   })
 }
 

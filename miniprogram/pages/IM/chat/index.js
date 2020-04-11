@@ -8,6 +8,7 @@ Page({
   data: {
     messageList: [],
     selectIndex: null, // 选择发送类型
+    showDebutWord: false,
     longpressData: {},
     othersUserInfo: {},
     mineUserInfo: {},
@@ -23,12 +24,6 @@ Page({
   onLoad: function (options) {
     this.options = options
     this.setData({options})
-  },
- 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
     socket.onMessage((res) => {
       // 如果是自己发的消息IM回调了需要更替成IM的数据
       if (res.imFromUser.vkey === this.options.vkey || res.imToUser.vkey === this.options.vkey
@@ -42,6 +37,7 @@ Page({
       }
     })
   },
+
   // 发送数据， 先显示再界面上
   sendMsg (e) {
     const that = this
@@ -71,8 +67,8 @@ Page({
     app.globalData.lockonShow = false
   },
   getChatMsg () {
-    getChatDetailApi({vkey: this.options.vkey, count: 11}).then(res => {
-      this.setData({messageList: res.data}, () => {
+    getChatDetailApi({vkey: this.options.vkey, count: 100}).then(res => {
+      this.setData({messageList: res.data, showDebutWord: true}, () => {
         wx.nextTick(()=>{
           wx.pageScrollTo({
             duration: 1,
@@ -84,6 +80,9 @@ Page({
   },
   getImDetail () {
     getImTopDeatilApi({vkey: this.options.vkey}).then(res => {
+      wx.setNavigationBarTitle({
+        title: res.data.userInfo.nickname
+      })
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data})
     })
   },
@@ -194,6 +193,10 @@ Page({
   // 打开开场白
   bindtapMpre (e) {
     this.setData({'selectIndex': 4})
+  },
+  // 选择开场白赋值给输入框
+  selectResult (e) {
+    this.selectComponent('#footer').selectResult(e)
   },
   /**
    * 生命周期函数--监听页面隐藏

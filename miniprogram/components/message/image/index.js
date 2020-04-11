@@ -45,6 +45,14 @@ Component({
           selector: `#bottomBlock`
         })
       })
+    },
+    previewImage () {
+      app.globalData.lockonShow = true
+      let that = this
+      wx.previewImage({
+        current: that.data.message.imageUri,
+        urls: [that.data.message.imageUri]
+      })
     }
   }
 })

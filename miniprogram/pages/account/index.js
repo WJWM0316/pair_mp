@@ -62,7 +62,7 @@ Page({
   },
   sign() {
     userSignApi().then(({data}) => {
-      this.setData({'awardPopData': data.popup}, () => {
+      this.setData({'awardPopData': data.popups}, () => {
         this.selectComponent('#awardPopUp').show()
       })
       this.getCurrentWeekSignIn()

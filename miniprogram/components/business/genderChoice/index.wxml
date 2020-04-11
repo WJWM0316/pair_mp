@@ -1,9 +1,9 @@
 <view class="genderChoice" catchmove="" hidden="{{show}}" style="height: calc(100vh - {{navBarHeight}}px - 10rpx); top: calc({{navBarHeight}}px + 10rpx)">
   <view class="content">
     <view class="title">你想认识</view>
-    <i-button my-class="btn btn1" bind:click="setPickerIntention" data-sex="{{1}}"><i class="icon iconfont icon_nan"></i>男</i-button>
-    <i-button my-class="btn btn2" bind:click="setPickerIntention" data-sex="{{2}}"><i class="icon iconfont icon_nv"></i>女</i-button>
-    <view class="unlimited" bind:click="setPickerIntention" data-sex="{{0}}"><text>不限性别</text></view>
+    <i-button my-class="btn btn1" bindtap="setPickerIntention" data-sex="{{1}}"><i class="icon iconfont icon_nan"></i>男</i-button>
+    <i-button my-class="btn btn2" bindtap="setPickerIntention" data-sex="{{2}}"><i class="icon iconfont icon_nv"></i>女</i-button>
+    <view class="unlimited" bindtap="setPickerIntention" data-sex="{{0}}"><text>不限性别</text></view>
   </view>
   <guide-login open="{{true}}" type="navType"></guide-login>
 </view>

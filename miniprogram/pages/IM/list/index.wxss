@@ -6,9 +6,10 @@
 .listWrap .tips {
   width: 100%;
   height: 295rpx;
-  background: #0CCDDA;
+  background: #0CCDDA url('https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/img_notice_banner.png') top right no-repeat;
+  background-size: 211rpx 140rpx;
   margin-bottom: -156rpx;
-  padding: 25rpx 202rpx 0 40rpx;
+  padding: 35rpx 202rpx 0 40rpx;
   box-sizing: border-box;
   position: relative;
   text-align: left;
@@ -107,7 +108,6 @@
   height: 30rpx;
   text-align: center;
   line-height: 30rpx;
-  padding: 5rpx 0;
   background: #FDF0F5;
   border-radius: 15rpx 15rpx 15rpx 0rpx;
   font-size: 20rpx;
@@ -139,7 +139,7 @@
   position: absolute;
   width: 36rpx;
   height: 36rpx;
-  background: #E85274;
+  background: #F46BA1;
   right: 0rpx;
   bottom: 9rpx;
   border-radius: 50%;

@@ -4,5 +4,6 @@
   my-class="msg-image"
   styleString="{{styleString}}" 
   showMenu="{{false}}" 
-  src="{{message.imageUri}}" 
+  src="{{message.imageUri}}"
+  catchtap = "previewImage"
   bindloadSuccess="loadSuccess"></i-image>
