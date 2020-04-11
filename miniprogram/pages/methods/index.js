@@ -11,20 +11,7 @@ Page({
     email: '',
     emailSuffix: '',
     show: false,
-    itemList: [
-      {
-        text: '从相册选择相片',
-        action: 'photo'
-      },
-      {
-        text: '拍摄',
-        action: 'camera'
-      },
-      {
-        text: '取消',
-        action: 'cancle'
-      }
-    ],
+    itemList: [],
     formData: {}
   },
   onLoad(options) {
@@ -41,15 +28,30 @@ Page({
   hasCompanyEmail(options) {
     hasCompanyEmailApi({company_id: options.companyId}).then(({ data }) => {
       let showEmailEntry = data.emailSuffix ? data.emailSuffix : false
-      this.setData({showEmailEntry, ...data})
+      let { formData } = this.data
+      formData = Object.assign(formData, {company_id: options.companyId})
+      this.setData({showEmailEntry, ...data, formData})
     }).catch(err => app.wxToast({title: err.msg}))
   },
   stopPageScroll() {
 	  return false
   },
   open(e) {
-    let params = e
-    this.setData({ show: true})
+    let itemList = [
+      {
+        text: '从相册选择相片',
+        action: 'photo'
+      },
+      {
+        text: '拍摄',
+        action: 'camera'
+      },
+      {
+        text: '取消',
+        action: 'cancle'
+      }
+    ]
+    this.setData({ show: true, itemList})
   },
   verifyCareer(attach_id) {
     let { PAGEPATH } = app.globalData

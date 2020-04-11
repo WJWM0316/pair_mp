@@ -53,7 +53,7 @@
             >
             <view class="ul ul{{ pIndex }}" wx:for="{{ list }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
                 <view class="key">
-                    <i class="icon iconfont {{pItem.iconName}}"></i>{{ pItem.name }}
+                    <i class="icon iconfont {{pItem.iconName}}"></i><text class="label-name">{{ pItem.name }}</text>
                 </view>
                 <view
                     class="li {{ item.active ? 'active' : ''}}"
@@ -62,7 +62,7 @@
                     data-child="{{ index }}"
                     wx:key="index"
                     bindtap="check">
-                    {{ item.name }}
+                    <view class="text1">{{ item.name }}</view>
                 </view>
             </view>
         </view>
