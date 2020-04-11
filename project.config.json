@@ -158,10 +158,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 13,
 					"name": "pages/createUser/index",
 					"pathName": "pages/createUser/index",
-					"query": "step=3",
+					"query": "step=1",
 					"scene": null
 				}
 			]

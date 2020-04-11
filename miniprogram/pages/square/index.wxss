@@ -149,6 +149,8 @@
   margin-left: 12rpx;
   display: inline-block;
   vertical-align: text-bottom;
+  position: relative;
+  top: -2rpx;
 }
 .no-data {
   width: 380rpx;
@@ -159,6 +161,12 @@
   font-size: 28rpx;
   color: #66666e;
   line-height: 36rpx;
+}
+.no-data .tips {
+  margin-top: 36rpx;
+}
+.no-data .img {
+  display: block;
 }
 .index100 {
   position: fixed;

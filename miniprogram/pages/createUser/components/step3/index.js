@@ -42,9 +42,10 @@ Component({
   methods: {
     getPickerData(e) {
       let { formData } = this.data
-      formData.occupationDesc = `${e.detail.p.name} - ${e.detail.name}`
-      formData.occupation = e.detail.labelId
-      formData.companyRequired = e.detail.companyRequired
+      let {child, parent} = e.detail
+      formData.occupationDesc = `${parent.name} - ${child.name}`
+      formData.occupation = child.labelId
+      formData.companyRequired = child.companyRequired
       this.setData({ formData, canClick: true })
     },
     legalize() {
