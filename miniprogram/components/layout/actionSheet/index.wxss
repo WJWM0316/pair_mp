@@ -20,7 +20,7 @@
   position: absolute;
   z-index: 9;
   bottom: 470rpx;
-  width: 576rpx;
+  width: 500rpx;
   left: 50%;
   transform: translateX(-50%);
 }
