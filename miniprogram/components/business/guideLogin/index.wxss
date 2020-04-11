@@ -61,6 +61,7 @@
   margin-right: 18rpx;
   border: 1rpx solid #0CCDDA;
   color: #0CCDDA;
+  display: none;
 }
 .guideLogin .footer .btnBox .btn1.btn2,
 .guideLogin .footer .btnBox .btn2.btn2 {
@@ -81,6 +82,7 @@
 }
 .guideLogin .footer .tips2 .bold {
   color: #fff;
+  text-decoration: underline;
 }
 .guideLogin .footer.navType {
   border-radius: 0;
@@ -91,6 +93,9 @@
 }
 .guideLogin .footer.homePage .tips2 .bold {
   color: #1F252B;
+}
+.guideLogin .footer.homePage .icon_weixin {
+  color: #fff;
 }
 .guideLoginBlock {
   box-sizing: border-box;

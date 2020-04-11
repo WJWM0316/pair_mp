@@ -11,6 +11,7 @@ Page({
     userInfo: 0,
     cdnPath: app.globalData.CDNPATH,
     messageList: [],
+    hasRequire: false,
     viewAreaHeight: 0,
     lockIndex: null
   },
@@ -19,13 +20,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({'userInfo': app.globalData.userInfo})
-    console.log(this.data.userInfo, 22222222222222)
+    this.setData({'userInfo': app.globalData.userInfo, 'viewAreaHeight': app.globalData.viewAreaHeight})
   },
   getList () {
     getRelationlistApi({count: 100, hideLoding: true}).then(res => {
       let index = this.data.messageList.length ? this.data.messageList.length - 1 : 0
-      this.setData({[`messageList[${index}]`]: res.data})
+      this.setData({[`messageList[${index}]`]: res.data, hasRequire: true})
     })
   },
   getSwipeStatus (e) {

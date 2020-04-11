@@ -13,38 +13,40 @@
   <view class="noTips" wx:else></view>
   <view class="noTips" hidden="{{hasTips}}"></view>
   <view class="scroll-view" style="min-height:calc({{viewAreaHeight}}px - 139rpx)">
-    <block wx:if="{{messageList.length}}" wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index0">
-      <swipe-out
-        wx:for="{{list}}"
-        wx:key="id"
-        operateWidth="{{130}}"
-        toggle="{{lockIndex === index ? true : false}}"
-        index="{{index}}"
-        bindtap = "startChat"
-        data-vkey = "{{item.imFromUser.vkey}}"
-        bindswipeStatus = "getSwipeStatus"
-        wx:if="{{item}}"
-      >
-        <view slot="content" class="scroll-item">
-          <view class="avatar {{item.online ? 'online' : ''}}">
-            <i-image my-class="avatarImg" borderRadius="50%" src="{{item.imFromUser.avatarUrl}}"></i-image>
+    <block wx:if="{{hasRequire}}">
+      <block wx:if="{{messageList.length}}" wx:for="{{messageList}}" wx:for-item="list" wx:for-index="index0" wx:key="index0">
+        <swipe-out
+          wx:for="{{list}}"
+          wx:key="id"
+          operateWidth="{{130}}"
+          toggle="{{lockIndex === index ? true : false}}"
+          index="{{index}}"
+          bindtap = "startChat"
+          data-vkey = "{{item.imFromUser.vkey}}"
+          bindswipeStatus = "getSwipeStatus"
+          wx:if="{{item}}"
+        >
+          <view slot="content" class="scroll-item">
+            <view class="avatar {{item.online ? 'online' : ''}}">
+              <i-image my-class="avatarImg" borderRadius="50%" src="{{item.imFromUser.avatarUrl}}"></i-image>
+            </view>
+            <view class="messageContent">
+              <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{item.lastMsgTimeText}}</view></view>
+              <view class="content">{{item.lastMsg}}</view>
+              <view class="messageNum" wx:if="{{item.unreadMsgNum}}">{{item.unreadMsgNum}}</view>
+            </view>
           </view>
-          <view class="messageContent">
-            <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{item.lastMsgTimeText}}</view></view>
-            <view class="content">{{item.lastMsg}}</view>
-            <view class="messageNum" wx:if="{{item.unreadMsgNum}}">{{item.unreadMsgNum}}</view>
+          <view slot="button" class="rightBtn"  catchtap = "remove" data-index0="{{index0}}" data-index="{{index}}">
+            <i-button my-class="closeBtn"><i class="closeMessage iconfont icon_shanchu"></i></i-button>
           </view>
+        </swipe-out>
+      </block>
+      <block wx:if="{{!messageList.length}}">
+        <view class="empty">
+          <i-image my-class="img" src="{{cdnPath}}img_im_empty.png"></i-image>
+          <i-button my-class="btn" bindtap = "pick">Pick一下</i-button>
         </view>
-        <view slot="button" class="rightBtn"  catchtap = "remove" data-index0="{{index0}}" data-index="{{index}}">
-          <i-button my-class="closeBtn"><i class="closeMessage iconfont icon_shanchu"></i></i-button>
-        </view>
-      </swipe-out>
-    </block>
-    <block wx:if="{{!messageList.length}}">
-      <view class="empty">
-        <i-image my-class="img" src="{{cdnPath}}img_im_empty.png"></i-image>
-        <i-button my-class="btn" bindtap = "pick">Pick一下</i-button>
-      </view>
+      </block>
     </block>
   </view>
 </view>

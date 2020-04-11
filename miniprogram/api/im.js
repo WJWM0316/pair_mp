@@ -45,3 +45,19 @@ export const deleteMsgApi = (data) => {
   })
 }
 
+// 收起会话头部
+export const putHeaderApi = (data) => {
+  return request({
+    method: 'put',
+    url: `/im/chat/user_card/hide/${data.vkey}`
+  })
+}
+
+// 展开会话头部
+export const delHeaderApi = (data) => {
+  return request({
+    method: 'delete',
+    url: `/im/chat/user_card/hide/${data.vkey}`
+  })
+}
+

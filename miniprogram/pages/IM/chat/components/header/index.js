@@ -1,5 +1,6 @@
 const app =  getApp();
 import {getSelectorQuery} from '../../../../../utils/util.js'
+import {putHeaderApi, delHeaderApi} from '../../../../../api/im.js'
 import {setBackApi, removeBackApi} from '../../../../../api/black.js'
 Component({
   externalClasses: ['my-class'],
@@ -20,12 +21,10 @@ Component({
    */
   data: {
     putUp: true,
-    headerH: 0,
     tips: true,
     pxTorpxRatio: app.globalData.systemInfo.pxTorpxRatio
   },
   attached () {
-    this.getHeight()
   },
   
   /**
@@ -35,10 +34,15 @@ Component({
     catchtap () {
       return
     },
-    toggle () {
+    toggle (toggle) {
       let putUp = this.data.putUp
       this.setData({'putUp': !putUp})
-      this.getHeight()
+      if (toggle === 'index') return
+      if (putUp) {
+        putHeaderApi({vkey: this.data.othersUserInfo.vkey, hideLoading: true})
+      } else {
+        delHeaderApi({vkey: this.data.othersUserInfo.vkey, hideLoading: true})
+      }
     },
     more () {
       const that = this
@@ -82,13 +86,6 @@ Component({
       let vkey = e.currentTarget.dataset.vkey
       console.log(e, 2222222)
       wx.navigateTo({url: `/pages/homepage/index?vkey=${vkey}`})
-    },
-    getHeight () {
-      wx.nextTick(()=>{
-        getSelectorQuery('.header', this).then(res => {
-          this.setData({'headerH': res.height})
-        })
-      });
     }
   }
 })

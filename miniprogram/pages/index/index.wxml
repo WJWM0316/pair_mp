@@ -67,7 +67,7 @@
 
   <tabBar tabBgColor="{{background}}" mask="{{false}}" wx:if="{{hasLogin}}"></tabBar>
   <dialog code="{{ code }}" other="{{dialogData}}" id="dialog" bind:click="pickChance"></dialog>
-  <guide-login id="guideLogin" wx:if="{{!hasLogin && showLoginGuide}}"></guide-login>
+  <guide-login id="guideLogin" type="index" wx:if="{{!hasLogin && showLoginGuide}}"></guide-login>
   <sugar-award-popUp id="awardPopUp" awardList="{{status.popups}}"></sugar-award-popUp>
 </view>
 <wxs src="../../utils/filters.wxs" module="filters" />

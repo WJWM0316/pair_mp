@@ -1,5 +1,6 @@
 {
-  "navigationBarTextStyle":"white",
+  "navigationBarTextStyle":"black",
+  
   "usingComponents": {
     "swipe-out": "../../../components/layout/swipeout",
     "contact-btn": "../../../components/business/contactBtn",

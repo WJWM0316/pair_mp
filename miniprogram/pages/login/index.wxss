@@ -34,6 +34,7 @@
 }
 .loginWrap .footer .bold {
   color: #1F252B;
+  text-decoration: underline;
 }
 .loginWrap .box {
   width: 560rpx;

@@ -275,7 +275,7 @@ Page({
       wxShare = {
         title,
         imageUrl: userInfo.avatarInfo.middleUrl,
-        page: `/pages/homepage/index?vkey=${userInfo.vkey}`
+        path: `/pages/homepage/index?vkey=${userInfo.vkey}`
       }
     }
     return app.wxShare({

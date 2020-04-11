@@ -1,5 +1,5 @@
 @import "../../../../../styles/_base.less";
-
+@import "../../../../../styles/_mixins.less";
 .header {
   padding: 15rpx 30rpx 0;
   width: 100%;
@@ -106,6 +106,8 @@
         padding: 0 16rpx;
         margin-right: 12rpx;
         display: inline-block;
+        max-width: 236rpx;
+        .setEllipsis();
         .icon {
           display: inline-block;
           color: #fff;
@@ -135,7 +137,7 @@
       }
       &::after {
         content: '';
-        width: 400rpx;
+        width: 380rpx;
         height: 2rpx;
         background: @background-color-base;
         position: absolute;
@@ -204,6 +206,7 @@
       text-align: center;
       .icon {
         font-size: 10rpx;
+        color: @text-color-2;
       }
     }
   }

@@ -1,6 +1,6 @@
 <view class="guideLogin">
   <view class="footer {{type ? type : ''}}">
-    <i wx:if="{{type === 'default'}}" class="icon iconfont {{!open ? 'icon_jiantou-shang' : 'icon_jiantou-xia'}}" bindtap = "toggle"></i>
+    <i wx:if="{{type !== 'navType'}}" class="icon iconfont {{!open ? 'icon_jiantou-shang' : 'icon_jiantou-xia'}}" bindtap = "toggle"></i>
     <view class="tips">登录后为你Pick更适合的Ta</view>
     <view hidden="{{!open}}">
       <view class="btnBox">

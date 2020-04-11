@@ -105,6 +105,11 @@
   padding: 0 16rpx;
   margin-right: 12rpx;
   display: inline-block;
+  max-width: 236rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
 }
 .header .header-inner .header-card .detail .info .icon {
   display: inline-block;
@@ -134,7 +139,7 @@
 }
 .header .header-inner .header-card .likeTitle::after {
   content: '';
-  width: 400rpx;
+  width: 380rpx;
   height: 2rpx;
   background: #F1F4F4;
   position: absolute;
@@ -203,6 +208,7 @@
 }
 .header .header-inner .rightBox .toggle .icon {
   font-size: 10rpx;
+  color: #66666E;
 }
 .header .header-inner.putUp {
   padding: 16rpx 76rpx 34rpx 20rpx;
