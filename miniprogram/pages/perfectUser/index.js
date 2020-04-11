@@ -116,7 +116,7 @@ Page({
               labels.push(c.labelId)
             })
           })
-          this.setData({ labels, canClick: true })
+          this.setData({ labels, canClick: false })
         }
       })
     })
@@ -226,7 +226,6 @@ Page({
     let params = {
       own_describe: formData.own_describe.trim()
     }
-    console.log(ownDescribeReg.test(params.own_describe), 'hhhh')
     if(params.own_describe.length < 5) {
       formData['own_describe'] = params.own_describe
       this.setData({ formData }, () => app.wxToast({title: '自我描述至少需要5个字'}))
