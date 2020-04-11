@@ -1,5 +1,7 @@
-<view wx:if="{{isOwner}}"><view class="radius100"></view><view class="radius101"></view></view>
-<view wx:else><view class="index100" style="top: 24rpx"></view><view class="index101" style="top: 24rpx"></view><view class="index102" style="top: 0rpx"></view></view>
+<view class="style002" wx:if="{{isOwner}}">
+  <i-image my-class="radius100" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix"></i-image>
+  <i-image my-class="radius101" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix"></i-image>
+</view>
 <view class="homepage {{ isOwner ? 'yourself' : 'other'}}" wx:if="{{ userInfo.vkey }}">
 
   <view class="cover-box {{ albumVerifyInfo.status === 2 && isOwner ? 'isError' : ''}}">
@@ -73,7 +75,7 @@
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_nianling"></i>{{userInfo.birthDesc}}年·{{ userInfo.constellation }}</view>
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_suozaidi"></i>{{ userInfo.residentArr[1].title }}{{ userInfo.residentArr[2].title }}</view>        
         <view class="label label-bg1"><i class="icon1 icon iconfont icon_shengao"></i>{{ userInfo.height }}CM</view>
-        <view class="label label-bg1" wx:if="{{ userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_jiaxiang"></i>{{ userInfo.hometownArr[0].title }}{{ userInfo.hometownArr[1].title }}</view>
+        <view class="label label-bg1" wx:if="{{ userInfo.hometownArr.length }}"><i class="icon1 icon iconfont icon_jiaxiang"></i>{{ userInfo.hometownArr[0].title }}{{ userInfo.hometownArr[1].title }}人</view>
         <view class="label label-bg1" wx:if="{{ userInfo.degreeDesc }}"><i class="icon1 icon iconfont icon_xueli"></i>{{ userInfo.school }}·{{ userInfo.degreeDesc }}</view>
         <view class="label label-bg3" wx:if="{{ isOwner && !userInfo.hometownArr.length }}" bindtap="edit"><i class="icon1 icon iconfont icon_jiaxiang"></i>家乡未完善</view>
         <view class="label label-bg3" wx:if="{{ isOwner && !userInfo.degreeDesc }}" bindtap="edit"><i class="icon1 icon iconfont icon_xueli"></i>学历未完善</view>
