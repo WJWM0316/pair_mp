@@ -183,7 +183,8 @@
           <view class="cover"><i class="icon14 icon iconfont icon_liaotian"></i>去聊天</view>
         </i-button>
       </block>
-      <view class="footer-mask"></view>
+      <!-- <view class="footer-mask"></view> -->
+      <view class="block1"></view>
     </view>
   </block>
   
