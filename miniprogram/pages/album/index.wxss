@@ -39,9 +39,13 @@
   text-align: center;
   line-height: 48rpx;
 }
-.album .photo-ul .icon {
+.album .photo-ul .action .icon {
   font-size: 28rpx;
   color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .album .photo-ul .cover-img {
   width: 100%;

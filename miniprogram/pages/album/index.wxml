@@ -27,7 +27,7 @@
       <block wx:if="{{albumVerifyInfo.status === 1 && userInfo.userAlbumList.length > 1}}">
         <view class="item" wx:for="{{ userInfo.userAlbumList }}" wx:key="index">
           <view class="inner">
-            <i-image my-class="cover-img" src="{{ item.smallUrl }}" mode="widthFix"></i-image>
+            <i-image my-class="cover-img" src="{{ item.url }}" mode="widthFix"></i-image>
             <view class="action" bindtap="open" data-action="open" data-index="{{index}}" wx:if="{{!item.isCover}}"><i class="icon iconfont icon_gengduo"></i></view>
             <!-- <view class="txt">1</view> -->
           </view>

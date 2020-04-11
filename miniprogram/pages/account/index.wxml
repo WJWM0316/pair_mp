@@ -23,7 +23,7 @@
           <view class="fanbei" wx:if="{{ item.sugarTimes === 2 }}">翻倍</view>
           <i-image my-class="sign-bg" src="{{ CDNPATH }}img_nosignin@3x.png" wx:if="{{!item.hasSign}}"></i-image>
           <i-image my-class="sign-bg" src="{{ CDNPATH }}img_signin@3x.png" wx:else></i-image>
-          <view class="txt1">
+          <view class="txt1 {{item.hasSign ? 'hasSign' : ''}}">
             <block wx:if="{{item.sugarBase > 1 || item.sugarTimes > 1}}">+<block wx:if="{{ item.sugarBase > 1 }}">{{ item.sugarBase }}x</block><block wx:if="{{ item.sugarTimes > 1 }}">{{ item.sugarTimes }}</block></block>
             <block wx:else>+1</block>
           </view>

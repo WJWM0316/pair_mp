@@ -2,7 +2,7 @@
   <view class="item">
     <view class="item-inner">
       <view class="name">我的账号</view>
-      <view class="value">{{userInfo.mobile}}</view>
+      <view class="value large">{{userInfo.mobile}}</view>
     </view>
   </view>
   <view class="item" bindtap = "action" data-type="backlist">

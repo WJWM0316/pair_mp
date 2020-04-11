@@ -24,7 +24,6 @@
       }
       .delete {
         width:108rpx;
-        height:50rpx;
         line-height: 50rpx;
         color: #fff;
         background:@vice-primary-color-3;
@@ -35,6 +34,14 @@
         font-size:28rpx;
         color:#fff;
         font-weight: unset;
+        box-shadow: unset;
+        overflow: hidden;
+        &:after{
+          display: none;
+        }
+        &:before{
+          display: none;
+        }
       }
     }
   }
@@ -43,12 +50,15 @@
     display: block;
     margin: 180rpx auto 46rpx auto;
     text-align: center;
-    height:36rpx;
     font-size:28rpx;
     color:rgba(102,102,110,1);
     line-height:36rpx;
+    .img1 {
+      display: block;
+    }
     .tips {
-      margin-top: 46rpx;
+      margin-top: 36rpx;
+      line-height: 36rpx;
     }
   }
 }
