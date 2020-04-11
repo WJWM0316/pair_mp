@@ -113,6 +113,12 @@
   transform: translateY(-50%);
   font-size: 28rpx;
 }
+.edit .color01 {
+  color: #F46BA1 !important;
+}
+.edit .color02 {
+  color: #F46BA1;
+}
 .holderStyle {
   color: #CFD4D8;
   font-size: 36rpx;
@@ -145,10 +151,4 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 17rpx;
-}
-.scroll-view .color01 {
-  color: #F46BA1 !important;
-}
-.scroll-view .color02 {
-  color: #F46BA1;
 }

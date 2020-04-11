@@ -135,6 +135,7 @@
   padding: 0 40rpx;
   box-sizing: border-box;
   margin-bottom: 24rpx;
+  overflow: hidden;
 }
 .mine-modal .bubble .bg1 {
   border-radius: 16rpx;
@@ -206,6 +207,7 @@
   padding: 0 40rpx;
   box-sizing: border-box;
   margin-bottom: 24px;
+  overflow: hidden;
 }
 .mine-modal .upload .bg1 {
   background: #E85274;
@@ -273,6 +275,9 @@
   display: inline-block;
   vertical-align: middle;
   color: #1F252B;
+}
+.mine-modal .ul .icon_zhanghu {
+  font-size: 48rpx;
 }
 .mine-modal .ul .key {
   display: inline-block;

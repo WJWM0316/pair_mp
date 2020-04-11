@@ -263,6 +263,7 @@
 .step3 .ul .value {
   padding: 16rpx 0;
   height: 44rpx;
+  font-size: 36rpx;
 }
 .step3 .tips-box {
   height: 32rpx;

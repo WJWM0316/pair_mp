@@ -1,7 +1,8 @@
 .listWrap {
   width: 100%;
   box-sizing: border-box;
-  background: #EDF1F0;
+  min-height: 100vh;
+  background: linear-gradient(transparent, #fff);
 }
 .listWrap .tips {
   width: 100%;
@@ -42,7 +43,6 @@
 .listWrap .scroll-view {
   padding-top: 20rpx;
   box-sizing: border-box;
-  box-shadow: 0px -4rpx 24rpx 0px rgba(88, 102, 103, 0.07);
   border-radius: 36rpx 36rpx 0px 0px;
   overflow: hidden;
   background: #fff;

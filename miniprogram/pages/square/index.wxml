@@ -4,7 +4,11 @@
   page="console"
   >
 </navBar>
-<view><view class="index100" style="top: calc({{navBarHeight}}px + 24rpx)"></view><view class="index101" style="top: calc({{navBarHeight}}px + 24rpx)"></view><view class="index102" style="top: {{navBarHeight}}px"></view></view>
+<!-- <view>
+  <image  class="index100" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix" style="top: calc({{navBarHeight}}px + 24rpx)"></image >
+  <image  class="index100" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix" style="top: calc({{navBarHeight}}px + 24rpx)"></image >
+  <view class="index102" style="top: {{navBarHeight}}px"></view>
+</view> -->
 <view class="square" wx:if="{{userData.list.length}}">
   <view class="item" wx:for="{{ userData.list }}" wx:key="index" bindtap="routeJump" data-item="{{ item }}">
     <view class="cover">
