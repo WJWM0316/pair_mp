@@ -98,6 +98,7 @@
   border-radius: 24rpx;
   overflow: hidden;
   box-sizing: border-box;
+  word-break: break-all;
 }
 .chatWrap .chatArea .message-list .message-item.others .avatar {
   float: left;

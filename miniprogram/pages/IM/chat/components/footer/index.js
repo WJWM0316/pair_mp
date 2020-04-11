@@ -162,7 +162,7 @@ Component({
             }
           }
           msgData.msgType = 'RC:TxtMsg'
-          msgData.imData.content = {content: this.word}
+          msgData.imData.content = {content: this.word, sendTimestamp: timestamp}
           that.triggerEvent('sendMsg', msgData)
           socket.send(parmas)
           break
@@ -175,7 +175,7 @@ Component({
             success (res) {
               let file = res.tempFiles[0]
               msgData.msgType = 'RC:ImgMsg'
-              msgData.imData.content = {imageUri: file.path}
+              msgData.imData.content = {imageUri: file.path, sendTimestamp: timestamp}
               that.triggerEvent('sendMsg', msgData)
               app.uploadFile(file).then(res0 => {
                 parmas.data = {
@@ -196,7 +196,7 @@ Component({
           break
         case 'record':
           msgData.msgType = 'RC:VcMsg'
-          msgData.imData.content = {fileUrl: content.tempFilePath, duration: content.duration, fileSize: content.fileSize}
+          msgData.imData.content = {fileUrl: content.tempFilePath, duration: content.duration, fileSize: content.fileSize, sendTimestamp: timestamp}
           that.triggerEvent('sendMsg', msgData)
           app.uploadFile(content, 'audio').then(res0 => {
             parmas.data = {

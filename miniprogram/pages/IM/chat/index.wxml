@@ -6,7 +6,7 @@
 
 <view class="chatWrap"  bindtap="resetView">
   <view class="systemHint" wx:if="{{false}}">TA特别想认识你，缘分来了就不要错过哟~</view>
-  <debutWord bindselectResult="selectResult" type="debutWord" bindtapMpre="bindtapMpre" vkey="{{othersUserInfo.vkey}}" ></debutWord>
+  <debutWord bindselectResult="selectResult" wx:if="{{showDebutWord}}" type="debutWord" bindtapMpre="bindtapMpre" vkey="{{othersUserInfo.vkey}}" ></debutWord>
   <view class="chatArea">
     <view class="scrollView">
       <view class="message-list">

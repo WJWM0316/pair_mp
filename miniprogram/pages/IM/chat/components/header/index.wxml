@@ -20,15 +20,17 @@
             <block wx:else>{{othersUserInfo.industryArr[0].name}}-{{othersUserInfo.industryArr[1].name}}</block>
           </view>
           <view class="infos">
-            <view class="info" wx:if="{{othersUserInfo.hometownArr[1].title}}"><i class="icon iconfont icon_ziliaowanshandudi"></i>{{othersUserInfo.hometownArr[1].title}}·{{othersUserInfo.hometownArr[2].title}}</view>
+            <view class="info" wx:if="{{othersUserInfo.residentArr[1].title}}"><i class="icon iconfont icon_ziliaowanshandudi"></i>{{othersUserInfo.residentArr[1].title}}·{{othersUserInfo.residentArr[2].title}}</view>
             <view class="info"><i class="icon iconfont icon_nianling"></i>{{othersUserInfo.age}}岁</view>
             <view class="info"><i class="icon iconfont icon_shengao"></i>{{othersUserInfo.height}}cm</view>
           </view>
         </view>
         <block wx:if="{{chatDetail.sameLabelArr.length}}">
-          <view class="likeTitle">共同爱好<i class="icon iconfont icon_aixin"></i></view>
-          <view class="like">
-            <view class="label" wx:for="{{chatDetail.sameLabelArr}}" wx:key="id"><i class="icon iconfont icon_gouxuan"></i>{{item.name}}</view>
+          <view class="likeBox">
+            <view class="likeTitle">共同爱好<i class="icon iconfont icon_aixin"></i></view>
+            <view class="like">
+              <view class="label" wx:for="{{chatDetail.sameLabelArr}}" wx:key="id"><i class="icon iconfont icon_gouxuan"></i>{{item.name}}</view>
+            </view>
           </view>
         </block>
       </block>

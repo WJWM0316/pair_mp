@@ -9,6 +9,7 @@ Page({
     messageList: [],
     selectIndex: null, // 选择发送类型
     showDebutWord: false,
+    showSystemHint: false,
     longpressData: {},
     othersUserInfo: {},
     mineUserInfo: {},
@@ -25,9 +26,8 @@ Page({
     this.options = options
     this.setData({options})
     socket.onMessage((res) => {
-      // 如果是自己发的消息IM回调了需要更替成IM的数据
-      if (res.imFromUser.vkey === this.options.vkey || res.imToUser.vkey === this.options.vkey
-          && res.imFromUser.vkey !== this.data.mineUserInfo.vkey) {
+      if ((res.imFromUser.vkey === this.options.vkey || res.imToUser.vkey === this.options.vkey)
+          && (res.imFromUser.vkey !== this.data.mineUserInfo.vkey || res.msgType === 'RC:RcCmd')) {
         let index = this.data.messageList.length
         this.setData({[`messageList[${index}]`]: res}, () => {
           wx.nextTick(()=>{
@@ -35,14 +35,20 @@ Page({
           });
         })
       }
+      // 如果是自己发的消息IM 回调成功后要赋值一下msgUid
+      if (res.msgType !== "RC:RcCmd" && res.imFromUser.vkey === this.data.mineUserInfo.vkey) {
+        if (this.data.messageList[this.index].imData.sendTimestamp === res.imData.sendTimestamp) {
+          this.setData({[`messageList[${this.index}].imData.msgUID`]: res.imData.msgUID})
+        }
+      }
     })
   },
 
   // 发送数据， 先显示再界面上
   sendMsg (e) {
     const that = this
-    let index = this.data.messageList.length
-    this.setData({[`messageList[${index}]`]: e.detail}, () => {
+    this.index = this.data.messageList.length
+    this.setData({[`messageList[${this.index}]`]: e.detail}, () => {
       wx.nextTick(()=>{
         that.resetView()
         that.selectComponent('#footer').pageScrollToDom('bottom')
@@ -67,8 +73,8 @@ Page({
     app.globalData.lockonShow = false
   },
   getChatMsg () {
-    getChatDetailApi({vkey: this.options.vkey, count: 100}).then(res => {
-      this.setData({messageList: res.data, showDebutWord: true}, () => {
+    getChatDetailApi({vkey: this.options.vkey, count: 200}).then(res => {
+      this.setData({messageList: res.data}, () => {
         wx.nextTick(()=>{
           wx.pageScrollTo({
             duration: 1,
@@ -83,7 +89,15 @@ Page({
       wx.setNavigationBarTitle({
         title: res.data.userInfo.nickname
       })
-      this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data})
+      let showDebutWord = false,
+          showSystemHint= false
+      if (!res.data.chatInfo || (res.data.chatInfo && res.data.chatInfo.fromVkey === this.data.mineUserInfo.vkey)) {
+        showDebutWord = true
+      } 
+      if (res.data.chatInfo && res.data.chatInfo.fromVkey !== this.data.mineUserInfo.vkey) {
+        if (res.data.chatInfo.source === 2) showSystemHint = true
+      }
+      this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data, showDebutWord, showSystemHint})
     })
   },
   // 长按功能

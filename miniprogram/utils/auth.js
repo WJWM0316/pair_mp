@@ -51,8 +51,8 @@ const getUserInfo = () => {
 
 // 统一的登录回调
 const loginCallback = (res, options) => {
-  if (res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
-  if (res.data.userInfo.token) {
+  if (res.data.userInfo && res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
+  if (res.data.userInfo && res.data.userInfo.token) {
     getApp().globalData['hasLogin'] = true
     if (getApp().loginInit) getApp().loginInit()
     wx.setStorageSync('token', res.data.userInfo.token)

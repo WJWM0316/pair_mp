@@ -29,6 +29,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 }
 .header .header-inner .header-card .avatar-box .avartBg .bgIcon.male {
   width: 115rpx;
@@ -60,6 +61,8 @@
   overflow: hidden;
   padding: 0 20rpx;
   font-size: 0;
+  position: relative;
+  z-index: 2;
 }
 .header .header-inner .header-card .avatar-box .avatarCon .avatar {
   width: 100rpx;
@@ -110,6 +113,9 @@
   margin-right: 6rpx;
   line-height: 36rpx;
   vertical-align: top;
+}
+.header .header-inner .header-card .likeBox {
+  padding-left: 20rpx;
 }
 .header .header-inner .header-card .likeTitle {
   padding: 24rpx 0 2rpx;

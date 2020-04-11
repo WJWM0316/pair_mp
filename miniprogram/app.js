@@ -11,14 +11,6 @@ App({
   onLaunch: function () {
     this.hasLaunch = true
     const that = this
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
-        env: 'global-qlebi',
-        traceUser: true,
-      })
-    }
 
     // 获取系统参数，计算顶部栏高度
     this.globalData.systemInfo = wx.getSystemInfoSync();

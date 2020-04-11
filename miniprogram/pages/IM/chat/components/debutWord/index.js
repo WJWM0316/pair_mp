@@ -1,4 +1,5 @@
 import {getTopicApi} from '../../../../../api/im.js'
+const app =  getApp();
 Component({
   options: {
     addGlobalClass: true,
@@ -42,9 +43,14 @@ Component({
    */
   methods: {
     getDataList () {
-      getTopicApi({vkey: this.data.vkey, hideLoading: true}).then(res => {
-        this.setData({'allList': res.data.allList, 'topList': res.data.topList})
-      })
+      if (!app.globalData.topicData) {
+        getTopicApi({vkey: this.data.vkey, hideLoading: true}).then(res => {
+          app.globalData.topicData = res.data
+          this.setData({'allList': res.data.allList, 'topList': res.data.topList})
+        })
+      } else {
+        this.setData({'allList': app.globalData.topicData.allList, 'topList': app.globalData.topicData.topList})
+      }
     },
     selectWord (e) {
       let word = e.currentTarget.dataset.word

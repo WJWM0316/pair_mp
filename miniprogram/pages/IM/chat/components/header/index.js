@@ -80,6 +80,7 @@ Component({
     },
     jump (e) {
       let vkey = e.currentTarget.dataset.vkey
+      console.log(e, 2222222)
       wx.navigateTo({url: `/pages/homepage/index?vkey=${vkey}`})
     },
     getHeight () {

@@ -9,7 +9,7 @@
     <input class="input phone" maxlength="11" placeholder="请输入手机号码" bindinput = "bindinput" data-type="phone" placeholder-class="holderStyle"></input>
   </view>
   <view class="box codeBox" wx:if="{{imgPath}}">
-    <i class="icon iconfont icon_duanxin"></i>
+    <i class="icon iconfont icon_suo"></i>
     <input class="input code" maxlength="4" placeholder="请输入图片验证码" bindinput = "bindinput" data-type="imgcode" placeholder-class="holderStyle"></input>
     <image class="imgPath" bindtap = "changeImg" src="{{imgPath}}"></image>
   </view>

@@ -4,9 +4,6 @@
   padding: 15rpx 30rpx 0;
   width: 100%;
   box-sizing: border-box;
-  &.headerTips {
-    // top: 98rpx;
-  }
   .header-inner {
     position: relative;
     box-shadow:0rpx 12rpx 30rpx 0rpx rgba(30,102,102,0.1);
@@ -32,6 +29,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        z-index: 1;
         .bgIcon.male {
           width: 115rpx;
           height: 32rpx;
@@ -63,6 +61,8 @@
         overflow: hidden;
         padding: 0 20rpx;
         font-size: 0;
+        position: relative;
+        z-index: 2;
         .avatar {
           width:100rpx;
           height:100rpx;
@@ -115,6 +115,9 @@
           vertical-align: top;
         }
       }
+    }
+    .likeBox {
+      padding-left: 20rpx;
     }
     .likeTitle {
       padding: 24rpx 0 2rpx;
