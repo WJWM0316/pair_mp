@@ -246,6 +246,12 @@
   margin-right: 10rpx;
   color: #1F252B;
 }
+.step2 .tags-box .icon_renshe {
+  font-size: 32rpx;
+}
+.step2 .tags-box .icon_yingshi {
+  font-size: 32rpx;
+}
 .step2 .tags-box .li {
   height: 76rpx;
   text-align: center;
