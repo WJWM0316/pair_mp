@@ -375,6 +375,7 @@
   display: block;
   padding: 0;
   box-sizing: border-box;
+  max-height: calc(100vh / 2);
 }
 .step3 .row:after {
   position: absolute;
@@ -455,6 +456,7 @@
   display: block;
   padding: 0;
   box-sizing: border-box;
+  max-height: calc(100vh / 2);
 }
 .step4 .row:after {
   position: absolute;
