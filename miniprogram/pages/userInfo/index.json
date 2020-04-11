@@ -1,6 +1,9 @@
 {
+  "enablePullDownRefresh": true,
+	"backgroundTextStyle": "light",
 	"usingComponents": {
   },
   "navigationBarTitleText": "个人资料",
-  "navigationBarBackgroundColor": "#F1F4F4"
+  "navigationBarBackgroundColor": "#F1F4F4",
+  "backgroundColor": "#F1F4F4"
 }
