@@ -162,7 +162,7 @@
   display: block;
 }
 .step2 .scroll-box .append {
-  width: 160rpx;
+  width: 200rpx;
   height: 48rpx;
   display: inline-block;
   vertical-align: middle;
@@ -178,7 +178,7 @@
   overflow: scroll;
   white-space: nowrap;
   overflow-y: auto;
-  width: calc(100% - 160rpx);
+  width: calc(100% - 200rpx);
   vertical-align: middle;
   line-height: 1;
 }
@@ -234,7 +234,7 @@
 }
 .step2 .tags-box {
   overflow: hidden;
-  padding: 0 80rpx 164rpx 80rpx;
+  padding: 0 60rpx 164rpx 60rpx;
   position: relative;
 }
 .step2 .tags-box .ul {
@@ -259,7 +259,7 @@
   margin-bottom: 26rpx;
   position: relative;
   display: inline-block;
-  width: calc(calc(100vw - 160rpx - 44rpx) / 3);
+  width: calc(calc(100vw - 120rpx - 44rpx) / 3);
   margin-right: 22rpx;
   font-size: 30rpx;
   color: #66666E;
