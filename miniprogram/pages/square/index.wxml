@@ -33,7 +33,7 @@
   </view>
 </view>
 <view class="no-data" wx:else>
-  <i-image my-class="nodata" src="{{ CDNPATH }}img_noblackList@3x.png" mode="widthFix"></i-image> 
+  <i-image my-class="img1" src="{{ CDNPATH }}img_im_empty.png" mode="widthFix"></i-image> 
   <view class="tips">一大波优质用户正在赶来哦~</view>
 </view>
 <tabBar tabBgColor="transparent"></tabBar>

@@ -16,7 +16,7 @@ Page({
       onBottomStatus: 0
     }
   },
-  onShow() {
+  onLoad() {
     let backList = {
       list: [],
       pageNum: 1,

@@ -42,6 +42,9 @@
   display: inline-block;
   color: #CFD4D8;
 }
+.settingWrap .item .large {
+  font-size: 30rpx !important;
+}
 .settingWrap .item:after {
   content: '';
   width: 690rpx;

@@ -31,7 +31,7 @@
     bottom: 0;
   }
   .photo {
-    width: calc(100vw - 60rpx);
+    width: 100%;
     display: block;
   }
   .album {
@@ -151,6 +151,8 @@
     margin-left: 12rpx;
     display: inline-block;
     vertical-align: text-bottom;
+    position: relative;
+    top: -2rpx;
   }
 }
 
@@ -159,10 +161,17 @@
   display: block;
   margin: 180rpx auto 46rpx auto;
   text-align: center;
-  height:36rpx;
   font-size:28rpx;
   color:rgba(102,102,110,1);
   line-height:36rpx;
+  overflow: hidden;
+  .img1 {
+    display: block;
+  }
+  .tips {
+    margin-top: 36rpx;
+    line-height: 36rpx;
+  }
 }
 
 .index100 {

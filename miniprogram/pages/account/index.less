@@ -5,12 +5,20 @@
   background: @vice-primary-color-1;
   min-height: 100vh;
   box-sizing: border-box;
+  .pitang-bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
   .header {
-    padding: 40rpx 60rpx 63rpx 48rpx;
+    padding: 60rpx 60rpx 60rpx 48rpx;
     display: flex;
     align-items: center;
     box-sizing: border-box;
     height: 242rpx;
+    position: relative;
     .btn {
       width:197rpx;
       height:80rpx;
@@ -29,16 +37,16 @@
       height: 140rpx;
     }
     .pitang {
-      height:140rpx;
+      height:138rpx;
       display: inline-block;
     }
     .info {
       height: 140rpx;
       display: inline-block;
       vertical-align: top;
-      padding-left: 10rpx;
+      padding-left: 18rpx;
       .number {
-        font-size:96rpx;
+        font-size:86rpx;
         font-weight:700;
         color:rgba(255,255,255,1);
         line-height:96rpx;
@@ -65,12 +73,9 @@
     background:rgba(255,255,255,1);
     box-shadow:0rpx 7rpx 10rpx 0rpx rgba(197,234,226,0.42);
     border-radius:36rpx 36rpx 0 0 ;
-    // position: absolute;
-    // left: 0;
-    // right: 0;
-    // bottom: 0;
     box-sizing: border-box;
     padding: 80rpx 60rpx;
+    position: relative;
   }
   .my-header {
     position: relative;
@@ -185,6 +190,9 @@
       .txt1 {
         position: relative;
         font-weight:700;
+      }
+      .hasSign {
+        color: @text-color-1;
       }
     }
   }

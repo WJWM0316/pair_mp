@@ -7,7 +7,7 @@
     </view>
   </view>
   <view class="no-data" wx:else>
-    <i-image my-class="nodata" src="{{ CDNPATH }}img_noblackList@3x.png" mode="widthFix"></i-image> 
+    <i-image my-class="img1" src="{{ CDNPATH }}img_noblackList@3x.png" mode="widthFix"></i-image> 
     <view class="tips">好棒呦,一个黑名单都没有哦~</view>
   </view>
 </view>

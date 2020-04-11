@@ -119,13 +119,6 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/account/index",
-					"pathName": "pages/account/index",
-					"query": "vkey=tuppkbn8",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/homepage/index",
 					"pathName": "pages/homepage/index",
 					"query": "vkey=ighvcabv",
@@ -133,35 +126,9 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/methods/index",
-					"pathName": "pages/methods/index",
-					"query": "type=createUser&companyId=1348",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/userInfo/index",
-					"pathName": "pages/userInfo/index",
-					"query": "type=createUser&companyId=1348",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/perfectUser/index",
-					"pathName": "pages/perfectUser/index",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/square/index",
-					"pathName": "pages/square/index",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/createUser/index",
-					"pathName": "pages/createUser/index",
-					"query": "step=3",
+					"name": "pages/backlist/index",
+					"pathName": "pages/backlist/index",
+					"query": "step=1",
 					"scene": null
 				}
 			]

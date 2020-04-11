@@ -3,12 +3,20 @@
   min-height: 100vh;
   box-sizing: border-box;
 }
+.account .pitang-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
 .account .header {
-  padding: 40rpx 60rpx 63rpx 48rpx;
+  padding: 60rpx 60rpx 60rpx 48rpx;
   display: flex;
   align-items: center;
   box-sizing: border-box;
   height: 242rpx;
+  position: relative;
 }
 .account .header .btn {
   width: 197rpx;
@@ -28,17 +36,17 @@
   height: 140rpx;
 }
 .account .header .pitang {
-  height: 140rpx;
+  height: 138rpx;
   display: inline-block;
 }
 .account .header .info {
   height: 140rpx;
   display: inline-block;
   vertical-align: top;
-  padding-left: 10rpx;
+  padding-left: 18rpx;
 }
 .account .header .info .number {
-  font-size: 96rpx;
+  font-size: 86rpx;
   font-weight: 700;
   color: #ffffff;
   line-height: 96rpx;
@@ -65,6 +73,7 @@
   border-radius: 36rpx 36rpx 0 0 ;
   box-sizing: border-box;
   padding: 80rpx 60rpx;
+  position: relative;
 }
 .account .my-header {
   position: relative;
@@ -170,6 +179,9 @@
 .account .ul .li .txt1 {
   position: relative;
   font-weight: 700;
+}
+.account .ul .li .hasSign {
+  color: #1F252B;
 }
 .account .my-header2 {
   position: relative;

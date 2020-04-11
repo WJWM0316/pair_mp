@@ -26,7 +26,6 @@
 }
 .backlist .list .item .delete {
   width: 108rpx;
-  height: 50rpx;
   line-height: 50rpx;
   background: #E85274;
   border-radius: 25rpx;
@@ -36,17 +35,28 @@
   font-size: 28rpx;
   color: #fff;
   font-weight: unset;
+  box-shadow: unset;
+  overflow: hidden;
+}
+.backlist .list .item .delete:after {
+  display: none;
+}
+.backlist .list .item .delete:before {
+  display: none;
 }
 .backlist .no-data {
   width: 380rpx;
   display: block;
   margin: 180rpx auto 46rpx auto;
   text-align: center;
-  height: 36rpx;
   font-size: 28rpx;
   color: #66666e;
   line-height: 36rpx;
 }
+.backlist .no-data .img1 {
+  display: block;
+}
 .backlist .no-data .tips {
-  margin-top: 46rpx;
+  margin-top: 36rpx;
+  line-height: 36rpx;
 }

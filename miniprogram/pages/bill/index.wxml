@@ -24,7 +24,7 @@
       </view>
       <!-- <bottomStatus status="{{useData.onBottomStatus}}" desc="暂无数据~" listData="{{ useData.list }}"></bottomStatus> -->
       <view class="no-data" wx:if="{{ !useData.list.length }}">
-        <i-image my-class="nodata" src="{{ CDNPATH }}img_nobill@3x.png" mode="widthFix"></i-image> 
+        <i-image my-class="img1" src="{{ CDNPATH }}img_nobill@3x.png" mode="widthFix"></i-image> 
         <view class="tips">一个皮糖都没有哦~</view>
       </view>
     </block>
