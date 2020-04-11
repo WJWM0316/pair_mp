@@ -34,7 +34,7 @@
   bottom: 0;
 }
 .item .photo {
-  width: calc(100vw - 60rpx);
+  width: 100%;
   display: block;
 }
 .item .album {

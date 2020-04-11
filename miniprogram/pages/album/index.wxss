@@ -35,11 +35,13 @@
   position: absolute;
   top: 16rpx;
   right: 16rpx;
-  color: white;
   transform: rotate(90deg);
   text-align: center;
   line-height: 48rpx;
-  font-size: 26rpx;
+}
+.album .photo-ul .icon {
+  font-size: 28rpx;
+  color: white;
 }
 .album .photo-ul .cover-img {
   width: 100%;

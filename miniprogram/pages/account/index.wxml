@@ -1,4 +1,5 @@
 <view class="account">
+  <i-image my-class="pitang-bg" src="{{ CDNPATH }}bg_candypage@2x.png" mode="widthFix"></i-image>
   <view class="header">
     <view class="inner">
       <i-image my-class="pitang" src="{{ CDNPATH }}icon_pitang_30.png" mode="heightFix"></i-image>
