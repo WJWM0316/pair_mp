@@ -26,7 +26,7 @@
 }
 .backlist .list .item .delete {
   width: 108rpx;
-  line-height: 50rpx;
+  line-height: 50rpx !important;
   background: #E85274;
   border-radius: 25rpx;
   border: unset;
@@ -37,6 +37,7 @@
   font-weight: unset;
   box-shadow: unset;
   overflow: hidden;
+  height: 50rpx !important;
 }
 .backlist .list .item .delete:after {
   display: none;

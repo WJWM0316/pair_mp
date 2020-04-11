@@ -141,15 +141,27 @@ Page({
     let { list, labels } = this.data
     let { child, parent } = e.currentTarget.dataset
     let item = list[parent].children[child]
-    if(item.active) {
-      let i = labels.findIndex(v => v === item.labelId)
-      labels.splice(i, 1);
-      item.active = false
+    if(labels.length >= 20) {
+      if(item.active) {
+        let i = labels.findIndex(v => v === item.labelId)
+        labels.splice(i, 1);
+        item.active = false
+      } else {
+        app.wxToast({title: '标签最多只能20个'})
+      }
+      this.setData({ list, labels, canClick: labels.length >= 5})
     } else {
-      item.active = true
-      labels.push(item.labelId)
+      if(item.active) {
+        let i = labels.findIndex(v => v === item.labelId)
+        labels.splice(i, 1);
+        item.active = false
+      } else {
+        item.active = true
+        labels.push(item.labelId)
+      }
+      this.setData({ list, labels, canClick: labels.length >= 5})
     }
-    this.setData({ list, labels, canClick: labels.length >= 5})
+    
   },
   toggle() {
     console.log(this.data)

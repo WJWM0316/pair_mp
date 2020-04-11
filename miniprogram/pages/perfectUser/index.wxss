@@ -242,7 +242,7 @@
   padding-top: 34rpx;
 }
 .step2 .tags-box .icon {
-  font-size: 28rpx;
+  font-size: 30rpx;
   margin-right: 10rpx;
   color: #1F252B;
 }
@@ -256,7 +256,6 @@
   width: calc(calc(100vw - 160rpx - 44rpx) / 3);
   margin-right: 22rpx;
   font-size: 30rpx;
-  overflow: hidden;
   color: #66666E;
 }
 .step2 .tags-box .li:before {
@@ -268,11 +267,18 @@
   transform-origin: 0 0;
   transform: scale(0.5, 0.5);
   box-sizing: border-box;
-  border-radius: calc(2 * 37rpx);
+  border-radius: calc(2 * 36rpx);
   left: 0;
 }
 .step2 .tags-box .li:nth-child(3n + 1) {
   margin-right: 0;
+}
+.step2 .tags-box .li .text1 {
+  display: inline-block;
+  width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .step2 .tags-box .active {
   color: #0CCDDA;
@@ -293,11 +299,13 @@
 .step2 .tags-box .key {
   height: 38rpx;
   font-size: 30rpx;
-  font-weight: 700;
   color: #1f252b;
   line-height: 38rpx;
   margin-bottom: 30rpx;
   position: relative;
+}
+.step2 .tags-box .key .label-name {
+  font-weight: 700;
 }
 .step3 {
   background: white;
