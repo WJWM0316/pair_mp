@@ -106,7 +106,7 @@ Page({
       let pickTimes = localstorage.get('pickTimes') || 0
       if (pickTimes < 5) {
         pickTimes++
-        localstorage.get('pickTimes', pickTimes)
+        localstorage.set('pickTimes', pickTimes)
         // 未登录的pick直接去到用户主页
         pickApi({hideLoading: true}).then(({ data }) => {
           wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})

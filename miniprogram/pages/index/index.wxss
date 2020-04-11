@@ -103,6 +103,7 @@
   background: #192122;
   box-shadow: 8px 11px 23px 0px rgba(25, 33, 34, 0.62);
   transform: none;
+  filter: blur(5rpx);
 }
 .page .indexWrap .main .centerBtn .btnContent::after {
   width: 228rpx;

@@ -8,5 +8,6 @@
     "sugar-award-popUp": "../../components/business/sugarAwardPopup",
     "guide-login": "../../components/business/guideLogin"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "disableScroll": false
 }

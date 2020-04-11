@@ -45,7 +45,7 @@ export const registerApi = (data) => {
 export const logoutApi = (data) => {
   return request({
     method: 'get',
-    url: '/auth/logout',
+    url: '/auth/wechat/mini/logout',
     data
   })
 }

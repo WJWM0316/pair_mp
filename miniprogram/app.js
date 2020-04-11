@@ -15,8 +15,8 @@ App({
     // 获取系统参数，计算顶部栏高度
     this.globalData.systemInfo = wx.getSystemInfoSync();
     this.globalData.systemInfo['pxTorpxRatio'] =  this.globalData.systemInfo.windowWidth / 375 / 2
-    this.globalData.systemInfo['titleHeight'] = getTitleHeight(this)
-    this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + getTitleHeight(this)
+    this.globalData.systemInfo['titleHeight'] = 44
+    this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + 44
     this.globalData.tabBarHeight = this.globalData.systemInfo.screenHeight - this.globalData.systemInfo.safeArea.bottom + (178 * this.globalData.systemInfo['pxTorpxRatio'])
     
     this.globalData.viewAreaHeight = this.globalData.systemInfo.screenHeight - this.globalData.tabBarHeight - this.globalData.navBarHeight
