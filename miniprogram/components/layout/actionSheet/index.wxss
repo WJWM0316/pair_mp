@@ -16,7 +16,6 @@
   transform: translateX(-50%);
 }
 .drawer .uploadTips {
-  border-radius: 24rpx;
   position: absolute;
   z-index: 9;
   bottom: 470rpx;
