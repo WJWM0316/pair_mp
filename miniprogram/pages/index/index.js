@@ -103,7 +103,17 @@ Page({
   pick () {
     let { userInfo } = app.globalData.userInfo
     if (!this.data.hasLogin) {
-      this.selectComponent('#guideLogin').toggle()
+      let pickTimes = localstorage.get('pickTimes') || 0
+      if (pickTimes < 5) {
+        pickTimes++
+        localstorage.get('pickTimes', pickTimes)
+        // 未登录的pick直接去到用户主页
+        pickApi({hideLoading: true}).then(({ data }) => {
+          wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
+        })
+      } else {
+        this.selectComponent('#guideLogin').toggle()
+      }
       return
     }
     if(userInfo.step !== 9) {
