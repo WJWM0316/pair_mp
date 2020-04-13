@@ -27,20 +27,25 @@
   background: #CFD4D8;
   display: block;
 }
-.scrollPicker .indicator picker-view-column {
-  color: #1F252B;
-  font-size: 42rpx;
-}
 .scrollPicker .column {
-  font-size: 38rpx;
-  color: #9CA1AA;
   text-align: center;
   line-height: 120rpx;
 }
 .scrollPicker .mask {
   background: transparent;
-  color: red;
 }
-.scrollPicker picker-view-column:nth-child(2n) {
-  margin: 0 30rpx;
+.scrollPicker .default {
+  font-size: 38rpx;
+  color: #9CA1AA;
+}
+.scrollPicker .active {
+  font-size: 42rpx;
+  color: #1F252B;
+  font-weight: 700;
+}
+.scrollPicker .coloum1 {
+  margin-left: 30rpx;
+}
+.scrollPicker .coloum2 {
+  margin-left: 30rpx;
 }

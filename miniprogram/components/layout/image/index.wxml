@@ -13,9 +13,11 @@
   wx:if="{{hasLodingImg && loading}}"
   src="{{placeholder}}"
   class="my-class"
+  mode="{{mode}}"
 ></image>
 <image
   wx:if="{{hasErrorImg && error}}"
   src="{{errorPath}}"
+  mode="{{mode}}"
   class="my-class"
 ></image>

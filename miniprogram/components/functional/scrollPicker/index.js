@@ -10,22 +10,14 @@ Component({
     initValue: {
       type: String,
       value: ''
-    },
-    // initValue: {
-    //   type: String,
-    //   observer(newVal, oldVal) {
-    //     console.log(newVal, oldVal, 'kkk')
-    //     this.init()
-    //   }
-    // }
+    }
   },
   data: {
     rangeArray: [],
     value: [0,0,0],
     active: [],
     rangeKey: '',
-    mode: '',
-    result: []
+    mode: ''
   },
   ready () {
     this.init()
@@ -166,16 +158,13 @@ Component({
             getAreaListApi({level: 3}).then(({ data }) => {
               let provinces = data
               let citys = []
-              console.log(this.data.initValue)
               if(this.data.initValue) {
-                console.log(1)
                 let tem = this.data.initValue.split('-')
                 let provinceIndex = provinces.findIndex((v,i,a) => v.areaId == tem[0]) || 0
                 citys = provinces[provinceIndex].children
                 let cityIndex = citys.findIndex((v,i,a) => v.areaId == tem[1]) || 0
                 value = [provinceIndex, cityIndex]
               } else {
-                console.log(2)
                 value = [0, 0]
                 citys = provinces[0].children || []
               }
@@ -368,7 +357,7 @@ Component({
           break
       }
       this.triggerEvent('pickerResult', rtnResult)
-      this.setData({active: value}, () => {
+      this.setData({active: value, value}, () => {
         callback = null
       })
     }

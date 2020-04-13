@@ -1,5 +1,6 @@
 @import '../../../styles/_base.less';
-@pos : (100% - 40rpx) / 10;
+@boxWidth: calc(100% - 40rpx);
+@padding: calc(@boxWidth/10);
 
 .scale {
   display: -ms-flexbox;
@@ -10,21 +11,20 @@
     left: 0;
     content: '';
     display: block;
-    background: white;
-    width: 65rpx;
+    width: 160rpx;
     height: 220rpx;
     z-index: 2;
-    // background:linear-gradient(270deg,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0.74) 100%);
+    background:linear-gradient(90deg,#fff 20%,rgba(255,255,255,.3) 100%);
   }
   &:after {
     position: fixed;
     right: 0;
     content: '';
     display: block;
-    background: white;
-    width: 65rpx;
+    width: 160rpx;
     height: 220rpx;
     z-index: 2;
+    background:linear-gradient(270deg,#fff 20%,rgba(255,255,255,.3) 100%);
   }
   .scroll-view {
     overflow: hidden;
@@ -44,7 +44,6 @@
     vertical-align: top;
     .value {
       display: inline;
-      padding-left: 10rpx;
     }
   }
   .unit {
@@ -61,32 +60,33 @@
   }
   .line-box {
     position: relative;
+    height: 130rpx;
   }
   .line{
     width:8rpx;
     height:64rpx;
     background:@text-color-5;
     display: inline-block;
-    margin: 0 22rpx;
     border-radius: 4rpx;
-    vertical-align: top;
-    // position: absolute;
-    // &:nth-child(1) {
-    //   left: calc(calc(@pos)rpx);
-    // };
-    // &:nth-child(2) {
-    //   left: calc(calc( 3 * @pos)rpx);
-    // };
+    position: absolute;
+    top: 0;
+    &:nth-child(1) {
+      left: @padding;
+    };
+    &:nth-child(2) {
+      left: calc(3 * @padding + 8rpx);
+    };
     &:nth-child(3) {
       height: 130rpx;
-      // left: calc(calc( 5 * @pos)rpx);
+      left: 50%;
+      transform: translateX(-50%);
     };
-    // &:nth-child(4) {
-    //   left: calc( 7 * @pos)rpx;
-    // };
-    // &:nth-child(5) {
-    //   left: calc(calc( 9 * @pos)rpx);
-    // };
+    &:nth-child(4) {
+      left: calc(7 * @padding + 3 * 8rpx);
+    };
+    &:nth-child(5) {
+      left: calc(9 * @padding + 4 * 8rpx);
+    };
   }
   .active{
     // position: relative;
