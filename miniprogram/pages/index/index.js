@@ -11,6 +11,17 @@ Page({
     background: '#1F252B',
     viewAreaHeight: app.globalData.viewAreaHeight,
     richText: '',
+    hideGif: true,
+    richTextShadow: '',
+    richTextBall: `<div class="richWrap">
+                    <div class="center ball ball1"></div>
+                    <div class="center ball ball2"></div>
+                    <div class="center ball ball3"></div>
+                    <div class="center ball ball4"></div>
+                    <div class="center ball ball5"></div>
+                    <div class="center ball ball6"></div>
+                    <div class="center ball ball7"></div>
+                  <div>`,
     showLoginGuide: false,
     status: {},
     userInfo: 0,
@@ -61,7 +72,15 @@ Page({
       if (res.data.popups.length) {
         this.selectComponent('#awardPopUp').show()
       }
-      this.setData({'status': res.data, countDown})
+      let richTextShadow = ''
+      if (res.data.pickChance.todayRemain) {
+        richTextShadow = `<div class="richWrap richTextShadow"><div>`
+      } else if (!res.data.pickChance.todayRemain && res.data.pickChance.todayRemainExchangeTimes) {
+        richTextShadow = `<div class="richWrap richTextShadow chongzhi"><div>`
+      } else {
+        richTextShadow = `<div class="richWrap richTextShadow default"><div>`
+      }
+      this.setData({'status': res.data, countDown, richTextShadow})
     })
   },
   getAvatarList () {
@@ -72,7 +91,12 @@ Page({
       res.data.avatarUrls.forEach((item, index) => {
         richText = `${richText}<img src='${item}' class='richDom richDom${index}' />`
       })
-      richText = `${richText}</div>`
+      richText = `${richText}
+      <div class="center circle1"></div>
+      <div class="center circle2"></div>
+      <div class="center circle3"></div>
+      <div class="center circle4"></div>
+      </div>`
       this.setData({richText})
     })
   },
@@ -108,7 +132,9 @@ Page({
         pickTimes++
         localstorage.set('pickTimes', pickTimes)
         // 未登录的pick直接去到用户主页
-        pickApi({hideLoading: true}).then(({ data }) => {
+        this.openGif()
+        pickApi({hideLoading: true}).then(async ({ data }) => {
+          await this.hideGif()
           wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
         })
       } else {
@@ -125,20 +151,44 @@ Page({
     } else {
       // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
       if (!this.data.status.pickChance.todayRemain && this.data.status.pickChance.todayRemainExchangeTimes) {
-        this.getPickChance().then(res => {
+        this.openGif()
+        this.getPickChance().then(async () => {
+          await this.hideGif()
           this.setData({code: 5}, () => this.selectComponent('#dialog').show())
         })
       } else {
         // 有次数直接pick
-        pickApi({hideLoading: true}).then(({ data }) => {
+        this.openGif()
+        pickApi({hideLoading: true}).then(async ({ data }) => {
+          await this.hideGif()
           wx.navigateTo({url: `/pages/IM/chat/index?vkey=${data.user.vkey}`})
-        }).catch(e => {
-          if (e.data.code === 2204) {
+        }).catch(async ({ data }) => {
+          await this.hideGif()
+          if (data.code === 2204) {
             this.setData({code: 3}, () => this.selectComponent('#dialog').show())
           }
         })
       }
     }
+  },
+  openGif () {
+    this.openTime = new Date().getTime()
+    this.setData({'hideGif': false})
+  },
+  hideGif () {
+    this.nowTime = new Date().getTime()
+    this.intervalTime = this.nowTime - this.openTime
+    return new Promise((resolve) => {
+      if (this.intervalTime < 2000) {
+        setTimeout(() => {
+          this.setData({'hideGif': true})
+          resolve()
+        }, 2000 - this.intervalTime)
+      } else {
+        resolve()
+        this.setData({'hideGif': true})
+      }
+    })
   },
   routeJump (e) {
     let type = e.currentTarget.dataset.route

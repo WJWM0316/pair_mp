@@ -1,10 +1,26 @@
-import {logoutApi, wxLogin, registerApi, quickLogin} from '../api/auth.js'
+import {silentLogin, logoutApi, wxLogin, registerApi, quickLogin} from '../api/auth.js'
 import {getMyInfoApi} from '../api/user.js'
 import Socket from './webSocket.js'
+
+// 静默登录
+const relaunchSilentLogin = function (that) {
+  wx.login({
+    success: function (res0) {
+      let code = res0.code
+      wxLogin({code}, that).then(res => {
+        that.silentLoginOver()
+        loginCallback(res)
+      })
+    },
+    fail: function (e) {
+      console.log('登录失败', e)
+    }
+  })
+}
+
 // 主动授权
 const getUserInfoAuth = function(e) {
   if (e.detail.errMsg.indexOf('fail') !== -1) return
- 
   let data = {
     session_token: wx.getStorageSync('sessionToken'),
     iv_key: e.detail.iv,
@@ -15,17 +31,18 @@ const getUserInfoAuth = function(e) {
   })
 }
 
-const hasLogin = () => {
-  let hasLogin = 0
+// 判断是否有登录
+const hasLogin = (that) => {
   return new Promise((resolve, reject) => {
-    let app = getApp()
+    let hasLogin = 0
+    let app = that || getApp()
     if (app.globalData.hasOwnProperty('hasLogin')) {
       hasLogin = app.globalData.hasLogin
       resolve(hasLogin)
     } else {
       app.loginInit = () => {
         hasLogin = app.globalData.hasLogin
-        resolve(hasLogin)
+        return resolve(hasLogin)
       }
     }
   })
@@ -51,10 +68,10 @@ const getUserInfo = () => {
 
 // 统一的登录回调
 const loginCallback = (res, options) => {
+  if (res.data.sessionToken) wx.setStorageSync('sessionToken', res.data.sessionToken)
   if (res.data.userInfo && res.data.userInfo.sessionToken) wx.setStorageSync('sessionToken', res.data.userInfo.sessionToken)
   if (res.data.userInfo && res.data.userInfo.token) {
     getApp().globalData['hasLogin'] = true
-    if (getApp().loginInit) getApp().loginInit()
     wx.setStorageSync('token', res.data.userInfo.token)
     Socket.login(res.data.userInfo.token)
     getUserInfo()
@@ -67,8 +84,9 @@ const loginCallback = (res, options) => {
     }
   } else {
     getApp().globalData['hasLogin'] = false
-    if (getApp().loginInit) getApp().loginInit()
   }
+  if (getApp().loginInit) getApp().loginInit()
+
 }
 
 // 手机号登录
@@ -107,6 +125,7 @@ const logout = (e) => {
 }
 
 module.exports = {
+  relaunchSilentLogin,
   hasLogin,
   getUserInfoAuth,
   getUserInfo,

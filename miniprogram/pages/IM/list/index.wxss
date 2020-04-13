@@ -1,8 +1,7 @@
 .listWrap {
   width: 100%;
   box-sizing: border-box;
-  min-height: 100vh;
-  background: linear-gradient(transparent, #fff);
+  background: #fff;
 }
 .listWrap .tips {
   width: 100%;
@@ -38,6 +37,7 @@
 }
 .listWrap .noTips {
   height: 40rpx;
+  background: #EDF1F0;
   margin-bottom: -20rpx;
 }
 .listWrap .scroll-view {
@@ -169,6 +169,7 @@
 }
 .listWrap .scroll-view .empty {
   width: 100%;
+  padding-bottom: 100rpx;
 }
 .listWrap .scroll-view .empty .img {
   width: 380rpx;

@@ -3,7 +3,7 @@ import {setConfig} from './env.config'
 import {getConfigMiniProgramApi} from './api/subscribe.js'
 import {shareInfosApi} from './api/common.js'
 import {getMyInfoApi} from './api/user.js'
-import {wxApi, getTitleHeight, socket, loginCallback, localstorage} from './utils/index.js'
+import {wxApi, relaunchSilentLogin, getTitleHeight, socket, loginCallback, localstorage} from './utils/index.js'
 
 
 App({
@@ -18,9 +18,11 @@ App({
     this.globalData.systemInfo['titleHeight'] = 44
     this.globalData.navBarHeight = this.globalData.systemInfo.statusBarHeight + 44
     this.globalData.tabBarHeight = this.globalData.systemInfo.screenHeight - this.globalData.systemInfo.safeArea.bottom + (178 * this.globalData.systemInfo['pxTorpxRatio'])
-    
     this.globalData.viewAreaHeight = this.globalData.systemInfo.screenHeight - this.globalData.tabBarHeight - this.globalData.navBarHeight
     console.log(this.globalData.systemInfo, '系统参数')
+
+    
+
 
     // 设置环境变量
     let {appId, envVersion} = wx.getAccountInfoSync().miniProgram
@@ -30,6 +32,8 @@ App({
     let token = localstorage.get('token')
     
     socket.create(this.globalData.SOCKETHOST, token)
+
+    // 网络监测
     wx.onNetworkStatusChange(function (res) {
       if (!res.isConnected) {
         that.isNoConnected = true
@@ -40,15 +44,10 @@ App({
         }
       }
     })
-    // 判断微信登录状态
-    wx.checkSession({
-      success () {
-        if (token) {
-          let res = {data: {userInfo: {token}}}
-          loginCallback(res)
-        }
-      }
-    })
+
+    // 静默登录
+    relaunchSilentLogin(this)
+
     this.getConfigMiniProgram()
     this.getShareInfos()
   },

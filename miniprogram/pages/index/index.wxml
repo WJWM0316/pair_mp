@@ -11,12 +11,14 @@
   </navBar>
   <view class="indexWrap" style="height: {{viewAreaHeight}}px" catchtouchmove="{{false}}">
     <view class="main">
+      <rich-text class="richText" nodes="{{richTextBall}}"></rich-text>
+      <rich-text class="richText" nodes="{{richTextShadow}}"></rich-text>
       <rich-text class="richText" nodes="{{richText}}"></rich-text>
       <view class="center circle1"></view>
       <view class="center circle2"></view>
       <view class="center circle3"></view>
       <view class="center circle4"></view>
-      <view class="center centerBtn" style="{{parse.setStyle('centerBtn', status.pickChance.todayRemain, status.pickChance.todayRemainExchangeTimes)}}">
+      <view class="center centerBtn">
         <block wx:if="{{hasLogin}}">
           <view class="subscribe" bindtap="subscribe" wx:if="{{!hasPicker}}"></view>
           <view class="center btnContent contactBtn" wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
@@ -64,26 +66,12 @@
       </block>
     </view>
   </view>
-
+  <view class="pickGif" hidden="{{hideGif}}">
+    <image mode="aspectFit" class="gif" src="../../images/pick.gif"></image>
+  </view>
   <tabBar tabBgColor="{{background}}" mask="{{false}}" wx:if="{{hasLogin}}"></tabBar>
   <dialog code="{{ code }}" other="{{dialogData}}" id="dialog" bind:click="pickChance"></dialog>
   <guide-login id="guideLogin" type="index" wx:if="{{!hasLogin && showLoginGuide}}"></guide-login>
   <sugar-award-popUp id="awardPopUp" awardList="{{status.popups}}"></sugar-award-popUp>
 </view>
 <wxs src="../../utils/filters.wxs" module="filters" />
-
-<wxs module="parse">
-  module.exports = {
-    setStyle : function(dom, todayRemain, todayRemainExchangeTimes){
-      switch (dom) {
-        case 'centerBtn':
-          if (!todayRemain && todayRemainExchangeTimes) {
-            return 'box-shadow: 0 0 0rpx 123rpx rgba(244,107, 161, 0.09);'
-          } else if (todayRemain) {
-            return 'box-shadow: 0 0 0rpx 123rpx rgba(12, 205, 218, 0.09);'
-          }
-          break
-      }
-    }
-  }
-</wxs>

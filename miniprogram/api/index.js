@@ -1,6 +1,6 @@
 
 
-import {getCurrentPagePath, socket, loginCallback, localstorage} from '../utils/index.js'
+import {getCurrentPagePath, socket, loginCallback, localstorage, hasLogin} from '../utils/index.js'
 let APIHOST         = '',
     loadNum         = 0,
     app             = getApp(),
@@ -74,7 +74,6 @@ const removeAuth = () => {
 
 // 网络检测
 wx.onNetworkStatusChange(function (res) {
-  console.log(res, 22)
   if (!res.isConnected) {
     isNoConnected = true
     wx.showLoading({
@@ -198,39 +197,24 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
     // 拦截器
     const controlFun = () => {
       // 没有静默登录的必须走一遍静默登录
-      if (!app.globalData.hasOwnProperty('hasLogin')) {
-        if (!noAuthRequests.length) {
-          wx.login({
-            success: function (res0) {
-              let code = res0.code
-              wx.request({
-                url: `${getApp().globalData.APIHOST}/wechat/login/mini`,
-                data: {code},
-                header: addHttpHead,
-                method: 'post',
-                success(res) {
-                  loginCallback(res.data)
-                  setHeader() // 重新设置头部
-                  noAuthRequests.forEach((item, index) => {
-                    item()
-                  })
-                  noAuthRequests = []
-                },
-                fail(e) {
-                  console.log('服务器异常，请稍后访问', e)
-                }
-              })
-            },
-            fail: function (e) {
-              console.log('登录失败', e)
-            }
-          })
-        }
-        noAuthRequests.push(promise)
-      } else {
+      if (url === '/wechat/login/mini') {
         promise()
+      } else {
+        if (!app.globalData.hasOwnProperty('hasLogin')) {
+          if (noAuthRequests.length) {
+            app.silentLoginOver = () => {
+              noAuthRequests.forEach((item) => {
+                item()
+              })
+            }
+          }
+          noAuthRequests.push(promise)
+        } else {
+          promise()
+        }
       }
     }
+
     controlFun()
   })
 }

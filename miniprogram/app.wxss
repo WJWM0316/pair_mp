@@ -216,6 +216,7 @@
 page {
   background: #F1F4F4;
   padding-bottom: env(safe-area-inset-bottom);
+  -webkit-overflow-scrolling: touch;
 }
 .holderStyle {
   color: #CFD4D8;
