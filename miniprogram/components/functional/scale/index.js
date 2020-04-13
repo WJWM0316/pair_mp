@@ -57,7 +57,6 @@ Component({
     closest(arr, num) {
       var left = 0;
       var right = arr.length - 1;
-
       while(left <= right){
         var middle = Math.floor((right + left) / 2);
         if(right - left <= 1){
@@ -74,7 +73,6 @@ Component({
           left = middle;
         }
       }
-
       var leftValue = arr[left];
       var rightValue = arr[right];
       return rightValue - num > num - leftValue ? leftValue : rightValue;

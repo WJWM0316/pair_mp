@@ -2,14 +2,14 @@
   <picker-view class="picker" indicator-class="indicator" value="{{ value }}" bindchange="bindChange" mask-class="mask">
     <block wx:if="{{ mode === 'selector'}}">
       <picker-view-column class="column">
-        <view wx:for="{{ rangeArray }}" wx:key="index">
+        <view wx:for="{{ rangeArray }}" wx:key="index" class="{{ index === value[0] ? 'active' : 'default' }}">
             {{ item[rangeKey] }}
         </view>
       </picker-view-column>    
     </block>
     <block wx:else>
       <picker-view-column
-        class="column"
+        class="column coloum{{ pIndex }}"
         wx:for="{{ rangeArray }}"
         wx:key="pIndex"
         wx:for-item="pItem"
@@ -17,7 +17,7 @@
         <view
           wx:for="{{ pItem }}"
           wx:key="cIndex"
-          class="{{ rangeArray[pIndex][value[pIndex]] ? 'active' : 'default' }}"
+          class="{{ cIndex === value[pIndex] ? 'active' : 'default' }}"
           wx:for-index="cIndex">
             {{ item.key || item.title || item.text || item[rangeKey] }}
         </view>

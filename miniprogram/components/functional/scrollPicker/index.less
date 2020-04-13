@@ -24,24 +24,27 @@
 			top: 0;
 			.line(#CFD4D8)
 		}
-		picker-view-column {
-			color: @text-color-1;
-			font-size: 42rpx;
-		}
 	}
 	.column {
-		font-size: 38rpx;
-		color: @text-color-3;
 		text-align: center;
 		line-height: 120rpx;
 	}
 	.mask {
 		background: transparent;
-		color: red;
 	}
-	picker-view-column {
-		&:nth-child(2n) {
-			margin: 0 30rpx;
-		}
+	.default {
+		font-size:38rpx;
+		color:@text-color-3;
+	}
+	.active {
+		font-size:42rpx;
+		color:@text-color-1;
+		font-weight: 700;
+	}
+	.coloum1 {
+		margin-left: 30rpx;
+	}
+	.coloum2 {
+		margin-right: 30rpx;
 	}
 }
