@@ -241,7 +241,7 @@
               background:rgba(30,226,226,1);
               border-radius:245rpx;
               opacity:0.09;
-              animation: scale 2s linear infinite 1s;
+              animation: scale 2s linear infinite;
             }
             &.chongzhi {
               &:after {
@@ -268,6 +268,15 @@
             bottom: 50%;
             transform: translate3d(-50%, 50%, 0);
             z-index: 1;
+            overflow: hidden;
+            .avator {
+              width: 110%;
+              display: block;
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate3d(-50%, -50%, 0);
+            }
           }
           .richDom0 {
             width:254rpx;
@@ -414,6 +423,7 @@
     top: 0;
     left: 0;
     z-index: 20;
+    background:linear-gradient(180deg,rgba(37,45,53,1) 0%,rgba(34,42,49,1) 42%,rgba(27,34,40,1) 100%);
     .gif {
       width: 100%;
       height: 100%;

@@ -6,7 +6,8 @@
     "dialog": "../../components/business/dialog",
     "subscribe": "../../components/business/subscribe/index",
     "sugar-award-popUp": "../../components/business/sugarAwardPopup",
-    "guide-login": "../../components/business/guideLogin"
+    "guide-login": "../../components/business/guideLogin",
+    "pop-up": "../../components/business/popup"
   },
   "navigationStyle": "custom",
   "disableScroll": false

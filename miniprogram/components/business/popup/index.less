@@ -78,5 +78,38 @@
         bottom: -10rpx;
       }
     }
+    &.auth {
+      padding: 50rpx;
+      .tips1 {
+        font-size:28rpx;
+      }
+      .radio {
+        font-size:24rpx;
+        color:@text-color-1;
+        line-height:32rpx;
+        margin: 30rpx 0 70rpx;
+        .radio {
+          font-size: 26rpx;
+          margin-right: 8rpx;
+          color: @text-color-4;
+          &.cur {
+            color: @primary-color;
+          }
+        }
+        .bold {
+          font-weight: 700;
+          color: @primary-color;
+          text-decoration: underline;
+        }
+      }
+      .btn {
+        font-size:32rpx;
+        font-weight:700;
+        color:#fff;
+        &:after, &::before {
+          display: none;
+        }
+      }
+    }
   }
 }

@@ -3,6 +3,7 @@
 	"backgroundTextStyle": "light",
 	"usingComponents": {
     "dialog": "../../components/business/dialog/index",
+    "pop-up": "../../components/business/popup",
     "guide-login": "../../components/business/guideLogin"
   },
   "navigationBarTitleText": "",

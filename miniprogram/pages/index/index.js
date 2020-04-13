@@ -89,7 +89,7 @@ Page({
     pickIndexAvaApi(data).then(res => {
       let richText = `<div class="richWrap">`
       res.data.avatarUrls.forEach((item, index) => {
-        richText = `${richText}<img src='${item}' class='richDom richDom${index}' />`
+        richText = `${richText}<div class="richDom richDom${index}"><img src='${item}' class='avator' /></div>`
       })
       richText = `${richText}
       <div class="center circle1"></div>
@@ -125,7 +125,7 @@ Page({
     })
   },
   pick () {
-    let { userInfo } = app.globalData.userInfo
+    let { userInfo, wechatInfo } = app.globalData.userInfo
     if (!this.data.hasLogin) {
       let pickTimes = localstorage.get('pickTimes') || 0
       if (pickTimes < 5) {
@@ -140,6 +140,10 @@ Page({
       } else {
         this.selectComponent('#guideLogin').toggle()
       }
+      return
+    }
+    if (!wechatInfo.wxNickname) {
+      this.selectComponent("#popup").show()
       return
     }
     if(userInfo.step !== 9) {

@@ -191,5 +191,5 @@
   </block>
   
   <dialog code="{{ code }}" id="dialog" bind:click="dialogEvent" other="{{ chargeInfo }}"></dialog>
-  
+  <pop-up id="popup" type="auth"></pop-up>
 </view>

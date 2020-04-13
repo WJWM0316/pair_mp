@@ -149,8 +149,13 @@ Page({
     })   
   },
   chat() {
-    let { PAGEPATH } = app.globalData
+    let { PAGEPATH, userInfo } = app.globalData
     let { options, httpCode } = this.data
+    if (!userInfo.wechatInfo.wxNickname) {
+      this.selectComponent('#popup').show()
+      return
+    }
+    
     let jump = (options) => {
       wx.navigateTo({
         url: `${PAGEPATH}/IM/chat/index?vkey=${options.vkey}`

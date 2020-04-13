@@ -76,3 +76,37 @@
   display: block;
   bottom: -10rpx;
 }
+.popup .content.auth {
+  padding: 50rpx;
+}
+.popup .content.auth .tips1 {
+  font-size: 28rpx;
+}
+.popup .content.auth .radio {
+  font-size: 24rpx;
+  color: #1F252B;
+  line-height: 32rpx;
+  margin: 30rpx 0 70rpx;
+}
+.popup .content.auth .radio .radio {
+  font-size: 26rpx;
+  margin-right: 8rpx;
+  color: #CFD4D8;
+}
+.popup .content.auth .radio .radio.cur {
+  color: #0CCDDA;
+}
+.popup .content.auth .radio .bold {
+  font-weight: 700;
+  color: #0CCDDA;
+  text-decoration: underline;
+}
+.popup .content.auth .btn {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #fff;
+}
+.popup .content.auth .btn:after,
+.popup .content.auth .btn::before {
+  display: none;
+}

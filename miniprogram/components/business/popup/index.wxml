@@ -1,9 +1,18 @@
 <view class="popup" wx:if="{{show}}">
-  <view class="content">
+  <view class="content follow" wx:if="{{type === 'follow'}}">
     <i class="close iconfont icon_xiaocha" bindtap = "close"></i>
     <view class="title">关注公众号</view>
     <view class="tips1">联系客服，点击右下角发送小程序，可获取公众号二维码进行关注</view>
     <image class="img" src="{{cdnPath}}img_popup_followgzh@3x.png" mode="widthFix"></image>
     <contact-btn my-class="btn" title="联系客服" contactType="follow"></contact-btn>
+  </view>
+
+  <view class="content auth">
+    <i class="close iconfont icon_xiaocha" bindtap = "close"></i>
+    <view class="title">温馨提醒</view>
+    <view class="tips1">为建设友好、真诚的平台交友氛围，平台根据现行法律法规、监管政策的要求，需用户同意授权微信个人信息后再使用平台提供的产品和相关服务。</view>
+    <view class="radio" bindtap="toggle"><i  class="radio iconfont icon_danchuang-gou {{selected ? 'cur' : ''}}"></i><text>请阅读并同意</text><text class="bold">《PickMe用户协议》</text></view>
+    <button wx:if="{{selected}}" class="btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" lang="zh_CN">同意</button>
+    <button wx:else class="btn" bindtap="toast">同意</button>
   </view>
 </view>

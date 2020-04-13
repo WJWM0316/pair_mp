@@ -1,3 +1,4 @@
+import {getUserInfoAuth} from "../../../utils/index.js"
 const app =  getApp();
 Component({
   options: {
@@ -7,7 +8,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    type: {
+      type: String,
+      value: 'follow'
+    }
   },
 
   /**
@@ -15,6 +19,7 @@ Component({
    */
   data: {
     show: false,
+    selected: true,
     cdnPath: app.globalData.CDNPATH
   },
 
@@ -28,5 +33,17 @@ Component({
     show () {
       this.setData({'show': true})
     },
+    toggle () {
+      this.setData({selected: !this.data.selected})
+    },
+    toast () {
+      if (!this.data.selected) {
+        app.wxToast({title: '请先勾选用户协议'})
+        return
+      }
+    },
+    onGotUserInfo (e) {
+      getUserInfoAuth(e)
+    }
   }
 })
