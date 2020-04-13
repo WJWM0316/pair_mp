@@ -11,7 +11,7 @@
   width: 160rpx;
   height: 220rpx;
   z-index: 2;
-  background: linear-gradient(90deg, #fff 20%, rgba(255, 255, 255, 0.5) 100%);
+  background: linear-gradient(90deg, #fff 20%, rgba(255, 255, 255, 0.3) 100%);
 }
 .scale:after {
   position: fixed;
@@ -21,7 +21,7 @@
   width: 160rpx;
   height: 220rpx;
   z-index: 2;
-  background: linear-gradient(270deg, #fff 20%, rgba(255, 255, 255, 0.5) 100%);
+  background: linear-gradient(270deg, #fff 20%, rgba(255, 255, 255, 0.3) 100%);
 }
 .scale .scroll-view {
   overflow: hidden;
