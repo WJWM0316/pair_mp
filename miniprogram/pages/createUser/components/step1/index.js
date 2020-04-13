@@ -1,7 +1,7 @@
 import {
   createUserStep1Api
 } from '../../../../api/user'
-import {getUserInfo} from '../../../../utils/auth.js'
+import {getUserInfo, getUserInfoAuth} from '../../../../utils/auth.js'
 const app =  getApp();
 Component({
   data: {
@@ -126,6 +126,7 @@ Component({
       this.setData({ canClick })
     },
     getUserInfo(e) {
+      getUserInfoAuth(e)
       if (e.detail.errMsg === 'getUserInfo:ok') {
         let { userInfo } = e.detail
         let { formData } = this.data
