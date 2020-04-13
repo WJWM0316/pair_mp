@@ -47,5 +47,5 @@
   margin-left: 30rpx;
 }
 .scrollPicker .coloum2 {
-  margin-right: 30rpx;
+  margin-left: 30rpx;
 }
