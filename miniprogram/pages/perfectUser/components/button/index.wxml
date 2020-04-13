@@ -1,7 +1,0 @@
-<i-button
-  type="success"
-  class="btn-next {{ canClick ? 'btn-next-active' : '' }}"
-  long="{{ true }}"
-  bind:click="next">
-    {{ btnTxt }}
-</i-button>

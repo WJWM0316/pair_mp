@@ -11,7 +11,10 @@
             <scrollPicker pickerType="salary" initValue="{{ '' }}" bind:pickerResult="pickerResult"></scrollPicker>
         </view>
         <view class="p11"><view class="btn-set" bindtap="toggle"><i class="icon1 icon iconfont icon_gouxuan" wx:if="{{ show }}"></i><i class="icon2" wx:else></i>仅自己可见</view></view>
-        <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next1"></myButton>
+        <!-- <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next1"></myButton> -->
+        <view class="footer-btn">
+            <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next1"><view class="cover">下一步</view></i-button>
+        </view>
     </view>
     <view class="step2  {{ step == 2 ? 'show' : ''}}">
         <view class="h1">你的标签</view>
@@ -66,7 +69,10 @@
                 </view>
             </view>
         </view>
-        <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next2"></myButton>
+        <!-- <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next2"></myButton> -->
+        <view class="footer-btn">
+            <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next2"><view class="cover">下一步</view></i-button>
+        </view>
     </view>
 
     <view class="step3 {{ step == 3 ? 'show' : ''}}">
@@ -91,7 +97,10 @@
                 />
         </view>
         <view class="number"><text class="{{ formData.own_describe.length ? 'strong' : ''}}">{{formData.own_describe.length}}</text>/150</view>
-        <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next3"></myButton>
+        <!-- <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next3"></myButton> -->
+        <view class="footer-btn">
+            <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next3"><view class="cover">下一步</view></i-button>
+        </view>
     </view>
     <view class="step4 {{ step == 4 ? 'show' : ''}}">
         <view class="h1">我的理想型</view>
@@ -115,6 +124,9 @@
                 />
         </view>
         <view class="number"><text class="{{ formData.ideal_describe.length ? 'strong' : ''}}">{{formData.ideal_describe.length}}</text>/150</view>
-        <myButton canClick="{{ canClick }}" btnTxt="完成" bind:click="next4"></myButton>
+        <!-- <myButton canClick="{{ canClick }}" btnTxt="完成" bind:click="next4"></myButton> -->
+        <view class="footer-btn">
+            <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next4"><view class="cover">完成</view></i-button>
+        </view>
     </view>
 </view>

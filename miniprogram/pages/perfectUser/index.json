@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "myButton": "./components/button/index",
     "scrollPicker": "../../components/functional/scrollPicker/index"
   },
   "navigationBarBackgroundColor": "#F1F4F4",

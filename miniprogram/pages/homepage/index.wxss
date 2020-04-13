@@ -329,12 +329,21 @@
   line-height: 48rpx;
 }
 .homepage .info-myLabel .type .icon {
-  font-size: 20rpx;
+  font-size: 22rpx;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   color: #ffffff;
+}
+.homepage .info-myLabel .type .icon_renshe {
+  font-size: 26rpx;
+}
+.homepage .info-myLabel .type .icon_yingshi {
+  font-size: 26rpx;
+}
+.homepage .info-myLabel .type .icon_shuji {
+  font-size: 24rpx;
 }
 .homepage .info-myLabel .item {
   height: 48rpx;
