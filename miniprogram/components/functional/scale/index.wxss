@@ -8,20 +8,20 @@
   left: 0;
   content: '';
   display: block;
-  background: white;
-  width: 65rpx;
+  width: 160rpx;
   height: 220rpx;
   z-index: 2;
+  background: linear-gradient(90deg, #fff 20%, rgba(255, 255, 255, 0.5) 100%);
 }
 .scale:after {
   position: fixed;
   right: 0;
   content: '';
   display: block;
-  background: white;
-  width: 65rpx;
+  width: 160rpx;
   height: 220rpx;
   z-index: 2;
+  background: linear-gradient(270deg, #fff 20%, rgba(255, 255, 255, 0.5) 100%);
 }
 .scale .scroll-view {
   overflow: hidden;
@@ -42,7 +42,6 @@
 }
 .scale .label-item .value {
   display: inline;
-  padding-left: 10rpx;
 }
 .scale .unit {
   font-size: 36rpx;
@@ -58,18 +57,33 @@
 }
 .scale .line-box {
   position: relative;
+  height: 130rpx;
 }
 .scale .line {
   width: 8rpx;
   height: 64rpx;
   background: #C7D7E7;
   display: inline-block;
-  margin: 0 22rpx;
   border-radius: 4rpx;
-  vertical-align: top;
+  position: absolute;
+  top: 0;
+}
+.scale .line:nth-child(1) {
+  left: calc(calc(100% - 40rpx)/10);
+}
+.scale .line:nth-child(2) {
+  left: calc(3 * calc(calc(100% - 40rpx)/10) + 8rpx);
 }
 .scale .line:nth-child(3) {
   height: 130rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.scale .line:nth-child(4) {
+  left: calc(7 * calc(calc(100% - 40rpx)/10) + 3 * 8rpx);
+}
+.scale .line:nth-child(5) {
+  left: calc(9 * calc(calc(100% - 40rpx)/10) + 4 * 8rpx);
 }
 .scale .active .line {
   opacity: 1;

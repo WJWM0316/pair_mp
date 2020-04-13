@@ -28,7 +28,6 @@ Component({
     }
     this.setData({ tabs }, () => {
       getSelectorQuery('.myscale', this).then(res => {
-        console.log(res.width)
         let itemLength = parseInt(res.width / 3)
         tabs.map((v, i) => {
           v.startX = itemLength * i
