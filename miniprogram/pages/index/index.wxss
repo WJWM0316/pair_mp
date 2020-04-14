@@ -160,6 +160,15 @@
 .page .indexWrap .main .centerBtn .btnContent.noLogin .mainBtn .logo {
   margin: 75rpx auto 9rpx;
 }
+.page .indexWrap .main .subscribe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  border-radius: 50%;
+}
 .page .indexWrap .main .footerTxt {
   width: 100%;
   position: absolute;
