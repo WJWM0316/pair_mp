@@ -43,6 +43,7 @@ Component({
       }
     },
     onGotUserInfo (e) {
+      this.close()
       getUserInfoAuth(e)
     }
   }

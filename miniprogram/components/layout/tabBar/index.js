@@ -1,5 +1,6 @@
 const app =  getApp();
-import {getSelectorQuery, } from '../../../utils/util.js'
+import {getSelectorQuery, socket} from '../../../utils/index.js'
+import {unreadNumApi} from '../../../api/im.js'
 Component({
   /**
    * 组件的属性列表
@@ -42,7 +43,8 @@ Component({
         routerPath: 'pages/IM/list/index'
       }
     ],
-    cdnPath: app.globalData.CDNPATH
+    cdnPath: app.globalData.CDNPATH,
+    unreadNum: 0
   },
   attached () {
     let route = getCurrentPages()
@@ -50,11 +52,36 @@ Component({
     let list  = this.data.list
     list.map(field => field.selected = field.routerPath === route ? true : false)
     this.setData({list})
+
+    if (!app.globalData.hasLogin) return
+    if (!this.hasAttached) {
+      this.hasAttached = true
+      this.getUnreadNum()
+    }
+
+    socket.onMessage((res) => {
+      if ((res.msgType === "RC:VcMsg" || res.msgType === "RC:ImgMsg" || res.msgType === "RC:TxtMsg")) {
+        if (this.data.unreadNum < 99) {
+          let unreadNum = this.data.unreadNum
+          unreadNum++
+          this.setData({unreadNum})
+        }
+      }
+    })
+  },
+  pageLifetimes: {
+    show: function() {
+      if (this.hasAttached && app.globalData.hasLogin) this.getUnreadNum()
+    }
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    async getUnreadNum () {
+      let {data} = await unreadNumApi()
+      this.setData({unreadNum: data.count})
+    },
     jump (e) {
       if (e.currentTarget.dataset.selected) return
       let route = e.currentTarget.dataset.route

@@ -11,14 +11,12 @@
   </navBar>
   <view class="indexWrap" style="height: {{viewAreaHeight}}px" catchtouchmove="{{false}}">
     <view class="main">
-      <rich-text class="richText" nodes="{{richTextBall}}"></rich-text>
+      
       <rich-text class="richText" nodes="{{richTextShadow}}"></rich-text>
       <rich-text class="richText" nodes="{{richText}}"></rich-text>
-      <view class="center circle1"></view>
-      <view class="center circle2"></view>
-      <view class="center circle3"></view>
-      <view class="center circle4"></view>
+      <rich-text class="richText" nodes="{{richTextBall}}"></rich-text>
       <view class="center centerBtn">
+
         <block wx:if="{{hasLogin}}">
           <view class="subscribe" bindtap="subscribe" wx:if="{{!hasPicker}}"></view>
           <view class="center btnContent contactBtn" wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
@@ -45,7 +43,7 @@
           </view>
         </block>
       </view>
-      <block wx:if="{{hasLogin}}">
+      <block wx:if="{{hasLogin && status.pickChance}}">
         <block wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
           <view class="footerTxt">
             <view class="txt1">{{status.refreshText}}</view>
@@ -69,10 +67,10 @@
   <view class="pickGif" hidden="{{hideGif}}">
     <image mode="aspectFit" class="gif" src="../../images/pick.gif"></image>
   </view>
-  <tabBar tabBgColor="{{background}}" mask="{{false}}" wx:if="{{hasLogin}}"></tabBar>
+  <tabBar tabBgColor="{{background}}" mask="{{false}}" wx:if="{{hasLogin && hasLogincb}}"></tabBar>
   <dialog code="{{ code }}" other="{{dialogData}}" id="dialog" bind:click="pickChance"></dialog>
   <guide-login id="guideLogin" type="index" wx:if="{{!hasLogin && showLoginGuide}}"></guide-login>
-  <pop-up type="auth"></pop-up>
+  <pop-up id="popup" type="auth"></pop-up>
   <sugar-award-popUp id="awardPopUp" awardList="{{status.popups}}"></sugar-award-popUp>
 </view>
 <wxs src="../../utils/filters.wxs" module="filters" />

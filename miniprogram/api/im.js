@@ -61,3 +61,10 @@ export const delHeaderApi = (data) => {
   })
 }
 
+// 未读数
+export const unreadNumApi = (data) => {
+  return request({
+    method: 'get',
+    url: `/im/msg/unread`
+  })
+}

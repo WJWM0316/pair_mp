@@ -3,6 +3,7 @@
     <view class="tabBar-item {{index === 1 ? 'center' : ''}}" wx:for="{{list}}" wx:key="text" bindtap = "jump" data-selected="{{item.selected}}" data-route="{{item.routerPath}}">
       <image class="icon" src="{{cdnPath}}{{item.selected ? item.selectedIcon : item.icon}}"></image>
       <text class="text {{item.selected ? 'selected' : ''}}">{{item.text}}</text>
+      <view wx:if="{{index === 2 && unreadNum}}" class="unread">{{unreadNum}}</view>
     </view>
   </view>
   <view class="tabBar-mask" wx:if="{{mask}}"></view>

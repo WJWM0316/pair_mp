@@ -3,7 +3,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 8;
   padding-bottom: 30rpx;
 }
 @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
@@ -29,6 +29,7 @@
 }
 .tabBar .tabBar-content .tabBar-item {
   text-align: center;
+  position: relative;
 }
 .tabBar .tabBar-content .tabBar-item .icon {
   display: block;
@@ -62,6 +63,18 @@
 }
 .tabBar .tabBar-content .tabBar-item.center .text.selected {
   color: #F46BA1;
+}
+.tabBar .tabBar-content .tabBar-item .unread {
+  padding: 0 10rpx;
+  background: #F46BA1;
+  border-radius: 19rpx;
+  border: 2rpx solid #fff;
+  position: absolute;
+  top: -6rpx;
+  left: 36rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 34rpx;
 }
 .tabBar .tabBar-mask {
   width: 100%;

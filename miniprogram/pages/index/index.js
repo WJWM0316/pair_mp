@@ -21,6 +21,8 @@ Page({
                     <div class="center ball ball5"></div>
                     <div class="center ball ball6"></div>
                     <div class="center ball ball7"></div>
+                    <div class="center ball ball8"></div>
+                    <div class="center ball ball9"></div>
                   <div>`,
     showLoginGuide: false,
     status: {},
@@ -29,6 +31,7 @@ Page({
     code: 0,
     dialogData: {},
     hasLogin: true,
+    hasLogincb: false,
     cdnPath: app.globalData.CDNPATH,
     hasPicker: false
   },
@@ -41,7 +44,7 @@ Page({
       this.setData({hasPicker: true})
     }
     let data = await hasLogin()
-    this.setData({'hasLogin': data})
+    this.setData({'hasLogin': data, 'hasLogincb': true})
     if (this.data.hasLogin) this.getOtherStatus()
   },
   // 性别变化了
@@ -136,13 +139,15 @@ Page({
         pickApi({hideLoading: true}).then(async ({ data }) => {
           await this.hideGif()
           wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
+        }).catch(async (e) => {
+          await this.hideGif()
         })
       } else {
         this.selectComponent('#guideLogin').toggle()
       }
       return
     }
-    if (!wechatInfo.wxNickname) {
+    if (!wechatInfo || (wechatInfo && !wechatInfo.wxNickname)) {
       this.selectComponent("#popup").show()
       return
     }
@@ -159,6 +164,8 @@ Page({
         this.getPickChance().then(async () => {
           await this.hideGif()
           this.setData({code: 5}, () => this.selectComponent('#dialog').show())
+        }).catch(async (e) => {
+          await this.hideGif()
         })
       } else {
         // 有次数直接pick

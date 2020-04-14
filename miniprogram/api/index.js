@@ -111,7 +111,10 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         method: method,
         success(res) {
           closeLoading()
-          console.log(url, res.data)
+          console.log(url)
+          console.log(data)
+          console.log(addHttpHead)
+          console.log(res.data)
           try {
             if (typeof res.data === 'string') { // 转换返回json
               res.data = JSON.parse(res.data)

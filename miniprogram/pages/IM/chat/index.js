@@ -99,7 +99,6 @@ Page({
       }
       if (res.data.chatInfo && res.data.chatInfo.isHideUserCard) {
         this.selectComponent('#header').toggle('index')
-        console.log(11111111111111)
       }
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data, showDebutWord, showSystemHint})
     })

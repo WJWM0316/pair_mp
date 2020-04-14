@@ -230,7 +230,7 @@
   left: 50%;
   top: 50%;
   transform: translate3d(-50%, -50%, 0);
-  animation: scale 2s linear infinite;
+  animation: scale 1s linear infinite;
 }
 .page .indexWrap .main .richText .richWrap.richTextShadow:before {
   width: 475rpx;
@@ -238,7 +238,7 @@
   background: #1ee2e2;
   border-radius: 245rpx;
   opacity: 0.09;
-  animation: scale 2s linear infinite;
+  animation: scale 1s linear infinite;
 }
 .page .indexWrap .main .richText .richWrap.richTextShadow.chongzhi:after {
   background: #f46ba1;
@@ -347,6 +347,9 @@
   height: 400rpx;
   border: 2rpx solid rgba(118, 208, 217, 0.2);
 }
+.page .indexWrap .main .richText .richWrap .ball {
+  z-index: 1;
+}
 .page .indexWrap .main .richText .richWrap .ball1 {
   width: 84rpx;
   height: 84rpx;
@@ -390,20 +393,37 @@
   transform: translate3d(0, -100%, 0);
 }
 .page .indexWrap .main .richText .richWrap .ball6 {
+  width: 21rpx;
+  height: 21rpx;
+  background: #3d5255;
+  top: -465rpx;
+  left: 98rpx;
+  transform: translate3d(0, -100%, 0);
+}
+.page .indexWrap .main .richText .richWrap .ball7 {
   width: 29rpx;
   height: 29rpx;
   background: #96dbd0;
   top: -278rpx;
   left: -6rpx;
-  transform: translate3d(-100%, -150%, 0);
+  transform: translate3d(0, -150%, 0);
 }
-.page .indexWrap .main .richText .richWrap .ball7 {
+.page .indexWrap .main .richText .richWrap .ball8 {
   width: 20rpx;
   height: 20rpx;
   background: #5aa2f0;
   top: -216rpx;
   left: -312rpx;
   transform: translate3d(-100%, -150%, 0);
+}
+.page .indexWrap .main .richText .richWrap .ball9 {
+  width: 27rpx;
+  height: 27rpx;
+  background: #8b8ef3;
+  opacity: 0.69;
+  top: -2rpx;
+  left: -178rpx;
+  transform: translate3d(-130%, -100%, 0);
 }
 .page .pickGif {
   width: 100%;
