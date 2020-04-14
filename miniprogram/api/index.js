@@ -146,6 +146,11 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                         })
                         reject(msg)
                         break
+                      case 4010:
+                        app.wxToast({title: msg.msg, callback: () => {
+                          wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                        }})
+                        break
                       default:
                         app.wxToast({title: msg.msg})
                         reject(msg)  
