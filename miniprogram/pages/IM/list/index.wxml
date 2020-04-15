@@ -20,7 +20,9 @@
           wx:key="id"
           operateWidth="{{130}}"
           toggle="{{lockIndex === index ? true : false}}"
+          id="swipeOut{{index}}"
           index="{{index}}"
+
           bindtap = "startChat"
           data-vkey = "{{item.imFromUser.vkey}}"
           bindswipeStatus = "getSwipeStatus"
@@ -31,12 +33,12 @@
               <i-image my-class="avatarImg" src="{{item.imFromUser.avatarUrl}}"></i-image>
             </view>
             <view class="messageContent">
-              <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{item.lastMsgTimeText}}</view></view>
+              <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{filters.activeTime(item.lastMsgTime)}}</view></view>
               <view class="content">{{item.lastMsg}}</view>
               <view class="messageNum" wx:if="{{item.unreadMsgNum}}">{{item.unreadMsgNum}}</view>
             </view>
           </view>
-          <view slot="button" class="rightBtn"  catchtap = "remove" data-index="{{index}}">
+          <view slot="button" class="rightBtn" catchtap = "remove" data-index="{{index}}">
             <i-button my-class="closeBtn"><i class="closeMessage iconfont icon_shanchu"></i></i-button>
           </view>
         </swipe-out>
@@ -52,3 +54,4 @@
 </view>
 <tabBar tabBgColor="#fff"></tabBar>
 <popup id="popup"></popup>
+<wxs src="../../../utils/filters.wxs" module="filters" />
