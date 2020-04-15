@@ -77,6 +77,13 @@ Component({
             })
           })
           break
+        case 'invitation':
+          this.setData({show: !this.data.show}, () => {
+            wx.navigateTo({
+              url: `${PAGEPATH}/account/index?showModel=true`
+            })
+          })
+          break
       }
     },
     dialogEvent(e) {

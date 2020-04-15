@@ -119,16 +119,9 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/homepage/index",
-					"pathName": "pages/homepage/index",
+					"name": "pages/poster/index",
+					"pathName": "pages/poster/index",
 					"query": "vkey=ighvcabv",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/backlist/index",
-					"pathName": "pages/backlist/index",
-					"query": "step=1",
 					"scene": null
 				}
 			]

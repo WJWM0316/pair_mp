@@ -4,8 +4,12 @@ import {
 } from '../../api/sugar'
 import {
   userSignApi,
-  getCurrentWeekSignInApi
+  getCurrentWeekSignInApi,
+  getWxOfficialShareCodeApi,
+  getUserShareCodeApi
 } from '../../api/user'
+
+
 const app = getApp()
 Page({
   data: {
@@ -21,11 +25,16 @@ Page({
       uid: 0,
       vkey: '',
       todaySigned: true
-    }
+    },
+    show: false,
+    inviteCode: {}
   },
-  onLoad() {
+  onLoad(options) {
     this.getCurrentWeekSignIn()
     this.getSugarInfo()
+    if(options.showModel) {
+      this.getUserShareCode()
+    }
   },
   getSugarInfo() {
     return new Promise((resolve, reject) => {
@@ -60,6 +69,9 @@ Page({
       url: `${PAGEPATH}/bill/index`
     })
   },
+  getUserShareCode() {
+    getUserShareCodeApi().then(({data}) => this.setData({show: true, inviteCode: data.inviteCode}))
+  },
   sign() {
     userSignApi().then(({data}) => {
       this.setData({'awardPopData': data.popups}, () => {
@@ -72,9 +84,31 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-    return app.wxShare({options})
+    this.setData({show: false})
+    let { inviteCode } = this.data
+    if(options.from === 'button') {
+      return app.wxShare({
+        options,
+        path: `/pages/index/index?inviteCode=${inviteCode.code}`
+      })
+    } else {
+      return app.wxShare({options})
+    }    
   },
   onPullDownRefresh() {
     this.getSugarInfo().then(() => wx.stopPullDownRefresh())
+  },
+  stopPageScroll () {
+    return false
+  },
+  close () {
+    this.setData({show: false}, () => this.triggerEvent('close'))
+  },
+  todoAction(e) {
+    let { itemList } = this.data
+    let { index } = e.currentTarget.dataset
+    let result = itemList.find((v, i) => i === index)
+    this.setData({show: false}, () => this.triggerEvent('close'))
+    this.triggerEvent('drawerAction', result)
   }
 })

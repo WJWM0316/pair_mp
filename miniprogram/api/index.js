@@ -60,6 +60,10 @@ const setHeader = (url) => {
   if (sessionToken) {
     addHttpHead['Authorization-Wechat'] = sessionToken
   }
+  
+  if(wx.getStorageSync('inviteCode')) {
+    addHttpHead['Invite-Code'] = wx.getStorageSync('inviteCode')
+  }
 }
 
 // 清楚授权相关凭证
@@ -68,8 +72,10 @@ const removeAuth = () => {
   sessionToken = null
   wx.removeStorageSync('token')
   wx.removeStorageSync('sessionToken')
+  wx.removeStorageSync('inviteCode')
   delete addHttpHead['Authorization']
   delete addHttpHead['Authorization-Wechat']
+  delete addHttpHead['Invite-Code']
 }
 
 // 网络检测
@@ -150,6 +156,9 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                         app.wxToast({title: msg.msg, callback: () => {
                           wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
                         }})
+                        break
+                      case 2302:
+                        wx.redirectTo({url: `/pages/invitation/index`})
                         break
                       default:
                         app.wxToast({title: msg.msg})

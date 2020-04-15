@@ -35,6 +35,7 @@
     .inner {
       flex: 1;
       height: 140rpx;
+      position: relative;
     }
     .pitang {
       height:138rpx;
@@ -125,13 +126,13 @@
     margin: 26rpx 0 40rpx 0;
     padding-bottom: 60rpx;
     position: relative;
-    // &:after{
-    //   position: absolute;
-    //   bottom: 0;
-    //   left: 0;
-    //   right: 0;
-    //   .line()
-    // }
+    &:after{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      .line()
+    }
     &:last-child{
       margin-left: 0;
     }
@@ -237,5 +238,156 @@
       font-size:30rpx;
       color:@primary-color;
     }
+  }
+}
+.drawer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  .content {
+    width:100vw;
+    height:auto;
+    border-radius:24rpx 24rpx 0rpx 0rpx;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 10;
+    overflow: hidden;
+    transition: all .4s linear;
+    opacity: .5;
+    background: #F1F4F4;
+    z-index: 11;
+  }
+  .h1 {
+    height:50rpx;
+    font-size:36rpx;
+    font-weight:700;
+    color:rgba(31,37,43,1);
+    line-height:50rpx;
+    text-align: center;
+    margin-top: 62rpx;
+  }
+  .h2 {
+    font-size:30rpx;
+    color:rgba(31,37,43,1);
+    line-height:48rpx;
+    position: relative;
+    text-align: center;
+    margin-top: 10rpx;
+  }
+  .inner11 {
+    display: inline-block;
+    position: relative;
+    &:after {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height:24rpx;
+      background:@primary-color;
+      opacity:0.08;
+      bottom: 0;
+      content: '';
+    }
+  }
+  .text11 {
+    display: inline;
+    position: relative;
+    z-index: 2;
+  }
+  .my_pitang {
+    height: 47rpx;
+    position: relative;
+    z-index: 2;
+    top: 12rpx;
+    margin-left: 5rpx;
+  }
+  .mask {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background:rgba(0,0,0,.8);
+    z-index: 9;
+    animation-name: modalopen;
+    animation-duration: .2s;
+  }
+  .mask.show{
+    bottom: 0;
+    opacity: 1;
+  }
+  .content.show{
+    opacity: 1;
+  }
+  .icon_xiaocha {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20rpx;
+    color: @text-color-4;
+    padding: 38rpx;
+  }
+  .tab {
+    padding: 78rpx 198rpx 82rpx 198rpx;
+    position: relative;
+    overflow: hidden;
+    .item1 {
+      display: inline-block;
+      float: left;
+      width: unset;
+      height: unset;
+      border: unset;
+      box-shadow: unset;
+      .circle {
+        width:100rpx;
+        height:100rpx;
+        background:#17C18A;
+        border-radius: 50%;
+        position: relative;
+      }
+    }
+    .item2 {
+      display: inline-block;
+      float: right;
+      width: unset;
+      height: unset;
+      border: unset;
+      box-shadow: unset;
+      .circle {
+        width:100rpx;
+        height:100rpx;
+        background:#FCB81C;
+        border-radius: 50%;
+        position: relative;
+      }
+    }
+    .txt {
+      font-size:26rpx;
+      color:@text-color-1;
+      line-height:38rpx;
+      margin-top: 12rpx;
+    }
+    .icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 38rpx;
+      color: #fff;
+    }
+  }
+}
+
+@keyframes modalopen {
+  from {
+    opacity: .5;
+  }
+  to {
+    opacity: 1;
   }
 }

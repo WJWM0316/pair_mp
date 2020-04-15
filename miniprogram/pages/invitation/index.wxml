@@ -1,0 +1,17 @@
+<view class="invitationCode">
+  <view class="h1">填写邀请码</view>
+  <view class="h2">为保证交友质量，平台仅对有邀请码的用户开放，敬请谅解</view>
+  <i-image my-class="block-image" src="{{ CDNPATH }}img_login_person.png" mode="widthFix"></i-image>
+  <view class="li">
+    <input
+      placeholder-class="holderStyle"
+      placeholder="填写邀请码"
+      bindinput="bindInput"
+      value="{{ formData.nickname }}"
+      class="value {{code ? 'bold' : ''}}"
+      maxlength="4"/>
+  </view>
+  <i-button my-class="btn-next {{code ? 'btn-next-active': ''}}" bind:click="post">马上脱单</i-button>
+  <view class="todo"><view class="btn" bindtap="open">我要获取邀请码</view></view>
+</view>
+<popup type="invitation" id="popup"></popup>

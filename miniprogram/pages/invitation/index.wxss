@@ -1,0 +1,75 @@
+.invitationCode .h1 {
+  height: 56rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1F252B;
+  line-height: 56rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+  margin-top: 38rpx;
+}
+.invitationCode .h2 {
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #66666E;
+  line-height: 36rpx;
+  text-align: center;
+  max-width: 460rpx;
+  margin: 0 auto;
+}
+.invitationCode .holderStyle {
+  color: #CFD4D8;
+  font-size: 32rpx;
+  font-weight: unset;
+}
+.invitationCode input {
+  width: 520rpx;
+  height: 98rpx;
+  border-radius: 49rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+.invitationCode .bold {
+  font-weight: 700;
+}
+.invitationCode .li {
+  width: 520rpx;
+  height: 98rpx;
+  background: #ffffff;
+  border-radius: 49rpx;
+  margin: 0 auto;
+}
+.invitationCode .btn-next {
+  line-height: 98rpx;
+  margin: 0 auto;
+  box-shadow: unset;
+  overflow: unset;
+  border: unset;
+  width: 520rpx;
+  height: 98rpx;
+  background: #0CCDDA;
+  border-radius: 49rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  opacity: 0.6;
+  color: #ffffff;
+  margin-top: 30rpx;
+}
+.invitationCode .btn-next-active {
+  opacity: 1;
+}
+.invitationCode .block-image {
+  width: 100%;
+  margin-top: 34rpx;
+}
+.invitationCode .todo {
+  text-align: center;
+  margin-top: 43rpx;
+}
+.invitationCode .todo .btn {
+  padding: 0;
+  font-size: 26rpx;
+  color: #0CCDDA;
+  text-decoration: underline;
+  line-height: 34rpx;
+}

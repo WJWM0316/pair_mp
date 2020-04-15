@@ -1,0 +1,9 @@
+{
+	"usingComponents": {
+    "contactBtn": "../../components/business/contactBtn/index",
+    "popup": "../../components/business/popup"
+  },
+  "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#F1F4F4",
+  "backgroundColor": "#F1F4F4"
+}

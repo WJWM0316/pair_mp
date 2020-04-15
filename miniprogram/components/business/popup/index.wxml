@@ -6,8 +6,14 @@
     <image class="img" src="{{cdnPath}}img_popup_followgzh@3x.png" mode="widthFix"></image>
     <contact-btn my-class="btn" title="联系客服" contactType="follow"></contact-btn>
   </view>
-
-  <view class="content auth">
+  <view class="content follow" wx:elif="{{type === 'invitation'}}">
+    <i class="close iconfont icon_xiaocha" bindtap = "close"></i>
+    <view class="title">获取邀请码</view>
+    <view class="tips1">联系客服，点击右下角发送小程序，可获取邀请码</view>
+    <image class="img" src="{{cdnPath}}get_invite_code.png" mode="widthFix"></image>
+    <contact-btn my-class="btn" title="联系客服" contactType="invitation" bindtap = "close"></contact-btn>
+  </view>
+  <view class="content auth" wx:else>
     <i class="close iconfont icon_xiaocha" bindtap = "close"></i>
     <view class="title">温馨提醒</view>
     <view class="tips1">为建设友好、真诚的平台交友氛围，平台根据现行法律法规、监管政策的要求，需用户同意授权微信个人信息后再使用平台提供的产品和相关服务。</view>
