@@ -184,6 +184,10 @@ Page({
     //   this.selectComponent('#guideLogin').toggle()
     //   return
     // }
+    if(!userInfo.inviteCode) {
+      wx.redirectTo({url: `/pages/invitation/index`})
+      return
+    }
     if(userInfo.step !== 9) {
       wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
       return
@@ -254,6 +258,26 @@ Page({
   },
   onPullDownRefresh() {
     this.getUser().then(() => wx.stopPullDownRefresh())
+  },
+  previewImage(e) {
+    let {
+      userInfo,
+      isOwner,
+      currentIndex,
+      albumVerifyInfo
+    } = this.data
+    let albumList = []
+    if(isOwner) {
+      if(albumVerifyInfo.status === 1) {
+        albumList = userInfo.userAlbumList
+      } else {
+        albumList = userInfo.userAlbumTempList
+      }
+    } else {
+      albumList = userInfo.userAlbumList
+    }
+    albumList = albumList.map(field => field.url)
+    wx.previewImage({current: currentIndex, urls: albumList})
   },
   onShareAppMessage: function (options) {
     let wxShare = {},

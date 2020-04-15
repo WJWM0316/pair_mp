@@ -98,3 +98,34 @@ export const getCurrentWeekSignInApi = (data) => {
     url: '/sign_in/list/cur_week'
   })
 }
+
+export const postInviteCodeApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/user/invite_code/code',
+    data
+  })
+}
+
+
+export const getShareCodeApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/invite_code/share/wx_official/code'
+  })
+}
+
+export const getWxOfficialShareCodeApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/invite_code/share/wx_official/code'
+  })
+}
+
+export const getUserShareCodeApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/invite_code/share/user/code'
+  })
+}
+

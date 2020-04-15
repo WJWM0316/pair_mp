@@ -24,7 +24,7 @@
         wx:for="{{ isOwner ? ( albumVerifyInfo.status === 1 ? userInfo.userAlbumList : userInfo.userAlbumTempList ) : userInfo.userAlbumList }}"
         wx:key="index">
         <view class="swiper-item">
-          <i-image my-class="cover-img" src="{{ item.url }}" mode="aspectFill"></i-image>
+          <i-image my-class="cover-img" src="{{ item.url }}" mode="aspectFill" bindtap="previewImage"></i-image>
         </view>
       </swiper-item>
     </swiper>

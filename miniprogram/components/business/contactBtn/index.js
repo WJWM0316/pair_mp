@@ -32,6 +32,10 @@ Component({
         cardData.title = '关注公众号'
         cardData.img = `${this.data.cdnPath}img_QR.png`
         break
+      case 'invitation':
+        cardData.title = '获取邀请码'
+        cardData.img = `${this.data.cdnPath}get_invite_code.png`
+        break
     }
     this.setData({cardData})
   },

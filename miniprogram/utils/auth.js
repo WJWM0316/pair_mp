@@ -75,13 +75,19 @@ const loginCallback = (res, options) => {
     wx.setStorageSync('token', res.data.userInfo.token)
     Socket.login(res.data.userInfo.token)
     getUserInfo()
-    if (res.data.userInfo.hasOwnProperty('step') && res.data.userInfo.step !== 9) {
+    if(!res.data.userInfo.inviteCode) {
       wx.redirectTo({
-        url: `/pages/createUser/index?step=${res.data.userInfo.step}`
+        url: `/pages/invitation/index`
       })
     } else {
-      if (options && options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
-    }
+      if (res.data.userInfo.hasOwnProperty('step') && res.data.userInfo.step !== 9) {
+        wx.redirectTo({
+          url: `/pages/createUser/index?step=${res.data.userInfo.step}`
+        })
+      } else {
+        if (options && options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
+      }
+    }    
   } else {
     getApp().globalData['hasLogin'] = false
   }

@@ -36,8 +36,12 @@ Page({
     hasPicker: false
   },
   
-  onLoad: function () {
+  onLoad: function (options) {
     this.getAvatarList()
+    if(options.inviteCode) {
+      wx.setStorageSync('inviteCode', options.inviteCode)
+    }
+    console.log(options, '是否有邀请码')
   },
   async onShow () {
     if(localstorage.get('hasPicker')) {
@@ -149,6 +153,10 @@ Page({
     }
     if (!wechatInfo || (wechatInfo && !wechatInfo.wxNickname)) {
       this.selectComponent("#popup").show()
+      return
+    }
+    if(!userInfo.inviteCode) {
+      wx.redirectTo({url: `/pages/invitation/index`})
       return
     }
     if(userInfo.step !== 9) {
