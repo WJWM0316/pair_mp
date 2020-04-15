@@ -1,7 +1,4 @@
-let relations = {
-    lockIndex: null, // 已锁定的滑块序号
-    curIndex: null  // 当前操作的滑块序号
-} 
+ 
 /*
 * touch事件判断方式
 * https://github.com/madrobby/zepto/blob/master/src/touch.js#files
@@ -53,6 +50,12 @@ Component({
             pageY : 0
         }
     },
+    attached () {
+        this.relations = {
+            lockIndex: null, // 已锁定的滑块序号
+            curIndex: null  // 当前操作的滑块序号
+        }
+    },
     methods : {
         //阻止事件冒泡
         loop(){},
@@ -82,7 +85,6 @@ Component({
                 // }).exec()
             }else{
                 this.data.limitMove = this.data.operateWidth;
-                
             }
         },
         handlerTouchstart(event){
@@ -95,9 +97,9 @@ Component({
                     }
                 }
             }
-            if (relations.lockIndex !== null) {
-                relations.curIndex = this.data.index // 这个滑块是当前的
-                this.triggerEvent('swipeStatus', relations)
+            if (this.relations.lockIndex !== null) {
+                this.relations.curIndex = this.data.index // 这个滑块是当前的
+                this.triggerEvent('swipeStatus', this.relations)
             }
         },
         swipper(touches){
@@ -116,7 +118,7 @@ Component({
             })
         },
         handlerTouchmove(event){
-            if (relations.lockIndex !== null && relations.lockIndex !== relations.curkIndex) return
+            if (this.relations.lockIndex !== null && this.relations.lockIndex !== this.relations.curkIndex) return
             const start = this.data.tStart;
             const touches = event.touches ? event.touches[0] : {};
             if( touches ){
@@ -127,8 +129,8 @@ Component({
             }
         },
         handlerTouchend(event){
-            if (relations.lockIndex !== null) {
-                if (relations.lockIndex === relations.curIndex) this.closeButtonGroup()
+            if (this.relations.lockIndex !== null) {
+                if (this.relations.lockIndex === this.relations.curIndex) this.closeButtonGroup()
                 return
             }
             const start = this.data.tStart;
@@ -141,11 +143,11 @@ Component({
                 }
                 if( Math.abs( spacing.pageX ) >= 40 && direction === "Left" ){
                     spacing.pageX = spacing.pageX  < 0 ? - this.data.limitMove : this.data.limitMove;
-                    relations.lockIndex = this.data.index // 这个滑块已锁定
+                    this.relations.lockIndex = this.data.index // 这个滑块已锁定
                 }else{
                     spacing.pageX = 0;
                 }
-                this.triggerEvent('swipeStatus', relations)
+                this.triggerEvent('swipeStatus', this.relations)
                 this.setData({
                     'position' : spacing
                 })
@@ -165,7 +167,7 @@ Component({
             this.setData({
                 'position' : {pageX : 0,pageY : 0}
             })
-            relations = {
+            this.relations = {
                 lockIndex: null, // 已锁定的滑块序号
                 curIndex: null  // 当前操作的滑块序号
             } 
@@ -175,6 +177,12 @@ Component({
             if( !this.data.unclosable ){
                 this.closeButtonGroup();
             }
+        },
+        reset () {
+            this.relations = {
+                lockIndex: null, // 已锁定的滑块序号
+                curIndex: null  // 当前操作的滑块序号
+            } 
         }
     },
     ready(){

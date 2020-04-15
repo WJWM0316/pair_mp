@@ -1,6 +1,6 @@
 const app =  getApp();
 import {getRelationlistApi, deleteMsgApi} from '../../../api/im.js'
-import {getUserInfoAuth} from '../../../utils/index.js'
+import {getUserInfoAuth, socket} from '../../../utils/index.js'
 Page({
 
   /**
@@ -13,7 +13,7 @@ Page({
     messageList: [],
     hasRequire: false,
     viewAreaHeight: 0,
-    lockIndex: null
+    lockIndex: -1
   },
 
   /**
@@ -21,6 +21,56 @@ Page({
    */
   onLoad: function (options) {
     this.setData({'userInfo': app.globalData.userInfo, 'viewAreaHeight': app.globalData.viewAreaHeight})
+    socket.onMessage((res) => {
+      if (res.imFromUser.vkey !== app.globalData.userInfo.userInfo.vkey) {
+        let vkey        = res.imFromUser.vkey,
+            msgData     = res.imData,
+            newMsgData  = {},
+            messageList = this.data.messageList
+        newMsgData.lastMsgTime = msgData.msgTimestamp
+        newMsgData.imFromUser = {}
+        newMsgData.imFromUser.avatarUrl = msgData.content.user.portrait
+        newMsgData.imFromUser.name = msgData.content.user.name
+        newMsgData.imFromUser.vkey = vkey
+        newMsgData.lastMsgTime = msgData.msgTimestamp
+        newMsgData.source = res.sourceInfo.source
+        newMsgData.vkey = res.imUserRelationVkey
+        newMsgData.id = res.imUserRelationId
+        switch (res.msgType) {
+          case "RC:TxtMsg":
+            newMsgData.lastMsg = msgData.content.content
+            break
+          case "RC:ImgMsg":
+            newMsgData.lastMsg = '[图片]'
+            break
+          case "RC:VcMsg":
+            newMsgData.lastMsg = '[语音]'
+            break
+        }
+       
+        let hasExist = false
+        for (let i = 0; i < messageList.length - 1; i++) {
+          if (messageList[i].imFromUser && messageList[i].imFromUser.vkey === vkey) {
+            newMsgData.unreadMsgNum = messageList[i].unreadMsgNum + 1
+            hasExist = true
+            if (i === 0) {
+              this.setData({['messageList[0]']: newMsgData})
+            } else {
+              console.log(messageList, i)
+              messageList.splice(i, 1)
+              messageList.unshift(newMsgData)
+              this.setData({messageList})
+            }
+            return
+          }
+        }
+        if (!hasExist) {
+          newMsgData.unreadMsgNum = 1
+          messageList.unshift(newMsgData)
+          this.setData({messageList})
+        }
+      }
+    })
   },
   getList () {
     getRelationlistApi({count: 100, hideLoding: true}).then(res => {
@@ -47,7 +97,9 @@ Page({
   remove (e) {
     let index = e.currentTarget.dataset.index
     deleteMsgApi({vkey: this.data.messageList[index].vkey, hideLoding: true})
-    this.setData({[`messageList[${index}]`]: ''})
+    console.log(`#swipeOut${index}`, this.selectComponent(`#swipeOut${index}`))
+    this.selectComponent(`#swipeOut${index}`).reset()
+    this.setData({[`messageList[${index}]`]: '', lockIndex: null})
   },
   pick () {
     wx.navigateTo({url: '/pages/index/index'})

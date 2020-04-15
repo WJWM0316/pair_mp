@@ -10,11 +10,12 @@
         fixed="true"
         maxlength="1000"
         style="{{parse.setStyle('textarea', textHeight)}}"
+        show-confirm-bar="{{false}}"
         bindlinechange="linechange"
         bindinput="bindinput" 
         bindblur="bindblur"
         bindfocus="bindfocus"
-        bindconfirm="">
+      >
       </textarea>
     </view>
     <view class="send {{canSend ? 'can' : ''}}" bindtap="sendText">发送</view>
