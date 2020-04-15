@@ -1,5 +1,5 @@
 const app =  getApp();
-import {getSelectorQuery, socket, util} from '../../../utils/index.js'
+import {getSelectorQuery, socket} from '../../../utils/index.js'
 import {getChatDetailApi, getImTopDeatilApi, } from '../../../api/im.js'
 Page({
   /**
@@ -60,9 +60,18 @@ Page({
    */
   onShow: function () {
     if (!app.globalData.lockonShow) {
-      this.getChatMsg()
-      this.getImDetail()
+      Promise.all([this.getChatMsg(), this.getImDetail()]).then(() => {
+        setTimeout(() => {
+          wx.nextTick(()=>{
+            wx.pageScrollTo({
+              duration: 1,
+              selector: `#bottomBlock`
+            })
+          })
+        }, 1000)
+      })
     }
+    
     if (app.globalData.userInfo) {
       this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
     } else {
@@ -73,19 +82,12 @@ Page({
     app.globalData.lockonShow = false
   },
   getChatMsg () {
-    getChatDetailApi({vkey: this.options.vkey, count: 200}).then(res => {
-      this.setData({messageList: res.data}, () => {
-        wx.nextTick(()=>{
-          wx.pageScrollTo({
-            duration: 1,
-            selector: `#bottomBlock`
-          })
-        });
-      })
+    return getChatDetailApi({vkey: this.options.vkey, count: 200}).then(res => {
+      this.setData({messageList: res.data})
     })
   },
   getImDetail () {
-    getImTopDeatilApi({vkey: this.options.vkey}).then(res => {
+    return getImTopDeatilApi({vkey: this.options.vkey}).then(res => {
       wx.setNavigationBarTitle({
         title: res.data.userInfo.nickname
       })
@@ -99,6 +101,9 @@ Page({
       }
       if (res.data.chatInfo && res.data.chatInfo.isHideUserCard) {
         this.selectComponent('#header').toggle('index')
+      }
+      if (res.data.blackInfo && (res.data.blackInfo.beBlacked || res.data.blackInfo.blacked)) {
+        app.wxToast({title: res.data.blackInfo.beBlacked ? '你已被拉黑，无法发送消息' : '对方已被拉黑，无法发送消息'})
       }
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data, showDebutWord, showSystemHint})
     })

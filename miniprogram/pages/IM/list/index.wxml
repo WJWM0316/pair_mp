@@ -22,7 +22,6 @@
           toggle="{{lockIndex === index ? true : false}}"
           id="swipeOut{{index}}"
           index="{{index}}"
-
           bindtap = "startChat"
           data-vkey = "{{item.imFromUser.vkey}}"
           bindswipeStatus = "getSwipeStatus"
@@ -52,6 +51,6 @@
     </block>
   </view>
 </view>
-<tabBar tabBgColor="#fff"></tabBar>
+<tabBar tabBgColor="#fff"  wx:if="{{hasLogin && hasLogincb}}"></tabBar>
 <popup id="popup"></popup>
 <wxs src="../../../utils/filters.wxs" module="filters" />

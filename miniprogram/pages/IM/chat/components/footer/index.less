@@ -6,6 +6,16 @@
   bottom: 0;
   background: @background-color-base;
   z-index: 5;
+  &.default::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    content: '';
+    display: block;
+    z-index: 6;
+  }
   .textEdit {
     padding: 18rpx 114rpx 12rpx 26rpx;
     position: relative;

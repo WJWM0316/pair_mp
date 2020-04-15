@@ -71,7 +71,9 @@ Component({
   },
   pageLifetimes: {
     show: function() {
-      if (this.hasAttached && app.globalData.hasLogin) this.getUnreadNum()
+      if (this.hasAttached && app.globalData.hasLogin) {
+        this.getUnreadNum()
+      }
     }
   },
   /**

@@ -13,7 +13,8 @@ Component({
   properties: {
     selectIndex: null,
     vkey: String,
-    mineUserInfo: Object
+    mineUserInfo: Object,
+    chatDetail: Object
   },
 
   /**
