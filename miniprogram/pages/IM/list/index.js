@@ -1,6 +1,6 @@
 const app =  getApp();
 import {getRelationlistApi, deleteMsgApi} from '../../../api/im.js'
-import {getUserInfoAuth, socket} from '../../../utils/index.js'
+import {getUserInfoAuth, socket, hasLogin} from '../../../utils/index.js'
 Page({
 
   /**
@@ -9,6 +9,8 @@ Page({
   data: {
     hasTips: true,
     userInfo: 0,
+    hasLogin: true,
+    hasLogincb: false,
     cdnPath: app.globalData.CDNPATH,
     messageList: [],
     hasRequire: false,
@@ -27,12 +29,12 @@ Page({
             msgData     = res.imData,
             newMsgData  = {},
             messageList = this.data.messageList
-        newMsgData.lastMsgTime = msgData.msgTimestamp
-        newMsgData.imFromUser = {}
-        newMsgData.imFromUser.avatarUrl = msgData.content.user.portrait
-        newMsgData.imFromUser.name = msgData.content.user.name
-        newMsgData.imFromUser.vkey = vkey
-        newMsgData.lastMsgTime = msgData.msgTimestamp
+        newMsgData.lastMsgTime = parseInt(msgData.msgTimestamp)
+        newMsgData.imFromUser = {
+          avatarUrl: msgData.content.user.portrait,
+          name: msgData.content.user.name,
+          vkey: vkey
+        }
         newMsgData.source = res.sourceInfo.source
         newMsgData.vkey = res.imUserRelationVkey
         newMsgData.id = res.imUserRelationId
@@ -49,19 +51,17 @@ Page({
         }
        
         let hasExist = false
-        for (let i = 0; i < messageList.length - 1; i++) {
+        for (let i = 0; i <= messageList.length - 1; i++) {
           if (messageList[i].imFromUser && messageList[i].imFromUser.vkey === vkey) {
             newMsgData.unreadMsgNum = messageList[i].unreadMsgNum + 1
             hasExist = true
             if (i === 0) {
               this.setData({['messageList[0]']: newMsgData})
             } else {
-              console.log(messageList, i)
               messageList.splice(i, 1)
               messageList.unshift(newMsgData)
               this.setData({messageList})
             }
-            return
           }
         }
         if (!hasExist) {
@@ -72,10 +72,16 @@ Page({
       }
     })
   },
-  getList () {
-    getRelationlistApi({count: 100, hideLoding: true}).then(res => {
-      let index = this.data.messageList.length ? this.data.messageList.length - 1 : 0
-      this.setData({messageList: res.data, hasRequire: true})
+  getList (hideLoading = false) {
+    let relation_id = [],
+        messageList = this.data.messageList
+    for (let {id} of messageList) {
+      relation_id.push(id) 
+    }
+    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join()}).then(res => {
+      messageList = messageList.concat(res.data)
+      if (!res.data.length) this.noMore = true
+      this.setData({messageList, hasRequire: true})
     })
   },
   getSwipeStatus (e) {
@@ -99,7 +105,10 @@ Page({
     deleteMsgApi({vkey: this.data.messageList[index].vkey, hideLoding: true})
     console.log(`#swipeOut${index}`, this.selectComponent(`#swipeOut${index}`))
     this.selectComponent(`#swipeOut${index}`).reset()
-    this.setData({[`messageList[${index}]`]: '', lockIndex: null})
+    this.setData({[`messageList[${index}]`]: '', lockIndex: null}, () => {
+      let array = this.data.messageList.filter((item) => item !== "")
+      if (!array.length) this.setData({messageList: []})
+    })
   },
   pick () {
     wx.navigateTo({url: '/pages/index/index'})
@@ -120,8 +129,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  async onShow () {
+    let data = await hasLogin()
+    this.setData({'hasLogin': data, 'hasLogincb': true})
     this.getList()
   },
 
@@ -150,7 +160,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.noMore) return
+    this.getList(true)
   },
   /**
    * 用户点击右上角分享

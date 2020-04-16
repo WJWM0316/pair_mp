@@ -117,8 +117,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         method: method,
         success(res) {
           closeLoading()
-          // console.log(url)
-          // console.log(res)
+          console.log(url, res.data)
           try {
             if (typeof res.data === 'string') { // 转换返回json
               res.data = JSON.parse(res.data)
@@ -203,7 +202,6 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         fail(e) {
           reject(e)
           closeLoading()
-          console.log(e, 1111111111)
           noConnectedReqs.push(promise)
           getApp().wxToast({title: '系统异常，请稍后访问'})
         }

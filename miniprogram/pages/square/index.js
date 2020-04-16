@@ -1,5 +1,5 @@
 import { getSquareListApi } from "../../api/square.js"
-import { getCurrentPagePath } from '../../utils/index'
+import { getCurrentPagePath, hasLogin } from '../../utils/index'
 const app = getApp()
 Page({
   data: {
@@ -10,9 +10,15 @@ Page({
       isLastPage: false,
       isRequire: false
     },
+    hasLogin: true,
+    hasLogincb: false,
     onBottomStatus: 0,
     background: '',
     navBarHeight: app.globalData.navBarHeight
+  },
+  async onShow () {
+    let data = await hasLogin()
+    this.setData({'hasLogin': data, 'hasLogincb': true})
   },
   onLoad(options) {
     let userData = {

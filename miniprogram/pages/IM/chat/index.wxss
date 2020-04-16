@@ -16,6 +16,9 @@
   line-height: 32rpx;
   margin-top: 56rpx;
 }
+.chatWrap .systemHint.black {
+  padding-bottom: 30rpx;
+}
 .chatWrap .chatArea {
   padding: 20rpx 30rpx;
   box-sizing: border-box;

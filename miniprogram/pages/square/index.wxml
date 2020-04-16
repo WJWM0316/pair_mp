@@ -40,4 +40,4 @@
   <i-image my-class="img1" src="{{ CDNPATH }}img_im_empty.png" mode="widthFix"></i-image> 
   <view class="tips">一大波优质用户正在赶来哦~</view>
 </view>
-<tabBar tabBgColor="transparent"></tabBar>
+<tabBar tabBgColor="transparent"  wx:if="{{hasLogin && hasLogincb}}"></tabBar>
