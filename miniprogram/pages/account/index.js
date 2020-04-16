@@ -26,7 +26,7 @@ Page({
       vkey: '',
       todaySigned: true
     },
-    show: true,
+    show: false,
     inviteCode: {},
     userInvite: {},
     shareInvite: {}
