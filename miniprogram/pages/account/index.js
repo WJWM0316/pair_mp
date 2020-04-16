@@ -27,20 +27,15 @@ Page({
       todaySigned: true
     },
     show: true,
-    inviteCode: {}
+    inviteCode: {},
+    userInvite: {},
+    shareInvite: {}
   },
   onLoad(options) {
-    let callback = () => {
-      Promise.all([getWxOfficialShareCodeApi, getUserShareCodeApi]).then(res => {
-        console.log(res)
-      })
-    }
     this.setData({options})
     this.getCurrentWeekSignIn()
     this.getSugarInfo()
-    if(options.showModel) {
-      this.getUserShareCode()
-    }
+    if(options.showModel) this.getUserShareCode()
   },
   getSugarInfo() {
     return new Promise((resolve, reject) => {
@@ -124,5 +119,8 @@ Page({
       url: `${PAGEPATH}/poster/index`
     })
   },
-  copy() {}
+  copy() {
+    let { inviteCode } = this.data
+    wx.setClipboardData({data: inviteCode.code })
+  }
 })

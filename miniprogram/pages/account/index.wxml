@@ -52,9 +52,9 @@
     </view>
     <view class="copy-box" wx:if="{{options.showModel}}">
       <view class="inner22">
-        <view class="h22">我的邀请码:ODH023</view>
+        <view class="h22">我的邀请码:{{inviteCode.code}}</view>
         <view class="h33">可直接通过发送邀请码邀请你的好友</view>
-        <view class="copy-btn">复制</view>
+        <view class="copy-btn" bindtap="copy">复制</view>
       </view>
     </view>
     <view class="methods" wx:if="{{options.showModel}}">
