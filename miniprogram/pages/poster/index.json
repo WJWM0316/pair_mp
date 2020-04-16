@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+  },
+  "navigationBarBackgroundColor": "#F1F4F4",
+  "navigationBarTitleText": "我的海报"
 }
