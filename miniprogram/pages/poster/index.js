@@ -1,3 +1,6 @@
+import  {
+  ellipsis 
+} from '../../utils/canvas'
 let app = getApp()
 Page({
   data: {
@@ -47,11 +50,12 @@ Page({
 
         ctx.setFillStyle('#ffffff')
         ctx.setFontSize(32)
-        ctx.fillText(userInfo.nickname, 203, 765)
+        ellipsis(ctx, userInfo.nickname, 203, 765)
+        // ctx.fillText(userInfo.nickname, 203, 765)
 
         ctx.beginPath()
         ctx.arc(110, 752, 60, 0, 2 * Math.PI)
-        ctx.setFillStyle('#ffffff')
+        ctx.setFillStyle('#f00')
         ctx.fill()
         ctx.clip()
         ctx.drawImage(avatarUrl, 50, 692, 120, 120)
