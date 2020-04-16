@@ -110,5 +110,12 @@ Page({
     let result = itemList.find((v, i) => i === index)
     this.setData({show: false}, () => this.triggerEvent('close'))
     this.triggerEvent('drawerAction', result)
+  },
+  download() {
+    let { PAGEPATH } = app.globalData
+    this.setData({show: false})
+    wx.navigateTo({
+      url: `${PAGEPATH}/poster/index`
+    })
   }
 })

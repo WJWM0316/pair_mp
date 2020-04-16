@@ -126,7 +126,7 @@ Component({
       this.setData({ canClick })
     },
     getUserInfo(e) {
-      getUserInfoAuth(e)
+      // getUserInfoAuth(e)
       if (e.detail.errMsg === 'getUserInfo:ok') {
         let { userInfo } = e.detail
         let { formData } = this.data

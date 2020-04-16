@@ -123,6 +123,20 @@
 					"pathName": "pages/poster/index",
 					"query": "vkey=ighvcabv",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/invitation/index",
+					"pathName": "pages/invitation/index",
+					"query": "vkey=ighvcabv",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/account/index",
+					"pathName": "pages/account/index",
+					"query": "vkey=ighvcabv",
+					"scene": null
 				}
 			]
 		}
