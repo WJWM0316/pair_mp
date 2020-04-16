@@ -26,10 +26,16 @@ Page({
       vkey: '',
       todaySigned: true
     },
-    show: false,
+    show: true,
     inviteCode: {}
   },
   onLoad(options) {
+    let callback = () => {
+      Promise.all([getWxOfficialShareCodeApi, getUserShareCodeApi]).then(res => {
+        console.log(res)
+      })
+    }
+    this.setData({options})
     this.getCurrentWeekSignIn()
     this.getSugarInfo()
     if(options.showModel) {
@@ -117,5 +123,6 @@ Page({
     wx.navigateTo({
       url: `${PAGEPATH}/poster/index`
     })
-  }
+  },
+  copy() {}
 })
