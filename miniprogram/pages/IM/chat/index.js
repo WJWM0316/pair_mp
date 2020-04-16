@@ -1,6 +1,6 @@
 const app =  getApp();
 import {getSelectorQuery, socket} from '../../../utils/index.js'
-import {getChatDetailApi, getImTopDeatilApi, } from '../../../api/im.js'
+import {getChatDetailApi, getImTopDeatilApi} from '../../../api/im.js'
 Page({
   /**
    * 页面的初始数据
@@ -14,9 +14,12 @@ Page({
     othersUserInfo: {},
     mineUserInfo: {},
     curTimestamp: '',
+    noMoreData: false,
+    hasRequire: false,
+    showNoviceGuide: false,
     options: {},
     chatDetail: {},
-    emojiPath: app.globalData.CDNPATH
+    cdnPath: app.globalData.CDNPATH
   },
 
   /**
@@ -24,7 +27,8 @@ Page({
    */
   onLoad: function (options) {
     this.options = options
-    this.setData({options})
+    let showNoviceGuide = wx.getStorageSync('showNoviceGuide')
+    this.setData({options, showNoviceGuide: !showNoviceGuide})
     socket.onMessage((res) => {
       if ((res.imFromUser.vkey === this.options.vkey || res.imToUser.vkey === this.options.vkey)
           && (res.imFromUser.vkey !== this.data.mineUserInfo.vkey || res.msgType === 'RC:RcCmd')) {
@@ -59,31 +63,41 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (!app.globalData.lockonShow) {
-      Promise.all([this.getChatMsg(), this.getImDetail()]).then(() => {
-        setTimeout(() => {
-          wx.nextTick(()=>{
-            wx.pageScrollTo({
-              duration: 1,
-              selector: `#bottomBlock`
-            })
-          })
-        }, 1000)
-      })
+    let getData = () => {
+      if (!app.globalData.lockonShow) {
+        this.getChatMsg()
+        this.getImDetail()
+      }
     }
-    
     if (app.globalData.userInfo) {
       this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
+      getData()
     } else {
       app.getUserInfo = () => {
         this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
+        getData()
       }
     }
     app.globalData.lockonShow = false
   },
-  getChatMsg () {
-    return getChatDetailApi({vkey: this.options.vkey, count: 200}).then(res => {
-      this.setData({messageList: res.data})
+  pageScrollTo () {
+    setTimeout(() => {
+      wx.nextTick(()=>{
+        wx.pageScrollTo({
+          duration: 0,
+          selector: this.preDomId
+        })
+      })
+    }, 500)
+  },
+  getChatMsg (hideLoading = false) {
+    return getChatDetailApi({vkey: this.options.vkey, hideLoading, count: 10, timestamp: this.timestamp}).then(res => {
+      let noMoreData = res.data.length ? false : true
+      if (!noMoreData) this.timestamp = res.data[0].imData.timestamp
+      this.preDomId = `#msg${res.data.length}`
+      let messageList = res.data.concat(this.data.messageList)
+      this.setData({messageList, hasRequire: true, noMoreData})
+      this.pageScrollTo()
     })
   },
   getImDetail () {
@@ -107,6 +121,24 @@ Page({
       }
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data, showDebutWord, showSystemHint})
     })
+  },
+  // 关闭新手引导
+  closeNoviceGuide () {
+    wx.setStorageSync('showNoviceGuide', true)
+    this.setData({showNoviceGuide: false})
+  },
+  // 拉黑状态变更
+  changeBlackStatus (e) {
+    let blacked = e.detail
+    this.setData({[`chatDetail.blackInfo.blacked`]: blacked})
+    setTimeout(() => {
+      wx.nextTick(()=>{
+        wx.pageScrollTo({
+          duration: 0,
+          selector: `#bottomBlock`
+        })
+      })
+    }, 500)
   },
   // 长按功能
   longpress (e) {
@@ -253,7 +285,15 @@ Page({
 
   // 页面滚动时执行
   onPageScroll: function(e) {
-
+    if (e.scrollTop === 0) {
+      if (!this.scrollTop && !this.data.noMoreData && this.data.hasRequire) {
+        this.scrollTop === true
+        this.getChatMsg(true).then(() => {
+          this.scrollTop === false
+          this.pageScrollTo()
+        })
+      }
+    }
   },
   
   /**

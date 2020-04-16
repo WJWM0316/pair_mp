@@ -37,10 +37,16 @@ App({
     wx.onNetworkStatusChange(function (res) {
       if (!res.isConnected) {
         that.isNoConnected = true
+        wx.showLoading({
+          title: '网络异常',
+          mask: true
+        })
       } else {
         if (that.isNoConnected) {
           that.isNoConnected = false
-          socket.create(that.globalData.SOCKETHOST, token)
+          setTimeout(() => {
+            socket.reConnect()
+          }, 1000)
         }
       }
     })
@@ -53,10 +59,7 @@ App({
   },
   onShow (options) {
     if (socket.hasCreated) {
-      if (socket.SocketTask.readyState !== 1) {
-        let token = localstorage.get('token')
-        socket.create(this.globalData.SOCKETHOST, token)
-      }
+      socket.testSocket()
     }
   },
   globalData: {

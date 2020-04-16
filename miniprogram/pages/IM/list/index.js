@@ -82,6 +82,8 @@ Page({
       messageList = messageList.concat(res.data)
       if (!res.data.length) this.noMore = true
       this.setData({messageList, hasRequire: true})
+    }).catch((e) => {
+      this.setData({hasRequire: true})
     })
   },
   getSwipeStatus (e) {

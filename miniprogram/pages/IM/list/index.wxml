@@ -1,17 +1,19 @@
 <navBar title="消息" userInfo="{{userInfo.userInfo}}" page="console"></navBar>
 <view class="listWrap" style="min-height:{{viewAreaHeight}}px">
-  <button class="tips" wx:if="{{!userInfo.wechatInfo || (userInfo.wechatInfo && !userInfo.wechatInfo.wxNickname)}}" hidden="{{!hasTips}}" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" lang="zh_CN">
-    <view class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</view>
-    <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
-  </button>
-  <view class="tips" wx:elif="{{userInfo.wechatInfo && userInfo.wechatInfo.officialId !== '1'}}" hidden="{{!hasTips}}" bindtap = "follow">
-    <view slot="content">
+  <block wx:if="{{hasRequire}}">
+    <button class="tips" wx:if="{{!userInfo.wechatInfo || (userInfo.wechatInfo && !userInfo.wechatInfo.wxNickname)}}" hidden="{{!hasTips}}" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" lang="zh_CN">
       <view class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</view>
       <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
+    </button>
+    <view class="tips" wx:elif="{{userInfo.wechatInfo && userInfo.wechatInfo.officialId !== '1'}}" hidden="{{!hasTips}}" bindtap = "follow">
+      <view slot="content">
+        <view class="text">错过那个心动的Ta ？点击授权并关注服务号收取通知，并可免费领取 5个皮糖！</view>
+        <i class="close iconfont icon_xiaocha" bindtap = "closeTips"></i>
+      </view>
     </view>
-  </view>
-  <view class="noTips" wx:else></view>
-  <view class="noTips" hidden="{{hasTips}}"></view>
+    <view class="noTips" wx:else></view>
+    <view class="noTips" hidden="{{hasTips}}"></view>
+  </block>
   <view class="scroll-view">
     <block wx:if="{{hasRequire}}">
       <block wx:if="{{messageList.length}}">

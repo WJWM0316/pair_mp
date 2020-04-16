@@ -52,7 +52,7 @@ Component({
       }
     ],
     word: '', // 编辑框的文本
-    textHeight: 0, // 编辑框高度
+    textHeight: 20, // 编辑框高度
     canSend: false, // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
   },
 
@@ -60,6 +60,12 @@ Component({
   /**
    * 组件的方法列表
    */
+
+  pageLifetimes: {
+    show: function() {
+      // socket.testSocket()
+    }
+  },
   methods: {
     // 监听文本域高度变化，随时滚动页面
     linechange (e) {
@@ -91,8 +97,13 @@ Component({
     bindfocus () {
       this.pageScrollToDom('bottom')
     },
+    
     // 选择编辑类型
     selectType (e) {
+      // if (socket.readyState() !== 1) {
+      //   socket.testSocket()
+      //   return
+      // }
       let index = e.currentTarget.dataset.index
       this.pageScrollToDom('bottom').then(() => {
         this.setData({'selectIndex': index}, () => {
@@ -123,6 +134,10 @@ Component({
     },
     // 发送文本
     sendText () {
+      if (socket.readyState() !== 1) {
+        socket.testSocket()
+        return
+      }
       if (!this.data.canSend) return
       this.sendMsg('text')
       this.word = ''

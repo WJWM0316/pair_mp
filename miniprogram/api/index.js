@@ -46,7 +46,6 @@ const setHeader = (url) => {
   if (token) {
     if (url !== '/bind/register' 
         && url !== '/bind/quick_login' 
-        && url !== '/bind/quick_login' 
         && url !== '/wechat/login/mini' 
         && url !== '/wechat/oauth/mini'
       ) {
@@ -82,9 +81,6 @@ const removeAuth = () => {
 wx.onNetworkStatusChange(function (res) {
   if (!res.isConnected) {
     isNoConnected = true
-    wx.showLoading({
-      title: '网络异常',
-    })
   } else {
     if (isNoConnected) {
       isNoConnected = false
@@ -102,9 +98,11 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
   app = !getApp() ? instance : getApp()
 
   return new Promise((resolve, reject) => {
-    setHeader(url)
+    
     // 请求中间件
     const promise = () => {
+      setHeader(url)
+
       // 开启菊花图
       if (!data.hasOwnProperty('hideLoading')) {
         openLoading(loadingContent)

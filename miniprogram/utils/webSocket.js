@@ -5,12 +5,10 @@ class Socket {
     this.heartTime = 30000 // 心跳检测时间间隔
     this.receiveMessageTimer = null // 检测接受信息时间的定时器，超过极限时间说明发生异常
     this.keepAliveTimer = null // 检测心跳包的定时器
-    this.resetTimes = 0 // 重连次数
     this.hasCreated = false
   }
   create (url, token) {
     this.url = url
-    
     if (this.SocketTask) this.SocketTask.close()
     this.SocketTask = wx.connectSocket({
       url: url,
@@ -22,6 +20,7 @@ class Socket {
         wx.onSocketOpen((res0) => {
           console.log(this.SocketTask, '握手状态')
           this.login(localstorage.get('token'))
+          wx.hideLoading()
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
             this.hasCreated = true
@@ -34,8 +33,8 @@ class Socket {
         wx.onSocketError((err) => {
           console.log(`======websocket出现异常======`, err)
         })
-        wx.onSocketClose(() => {
-          console.log(`======websocket已关闭======`)
+        wx.onSocketClose((err) => {
+          console.log(`======websocket已关闭======`, err)
         })
         
       },
@@ -50,6 +49,8 @@ class Socket {
         data: JSON.stringify(data),
         fail: (err) => {
           console.log(`======websocket消息发送失败======`, err)
+          this.reConnect()
+          wx.showLoading({title: '正在重连...', mask: true})
         },
         success: (res) => {
           resolve(res)
@@ -101,15 +102,16 @@ class Socket {
   }
   // 断线重连
   reConnect () {
-    this.resetTimes++
-    console.log(`======websocket正在重连，重连次数${this.resetTimes}======`)
+    console.log(`======websocket正在重连======`)
     clearInterval(this.keepAliveTimer)
     clearTimeout(this.receiveMessageTimer)
-    if (this.resetTimes > 3) { // 重连三次都失败就不予重连了
-      console.log('======websocket重连不上，自动关闭======')
-      this.close()
-    } else {
-      this.create(this.url)
+    this.create(this.url)
+  }
+  // 检测socket是否正常，不正常就重连
+  testSocket () {
+    if (this.readyState() !== 1) {
+      wx.showLoading({title: '正在重连...', mask: true})
+      this.reConnect()
     }
   }
 }

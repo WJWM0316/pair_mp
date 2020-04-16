@@ -49,7 +49,8 @@ export const deleteMsgApi = (data) => {
 export const putHeaderApi = (data) => {
   return request({
     method: 'put',
-    url: `/im/chat/user_card/hide/${data.vkey}`
+    url: `/im/chat/user_card/hide/${data.vkey}`,
+    data
   })
 }
 
@@ -57,7 +58,8 @@ export const putHeaderApi = (data) => {
 export const delHeaderApi = (data) => {
   return request({
     method: 'delete',
-    url: `/im/chat/user_card/hide/${data.vkey}`
+    url: `/im/chat/user_card/hide/${data.vkey}`,
+    data
   })
 }
 
@@ -65,6 +67,7 @@ export const delHeaderApi = (data) => {
 export const unreadNumApi = (data) => {
   return request({
     method: 'get',
-    url: `/im/msg/unread`
+    url: `/im/msg/unread`,
+    data
   })
 }

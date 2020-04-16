@@ -12,7 +12,7 @@ export const removeBackApi = (data) => {
   return request({
     method: 'delete',
     url: `/black/${data.vkey}`,
-    // data
+    data
   })
 }
 
@@ -21,7 +21,7 @@ export const setBackApi = (data) => {
   return request({
     method: 'put',
     url: `/black/${data.vkey}`,
-    // data
+    data
   })
 }
 

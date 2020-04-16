@@ -1,7 +1,7 @@
 <chat-bubble mineUserInfo="{{mineUserInfo}}"></chat-bubble>
 
 <view class="headerBox">
-  <chat-header id="header" bindputUp="headerPutUp" mineUserInfo="{{mineUserInfo}}" othersUserInfo="{{othersUserInfo}}" chatDetail="{{chatDetail}}"></chat-header>
+  <chat-header id="header" bindputUp="headerPutUp" bindchangeBlackStatus="changeBlackStatus" mineUserInfo="{{mineUserInfo}}" othersUserInfo="{{othersUserInfo}}" chatDetail="{{chatDetail}}"></chat-header>
 </view>
 
 <view class="chatWrap"  bindtap="resetView">
@@ -10,10 +10,10 @@
   <view class="chatArea">
     <view class="scrollView">
       <view class="message-list">
-        <view class="message-box" wx:for="{{messageList}}" wx:key="id" wx:if="{{item}}">
+        <view class="message-box" wx:for="{{messageList}}" wx:key="id" wx:if="{{item}}"  id="msg{{index}}">
           <view class="time" wx:if="{{!index || (index > 0 && item.imData.timestamp - messageList[index - 1].imData.timestamp > 1000 * 60)}}">{{filters.activeTime(item.imData.timestamp)}}</view>
           <view  wx:if="{{item.msgType === 'RC:RcCmd'}}" class="customMsg">{{item.imFromUser.vkey === options.vkey ? '对方撤回了一条消息' : '你撤回了一条消息'}}</view>
-          <view  wx:else class="message-item {{item.imFromUser.vkey === options.vkey ? 'others' : 'mine'}}" id="msg{{index}}">
+          <view  wx:else class="message-item {{item.imFromUser.vkey === options.vkey ? 'others' : 'mine'}}">
             <view class="avatar">
               <i-image src="{{item.imFromUser.vkey === options.vkey ? othersUserInfo.avatarInfo.smallUrl : mineUserInfo.avatarInfo.smallUrl}}"></i-image>
             </view>
@@ -25,7 +25,7 @@
               data-index="{{index}}"
               >
               <block wx:if="{{item.msgType === 'RC:TxtMsg'}}">
-              <view class="text"><rich-text nodes="{{filters.setEmoji(item.imData.content.content, emojiPath)}}" space="emsp"></rich-text></view>
+              <view class="text"><rich-text nodes="{{filters.setEmoji(item.imData.content.content, cdnPath)}}" space="emsp"></rich-text></view>
               </block>
               <block wx:if="{{item.msgType === 'RC:ImgMsg'}}">
                 <msg-image message="{{item.imData.content}}"></msg-image>
@@ -48,8 +48,11 @@
       </view>
     </view>
   </view>
-  <view class="systemHint black" wx:if="{{chatDetail.blackInfo.beBlacked || chatDetail.blackInfo.blacked}}">{{chatDetail.blackInfo.beBlacked ? '你已被拉黑，无法发送消息' : '对方已被拉黑，无法发送消息'}}</view>
+  <view class="systemHint black" wx:if="{{chatDetail.blackInfo.beBlacked || chatDetail.blackInfo.blacked}}">{{chatDetail.blackInfo.beBlacked ? '你已被对方拉黑，无法发送消息' : '对方已你被拉黑，无法发送消息'}}</view>
   <view id="bottomBlock" style="height:1rpx"></view>
+   <view class="noviceGuide" catchtouchmove wx:if="{{showNoviceGuide}}" bindtap="closeNoviceGuide">
+    <i-image my-class="guideImg" src="{{cdnPath}}img_guide_im_inf.png"></i-image>
+  </view>
   <chat-footer 
     id="footer" 
     selectIndex="{{selectIndex}}" 

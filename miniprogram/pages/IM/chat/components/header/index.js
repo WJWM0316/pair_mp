@@ -72,8 +72,9 @@ Component({
         content: isBlacked ? '移出黑名单后，你将继续收到对方发送的消息，确认将其移出黑名单？' : '拉入黑名单后，你将不再收到对方发送的消息，确认将其拉入黑名单？',
         confirmBack: () => {
           let fun = isBlacked ? removeBackApi : setBackApi
-          fun({vkey: this.data.othersUserInfo.vkey}).then(res => {
+          fun({vkey: this.data.othersUserInfo.vkey, hideLoading: true}).then(res => {
             that.setData({[`chatDetail.blackInfo.blacked`]: !isBlacked})
+            that.triggerEvent('changeBlackStatus', !isBlacked)
             app.wxToast({title: isBlacked ? '已移出黑名单' : '已拉入黑名单', icon: 'success'})
           })
         }
@@ -84,7 +85,6 @@ Component({
     },
     jump (e) {
       let vkey = e.currentTarget.dataset.vkey
-      console.log(e, 2222222)
       wx.navigateTo({url: `/pages/homepage/index?vkey=${vkey}`})
     }
   }
