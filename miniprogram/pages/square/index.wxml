@@ -9,35 +9,37 @@
   <image  class="index100" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix" style="top: calc({{navBarHeight}}px + 24rpx)"></image >
   <view class="index102" style="top: {{navBarHeight}}px"></view>
 </view> -->
-<view class="square" wx:if="{{userData.list.length}}">
-  <view class="item" wx:for="{{ userData.list }}" wx:key="index" bindtap="routeJump" data-item="{{ item }}">
-    <view class="cover">
-      <i-image my-class="photo" src="{{ item.avatarInfo.url }}" mode="aspectFill"></i-image>
-      <view class="mask">
-        <view class="album" bindtap="album">
-          <i class="icon iconfont icon_im_tupian"></i>{{item.userAlbumList.length}}
-        </view>
-        <view class="info">
-          <view class="row1">
-            <view class="nickname">{{ item.nickname }}</view>
-            <view class="year">{{ item.birthDesc }}</view>
-            <view class="height">{{ item.heightDesc }}</view>
+<block wx:if="{{userData.isRequire}}">
+  <view class="square" wx:if="{{userData.list.length}}">
+    <view class="item" wx:for="{{ userData.list }}" wx:key="index" bindtap="routeJump" data-item="{{ item }}">
+      <view class="cover">
+        <i-image my-class="photo" src="{{ item.avatarInfo.url }}" mode="aspectFill"></i-image>
+        <view class="mask">
+          <view class="album" bindtap="album">
+            <i class="icon iconfont icon_im_tupian"></i>{{item.userAlbumList.length}}
           </view>
-          <view class="row2">
-            <view class="city-area">{{ item.residentArr[1].title }}{{ item.residentArr[2].title }}</view>
-            <view class="industry-position">{{ item.industryArr[0].name }} - {{ item.industryArr[1].name }}</view>
-            <i-image my-class="icon-image" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix" wx:if="{{item.isCareerIdentity}}"></i-image> 
+          <view class="info">
+            <view class="row1">
+              <view class="nickname">{{ item.nickname }}</view>
+              <view class="year">{{ item.birthDesc }}</view>
+              <view class="height">{{ item.heightDesc }}</view>
+            </view>
+            <view class="row2">
+              <view class="city-area">{{ item.residentArr[1].title }}{{ item.residentArr[2].title }}</view>
+              <view class="industry-position">{{ item.industryArr[0].name }} - {{ item.industryArr[1].name }}</view>
+              <i-image my-class="icon-image" src="{{ CDNPATH }}icon_job_legalize.png" mode="widthFix" wx:if="{{item.isCareerIdentity}}"></i-image> 
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    <view class="brief">
-      {{ item.ownDescribe }}
+      <view class="brief">
+        {{ item.ownDescribe }}
+      </view>
     </view>
   </view>
-</view>
-<view class="no-data" wx:else>
-  <i-image my-class="img1" src="{{ CDNPATH }}img_im_empty.png" mode="widthFix"></i-image> 
-  <view class="tips">一大波优质用户正在赶来哦~</view>
-</view>
+  <view class="no-data" wx:else>
+    <i-image my-class="img1" src="{{ CDNPATH }}img_im_empty.png" mode="widthFix"></i-image> 
+    <view class="tips">一大波优质用户正在赶来哦~</view>
+  </view>
+</block>
 <tabBar tabBgColor="transparent"  wx:if="{{hasLogin && hasLogincb}}"></tabBar>

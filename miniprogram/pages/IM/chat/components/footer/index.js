@@ -63,7 +63,7 @@ Component({
 
   pageLifetimes: {
     show: function() {
-      // socket.testSocket()
+      socket.testSocket()
     }
   },
   methods: {
@@ -79,7 +79,8 @@ Component({
     // 选择emoji 或者 出场白
     selectResult (e) {
       this.word = this.word ?  `${this.word}${e.detail}` : e.detail
-      this.setData({'word': this.word, canSend: true}) 
+      let canSend = this.data.chatDetail.blackInfo.beBlacked || this.data.chatDetail.blackInfo.blacked ? false : true
+      this.setData({'word': this.word, canSend}) 
     },
     // 文本域编辑
     bindinput (e) {
@@ -100,10 +101,6 @@ Component({
     
     // 选择编辑类型
     selectType (e) {
-      // if (socket.readyState() !== 1) {
-      //   socket.testSocket()
-      //   return
-      // }
       let index = e.currentTarget.dataset.index
       this.pageScrollToDom('bottom').then(() => {
         this.setData({'selectIndex': index}, () => {
@@ -185,24 +182,25 @@ Component({
         case 'img':
           app.globalData.lockonShow = true
           wx.chooseImage({
-            count: 1,
+            count: 9,
             sizeType: ['original', 'compressed'],
             sourceType: that.data.selectIndex === 1 ? ['album'] : ['camera'],
             success (res) {
-              let file = res.tempFiles[0]
-              msgData.msgType = 'RC:ImgMsg'
-              msgData.imData.content = {imageUri: file.path, sendTimestamp: timestamp}
-              that.triggerEvent('sendMsg', msgData)
-              app.uploadFile(file).then(res0 => {
-                parmas.data = {
-                  ...parmas.data,
-                  msgType: "RC:ImgMsg", 
-                  content: {
-                    content: res0.data.attachListItem[0].smallUrl,
-                    imageUri: res0.data.attachListItem[0].url
+              res.tempFiles.forEach((file) => {
+                msgData.msgType = 'RC:ImgMsg'
+                msgData.imData.content = {imageUri: file.path, sendTimestamp: timestamp}
+                that.triggerEvent('sendMsg', msgData)
+                app.uploadFile(file).then(res0 => {
+                  parmas.data = {
+                    ...parmas.data,
+                    msgType: "RC:ImgMsg", 
+                    content: {
+                      content: res0.data.attachListItem[0].smallUrl,
+                      imageUri: res0.data.attachListItem[0].url
+                    }
                   }
-                }
-                socket.send(parmas)
+                  socket.send(parmas)
+                })
               })
             },
             fail(err) {

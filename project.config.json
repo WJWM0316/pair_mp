@@ -125,17 +125,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/invitation/index",
-					"pathName": "pages/invitation/index",
-					"query": "vkey=ighvcabv",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/account/index",
-					"pathName": "pages/account/index",
-					"query": "vkey=ighvcabv",
+					"id": 8,
+					"name": "小助手",
+					"pathName": "pages/IM/systemMsg/index",
+					"query": "vkey=co4gpxxo",
 					"scene": null
 				}
 			]

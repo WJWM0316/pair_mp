@@ -22,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({'userInfo': app.globalData.userInfo, 'viewAreaHeight': app.globalData.viewAreaHeight})
+    this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
     socket.onMessage((res) => {
       if (res.imFromUser.vkey !== app.globalData.userInfo.userInfo.vkey) {
         let vkey        = res.imFromUser.vkey,
@@ -133,7 +133,17 @@ Page({
    */
   async onShow () {
     let data = await hasLogin()
-    this.setData({'hasLogin': data, 'hasLogincb': true})
+    let setData = {'hasLogin': data, 'hasLogincb': true}
+    if (app.globalData.userInfo) {
+      setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
+      this.setData(setData)
+    } else {
+      app.getUserInfo = () => {
+        setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
+        this.setData(setData)
+      }
+    }
+    
     this.getList()
   },
 

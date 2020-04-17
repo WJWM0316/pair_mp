@@ -22,17 +22,27 @@ Component({
   data: {
     putUp: true,
     tips: true,
+    cdnPath: app.globalData.CDNPATH,
+    showNoviceGuide: false,
     pxTorpxRatio: app.globalData.systemInfo.pxTorpxRatio
   },
   attached () {
+    this.getNoviceGuide()
   },
   
   /**
    * 组件的方法列表
    */
   methods: {
-    catchtap () {
-      return
+    // 开启新手引导
+    getNoviceGuide () {
+      let showNoviceGuide = wx.getStorageSync('showNoviceGuide')
+      this.setData({showNoviceGuide: !showNoviceGuide})
+    },
+    // 关闭新手引导
+    closeNoviceGuide () {
+      wx.setStorageSync('showNoviceGuide', true)
+      this.setData({showNoviceGuide: false})
     },
     toggle (toggle) {
       let putUp = this.data.putUp

@@ -58,11 +58,18 @@
   color: #F46BA1;
 }
 .header .header-inner .header-card .avatar-box .avatarCon {
-  overflow: hidden;
   padding: 0 20rpx;
   font-size: 0;
   position: relative;
   z-index: 2;
+}
+.header .header-inner .header-card .avatar-box .avatarCon::before,
+.header .header-inner .header-card .avatar-box .avatarCon::after {
+  content: " ";
+  display: table;
+}
+.header .header-inner .header-card .avatar-box .avatarCon::after {
+  clear: both;
 }
 .header .header-inner .header-card .avatar-box .avatarCon .avatar {
   width: 100rpx;
@@ -82,6 +89,24 @@
 }
 .header .header-inner .header-card .avatar-box .avatarCon .avatar.female {
   border-color: #F46BA1;
+}
+.header .header-inner .header-card .avatar-box .avatarCon .guideImg {
+  width: 574rpx;
+  height: 236rpx;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 110rpx;
+  z-index: 2;
+}
+.header .header-inner .header-card .avatar-box .noviceGuide {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
 }
 .header .header-inner .header-card .detail {
   margin: 22rpx 0 0 20rpx;

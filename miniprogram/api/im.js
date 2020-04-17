@@ -71,3 +71,13 @@ export const unreadNumApi = (data) => {
     data
   })
 }
+
+// 获取小助手
+export const getSysMsgApi = (data) => {
+  return request({
+    method: 'get',
+    url: `/im/sys_msg`,
+    data
+  })
+}
+

@@ -11,6 +11,10 @@
         <view class="avatarCon">
           <i-image src="{{othersUserInfo.avatarInfo.middleUrl}}" my-class="left avatar {{othersUserInfo.gender === 1 ? 'male' : 'female'}}"  catchtap = "jump" data-vkey="{{othersUserInfo.vkey}}"></i-image>
           <i-image src="{{mineUserInfo.avatarInfo.middleUrl}}" my-class="right avatar {{mineUserInfo.gender === 1 ? 'male' : 'female'}}"   catchtap = "jump" data-vkey="{{mineUserInfo.vkey}}"></i-image>
+          <block wx:if="{{showNoviceGuide}}">
+            <i-image my-class="guideImg" src="{{cdnPath}}img_guide_im_inf.png" bindtap="closeNoviceGuide"></i-image>
+            <view class="noviceGuide" catchtouchmove bindtap="closeNoviceGuide"></view>
+          </block>
         </view>
       </view>
       <block wx:if="{{putUp}}">

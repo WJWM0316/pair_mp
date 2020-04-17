@@ -16,7 +16,6 @@ Page({
     curTimestamp: '',
     noMoreData: false,
     hasRequire: false,
-    showNoviceGuide: false,
     options: {},
     chatDetail: {},
     cdnPath: app.globalData.CDNPATH
@@ -27,8 +26,7 @@ Page({
    */
   onLoad: function (options) {
     this.options = options
-    let showNoviceGuide = wx.getStorageSync('showNoviceGuide')
-    this.setData({options, showNoviceGuide: !showNoviceGuide})
+    this.setData({options})
     socket.onMessage((res) => {
       if ((res.imFromUser.vkey === this.options.vkey || res.imToUser.vkey === this.options.vkey)
           && (res.imFromUser.vkey !== this.data.mineUserInfo.vkey || res.msgType === 'RC:RcCmd')) {
@@ -122,11 +120,7 @@ Page({
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data, showDebutWord, showSystemHint})
     })
   },
-  // 关闭新手引导
-  closeNoviceGuide () {
-    wx.setStorageSync('showNoviceGuide', true)
-    this.setData({showNoviceGuide: false})
-  },
+  
   // 拉黑状态变更
   changeBlackStatus (e) {
     let blacked = e.detail

@@ -1,4 +1,4 @@
-// pages/IM/systemMsg/index.js
+import {getSysMsgApi} from '../../../api/im.js'
 Page({
 
   /**
@@ -31,7 +31,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(11111111111111111111)
+    getSysMsgApi()
   },
 
   /**
