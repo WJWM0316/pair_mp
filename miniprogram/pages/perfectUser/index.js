@@ -51,7 +51,8 @@ Page({
     this.setData({ step })
   },
   init2() {
-    getLabelListApi().then(({ data }) => {
+    let callback = (data) => {
+      let callback = (data) => {}
       let { options } = this.data
       let userLabelList = app.globalData.userInfo && app.globalData.userInfo.userInfo && app.globalData.userInfo.userInfo.userLabelList
       data.map((v,i) => {
@@ -116,9 +117,16 @@ Page({
               labels.push(c.labelId)
             })
           })
-          this.setData({ labels, canClick: false })
+          this.setData({ labels, canClick: labels.length < 5 ? false : true })
         }
       })
+    }
+    getLabelListApi().then(({ data }) => {
+      if (app.globalData.userInfo) {
+        callback(data)
+      } else {
+        app.getUserInfo = () => callback(data)
+      }
     })
   },
   init() {
@@ -210,6 +218,10 @@ Page({
     let { labels, options } = this.data
     let params = {
       label_id: labels.join(',')
+    }
+    if(labels.length < 5) {
+      app.wxToast({title: '至少选择5个个性标签'})
+      return
     }
     addLabelApi(params).then(() => {
       getUserInfo().then(() => {
