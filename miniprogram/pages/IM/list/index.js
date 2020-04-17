@@ -133,7 +133,7 @@ Page({
    */
   async onShow () {
     let data = await hasLogin()
-    let setData = {'hasLogin': data, 'hasLogincb': true}
+    let setData = {'messageList': [], 'hasLogin': data, 'hasLogincb': true}
     if (app.globalData.userInfo) {
       setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
       this.setData(setData)

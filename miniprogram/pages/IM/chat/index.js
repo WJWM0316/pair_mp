@@ -37,9 +37,10 @@ Page({
           });
         })
       }
+      console.log(this.data.messageList, this.index)
       // 如果是自己发的消息IM 回调成功后要赋值一下msgUid
       if (res.msgType !== "RC:RcCmd" && res.imFromUser.vkey === this.data.mineUserInfo.vkey) {
-        if (this.data.messageList[this.index].imData.sendTimestamp === res.imData.sendTimestamp) {
+        if (this.data.messageList.length && this.data.messageList[this.index].imData.sendTimestamp === res.imData.sendTimestamp) {
           this.setData({[`messageList[${this.index}].imData.msgUID`]: res.imData.msgUID})
         }
       }
