@@ -8,8 +8,7 @@
       placeholder="填写邀请码"
       bindinput="bindInput"
       value="{{ formData.nickname }}"
-      class="value {{code ? 'bold' : ''}}"
-      maxlength="4"/>
+      class="value {{code ? 'bold' : ''}}"/>
   </view>
   <i-button my-class="btn-next {{code ? 'btn-next-active': ''}}" bind:click="post">马上脱单</i-button>
   <view class="todo"><view class="btn" bindtap="open">我要获取邀请码</view></view>

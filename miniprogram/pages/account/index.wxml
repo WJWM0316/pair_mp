@@ -50,7 +50,17 @@
         <i-image my-class="my_pitang" src="{{ CDNPATH }}icon_pitang_30.png" mode="heightFix"></i-image>
       </view>
     </view>
-    <view class="tab">
+    <view class="copy-box" wx:if="{{options.showModel}}">
+      <view class="inner22">
+        <view class="h22">我的邀请码:{{inviteCode.code}}</view>
+        <view class="h33">可直接通过发送邀请码邀请你的好友</view>
+        <view class="copy-btn" bindtap="copy">复制</view>
+      </view>
+    </view>
+    <view class="methods" wx:if="{{options.showModel}}">
+      <view class="text111">其他邀请方式</view>
+    </view>
+    <view class="tab {{options.showModel ? 'reduce' : ''}}">
       <i-button my-class="item1" bindtap="fetch" open-type="share">
         <view class="circle"><i class="icon iconfont icon_weixin"></i></view>
         <view class="txt">微信好友</view>

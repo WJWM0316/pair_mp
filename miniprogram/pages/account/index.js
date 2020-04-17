@@ -27,14 +27,15 @@ Page({
       todaySigned: true
     },
     show: false,
-    inviteCode: {}
+    inviteCode: {},
+    userInvite: {},
+    shareInvite: {}
   },
   onLoad(options) {
+    this.setData({options})
     this.getCurrentWeekSignIn()
     this.getSugarInfo()
-    if(options.showModel) {
-      this.getUserShareCode()
-    }
+    if(options.showModel) this.getUserShareCode()
   },
   getSugarInfo() {
     return new Promise((resolve, reject) => {
@@ -117,5 +118,9 @@ Page({
     wx.navigateTo({
       url: `${PAGEPATH}/poster/index`
     })
+  },
+  copy() {
+    let { inviteCode } = this.data
+    wx.setClipboardData({data: inviteCode.code })
   }
 })
