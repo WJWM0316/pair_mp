@@ -117,7 +117,7 @@ Page({
               labels.push(c.labelId)
             })
           })
-          this.setData({ labels, canClick: false })
+          this.setData({ labels, canClick: labels.length < 5 ? false : true })
         }
       })
     }
