@@ -107,10 +107,7 @@ Component({
       this.setData({'word': this.word})
     },
     bindfocus () {
-      wx.pageScrollTo({
-        duration: 1,
-        scrollTop: 100000
-      })
+      this.pageScrollToDom()
     },
     // 选择编辑类型
     selectType (e) {
@@ -169,7 +166,7 @@ Component({
     pageScrollToDom (type = 'bottom') {
       return new Promise((resolve, reject) => {
         wx.pageScrollTo({
-          duration: 200,
+          duration: 1,
           selector: type === 'top' ? `#msg0` : `#bottomBlock`,
           success: (res) => {
             resolve(res)

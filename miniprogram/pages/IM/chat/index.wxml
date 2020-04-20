@@ -40,7 +40,7 @@
                 >
                 <i class="icon" style="{{longpressData.iconStyle}}"></i>
                 <text class="textBtn" data-msgdata="{{item}}" data-type="copy" catchtap = "action" wx:if="{{item.msgType === 'RC:TxtMsg'}}">复制</text>
-                <text class="textBtn" data-msgdata="{{item}}" data-type="withdraw" catchtap = "action" data-index="{{index}}" wx:if="{{curTimestamp - item.imData.timestamp <= 2 * 60 * 1000}}">撤回</text>
+                <text class="textBtn" data-msgdata="{{item}}" data-type="withdraw" catchtap = "action" data-index="{{index}}" wx:if="{{item.imFromUser.vkey === mineUserInfo.vkey && curTimestamp - item.imData.timestamp <= 2 * 60 * 1000}}">撤回</text>
               </view>
             </view>
           </view>

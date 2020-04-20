@@ -47,7 +47,7 @@
         <block wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
           <view class="footerTxt">
             <view class="txt1">{{status.refreshText}}</view>
-            <view class="txt2">{{filters.dateFormat(countDown, 'HH:mm:ss')}}</view>
+            <view class="txt2">{{filters.shortTimeStamp(countDown, 'hh:mm:ss')}}</view>
             <view class="txt3" bindtap="routeJump" data-route="square">前往单身广场<i class="icon iconfont icon_shuangjiantou"></i></view>
           </view>
         </block>

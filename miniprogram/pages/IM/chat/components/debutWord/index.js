@@ -43,14 +43,10 @@ Component({
    */
   methods: {
     getDataList () {
-      if (!app.globalData.topicData) {
-        getTopicApi({vkey: this.data.vkey, hideLoading: true}).then(res => {
-          app.globalData.topicData = res.data
-          this.setData({'allList': res.data.allList, 'topList': res.data.topList})
-        })
-      } else {
-        this.setData({'allList': app.globalData.topicData.allList, 'topList': app.globalData.topicData.topList})
-      }
+      getTopicApi({vkey: this.data.vkey, hideLoading: true}).then(res => {
+        app.globalData.topicData = res.data
+        this.setData({'allList': res.data.allList, 'topList': res.data.topList})
+      })
     },
     selectWord (e) {
       let word = e.currentTarget.dataset.word
