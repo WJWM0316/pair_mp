@@ -31,7 +31,7 @@
         >
           <view slot="content" class="scroll-item">
             <view class="avatar {{item.online ? 'online' : ''}}">
-              <i-image my-class="avatarImg" mode="aspectFill" src="{{item.imFromUser.avatarUrl}}"></i-image>
+              <i-image my-class="avatarImg" mode="aspectFill" src="{{item.imFromUser.avatarUrl}}" hasLodingImg></i-image>
             </view>
             <view class="messageContent">
               <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{filters.activeTime(item.lastMsgTime)}}</view></view>

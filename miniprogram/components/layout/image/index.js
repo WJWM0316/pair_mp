@@ -11,7 +11,7 @@ Component({
     },
     hasLodingImg: {
       type: Boolean,
-      value: true
+      value: false
     },
     hasErrorImg: {
       type: Boolean,

@@ -9,8 +9,8 @@
           <view class="bgIcon {{mineUserInfo.gender === 1 ? 'male' : 'female'}}"></view>
         </view>
         <view class="avatarCon">
-          <i-image src="{{othersUserInfo.avatarInfo.middleUrl}}" mode="aspectFill" my-class="left avatar {{othersUserInfo.gender === 1 ? 'male' : 'female'}}"  catchtap = "jump" data-vkey="{{othersUserInfo.vkey}}"></i-image>
-          <i-image src="{{mineUserInfo.avatarInfo.middleUrl}}" mode="aspectFill" my-class="right avatar {{mineUserInfo.gender === 1 ? 'male' : 'female'}}"   catchtap = "jump" data-vkey="{{mineUserInfo.vkey}}"></i-image>
+          <i-image src="{{othersUserInfo.avatarInfo.middleUrl}}" mode="aspectFill" hasLodingImg= my-class="left avatar {{othersUserInfo.gender === 1 ? 'male' : 'female'}}"  catchtap = "jump" data-vkey="{{othersUserInfo.vkey}}"></i-image>
+          <i-image src="{{mineUserInfo.avatarInfo.middleUrl}}" mode="aspectFill" hasLodingImg my-class="right avatar {{mineUserInfo.gender === 1 ? 'male' : 'female'}}"   catchtap = "jump" data-vkey="{{mineUserInfo.vkey}}"></i-image>
           <block wx:if="{{showNoviceGuide}}">
             <i-image my-class="guideImg" src="{{cdnPath}}img_guide_im_inf.png" bindtap="closeNoviceGuide"></i-image>
             <view class="noviceGuide" catchtouchmove bindtap="closeNoviceGuide"></view>
@@ -24,7 +24,7 @@
             <block wx:else>{{othersUserInfo.industryArr[0].name}}-{{othersUserInfo.industryArr[1].name}}</block>
           </view>
           <view class="infos">
-            <view class="info" wx:if="{{othersUserInfo.residentArr[1].title}}"><i class="icon iconfont icon_ziliaowanshandudi"></i>{{othersUserInfo.residentArr[1].title}}·{{othersUserInfo.residentArr[2].title}}</view>
+            <view class="info" wx:if="{{othersUserInfo.residentArr[1].title}}"><i class="icon iconfont icon_suozaidi"></i>{{othersUserInfo.residentArr[1].title}}·{{othersUserInfo.residentArr[2].title}}</view>
             <view class="info"><i class="icon iconfont icon_nianling"></i>{{othersUserInfo.age}}岁</view>
             <view class="info"><i class="icon iconfont icon_shengao"></i>{{othersUserInfo.height}}cm</view>
           </view>

@@ -41,7 +41,6 @@ Page({
     if(options.inviteCode) {
       wx.setStorageSync('inviteCode', options.inviteCode)
     }
-    console.log(options, '是否有邀请码')
   },
   async onShow () {
     if(localstorage.get('hasPicker')) {
@@ -60,7 +59,7 @@ Page({
     pickAggrApi({hideLoading}).then(res => {
       let countDown = 0
       if (!res.data.pickChance.todayRemain) {
-        countDown = res.data.refreshAt - res.data.curTime
+        countDown = res.data.refreshAt * 1000 - res.data.curTime * 1000
         let startCountDown = () => {
           this.countDownTimers = setTimeout(() => {
             if (countDown > 0) {
@@ -168,12 +167,8 @@ Page({
     } else {
       // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
       if (!this.data.status.pickChance.todayRemain && this.data.status.pickChance.todayRemainExchangeTimes) {
-        this.openGif()
         this.getPickChance().then(async () => {
-          await this.hideGif()
           this.setData({code: 5}, () => this.selectComponent('#dialog').show())
-        }).catch(async (e) => {
-          await this.hideGif()
         })
       } else {
         // 有次数直接pick
@@ -223,20 +218,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-    let { inviteCode } = app.globalData
-    if(options.from === 'button') {
-      return app.wxShare({
-        options,
-        path: `/pages/index/index?inviteCode=${inviteCode.code}`
-      })
-    } else {
-      let shareInfos = app.globalData.shareInfos.sharePickme,
+    let shareInfos = app.globalData.shareInfos.sharePickme,
         random     = parseInt(Math.random() * (shareInfos.title.length - 1))
-      return app.wxShare({
-        options,
-        title: shareInfos.title[random],
-        imageUrl: shareInfos.imageUrl
-      })
-    }    
+    return app.wxShare({
+      options,
+      title: shareInfos.title[random],
+      imageUrl: shareInfos.imageUrl
+    })
   }
 })
