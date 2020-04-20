@@ -12,6 +12,7 @@ Page({
       let { userInfo } = app.globalData.userInfo
       let avatarUrl = null
       let xiaochengxu = null
+      let imageInfos = {}
       let loadResult = (res, resolve) => {
         let timer = null
         timer = setTimeout(() => {
@@ -34,9 +35,14 @@ Page({
         // 头像
         wx.downloadFile({
           url: userInfo.avatarInfo.smallUrl,
-          success(res) {
-            avatarUrl = loadResult(res, resolve)
-            console.log(res, 'kkk', new Image())
+          success(res1) {
+            wx.getImageInfo({
+              src: res1.tempFilePath,
+              success (res) {
+                avatarUrl = loadResult(res1, resolve)
+                imageInfos = res
+              }
+            })
           },
           fail(e) {
             app.wxToast({title: '图片加载失败，请重新生成', callback() {wx.navigateBack({ delta: 1 })}})
@@ -70,28 +76,30 @@ Page({
 
         ctx.beginPath()
         ctx.arc(110, 752, 60, 0, 2 * Math.PI)
-        ctx.setFillStyle('#f00')
+        ctx.setFillStyle('#fff')
         ctx.fill()
         ctx.clip()
-        ctx.drawImage(avatarUrl, 50, 692, 120, 120)
+        setTimeout(() => {
+          ctx.drawImage(avatarUrl, 50, 692, 120, imageInfos.height * (120/imageInfos.width) )
 
-        ctx.draw(true, () => {
-          let that = this
-          setTimeout(() => {
-            wx.canvasToTempFilePath({
-              x: 0,
-              y: 0,
-              quality: 1,
-              canvasId: 'cardCanvas',
-              success(res) {
-                that.setData({imgUrl: res.tempFilePath})
-                wx.hideLoading()
-              },
-              fail(err) {
-                console.log(err)
-              }
-            }, this)
-          }, 16.7)
+          ctx.draw(true, () => {
+            let that = this
+            setTimeout(() => {
+              wx.canvasToTempFilePath({
+                x: 0,
+                y: 0,
+                quality: 1,
+                canvasId: 'cardCanvas',
+                success(res) {
+                  that.setData({imgUrl: res.tempFilePath})
+                  wx.hideLoading()
+                },
+                fail(err) {
+                  console.log(err)
+                }
+              }, this)
+            }, 16.7)
+          })
         })
       })
     }
