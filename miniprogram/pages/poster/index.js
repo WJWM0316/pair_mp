@@ -11,6 +11,7 @@ Page({
     let callback = () => {
       let { userInfo } = app.globalData.userInfo
       let avatarUrl = null
+      let xiaochengxu = null
       let loadResult = (res, resolve) => {
         let timer = null
         timer = setTimeout(() => {
@@ -41,12 +42,25 @@ Page({
           }
         })
       })
-      Promise.all([loadAvatar]).then((result) => {
+      let loadXiaochengxu = new Promise((resolve, reject) => {
+        // 头像
+        wx.downloadFile({
+          url: `${app.globalData.CDNPATH}xcx.png`,
+          success(res) {
+            xiaochengxu = loadResult(res, resolve)
+          },
+          fail(e) {
+            app.wxToast({title: '图片加载失败，请重新生成', callback() {wx.navigateBack({ delta: 1 })}})
+          }
+        })
+      })
+
+      Promise.all([loadAvatar, loadXiaochengxu]).then((result) => {
         let ctx = wx.createCanvasContext('cardCanvas')
         ctx.fillRect(0, 0, 750, 1058)
         ctx.drawImage('../../images/img_shareposter@2x.png', 0, 0, 750, 1058)
 
-        ctx.drawImage('../../images/xcx.png', 575, 850, 107, 107)
+        ctx.drawImage(xiaochengxu, 575, 850, 107, 107)
 
         ctx.setFillStyle('#ffffff')
         ctx.setFontSize(32)
