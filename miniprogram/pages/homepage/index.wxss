@@ -188,7 +188,6 @@
 .homepage .cover-box .swiper .cover-img {
   position: relative;
   width: 100%;
-  border-radius: 36rpx 36rpx 36rpx 0rpx;
 }
 .homepage .cover-box .swiper.isError {
   top: 88rpx;
@@ -658,7 +657,6 @@
 .other .cover-box .cover-img {
   position: relative;
   width: 100%;
-  border-radius: 36rpx !important;
 }
 .other .info-base {
   margin-bottom: 0 !important;

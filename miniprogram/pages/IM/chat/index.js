@@ -82,7 +82,7 @@ Page({
     setTimeout(() => {
       wx.nextTick(()=>{
         wx.pageScrollTo({
-          duration: 0,
+          duration: 1,
           selector: this.preDomId
         })
       })
@@ -128,7 +128,7 @@ Page({
     setTimeout(() => {
       wx.nextTick(()=>{
         wx.pageScrollTo({
-          duration: 0,
+          duration: 1,
           selector: `#bottomBlock`
         })
       })

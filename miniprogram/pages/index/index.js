@@ -64,7 +64,7 @@ Page({
           let startCountDown = () => {
             this.countDownTimers = setTimeout(() => {
               if (countDown > 0) {
-                countDown--
+                countDown = parseInt(countDown - 1000)
                 this.setData({countDown})
                 startCountDown()
               } else {
@@ -171,12 +171,7 @@ Page({
         }
       })
     } else {
-      // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
-      if (!this.data.status.pickChance.todayRemain && this.data.status.pickChance.todayRemainExchangeTimes) {
-        this.getPickChance().then(async () => {
-          this.setData({code: 5}, () => this.selectComponent('#dialog').show())
-        })
-      } else {
+      if (this.data.status.pickChance.todayRemain) {
         // 有次数直接pick
         this.openGif()
         pickApi({hideLoading: true}).then(async ({ data }) => {
@@ -188,6 +183,13 @@ Page({
             this.setData({code: 3}, () => this.selectComponent('#dialog').show())
           }
         })
+      } else {
+        // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
+        if (this.data.status.pickChance.todayRemainExchangeTimes) {
+          this.getPickChance().then(async () => {
+            this.setData({code: 5}, () => this.selectComponent('#dialog').show())
+          })
+        }
       }
     }
   },

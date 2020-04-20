@@ -3,20 +3,20 @@
  * 时间差时间戳戳转化格式
  */
 var shortTimeStamp = function(timestamp, format) {
-  let day     = parseInt(timestamp / (1000 * 60 * 60 *24)),
+  var day     = parseInt(timestamp / (1000 * 60 * 60 *24)),
       hour    = parseInt(timestamp / (1000 * 60 * 60)),
       minute  = parseInt(timestamp / (1000 * 60)),
       second  = parseInt(timestamp / (1000))
-  let h = hour - day *24,
+  var h = hour - day *24,
       m = minute - hour * 60,
       s = second - minute * 60
   h >= 10 ? h : '0' + h
   m >= 10 ? m : '0' + m
   s >= 10 ? h : '0' + s
+  var string = ''
   switch (format) {
     case 'hh:mm:ss':
-      return h + ':' + 'm' + ':' + s
-      break
+      return h + ':' + m + ':' + s
   }
 }
 /**
