@@ -1,4 +1,5 @@
 import {postInviteCodeApi} from '../../api/user.js'
+import {getUserInfo} from '../../utils/auth.js'
 
 const app = getApp()
 Page({
@@ -23,14 +24,16 @@ Page({
       return
     }
     postInviteCodeApi(params).then(() => {
-      let { userInfo } = app.globalData.userInfo
-      if (userInfo.step !== 9) {
-        wx.redirectTo({
-          url: `/pages/createUser/index?step=${userInfo.step}`
-        })
-      } else {
-        wx.reLaunch({url: `/pages/index/index`})
-      }
+      getUserInfo().then(() => {
+        let { userInfo } = app.globalData.userInfo
+        if (userInfo.step !== 9) {
+          wx.redirectTo({
+            url: `/pages/createUser/index?step=${userInfo.step}`
+          })
+        } else {
+          wx.reLaunch({url: `/pages/index/index`})
+        }
+      })      
     }).catch(err => app.wxToast({title: err.msg}))
   }
 })
