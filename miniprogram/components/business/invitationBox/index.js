@@ -58,12 +58,7 @@ Component({
       let callback = () => {
         let { inviteCode } = this.data
         let  { userInfo } = app.globalData.userInfo
-  let shareContent = `
-  【${userInfo.nickname} 邀请你加入Pick Me】
-  专属邀请码是      
-  ${inviteCode.code}   
-  搜索【PickMe】小程序，匹配最适合你的TA      
-  `
+let shareContent = `【${userInfo.nickname} 邀请你加入Pick Me】\n专属邀请码是 \n${inviteCode.code}\n搜索【PickMe】小程序，匹配最适合你的TA`
         wx.setClipboardData({data: shareContent })
       }
       if (app.globalData.userInfo) {

@@ -19,7 +19,8 @@ Component({
         pickIntention: {},
         albumVerifyInfo: {
           status: 1
-        }
+        },
+        isSignIn: 0
       }
     }
   },

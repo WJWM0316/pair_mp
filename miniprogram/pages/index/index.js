@@ -56,38 +56,40 @@ Page({
     this.getAvatarList()
   },
   getOtherStatus (hideLoading = true) {
-    if (!this.data.hasLogin) return
-    pickAggrApi({hideLoading}).then(res => {
-      let countDown = 0
-      if (!res.data.pickChance.todayRemain) {
-        countDown = res.data.refreshAt - res.data.curTime
-        let startCountDown = () => {
-          this.countDownTimers = setTimeout(() => {
-            if (countDown > 0) {
-              countDown--
-              this.setData({countDown})
-              startCountDown()
-            } else {
-              countDown = 0
-              clearInterval(this.countDownTimers)
-              this.getOtherStatus()
-            }
-          }, 1000)
+    return new Promise((resolve, reject) => {
+      if (!this.data.hasLogin) return
+      pickAggrApi({hideLoading}).then(res => {
+        let countDown = 0
+        if (!res.data.pickChance.todayRemain) {
+          countDown = res.data.refreshAt - res.data.curTime
+          let startCountDown = () => {
+            this.countDownTimers = setTimeout(() => {
+              if (countDown > 0) {
+                countDown--
+                this.setData({countDown})
+                startCountDown()
+              } else {
+                countDown = 0
+                clearInterval(this.countDownTimers)
+                this.getOtherStatus()
+              }
+            }, 1000)
+          }
+          startCountDown()
         }
-        startCountDown()
-      }
-      if (res.data.popups.length) {
-        this.selectComponent('#awardPopUp').show()
-      }
-      let richTextShadow = ''
-      if (res.data.pickChance.todayRemain) {
-        richTextShadow = `<div class="richWrap richTextShadow"><div>`
-      } else if (!res.data.pickChance.todayRemain && res.data.pickChance.todayRemainExchangeTimes) {
-        richTextShadow = `<div class="richWrap richTextShadow chongzhi"><div>`
-      } else {
-        richTextShadow = `<div class="richWrap richTextShadow default"><div>`
-      }
-      this.setData({'status': res.data, countDown, richTextShadow})
+        if (res.data.popups.length) {
+          this.selectComponent('#awardPopUp').show()
+        }
+        let richTextShadow = ''
+        if (res.data.pickChance.todayRemain) {
+          richTextShadow = `<div class="richWrap richTextShadow"><div>`
+        } else if (!res.data.pickChance.todayRemain && res.data.pickChance.todayRemainExchangeTimes) {
+          richTextShadow = `<div class="richWrap richTextShadow chongzhi"><div>`
+        } else {
+          richTextShadow = `<div class="richWrap richTextShadow default"><div>`
+        }
+        this.setData({'status': res.data, countDown, richTextShadow}, () => resolve())
+      })
     })
   },
   getAvatarList () {
@@ -164,7 +166,11 @@ Page({
       return
     }
     if(!this.data.status.canPick) { // 用户信息未完善或者未认证不给pick
-      this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+      this.getOtherStatus().then(() => {
+        if(!this.data.status.canPick) {
+          this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+        }
+      })
     } else {
       // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
       if (!this.data.status.pickChance.todayRemain && this.data.status.pickChance.todayRemainExchangeTimes) {

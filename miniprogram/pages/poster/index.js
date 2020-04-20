@@ -36,6 +36,7 @@ Page({
           url: userInfo.avatarInfo.smallUrl,
           success(res) {
             avatarUrl = loadResult(res, resolve)
+            console.log(res, 'kkk', new Image())
           },
           fail(e) {
             app.wxToast({title: '图片加载失败，请重新生成', callback() {wx.navigateBack({ delta: 1 })}})
