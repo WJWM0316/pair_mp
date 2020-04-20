@@ -34,7 +34,7 @@
 .modal-dialog .content {
   width: 650rpx;
   background: #ffffff;
-  border-radius: 24rpx;
+  border-radius: 36rpx;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -296,18 +296,18 @@
   transform: translateX(-5rpx);
 }
 .modal-dialog .charge-box .circle_v1.girl {
-  background: #F46BA1;
+  border-color: #F46BA1;
 }
 .modal-dialog .charge-box .circle_v1.boy {
-  background: #0CCDDA;
+  border-color: #0CCDDA;
 }
 .modal-dialog .charge-box .circle_v1 .use_avatar {
   width: 100%;
   height: 100%;
 }
 .modal-dialog .charge-box .love_v1 {
-  width: 70rpx;
-  height: 70rpx;
+  width: 135rpx;
+  height: 135rpx;
   position: absolute;
   left: 50%;
   top: 50%;

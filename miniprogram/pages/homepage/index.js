@@ -193,7 +193,11 @@ Page({
       return
     }
     if(!userCompleteInfo.canPick) {
-      this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+      this.getUser().then(() => {
+        if(!userCompleteInfo.canPick) {
+          this.setData({code: 3}, () => this.selectComponent('#dialog').show())
+        }
+      })
     } else {
       getChargeInfoApi({toUserVkey: options.vkey}).then(({ data }) => {
         if(data.chargeInfo.needCharge ) {
@@ -276,8 +280,9 @@ Page({
     } else {
       albumList = userInfo.userAlbumList
     }
+    let current = albumList.find((v,i) => i === currentIndex).url
     albumList = albumList.map(field => field.url)
-    wx.previewImage({current: currentIndex, urls: albumList})
+    wx.previewImage({current, urls: albumList})
   },
   onShareAppMessage: function (options) {
     let wxShare = {},

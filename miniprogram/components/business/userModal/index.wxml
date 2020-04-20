@@ -76,7 +76,7 @@
         <view class="li" bindtap="todoAction" data-action="account">
           <i class="icon1 icon iconfont icon_zhanghu"></i>
           <view class="key">账户</view>
-          <view class="value">每日签到</view>
+          <view class="value" wx:if="{{!infos.isSignIn}}">每日签到</view>
           <!-- <view class="value redot">每日签到</view> -->
           <i class="icon iconfont icon_jiantou-you-"></i>
         </view>

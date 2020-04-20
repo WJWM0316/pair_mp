@@ -56,11 +56,11 @@ Component({
               albumVerifyInfo: data.albumVerifyInfo,
               userInfo
             })
-            console.log(userInfo)
           }) 
           break
         default:
           this.setData({ show: true, userInfo: app.globalData.userInfo.userInfo })
+          console.log(this.data)
           break
       }
     },

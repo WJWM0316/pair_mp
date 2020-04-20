@@ -83,7 +83,7 @@ Component({
         return
       }
       getUserInfo().then(() => {
-        let userInfo = this.data.userInfo
+        let { userInfo } = app.globalData
         this.init()
         if (userInfo && userInfo.userInfo && userInfo.userInfo.id && userInfo.userInfo.step === 9) {
           this.setData({show: true})
