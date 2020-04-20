@@ -34,7 +34,7 @@ Component({
         break
       case 'invitation':
         cardData.title = '获取邀请码'
-        cardData.img = `${this.data.cdnPath}img_invitation code@3x.png.png`
+        cardData.img = `${this.data.cdnPath}img_invitation_code@3x.png`
         break
     }
     this.setData({cardData})

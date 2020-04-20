@@ -1,0 +1,33 @@
+<view class="invitationBox" hidden="{{ !show }}"  catchtouchmove="stopPageScroll">
+  <view class="mask"></view>
+  <view class="content {{ show ? 'show' : ''}}">
+    <i class="icon iconfont icon_xiaocha" bindtap="close" />
+    <view class="h1">邀请好友</view>
+    <view class="h2">
+      <view class="inner11">
+        <view class="text11">每成功邀请一人可得38</view>
+        <i-image my-class="my_pitang" src="{{ CDNPATH }}icon_pitang_30.png" mode="heightFix"></i-image>
+      </view>
+    </view>
+    <view class="copy-box">
+      <view class="inner22">
+        <view class="h22">我的邀请码:{{inviteCode.code}}</view>
+        <view class="h33">可直接通过发送邀请码邀请你的好友</view>
+        <view class="copy-btn" bindtap="copy">复制</view>
+      </view>
+    </view>
+    <view class="methods">
+      <view class="text111">其他邀请方式</view>
+    </view>
+    <view class="tab {{options.showModel ? 'reduce' : ''}}">
+      <i-button my-class="item1" bindtap="fetch" open-type="share" aaa="my-share">
+        <view class="circle"><i class="icon iconfont icon_weixin"></i></view>
+        <view class="txt">微信好友</view>
+      </i-button>
+      <i-button my-class="item2" bindtap="download">
+        <view class="circle"><i class="icon iconfont icon_weixin"></i></view>
+        <view class="txt">生成海报</view>
+      </i-button>
+    </view>
+  </view>
+</view>

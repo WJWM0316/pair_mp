@@ -57,3 +57,4 @@
 <tabBar tabBgColor="#fff"  wx:if="{{hasLogin && hasLogincb}}"></tabBar>
 <popup id="popup"></popup>
 <wxs src="../../../utils/filters.wxs" module="filters" />
+<invitationBox id="invitationBox"></invitationBox>

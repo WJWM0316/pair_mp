@@ -96,4 +96,5 @@
     </scroll-view>
   </view>
   <dialog code="{{ code }}" id="dialog" bind:click="dialogEvent"></dialog>
+  <invitationBox id="invitationBox"></invitationBox>
 </view>

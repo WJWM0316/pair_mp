@@ -89,7 +89,6 @@
                 class="input"
                 placeholder="请输入"
                 placeholder-class="holderStyle"
-                auto-height
                 maxlength="150"
                 bindinput="bindInput"
                 data-key="own_describe"
@@ -116,7 +115,6 @@
                 class="input"
                 placeholder="请输入"
                 placeholder-class="holderStyle"
-                auto-height
                 maxlength="150"
                 bindinput="bindInput"
                 data-key="ideal_describe"

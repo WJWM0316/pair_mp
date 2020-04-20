@@ -155,7 +155,7 @@ Page({
         labels.splice(i, 1);
         item.active = false
       } else {
-        app.wxToast({title: '标签最多只能20个'})
+        app.wxToast({title: '最多选择20个标签'})
       }
       this.setData({ list, labels, canClick: labels.length >= 5})
     } else {
