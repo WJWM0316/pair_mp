@@ -2,7 +2,7 @@
   <i-image my-class="radius100" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix"></i-image>
   <i-image my-class="radius101" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix"></i-image>
   <!-- <i-image my-class="radius102" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix"></i-image> -->
-  <!-- <i-image my-class="radius103" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix"></i-image> -->
+  <i-image my-class="radius103" src="{{ CDNPATH }}icon_fillet_36ox.png" mode="widthFix"></i-image>
 </view>
 <view class="homepage {{ isOwner ? 'yourself' : 'other'}}" wx:if="{{ userInfo.vkey }}">
 

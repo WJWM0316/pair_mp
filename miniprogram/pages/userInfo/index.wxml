@@ -145,23 +145,23 @@
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
   </view>
-  <view class="ul description">
+  <view class="ul description" bindtap="routeJump" data-key="ownDescribe">
     <view class="li">
       <view class="label">
         <view class="key">自我描述</view>
       </view>
-      <view class="func-btn" bindtap="routeJump" data-key="ownDescribe" wx:if="{{ !userInfo.ownDescribe }}">完善描述</view>
-      <i bindtap="routeJump" data-key="ownDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
+      <view class="func-btn" wx:if="{{ !userInfo.ownDescribe }}">完善描述</view>
+      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
     <text class="desc" wx:if="{{ userInfo.ownDescribe }}">{{ userInfo.ownDescribe }}</text>
   </view>
-  <view class="ul myLabel">
+  <view class="ul myLabel" bindtap="updateLabel">
     <view class="li">
       <view class="label">
         <view class="key">我的标签</view>
       </view>
-      <view class="func-btn" wx:if="{{ !userInfo.isHasLabel }}" bindtap="updateLabel">完善标签</view>
-      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:else bindtap="updateLabel"></i>
+      <view class="func-btn" wx:if="{{ !userInfo.isHasLabel }}" >完善标签</view>
+      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
     <view class="row" wx:for="{{ userLabelList }}" wx:key="pIndex" wx:for-item="pItem" wx:for-index="pIndex">
       <view class="type"><i class="icon iconfont {{pItem.iconName}}"></i></view>
@@ -170,13 +170,13 @@
       </view>
     </view>
   </view>
-  <view class="ul ideal">
+  <view class="ul ideal" bindtap="routeJump" data-key="idealDescribe">
     <view class="li">
       <view class="label">
         <view class="key">我的理想型</view>
       </view>
-      <view class="func-btn" bindtap="routeJump" data-key="idealDescribe" wx:if="{{ !userInfo.idealDescribe}}">完善理想型</view>
-      <i bindtap="routeJump" data-key="idealDescribe" class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
+      <view class="func-btn" wx:if="{{ !userInfo.idealDescribe}}">完善理想型</view>
+      <i class="icon-2 icon iconfont icon_jiantou-you-" wx:else></i>
     </view>
     <text class="desc" wx:if="{{ userInfo.idealDescribe }}">{{userInfo.idealDescribe}}</text>
   </view>

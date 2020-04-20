@@ -4,6 +4,8 @@
 .homepage .cover-box {
   position: relative;
   background: #F1F4F4;
+  border-radius: 36rpx 36rpx 36rpx 0rpx;
+  overflow: hidden;
 }
 .homepage .cover-box.isError {
   height: calc(900rpx + 88rpx);
@@ -188,7 +190,6 @@
 .homepage .cover-box .swiper .cover-img {
   position: relative;
   width: 100%;
-  border-radius: 36rpx 36rpx 36rpx 0rpx;
 }
 .homepage .cover-box .swiper.isError {
   top: 88rpx;
@@ -648,9 +649,13 @@
 .other .swiper {
   border-radius: 36rpx !important;
   height: 880rpx !important;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
 }
 .other .cover-box {
   border-radius: 36rpx;
+  overflow: hidden;
 }
 .other .cover-box:after {
   display: none;
@@ -658,7 +663,6 @@
 .other .cover-box .cover-img {
   position: relative;
   width: 100%;
-  border-radius: 36rpx !important;
 }
 .other .info-base {
   margin-bottom: 0 !important;
@@ -725,14 +729,6 @@
   z-index: 2;
   width: 36rpx !important;
   transform: rotate(90deg);
-}
-.radius102 {
-  position: fixed;
-  left: 0;
-  top: calc(900rpx - 36rpx);
-  z-index: 2;
-  width: 36rpx !important;
-  transform: rotate(270deg);
 }
 .radius103 {
   position: fixed;
