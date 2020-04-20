@@ -351,8 +351,8 @@
   bottom: 0;
   content: '';
   display: block;
-  background: #F1F4F4;
-  opacity: 0.5;
+  background: rgba(241, 244, 244, 0.5);
+  background-color: rgba(241, 244, 244, 0.5);
 }
 .drawer .copy-box .inner22 {
   position: relative;

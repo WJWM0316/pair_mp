@@ -6,7 +6,6 @@
   line-height: 56rpx;
   text-align: center;
   margin-bottom: 10rpx;
-  margin-top: 38rpx;
 }
 .invitationCode .h2 {
   font-size: 28rpx;
@@ -61,6 +60,7 @@
 .invitationCode .block-image {
   width: 100%;
   margin-top: 34rpx;
+  display: block;
 }
 .invitationCode .todo {
   text-align: center;
@@ -72,4 +72,25 @@
   color: #0CCDDA;
   text-decoration: underline;
   line-height: 34rpx;
+}
+.invitationCode .my-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 108rpx;
+}
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .invitationCode .my-footer {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 108rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 108rpx);
+  }
+}
+.invitationCode .main {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  width: 100vw;
+  transform: translateY(calc(-50% - 411rpx/2));
 }
