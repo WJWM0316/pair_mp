@@ -1,5 +1,5 @@
 <view class="perfect_info">
-    <view class="step1 {{ step == 1 ? 'show' : ''}}">
+    <view class="step1" wx:if="{{step == 1}}">
         <view class="h1">年收入范围</view>
         <view class="progress">
             <view class="item active-item"></view>
@@ -16,7 +16,7 @@
             <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next1"><view class="cover">下一步</view></i-button>
         </view>
     </view>
-    <view class="step2  {{ step == 2 ? 'show' : ''}}">
+    <view class="step2" wx:if="{{step == 2}}">
         <view class="h1">你的标签</view>
         <view class="progress">
             <view class="item active-item"></view>
@@ -75,7 +75,7 @@
         </view>
     </view>
 
-    <view class="step3 {{ step == 3 ? 'show' : ''}}">
+    <view class="step3" wx:if="{{step == 3}}">
         <view class="h1">自我描述</view>
         <view class="h2">介绍你的性格，生活习惯，兴趣爱好等等</view>
         <view class="progress">
@@ -93,6 +93,7 @@
                 bindinput="bindInput"
                 data-key="own_describe"
                 value="{{formData.own_describe}}"
+                auto-height
                 />
         </view>
         <view class="number"><text class="{{ formData.own_describe.length ? 'strong' : ''}}">{{formData.own_describe.length}}</text>/150</view>
@@ -101,7 +102,7 @@
             <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next3"><view class="cover">下一步</view></i-button>
         </view>
     </view>
-    <view class="step4 {{ step == 4 ? 'show' : ''}}">
+    <view class="step4" wx:if="{{step == 4}}">
         <view class="h1">我的理想型</view>
         <view class="h2">介绍下你心目中的TA应该是怎么样的</view>
         <view class="progress">
@@ -119,6 +120,7 @@
                 bindinput="bindInput"
                 data-key="ideal_describe"
                 value="{{formData.ideal_describe}}"
+                auto-height
                 />
         </view>
         <view class="number"><text class="{{ formData.ideal_describe.length ? 'strong' : ''}}">{{formData.ideal_describe.length}}</text>/150</view>
