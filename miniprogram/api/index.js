@@ -114,6 +114,19 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         data: data,
         method: method,
         success(res) {
+          // app.wxConfirm({
+          //   title: '无法访问主页',
+          //   content: '你已被对方拉黑，无法访问TA的主页。',
+          //   confirmText: '好的',
+          //   showCancel: false,
+          //   confirmBack() {
+          //     if(getCurrentPages().length > 1) {
+          //       wx.navigateBack({ delta: 1 })
+          //     } else {
+          //       wx.reLaunch({url: '/pages/index/index'})
+          //     }
+          //   }
+          // })
           closeLoading()
           console.log(url, res.data)
           try {

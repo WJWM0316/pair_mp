@@ -650,8 +650,6 @@
   border-radius: 36rpx !important;
   height: 880rpx !important;
   overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
 }
 .other .cover-box {
   border-radius: 36rpx;
