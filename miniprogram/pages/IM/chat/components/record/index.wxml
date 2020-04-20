@@ -1,4 +1,4 @@
-<view class="recordWrap" catchtouchmove catchtap="wxApiAuthorize">
+<view class="recordWrap" catchtouchmove>
   <view class="tips">
     <text>{{tips[status]}}</text>
     <text class="seconds" hidden="{{!seconds}}">{{seconds}}s</text>

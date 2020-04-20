@@ -31,7 +31,7 @@
         >
           <view slot="content" class="scroll-item">
             <view class="avatar {{item.online ? 'online' : ''}}">
-              <i-image my-class="avatarImg" src="{{item.imFromUser.avatarUrl}}"></i-image>
+              <i-image my-class="avatarImg" mode="aspectFill" src="{{item.imFromUser.avatarUrl}}"></i-image>
             </view>
             <view class="messageContent">
               <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{filters.activeTime(item.lastMsgTime)}}</view></view>
@@ -47,6 +47,7 @@
       <block wx:if="{{!messageList.length}}">
         <view class="empty">
           <i-image my-class="img" src="{{cdnPath}}img_im_empty.png"></i-image>
+          <view class="botTips">与其等待，不如主动出击！</view>
           <i-button my-class="btn" bindtap = "pick">Pick一下</i-button>
         </view>
       </block>

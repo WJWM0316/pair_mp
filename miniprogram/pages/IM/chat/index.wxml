@@ -15,7 +15,7 @@
           <view  wx:if="{{item.msgType === 'RC:RcCmd'}}" class="customMsg">{{item.imFromUser.vkey === options.vkey ? '对方撤回了一条消息' : '你撤回了一条消息'}}</view>
           <view  wx:else class="message-item {{item.imFromUser.vkey === options.vkey ? 'others' : 'mine'}}">
             <view class="avatar">
-              <i-image src="{{item.imFromUser.vkey === options.vkey ? othersUserInfo.avatarInfo.smallUrl : mineUserInfo.avatarInfo.smallUrl}}"></i-image>
+              <i-image src="{{item.imFromUser.vkey === options.vkey ? othersUserInfo.avatarInfo.smallUrl : mineUserInfo.avatarInfo.smallUrl}}" mode="aspectFill"></i-image>
             </view>
             <view 
               class="message-content {{parse.setMsgType(item.msgType)}} msgCon{{index}}" 

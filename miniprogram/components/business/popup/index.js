@@ -36,6 +36,10 @@ Component({
     toggle () {
       this.setData({selected: !this.data.selected})
     },
+    jump () {
+      let url = `${app.globalData.WEBVIEW}/art/userProtocol/index.html`
+      wx.navigateTo({url: `/pages/webview/index?p=${encodeURIComponent(url)}`})
+    },
     toast () {
       if (!this.data.selected) {
         app.wxToast({title: '请先勾选用户协议'})

@@ -1,7 +1,9 @@
 const app =  getApp();
 import {getSelectorQuery, socket} from '../../../../../utils/index.js'
 
-let word = ''
+let word = '',
+    hasAuth = false,
+    isDeny = false
 Component({
   externalClasses: ['my-class'],
   options: {
@@ -64,6 +66,15 @@ Component({
   pageLifetimes: {
     show: function() {
       socket.testSocket()
+      wx.getSetting({
+        success(res) {
+          if (res.authSetting['scope.record']) {
+            hasAuth = true
+          } else {
+            hasAuth = false
+          }
+        }
+      })
     }
   },
   methods: {
@@ -96,23 +107,63 @@ Component({
       this.setData({'word': this.word})
     },
     bindfocus () {
-      this.pageScrollToDom('bottom')
+      wx.pageScrollTo({
+        duration: 1,
+        scrollTop: 100000
+      })
     },
-    
     // 选择编辑类型
     selectType (e) {
       let index = e.currentTarget.dataset.index
-      this.pageScrollToDom('bottom').then(() => {
-        this.setData({'selectIndex': index}, () => {
-          wx.nextTick(()=>{
-            this.pageScrollToDom('bottom')
-          });
-          this.triggerEvent('selectType', index)
-          if (index === 1 || index === 2) {
-            this.sendMsg('img')
-          }
+      let nextFun = () => {
+        this.pageScrollToDom('bottom').then(() => {
+          this.setData({'selectIndex': index}, () => {
+            wx.nextTick(()=>{
+              this.pageScrollToDom('bottom')
+            });
+            this.triggerEvent('selectType', index)
+            if (index === 1 || index === 2) {
+              this.sendMsg('img')
+            }
+          })
         })
-      })
+      }
+      if (index === 0) {
+        let that = this
+        if (!hasAuth) {
+          if (isDeny) {
+            app.globalData.lockonShow = true
+            wx.openSetting()
+          } else {
+            wx.getSetting({
+              success(res) {
+                if (!res.authSetting['scope.record']) {
+                  wx.authorize({
+                    scope: 'scope.record',
+                    success () {
+                      hasAuth = true
+                      isDeny = false
+                      nextFun()
+                    },
+                    fail (err) {
+                      hasAuth = false
+                      isDeny = true
+                    }
+                  })
+                } else {
+                  hasAuth = true
+                }
+              }
+            })
+          }
+        } else {
+          nextFun()
+        }
+      } else {
+        nextFun()
+      }
+      
+      
     },
     // 滚动到节点
     pageScrollToDom (type = 'bottom') {

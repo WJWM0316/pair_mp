@@ -177,6 +177,13 @@
   display: block;
   margin: 164rpx auto 46rpx;
 }
+.listWrap .scroll-view .empty .botTips {
+  font-size: 28rpx;
+  color: #66666E;
+  line-height: 36rpx;
+  text-align: center;
+  margin: 36rpx 0 40rpx;
+}
 .listWrap .scroll-view .empty .btn {
   width: 351rpx;
   height: 108rpx;

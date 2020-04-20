@@ -59,7 +59,7 @@
 .guideLogin .footer .btnBox .btn1.btn1,
 .guideLogin .footer .btnBox .btn2.btn1 {
   margin-right: 18rpx;
-  border: 1rpx solid #0CCDDA;
+  border: 2rpx solid #0CCDDA;
   color: #0CCDDA;
 }
 .guideLogin .footer .btnBox .btn1.btn2,

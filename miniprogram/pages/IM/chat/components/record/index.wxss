@@ -9,6 +9,7 @@
   color: #9CA1AA;
   line-height: 36rpx;
   text-align: center;
+  position: relative;
 }
 .recordWrap .tips .seconds {
   float: right;
@@ -16,6 +17,8 @@
   font-weight: 700;
   color: #0CCDDA;
   line-height: 40rpx;
+  position: absolute;
+  right: 0;
 }
 .recordWrap .button {
   width: 138rpx;
