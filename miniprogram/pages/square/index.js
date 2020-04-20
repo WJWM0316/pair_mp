@@ -72,14 +72,22 @@ Page({
   //   }
   // },
   onShareAppMessage: function (options) {
-    let shareInfos = app.globalData.shareInfos.shareSingleSquare,
-        random     = parseInt(Math.random() * (shareInfos.title.length - 1)),
-        path       = `/pages/startupPage/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`
-    return app.wxShare({
-      options,
-      title: shareInfos.title[random],
-      path,
-      imageUrl: shareInfos.imageUrl
-    })
+    let { inviteCode } = app.globalData
+    if(options.from === 'button') {
+      return app.wxShare({
+        options,
+        path: `/pages/index/index?inviteCode=${inviteCode.code}`
+      })
+    } else {
+      let shareInfos = app.globalData.shareInfos.shareSingleSquare,
+          random     = parseInt(Math.random() * (shareInfos.title.length - 1)),
+          path       = `/pages/startupPage/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`
+      return app.wxShare({
+        options,
+        title: shareInfos.title[random],
+        path,
+        imageUrl: shareInfos.imageUrl
+      })
+    }    
   }
 })

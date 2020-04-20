@@ -28,7 +28,10 @@ Component({
       this.setData({show: false})
     },
     show() {
-      getUserShareCodeApi().then(({data}) => this.setData({show: true, inviteCode: data.inviteCode, show: true}))
+      getUserShareCodeApi().then(({data}) => {
+        Object.assign(app.globalData, {inviteCode: data.inviteCode})
+        this.setData({show: true, inviteCode: data.inviteCode, show: true})
+      })
     },
     stopPageScroll () {
       return false

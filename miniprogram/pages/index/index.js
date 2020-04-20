@@ -223,12 +223,20 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-    let shareInfos = app.globalData.shareInfos.sharePickme,
+    let { inviteCode } = app.globalData
+    if(options.from === 'button') {
+      return app.wxShare({
+        options,
+        path: `/pages/index/index?inviteCode=${inviteCode.code}`
+      })
+    } else {
+      let shareInfos = app.globalData.shareInfos.sharePickme,
         random     = parseInt(Math.random() * (shareInfos.title.length - 1))
-    return app.wxShare({
-      options,
-      title: shareInfos.title[random],
-      imageUrl: shareInfos.imageUrl
-    })
+      return app.wxShare({
+        options,
+        title: shareInfos.title[random],
+        imageUrl: shareInfos.imageUrl
+      })
+    }    
   }
 })

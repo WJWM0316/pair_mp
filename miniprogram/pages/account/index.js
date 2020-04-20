@@ -35,7 +35,6 @@ Page({
     this.setData({options})
     this.getCurrentWeekSignIn()
     this.getSugarInfo()
-    if(options.showModel) this.getUserShareCode()
   },
   getSugarInfo() {
     return new Promise((resolve, reject) => {
@@ -71,7 +70,7 @@ Page({
     })
   },
   getUserShareCode() {
-    getUserShareCodeApi().then(({data}) => this.setData({show: true, inviteCode: data.inviteCode}))
+    this.selectComponent('#invitationBox').show()
   },
   sign() {
     userSignApi().then(({data}) => {
@@ -85,8 +84,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-    this.setData({show: false})
-    let { inviteCode } = this.data
+    let { inviteCode } = app.globalData
     if(options.from === 'button') {
       return app.wxShare({
         options,

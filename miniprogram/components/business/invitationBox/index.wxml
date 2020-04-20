@@ -20,7 +20,7 @@
       <view class="text111">其他邀请方式</view>
     </view>
     <view class="tab {{options.showModel ? 'reduce' : ''}}">
-      <i-button my-class="item1" bindtap="fetch" open-type="share">
+      <i-button my-class="item1" bindtap="fetch" open-type="share" aaa="my-share">
         <view class="circle"><i class="icon iconfont icon_weixin"></i></view>
         <view class="txt">微信好友</view>
       </i-button>

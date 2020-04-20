@@ -179,6 +179,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
-    return app.wxShare({options})
+    let { inviteCode } = app.globalData
+    if(options.from === 'button') {
+      return app.wxShare({
+        options,
+        path: `/pages/index/index?inviteCode=${inviteCode.code}`
+      })
+    } else {
+      return app.wxShare({options})
+    }    
   }
 })

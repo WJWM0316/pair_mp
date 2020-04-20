@@ -43,3 +43,4 @@
   </view>
 </block>
 <tabBar tabBgColor="transparent"  wx:if="{{hasLogin && hasLogincb}}"></tabBar>
+<invitationBox id="invitationBox"></invitationBox>
