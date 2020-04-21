@@ -14,6 +14,7 @@
   box-sizing: border-box;
   opacity: 0;
   display: none;
+  z-index: 1000;
   &.show {
     display: block;
     opacity: 1;
@@ -293,11 +294,12 @@
       overflow: hidden;
       position: relative;
       vertical-align: top;
+      position: absolute;
       &:first-child {
-        transform: translateX(5rpx);
+        transform: translateX(-100%);
       }
       &:last-child {
-        transform: translateX(-5rpx);
+        transform: translateX(-100%);
       }
       &.girl {
         border-color: @vice-primary-color-2;

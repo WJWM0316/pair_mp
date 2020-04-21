@@ -11,6 +11,7 @@
   box-sizing: border-box;
   opacity: 0;
   display: none;
+  z-index: 1000;
 }
 .modal-dialog.show {
   display: block;
@@ -289,12 +290,13 @@
   overflow: hidden;
   position: relative;
   vertical-align: top;
+  position: absolute;
 }
 .modal-dialog .charge-box .circle_v1:first-child {
-  transform: translateX(5rpx);
+  transform: translateX(-100%);
 }
 .modal-dialog .charge-box .circle_v1:last-child {
-  transform: translateX(-5rpx);
+  transform: translateX(-100%);
 }
 .modal-dialog .charge-box .circle_v1.girl {
   border-color: #F46BA1;
