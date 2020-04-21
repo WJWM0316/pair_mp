@@ -141,9 +141,13 @@ Page({
         localstorage.set('pickTimes', pickTimes)
         // 未登录的pick直接去到用户主页
         this.openGif()
-        pickApi({hideLoading: true}).then(async ({ data }) => {
-          await this.hideGif()
-          wx.navigateTo({url: `/pages/homepage/index?vkey=${data.user.vkey}`})
+        pickApi({hideLoading: true}).then(({ data }) => {
+          wx.navigateTo({
+            url: `/pages/homepage/index?vkey=${data.user.vkey}`,
+            success: async () => {
+              await this.hideGif()
+            }
+          })
         }).catch(async (e) => {
           await this.hideGif()
         })
@@ -174,9 +178,12 @@ Page({
       if (this.data.status.pickChance.todayRemain) {
         // 有次数直接pick
         this.openGif()
-        pickApi({hideLoading: true}).then(async ({ data }) => {
-          await this.hideGif()
-          wx.navigateTo({url: `/pages/IM/chat/index?vkey=${data.user.vkey}`})
+        pickApi({hideLoading: true}).then(({ data }) => {
+          wx.navigateTo({url: `/pages/IM/chat/index?vkey=${data.user.vkey}`,
+            success: async () => {
+              await this.hideGif()
+            }
+          })
         }).catch(async ({ data }) => {
           await this.hideGif()
           if (data.code === 2204) {
@@ -186,7 +193,7 @@ Page({
       } else {
         // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
         if (this.data.status.pickChance.todayRemainExchangeTimes) {
-          this.getPickChance().then(async () => {
+          this.getPickChance().then(() => {
             this.setData({code: 5}, () => this.selectComponent('#dialog').show())
           })
         }

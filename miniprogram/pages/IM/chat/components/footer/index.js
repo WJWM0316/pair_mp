@@ -80,8 +80,9 @@ Component({
   methods: {
     // 监听文本域高度变化，随时滚动页面
     linechange (e) {
-      let textHeight = e.detail.height
-      if (0 < e.detail.lineCount && e.detail.lineCount <= 3) {
+      console.log(e, 111)
+      if (e.detail.lineCount <= 3) {
+        let textHeight = e.detail.height
         this.pageScrollToDom('bottom').then(res => {
           this.setData({textHeight})
         })
