@@ -67,7 +67,7 @@ Page({
         ctx.fillRect(0, 0, 750, 1058)
         ctx.drawImage('../../images/img_shareposter@2x.png', 0, 0, 750, 1058)
 
-        ctx.drawImage(xiaochengxu, 575, 850, 107, 107)
+        ctx.drawImage(xiaochengxu, 575, 852, 107, 107)
 
         ctx.setFillStyle('#ffffff')
         ctx.setFontSize(32)
@@ -79,27 +79,24 @@ Page({
         ctx.setFillStyle('#fff')
         ctx.fill()
         ctx.clip()
-        setTimeout(() => {
-          ctx.drawImage(avatarUrl, 50, 692, 120, imageInfos.height * (120/imageInfos.width) )
-
-          ctx.draw(true, () => {
-            let that = this
-            setTimeout(() => {
-              wx.canvasToTempFilePath({
-                x: 0,
-                y: 0,
-                quality: 1,
-                canvasId: 'cardCanvas',
-                success(res) {
-                  that.setData({imgUrl: res.tempFilePath})
-                  wx.hideLoading()
-                },
-                fail(err) {
-                  console.log(err)
-                }
-              }, this)
-            }, 16.7)
-          })
+        ctx.drawImage(avatarUrl, 50, 692, 120, imageInfos.height * (120/imageInfos.width) )
+        ctx.draw(true, () => {
+          let that = this
+          setTimeout(() => {
+            wx.canvasToTempFilePath({
+              x: 0,
+              y: 0,
+              quality: 1,
+              canvasId: 'cardCanvas',
+              success(res) {
+                that.setData({imgUrl: res.tempFilePath})
+                wx.hideLoading()
+              },
+              fail(err) {
+                console.log(err)
+              }
+            }, this)
+          }, 16.7)
         })
       })
     }
