@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 1000;
 }
 .invitationBox .content {
   width: 100vw;
@@ -95,21 +95,11 @@
   width: 630rpx;
   border-radius: 24rpx;
   margin: 53rpx 60rpx 0 60rpx;
-  position: relative;
   overflow: hidden;
   box-sizing: border-box;
   padding: 30rpx 36rpx;
-}
-.invitationBox .copy-box:before {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  content: '';
-  display: block;
-  background: rgba(241, 244, 244, 0.5);
-  background-color: rgba(241, 244, 244, 0.5);
+  position: relative;
+  background: rgba(0, 0, 0, 0.02);
 }
 .invitationBox .copy-box .inner22 {
   position: relative;
@@ -183,17 +173,18 @@
   background: #66666E;
 }
 .invitationBox .tab {
-  padding: 78rpx 198rpx 82rpx 198rpx;
+  padding: 78rpx 0 82rpx 0;
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 .invitationBox .tab .item1 {
   display: inline-block;
-  float: left;
   width: unset;
   height: unset;
   border: unset;
   box-shadow: unset;
+  margin-right: 150rpx;
 }
 .invitationBox .tab .item1 .circle {
   width: 100rpx;
@@ -204,7 +195,6 @@
 }
 .invitationBox .tab .item2 {
   display: inline-block;
-  float: right;
   width: unset;
   height: unset;
   border: unset;

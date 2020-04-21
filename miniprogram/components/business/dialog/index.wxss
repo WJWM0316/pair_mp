@@ -262,7 +262,6 @@
 .modal-dialog .charge-box {
   width: 650rpx;
   background: #ffffff;
-  box-shadow: 0rpx 11rpx 28rpx 0rpx rgba(181, 201, 201, 0.1);
   border-radius: 36rpx;
 }
 .modal-dialog .charge-box .headImg {
