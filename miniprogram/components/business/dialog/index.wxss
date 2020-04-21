@@ -287,6 +287,8 @@
   box-sizing: border-box;
   display: inline-block;
   overflow: hidden;
+  position: relative;
+  vertical-align: top;
 }
 .modal-dialog .charge-box .circle_v1:first-child {
   transform: translateX(5rpx);

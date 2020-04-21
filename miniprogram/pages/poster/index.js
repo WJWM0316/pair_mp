@@ -80,7 +80,6 @@ Page({
         ctx.fill()
         ctx.clip()
         ctx.drawImage(avatarUrl, 50, 692, 120, imageInfos.height * (120/imageInfos.width) )
-
         ctx.draw(true, () => {
           let that = this
           setTimeout(() => {

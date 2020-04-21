@@ -130,6 +130,13 @@
 					"pathName": "pages/IM/systemMsg/index",
 					"query": "vkey=co4gpxxo",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/homepage/index",
+					"pathName": "pages/homepage/index",
+					"query": "vkey=hd2y9dzt",
+					"scene": null
 				}
 			]
 		}
