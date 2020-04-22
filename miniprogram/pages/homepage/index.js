@@ -157,7 +157,7 @@ Page({
     }
     
     let jump = (options) => {
-      wx.navigateTo({
+      wx.redirectTo({
         url: `${PAGEPATH}/IM/chat/index?vkey=${options.vkey}`
       })
     }
