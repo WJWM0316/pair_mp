@@ -210,6 +210,10 @@ Page({
     }
     updateUserSalaryApi(params).then(() => {
       getUserInfo().then(() => {
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
         this.setData({ step: 2, canClick: false }, () => this.init2())
       })
     }).catch(err => app.wxToast({title: err.msg}))
@@ -225,6 +229,10 @@ Page({
     }
     addLabelApi(params).then(() => {
       getUserInfo().then(() => {
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
         if (options.type) {
           wx.navigateBack({ delta: 1 })
         } else {
@@ -243,9 +251,12 @@ Page({
       this.setData({ formData }, () => app.wxToast({title: '自我描述至少需要5个字'}))
       return
     }
-    
     updateUserDescribeApi(params).then(() => {
       getUserInfo().then(() => {
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
         this.setData({ step: 4, canClick: false })
       })      
     }).catch(err => app.wxToast({title: err.msg}))
