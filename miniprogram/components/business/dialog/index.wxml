@@ -111,10 +111,10 @@
 			<view class="charge-box">
 				<view class="img-box_v1">
 					<view class="circle_v1 {{other.userSex === 1 ? 'boy' : 'girl'}}">
-						<i-image my-class="use_avatar" src="{{ other.userAvatar }}" mode="widthFix"/>
+						<i-image my-class="use_avatar" src="{{ other.userAvatar }}" mode="aspectFill"/>
 					</view>
 					<view class="circle_v1 {{other.mySex === 1 ? 'boy' : 'girl'}}">
-						<i-image my-class="use_avatar" src="{{ other.myAvatar }}" mode="widthFix"/>
+						<i-image my-class="use_avatar" src="{{ other.myAvatar }}" mode="aspectFill"/>
 					</view>
 					<i-image my-class="love_v1" src="{{ CDNPATH }}icon_heart_whitepink.png" mode="widthFix" />
 				</view>

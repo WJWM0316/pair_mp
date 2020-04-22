@@ -9,7 +9,7 @@
 .invitationBox .content {
   width: 100vw;
   height: auto;
-  border-radius: 24rpx 24rpx 0rpx 0rpx;
+  border-radius: 36rpx 36rpx 0rpx 0rpx;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -18,7 +18,7 @@
   overflow: hidden;
   transition: all 0.4s linear;
   opacity: 0.5;
-  background: #F1F4F4;
+  background: #fff;
   z-index: 11;
 }
 .invitationBox .h1 {
@@ -99,7 +99,7 @@
   box-sizing: border-box;
   padding: 30rpx 36rpx;
   position: relative;
-  background: rgba(0, 0, 0, 0.015);
+  background: rgba(241, 244, 244, 0.5);
 }
 .invitationBox .copy-box .inner22 {
   position: relative;

@@ -183,6 +183,7 @@
   background: #ffffff;
   overflow: hidden;
   transform: translateY(0);
+  z-index: 22;
 }
 .homepage .cover-box .swiper .swiper-item {
   width: 100%;

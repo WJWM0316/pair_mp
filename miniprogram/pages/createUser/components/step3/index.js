@@ -84,16 +84,26 @@ Component({
       if(formData.position_name) {
         params = Object.assign(params, {position_name: formData.position_name.trim()})
       }
-      if(!positionReg.test(params.position_name)) {
+      if(formData.companyRequired && !params.company_name && !params.company_name) {
         formData['position_name'] = params.position_name
-        this.setData({ formData }, () => app.wxToast({title: '职位名称需为2-20个字'}))
-        return
-      }
-      if(!companyNameReg.test(params.company_name)) {
-        formData['company_name'] = params.company_name
         this.setData({ formData }, () => app.wxToast({title: '公司名称需为2-50个字'}))
         return
       }
+      if(formData.companyRequired && !params.position_name && !params.position_name) {
+        formData['company_name'] = params.company_name
+        this.setData({ formData }, () => app.wxToast({title: '职位名称需为2-20个字'}))
+        return
+      }
+      // if(!positionReg.test(params.position_name)) {
+      //   formData['position_name'] = params.position_name
+      //   this.setData({ formData }, () => app.wxToast({title: '职位名称需为2-20个字'}))
+      //   return
+      // }
+      // if(!companyNameReg.test(params.company_name)) {
+      //   formData['company_name'] = params.company_name
+      //   this.setData({ formData }, () => app.wxToast({title: '公司名称需为2-50个字'}))
+      //   return
+      // }
       createUserStep3Api(params).then(({ data }) => {
         getUserInfo().then(() => {         
           let { PAGEPATH } = app.globalData
