@@ -44,21 +44,6 @@
       </view>
     </block>
   </view>
-  <!-- <block wx:if="{{ formData.company_name }}">
-    <view class="tips-box">
-      <block wx:if="{{ status === 1}}">
-        <view class="info"><i class="icon iconfont icon_jinggao"></i>职业信息未认证，将降低主页展示率</view>
-        <view class="strong" bindtap="legalize">前往认证</view>
-      </block>
-      <block wx:elif="{{ status === 2}}">
-        <view class="info"> 职业信息认证中</view>
-        <view class="strong" binatp="legalize">更改认证信息</view>
-      </block>
-      <block wx:else>
-        <view class="info"><i class="icon"></i>职业信息认证成功</view>
-      </block>
-    </view>
-  </block> -->
-  <!-- <i-button type="success" class="btn-next {{canClick ? 'btn-next-active' : ''}}" long="{{ true }}" bindtap="next">完成</i-button> -->
-  <myButton canClick="{{ canClick }}" btnTxt="完成" bind:click="next"></myButton>
+  <myButton canClick="{{ canClick }}" btnTxt="完成" bind:click="subscribe" wx:if="{{!stepFinish}}"></myButton>
+  <myButton canClick="{{ canClick }}" btnTxt="完成" bind:click="submit" wx:else></myButton>
 </view>

@@ -78,30 +78,32 @@
       </view>
       <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
     </view>
-    <view class="li" bindtap="routeJump" data-key="companyName">
-      <view class="label">
-        <view class="key">公司</view>
+    <block wx:if="{{userInfo.industryArr[0].companyRequired}}">
+      <view class="li" bindtap="{{careerVerifyInfo.status === 0 ? 'toast' : 'routeJump'}}" data-key="companyName" >
+        <view class="label">
+          <view class="key">公司</view>
+        </view>
+        <view class="value">
+          <text class="limit-company-name {{!userInfo.companyName ? 'gray' : ''}}">{{userInfo.companyName}}</text>
+          <block wx:if="{{userInfo.isCareerIdentity || careerVerifyInfo.status === 1}}">
+            <view class="btn-status status1">已认证</view>
+          </block>
+          <block wx:else>
+            <view class="btn-status status2" wx:if="{{careerVerifyInfo.status === 2}}">未通过</view>
+            <view class="btn-status status3" wx:if="{{careerVerifyInfo.status === -1}}">未认证</view>
+            <view class="btn-status status4" wx:if="{{careerVerifyInfo.status === 0}}">认证中</view>
+          </block>
+        </view>
+        <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
       </view>
-      <view class="value">
-        <text class="limit-company-name {{!userInfo.companyName ? 'gray' : ''}}">{{userInfo.companyName}}</text>
-        <block wx:if="{{userInfo.isCareerIdentity || careerVerifyInfo.status === 1}}">
-          <view class="btn-status status1">已认证</view>
-        </block>
-        <block wx:else>
-          <view class="btn-status status2" wx:if="{{careerVerifyInfo.status === 2}}">未通过</view>
-          <view class="btn-status status3" wx:if="{{careerVerifyInfo.status === -1}}">未认证</view>
-          <view class="btn-status status4" wx:if="{{careerVerifyInfo.status === 0}}">认证中</view>
-        </block>
+      <view class="li" bindtap="routeJump" data-key="positionName">
+        <view class="label">
+          <view class="key">担任岗位</view>
+        </view>
+        <view class="value">{{userInfo.positionName}}</view>
+        <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
       </view>
-      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
-    </view>
-    <view class="li" bindtap="routeJump" data-key="positionName">
-      <view class="label">
-        <view class="key">担任岗位</view>
-      </view>
-      <view class="value">{{userInfo.positionName}}</view>
-      <i class="icon-1 icon iconfont icon_jiantou-you-"></i>
-    </view>
+    </block>
     <view class="li" bindtap="routeJump" data-key="salary">
       <view class="label">
         <view class="key">年收入</view>

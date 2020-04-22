@@ -25,7 +25,7 @@
         <view class="txt">微信好友</view>
       </i-button>
       <i-button my-class="item2" bindtap="download">
-        <view class="circle"><i class="icon iconfont icon_weixin"></i></view>
+        <view class="circle"><i class="icon iconfont icon_shengchenghaibao-"></i></view>
         <view class="txt">生成海报</view>
       </i-button>
     </view>

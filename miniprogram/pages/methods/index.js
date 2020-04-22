@@ -12,18 +12,28 @@ Page({
     emailSuffix: '',
     show: false,
     itemList: [],
-    formData: {}
+    formData: {},
+    updateCareer: 0
   },
   onLoad(options) {
     let { CDNPATH } = app.globalData
     this.setData({ CDNPATH, options })
     options.companyId && this.hasCompanyEmail(options)
+    app.getSubscribeTime({types: 'updateCareer'}).then(res => this.setData({updateCareer: res.times.updateCareer}))
   },
   onShow() {
     let formData = wx.getStorageSync('searchCompany')
     if(formData) {
       this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
     }
+  },
+  subscribe() {
+    app.subscribeMessage('updateCareer').then(() => {
+      app.recordSubscribeTime({type: 'updateCareer', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+        this.setData({updateCareer: 1})
+        this.open()
+      })      
+    }).catch(() => {})
   },
   hasCompanyEmail(options) {
     hasCompanyEmailApi({company_id: options.companyId}).then(({ data }) => {
@@ -63,7 +73,11 @@ Page({
             url: `${PAGEPATH}/index/index`
           })
         } else {
-          wx.navigateBack({ delta: 1 })
+          if(options.reback) {
+            wx.navigateBack({ delta: 2 })
+          } else {
+            wx.navigateBack({ delta: 1 })
+          }          
         }        
       })     
     }).catch(err => app.wxToast({title: err.msg}))

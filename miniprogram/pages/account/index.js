@@ -9,6 +9,7 @@ import {
   getUserShareCodeApi
 } from '../../api/user'
 
+import {hasLogin} from "../../utils/index.js"
 
 const app = getApp()
 Page({
@@ -29,12 +30,28 @@ Page({
     show: false,
     inviteCode: {},
     userInvite: {},
-    shareInvite: {}
+    shareInvite: {},
+    hasLogin: 0,
+    signIn: 0,
+    inviteFriend: 0
   },
   onLoad(options) {
     this.setData({options})
     this.getCurrentWeekSignIn()
     this.getSugarInfo()
+  },
+  async onShow () {
+    let data = await hasLogin()
+    this.setData({'hasLogin': data})
+    if (this.data.hasLogin) app.getSubscribeTime({types: 'signIn,inviteFriend'}).then(res => this.setData({signIn: res.times.signIn, inviteFriend: res.times.inviteFriend}))
+  },
+  subscribe() {
+    app.subscribeMessage('signIn').then(() => {
+      app.recordSubscribeTime({type: 'signIn', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+        this.setData({signIn: 1})
+        this.sign()
+      })   
+    }).catch(() => {})
   },
   getSugarInfo() {
     return new Promise((resolve, reject) => {
@@ -70,6 +87,14 @@ Page({
     })
   },
   getUserShareCode() {
+    app.subscribeMessage('inviteFriend').then(() => {
+      app.recordSubscribeTime({type: 'inviteFriend', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+        this.setData({inviteFriend: 1})
+        this.invite()
+      })   
+    }).catch(() => {})
+  },
+  invite() {
     this.selectComponent('#invitationBox').show()
   },
   sign() {

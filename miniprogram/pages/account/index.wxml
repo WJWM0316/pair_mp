@@ -14,7 +14,10 @@
     <view class="my-header">
       <view class="h1">签到有礼</view>
       <view class="h2">每日签到可以免费获取相应皮糖哦~</view>
-      <view class="btn" bindtap="sign" wx:if="{{ !todaySigned }}">立即签到</view>
+      <block wx:if="{{ !todaySigned }}">
+        <view class="btn" bindtap="subscribe" wx:if="{{!signIn}}">立即签到</view>
+        <view class="btn" bindtap="subscribe" wx:else>立即签到</view>
+      </block>
       <view class="btn2" wx:else>已签到</view>
     </view>
     <view class="ul">
@@ -34,7 +37,8 @@
     <view class="my-header2">
       <view class="h1">邀请好友<text>+30皮糖/位</text></view>
       <view class="h2">每邀请1位均可获得30皮糖，不设上限</view>
-      <view class="btn" bindtap="getUserShareCode">立即邀请</view>
+      <view class="btn" bindtap="getUserShareCode" wx:if="{{!inviteFriend}}">立即邀请</view>
+      <view class="btn" bindtap="invite" wx:else>立即邀请</view>
     </view>
   </view>
 </view>

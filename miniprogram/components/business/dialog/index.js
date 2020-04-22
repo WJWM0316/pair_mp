@@ -30,9 +30,23 @@ Component({
     userInfo: app.globalData.userInfo.userInfo,
     userCompleteInfo: null,
     albumVerifyInfo: null,
-    careerVerifyInfo: null
+    careerVerifyInfo: null,
+    uploadAvatar: 0
   },
   methods: {
+    subscribe() {
+      let { PAGEPATH } = app.globalData
+      app.subscribeMessage('uploadAvatar').then(() => {
+        app.recordSubscribeTime({type: 'uploadAvatar', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+          this.setData({uploadAvatar: 1})
+          this.setData({ show: false }, () => {
+            wx.navigateTo({
+              url: `${PAGEPATH}/album/index`
+            })
+          })
+        })   
+      }).catch(() => {})
+    },
     show() {
       let { code } = this.data
       switch(code) {
@@ -42,6 +56,7 @@ Component({
           }) 
           break
         case 3:
+          app.getSubscribeTime({types: 'uploadAvatar'}).then(res => this.setData({uploadAvatar: res.times.uploadAvatar}))
           getUserInfoCompleteApi({hideLoading: true}).then(({ data }) => {
             let { userInfo } = app.globalData.userInfo
             if(!Object.keys(data.careerVerifyInfo).length) {

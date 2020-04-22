@@ -26,3 +26,19 @@ export const subscribeWechatMessageApi  = (data, hasLoading) => {
     data
   })
 }
+
+export const recordSubscribeTimeApi = (data) => {
+  return request({
+    method: 'put',
+    url: '/wechat/mini/subscribe/time',
+    data
+  })
+}
+
+export const getSubscribeTimeApi = (data) => {
+  return request({
+    method: 'get',
+    url: '/wechat/mini/subscribe/times',
+    data
+  })
+}
