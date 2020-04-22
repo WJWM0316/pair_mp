@@ -1,5 +1,6 @@
 import {silentLogin, logoutApi, wxLogin, registerApi, quickLogin} from '../api/auth.js'
 import {getMyInfoApi} from '../api/user.js'
+import {setPickerIntentionApi} from '../api/pick.js'
 import Socket from './webSocket.js'
 
 // 静默登录
@@ -74,7 +75,7 @@ const loginCallback = (res, options) => {
     getApp().globalData['hasLogin'] = true
     wx.setStorageSync('token', res.data.userInfo.token)
     Socket.login(res.data.userInfo.token)
-    getUserInfo()
+    
     if(!res.data.userInfo.inviteCode) {
       wx.redirectTo({
         url: `/pages/invitation/index`
@@ -87,7 +88,18 @@ const loginCallback = (res, options) => {
       } else {
         if (options && options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
       }
-    }    
+    }
+    let sex = wx.getStorageSync('sex')
+    if (sex) {
+      console.log(sex, 2222)
+      setPickerIntentionApi({gender: sex}).then(() => {
+        console.log(sex, 333333)
+        wx.removeStorageSync('sex')
+        getUserInfo()    
+      })
+    } else {
+      getUserInfo()
+    }
   } else {
     getApp().globalData['hasLogin'] = false
   }

@@ -37,7 +37,7 @@ Page({
   },
   
   onLoad: function (options) {
-    this.getAvatarList()
+    
     if(options.inviteCode) {
       wx.setStorageSync('inviteCode', options.inviteCode)
     }
@@ -49,6 +49,7 @@ Page({
     let data = await hasLogin()
     this.setData({'hasLogin': data, 'hasLogincb': true})
     if (this.data.hasLogin) this.getOtherStatus()
+    if (!this.data.richText) this.getAvatarList()
   },
   // 性别变化了
   hasSexChange () {
@@ -141,7 +142,7 @@ Page({
         localstorage.set('pickTimes', pickTimes)
         // 未登录的pick直接去到用户主页
         this.openGif()
-        pickApi({hideLoading: true}).then(({ data }) => {
+        pickApi({hideLoading: true, gender: wx.getStorageSync('sex')}).then(({ data }) => {
           wx.navigateTo({
             url: `/pages/homepage/index?vkey=${data.user.vkey}`,
             success: async () => {
@@ -203,6 +204,7 @@ Page({
   openGif () {
     this.openTime = new Date().getTime()
     this.setData({'hideGif': false})
+    
   },
   hideGif () {
     this.nowTime = new Date().getTime()

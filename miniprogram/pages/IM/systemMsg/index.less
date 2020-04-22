@@ -51,15 +51,34 @@
       border-radius: @msg-radius;
       position: relative;
       overflow: visible;
-      .text {
+      .msg {
         max-width:460rpx;
-        font-size:30rpx;
-        line-height:40rpx;
         padding: 26rpx 42rpx;
         border-radius: 24rpx;
         overflow: hidden;
         box-sizing: border-box;
+        .text {
+          font-size:30rpx;
+          line-height:40rpx;
+        }
+        .btn-box {
+          float: right;
+          .btn {
+            border: none;
+            box-shadow: none;
+            height:60rpx;
+            background:@primary-color;
+            border-radius:34rpx;
+            font-size:28rpx;
+            font-weight:400;
+            color:#fff;
+            line-height:60rpx;
+            margin: 32rpx 0 0;
+            padding: 0 52rpx;
+          }
+        }
       }
+      
     }
     &.others {
       .avatar {

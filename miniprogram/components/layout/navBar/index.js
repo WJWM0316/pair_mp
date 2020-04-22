@@ -35,9 +35,6 @@ Component({
       value: true
     }
   },
-  data: {
-    showBackBtn: true
-  },
   pageLifetimes: {
     async show() {
       this.init()
@@ -52,6 +49,7 @@ Component({
     navBarHeight: app.globalData.navBarHeight,
     show: false,
     showGender: false,
+    showBackBtn: true,
     userInfo: {},
     CDNPATH: app.globalData.CDNPATH
   },

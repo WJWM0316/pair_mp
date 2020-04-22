@@ -61,14 +61,32 @@
   position: relative;
   overflow: visible;
 }
-.message-list .message-item .message-content .text {
+.message-list .message-item .message-content .msg {
   max-width: 460rpx;
-  font-size: 30rpx;
-  line-height: 40rpx;
   padding: 26rpx 42rpx;
   border-radius: 24rpx;
   overflow: hidden;
   box-sizing: border-box;
+}
+.message-list .message-item .message-content .msg .text {
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+.message-list .message-item .message-content .msg .btn-box {
+  float: right;
+}
+.message-list .message-item .message-content .msg .btn-box .btn {
+  border: none;
+  box-shadow: none;
+  height: 60rpx;
+  background: #0CCDDA;
+  border-radius: 34rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #fff;
+  line-height: 60rpx;
+  margin: 32rpx 0 0;
+  padding: 0 52rpx;
 }
 .message-list .message-item.others .avatar {
   float: left;

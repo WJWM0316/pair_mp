@@ -36,13 +36,10 @@ const setHeader = (url) => {
 
   // 设置授权信息
   token = localstorage.get('token')
-  sessionToken = localstorage.get('sessionToken')
 
-  if (sessionToken && !token) {
-    addHttpHead['Authorization-Wechat'] = sessionToken
-  } else {
-    delete addHttpHead['Authorization']
-  }
+  // 设置授权头部参数
+  sessionToken = localstorage.get('sessionToken')
+  sessionToken ? addHttpHead['Authorization-Wechat'] = sessionToken : delete addHttpHead['Authorization-Wechat']
   if (token) {
     if (url !== '/bind/register' 
         && url !== '/bind/quick_login' 
@@ -53,13 +50,11 @@ const setHeader = (url) => {
     } else {
       delete addHttpHead['Authorization']
     }
+    if (sessionToken) delete addHttpHead['Authorization-Wechat']
   } else {
     delete addHttpHead['Authorization']
   }
-  if (sessionToken) {
-    addHttpHead['Authorization-Wechat'] = sessionToken
-  }
-  
+
   if(wx.getStorageSync('inviteCode')) {
     addHttpHead['Invite-Code'] = wx.getStorageSync('inviteCode')
   }
@@ -171,30 +166,26 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                       case 2302:
                         wx.redirectTo({url: `/pages/invitation/index`})
                         break
+                      case 401:
+                        reject(msg)
+                        removeAuth()
+                        app.wxToast({title: msg.msg, callback: () => {
+                          wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                        }})
+                        break
+                      case 4010:
+                        reject(msg)
+                        wx.removeStorageSync('token')
+                        app.wxToast({title: msg.msg, callback: () => {
+                          wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                        }})
+                        break
                       default:
                         app.wxToast({title: msg.msg})
                         reject(msg)  
                         break
-                    }
-                    // if(msg.code === 2301) {
-                    //   reject(msg)
-                    //   wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}&redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
-                    // } else {
-                    //   app.wxToast({title: msg.msg})
-                    //   reject(msg)            
-                    // }                    
+                    }       
                   }
-                  break
-                case 401:
-                  reject(msg)
-                  if (msg.code === 4010) {
-                    wx.removeStorageSync('token')
-                  } else {
-                    removeAuth()
-                  }
-                  app.wxToast({title: msg.msg, callback: () => {
-                    wx.redirectTo({url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
-                  }})
                   break
                 case 403:
                   reject(msg)

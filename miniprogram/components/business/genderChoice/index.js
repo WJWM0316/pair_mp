@@ -2,7 +2,7 @@ const app =  getApp();
 import {
   setPickerIntentionApi
 } from '../../../api/pick.js'
-
+import {localstorage} from '../../../utils/index.js'
 Component({
   options: {
     addGlobalClass: true,
@@ -16,7 +16,13 @@ Component({
       value: false
     }
   },
-
+  attached () {
+    let sex = wx.getStorageSync('sex')
+    if (sex) {
+      this.setData({'show': false})
+      this.triggerEvent('choiceGender')
+    }
+  },
   /**
    * 组件的初始数据
    */
@@ -32,8 +38,8 @@ Component({
       let sex = e.currentTarget.dataset.sex
       this.setData({'show': false})
       this.triggerEvent('choiceGender')
-      if (wx.getStorageSync('sex') !== sex) {
-        wx.setStorageSync('sex', sex)
+      if (localstorage.get('sex') !== sex) {
+        localstorage.set('sex', sex)
         this.triggerEvent('hasSexChange')
       }
     }

@@ -159,8 +159,6 @@ Component({
       } else {
         nextFun()
       }
-      
-      
     },
     // 滚动到节点
     pageScrollToDom (type = 'bottom') {
@@ -179,16 +177,16 @@ Component({
     },
     // 发送文本
     sendText () {
-      if (socket.readyState() !== 1) {
-        socket.testSocket()
-        return
-      }
       if (!this.data.canSend) return
       this.sendMsg('text')
       this.word = ''
       this.setData({'word': this.word, 'canSend': false})
     },
     sendMsg (type, content) {
+      if (socket.readyState() !== 1) {
+        socket.testSocket()
+        return
+      }
       const that = this
       let timestamp = new Date().getTime()
       let parmas = {
