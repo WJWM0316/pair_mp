@@ -65,7 +65,6 @@ Component({
 
   pageLifetimes: {
     show: function() {
-      socket.testSocket()
       wx.getSetting({
         success(res) {
           if (res.authSetting['scope.record']) {

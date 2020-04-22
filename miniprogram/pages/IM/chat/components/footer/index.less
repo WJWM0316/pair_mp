@@ -1,4 +1,5 @@
 @import '../../../../../styles/_base.less';
+@import '../../../../../styles/_mixins.less';
 .console {
   width: 100%;
   position: fixed;
@@ -6,6 +7,7 @@
   bottom: 0;
   background: @background-color-base;
   z-index: 5;
+  .setSafea-area();
   &.default::after {
     position: absolute;
     width: 100%;
@@ -86,4 +88,5 @@
 }
 .bottom {
   transition: all 0.5s;
+  .setSafea-area();
 }

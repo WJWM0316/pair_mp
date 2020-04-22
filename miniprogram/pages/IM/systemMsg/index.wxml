@@ -1,23 +1,26 @@
 <view class="systemWrap">
   <view class="message-list">
     <view class="message-box" wx:for="{{messageList}}" wx:key="id">
-      <view class="time" wx:if="{{item.timestamp}}">{{filters.activeTime(item.timestamp)}}</view>
+      <view class="time" wx:if="{{item.imData.timestamp}}">{{filters.activeTime(item.imData.timestamp)}}</view>
       <view class="message-item others" id="msg{{index}}">
         <view class="avatar">
-          <i-image src="{{item.path}}"></i-image>
+          <i-image src="{{item.imFromUser.avatarUrl}}"></i-image>
         </view>
         <view 
-          class="message-content {{item.data.type}} msgCon{{index}}" 
+          class="message-content msgCon{{index}}" 
           data-object="{{item}}" 
           data-class="msgCon{{index}}"
           data-index="{{index}}"
           >
-          <block wx:if="{{item.data.type === 'text'}}">
-            <view class="text">{{item.data.text}}</view>
+          <block>
+            <view class="text">{{item.imData.content.content}}</view>
           </block>
         </view>
       </view>
     </view>
+  </view>
+  <view class="footer">
+    <i-button my-class="btn" open-type="feedback">意见反馈</i-button>
   </view>
 </view>
 <wxs src="../../../utils/filters.wxs" module="filters" />

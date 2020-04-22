@@ -25,7 +25,7 @@
           id="swipeOut{{index}}"
           index="{{index}}"
           bindtap = "startChat"
-          data-vkey = "{{item.imFromUser.vkey}}"
+          data-data = "{{item}}"
           bindswipeStatus = "getSwipeStatus"
           wx:if="{{item}}"
         >
@@ -34,7 +34,7 @@
               <i-image my-class="avatarImg" mode="aspectFill" src="{{item.imFromUser.avatarUrl}}" hasLodingImg></i-image>
             </view>
             <view class="messageContent">
-              <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{filters.activeTime(item.lastMsgTime)}}</view></view>
+              <view class="name"><view class="name-box">{{item.imFromUser.name}}</view><view wx:if="{{item.isSys !== 1}}" class="label {{item.source === 2 ? 'square' : 'pick'}}">{{item.source === 1 ? 'Pick' : '广场'}}</view><view class="time">{{filters.activeTime(item.lastMsgTime)}}</view></view>
               <view class="content">{{item.lastMsg}}</view>
               <view class="messageNum" wx:if="{{item.unreadMsgNum}}">{{item.unreadMsgNum}}</view>
             </view>

@@ -78,7 +78,7 @@ Page({
     for (let {id} of messageList) {
       relation_id.push(id) 
     }
-    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join()}).then(res => {
+    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join(), with_sys: 1}).then(res => {
       messageList = messageList.concat(res.data)
       if (!res.data.length) this.noMore = true
       this.setData({messageList, hasRequire: true})
@@ -96,8 +96,15 @@ Page({
     }
   },
   startChat (e) {
-    let vkey = e.currentTarget.dataset.vkey
-    wx.navigateTo({url: `/pages/IM/chat/index?vkey=${vkey}`})
+    let data = e.currentTarget.dataset.data
+    let vkey = data.imFromUser.vkey,
+        isSys= data.isSys
+    if (isSys !== 1) {
+      wx.navigateTo({url: `/pages/IM/chat/index?vkey=${vkey}`})
+    } else {
+      wx.navigateTo({url: `/pages/IM/systemMsg/index`})
+    }
+    
   },
   closeTips () {
     this.setData({'hasTips': false})

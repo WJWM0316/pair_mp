@@ -5,33 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    messageList: [
-      {
-        messageId: "messageId0",
-        timestamp: '1585033928',
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'text',
-          text: '欢迎来到PICKME！使用过程中有任何问题可以点击意见反馈与我们联系。'
-        }
-      },
-      {
-        messageId: "messageId0",
-        timestamp: '1585033928',
-        path: 'https://pickme-uploads-test.oss-cn-shenzhen.aliyuncs.com/miniProject/images/d03e7897d4ee5c55ad392292ffd88bf.jpg',
-        data: {
-          type: 'text',
-          text: '测'
-        }
-      },
-    ]
+    messageList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getSysMsgApi()
+    
   },
 
   /**
@@ -40,12 +21,18 @@ Page({
   onReady: function () {
 
   },
-
+  getSysMsg () {
+    getSysMsgApi().then(res => {
+      let messageList = this.data.messageList
+      messageList = res.data.concat(messageList)
+      this.setData({messageList: res.data})
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getSysMsg()
   },
 
   /**

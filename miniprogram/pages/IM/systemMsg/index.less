@@ -1,6 +1,28 @@
 @import '../../../styles/_base.less';
 @import '../../../styles/_mixins.less';
-
+.systemWrap {
+  .footer {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 25rpx 0;
+    background-color: #F1F4F4;
+    .setSafea-area(25rpx);
+    .btn {
+      width:590rpx;
+      height:98rpx;
+      background:#fff;
+      border-radius:49rpx;
+      border:1rpx solid rgba(237,241,240,1);
+      box-shadow: none;
+      margin: 0 auto;
+      font-size:32rpx;
+      color:@text-color-1;
+      font-weight:300;
+    }
+  }
+}
 .message-list {
   position: relative;
   padding: 0 30rpx;
@@ -53,3 +75,4 @@
     }
   }
 }
+

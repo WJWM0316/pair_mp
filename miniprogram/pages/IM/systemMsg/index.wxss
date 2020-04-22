@@ -1,3 +1,30 @@
+.systemWrap .footer {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 25rpx 0;
+  background-color: #F1F4F4;
+  padding-bottom: 25rpx;
+}
+@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+  .systemWrap .footer {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 25rpx);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 25rpx);
+  }
+}
+.systemWrap .footer .btn {
+  width: 590rpx;
+  height: 98rpx;
+  background: #fff;
+  border-radius: 49rpx;
+  border: 1rpx solid #edf1f0;
+  box-shadow: none;
+  margin: 0 auto;
+  font-size: 32rpx;
+  color: #1F252B;
+  font-weight: 300;
+}
 .message-list {
   position: relative;
   padding: 0 30rpx;
