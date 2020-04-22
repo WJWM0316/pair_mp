@@ -20,13 +20,15 @@ Page({
       status: 0,
       statusDesc: '相册审核中…'
     },
-    showStatus: true
+    showStatus: true,
+    updateAlbum: 0
   },
   close() {
     this.setData({ showStatus: false })
   },
   onLoad() {
     this.init()
+    app.getSubscribeTime({types: 'updateAlbum'}).then(res => this.setData({updateAlbum: res.times.updateAlbum}))
   },
   init() {
     let callback = () => {
@@ -61,6 +63,22 @@ Page({
       avatar = Object.assign(avatar, {isCover: 0})
       this.setData({result: avatar, userInfo}, () => wx.removeStorageSync('avatar'))
     }
+  },
+  subscribeUpdateAlbum() {
+    app.subscribeMessage('updateAlbum').then(() => {
+      app.recordSubscribeTime({type: 'updateAlbum', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+        this.setData({updateAlbum: 1})
+        this.addAlbum()
+      })    
+    }).catch(() => {})
+  },
+  subscribeUploadAvatar() {
+    app.subscribeMessage('uploadAvatar').then(() => {
+      app.recordSubscribeTime({type: 'uploadAvatar', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+        this.setData({uploadAvatar: 1})
+        this.upload()
+      })   
+    }).catch(() => {})
   },
   open(e) {
     let itemList = [

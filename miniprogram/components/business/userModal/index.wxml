@@ -80,7 +80,13 @@
           <!-- <view class="value redot">每日签到</view> -->
           <i class="icon iconfont icon_jiantou-you-"></i>
         </view>
-        <view class="li" bindtap="todoAction" data-action="invitation">
+        <view class="li" bindtap="subscribe" data-action="invitation" wx:if="{{!inviteFriend}}">
+          <i class="icon1 icon iconfont icon_yaoqinghaoyou"></i>
+          <view class="key">邀请好友</view>
+          <view class="value">免费领皮糖</view>
+          <i class="icon iconfont icon_jiantou-you-"></i>
+        </view>
+        <view class="li" bindtap="todoAction" data-action="invitation" wx:else>
           <i class="icon1 icon iconfont icon_yaoqinghaoyou"></i>
           <view class="key">邀请好友</view>
           <view class="value">免费领皮糖</view>

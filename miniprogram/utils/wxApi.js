@@ -1,4 +1,8 @@
-import {subscribeWechatMessageApi} from '../api/subscribe.js'
+import {
+  subscribeWechatMessageApi,
+  recordSubscribeTimeApi,
+  getSubscribeTimeApi
+} from '../api/subscribe.js'
 
 const QQMapWX = require('./qqmap-wx-jssdk.min.js');
 const qqmapsdk = new QQMapWX({
@@ -219,6 +223,14 @@ const wxApi = {
     }
     return shareObj
   },
+  // pickUser => 点击pick按钮
+  // imSendMsg => 发送消息
+  // stepFinish => 信息完善流程最后一步（第三步）
+  // updateAlbum => 更新相册
+  // uploadAvatar => 上传封面
+  // updateCareer => 设置、更新职业信息
+  // inviteFriend => 邀请好友（邀请码分享相关触发）
+  // signIn => 今天有待领取皮糖（未签到）
   subscribeMessage(key) {
     return new Promise((resolve, reject) => {
       let that = this
@@ -258,8 +270,15 @@ const wxApi = {
       })
     })
   },
-  logout() {
-    
+  recordSubscribeTime(params) {
+    return new Promise((resolve, reject) => {
+      recordSubscribeTimeApi(params).then(({ data }) => resolve(data))
+    })
+  },
+  getSubscribeTime(params) {
+    return new Promise((resolve, reject) => {
+      getSubscribeTimeApi(params).then(({ data }) => resolve(data))
+    })
   }
 }
 

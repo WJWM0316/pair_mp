@@ -36,12 +36,12 @@ Page({
   },
   legalize() {
     let { PAGEPATH } = app.globalData
-    let { userInfo } = this.data
+    let { userInfo, careerVerifyInfo } = this.data
     wx.setStorageSync('searchCompany', {
       company_name: userInfo.companyName
     })
     wx.navigateTo({
-      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}&reback=2`
     })
   },
   onShow() {
@@ -97,7 +97,6 @@ Page({
         break
     }
     wx.setNavigationBarTitle({title})
-    
     let callback = () => {
       let { userInfo, careerVerifyInfo, pickIntention } = app.globalData.userInfo
       if(!Object.keys(careerVerifyInfo).length) {

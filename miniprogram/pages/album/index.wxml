@@ -45,17 +45,23 @@
       
     </view>
     <view class="footer">
-      <view class="btn btn-add" bindtap="upload" wx:if="{{albumVerifyInfo.status === 1 && userInfo.userAlbumList.length < 9}}">
+      <view class="btn btn-add" wx:if="{{albumVerifyInfo.status === 1 && userInfo.userAlbumList.length < 9}}" bindtap="upload">
         <view class="btn-cover">添加</view>
         <view class="shadow"></view>
       </view>
-      <view class="btn btn-add" bindtap="upload" wx:if="{{albumVerifyInfo.status !== 1 && userInfo.userAlbumTempList.length < 9}}">
+      <view class="btn btn-add" wx:if="{{albumVerifyInfo.status !== 1 && userInfo.userAlbumTempList.length < 9}}" bindtap="upload">
         <view class="btn-cover">添加</view>
         <view class="shadow"></view>
       </view>
-      <view class="btn btn-save" bindtap="addAlbum" wx:if="{{result.id}}">
-        <view class="btn-cover">保存</view>
-        <view class="shadow"></view>
+      <view class="btn btn-save" wx:if="{{result.id}}">
+        <view bindtap="subscribeUpdateAlbum" wx:if="{{!updateAlbum}}">
+          <view class="btn-cover">保存</view>
+          <view class="shadow"></view>
+        </view>
+        <view bindtap="addAlbum" wx:else>
+          <view class="btn-cover">保存</view>
+          <view class="shadow"></view>
+        </view>
       </view>
     </view>
     <actionSheet show="{{ show }}" itemList="{{ itemList }}" bind:drawerAction="drawerAction" type="{{type}}"></actionSheet>

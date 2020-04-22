@@ -103,6 +103,9 @@ Page({
       url: `${PAGEPATH}/perfectUser/index?type=edit&step=2`
     })   
   },
+  toast() {
+    app.wxToast({title: '公司信息认证中，暂时无法编辑'})
+  },
   onPullDownRefresh() {
     this.getUser().then(() => wx.stopPullDownRefresh())    
   }

@@ -33,7 +33,7 @@ Page({
     hasLogin: true,
     hasLogincb: false,
     cdnPath: app.globalData.CDNPATH,
-    hasPicker: false
+    pickUser: false
   },
   
   onLoad: function (options) {
@@ -43,12 +43,10 @@ Page({
     }
   },
   async onShow () {
-    if(localstorage.get('hasPicker')) {
-      this.setData({hasPicker: true})
-    }
     let data = await hasLogin()
     this.setData({'hasLogin': data, 'hasLogincb': true})
     if (this.data.hasLogin) this.getOtherStatus()
+    if (this.data.hasLogin) app.getSubscribeTime({types: 'pickUser'}).then(res => this.setData({pickUser: res.times.pickUser}))
   },
   // 性别变化了
   hasSexChange () {
@@ -123,14 +121,12 @@ Page({
     })
   },
   subscribe() {
-    app.subscribeMessage('openChat').then(() => {
-      this.setData({hasPicker: true})
-      localstorage.set('hasPicker', { type: 'resetTheDay' })
-      this.pick()
-    }).catch(() => {
-      this.setData({hasPicker: true})
-      localstorage.set('hasPicker', { type: 'resetTheDay' })
-    })
+    app.subscribeMessage('pickUser').then(() => {
+      app.recordSubscribeTime({type: 'pickUser', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+        this.setData({pickUser: 1})
+        this.pick()
+      })      
+    }).catch(() => {})
   },
   pick () {
     let { userInfo, wechatInfo } = app.globalData.userInfo

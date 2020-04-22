@@ -18,7 +18,7 @@
       <view class="center centerBtn">
 
         <block wx:if="{{hasLogin}}">
-          <view class="subscribe" bindtap="subscribe" wx:if="{{!hasPicker}}"></view>
+          <view class="subscribe" bindtap="subscribe" wx:if="{{!pickUser && hasLogin}}"></view>
           <view class="center btnContent contactBtn" wx:if="{{!status.pickChance.todayRemain && status.pickChance.todayRemainExchangeTimes}}">
             <view class="mainBtn" bindtap = "pick">
               <view slot="content" class="contactSlot">

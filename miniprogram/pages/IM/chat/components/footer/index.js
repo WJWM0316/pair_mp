@@ -56,6 +56,7 @@ Component({
     word: '', // 编辑框的文本
     textHeight: 20, // 编辑框高度
     canSend: false, // 激活发送按钮, 因为编辑过程不更新data.word， 防止抖动。
+    imSendMsg: 0, // 记录订阅状态
   },
 
   word: '',
@@ -64,7 +65,8 @@ Component({
    */
 
   pageLifetimes: {
-    show: function() {
+    async show() {
+      app.getSubscribeTime({types: 'imSendMsg'}).then(res => this.setData({imSendMsg: res.times.imSendMsg}))
       wx.getSetting({
         success(res) {
           if (res.authSetting['scope.record']) {
@@ -77,6 +79,14 @@ Component({
     }
   },
   methods: {
+    subscribe() {
+      app.subscribeMessage('imSendMsg').then(() => {
+        app.recordSubscribeTime({type: 'imSendMsg', expire: 1000 * 60 * 60 * 24 * 3}).then(() => {
+          this.setData({imSendMsg: 1})
+          this.sendText()
+        })     
+      }).catch(() => {})
+    },
     // 监听文本域高度变化，随时滚动页面
     linechange (e) {
       console.log(e, 111)

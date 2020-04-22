@@ -25,7 +25,8 @@ Component({
       from: 'createUser'
     },
     status: 1,
-    canClick: false
+    canClick: false,
+    stepFinish: 0
   },
   pageLifetimes: {
     show() {
@@ -37,6 +38,7 @@ Component({
         formData.company_id = storage.company_id
         this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
       }
+      app.getSubscribeTime({types: 'stepFinish'}).then(res => this.setData({stepFinish: res.times.stepFinish}))
     }
   },
   methods: {
@@ -72,7 +74,15 @@ Component({
         url: `${PAGEPATH}/searchCompany/index`
       })
     },
-    next() {
+    subscribe() {
+      app.subscribeMessage('stepFinish').then(() => {
+        app.recordSubscribeTime({type: 'stepFinish', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+          this.setData({stepFinish: 1})
+          this.submit()
+        }) 
+      }).catch(() => {})
+    },
+    submit() {
       let { formData } = this.data
       let params = {
         occupation: formData.occupation,

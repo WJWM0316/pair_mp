@@ -19,7 +19,8 @@
       >
       </textarea>
     </view>
-    <view class="send {{canSend ? 'can' : ''}}" bindtap="sendText">发送</view>
+    <view class="send {{canSend ? 'can' : ''}}" bindtap="subscribe" wx:if="{{!imSendMsg}}">发送</view>
+    <view class="send {{canSend ? 'can' : ''}}" bindtap="sendText" wx:else>发送</view>
   </view>
   <view class="other-type">
     <view 

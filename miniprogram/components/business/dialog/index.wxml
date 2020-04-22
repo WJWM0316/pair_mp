@@ -80,10 +80,9 @@
 					<text class="error" wx:if="{{albumVerifyInfo.status === 2}}">未通过</text>
 					<view
 					 class="btn {{albumVerifyInfo.status === 2 || albumVerifyInfo.status === 0 ? 'bg' : ''}}"
-					 wx:if="{{albumVerifyInfo.status === 2}}"
-					 bindtap="routeJump"
-					 data-page="album"
-					>去上传
+					 wx:if="{{albumVerifyInfo.status === 2}}"	>
+						<text bindtap="subscribe" wx:if="{{!uploadAvatar}}">去上传</text>
+						<text bindtap="routeJump" data-page="album" wx:else>去上传</text>
 					</view>
 					<view class="btn2" wx:if="{{albumVerifyInfo.status === 0}}">审核中</view>
 					<view class="btn" wx:if="{{albumVerifyInfo.status === 1}}">已通过</view>

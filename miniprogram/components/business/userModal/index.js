@@ -10,7 +10,10 @@ Component({
   properties: {
     show: {
       type: Boolean,
-      value: false
+      value: false,
+      observer(newVal, oldVal) {
+        app.getSubscribeTime({types: 'inviteFriend'}).then(res => this.setData({inviteFriend: res.times.inviteFriend}))
+      } 
     },
     infos: {
       type: Object,
@@ -27,8 +30,17 @@ Component({
   data: {
     CDNPATH: app.globalData.CDNPATH,
     code: 0,
+    inviteFriend: 0
   },
   methods: {
+    subscribe() {
+      app.subscribeMessage('inviteFriend').then(() => {
+        app.recordSubscribeTime({type: 'inviteFriend', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
+          this.setData({inviteFriend: 1})
+          this.selectComponent('#invitationBox').show()
+        })   
+      }).catch(() => {})
+    },
     todoAction(e) {
       let { dataset } = e.currentTarget
       let { PAGEPATH } = app.globalData

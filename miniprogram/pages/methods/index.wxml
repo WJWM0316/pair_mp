@@ -5,7 +5,8 @@
     <view class="li">
       <view class="h3">职业经历材料</view>
       <view class="h4">不限于工牌、名片、在职证明等</view>
-      <view class="small-btn" bindtap="open">去提交</view>
+      <view class="small-btn" bindtap="subscribe" wx:if="{{!updateCareer}}">去提交</view>
+      <view class="small-btn" bindtap="open" wx:else>去提交</view>
     </view>
     <view class="li" wx:if="{{ showEmailEntry }}">
       <view class="h3">公司邮箱验证</view>
