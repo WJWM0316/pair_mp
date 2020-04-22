@@ -78,7 +78,8 @@ Page({
     for (let {id} of messageList) {
       relation_id.push(id) 
     }
-    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join(), with_sys: 1}).then(res => {
+    // with_sys: 1
+    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join()}).then(res => {
       messageList = messageList.concat(res.data)
       if (!res.data.length) this.noMore = true
       this.setData({messageList, hasRequire: true})
