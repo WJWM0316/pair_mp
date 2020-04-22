@@ -53,7 +53,15 @@ Page({
     return new Promise((resolve, reject) => {
       let { options, hasLogin } = this.data
       let callback = (data) => {
-        let isOwner = hasLogin && options.vkey === app.globalData.userInfo.userInfo.vkey ? true : false
+        let isOwner = false
+        if(hasLogin) {
+          if(options.vkey === app.globalData.userInfo.userInfo.vkey) {
+            hasLogin = true
+          } else {
+            hasLogin = false
+          }
+        }
+        // let isOwner = hasLogin && options.vkey === app.globalData.userInfo.userInfo.vkey ? true : false
         let {
           userInfo,
           pickIntention = {},
