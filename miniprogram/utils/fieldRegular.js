@@ -46,7 +46,7 @@ export const urlReg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]
 export const productNameReg = /^.{1,20}$/
 
 // 公司名称 
-export const companyNameReg = /^[\u0391-\uFFE5A-Za-z\s]{2,50}$/
+export const companyNameReg = /^.{2,50}$/
 
 // 学校名称 
 export const schoolNameReg = /^[\u0391-\uFFE5A-Za-z\s]{2,50}$/

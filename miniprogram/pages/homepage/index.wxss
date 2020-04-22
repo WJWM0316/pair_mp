@@ -208,7 +208,7 @@
   color: #1F252B;
   text-align: center;
   line-height: 48rpx;
-  z-index: 1;
+  z-index: 23;
 }
 .homepage .title {
   height: 34rpx;

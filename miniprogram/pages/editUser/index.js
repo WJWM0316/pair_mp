@@ -243,7 +243,20 @@ Page({
     }
     funcApi(params).then(() => {
       getUserInfo().then(() => {
-        wx.navigateBack({ delta: 1 })     
+        let modifiedUserInfo = app.globalData.userInfo.userInfo
+        let { userInfo } = this.data
+        let { options } = this.data
+        let { PAGEPATH } = app.globalData
+        if(options.key === 'companyName' && modifiedUserInfo.companyId !== userInfo.companyId) {
+          wx.setStorageSync('searchCompany', {
+            company_name: userInfo.companyName
+          })
+          wx.navigateTo({
+            url: `${PAGEPATH}/methods/index?type=createUser&companyId=${modifiedUserInfo.companyId}`
+          })
+        } else {
+          wx.navigateBack({ delta: 1 })     
+        }
       })      
     }).catch(err => app.wxToast({title: err.msg}))
   },
