@@ -153,7 +153,9 @@ Page({
     let { userInfo } = this.data
     let { info } = e.currentTarget.dataset
     userInfo.companyName = info.companyName
-    this.setData({userInfo, nameList: []})
+    setTimeout(() => {
+      this.setData({userInfo, nameList: []})
+    }, 16.7)
   },
   pickerResult(e) {
     let { options, userInfo } = this.data

@@ -137,6 +137,34 @@
 					"pathName": "pages/homepage/index",
 					"query": "vkey=hd2y9dzt",
 					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "pages/createUser/index",
+					"pathName": "pages/createUser/index",
+					"query": "step=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userInfo/index",
+					"pathName": "pages/userInfo/index",
+					"query": "step=3",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "pages/searchCompany/index",
+					"pathName": "pages/searchCompany/index",
+					"query": "step=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/invitation/index",
+					"pathName": "pages/invitation/index",
+					"query": "step=3",
+					"scene": null
 				}
 			]
 		}

@@ -1,5 +1,6 @@
 import {postInviteCodeApi} from '../../api/user.js'
 import {getUserInfo} from '../../utils/auth.js'
+import {logout} from '../../utils/index.js'
 
 const app = getApp()
 Page({
@@ -35,5 +36,16 @@ Page({
         }
       })      
     }).catch(err => app.wxToast({title: err.msg}))
+  },
+  logout() {
+    app.wxConfirm({
+      title: '切换账号', 
+      content: '是否确认切换账号？',
+      cancelText: '否',
+      confirmText: '是',
+      confirmBack: () => {
+        logout()
+      }
+    })
   }
 })

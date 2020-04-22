@@ -52,7 +52,9 @@ Page({
     let { info } = e.currentTarget.dataset
     formData.company_name = info.companyName
     formData.company_id = info.id
-    this.setData({canClick: true, formData, nameList: [], info})
+    setTimeout(() => {
+      this.setData({canClick: true, formData, nameList: [], info})
+    }, 16.7)
   },
   next() {
     let { formData, info } = this.data

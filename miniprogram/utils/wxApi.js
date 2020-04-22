@@ -257,6 +257,9 @@ const wxApi = {
         }
       })
     })
+  },
+  logout() {
+    
   }
 }
 
