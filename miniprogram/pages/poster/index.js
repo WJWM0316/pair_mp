@@ -1,13 +1,17 @@
 import  {
   ellipsis 
 } from '../../utils/canvas'
+
+import {
+  postShareQrCodeApi
+} from '../../api/common'
 let app = getApp()
 Page({
   data: {
     imgUrl: '',
     isOpenSetting: true
   },
-  draw() {
+  draw(xiaochengxuUrl) {
     let callback = () => {
       let { userInfo } = app.globalData.userInfo
       let avatarUrl = null
@@ -52,7 +56,7 @@ Page({
       let loadXiaochengxu = new Promise((resolve, reject) => {
         // 头像
         wx.downloadFile({
-          url: `${app.globalData.CDNPATH}xcx.png`,
+          url: xiaochengxuUrl,
           success(res) {
             xiaochengxu = loadResult(res, resolve)
           },
@@ -107,7 +111,13 @@ Page({
     }
   },
   onLoad(options) {
-    this.draw()
+    let { inviteCode } = app.globalData
+    postShareQrCodeApi({
+      path: 'pages/index/index',
+      params: inviteCode.code
+    }).then(({data}) => {
+      this.draw(data.url)
+    })
   },
   onShow() {
     let that = this
