@@ -109,3 +109,11 @@ export const captchaApi = (data) => {
     data
   })
 }
+
+export const postShareQrCodeApi = (data) => {
+  return request({
+    method: 'post',
+    url: '/share/mini/program/qr/code',
+    data
+  })
+}
