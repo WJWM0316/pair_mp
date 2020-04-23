@@ -31,13 +31,12 @@ Page({
 
   },
   getSysMsg (hideLoading = false) {
-    getSysMsgApi({count: 10, hideLoading}).then(res => {
+    getSysMsgApi({count: 100, hideLoading}).then(res => {
       let messageList = this.data.messageList
       messageList = res.data.concat(messageList)
       this.setData({messageList}, () => {
         this.pageScrollTo(this.data.messageList.length - 1)
       })
-      console.log(this.data.messageList.length, 2222222)
     })
   },
   pageScrollTo (index) {
