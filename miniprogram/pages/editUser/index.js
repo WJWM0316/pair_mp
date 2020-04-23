@@ -28,7 +28,6 @@ Page({
   },
   onLoad(options) {
     this.setData({ options })
-    console.log(options)
   },
   debounce(fn, context, delay, text) {
     clearTimeout(fn.timeoutId)
@@ -41,8 +40,17 @@ Page({
       company_name: userInfo.companyName
     })
     wx.navigateTo({
-      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}&reback=2`
+      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId}`
     })
+    // if(careerVerifyInfo.status === 2) {
+    //   wx.navigateTo({
+    //     url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+    //   })
+    // } else {
+    //   wx.navigateTo({
+    //     url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+    //   })
+    // }
   },
   onShow() {
     let { options } = this.data
@@ -252,8 +260,8 @@ Page({
           wx.setStorageSync('searchCompany', {
             company_name: userInfo.companyName
           })
-          wx.navigateTo({
-            url: `${PAGEPATH}/methods/index?type=createUser&companyId=${modifiedUserInfo.companyId}`
+          wx.redirectTo({
+            url: `${PAGEPATH}/methods/index?companyId=${modifiedUserInfo.companyId}`
           })
         } else {
           wx.navigateBack({ delta: 1 })     
