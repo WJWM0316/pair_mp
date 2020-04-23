@@ -114,7 +114,7 @@ Page({
     let { inviteCode } = app.globalData
     postShareQrCodeApi({
       path: 'pages/index/index',
-      params: inviteCode.code
+      params: `inviteCode=${inviteCode.code}`
     }).then(({data}) => {
       this.draw(data.url)
     })

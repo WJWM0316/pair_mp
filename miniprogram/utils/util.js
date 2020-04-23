@@ -82,7 +82,7 @@ const getCurrentPagePath = (index = 0) => {
 }
 
 // 获取二维码参数对象
-const getSceneParams (scene) {
+const getSceneParams = (scene) => {
   scene = decodeURIComponent(scene)
   scene = scene.indexOf('?') === 0 ? scene.substr(1) : scene
   const params = scene.split('&')
