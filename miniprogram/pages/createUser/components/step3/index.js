@@ -30,6 +30,8 @@ Component({
   },
   pageLifetimes: {
     show() {
+      // let {options} = getCurrentPages().pop();
+      // console.log(options)
       let { formData } = this.data
       let storage = wx.getStorageSync('searchCompany')
       if(formData.company_name !== storage.company_name) {

@@ -5,6 +5,8 @@ import {
   getPickChanceApi,
   pickChanceApi
 } from '../../../api/pick'
+import {getCurrentPagePath} from '../../../utils/index.js'
+
 const app = getApp()
 Component({
   options: {
@@ -75,7 +77,6 @@ Component({
           break
         default:
           this.setData({ show: true, userInfo: app.globalData.userInfo.userInfo })
-          console.log(this.data)
           break
       }
     },
@@ -103,7 +104,7 @@ Component({
           this.setData({ show: false }, () => {
             if(userCompleteInfo.infoCompletePercent >= 40 && userCompleteInfo.infoCompletePercent < 80) {
               wx.navigateTo({
-                url: `${PAGEPATH}/perfectUser/index`
+                url: `${PAGEPATH}/perfectUser/index?step=1&redirectTo=${encodeURIComponent(getCurrentPagePath())}`
               }) 
             } else {
               wx.navigateTo({

@@ -8,6 +8,7 @@ import {
 } from '../../api/user'
 import {
   getSelectorQuery,
+  setIconType
 } from '../../utils/util.js'
 
 import {
@@ -22,7 +23,6 @@ import {
 let app = getApp()
 Page({
   data: {
-    step: 1,
     salary: 2,
     show: true,
     formData: {
@@ -30,84 +30,40 @@ Page({
       own_describe: ''
     },
     list: [],
-    fixedDom: false,
     canClick: false,
     labels: [],
     options: {}
   },
-  fixedDomPosition: 0,
   scrollTop: 0,
   onLoad(options) {
-    if(options.step) {
-      this.setData({step: options.step, options})
-    }
+    this.setData({options})
   },
   onShow() {
-    this.init()
-  },
-  next() {
-    let { step } = this.data
-    step++
-    this.setData({ step })
+    if (app.globalData.userInfo) {
+      this.init()
+    } else {
+      app.getUserInfo = () => this.init()
+    }
   },
   init2() {
     let callback = (data) => {
-      let callback = (data) => {}
-      let { options } = this.data
       let userLabelList = app.globalData.userInfo && app.globalData.userInfo.userInfo && app.globalData.userInfo.userInfo.userLabelList
       data.map((v,i) => {
         v.active = false
-        if (!options.type) {
-          if(!i) {
-            v.active = true
-          }
-        } else {
-          if(!i) {
-            v.active = true
-          }
-          let plabelList = userLabelList.map(v => v.labelId)
-          if(plabelList.includes(v.labelId)) {
-            let clabelList = userLabelList.find(a => a.labelId === v.labelId).children.map(v => v.labelId)
-            v.children.map(v => {
-              v.active = false
-              if(clabelList.includes(v.labelId)) {
-                v.active = true
-              }
-            })
-          }
+        if(!i) {
+          v.active = true
         }
-        switch(v.labelId) {
-          case 110000:
-            v.iconName = 'icon_renshe'
-            break
-          case 120000:
-            v.iconName = 'icon_meishi'
-            break
-          case 130000:
-            v.iconName = 'icon_yundong'
-            break
-          case 140000:
-            v.iconName = 'icon_yinle'
-            break
-          case 150000:
-            v.iconName = 'icon_yingshi'
-            break
-          case 160000:
-            v.iconName = 'icon_shuji'
-            break
-          case 170000:
-            v.iconName = 'icon_erciyuan'
-            break
-          case 180000:
-            v.iconName = 'icon_youxi'
-            break
-          case 190000:
-            v.iconName = 'icon_lvhang'
-            break
-          default:
-            v.iconName = 'icon_lvhang'
-            break
+        let plabelList = userLabelList.map(v => v.labelId)
+        if(plabelList.includes(v.labelId)) {
+          let clabelList = userLabelList.find(a => a.labelId === v.labelId).children.map(v => v.labelId)
+          v.children.map(v => {
+            v.active = false
+            if(clabelList.includes(v.labelId)) {
+              v.active = true
+            }
+          })
         }
+        setIconType(v)
       })
       this.setData({list: data}, () => {
         if(userLabelList) {
@@ -130,13 +86,35 @@ Page({
     })
   },
   init() {
-    let { step } = this.data
-    if(step == 1) {
-      this.setData({canClick: true})
-    } else if(step == 2) {
-      this.init2()
-    } else {
-
+    let {options} = this.data
+    let { userInfo } = app.globalData.userInfo
+    switch(options.step) {
+      case '1':
+        this.setData({
+          canClick: true,
+          salary: userInfo.salary ? userInfo.salary : 2,
+          show: userInfo.showSalary
+        })
+        break;
+      case '2':
+        this.init2()
+        break;
+      case '3':
+        this.setData({
+          formData: {
+            own_describe: userInfo.ownDescribe
+          },
+          canClick: userInfo.ownDescribe.length >= 5
+        })
+        break;
+      case '4':
+        this.setData({
+          formData: {
+            ideal_describe: userInfo.idealDescribe
+          },
+          canClick: userInfo.idealDescribe.length >= 5
+        })
+        break
     }
   },
   pickerResult(e) {
@@ -172,7 +150,6 @@ Page({
     
   },
   toggle() {
-    console.log(this.data)
     this.setData({show: !this.data.show})
   },
   bindInput(e) {
@@ -204,17 +181,15 @@ Page({
     this.setData({ list })
   },
   next1() {
-    let params = {
-      salary: this.data.salary,
-      show: this.data.show
-    }
+    let {options,salary,show} = this.data
+    let params = {salary, show}
+
     updateUserSalaryApi(params).then(() => {
       getUserInfo().then(() => {
-        wx.pageScrollTo({
-          scrollTop: 0,
-          duration: 0
+        let { PAGEPATH } = app.globalData
+        wx.navigateTo({
+          url: `${PAGEPATH}/perfectUser/index?step=2&redirectTo=${options.redirectTo}`
         })
-        this.setData({ step: 2, canClick: false }, () => this.init2())
       })
     }).catch(err => app.wxToast({title: err.msg}))
   },
@@ -229,20 +204,19 @@ Page({
     }
     addLabelApi(params).then(() => {
       getUserInfo().then(() => {
-        wx.pageScrollTo({
-          scrollTop: 0,
-          duration: 0
-        })
+        let { PAGEPATH } = app.globalData
         if (options.type) {
           wx.navigateBack({ delta: 1 })
         } else {
-          this.setData({ step: 3, canClick: false })
+          wx.navigateTo({
+            url: `${PAGEPATH}/perfectUser/index?step=3&redirectTo=${options.redirectTo}`
+          })
         }
       })      
     }).catch(err => app.wxToast({title: err.msg}))
   },
   next3() {
-    let { formData } = this.data
+    let { formData, options } = this.data
     let params = {
       own_describe: formData.own_describe.trim()
     }
@@ -253,16 +227,15 @@ Page({
     }
     updateUserDescribeApi(params).then(() => {
       getUserInfo().then(() => {
-        wx.pageScrollTo({
-          scrollTop: 0,
-          duration: 0
+        let { PAGEPATH } = app.globalData
+        wx.navigateTo({
+          url: `${PAGEPATH}/perfectUser/index?step=4&redirectTo=${options.redirectTo}`
         })
-        this.setData({ step: 4, canClick: false })
       })      
     }).catch(err => app.wxToast({title: err.msg}))
   },
   next4() {
-    let { formData } = this.data
+    let { formData, options } = this.data
     let params = {
       ideal_describe: formData.ideal_describe.trim()
     }
@@ -273,7 +246,9 @@ Page({
     }
     updateUserDescribeApi(params).then(() => {
       getUserInfo().then(() => {
-        wx.navigateBack({ delta: 1 })
+        wx.navigateBack({
+          delta: 4
+        })
       })      
     }).catch(err => app.wxToast({title: err.msg}))
   },

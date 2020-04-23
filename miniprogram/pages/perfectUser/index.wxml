@@ -1,5 +1,5 @@
 <view class="perfect_info">
-    <view class="step1" wx:if="{{step == 1}}">
+    <view class="step1" wx:if="{{options.step == 1}}">
         <view class="h1">年收入范围</view>
         <view class="progress">
             <view class="item active-item"></view>
@@ -8,7 +8,7 @@
             <view class="item"></view>
         </view>
         <view class="picker-box">
-            <scrollPicker pickerType="salary" initValue="{{ '' }}" bind:pickerResult="pickerResult"></scrollPicker>
+            <scrollPicker pickerType="salary" initValue="{{ salary }}" bind:pickerResult="pickerResult"></scrollPicker>
         </view>
         <view class="p11"><view class="btn-set" bindtap="toggle"><i class="icon1 icon iconfont icon_gouxuan" wx:if="{{ show }}"></i><i class="icon2" wx:else></i>仅自己可见</view></view>
         <!-- <myButton canClick="{{ canClick }}" btnTxt="下一步" bind:click="next1"></myButton> -->
@@ -16,7 +16,7 @@
             <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next1"><view class="cover">下一步</view></i-button>
         </view>
     </view>
-    <view class="step2" wx:if="{{step == 2}}">
+    <view class="step2" wx:if="{{options.step == 2}}">
         <view class="h1">你的标签</view>
         <view class="progress">
             <view class="item active-item"></view>
@@ -24,7 +24,7 @@
             <view class="item"></view>
             <view class="item"></view>
         </view>
-        <view class="scroll-box {{fixedDom ? 'fixed-dom' : ''}}">
+        <view class="scroll-box">
             <view class="append">
             已选<text class="{{ labels.length ? 'strong' : ''}}">{{labels.length}}</text>/20
             </view>
@@ -47,7 +47,6 @@
             </view>
             </scroll-view>
         </view>
-        <view class="placeholder" wx:if="{{ fixedDom }}"></view>
         <view
             class="tags-box"
             scroll-y="{{ true }}"
@@ -75,7 +74,7 @@
         </view>
     </view>
 
-    <view class="step3" wx:if="{{step == 3}}">
+    <view class="step3" wx:if="{{options.step == 3}}">
         <view class="h1">自我描述</view>
         <view class="h2">介绍你的性格，生活习惯，兴趣爱好等等</view>
         <view class="progress">
@@ -102,7 +101,7 @@
             <i-button my-class="btn-next {{canClick ? 'btn-next-active' : ''}}" bind:click="next3"><view class="cover">下一步</view></i-button>
         </view>
     </view>
-    <view class="step4" wx:if="{{step == 4}}">
+    <view class="step4" wx:if="{{options.step == 4}}">
         <view class="h1">我的理想型</view>
         <view class="h2">介绍下你心目中的TA应该是怎么样的</view>
         <view class="progress">
