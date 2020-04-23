@@ -56,12 +56,11 @@ Page({
         let isOwner = false
         if(hasLogin) {
           if(options.vkey === app.globalData.userInfo.userInfo.vkey) {
-            hasLogin = true
+            isOwner = true
           } else {
-            hasLogin = false
+            isOwner = false
           }
         }
-        // let isOwner = hasLogin && options.vkey === app.globalData.userInfo.userInfo.vkey ? true : false
         let {
           userInfo,
           pickIntention = {},
