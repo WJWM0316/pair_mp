@@ -68,6 +68,7 @@ const splicingParams = (params) => {
   string = string.slice(0, string.length-1)
   return string
 }
+
 // 获取当前页面完整链接
 const getCurrentPagePath = (index = 0) => {
   var pages = getCurrentPages() //获取加载的页面
@@ -78,6 +79,24 @@ const getCurrentPagePath = (index = 0) => {
   } else {
     return `/${pageUrl}`
   }
+}
+
+// 获取二维码参数对象
+const getSceneParams (scene) {
+  scene = decodeURIComponent(scene)
+  scene = scene.indexOf('?') === 0 ? scene.substr(1) : scene
+  const params = scene.split('&')
+  const obj = {}
+  params.forEach(item => {
+    if (item) {
+      const param = item.split('=')
+      obj[param[0]] = param[1]
+    }
+  })
+  if (obj.s) obj.sourceType = obj.s
+  if (obj.pid) obj.positionId = obj.pid
+  if (obj.cid) obj.companyId = obj.cid
+  return obj
 }
 
 const setIconType = (data) => {
@@ -117,6 +136,7 @@ const setIconType = (data) => {
 
 module.exports = {
   formatTime: formatTime,
+  getSceneParams,
   getCurrentPagePath: getCurrentPagePath,
   getSelectorQuery,
   getTitleHeight,
