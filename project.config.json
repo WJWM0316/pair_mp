@@ -165,6 +165,13 @@
 					"pathName": "pages/invitation/index",
 					"query": "step=3",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/perfectUser/index",
+					"pathName": "pages/perfectUser/index",
+					"query": "step=1",
+					"scene": null
 				}
 			]
 		}

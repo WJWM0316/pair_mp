@@ -7,6 +7,10 @@ import {
   removeBackApi
 } from '../../api/black.js'
 
+import {
+  setIconType
+} from '../../utils/util.js'
+
 const app =  getApp();
 Page({
   data: {
@@ -86,38 +90,7 @@ Page({
               })
             }
           }
-          switch(v.labelId) {
-            case 110000:
-              v.iconName = 'icon_renshe'
-              break
-            case 120000:
-              v.iconName = 'icon_meishi'
-              break
-            case 130000:
-              v.iconName = 'icon_yundong'
-              break
-            case 140000:
-              v.iconName = 'icon_yinle'
-              break
-            case 150000:
-              v.iconName = 'icon_yingshi'
-              break
-            case 160000:
-              v.iconName = 'icon_shuji'
-              break
-            case 170000:
-              v.iconName = 'icon_erciyuan'
-              break
-            case 180000:
-              v.iconName = 'icon_youxi'
-              break
-            case 190000:
-              v.iconName = 'icon_lvhang'
-              break
-            default:
-              v.iconName = 'icon_lvhang'
-              break
-          }
+          setIconType(v)
         })
         userInfo.birthDesc = userInfo.birth.slice(2, 4)
         wx.setNavigationBarTitle({title: userInfo.nickname})

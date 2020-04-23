@@ -79,9 +79,46 @@ const getCurrentPagePath = (index = 0) => {
     return `/${pageUrl}`
   }
 }
+
+const setIconType = (data) => {
+  switch(data.labelId) {
+    case 110000:
+      data.iconName = 'icon_renshe'
+      break
+    case 120000:
+      data.iconName = 'icon_meishi'
+      break
+    case 130000:
+      data.iconName = 'icon_yundong'
+      break
+    case 140000:
+      data.iconName = 'icon_yinle'
+      break
+    case 150000:
+      data.iconName = 'icon_yingshi'
+      break
+    case 160000:
+      data.iconName = 'icon_shuji'
+      break
+    case 170000:
+      data.iconName = 'icon_erciyuan'
+      break
+    case 180000:
+      data.iconName = 'icon_youxi'
+      break
+    case 190000:
+      data.iconName = 'icon_lvhang'
+      break
+    default:
+      data.iconName = 'icon_lvhang'
+      break
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   getCurrentPagePath: getCurrentPagePath,
   getSelectorQuery,
-  getTitleHeight
+  getTitleHeight,
+  setIconType
 }
