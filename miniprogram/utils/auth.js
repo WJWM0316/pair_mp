@@ -9,14 +9,20 @@ const relaunchSilentLogin = function (that) {
     success: function (res0) {
       let code = res0.code
       wxLogin({code}, that).then(res => {
-        that.silentLoginOver()
         loginCallback(res)
+        if (getApp().silentLoginOver) {
+          getApp().silentLoginOver()
+        }
       })
     },
     fail: function (e) {
       console.log('登录失败', e)
     }
   })
+}
+
+const silentLoginOver = function (cb) {
+  cb()
 }
 
 // 主动授权
@@ -58,10 +64,11 @@ const getUserInfo = () => {
         userInfo.careerVerifyInfo = Object.assign(userInfo.careerVerifyInfo, {status: -1})
       }
       getApp().globalData.userInfo = userInfo
-      resolve(userInfo)
+      
       if (getApp().getUserInfo) {
         getApp().getUserInfo()
       }
+      resolve(userInfo)
     })
   })
 }
@@ -91,9 +98,7 @@ const loginCallback = (res, options) => {
     }
     let sex = wx.getStorageSync('sex')
     if (sex) {
-      console.log(sex, 2222)
       setPickerIntentionApi({gender: sex}).then(() => {
-        console.log(sex, 333333)
         wx.removeStorageSync('sex')
         getUserInfo()    
       })
@@ -144,6 +149,7 @@ const logout = (e) => {
 
 module.exports = {
   relaunchSilentLogin,
+  silentLoginOver,
   hasLogin,
   getUserInfoAuth,
   getUserInfo,

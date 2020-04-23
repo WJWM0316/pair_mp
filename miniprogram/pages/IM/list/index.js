@@ -24,7 +24,8 @@ Page({
   onLoad: function (options) {
     this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
     socket.onMessage((res) => {
-      if (res.imFromUser.vkey !== app.globalData.userInfo.userInfo.vkey) {
+      if (!res.hasOwnProperty('cmd') && (res.from === 'target' || res.from === 'system')) {
+        // 别人发给我 或者 撤回的消息 需要动态渲染出来
         let vkey        = res.imFromUser.vkey,
             msgData     = res.imData,
             newMsgData  = {},
@@ -78,8 +79,7 @@ Page({
     for (let {id} of messageList) {
       relation_id.push(id) 
     }
-    // with_sys: 1
-    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join()}).then(res => {
+    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join(),  with_sys: 1}).then(res => {
       messageList = messageList.concat(res.data)
       if (!res.data.length) this.noMore = true
       this.setData({messageList, hasRequire: true})
@@ -180,6 +180,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+
     if (this.noMore) return
     this.getList(true)
   },

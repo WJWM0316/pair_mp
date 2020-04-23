@@ -1,4 +1,4 @@
-<view class="console {{chatDetail.blackInfo.beBlacked || chatDetail.blackInfo.blacked ? 'default' : ''}}">
+<view class="console">
   <view class="textEdit">
     <view class="textarea-box">
       <textarea 

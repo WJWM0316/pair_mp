@@ -5,7 +5,9 @@ class Socket {
     this.heartTime = 30000 // 心跳检测时间间隔
     this.receiveMessageTimer = null // 检测接受信息时间的定时器，超过极限时间说明发生异常
     this.keepAliveTimer = null // 检测心跳包的定时器
+    this.reConnectTimer = null // 重连定时器
     this.hasCreated = false
+    this.cb         = null // 监听的回调事件
   }
   create (url, token) {
     this.url = url
@@ -18,9 +20,8 @@ class Socket {
       success: (res) => {
         // 握手环节
         wx.onSocketOpen((res0) => {
-          console.log(this.SocketTask, '握手状态')
+          console.log(`======websocket已连接======`)
           this.login(localstorage.get('token'))
-          wx.hideLoading()
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
             this.hasCreated = true
@@ -31,12 +32,13 @@ class Socket {
           this.checkResolve()
         })
         wx.onSocketError((err) => {
+          this.reConnect()
           console.log(`======websocket出现异常======`, err)
         })
         wx.onSocketClose((err) => {
+          this.reConnect()
           console.log(`======websocket已关闭======`, err)
         })
-        
       },
       fail: (err) => {
         console.log(err)
@@ -76,8 +78,10 @@ class Socket {
       let data = res.data
       if (res.data === 'a') return // 心跳包的不需要监听
       data = JSON.parse(data)
-      if (data.cmd === 'send.im' || data.cmd === 'login.token' || data.msgType === 'RC:ReadNtf') return
-      if (data.imData && data.imData.content) data.imData.content = JSON.parse(data.imData.content)
+      if (data.cmd === 'login.token' || data.msgType === 'RC:ReadNtf') return
+      if (!data.cmd && data.imData) {
+        if (typeof data.imData.content === 'string') data.imData.content = JSON.parse(data.imData.content)
+      }
       if (callback) callback(data)
     })
   }
@@ -102,15 +106,17 @@ class Socket {
   }
   // 断线重连
   reConnect () {
-    console.log(`======websocket正在重连======`)
-    clearInterval(this.keepAliveTimer)
-    clearTimeout(this.receiveMessageTimer)
-    this.create(this.url)
+    clearTimeout(this.reConnectTimer)
+    this.reConnectTimer = setTimeout(() => {
+      console.log(`======websocket正在重连======`)
+      clearInterval(this.keepAliveTimer)
+      clearTimeout(this.receiveMessageTimer)
+      this.create(this.url)
+    }, 500)
   }
   // 检测socket是否正常，不正常就重连
   testSocket () {
     if (this.readyState() !== 1) {
-      wx.showLoading({title: '正在重连...', mask: true})
       this.reConnect()
     }
   }

@@ -30,10 +30,12 @@ Component({
     if (!app.globalData.recorderManager) app.globalData.recorderManager = wx.getRecorderManager()
     recorderManager = app.globalData.recorderManager
     recorderManager.onStop((e) => {
-      if (e.duration >= 1000) {
-        this.triggerEvent('getRecord', e)
-      } else {
-        app.wxToast({title: '语音时长不可低于1秒'})
+      if (this.data.status === 3) {
+        if (e.duration >= 1000) {
+          this.triggerEvent('getRecord', e)
+        } else {
+          app.wxToast({title: '语音时长不可低于1秒'})
+        }
       }
     })
   },

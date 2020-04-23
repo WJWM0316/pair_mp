@@ -89,7 +89,6 @@ Component({
     },
     // 监听文本域高度变化，随时滚动页面
     linechange (e) {
-      console.log(e, 111)
       if (e.detail.lineCount <= 3) {
         let textHeight = e.detail.height
         this.pageScrollToDom('bottom').then(res => {
@@ -100,8 +99,7 @@ Component({
     // 选择emoji 或者 出场白
     selectResult (e) {
       this.word = this.word ?  `${this.word}${e.detail}` : e.detail
-      let canSend = this.data.chatDetail.blackInfo.beBlacked || this.data.chatDetail.blackInfo.blacked ? false : true
-      this.setData({'word': this.word, canSend}) 
+      this.setData({'word': this.word, canSend: true})
     },
     // 文本域编辑
     bindinput (e) {
@@ -217,6 +215,7 @@ Component({
           "channelType": "PERSON",
           "msgTimestamp": timestamp,
           "timestamp": timestamp,
+          "sending": true,
           "content": ''
         }
       }
@@ -231,7 +230,10 @@ Component({
             }
           }
           msgData.msgType = 'RC:TxtMsg'
-          msgData.imData.content = {content: this.word, sendTimestamp: timestamp}
+          msgData.imData.content = {
+            content: this.word, 
+            sendTimestamp: timestamp
+          }
           that.triggerEvent('sendMsg', msgData)
           socket.send(parmas)
           break
@@ -244,7 +246,10 @@ Component({
             success (res) {
               res.tempFiles.forEach((file) => {
                 msgData.msgType = 'RC:ImgMsg'
-                msgData.imData.content = {imageUri: file.path, sendTimestamp: timestamp}
+                msgData.imData.content = {
+                  imageUri: file.path, 
+                  sendTimestamp: timestamp
+                }
                 that.triggerEvent('sendMsg', msgData)
                 app.uploadFile(file).then(res0 => {
                   parmas.data = {
@@ -252,7 +257,8 @@ Component({
                     msgType: "RC:ImgMsg", 
                     content: {
                       content: res0.data.attachListItem[0].smallUrl,
-                      imageUri: res0.data.attachListItem[0].url
+                      imageUri: res0.data.attachListItem[0].url,
+                      sendTimestamp: timestamp
                     }
                   }
                   socket.send(parmas)
@@ -266,7 +272,12 @@ Component({
           break
         case 'record':
           msgData.msgType = 'RC:VcMsg'
-          msgData.imData.content = {fileUrl: content.tempFilePath, duration: content.duration, fileSize: content.fileSize, sendTimestamp: timestamp}
+          msgData.imData.content = {
+            fileUrl: content.tempFilePath, 
+            duration: content.duration, 
+            fileSize: content.fileSize, 
+            sendTimestamp: timestamp
+          }
           that.triggerEvent('sendMsg', msgData)
           app.uploadFile(content, 'audio').then(res0 => {
             parmas.data = {
@@ -275,7 +286,8 @@ Component({
               content: {
                 content: '音频',
                 duration: content.duration,
-                fileUrl: res0.data.attachListItem[0].url
+                fileUrl: res0.data.attachListItem[0].url,
+                sendTimestamp: timestamp
               }
             }
             socket.send(parmas)

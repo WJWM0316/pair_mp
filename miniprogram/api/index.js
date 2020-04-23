@@ -219,8 +219,8 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
         promise()
       } else {
         if (!app.globalData.hasOwnProperty('hasLogin')) {
-          if (noAuthRequests.length) {
-            app.silentLoginOver = () => {
+          app.silentLoginOver = () => {
+            if (noAuthRequests.length) {
               noAuthRequests.forEach((item) => {
                 item()
               })

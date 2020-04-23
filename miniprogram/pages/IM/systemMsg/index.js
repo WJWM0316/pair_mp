@@ -14,10 +14,12 @@ Page({
    */
   onLoad: function (options) {
     socket.onMessage((res) => {
-      if (res.imFromUser.vkey === 'system') {
-        let messageList = this.dtaa.messageList,
+      if (!res.hasOwnProperty('cmd') && res.imFromUser.vkey === 'system') {
+        let messageList = this.data.messageList,
             index       = messageList.length
-        this.setData({[`messageList[${index}]`]: res})
+        this.setData({[`messageList[${index}]`]: res}, () => {
+          this.pageScrollTo(index)
+        })
       }
     })
   },
@@ -32,7 +34,22 @@ Page({
     getSysMsgApi().then(res => {
       let messageList = this.data.messageList
       messageList = res.data.concat(messageList)
-      this.setData({messageList})
+      this.setData({messageList}, () => {
+        this.pageScrollTo(this.data.messageList.length - 1)
+      })
+    })
+  },
+  pageScrollTo (index) {
+    wx.nextTick(()=>{
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        wx.nextTick(()=>{
+          wx.pageScrollTo({
+            duration: 1,
+            selector: `#msg${index}`
+          })
+        })
+      }, 500)
     })
   },
   action (e) {

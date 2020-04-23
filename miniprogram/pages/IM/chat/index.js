@@ -28,19 +28,43 @@ Page({
     this.options = options
     this.setData({options})
     socket.onMessage((res) => {
-      if ((res.imFromUser.vkey === this.options.vkey || res.imToUser.vkey === this.options.vkey)
-          && (res.imFromUser.vkey !== this.data.mineUserInfo.vkey || res.msgType === 'RC:RcCmd')) {
-        let index = this.data.messageList.length
-        this.setData({[`messageList[${index}]`]: res}, () => {
-          wx.nextTick(()=>{
-            this.selectComponent('#footer').pageScrollToDom('bottom')
-          });
-        })
-      }
-      // 如果是自己发的消息IM 回调成功后要赋值一下msgUid
-      if (res.msgType !== "RC:RcCmd" && res.imFromUser.vkey === this.data.mineUserInfo.vkey) {
-        if (this.data.messageList.length && this.data.messageList[this.index].imData.sendTimestamp === res.imData.sendTimestamp) {
-          this.setData({[`messageList[${this.index}].imData.msgUID`]: res.imData.msgUID})
+      // 监听融云返回的消息 
+      if (!res.hasOwnProperty('cmd')) {
+        // 别人发给我 或者 撤回的消息 需要动态渲染出来
+        if (res.from === 'target' || res.msgType === 'RC:RcCmd') {
+          let index = this.data.messageList.length
+          this.setData({[`messageList[${index}]`]: res}, () => {
+            wx.nextTick(()=>{
+              this.selectComponent('#footer').pageScrollToDom('bottom')
+            });
+          })
+        }
+        // 我自己发送的消息 IM回调成功后要赋值一下msgUid
+        if (res.from === 'self' && res.msgType !== 'RC:RcCmd') {
+          console.log(this.data.messageList[this.index])
+          if (this.data.messageList.length && this.data.messageList[this.index].imData.content.sendTimestamp === res.imData.content.sendTimestamp) {
+            this.setData({[`messageList[${this.index}].imData.msgUID`]: res.imData.msgUID, [`messageList[${this.index}].imData.sending`]: false})
+          }
+        }
+      } else {
+        //针对自己发送的消息 监听后端返回的消息 做异常处理
+        if (res.data.msgType !== 'RC:RcCmd') {
+          if (res.code !== 200) {
+            switch (res.code) {
+              case 2101: // 已拉黑
+                if (!this.data.chatDetail.blackInfo.blacked) this.setData({[`chatDetail.blackInfo.blacked`]: 1})
+                break
+              case 2102: // 被拉黑
+                if (!this.data.chatDetail.blackInfo.beBlacked) this.setData({[`chatDetail.blackInfo.beBlacked`]: 1})
+                break
+              case 2103: // 发送三条限制
+                if (!this.data.chatDetail.blackInfo.limitSend) this.setData({[`chatDetail.blackInfo.limitSend`]: 1})
+                break
+            }
+            if (this.data.messageList.length && this.data.messageList[this.index].imData.content.sendTimestamp === res.data.data.content.sendTimestamp) {
+              this.setData({[`messageList[${this.index}].imData.content.sendFail`]: true, [`messageList[${this.index}].imData.sending`]: false})
+            }
+          }
         }
       }
     })
@@ -92,7 +116,7 @@ Page({
     return getChatDetailApi({vkey: this.options.vkey, hideLoading, count: 10, timestamp: this.timestamp}).then(res => {
       let noMoreData = res.data.length ? false : true
       if (!noMoreData) this.timestamp = res.data[0].imData.timestamp
-      this.preDomId = `#msg${res.data.length}`
+      this.preDomId = `#msg${res.data.length - 1}`
       let messageList = res.data.concat(this.data.messageList)
       this.setData({messageList, hasRequire: true, noMoreData})
       this.pageScrollTo()
@@ -120,7 +144,6 @@ Page({
       this.setData({'othersUserInfo': res.data.userInfo, 'chatDetail': res.data, showDebutWord, showSystemHint})
     })
   },
-  
   // 拉黑状态变更
   changeBlackStatus (e) {
     let blacked = e.detail
@@ -136,6 +159,7 @@ Page({
   },
   // 长按功能
   longpress (e) {
+    
     let dataset  = e.currentTarget.dataset,
         own      = dataset.object.imFromUser.vkey === app.globalData.userInfo.userInfo.vkey
     getSelectorQuery(`.${dataset.class}`, this).then(res => {
@@ -250,7 +274,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
   // 记录最后一条记录发送时间
   sendLastMsgTime () {

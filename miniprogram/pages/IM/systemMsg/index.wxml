@@ -1,6 +1,6 @@
 <view class="systemWrap">
   <view class="message-list">
-    <view class="message-box" wx:for="{{messageList}}" wx:key="id">
+    <view class="message-box" wx:for="{{messageList}}" wx:key="id" id="msg{{index}}">
       <view class="time" wx:if="{{item.imData.timestamp}}">{{filters.activeTime(item.imData.timestamp)}}</view>
       <view class="message-item others" id="msg{{index}}">
         <view class="avatar">
@@ -38,5 +38,6 @@
   <view class="footer">
     <i-button my-class="btn" open-type="feedback">意见反馈</i-button>
   </view>
+  <view class="block"></view>
 </view>
 <wxs src="../../../utils/filters.wxs" module="filters" />

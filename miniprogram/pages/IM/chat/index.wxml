@@ -20,10 +20,12 @@
             <view 
               class="message-content {{parse.setMsgType(item.msgType)}} msgCon{{index}}" 
               catchlongpress="longpress" 
-              data-object="{{item}}" 
+              data-object="{{item}}"
               data-class="msgCon{{index}}"
               data-index="{{index}}"
               >
+              <i class="fail iconfont icon_jinggao" wx:if="{{item.imData.content.sendFail ? 'sendFail' : ''}}"></i>
+              <i class="sending" wx:if="{{item.imData.sending}}"></i>
               <block wx:if="{{item.msgType === 'RC:TxtMsg'}}">
               <view class="text"><rich-text nodes="{{filters.setEmoji(item.imData.content.content, cdnPath)}}" space="emsp"></rich-text></view>
               </block>
@@ -40,7 +42,7 @@
                 >
                 <i class="icon" style="{{longpressData.iconStyle}}"></i>
                 <text class="textBtn" data-msgdata="{{item}}" data-type="copy" catchtap = "action" wx:if="{{item.msgType === 'RC:TxtMsg'}}">复制</text>
-                <text class="textBtn" data-msgdata="{{item}}" data-type="withdraw" catchtap = "action" data-index="{{index}}" wx:if="{{item.imFromUser.vkey === mineUserInfo.vkey && curTimestamp - item.imData.timestamp <= 2 * 60 * 1000}}">撤回</text>
+                <text class="textBtn" data-msgdata="{{item}}" data-type="withdraw" catchtap = "action" data-index="{{index}}" wx:if="{{!item.imData.content.sendFail && item.imFromUser.vkey === mineUserInfo.vkey && curTimestamp - item.imData.timestamp <= 2 * 60 * 1000}}">撤回</text>
               </view>
             </view>
           </view>
@@ -49,6 +51,7 @@
     </view>
   </view>
   <view class="systemHint black" wx:if="{{chatDetail.blackInfo.beBlacked || chatDetail.blackInfo.blacked}}">{{chatDetail.blackInfo.beBlacked ? '你已被对方拉黑，无法发送消息' : '对方已你被拉黑，无法发送消息'}}</view>
+  <view class="systemHint black" wx:if="{{chatDetail.blackInfo.limitSend}}">在对方回复前，仅可发送3条消息</view>
   <view id="bottomBlock" style="height:1rpx"></view>
    
   <chat-footer 
