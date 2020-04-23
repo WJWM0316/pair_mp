@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let phone = ''
-import {getCurrentPagePath} from '../../utils/index.js'
+import {getCurrentPagePath, getSceneParams} from '../../utils/index.js'
 import {silentLogin, wxLogin, quickLogin, sendMsgApi, registerApi, logoutApi} from '../../api/auth.js'
 import {pickApi, pickIndexAvaApi, pickAggrApi, getPickChanceApi, pickChanceApi} from "../../api/pick.js"
 import {localstorage, hasLogin} from "../../utils/index.js"
@@ -37,6 +37,7 @@ Page({
   },
   
   onLoad: function (options) {
+    if (options.scene) options = getSceneParams(options.scene)
     if(options.inviteCode) {
       wx.setStorageSync('inviteCode', options.inviteCode)
     }

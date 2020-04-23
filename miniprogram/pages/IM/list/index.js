@@ -180,7 +180,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
     if (this.noMore) return
     this.getList(true)
   },
