@@ -30,13 +30,14 @@ Page({
   onReady: function () {
 
   },
-  getSysMsg () {
-    getSysMsgApi().then(res => {
+  getSysMsg (hideLoading = false) {
+    getSysMsgApi({count: 10, hideLoading}).then(res => {
       let messageList = this.data.messageList
       messageList = res.data.concat(messageList)
       this.setData({messageList}, () => {
         this.pageScrollTo(this.data.messageList.length - 1)
       })
+      console.log(this.data.messageList.length, 2222222)
     })
   },
   pageScrollTo (index) {
@@ -60,6 +61,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({'messageList': []})
     this.getSysMsg()
   },
 

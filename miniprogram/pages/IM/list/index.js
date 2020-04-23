@@ -83,6 +83,8 @@ Page({
       messageList = messageList.concat(res.data)
       if (!res.data.length) this.noMore = true
       this.setData({messageList, hasRequire: true})
+
+      console.log(this.data.messageList.length, 2222222)
     }).catch((e) => {
       this.setData({hasRequire: true})
     })
