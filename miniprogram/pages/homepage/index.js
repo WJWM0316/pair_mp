@@ -170,6 +170,7 @@ Page({
       return
     }
     if(!userCompleteInfo.canPick) {
+      app.globalData.lockonShow = false
       this.getUser().then(() => {
         if(!userCompleteInfo.canPick) {
           this.setData({code: 3}, () => this.selectComponent('#dialog').show())
