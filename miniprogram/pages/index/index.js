@@ -41,6 +41,7 @@ Page({
     if(options.inviteCode) {
       wx.setStorageSync('inviteCode', options.inviteCode)
     }
+    if (!this.data.richText) this.getAvatarList()
   },
   async onShow () {
     let data = await hasLogin()
@@ -49,7 +50,6 @@ Page({
       this.getOtherStatus()
       app.getSubscribeTime({types: 'pickUser'}).then(res => this.setData({pickUser: res.times.pickUser}))
     } 
-    if (!this.data.richText) this.getAvatarList()
   },
   // 性别变化了
   hasSexChange () {

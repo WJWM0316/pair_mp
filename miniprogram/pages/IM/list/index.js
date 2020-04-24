@@ -148,7 +148,8 @@ Page({
   async onShow () {
     if (!app.globalData.lockonShow) {
       let data = await hasLogin()
-      let setData = {'messageList': [], 'hasLogin': data, 'hasLogincb': true}
+      let setData = {}
+      this.setData({'messageList': [], 'hasLogin': data, 'hasLogincb': true})
       if (app.globalData.userInfo) {
         setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
         this.setData(setData)
