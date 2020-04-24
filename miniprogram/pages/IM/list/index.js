@@ -119,7 +119,6 @@ Page({
   remove (e) {
     let index = e.currentTarget.dataset.index
     deleteMsgApi({vkey: this.data.messageList[index].vkey, hideLoding: true})
-    console.log(`#swipeOut${index}`, this.selectComponent(`#swipeOut${index}`))
     this.selectComponent(`#swipeOut${index}`).reset()
     this.setData({[`messageList[${index}]`]: '', lockIndex: null}, () => {
       let array = this.data.messageList.filter((item) => item !== "")
@@ -135,21 +134,17 @@ Page({
   onGotUserInfo (e) {
     getUserInfoAuth(e)
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
+
 
   /**
    * 生命周期函数--监听页面显示
    */
   async onShow () {
     if (!app.globalData.lockonShow) {
+      app.globalData.lockonShow = false
       let data = await hasLogin()
       let setData = {}
-      this.setData({'messageList': [], 'hasLogin': data, 'hasLogincb': true})
+      this.setData({'hasLogin': data, 'hasLogincb': true})
       if (app.globalData.userInfo) {
         setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
         this.setData(setData)
@@ -161,25 +156,19 @@ Page({
       }
       this.onMessage()
       this.getList()
-      app.globalData.lockonShow = false
     }
-  },
-  reset () {
-    this.setData({messageList: [], hasRequire: false})
-    this.noMore = false
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.setData({'hasRequire': false})
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
 
   /**
@@ -194,7 +183,7 @@ Page({
    */
   onReachBottom: function () {
     if (this.noMore) return
-    this.getList(true)
+    // this.getList(true)
   },
   /**
    * 用户点击右上角分享

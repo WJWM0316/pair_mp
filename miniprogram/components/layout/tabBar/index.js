@@ -56,29 +56,30 @@ Component({
     let list  = this.data.list
     list.map(field => field.selected = field.routerPath === route ? true : false)
     this.setData({list})
-
     if (!app.globalData.hasLogin) return
     if (!this.hasAttached) {
       this.hasAttached = true
       this.getUnreadNum()
     }
-    // if (!this.data.page) {
-    //   console.log(111111111)
-    //   socket.onMessage((res) => {
-    //     if ((res.msgType === "RC:VcMsg" || res.msgType === "RC:ImgMsg" || res.msgType === "RC:TxtMsg")) {
-    //       if (this.data.unreadNum < 99) {
-    //         let unreadNum = this.data.unreadNum
-    //         unreadNum++
-    //         this.setData({unreadNum})
-    //       }
-    //     }
-    //   })
-    // }
+    if (!this.data.page) {
+      socket.onMessage((res) => {
+        if ((res.msgType === "RC:VcMsg" || res.msgType === "RC:ImgMsg" || res.msgType === "RC:TxtMsg")) {
+          if (this.data.unreadNum < 99) {
+            let unreadNum = this.data.unreadNum
+            unreadNum++
+            this.setData({unreadNum})
+          }
+        }
+      })
+    }
   },
   pageLifetimes: {
     show: function() {
-      if (this.hasAttached && app.globalData.hasLogin) {
-        this.getUnreadNum()
+      if (!app.globalData.lockonShow) {
+        app.globalData.lockonShow = false
+        if (this.hasAttached && app.globalData.hasLogin) {
+          this.getUnreadNum()
+        }
       }
     }
   },
