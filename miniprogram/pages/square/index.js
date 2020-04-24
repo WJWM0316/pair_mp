@@ -39,6 +39,15 @@ Page({
       }
     }
   },
+  hasSexChange () {
+    let userData = {
+      list: [],
+      pageNum: 1,
+      isLastPage: false,
+      isRequire: false
+    }
+    this.setData({userData}, () => this.getUserList())
+  },
   getUserList() {
     return new Promise((resolve, reject) => {
       let { userData, onBottomStatus } = this.data

@@ -2,6 +2,7 @@
   navBarBg="#F1F4F4"
   title="单身广场"
   page="console"
+  bindhasSexChange="hasSexChange" 
   >
 </navBar>
 <!-- <view>
@@ -35,6 +36,9 @@
       <view class="brief">
         {{ item.ownDescribe }}
       </view>
+    </view>
+    <view class="no-data" wx:if="{{userData.list.length && onBottomStatus === 2}}">
+      <view class="tips">已经到底了！</view>
     </view>
   </view>
   <view class="no-data" wx:else>

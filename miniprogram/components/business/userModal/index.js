@@ -110,7 +110,6 @@ Component({
         let { infos } = this.data
         infos = app.globalData.userInfo
         this.setData({ infos })
-        
       })
     }
   }

@@ -155,15 +155,16 @@
 .no-data {
   width: 380rpx;
   display: block;
-  margin: 180rpx auto 46rpx auto;
   text-align: center;
   font-size: 28rpx;
   color: #66666e;
   line-height: 36rpx;
   overflow: hidden;
+  margin: auto;
 }
 .no-data .img1 {
   display: block;
+  margin: 180rpx auto 46rpx auto;
 }
 .no-data .tips {
   margin-top: 36rpx;
