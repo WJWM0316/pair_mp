@@ -37,14 +37,19 @@ Page({
   scrollTop: 0,
   onLoad(options) {
     this.setData({options})
-  },
-  onShow() {
     if (app.globalData.userInfo) {
       this.init()
     } else {
       app.getUserInfo = () => this.init()
     }
   },
+  // onShow() {
+  //   if (app.globalData.userInfo) {
+  //     this.init()
+  //   } else {
+  //     app.getUserInfo = () => this.init()
+  //   }
+  // },
   init2() {
     let callback = (data) => {
       let userLabelList = app.globalData.userInfo && app.globalData.userInfo.userInfo && app.globalData.userInfo.userInfo.userLabelList

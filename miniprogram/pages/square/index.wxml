@@ -38,7 +38,7 @@
       </view>
     </view>
     <view class="no-data" wx:if="{{userData.list.length && onBottomStatus === 2}}">
-      <view class="tips">已经到底了！</view>
+      <view class="tips">已经到底啦！</view>
     </view>
   </view>
   <view class="no-data" wx:else>

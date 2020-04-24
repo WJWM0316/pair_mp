@@ -7,18 +7,14 @@ Page({
     list: [],
     CDNPATH: app.globalData.CDNPATH
   },
-  onShow() {
-    getQuestionListApi().then(({ data }) => {
-      this.setData({ list: data })
-    })
+  onLoad() {
+    getQuestionListApi().then(({ data }) => this.setData({ list: data }))
   },
   onClick(e) {
     let { PAGEPATH } = app.globalData
     let { info } = e.currentTarget.dataset
     wx.setStorageSync('question', info)
-    wx.redirectTo({
-      url: `${PAGEPATH}/answer/add/index`
-    })
+    wx.redirectTo({ url: `${PAGEPATH}/answer/add/index`})
   },
   /**
    * 用户点击右上角分享

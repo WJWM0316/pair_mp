@@ -30,8 +30,6 @@ Component({
   },
   pageLifetimes: {
     show() {
-      // let {options} = getCurrentPages().pop();
-      // console.log(options)
       let { formData } = this.data
       let storage = wx.getStorageSync('searchCompany')
       if(formData.company_name !== storage.company_name) {
@@ -51,14 +49,6 @@ Component({
       formData.occupation = child.labelId
       formData.companyRequired = child.companyRequired
       this.setData({ formData, canClick: true })
-    },
-    legalize() {
-      let { PAGEPATH } = app.globalData
-      let { formData } = this.data
-      wx.setStorageSync('searchCompany', formData)
-      wx.navigateTo({
-        url: `${PAGEPATH}/methods/index?companyId=${formData.company_id ? formData.company_id : ''}`
-      })
     },
     bindInput(e) {
       let { formData } = this.data
@@ -110,8 +100,6 @@ Component({
         getUserInfo().then(() => {         
           let { PAGEPATH } = app.globalData
           let userInfo = data.userInfo
-          let { formData } = this.data
-          let that = that
           if(!userInfo.isCareerIdentity && userInfo.companyId && userInfo.isNeedCareerIdentity) {
             app.wxConfirm({
               title: '职业信息尚未认证',
@@ -119,9 +107,8 @@ Component({
               cancelText: '暂不认证',
               confirmText: '前往认证',
               confirmBack() {
-                wx.setStorageSync('searchCompany', formData)
                 wx.redirectTo({
-                  url: `${PAGEPATH}/methods/index?type=createUser&companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+                  url: `${PAGEPATH}/methods/index?type=createUser&companyId=${userInfo.companyId}`
                 })
               },
               cancelBack() {

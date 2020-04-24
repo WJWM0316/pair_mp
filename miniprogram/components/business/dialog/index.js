@@ -129,14 +129,8 @@ Component({
           break
         case 'career':
           this.setData({ show: false }, () => {
-            if(userInfo.companyId) {
-              wx.setStorageSync('searchCompany', {
-                company_id: userInfo.companyId,
-                company_name: userInfo.companyName
-              })
-            }
             wx.navigateTo({
-              url: `${PAGEPATH}/methods/index?type=createUser&companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+              url: `${PAGEPATH}/methods/index?type=createUser&companyId=${userInfo.companyId}`
             })
           })    
           break

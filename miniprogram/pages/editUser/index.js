@@ -35,22 +35,10 @@ Page({
   },
   legalize() {
     let { PAGEPATH } = app.globalData
-    let { userInfo, careerVerifyInfo } = this.data
-    wx.setStorageSync('searchCompany', {
-      company_name: userInfo.companyName
-    })
+    let { userInfo } = this.data
     wx.navigateTo({
       url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId}`
     })
-    // if(careerVerifyInfo.status === 2) {
-    //   wx.navigateTo({
-    //     url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
-    //   })
-    // } else {
-    //   wx.navigateTo({
-    //     url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
-    //   })
-    // }
   },
   onShow() {
     let { options } = this.data
@@ -257,9 +245,6 @@ Page({
         let { options } = this.data
         let { PAGEPATH } = app.globalData
         if(options.key === 'companyName' && modifiedUserInfo.companyId !== userInfo.companyId) {
-          wx.setStorageSync('searchCompany', {
-            company_name: userInfo.companyName
-          })
           wx.redirectTo({
             url: `${PAGEPATH}/methods/index?companyId=${modifiedUserInfo.companyId}`
           })

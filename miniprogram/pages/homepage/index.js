@@ -46,11 +46,8 @@ Page({
   legalize() {
     let { PAGEPATH } = app.globalData
     let { userInfo } = this.data
-    wx.setStorageSync('searchCompany', {
-      company_name: userInfo.companyName
-    })
     wx.navigateTo({
-      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId}`
     })
   },
   getUser() {
@@ -78,19 +75,19 @@ Page({
           }
         } = data
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
-        let pIds = isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
+        let pIds = !isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
         userLabelList.map((v,i) => {
-          if (isOwner) {
+          setIconType(v)
+          if (!isOwner) {
             if(pIds.includes(v.labelId)) {
               let cIds = app.globalData.userInfo.userInfo.userLabelList.find(field => field.labelId === v.labelId).children.map(field => field.labelId)
               v.children.map(c => {
                 if(cIds.includes(c.labelId)) {
-                  c.active = true
+                  c = Object.assign(c, {active: true})
                 }
               })
             }
           }
-          setIconType(v)
         })
         userInfo.birthDesc = userInfo.birth.slice(2, 4)
         wx.setNavigationBarTitle({title: userInfo.nickname})
@@ -106,12 +103,16 @@ Page({
           userCompleteInfo
         }, () => resolve())
       }
+      if(app.globalData.lockonShow) return
+      app.globalData.lockonShow = true
       getUserInfoApi({vkey: options.vkey}).then(res => {
         this.setData({httpCode: res.code}, () => callback(res.data))        
       })
     })
   },
-  
+  onUnload() {
+    app.globalData.lockonShow = false
+  },
   bindchange(e) {
     let { current } = e.detail
     this.setData({currentIndex: current})
@@ -160,10 +161,6 @@ Page({
     let { userInfo } = app.globalData.userInfo
     let { options, userCompleteInfo } = this.data
     let otherInfo = this.data.userInfo
-    // if (!this.data.hasLogin) {
-    //   this.selectComponent('#guideLogin').toggle()
-    //   return
-    // }
     if(!userInfo.inviteCode) {
       wx.redirectTo({url: `/pages/invitation/index`})
       return
@@ -241,6 +238,7 @@ Page({
     })
   },
   onPullDownRefresh() {
+    app.globalData.lockonShow = false
     this.getUser().then(() => wx.stopPullDownRefresh())
   },
   previewImage(e) {
