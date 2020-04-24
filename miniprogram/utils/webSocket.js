@@ -52,7 +52,6 @@ class Socket {
         fail: (err) => {
           console.log(`======websocket消息发送失败======`, err)
           this.reConnect()
-          wx.showLoading({title: '正在重连...', mask: true})
         },
         success: (res) => {
           resolve(res)
