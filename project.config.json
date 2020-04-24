@@ -132,10 +132,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "pages/homepage/index",
 					"pathName": "pages/homepage/index",
-					"query": "vkey=hd2y9dzt",
+					"query": "vkey=r6dkjecj",
 					"scene": null
 				},
 				{
@@ -171,6 +171,13 @@
 					"name": "pages/perfectUser/index",
 					"pathName": "pages/perfectUser/index",
 					"query": "step=1",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "pages/methods/index",
+					"pathName": "pages/methods/index",
+					"query": "type=createUser&companyId=1348",
 					"scene": null
 				}
 			]

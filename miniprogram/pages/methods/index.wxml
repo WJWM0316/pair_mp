@@ -1,6 +1,6 @@
 <view class="perfect">
   <view class="h1">完善职业信息</view>
-  <view class="h2" wx:if="{{formData.company_name}}">所在公司：{{formData.company_name}}</view>
+  <view class="h2" wx:if="{{formData.companyName}}">所在公司：{{formData.companyName}}</view>
   <view class="ul">
     <view class="li">
       <view class="h3">职业经历材料</view>

@@ -6,26 +6,19 @@ import {getUserInfo} from '../../utils/index.js'
 const app = getApp()
 Page({
   data: {
-    CDNPATH: '',
     showEmailEntry: false,
-    email: '',
-    emailSuffix: '',
     show: false,
     itemList: [],
     formData: {},
     updateCareer: 0
   },
   onLoad(options) {
-    let { CDNPATH } = app.globalData
-    this.setData({ CDNPATH, options })
-    options.companyId && this.hasCompanyEmail(options)
+    this.setData({ options })
     app.getSubscribeTime({types: 'updateCareer'}).then(res => this.setData({updateCareer: res.times.updateCareer}))
   },
-  onShow() {
-    let formData = wx.getStorageSync('searchCompany')
-    if(formData) {
-      this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
-    }
+  async onShow() {
+    let { options } = this.data
+    options.companyId && this.hasCompanyEmail(options)
   },
   subscribe() {
     app.subscribeMessage('updateCareer').then(() => {
@@ -39,8 +32,8 @@ Page({
     hasCompanyEmailApi({company_id: options.companyId}).then(({ data }) => {
       let showEmailEntry = data.emailSuffix ? data.emailSuffix : false
       let { formData } = this.data
-      formData = Object.assign(formData, {company_id: options.companyId})
-      this.setData({showEmailEntry, ...data, formData})
+      formData = Object.assign(formData, data, {company_id: options.companyId})
+      this.setData({showEmailEntry, formData})
     }).catch(err => app.wxToast({title: err.msg}))
   },
   stopPageScroll() {
@@ -109,10 +102,10 @@ Page({
   },
   fillEmail() {
     let { PAGEPATH } = app.globalData
-    let { emailSuffix, formData } = this.data
+    let { formData } = this.data
     wx.setStorageSync('searchCompany', formData)
     wx.navigateTo({
-      url: `${PAGEPATH}/email/index?emailSuffix=${emailSuffix}`
+      url: `${PAGEPATH}/email/index?emailSuffix=${formData.emailSuffix}`
     })
   },
   /**
