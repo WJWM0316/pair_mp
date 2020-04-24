@@ -66,7 +66,10 @@ Component({
 
   pageLifetimes: {
     async show() {
-      app.getSubscribeTime({types: 'imSendMsg'}).then(res => this.setData({imSendMsg: res.times.imSendMsg}))
+      if (!app.globalData.lockonShow) {
+        app.getSubscribeTime({types: 'imSendMsg'}).then(res => this.setData({imSendMsg: res.times.imSendMsg}))
+        app.globalData.lockonShow = false
+      }
       wx.getSetting({
         success(res) {
           if (res.authSetting['scope.record']) {

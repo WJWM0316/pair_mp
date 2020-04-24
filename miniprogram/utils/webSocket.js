@@ -7,7 +7,11 @@ class Socket {
     this.keepAliveTimer = null // 检测心跳包的定时器
     this.reConnectTimer = null // 重连定时器
     this.hasCreated = false
-    this.cb         = null // 监听的回调事件
+    this.cb         = {
+      chat: null,
+      msgList: null,
+      msgNum: null
+    } // 监听类型回调事件
   }
   create (url, token) {
     this.url = url
@@ -47,7 +51,7 @@ class Socket {
   }
   send (data) {
     return new Promise((resolve, reject) => {
-      this.SocketTask.send({
+      wx.sendSocketMessage({
         data: JSON.stringify(data),
         fail: (err) => {
           console.log(`======websocket消息发送失败======`, err)
@@ -70,22 +74,26 @@ class Socket {
     }
     this.send(data)
   }
-  onMessage (callback) {
-    this.SocketTask.onMessage((res) => {
+  onMessage (type, callback) {
+    if (type) this.cb[`${type}`] = callback
+    wx.onSocketMessage((res) => {
+      console.log(res, 1111111111111)
       // 收到消息，重置接收消息定时器, 因为已开启心跳检查，保证间隔发送消息出去
       this.checkResolve()
       let data = res.data
       if (res.data === 'a') return // 心跳包的不需要监听
       data = JSON.parse(data)
-      if (data.cmd === 'login.token' || data.msgType === 'RC:ReadNtf') return
+      if (data.cmd === 'login.token' || data.msgType === 'RC:ReadNtf' || data.msgType === 'PSYS:ReadNtf') return
       if (!data.cmd && data.imData) {
         if (typeof data.imData.content === 'string') data.imData.content = JSON.parse(data.imData.content)
       }
-      if (callback) callback(data)
+      for (var cb of this.cb) {
+        if (cb) cb(data)
+      }
     })
   }
   close () {
-    this.SocketTask.close()
+    wx.closeSocket()
   }
   // 用于心跳包检测websocket
   checkConnect () {

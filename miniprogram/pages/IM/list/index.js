@@ -23,7 +23,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-    socket.onMessage((res) => {
+    socket.onMessage('msgList', (res) => {
+      console.log(res, 222222)
       if (!res.hasOwnProperty('cmd') && (res.from === 'target' || res.from === 'system')) {
         // 别人发给我 或者 撤回的消息 需要动态渲染出来
         let vkey        = res.imFromUser.vkey,
@@ -50,7 +51,6 @@ Page({
             newMsgData.lastMsg = '[语音]'
             break
         }
-       
         let hasExist = false
         for (let i = 0; i <= messageList.length - 1; i++) {
           if (messageList[i].imFromUser && messageList[i].imFromUser.vkey === vkey) {
@@ -94,6 +94,8 @@ Page({
       this.setData({'lockIndex': lockIndex}, () => {
         this.setData({'lockIndex': null})
       })
+    } else {
+      this.setData({'lockIndex': lockIndex})
     }
   },
   startChat (e) {

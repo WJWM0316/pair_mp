@@ -27,8 +27,11 @@ Page({
   onLoad: function (options) {
     this.options = options
     this.setData({options})
-    socket.onMessage((res) => {
-      // 监听融云返回的消息 
+    this.onMessage()
+  },
+  onMessage () {
+    socket.onMessage('chat', (res) => {
+      // 监听融云返回的消息
       if (!res.hasOwnProperty('cmd')) {
         // 别人发给我 或者 撤回的消息 需要动态渲染出来
         if (res.from === 'target' || res.msgType === 'RC:RcCmd') {
@@ -69,7 +72,9 @@ Page({
       }
     })
   },
-
+  closeWs () {
+    socket.close()
+  },
   // 发送数据， 先显示再界面上
   sendMsg (e) {
     const that = this
@@ -90,6 +95,7 @@ Page({
         this.getChatMsg()
         this.getImDetail()
       }
+      app.globalData.lockonShow = false
     }
     if (app.globalData.userInfo) {
       this.setData({'mineUserInfo': app.globalData.userInfo.userInfo})
@@ -100,7 +106,6 @@ Page({
         getData()
       }
     }
-    app.globalData.lockonShow = false
   },
   pageScrollTo () {
     setTimeout(() => {
@@ -302,7 +307,7 @@ Page({
 
   // 页面滚动时执行
   onPageScroll: function(e) {
-    if (e.scrollTop === 0) {
+    if (!app.globalData.lockonShow && e.scrollTop === 0) {
       if (!this.scrollTop && !this.data.noMoreData && this.data.hasRequire) {
         this.scrollTop === true
         this.getChatMsg(true).then(() => {
@@ -331,6 +336,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
+    app.globalData.lockonShow = true
     return app.wxShare({options})
   }
 })

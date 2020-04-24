@@ -154,3 +154,8 @@
     transform: rotate(360deg);
   }
 }
+.test {
+  position: fixed;
+  top: 60%;
+  left: 20%;
+}

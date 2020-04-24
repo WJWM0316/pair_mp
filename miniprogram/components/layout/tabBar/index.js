@@ -59,7 +59,7 @@ Component({
       this.getUnreadNum()
     }
 
-    socket.onMessage((res) => {
+    socket.onMessage('msgNum', (res) => {
       if ((res.msgType === "RC:VcMsg" || res.msgType === "RC:ImgMsg" || res.msgType === "RC:TxtMsg")) {
         if (this.data.unreadNum < 99) {
           let unreadNum = this.data.unreadNum
