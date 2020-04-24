@@ -1,16 +1,12 @@
 const app =  getApp();
 import {logout} from '../../utils/index.js'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     customerPhone: app.globalData.customerPhone,
     customerWechat: app.globalData.customerWechat,
     userInfo: 0
   },
-  onShow() {
+  onLoad() {
     let callback = () => {
       this.setData({userInfo: app.globalData.userInfo.userInfo})
     }
@@ -20,6 +16,16 @@ Page({
       app.getUserInfo = () => callback()
     }
   },
+  // onShow() {
+  //   let callback = () => {
+  //     this.setData({userInfo: app.globalData.userInfo.userInfo})
+  //   }
+  //   if (app.globalData.userInfo) {
+  //     callback()
+  //   } else {
+  //     app.getUserInfo = () => callback()
+  //   }
+  // },
   action (e) {
     const that = this
     let { PAGEPATH } = app.globalData

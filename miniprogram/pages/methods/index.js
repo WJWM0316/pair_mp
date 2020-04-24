@@ -15,11 +15,12 @@ Page({
   onLoad(options) {
     this.setData({ options })
     app.getSubscribeTime({types: 'updateCareer'}).then(res => this.setData({updateCareer: res.times.updateCareer}))
-  },
-  async onShow() {
-    let { options } = this.data
     options.companyId && this.hasCompanyEmail(options)
   },
+  // async onShow() {
+  //   let { options } = this.data
+  //   options.companyId && this.hasCompanyEmail(options)
+  // },
   subscribe() {
     app.subscribeMessage('updateCareer').then(() => {
       app.recordSubscribeTime({type: 'updateCareer', expire: 1000 * 60 * 60 * 24 * 1}).then(() => {
