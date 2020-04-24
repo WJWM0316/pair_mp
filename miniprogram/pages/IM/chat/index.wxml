@@ -53,7 +53,7 @@
   <view class="systemHint black" wx:if="{{chatDetail.blackInfo.limitSend}}">在对方回复前，仅可发送3条消息</view>
   <view class="systemHint black" wx:if="{{chatDetail.blackInfo.beBlacked || chatDetail.blackInfo.blacked}}">{{chatDetail.blackInfo.beBlacked ? '你已被对方拉黑，无法发送消息' : '对方已你被拉黑，无法发送消息'}}</view>
   <view id="bottomBlock" style="height:1rpx"></view>
-  <view class="test" bindtap="closeWs">测试</view> 
+  <!-- <view class="test" bindtap="closeWs">测试</view> -->
   <chat-footer 
     id="footer" 
     selectIndex="{{selectIndex}}" 

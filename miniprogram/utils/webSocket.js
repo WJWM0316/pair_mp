@@ -7,15 +7,10 @@ class Socket {
     this.keepAliveTimer = null // 检测心跳包的定时器
     this.reConnectTimer = null // 重连定时器
     this.hasCreated = false
-    this.cb         = {
-      chat: null,
-      msgList: null,
-      msgNum: null
-    } // 监听类型回调事件
+    this.cb         = null // 监听类型回调事件
   }
   create (url, token) {
     this.url = url
-    if (this.SocketTask) this.SocketTask.close()
     this.SocketTask = wx.connectSocket({
       url: url,
       header:{
@@ -29,7 +24,7 @@ class Socket {
           this.resetTimes = 0 // 重置重连机会
           if (this.SocketTask.readyState === 1) { // 为1表示连接处于open状态
             this.hasCreated = true
-            this.onMessage()
+            this.onMessage(this.cb)
             this.checkConnect() // 开启心跳包检测
           }
           // 一分钟没收到信息，代表服务器出问题了，关闭连接。如果收到消息了，重置该定时器。
@@ -74,10 +69,9 @@ class Socket {
     }
     this.send(data)
   }
-  onMessage (type, callback) {
-    if (type) this.cb[`${type}`] = callback
+  onMessage (callback) {
+    this.cb = callback
     wx.onSocketMessage((res) => {
-      console.log(res, 1111111111111)
       // 收到消息，重置接收消息定时器, 因为已开启心跳检查，保证间隔发送消息出去
       this.checkResolve()
       let data = res.data
@@ -87,13 +81,11 @@ class Socket {
       if (!data.cmd && data.imData) {
         if (typeof data.imData.content === 'string') data.imData.content = JSON.parse(data.imData.content)
       }
-      for (var cb of this.cb) {
-        if (cb) cb(data)
-      }
+      if (this.cb) this.cb(data)
     })
   }
   close () {
-    wx.closeSocket()
+    this.SocketTask.close()
   }
   // 用于心跳包检测websocket
   checkConnect () {

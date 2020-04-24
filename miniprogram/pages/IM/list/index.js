@@ -23,8 +23,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({'viewAreaHeight': app.globalData.viewAreaHeight})
-    socket.onMessage('msgList', (res) => {
-      console.log(res, 222222)
+  },
+  onMessage () {
+    socket.onMessage((res) => {
       if (!res.hasOwnProperty('cmd') && (res.from === 'target' || res.from === 'system')) {
         // 别人发给我 或者 撤回的消息 需要动态渲染出来
         let vkey        = res.imFromUser.vkey,
@@ -70,6 +71,9 @@ Page({
           messageList.unshift(newMsgData)
           this.setData({messageList})
         }
+      }
+      if ((res.msgType === "RC:VcMsg" || res.msgType === "RC:ImgMsg" || res.msgType === "RC:TxtMsg")) {
+        this.selectComponent('#tabBar').add()
       }
     })
   },
@@ -142,19 +146,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   async onShow () {
-    let data = await hasLogin()
-    let setData = {'messageList': [], 'hasLogin': data, 'hasLogincb': true}
-    if (app.globalData.userInfo) {
-      setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
-      this.setData(setData)
-    } else {
-      app.getUserInfo = () => {
+    if (!app.globalData.lockonShow) {
+      let data = await hasLogin()
+      let setData = {'messageList': [], 'hasLogin': data, 'hasLogincb': true}
+      if (app.globalData.userInfo) {
         setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
         this.setData(setData)
+      } else {
+        app.getUserInfo = () => {
+          setData = Object.assign(setData, {'userInfo': app.globalData.userInfo})
+          this.setData(setData)
+        }
       }
+      this.onMessage()
+      this.getList()
+      app.globalData.lockonShow = false
     }
-    
-    this.getList()
   },
   reset () {
     this.setData({messageList: [], hasRequire: false})
@@ -192,6 +199,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (options) {
+    app.globalData.lockonShow = true
     let { inviteCode } = app.globalData
     if(options.from === 'button') {
       return app.wxShare({

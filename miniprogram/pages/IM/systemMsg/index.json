@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "皮糖小助手"
+  "navigationBarTitleText": "皮糖小助手",
+  "navigationBarBackgroundColor": "#F1F4F4"
 }

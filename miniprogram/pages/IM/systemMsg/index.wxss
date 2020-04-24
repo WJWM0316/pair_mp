@@ -22,6 +22,7 @@
   box-shadow: none;
   margin: 0 auto;
   font-size: 32rpx;
+  line-height: 96rpx;
   color: #1F252B;
   font-weight: 300;
 }

@@ -13,7 +13,11 @@ Component({
     mask: {
       type: Boolean,
       value: true
-    }
+    },
+    page: {
+      type: String,
+      value: ''
+    },
   },
 
   /**
@@ -58,16 +62,18 @@ Component({
       this.hasAttached = true
       this.getUnreadNum()
     }
-
-    socket.onMessage('msgNum', (res) => {
-      if ((res.msgType === "RC:VcMsg" || res.msgType === "RC:ImgMsg" || res.msgType === "RC:TxtMsg")) {
-        if (this.data.unreadNum < 99) {
-          let unreadNum = this.data.unreadNum
-          unreadNum++
-          this.setData({unreadNum})
-        }
-      }
-    })
+    // if (!this.data.page) {
+    //   console.log(111111111)
+    //   socket.onMessage((res) => {
+    //     if ((res.msgType === "RC:VcMsg" || res.msgType === "RC:ImgMsg" || res.msgType === "RC:TxtMsg")) {
+    //       if (this.data.unreadNum < 99) {
+    //         let unreadNum = this.data.unreadNum
+    //         unreadNum++
+    //         this.setData({unreadNum})
+    //       }
+    //     }
+    //   })
+    // }
   },
   pageLifetimes: {
     show: function() {
@@ -80,6 +86,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    add () {
+      if (this.data.unreadNum < 99) {
+        let unreadNum = this.data.unreadNum
+        unreadNum++
+        this.setData({unreadNum})
+      }
+    },
     async getUnreadNum () {
       let {data} = await unreadNumApi()
       this.setData({unreadNum: data.count})

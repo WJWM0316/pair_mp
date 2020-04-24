@@ -54,7 +54,7 @@
     </block>
   </view>
 </view>
-<tabBar tabBgColor="#fff"  wx:if="{{hasLogin && hasLogincb}}"></tabBar>
+<tabBar tabBgColor="#fff" id="tabBar" wx:if="{{hasLogin && hasLogincb}}" page="list"></tabBar>
 <popup id="popup"></popup>
 <wxs src="../../../utils/filters.wxs" module="filters" />
 <invitationBox id="invitationBox"></invitationBox>
