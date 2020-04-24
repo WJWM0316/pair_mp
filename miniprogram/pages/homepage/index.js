@@ -46,11 +46,8 @@ Page({
   legalize() {
     let { PAGEPATH } = app.globalData
     let { userInfo } = this.data
-    wx.setStorageSync('searchCompany', {
-      company_name: userInfo.companyName
-    })
     wx.navigateTo({
-      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
+      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId}`
     })
   },
   getUser() {
@@ -106,12 +103,16 @@ Page({
           userCompleteInfo
         }, () => resolve())
       }
+      if(app.globalData.lockonShow) return
+      app.globalData.lockonShow = true
       getUserInfoApi({vkey: options.vkey}).then(res => {
         this.setData({httpCode: res.code}, () => callback(res.data))        
       })
     })
   },
-  
+  onUnload() {
+    app.globalData.lockonShow = false
+  },
   bindchange(e) {
     let { current } = e.detail
     this.setData({currentIndex: current})
@@ -237,6 +238,7 @@ Page({
     })
   },
   onPullDownRefresh() {
+    app.globalData.lockonShow = false
     this.getUser().then(() => wx.stopPullDownRefresh())
   },
   previewImage(e) {
