@@ -6,7 +6,7 @@
   <view class="footer">登录代表你已同意<text class="bold" bindtap = "userAgreement">《用户协议与隐私政策》</text></view>
   <view class="box">
     <i class="icon iconfont icon_shouji"></i>
-    <input class="input phone" maxlength="11" placeholder="请输入手机号码" bindinput = "bindinput" data-type="phone" placeholder-class="holderStyle"></input>
+    <input class="input phone" maxlength="11" placeholder="请输入手机号码" type="number" bindinput = "bindinput" data-type="phone" placeholder-class="holderStyle"></input>
   </view>
   <view class="box codeBox" wx:if="{{imgPath}}">
     <i class="icon iconfont icon_suo"></i>
@@ -15,7 +15,7 @@
   </view>
   <view class="box codeBox">
     <i class="icon iconfont icon_duanxin"></i>
-    <input class="input code" maxlength="4" placeholder="请输入验证码" bindinput = "bindinput" data-type="code" placeholder-class="holderStyle"></input>
+    <input class="input code" maxlength="4" placeholder="请输入验证码" type="number" bindinput = "bindinput" data-type="code" placeholder-class="holderStyle"></input>
     <view class="send" bindtap = "sendMsg" wx:if="{{sendTimes === 60}}">发送验证码</view>
     <view class="send" wx:else>{{sendTimes}}</view>
   </view>

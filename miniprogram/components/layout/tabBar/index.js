@@ -95,7 +95,7 @@ Component({
       }
     },
     async getUnreadNum () {
-      let {data} = await unreadNumApi()
+      let {data} = await unreadNumApi({hideLoading: true})
       this.setData({unreadNum: data.count})
     },
     jump (e) {

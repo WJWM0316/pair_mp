@@ -53,7 +53,7 @@
 }
 .guideLogin .footer .btnBox .btn1 .icon1,
 .guideLogin .footer .btnBox .btn2 .icon1 {
-  font-size: 36rpx;
+  font-size: 32rpx;
   margin-right: 6rpx;
 }
 .guideLogin .footer .btnBox .btn1.btn1,

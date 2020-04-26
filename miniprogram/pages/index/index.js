@@ -41,6 +41,7 @@ Page({
     if(options.inviteCode) {
       wx.setStorageSync('inviteCode', options.inviteCode)
     }
+    
     if (!this.data.richText) this.getAvatarList()
   },
   async onShow () {
@@ -93,10 +94,15 @@ Page({
     })
   },
   getAvatarList () {
+    let richText = localstorage.get('richText').value
+    if (richText) {
+      this.setData({richText})
+      return
+    }
     let data = {}
     if (!this.data.hasLogin) data = {gender: localstorage.get('sex')}
     pickIndexAvaApi(data).then(res => {
-      let richText = `<div class="richWrap">`
+      richText = `<div class="richWrap">`
       res.data.avatarUrls.forEach((item, index) => {
         richText = `${richText}<div class="richDom richDom${index}"><img src='${item}' class='avator' /></div>`
       })
@@ -107,6 +113,7 @@ Page({
       <div class="center circle4"></div>
       </div>`
       this.setData({richText})
+      localstorage.set('richText', {type: 'resetTheDay', value: this.data.richText})
     })
   },
   getPickChance () {

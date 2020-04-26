@@ -312,18 +312,22 @@ Page({
   onPullDownRefresh: function (e) {
     
   },
-
+  // 页面滚动时执行
+  onPageScroll: function(e) {
+    if (!app.globalData.lockonShow && e.scrollTop === 0) {
+      if (!this.scrollTop && !this.data.noMoreData && this.data.hasRequire) {
+        this.scrollTop === true
+        this.getChatMsg(true).then(() => {
+          this.scrollTop === false
+          this.pageScrollTo()
+        })
+      }
+    }
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (!this.scrollTop && !this.data.noMoreData && this.data.hasRequire) {
-      this.scrollTop === true
-      this.getChatMsg(true).then(() => {
-        this.scrollTop === false
-        this.pageScrollTo()
-      })
-    }
   },
   /**
    * 用户点击右上角分享

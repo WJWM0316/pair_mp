@@ -41,6 +41,7 @@
 }
 .popup .content .img {
   width: 447rpx;
+  height: 242rpx;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 10rpx;
   margin: 29rpx auto 50rpx;

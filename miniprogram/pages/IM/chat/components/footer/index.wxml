@@ -34,9 +34,9 @@
     </view>
   </view>
   <view class="console-area" hidden="{{parse.hidden('console-area', selectIndex)}}">
-    <view class="block" hidden="{{parse.hidden('record', selectIndex)}}"><record bindgetRecord="getRecord"></record></view>
-    <view class="block" hidden="{{parse.hidden('emoji', selectIndex)}}"><emoji bindselectResult="selectResult"></emoji></view>
-    <view class="block" hidden="{{parse.hidden('debutWord', selectIndex)}}"><debutWord bindselectResult="selectResult" vkey="{{vkey}}"></debutWord></view>
+    <view class="block" wx:if="{{selectIndex === 0}}"><record bindgetRecord="getRecord"></record></view>
+    <view class="block" wx:if="{{selectIndex === 3}}"><emoji bindselectResult="selectResult"></emoji></view>
+    <view class="block" wx:if="{{selectIndex === 4}}"><debutWord bindselectResult="selectResult" vkey="{{vkey}}"></debutWord></view>
   </view>
 </view>
 <view class="bottom" style="{{parse.setStyle('chatArea', textHeight, selectIndex)}}"></view>

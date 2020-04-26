@@ -77,13 +77,17 @@ Page({
       }
     })
   },
-  getList (hideLoading = false) {
-    let relation_id = [],
-        messageList = this.data.messageList
+  getList (type) {
+    let messageList = this.data.messageList,
+        relation_id = []
     for (let {id} of messageList) {
       relation_id.push(id) 
     }
-    getRelationlistApi({count: 10, hideLoading, relation_id: relation_id.join(),  with_sys: 1}).then(res => {
+    if (type === 'onShow') {
+      relation_id = []
+      messageList = []
+    }
+    getRelationlistApi({count: 10, hideLoading: true, relation_id: relation_id.join(), with_sys: 1}).then(res => {
       messageList = messageList.concat(res.data)
       if (!res.data.length) this.noMore = true
       this.setData({messageList, hasRequire: true})
@@ -155,7 +159,7 @@ Page({
         }
       }
       this.onMessage()
-      this.getList()
+      this.getList('onShow')
     }
   },
   /**
@@ -183,7 +187,7 @@ Page({
    */
   onReachBottom: function () {
     if (this.noMore) return
-    // this.getList(true)
+    this.getList()
   },
   /**
    * 用户点击右上角分享
