@@ -4,6 +4,9 @@ import {logout} from '../../utils/index.js'
 
 const app = getApp()
 Page({
+  onLoad() {
+    wx.hideHomeButton()
+  },
   data: {
     CDNPATH: app.globalData.CDNPATH,
     code: ''
