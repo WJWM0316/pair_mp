@@ -118,13 +118,6 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/poster/index",
-					"pathName": "pages/poster/index",
-					"query": "vkey=ighvcabv",
-					"scene": null
-				},
-				{
 					"id": 8,
 					"name": "小助手",
 					"pathName": "pages/IM/systemMsg/index",
@@ -132,52 +125,17 @@
 					"scene": null
 				},
 				{
-					"id": 9,
-					"name": "pages/homepage/index",
-					"pathName": "pages/homepage/index",
-					"query": "vkey=r6dkjecj",
-					"scene": null
-				},
-				{
-					"id": 10,
-					"name": "pages/createUser/index",
-					"pathName": "pages/createUser/index",
-					"query": "step=3",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "pages/userInfo/index",
 					"pathName": "pages/userInfo/index",
-					"query": "step=3",
-					"scene": null
-				},
-				{
-					"id": 12,
-					"name": "pages/searchCompany/index",
-					"pathName": "pages/searchCompany/index",
-					"query": "step=3",
+					"query": "vkey=co4gpxxo",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/invitation/index",
-					"pathName": "pages/invitation/index",
-					"query": "step=3",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/perfectUser/index",
-					"pathName": "pages/perfectUser/index",
-					"query": "step=1",
-					"scene": null
-				},
-				{
-					"id": 15,
-					"name": "pages/methods/index",
-					"pathName": "pages/methods/index",
-					"query": "type=createUser&companyId=1348",
+					"name": "pages/test/index",
+					"pathName": "pages/test/index",
+					"query": "vkey=co4gpxxo",
 					"scene": null
 				}
 			]

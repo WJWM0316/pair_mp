@@ -94,8 +94,13 @@ Component({
       wx.navigateTo({url: `/pages/report/index?vkey=${this.data.othersUserInfo.vkey}`})
     },
     jump (e) {
-      let vkey = e.currentTarget.dataset.vkey
-      wx.navigateTo({url: `/pages/homepage/index?vkey=${vkey}`})
+      let { dataset } = e.currentTarget
+      wx.navigateTo({
+        url: `/pages/homepage/index?vkey=${dataset.vkey}`,
+        success(res) {
+          res.eventChannel.emit('userInfo', dataset.info)
+        }
+      })
     }
   }
 })

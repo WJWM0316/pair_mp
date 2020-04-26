@@ -103,6 +103,18 @@ Page({
           userCompleteInfo
         }, () => resolve())
       }
+      let eventChannel = this.getOpenerEventChannel();
+      eventChannel.on('userInfo', res => {
+        let isOwner = false
+        if(hasLogin) {
+          if(options.vkey === app.globalData.userInfo.userInfo.vkey) {
+            isOwner = true
+          } else {
+            isOwner = false
+          }
+        }
+        this.setData({ options, userInfo: res, isOwner })
+      });
       if(app.globalData.lockonShow) return
       app.globalData.lockonShow = true
       getUserInfoApi({vkey: options.vkey}).then(res => {

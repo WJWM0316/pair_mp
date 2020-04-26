@@ -52,7 +52,10 @@ Component({
         case 'homepage':
           this.setData({show: !this.data.show}, () => {
             wx.navigateTo({
-              url: `${PAGEPATH}/homepage/index?vkey=${userInfo.vkey}`
+              url: `${PAGEPATH}/homepage/index?vkey=${userInfo.vkey}`,
+              success(res) {
+                res.eventChannel.emit('userInfo', userInfo)
+              }
             })
           })
           break
