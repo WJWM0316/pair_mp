@@ -167,11 +167,11 @@ Page({
       return
     }
     if(!userInfo.inviteCode) {
-      wx.redirectTo({url: `/pages/invitation/index`})
+      wx.reLaunch({url: `/pages/invitation/index`})
       return
     }
     if(userInfo.step !== 9) {
-      wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
+      wx.reLaunch({url: `/pages/createUser/index?step=${userInfo.step}`})
       return
     }
     if(!this.data.status.canPick) { // 用户信息未完善或者未认证不给pick

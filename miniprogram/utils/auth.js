@@ -84,12 +84,12 @@ const loginCallback = (res, options) => {
     Socket.login(res.data.userInfo.token)
     
     if(!res.data.userInfo.inviteCode) {
-      wx.redirectTo({
+      wx.reLaunch({
         url: `/pages/invitation/index`
       })
     } else {
       if (res.data.userInfo.hasOwnProperty('step') && res.data.userInfo.step !== 9) {
-        wx.redirectTo({
+        wx.reLaunch({
           url: `/pages/createUser/index?step=${res.data.userInfo.step}`
         })
       } else {

@@ -31,7 +31,7 @@ Page({
       getUserInfo().then(() => {
         let { userInfo } = app.globalData.userInfo
         if (userInfo.step !== 9) {
-          wx.redirectTo({
+          wx.reLaunch({
             url: `/pages/createUser/index?step=${userInfo.step}`
           })
         } else {
