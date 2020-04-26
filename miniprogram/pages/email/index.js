@@ -29,6 +29,7 @@ Page({
     if(searchCompany) {
       this.setData({formData}, () => wx.removeStorageSync('searchCompany'))
     }
+    console.log(this.data)
   },
   bindInput(e) {
     let { key } = e.currentTarget.dataset
