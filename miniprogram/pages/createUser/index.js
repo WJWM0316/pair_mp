@@ -7,6 +7,9 @@ Page({
       this.setData({step: options.step})
     }
   },
+  onShow() {
+    wx.hideHomeButton()
+  },
   next() {
     let { step } = this.data
     step++

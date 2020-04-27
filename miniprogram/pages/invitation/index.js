@@ -4,6 +4,9 @@ import {logout} from '../../utils/index.js'
 
 const app = getApp()
 Page({
+  onLoad() {
+    wx.hideHomeButton()
+  },
   data: {
     CDNPATH: app.globalData.CDNPATH,
     code: ''
@@ -28,7 +31,7 @@ Page({
       getUserInfo().then(() => {
         let { userInfo } = app.globalData.userInfo
         if (userInfo.step !== 9) {
-          wx.redirectTo({
+          wx.reLaunch({
             url: `/pages/createUser/index?step=${userInfo.step}`
           })
         } else {

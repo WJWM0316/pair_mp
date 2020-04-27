@@ -3,6 +3,7 @@ import {
   recordSubscribeTimeApi,
   getSubscribeTimeApi
 } from '../api/subscribe.js'
+import router from './router.js'
 
 const QQMapWX = require('./qqmap-wx-jssdk.min.js');
 const qqmapsdk = new QQMapWX({
@@ -279,7 +280,8 @@ const wxApi = {
     return new Promise((resolve, reject) => {
       getSubscribeTimeApi(params).then(({ data }) => resolve(data))
     })
-  }
+  },
+  $router: router
 }
 
 export default wxApi

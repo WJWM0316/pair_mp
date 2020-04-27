@@ -104,6 +104,7 @@ Page({
   fillEmail() {
     let { PAGEPATH } = app.globalData
     let { formData } = this.data
+    formData.email = formData.email.replace(formData.emailSuffix, '')
     wx.setStorageSync('searchCompany', formData)
     wx.navigateTo({
       url: `${PAGEPATH}/email/index?emailSuffix=${formData.emailSuffix}`

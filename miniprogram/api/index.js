@@ -140,7 +140,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                     switch(msg.code) {
                       case 2301:
                         reject(msg)
-                        wx.redirectTo({url: `/pages/createUser/index?step=${msg.data.userInfo.step}&redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
+                        wx.reLaunch({url: `/pages/createUser/index?step=${msg.data.userInfo.step}&redirectTo=${encodeURIComponent(getCurrentPagePath())}`})
                         break
                       case 2102:                        
                         app.wxConfirm({
@@ -164,7 +164,7 @@ export const request = ({method = 'post', url, host, data = {}, instance, loadin
                         }})
                         break
                       case 2302:
-                        wx.redirectTo({url: `/pages/invitation/index`})
+                        wx.reLaunch({url: `/pages/invitation/index`})
                         break
                       case 401:
                         reject(msg)

@@ -6,7 +6,6 @@ import socket from './webSocket.js'
 import wxApi from './wxApi.js'
 import localstorage from './localstorage.js'
 
-
 module.exports = {
   emoji,
   ...fieldRegular,

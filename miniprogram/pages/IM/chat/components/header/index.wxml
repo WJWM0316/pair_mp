@@ -9,8 +9,8 @@
           <view class="bgIcon {{mineUserInfo.gender === 1 ? 'male' : 'female'}}"></view>
         </view>
         <view class="avatarCon">
-          <i-image src="{{othersUserInfo.avatarInfo.smallUrl}}" hasLodingImg mode="aspectFill"  my-class="left avatar {{othersUserInfo.gender ? othersUserInfo.gender === 1 ? 'male' : 'female' : ''}}"  catchtap = "jump" data-vkey="{{othersUserInfo.vkey}}"></i-image>
-          <i-image src="{{mineUserInfo.avatarInfo.smallUrl}}" hasLodingImg mode="aspectFill" my-class="right avatar {{mineUserInfo.gender ? mineUserInfo.gender === 1 ? 'male' : 'female' : ''}}"   catchtap = "jump" data-vkey="{{mineUserInfo.vkey}}"></i-image>
+          <i-image src="{{othersUserInfo.avatarInfo.smallUrl}}" hasLodingImg mode="aspectFill"  my-class="left avatar {{othersUserInfo.gender ? othersUserInfo.gender === 1 ? 'male' : 'female' : ''}}"  catchtap = "jump" data-vkey="{{othersUserInfo.vkey}}" data-info="{{othersUserInfo}}"></i-image>
+          <i-image src="{{mineUserInfo.avatarInfo.smallUrl}}" hasLodingImg mode="aspectFill" my-class="right avatar {{mineUserInfo.gender ? mineUserInfo.gender === 1 ? 'male' : 'female' : ''}}"   catchtap = "jump" data-vkey="{{mineUserInfo.vkey}}" data-info="{{mineUserInfo}}"></i-image>
           <block wx:if="{{showNoviceGuide}}">
             <i-image my-class="guideImg" src="{{cdnPath}}img_guide_im_inf.png" bindtap="closeNoviceGuide"></i-image>
             <view class="noviceGuide" catchtouchmove bindtap="closeNoviceGuide"></view>

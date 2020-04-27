@@ -61,6 +61,10 @@ Page({
           } else {
             isOwner = false
           }
+          // 已登录情况下，是自己，但是相册审核没通过，不能转发
+          if(!data.userInfo.userAlbumList.length) {
+            wx.hideShareMenu()
+          }
         }
         let {
           userInfo,
@@ -75,7 +79,12 @@ Page({
           }
         } = data
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
-        let pIds = !isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
+        let pIds = []
+        if(hasLogin) {
+          pIds = !isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
+        } else {
+          pIds = []
+        }
         userLabelList.map((v,i) => {
           setIconType(v)
           if (!isOwner) {
@@ -103,6 +112,21 @@ Page({
           userCompleteInfo
         }, () => resolve())
       }
+      try {
+        let eventChannel = this.getOpenerEventChannel();
+        eventChannel.on('userInfo', res => {
+          let isOwner = false
+          if(hasLogin) {
+            if(options.vkey === app.globalData.userInfo.userInfo.vkey) {
+              isOwner = true
+            } else {
+              isOwner = false
+            }
+          }
+          this.setData({ options, userInfo: res, isOwner })
+        });
+      } catch(err) {}
+
       if(app.globalData.lockonShow) return
       app.globalData.lockonShow = true
       getUserInfoApi({vkey: options.vkey}).then(res => {
@@ -162,11 +186,11 @@ Page({
     let { options, userCompleteInfo } = this.data
     let otherInfo = this.data.userInfo
     if(!userInfo.inviteCode) {
-      wx.redirectTo({url: `/pages/invitation/index`})
+      wx.reLaunch({url: `/pages/invitation/index`})
       return
     }
     if(userInfo.step !== 9) {
-      wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
+      wx.reLaunch({url: `/pages/createUser/index?step=${userInfo.step}`})
       return
     }
     if(!userCompleteInfo.canPick) {
