@@ -94,9 +94,9 @@ Page({
     })
   },
   getAvatarList () {
-    let richText = localstorage.get('richText').value
+    let richText = localstorage.get('richText')
     if (richText) {
-      this.setData({richText})
+      this.setData({richText: richText.value})
       return
     }
     let data = {}
