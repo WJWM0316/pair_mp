@@ -14,7 +14,6 @@ import {
 const app =  getApp();
 Page({
   data: {
-    pickIntention: {},
     userInfo: {},
     hasLogin: true,
     isOwner: true,
@@ -41,7 +40,7 @@ Page({
   async onShow() {
     let data = await hasLogin()
     this.setData({'hasLogin': data})
-    await this.getUser()
+    await this.getUser(true)
   },
   legalize() {
     let { PAGEPATH } = app.globalData
@@ -50,7 +49,7 @@ Page({
       url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId}`
     })
   },
-  getUser() {
+  getUser(hideLoading = true) {
     return new Promise((resolve, reject) => {
       let { options, hasLogin } = this.data
       let callback = (data) => {
@@ -68,7 +67,6 @@ Page({
         }
         let {
           userInfo,
-          pickIntention = {},
           albumVerifyInfo = {
             status: 1,
             statusDesc: '审核通过'
@@ -102,7 +100,6 @@ Page({
         wx.setNavigationBarTitle({title: userInfo.nickname})
         this.setData({
           userInfo,
-          pickIntention,
           userLabelList,
           userAnswerList,
           isAllQuestion,
@@ -129,7 +126,7 @@ Page({
 
       if(app.globalData.lockonShow) return
       app.globalData.lockonShow = true
-      getUserInfoApi({vkey: options.vkey}).then(res => {
+      getUserInfoApi({vkey: options.vkey, hideLoading }).then(res => {
         this.setData({httpCode: res.code}, () => callback(res.data))        
       })
     })
@@ -195,7 +192,7 @@ Page({
     }
     if(!userCompleteInfo.canPick) {
       app.globalData.lockonShow = false
-      this.getUser().then(() => {
+      this.getUser(true).then(() => {
         if(!userCompleteInfo.canPick) {
           this.setData({code: 3}, () => this.selectComponent('#dialog').show())
         }
@@ -264,7 +261,7 @@ Page({
   },
   onPullDownRefresh() {
     app.globalData.lockonShow = false
-    this.getUser().then(() => wx.stopPullDownRefresh())
+    this.getUser(false).then(() => wx.stopPullDownRefresh())
   },
   previewImage(e) {
     let {
