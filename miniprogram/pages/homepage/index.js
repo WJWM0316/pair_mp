@@ -1,7 +1,7 @@
 import {
   getUserInfoApi
 } from '../../api/user.js'
-import {localstorage, hasLogin} from "../../utils/index.js"
+import {localstorage, hasLogin, getSceneParams} from "../../utils/index.js"
 import { getChargeInfoApi, chatApi } from "../../api/square.js"
 import {
   removeBackApi
@@ -36,6 +36,7 @@ Page({
     navBarHeight: app.globalData.navBarHeight
   },
   onLoad(options) {
+    if (options.scene) options = getSceneParams(options.scene)
     this.setData({ options })
   },
   async onShow() {
@@ -46,8 +47,11 @@ Page({
   legalize() {
     let { PAGEPATH } = app.globalData
     let { userInfo } = this.data
+    wx.setStorageSync('searchCompany', {
+      company_name: userInfo.companyName
+    })
     wx.navigateTo({
-      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId}`
+      url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
     })
   },
   getUser() {
@@ -60,10 +64,6 @@ Page({
             isOwner = true
           } else {
             isOwner = false
-          }
-          // 已登录情况下，是自己，但是相册审核没通过，不能转发
-          if(!data.userInfo.userAlbumList.length) {
-            wx.hideShareMenu()
           }
         }
         let {
@@ -79,24 +79,19 @@ Page({
           }
         } = data
         let { userLabelList, userAnswerList, isAllQuestion } = userInfo
-        let pIds = []
-        if(hasLogin) {
-          pIds = !isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
-        } else {
-          pIds = []
-        }
+        let pIds = isOwner ? app.globalData.userInfo.userInfo.userLabelList.map(v => v.labelId): [];
         userLabelList.map((v,i) => {
-          setIconType(v)
-          if (!isOwner) {
+          if (isOwner) {
             if(pIds.includes(v.labelId)) {
               let cIds = app.globalData.userInfo.userInfo.userLabelList.find(field => field.labelId === v.labelId).children.map(field => field.labelId)
               v.children.map(c => {
                 if(cIds.includes(c.labelId)) {
-                  c = Object.assign(c, {active: true})
+                  c.active = true
                 }
               })
             }
           }
+          setIconType(v)
         })
         userInfo.birthDesc = userInfo.birth.slice(2, 4)
         wx.setNavigationBarTitle({title: userInfo.nickname})
@@ -112,31 +107,12 @@ Page({
           userCompleteInfo
         }, () => resolve())
       }
-      try {
-        let eventChannel = this.getOpenerEventChannel();
-        eventChannel.on('userInfo', res => {
-          let isOwner = false
-          if(hasLogin) {
-            if(options.vkey === app.globalData.userInfo.userInfo.vkey) {
-              isOwner = true
-            } else {
-              isOwner = false
-            }
-          }
-          this.setData({ options, userInfo: res, isOwner })
-        });
-      } catch(err) {}
-
-      if(app.globalData.lockonShow) return
-      app.globalData.lockonShow = true
       getUserInfoApi({vkey: options.vkey}).then(res => {
         this.setData({httpCode: res.code}, () => callback(res.data))        
       })
     })
   },
-  onUnload() {
-    app.globalData.lockonShow = false
-  },
+  
   bindchange(e) {
     let { current } = e.detail
     this.setData({currentIndex: current})
@@ -185,16 +161,19 @@ Page({
     let { userInfo } = app.globalData.userInfo
     let { options, userCompleteInfo } = this.data
     let otherInfo = this.data.userInfo
+    // if (!this.data.hasLogin) {
+    //   this.selectComponent('#guideLogin').toggle()
+    //   return
+    // }
     if(!userInfo.inviteCode) {
-      wx.reLaunch({url: `/pages/invitation/index`})
+      wx.redirectTo({url: `/pages/invitation/index`})
       return
     }
     if(userInfo.step !== 9) {
-      wx.reLaunch({url: `/pages/createUser/index?step=${userInfo.step}`})
+      wx.redirectTo({url: `/pages/createUser/index?step=${userInfo.step}`})
       return
     }
     if(!userCompleteInfo.canPick) {
-      app.globalData.lockonShow = false
       this.getUser().then(() => {
         if(!userCompleteInfo.canPick) {
           this.setData({code: 3}, () => this.selectComponent('#dialog').show())
@@ -263,7 +242,6 @@ Page({
     })
   },
   onPullDownRefresh() {
-    app.globalData.lockonShow = false
     this.getUser().then(() => wx.stopPullDownRefresh())
   },
   previewImage(e) {

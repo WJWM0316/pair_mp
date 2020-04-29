@@ -4,7 +4,8 @@
   "usingComponents": {
     "swipe-out": "../../../components/layout/swipeout",
     "contact-btn": "../../../components/business/contactBtn",
-    "popup": "../../../components/business/popup"
+    "popup": "../../../components/business/popup",
+    "bottomStatus": "../../../components/layout/bottomStatus"
   },
   "navigationStyle": "custom",
   "navigationBarBackgroundColor": "#F1F4F4",

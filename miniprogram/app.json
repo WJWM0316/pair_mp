@@ -44,7 +44,8 @@
     "tabBar": "./components/layout/tabBar/index",
     "i-button": "./components/layout/button/index",
     "i-image": "./components/layout/image/index",
-    "invitationBox": "./components/business/invitationBox/index"
+    "bottomStatus": "./components/layout/bottomStatus/index",
+    "refreshStatus": "./components/layout/refreshStatus/index"
   },
   "networkTimeout": {
     "request": 15000

@@ -31,7 +31,8 @@ Page({
 
   },
   getSysMsg (hideLoading = false) {
-    getSysMsgApi({count: 10, hideLoading}).then(res => {
+    let timestamp = this.data.messageList.length && this.data.messageList[this.data.messageList.length - 1].imData.timestamp
+    getSysMsgApi({count: 10, hideLoading, timestamp}).then(res => {
       let messageList = this.data.messageList
       messageList = res.data.concat(messageList)
       this.setData({messageList}, () => {

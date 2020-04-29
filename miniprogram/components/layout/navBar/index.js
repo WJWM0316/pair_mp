@@ -92,6 +92,8 @@ Component({
       this.openPicker()
     },
     hasSexChange () {
+      wx.removeStorageSync('squareData') // 清除广场缓存数据
+      wx.removeStorageSync('richText') // 清除首页缓存数据
       this.triggerEvent('hasSexChange')
     },
     reback() {
