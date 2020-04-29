@@ -14,7 +14,6 @@ import {
 const app =  getApp();
 Page({
   data: {
-    pickIntention: {},
     userInfo: {},
     hasLogin: true,
     isOwner: true,
@@ -42,7 +41,7 @@ Page({
   async onShow() {
     let data = await hasLogin()
     this.setData({'hasLogin': data})
-    await this.getUser()
+    await this.getUser(true)
   },
   legalize() {
     let { PAGEPATH } = app.globalData
@@ -54,7 +53,7 @@ Page({
       url: `${PAGEPATH}/methods/index?companyId=${userInfo.companyId ? userInfo.companyId : ''}`
     })
   },
-  getUser() {
+  getUser(hideLoading = true) {
     return new Promise((resolve, reject) => {
       let { options, hasLogin } = this.data
       let callback = (data) => {
@@ -68,7 +67,6 @@ Page({
         }
         let {
           userInfo,
-          pickIntention = {},
           albumVerifyInfo = {
             status: 1,
             statusDesc: '审核通过'
@@ -97,7 +95,6 @@ Page({
         wx.setNavigationBarTitle({title: userInfo.nickname})
         this.setData({
           userInfo,
-          pickIntention,
           userLabelList,
           userAnswerList,
           isAllQuestion,
@@ -107,7 +104,23 @@ Page({
           userCompleteInfo
         }, () => resolve())
       }
-      getUserInfoApi({vkey: options.vkey}).then(res => {
+      try {
+        let eventChannel = this.getOpenerEventChannel();
+        eventChannel.on('userInfo', res => {
+          let isOwner = false
+          if(hasLogin) {
+            if(options.vkey === app.globalData.userInfo.userInfo.vkey) {
+              isOwner = true
+            } else {
+              isOwner = false
+            }
+          }
+          this.setData({ options, userInfo: res, isOwner })
+        });
+      } catch(err) {}
+      if(app.globalData.lockonShow) return
+      app.globalData.lockonShow = true
+      getUserInfoApi({vkey: options.vkey, hideLoading }).then(res => {
         this.setData({httpCode: res.code}, () => callback(res.data))        
       })
     })
@@ -174,7 +187,8 @@ Page({
       return
     }
     if(!userCompleteInfo.canPick) {
-      this.getUser().then(() => {
+      app.globalData.lockonShow = false
+      this.getUser(true).then(() => {
         if(!userCompleteInfo.canPick) {
           this.setData({code: 3}, () => this.selectComponent('#dialog').show())
         }
@@ -242,7 +256,8 @@ Page({
     })
   },
   onPullDownRefresh() {
-    this.getUser().then(() => wx.stopPullDownRefresh())
+    app.globalData.lockonShow = false
+    this.getUser(false).then(() => wx.stopPullDownRefresh())
   },
   previewImage(e) {
     let {
