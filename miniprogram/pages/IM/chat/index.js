@@ -34,7 +34,7 @@ Page({
       // 监听融云返回的消息
       if (!res.hasOwnProperty('cmd')) {
         // 别人发给我 或者 撤回的消息 需要动态渲染出来
-        if (res.from === 'target' || res.msgType === 'RC:RcCmd') {
+        if ((res.imFromUser.vkey === this.options.vkey && res.from === 'target') || res.msgType === 'RC:RcCmd') {
           let index = this.data.messageList.length
           this.setData({[`messageList[${index}]`]: res}, () => {
             wx.nextTick(()=>{
