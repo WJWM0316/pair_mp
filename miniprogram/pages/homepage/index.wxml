@@ -89,7 +89,7 @@
       <view class="inner">
         <view class="career-objective">{{ userInfo.industryArr[0].name }}·{{ userInfo.industryArr[1].name }}</view>
         <block wx:if="{{userInfo.industryArr[0].companyRequired}}">
-          <view class="work-experience">
+          <view class="work-experience" wx:if="{{ userInfo.companyName }}">
             {{ userInfo.companyName }} | {{ userInfo.positionName }} 
             <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ userInfo.isCareerIdentity }}" mode="widthFix"></i-image> 
           </view>

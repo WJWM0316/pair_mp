@@ -38,6 +38,9 @@ Page({
     if (options.scene) options = getSceneParams(options.scene)
     this.setData({ options })
   },
+  onUnload () {
+    app.globalData.lockonShow = false
+  },
   async onShow() {
     let data = await hasLogin()
     this.setData({'hasLogin': data})
@@ -118,11 +121,12 @@ Page({
           this.setData({ options, userInfo: res, isOwner })
         });
       } catch(err) {}
-      if(app.globalData.lockonShow) return
-      app.globalData.lockonShow = true
-      getUserInfoApi({vkey: options.vkey, hideLoading }).then(res => {
-        this.setData({httpCode: res.code}, () => callback(res.data))        
-      })
+      if(!app.globalData.lockonShow) {
+        getUserInfoApi({vkey: options.vkey, hideLoading }).then(res => {
+          this.setData({httpCode: res.code}, () => callback(res.data))        
+        })
+        app.globalData.lockonShow = false
+      }      
     })
   },
   
@@ -203,7 +207,7 @@ Page({
       return
     }
     if(!userCompleteInfo.canPick) {
-      app.globalData.lockonShow = false
+      // app.globalData.lockonShow = false
       this.getUser(true).then(() => {
         if(!userCompleteInfo.canPick) {
           this.setData({code: 3}, () => this.selectComponent('#dialog').show())
@@ -272,10 +276,11 @@ Page({
     })
   },
   onPullDownRefresh() {
-    app.globalData.lockonShow = false
+    // app.globalData.lockonShow = false
     this.getUser(false).then(() => wx.stopPullDownRefresh())
   },
   previewImage(e) {
+    app.globalData.lockonShow = true
     let {
       userInfo,
       isOwner,
@@ -297,6 +302,7 @@ Page({
     wx.previewImage({current, urls: albumList})
   },
   onShareAppMessage: function (options) {
+    app.globalData.lockonShow = true
     let wxShare = {},
         userInfo= app.globalData.userInfo.userInfo
     let title   = `${userInfo.birth.slice(2, 4)}年身高${userInfo.height}`
