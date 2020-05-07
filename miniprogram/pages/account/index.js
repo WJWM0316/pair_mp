@@ -95,14 +95,28 @@ Page({
     }).catch(() => {})
   },
   invite() {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'invite',
+      button_name: '立即邀请'
+    })
     this.selectComponent('#invitationBox').show()
   },
   sign() {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'sign',
+      button_name: '立即签到'
+    })
     userSignApi().then(({data}) => {
       this.setData({'awardPopData': data.popups}, () => {
         this.selectComponent('#awardPopUp').show()
       })
       this.getCurrentWeekSignIn()
+    })
+  },
+  wxReportAnalytics () {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'TO_top-up',
+      button_name: '去充值'
     })
   },
   /**
@@ -113,6 +127,7 @@ Page({
     if(options.from === 'button') {
       return app.wxShare({
         options,
+        title: '我发现了这个优质靠谱的单身配对交友平台，想脱单就来看看吧~',
         path: `/pages/index/index?inviteCode=${inviteCode.code}`
       })
     } else {

@@ -8,7 +8,7 @@
         <view class="entry" bindtap="viewBill">我的账单<i class="icon iconfont icon_jiantoumian_huaban"></i></view>
       </view>
     </view>
-    <contactBtn contactType="recharge" title="去充值" my-class="btn"></contactBtn>    
+    <contactBtn contactType="recharge" title="去充值" my-class="btn" bindtap="wxReportAnalytics"></contactBtn>    
   </view>
   <view class="my-box">
     <view class="my-header">

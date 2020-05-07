@@ -31,6 +31,11 @@ Component({
    */
   methods: {
     toggle () {
+      app.wxReportAnalytics('button_click_event', {
+        button_id: 'guide_login_tab',
+        button_name: 'Pick功能引导登录',
+        result: !this.data.open
+      })
       this.setData({'open': !this.data.open})
     },
     userAgreement () {
@@ -39,11 +44,19 @@ Component({
       wx.navigateTo({url: `/pages/webview/index?p=${encodeURIComponent(url)}`})
     },
     login () {
+      app.wxReportAnalytics('button_click_event', {
+        button_id: 'Tel-enter',
+        button_name: '手机号登录'
+      })
       wx.navigateTo({
         url: `/pages/login/index?redirectTo=${encodeURIComponent(getCurrentPagePath())}`
       })
     },
     getPhoneNumber (e) {
+      app.wxReportAnalytics('button_click_event', {
+        button_id: 'WeChat-enter',
+        button_name: '微信登录'
+      })
       let options = {
         redirectTo: encodeURIComponent(getCurrentPagePath())
       }

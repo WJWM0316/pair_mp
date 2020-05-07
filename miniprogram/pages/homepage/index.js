@@ -130,7 +130,19 @@ Page({
     let { current } = e.detail
     this.setData({currentIndex: current})
   },
-  edit() {
+  edit(e) {
+    let { dataset } = e.currentTarget
+    if (dataset.type) {
+      app.wxReportAnalytics('button_click_event', {
+        button_id: 'Degree-information',
+        button_name: '去到编辑资料总览页'
+      })
+    } else {
+      app.wxReportAnalytics('button_click_event', {
+        button_id: 'redact_All-information',
+        button_name: '自主完善信息'
+      })
+    }
     let { PAGEPATH } = app.globalData
     wx.navigateTo({
       url: `${PAGEPATH}/userInfo/index`
@@ -171,6 +183,10 @@ Page({
     }    
   },
   fetch() {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'Want_know',
+      button_name: '想认识TA'
+    })
     let { userInfo } = app.globalData.userInfo
     let { options, userCompleteInfo } = this.data
     let otherInfo = this.data.userInfo
@@ -308,6 +324,10 @@ Page({
         imageUrl: userInfo.avatarInfo.middleUrl,
         path: `/pages/homepage/index?vkey=${userInfo.vkey}`
       }
+      app.wxReportAnalytics('button_click_event', {
+        button_id: 'share_applet-card',
+        button_name: '分享小程序卡片'
+      })
     }
     return app.wxShare({
       options,

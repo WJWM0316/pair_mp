@@ -26,7 +26,6 @@ Page({
     navBarHeight: app.globalData.navBarHeight
   },
   async onShow () {
-    
     let data = await hasLogin()
     this.setData({'hasLogin': data, 'hasLogincb': true})    
     if (app.globalData.userInfo) {
@@ -59,7 +58,6 @@ Page({
       isLastPage: false,
       isRequire: false
     }
-    wx.removeStorageSync('squareData')
     this.setData({squareData}, () => this.getUserList())
   },
   getUserList() {
@@ -101,12 +99,6 @@ Page({
       }
     })
   },
-  // onReachBottom() {
-  //   const squareData = this.data.squareData
-  //   if (!squareData.isLastPage) {
-  //     this.setData({onBottomStatus: 1}, () => this.getUserList())
-  //   }
-  // },
   onShareAppMessage: function (options) {
     let { inviteCode } = app.globalData
     if(options.from === 'button') {

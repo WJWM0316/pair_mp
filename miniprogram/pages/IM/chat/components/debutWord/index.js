@@ -51,6 +51,11 @@ Component({
     selectWord (e) {
       let word = e.currentTarget.dataset.word
       this.triggerEvent('selectResult', word)
+      app.wxReportAnalytics('button_click_event', {
+        button_id: 'get-prologue-content',
+        button_name: '点击开场白内容',
+        result: word
+      })
     },
     tapMpre () {
       this.triggerEvent('tapMpre')

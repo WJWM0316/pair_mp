@@ -139,6 +139,10 @@ Page({
     }).catch(() => {})
   },
   pick () {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'Pick-choose',
+      button_name: 'Pick挑选'
+    })
     let { userInfo, wechatInfo } = app.globalData.userInfo
     if (!this.data.hasLogin) {
       let pickTimes = localstorage.get('pickTimes') || 0
@@ -199,6 +203,10 @@ Page({
       } else {
         // 已经没有次数了，但是还有兑换次数，就显示兑换弹窗
         if (this.data.status.pickChance.todayRemainExchangeTimes) {
+          app.wxReportAnalytics('button_click_event', {
+            button_id: 'get-times',
+            button_name: '获取更多Pick次数'
+          })
           this.getPickChance().then(() => {
             this.setData({code: 5}, () => this.selectComponent('#dialog').show())
           })

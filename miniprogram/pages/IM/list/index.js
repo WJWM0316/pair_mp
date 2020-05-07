@@ -130,12 +130,26 @@ Page({
     })
   },
   pick () {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'Try-Pick',
+      button_name: 'Pick一下'
+    })
     wx.navigateTo({url: '/pages/index/index'})
   },
   follow () {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'Official-Accounts',
+      button_name: '引导授权/关注公众号',
+      result: '关注公众号'
+    })
     this.selectComponent('#popup').show()
   },
   onGotUserInfo (e) {
+    app.wxReportAnalytics('button_click_event', {
+      button_id: 'Official-Accounts',
+      button_name: '引导授权/关注公众号',
+      result: '授权'
+    })
     getUserInfoAuth(e)
   },
 

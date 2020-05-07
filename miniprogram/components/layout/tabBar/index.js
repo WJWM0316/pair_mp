@@ -102,6 +102,26 @@ Component({
       if (e.currentTarget.dataset.selected) return
       let route = e.currentTarget.dataset.route
       wx.reLaunch({url: '/' + route})
+      switch (route) {
+        case 'pages/square/index':
+          app.wxReportAnalytics('button_click_event', {
+            button_id: 'square_tab',
+            button_name: '广场_tab点击次数'
+          })
+          break
+        case 'pages/index/index':
+          app.wxReportAnalytics('button_click_event', {
+            button_id: 'Pick_tab',
+            button_name: 'Pick_tab点击次数'
+          })
+          break
+        case 'pages/IM/list/index':
+          app.wxReportAnalytics('button_click_event', {
+            button_id: 'information_tab',
+            button_name: '消息_tab点击次数'
+          })
+          break
+      }
     }
   }
 })

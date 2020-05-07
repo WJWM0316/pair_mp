@@ -224,6 +224,12 @@ const wxApi = {
     }
     return shareObj
   },
+  // 微信数据分析上报
+  wxReportAnalytics (type, param) {
+    var pages = getCurrentPages() //获取加载的页面
+    param.current_page = pages[pages.length - 1].route
+    wx.reportAnalytics(type, param)
+  },
   // pickUser => 点击pick按钮
   // imSendMsg => 发送消息
   // stepFinish => 信息完善流程最后一步（第三步）
