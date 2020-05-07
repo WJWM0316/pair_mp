@@ -82,28 +82,30 @@ const loginCallback = (res, options) => {
     getApp().globalData['hasLogin'] = true
     wx.setStorageSync('token', res.data.userInfo.token)
     Socket.login(res.data.userInfo.token)
-    
-    if(!res.data.userInfo.inviteCode) {
-      wx.reLaunch({
-        url: `/pages/invitation/index`
-      })
-    } else {
-      if (res.data.userInfo.hasOwnProperty('step') && res.data.userInfo.step !== 9) {
+    let callback = () => {
+      if(!res.data.userInfo.inviteCode) {
         wx.reLaunch({
-          url: `/pages/createUser/index?step=${res.data.userInfo.step}`
+          url: `/pages/invitation/index`
         })
       } else {
-        if (options && options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
+        if (res.data.userInfo.hasOwnProperty('step') && res.data.userInfo.step !== 9) {
+          wx.reLaunch({
+            url: `/pages/createUser/index?step=${res.data.userInfo.step}`
+          })
+        } else {
+          if (options && options.redirectTo) wx.redirectTo({url: decodeURIComponent(options.redirectTo)})
+        }
       }
     }
+    // callback()
     let sex = wx.getStorageSync('sex')
     if (sex) {
       setPickerIntentionApi({gender: sex}).then(() => {
         wx.removeStorageSync('sex')
-        getUserInfo()    
+        getUserInfo().then(() => callback())
       })
     } else {
-      getUserInfo()
+      getUserInfo().then(() => callback())
     }
   } else {
     getApp().globalData['hasLogin'] = false
