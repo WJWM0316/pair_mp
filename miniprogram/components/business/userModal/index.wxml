@@ -2,7 +2,7 @@
   <view class="mask {{show ? 'show' : ''}}" bindtap="todoAction" data-action="close"></view>
   <view scroll-y="true" class="overlay">
 
-    <view class="close" bindtap="todoAction" data-action="close" wx:if="{{show}}">
+    <view class="close" bindtap="todoAction" data-action="close" hidden="{{!show}}">
       <i class="icon iconfont icon_xiaocha"></i>
     </view>
 

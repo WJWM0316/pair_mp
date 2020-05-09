@@ -20,15 +20,21 @@
         width: 64rpx;
         height: 64rpx;
         overflow: hidden;
+        transition: all ease .2s;
         .mask {
-          width: 100%;
+          width: 64rpx;
+          height: 64rpx;
           position: absolute;
           top: 0;
           left: 0;
+          z-index: 2;
+          background: transparent;
         }
         .avatar_v1 {
           width: 100%;
           position: relative;
+          z-index: 1;
+          background: transparent;
         }
       } 
       .icon_shaixuan {

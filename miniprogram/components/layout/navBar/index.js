@@ -104,7 +104,7 @@ Component({
         wx.navigateBack({delta: 1})
       }
     },
-    loadSuccess(e) {
+    bindloadimages() {
       this.setData({opacity: 1})
     }
   }
