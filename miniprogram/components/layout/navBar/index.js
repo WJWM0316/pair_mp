@@ -51,7 +51,8 @@ Component({
     showGender: false,
     showBackBtn: true,
     userInfo: {},
-    CDNPATH: app.globalData.CDNPATH
+    CDNPATH: app.globalData.CDNPATH,
+    opacity: 0
   },
   attached () {
     this.triggerEvent('genderToggle', this.data.showGender)
@@ -102,6 +103,9 @@ Component({
       } else {
         wx.navigateBack({delta: 1})
       }
+    },
+    loadSuccess(e) {
+      this.setData({opacity: 1})
     }
   }
 })
