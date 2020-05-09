@@ -21,7 +21,7 @@
   width: 64rpx;
   height: 64rpx;
   overflow: hidden;
-  transition: all ease 0.2s;
+  transition: all ease 0.15s;
 }
 .navWrap .nav-content .left .icon_aixin-box .mask {
   width: 64rpx;
