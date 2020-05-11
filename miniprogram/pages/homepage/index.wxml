@@ -89,7 +89,7 @@
       <view class="inner">
         <view class="career-objective">{{ userInfo.industryArr[0].name }}·{{ userInfo.industryArr[1].name }}</view>
         <block wx:if="{{userInfo.industryArr[0].companyRequired}}">
-          <view class="work-experience" wx:if="{{ userInfo.companyName }}">
+          <view class="work-experience">
             {{ userInfo.companyName }} | {{ userInfo.positionName }} 
             <i-image my-class="icon" src="{{ CDNPATH }}icon_job_legalize.png" wx:if="{{ userInfo.isCareerIdentity }}" mode="widthFix"></i-image> 
           </view>
@@ -176,7 +176,7 @@
     <view wx:if="{{!isOwner}}" class="report-entry"><text bindtap="report">投诉该用户</text></view>
     <view class="block" style="background-color:{{tabBgColor}}"></view>
     <view class="action-zone">
-      <i-button my-class="btn3" wx:if="{{isOwner}}" bindtap="edit">
+      <i-button my-class="btn3" wx:if="{{isOwner}}" bindtap="edit" data-type='bottom'>
         <view class="cover"><i class="icon15 icon iconfont icon_bianji"></i>编辑资料</view>
       </i-button>
       <block wx:else>
